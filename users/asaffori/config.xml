@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<user>
+  <fullName>Saffori, Adham</fullName>
+  <properties>
+    <jenkins.security.ApiTokenProperty>
+      <apiToken>{AQAAABAAAAAwFCryEjBdbuQw/N4sElpLiQ2wNZ4MZuj2P36BJ+5eHb8Wa+0NNiOEIJ6ZBZroqgIBdjpvQY5AwPyTE5AujEtIew==}</apiToken>
+    </jenkins.security.ApiTokenProperty>
+    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.16">
+      <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
+    </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.61">
+      <triggers/>
+    </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
+    <hudson.model.MyViewsProperty>
+      <views>
+        <hudson.model.AllView>
+          <owner class="hudson.model.MyViewsProperty" reference="../../.."/>
+          <name>All</name>
+          <filterExecutors>false</filterExecutors>
+          <filterQueue>false</filterQueue>
+          <properties class="hudson.model.View$PropertyList"/>
+        </hudson.model.AllView>
+      </views>
+    </hudson.model.MyViewsProperty>
+    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.1.1">
+      <identifiers/>
+    </hudson.plugins.openid.OpenIdUserProperty>
+    <hudson.model.PaneStatusProperties>
+      <collapsed/>
+    </hudson.model.PaneStatusProperties>
+    <hudson.search.UserSearchProperty>
+      <insensitiveSearch>false</insensitiveSearch>
+    </hudson.search.UserSearchProperty>
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.20">
+      <emailAddress>Adham.Saffori@kla-tencor.com</emailAddress>
+    </hudson.tasks.Mailer_-UserProperty>
+    <jenkins.security.LastGrantedAuthoritiesProperty>
+      <roles>
+        <string>Bel1nas01-legacy_swx-RO</string>
+        <string>authenticated</string>
+        <string>CA1NAS02-WIN-BFDATA-CH</string>
+        <string>aspera-users-engineering-kti-omd</string>
+        <string>Sng2nas04-KTS_Mfg_Eng_HCL_Support-RO</string>
+        <string>CA1NAS12-SSCMdata-RO</string>
+        <string>KLAIsraelAcc</string>
+        <string>CA1NAS07-CPG-UNT-RO</string>
+        <string>Ca1nas01-WINdownload-RO</string>
+        <string>DL-ALL-ISRAEL-OMD</string>
+        <string>Ca1ucsfs01-EMIE-RO</string>
+        <string>WIN-DYSD-DRCEng-CH</string>
+        <string>ISR1NAS01-DAILY-RO</string>
+        <string>ca1nas01-TWave-RO</string>
+        <string>WIN-DYSD-Tools-CH</string>
+        <string>ISR1NAS01-SW-SQC-CH</string>
+        <string>DL-ALL-ISRAEL</string>
+        <string>DL-ESPP</string>
+        <string>Austinnt1-Austrain-CH</string>
+        <string>CA1NAS12-SSCMdata-CH</string>
+        <string>WIN-DYSD-Migration-CH</string>
+        <string>ISR1NAS03-FI_OMD-RO</string>
+        <string>WIN-DYSD-sepg-RO</string>
+        <string>WIN-DYSD-IMPACT_met-RO</string>
+        <string>WIN-DYSD-Image-CH</string>
+        <string>Twn1fp01-PCIDData-RO</string>
+        <string>DL-eQuality Users</string>
+        <string>CA1-CTX-Portal-Users</string>
+        <string>WIN-DYSD-WSODocs-CH</string>
+        <string>Austinnt1-Cleanroom-CH</string>
+        <string>ca1fs01-Eric-R-Jong-CH</string>
+        <string>Isr1nas03-Viking-RO</string>
+        <string>Ca1nas01-GlobalOpsJMP-CH</string>
+        <string>New HIRE Group</string>
+        <string>Ca1nas05-WIN-Projects--M37Public-RO</string>
+        <string>Delta-ws_MatchingMasterFiles-RO</string>
+        <string>UC-User-SING-Production</string>
+        <string>CA1NAS05-WIN-SCM-Archive2-RO</string>
+        <string>CA1-CTX-ALL-TEST</string>
+        <string>WIN-DYSD-Demo_solutions-CH</string>
+        <string>CA1NAS02-WIN-APPS-VideoTraining-RO</string>
+        <string>WIN-DYSD-ILM-CH</string>
+        <string>WIN-DYSD-Klarity-CH</string>
+        <string>Ca1nas05-WIN-Software-Blazer-RO</string>
+        <string>CA1NAS05-DYSD-RDS-Images-RO</string>
+        <string>CMS_USERS</string>
+        <string>KLA-ISRAEL</string>
+        <string>UC-User-Milp-Production</string>
+        <string>JPN1FS01-043-RO</string>
+        <string>ISR1NAS01-SW-OMD-CH</string>
+        <string>DL-Hasaot-users</string>
+        <string>WIN-DYSD-IMPACT_meti-CH</string>
+        <string>WIN-DYSD-ftp-CH</string>
+        <string>DL-All-Israel-PasswordChange</string>
+        <string>DL-Israel-OMD-ENG</string>
+        <string>CA1-CTX-KT-Employees</string>
+        <string>WIN-DYSD-Assignment-CH</string>
+        <string>PLANTOPS_OPERATOR</string>
+        <string>WIN-EEP-Reports_Customers-CH</string>
+        <string>WIN-DYSD-ADCAlgorithm-CH</string>
+        <string>WIN-EEP-Logs_Input_Customers-CH</string>
+        <string>DL-Israel-Contractors</string>
+        <string>WIN-DYSD-Field-Apps-CH</string>
+        <string>sfsade-vm6-Fab-Test-CH</string>
+        <string>WIN-DYSD-ace-xp-recipe-CH</string>
+        <string>DL-ALL-REGULAR-EMPLOYEES-SPA</string>
+        <string>JazzUsers</string>
+        <string>ISR1NAS01-UserDoc-RO</string>
+        <string>DL-Israel-OMD-ENG-SW</string>
+        <string>Ca1nas05-WIN-Software-Carrera-RO</string>
+        <string>Ca1fs01-TN-analyzes-RO</string>
+        <string>CA1NAS02-SSCM-CH</string>
+        <string>Ca1fs01-SS10K-info-RO</string>
+        <string>WIN-DYSD-SQATestData-CH</string>
+        <string>Ca1nas11-Autodesk-RO</string>
+        <string>ISr1nas03-OMD-SCM-GP</string>
+        <string>DPM_Users_Old</string>
+        <string>Isr1nas03-External_Files_for_Sharing-RO</string>
+        <string>PasswordManager</string>
+        <string>OMD Nightly Build Recipients</string>
+        <string>CA1NAS01-WINField-CH</string>
+        <string>ca1fs01-KlearPoint-CH</string>
+        <string>WIN-DYSD-STADB-CH</string>
+        <string>MI Production KLA Mobile</string>
+        <string>Citrix XenApp 7.6 - KT STD Desktops - Prod</string>
+        <string>CA1SFSFP01-Integration-RO</string>
+        <string>ca1nas11-AMSRCRD-RO</string>
+        <string>DL-ALL-Employees-SPA</string>
+        <string>ISR1NAS01-ToolsDataCollections-RO</string>
+        <string>WIN-DYSD-Recipe-CH</string>
+        <string>CA1NAS04-WIN-Software-RO</string>
+        <string>DL-Q2FY17-SURVEY</string>
+        <string>ZZZ-SRV-ISREXCHANGE</string>
+        <string>WIN-DYSD-adc-plc-CH</string>
+        <string>ca1nas05-WIN-OpenShares-CH</string>
+        <string>WIN-DYSD-Picnic-RO</string>
+        <string>MI Production KLA O365 Mail</string>
+        <string>UC-User-Production</string>
+        <string>DL-All-eQuality Users</string>
+        <string>NewHireGroup-10-19</string>
+        <string>Quota</string>
+        <string>Ca1nas11-KT-Insight-Program-RO</string>
+        <string>WIN-DYSD-IMPACT_Min-CH</string>
+        <string>cc-israel</string>
+        <string>Domain Users</string>
+        <string>PCS-Open-CH</string>
+        <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>ISR1NAS01-SW-COMM-CH</string>
+        <string>MI Production KLA AppConnect</string>
+        <string>Ca1fs01-MFG-RO</string>
+        <string>WIN-DYSD-Satellite_release-RO</string>
+      </roles>
+      <timestamp>1514095197189</timestamp>
+    </jenkins.security.LastGrantedAuthoritiesProperty>
+    <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.35"/>
+    <org.jenkinsci.plugins.readonly.UserConfiguration plugin="read-only-configurations@1.10">
+      <displayForReadOnlyPermission>true</displayForReadOnlyPermission>
+    </org.jenkinsci.plugins.readonly.UserConfiguration>
+    <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
+      <providerId>default</providerId>
+    </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
+    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
+      <data class="concurrent-hash-map"/>
+    </hudson.plugins.favorite.user.FavoriteUserProperty>
+  </properties>
+</user>
