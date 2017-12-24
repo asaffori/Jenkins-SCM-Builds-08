@@ -1,0 +1,583 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson>
+  <disabledAdministrativeMonitors>
+    <string>hudson.diagnosis.ReverseProxySetupMonitor</string>
+    <string>jenkins.model.DownloadSettings$Warning</string>
+    <string>OldData</string>
+    <string>jenkins.security.s2m.MasterKillSwitchWarning</string>
+    <string>jenkins.CLI</string>
+  </disabledAdministrativeMonitors>
+  <version>2.89.2</version>
+  <numExecutors>11</numExecutors>
+  <mode>EXCLUSIVE</mode>
+  <useSecurity>true</useSecurity>
+  <authorizationStrategy class="hudson.security.ProjectMatrixAuthorizationStrategy">
+    <permission>com.cloudbees.jenkins.support.SupportPlugin.DownloadBundle:agzhan</permission>
+    <permission>com.cloudbees.jenkins.support.SupportPlugin.DownloadBundle:asaffori</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Create:agzhan</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Create:asaffori</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Delete:agzhan</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Delete:asaffori</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:agzhan</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:asaffori</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Update:agzhan</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Update:asaffori</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:agzhan</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:anonymous</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:asaffori</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:cawang</permission>
+    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.RemoveCause:agzhan</permission>
+    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.RemoveCause:asaffori</permission>
+    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.UpdateCauses:agzhan</permission>
+    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.UpdateCauses:asaffori</permission>
+    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.ViewCauses:agzhan</permission>
+    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.ViewCauses:asaffori</permission>
+    <permission>hudson.model.Computer.Build:agzhan</permission>
+    <permission>hudson.model.Computer.Build:asaffori</permission>
+    <permission>hudson.model.Computer.Build:cawang</permission>
+    <permission>hudson.model.Computer.Build:lhou</permission>
+    <permission>hudson.model.Computer.Build:omdbuild</permission>
+    <permission>hudson.model.Computer.Build:omdbuildchn</permission>
+    <permission>hudson.model.Computer.Build:oshachor</permission>
+    <permission>hudson.model.Computer.Build:smizrach</permission>
+    <permission>hudson.model.Computer.Configure:agzhan</permission>
+    <permission>hudson.model.Computer.Configure:asaffori</permission>
+    <permission>hudson.model.Computer.Connect:agzhan</permission>
+    <permission>hudson.model.Computer.Connect:asaffori</permission>
+    <permission>hudson.model.Computer.Connect:cawang</permission>
+    <permission>hudson.model.Computer.Connect:lhou</permission>
+    <permission>hudson.model.Computer.Connect:omdbuild</permission>
+    <permission>hudson.model.Computer.Connect:omdbuildchn</permission>
+    <permission>hudson.model.Computer.Connect:oshachor</permission>
+    <permission>hudson.model.Computer.Connect:smizrach</permission>
+    <permission>hudson.model.Computer.Create:agzhan</permission>
+    <permission>hudson.model.Computer.Create:asaffori</permission>
+    <permission>hudson.model.Computer.Create:cawang</permission>
+    <permission>hudson.model.Computer.Create:lhou</permission>
+    <permission>hudson.model.Computer.Create:omdbuild</permission>
+    <permission>hudson.model.Computer.Create:omdbuildchn</permission>
+    <permission>hudson.model.Computer.Create:oshachor</permission>
+    <permission>hudson.model.Computer.Create:smizrach</permission>
+    <permission>hudson.model.Computer.Delete:agzhan</permission>
+    <permission>hudson.model.Computer.Delete:asaffori</permission>
+    <permission>hudson.model.Computer.Disconnect:agzhan</permission>
+    <permission>hudson.model.Computer.Disconnect:asaffori</permission>
+    <permission>hudson.model.Computer.Disconnect:cawang</permission>
+    <permission>hudson.model.Computer.Disconnect:lhou</permission>
+    <permission>hudson.model.Computer.Disconnect:omdbuild</permission>
+    <permission>hudson.model.Computer.Disconnect:omdbuildchn</permission>
+    <permission>hudson.model.Computer.Disconnect:oshachor</permission>
+    <permission>hudson.model.Computer.Disconnect:smizrach</permission>
+    <permission>hudson.model.Hudson.Administer:agzhan</permission>
+    <permission>hudson.model.Hudson.Administer:asaffori</permission>
+    <permission>hudson.model.Hudson.Read:agzhan</permission>
+    <permission>hudson.model.Hudson.Read:anonymous</permission>
+    <permission>hudson.model.Hudson.Read:asaffori</permission>
+    <permission>hudson.model.Hudson.Read:cawang</permission>
+    <permission>hudson.model.Hudson.Read:lhou</permission>
+    <permission>hudson.model.Hudson.Read:omdbuild</permission>
+    <permission>hudson.model.Hudson.Read:omdbuildchn</permission>
+    <permission>hudson.model.Hudson.Read:oshachor</permission>
+    <permission>hudson.model.Hudson.Read:smizrach</permission>
+    <permission>hudson.model.Item.Build:agzhan</permission>
+    <permission>hudson.model.Item.Build:asaffori</permission>
+    <permission>hudson.model.Item.Build:cawang</permission>
+    <permission>hudson.model.Item.Build:lhou</permission>
+    <permission>hudson.model.Item.Build:omdbuild</permission>
+    <permission>hudson.model.Item.Build:omdbuildchn</permission>
+    <permission>hudson.model.Item.Build:oshachor</permission>
+    <permission>hudson.model.Item.Build:smizrach</permission>
+    <permission>hudson.model.Item.Cancel:agzhan</permission>
+    <permission>hudson.model.Item.Cancel:asaffori</permission>
+    <permission>hudson.model.Item.Cancel:cawang</permission>
+    <permission>hudson.model.Item.Cancel:lhou</permission>
+    <permission>hudson.model.Item.Cancel:omdbuild</permission>
+    <permission>hudson.model.Item.Cancel:omdbuildchn</permission>
+    <permission>hudson.model.Item.Cancel:oshachor</permission>
+    <permission>hudson.model.Item.Cancel:smizrach</permission>
+    <permission>hudson.model.Item.Configure:agzhan</permission>
+    <permission>hudson.model.Item.Configure:asaffori</permission>
+    <permission>hudson.model.Item.Configure:cawang</permission>
+    <permission>hudson.model.Item.Configure:lhou</permission>
+    <permission>hudson.model.Item.Configure:omdbuild</permission>
+    <permission>hudson.model.Item.Configure:omdbuildchn</permission>
+    <permission>hudson.model.Item.Configure:oshachor</permission>
+    <permission>hudson.model.Item.Configure:smizrach</permission>
+    <permission>hudson.model.Item.Create:agzhan</permission>
+    <permission>hudson.model.Item.Create:asaffori</permission>
+    <permission>hudson.model.Item.Create:cawang</permission>
+    <permission>hudson.model.Item.Create:lhou</permission>
+    <permission>hudson.model.Item.Create:omdbuild</permission>
+    <permission>hudson.model.Item.Create:omdbuildchn</permission>
+    <permission>hudson.model.Item.Create:oshachor</permission>
+    <permission>hudson.model.Item.Create:smizrach</permission>
+    <permission>hudson.model.Item.Delete:agzhan</permission>
+    <permission>hudson.model.Item.Delete:asaffori</permission>
+    <permission>hudson.model.Item.Delete:omdbuild</permission>
+    <permission>hudson.model.Item.Delete:omdbuildchn</permission>
+    <permission>hudson.model.Item.Delete:oshachor</permission>
+    <permission>hudson.model.Item.Delete:smizrach</permission>
+    <permission>hudson.model.Item.Discover:agzhan</permission>
+    <permission>hudson.model.Item.Discover:anonymous</permission>
+    <permission>hudson.model.Item.Discover:asaffori</permission>
+    <permission>hudson.model.Item.Discover:cawang</permission>
+    <permission>hudson.model.Item.Discover:lhou</permission>
+    <permission>hudson.model.Item.Discover:omdbuild</permission>
+    <permission>hudson.model.Item.Discover:omdbuildchn</permission>
+    <permission>hudson.model.Item.Discover:oshachor</permission>
+    <permission>hudson.model.Item.Discover:smizrach</permission>
+    <permission>hudson.model.Item.ExtendedRead:agzhan</permission>
+    <permission>hudson.model.Item.ExtendedRead:anonymous</permission>
+    <permission>hudson.model.Item.ExtendedRead:asaffori</permission>
+    <permission>hudson.model.Item.ExtendedRead:cawang</permission>
+    <permission>hudson.model.Item.ExtendedRead:lhou</permission>
+    <permission>hudson.model.Item.ExtendedRead:omdbuild</permission>
+    <permission>hudson.model.Item.ExtendedRead:omdbuildchn</permission>
+    <permission>hudson.model.Item.ExtendedRead:oshachor</permission>
+    <permission>hudson.model.Item.ExtendedRead:smizrach</permission>
+    <permission>hudson.model.Item.Move:agzhan</permission>
+    <permission>hudson.model.Item.Move:asaffori</permission>
+    <permission>hudson.model.Item.Read:agzhan</permission>
+    <permission>hudson.model.Item.Read:anonymous</permission>
+    <permission>hudson.model.Item.Read:asaffori</permission>
+    <permission>hudson.model.Item.Read:cawang</permission>
+    <permission>hudson.model.Item.Read:lhou</permission>
+    <permission>hudson.model.Item.Read:omdbuild</permission>
+    <permission>hudson.model.Item.Read:omdbuildchn</permission>
+    <permission>hudson.model.Item.Read:oshachor</permission>
+    <permission>hudson.model.Item.Read:smizrach</permission>
+    <permission>hudson.model.Item.Workspace:agzhan</permission>
+    <permission>hudson.model.Item.Workspace:anonymous</permission>
+    <permission>hudson.model.Item.Workspace:asaffori</permission>
+    <permission>hudson.model.Item.Workspace:cawang</permission>
+    <permission>hudson.model.Item.Workspace:lhou</permission>
+    <permission>hudson.model.Item.Workspace:omdbuild</permission>
+    <permission>hudson.model.Item.Workspace:omdbuildchn</permission>
+    <permission>hudson.model.Item.Workspace:oshachor</permission>
+    <permission>hudson.model.Item.Workspace:smizrach</permission>
+    <permission>hudson.model.Run.Delete:agzhan</permission>
+    <permission>hudson.model.Run.Delete:asaffori</permission>
+    <permission>hudson.model.Run.Delete:cawang</permission>
+    <permission>hudson.model.Run.Delete:lhou</permission>
+    <permission>hudson.model.Run.Delete:omdbuild</permission>
+    <permission>hudson.model.Run.Delete:omdbuildchn</permission>
+    <permission>hudson.model.Run.Delete:oshachor</permission>
+    <permission>hudson.model.Run.Delete:smizrach</permission>
+    <permission>hudson.model.Run.Replay:agzhan</permission>
+    <permission>hudson.model.Run.Replay:asaffori</permission>
+    <permission>hudson.model.Run.Replay:cawang</permission>
+    <permission>hudson.model.Run.Replay:lhou</permission>
+    <permission>hudson.model.Run.Replay:omdbuild</permission>
+    <permission>hudson.model.Run.Replay:omdbuildchn</permission>
+    <permission>hudson.model.Run.Replay:oshachor</permission>
+    <permission>hudson.model.Run.Replay:smizrach</permission>
+    <permission>hudson.model.Run.Update:agzhan</permission>
+    <permission>hudson.model.Run.Update:asaffori</permission>
+    <permission>hudson.model.Run.Update:cawang</permission>
+    <permission>hudson.model.Run.Update:lhou</permission>
+    <permission>hudson.model.Run.Update:omdbuild</permission>
+    <permission>hudson.model.Run.Update:omdbuildchn</permission>
+    <permission>hudson.model.Run.Update:oshachor</permission>
+    <permission>hudson.model.Run.Update:smizrach</permission>
+    <permission>hudson.model.View.Configure:agzhan</permission>
+    <permission>hudson.model.View.Configure:asaffori</permission>
+    <permission>hudson.model.View.Create:agzhan</permission>
+    <permission>hudson.model.View.Create:asaffori</permission>
+    <permission>hudson.model.View.Create:cawang</permission>
+    <permission>hudson.model.View.Create:lhou</permission>
+    <permission>hudson.model.View.Create:oshachor</permission>
+    <permission>hudson.model.View.Create:smizrach</permission>
+    <permission>hudson.model.View.Delete:agzhan</permission>
+    <permission>hudson.model.View.Delete:asaffori</permission>
+    <permission>hudson.model.View.Delete:cawang</permission>
+    <permission>hudson.model.View.Delete:lhou</permission>
+    <permission>hudson.model.View.Delete:oshachor</permission>
+    <permission>hudson.model.View.Delete:smizrach</permission>
+    <permission>hudson.model.View.Read:agzhan</permission>
+    <permission>hudson.model.View.Read:anonymous</permission>
+    <permission>hudson.model.View.Read:asaffori</permission>
+    <permission>hudson.model.View.Read:cawang</permission>
+    <permission>hudson.model.View.Read:lhou</permission>
+    <permission>hudson.model.View.Read:omdbuild</permission>
+    <permission>hudson.model.View.Read:omdbuildchn</permission>
+    <permission>hudson.model.View.Read:oshachor</permission>
+    <permission>hudson.model.View.Read:smizrach</permission>
+    <permission>hudson.scm.SCM.Tag:agzhan</permission>
+    <permission>hudson.scm.SCM.Tag:asaffori</permission>
+    <permission>jenkins.metrics.api.Metrics.HealthCheck:agzhan</permission>
+    <permission>jenkins.metrics.api.Metrics.HealthCheck:anonymous</permission>
+    <permission>jenkins.metrics.api.Metrics.HealthCheck:asaffori</permission>
+    <permission>jenkins.metrics.api.Metrics.ThreadDump:agzhan</permission>
+    <permission>jenkins.metrics.api.Metrics.View:agzhan</permission>
+    <permission>jenkins.metrics.api.Metrics.View:anonymous</permission>
+  </authorizationStrategy>
+  <securityRealm class="hudson.plugins.active_directory.ActiveDirectorySecurityRealm" plugin="active-directory@2.6">
+    <domains>
+      <hudson.plugins.active__directory.ActiveDirectoryDomain>
+        <name>kla-tencor.com</name>
+        <servers>10.158.8.133:3268,10.151.17.20:3268,10.230.8.107:3268</servers>
+        <bindName>klasj\omdbuild</bindName>
+        <bindPassword>{AQAAABAAAAAQj2sM92V/0as/MOkuHYX8qK96kaXpZ32rzSn3r+nbn90=}</bindPassword>
+      </hudson.plugins.active__directory.ActiveDirectoryDomain>
+    </domains>
+    <startTls>true</startTls>
+    <groupLookupStrategy>AUTO</groupLookupStrategy>
+    <removeIrrelevantGroups>false</removeIrrelevantGroups>
+    <tlsConfiguration>TRUST_ALL_CERTIFICATES</tlsConfiguration>
+  </securityRealm>
+  <disableRememberMe>false</disableRememberMe>
+  <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
+  <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
+  <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
+  <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.5">
+    <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
+  </markupFormatter>
+  <jdks/>
+  <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
+  <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
+  <clouds/>
+  <quietPeriod>0</quietPeriod>
+  <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
+  <views>
+    <hudson.model.AllView>
+      <owner class="hudson" reference="../../.."/>
+      <name>all</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+    </hudson.model.AllView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>MyJobs</name>
+      <description>&lt;H1&gt;  OMD Master Jenkins &lt;/H1&gt;</description>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>DiskspaceAlertNew</string>
+        <string>OMD-Archer-Build</string>
+        <string>RDM_NuArcher_CI_Flow</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>BuildClosure</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>BuildClosure-Flow</string>
+        <string>OMD-Archer-Buid-AutoMergeStream</string>
+        <string>OMD-Archer-Buid-CleanLocalBuildData</string>
+        <string>OMD-Archer-Buid-CreateCodeViewNew</string>
+        <string>OMD-Archer-Build-Create_Snapshot_Baseline</string>
+        <string>OMD-Archer-Build-PromoteBuildWIs</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>OldVersionsBuildJob</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView[2]/jobNames/comparator"/>
+        <string>OMD-Archer-V16.04-CM</string>
+        <string>OMD-Archer-V16.05-CM</string>
+        <string>OMD-Archer-V16.51-CM</string>
+        <string>OMD-Archer-V17.0X-CM</string>
+        <string>OMD-RDM-build</string>
+        <string>OMD-RDM-V10.04-CM</string>
+        <string>OMD-RDM-V10.05-CM</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Periodic jobs</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView[2]/jobNames/comparator"/>
+        <string>CHNBuildCleanup</string>
+        <string>CommonBuildCleanup</string>
+        <string>CommonBuildCleanup - actual deletion trigger</string>
+        <string>CommonBuildCleanup - notification trigger</string>
+        <string>LocalBuildData-PeriodicCleanup</string>
+        <string>LocalBuildDataCleanup - actual deletion trigger</string>
+        <string>LocalBuildDataCleanup - notification trigger</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Testing</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>Agnes-Archer Build - Debug Mode</string>
+        <string>Agnes-Archer Build - Release Mode</string>
+        <string>Agnes-Archer Meida Creation</string>
+        <string>Agnes-NuArcher - Backup Code Debug</string>
+        <string>Agnes-NuArcher - Backup Code Release</string>
+        <string>Agnes-NuArcher - Deliver Code change</string>
+        <string>Agnes-NuArcher Build Preperation Debug</string>
+        <string>Agnes-NuArcher Build Preperation Release</string>
+        <string>Agnes-RDM - Backup Code Debug</string>
+        <string>Agnes-RDM - Backup Code Release</string>
+        <string>Agnes-RDM - Debug Build</string>
+        <string>Agnes-RDM - Deliver Code change</string>
+        <string>Agnes-RDM - Release Build</string>
+        <string>Agnes-RDM Media creation</string>
+        <string>Agnes_Test_Flow</string>
+        <string>Archer Build test</string>
+        <string>AUTO_Deploy_test_flow</string>
+        <string>DownLoadFile</string>
+        <string>Installation test</string>
+        <string>OMD-Archer-Build-Agnes</string>
+        <string>UpLoadFile</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <hudson.plugins.nested__view.NestedView plugin="nested-view@1.14">
+      <owner class="hudson" reference="../../.."/>
+      <name>Build Triggers</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <views>
+        <listView>
+          <owner class="hudson.plugins.nested_view.NestedView" reference="../../.."/>
+          <name>Scheduled Triggers</name>
+          <filterExecutors>false</filterExecutors>
+          <filterQueue>false</filterQueue>
+          <properties class="hudson.model.View$PropertyList"/>
+          <jobNames>
+            <comparator class="hudson.util.CaseInsensitiveComparator"/>
+            <string>OMD_17.04_Scheduled_Trigger</string>
+            <string>OMD_17.12_Scheduled_Trigger</string>
+            <string>OMD_18.00_Scheduled_Trigger</string>
+          </jobNames>
+          <jobFilters/>
+          <columns>
+            <hudson.views.StatusColumn/>
+            <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
+            <hudson.views.WeatherColumn/>
+            <hudson.views.JobColumn/>
+            <hudson.views.BuildButtonColumn/>
+            <hudson.views.LastSuccessColumn/>
+            <hudson.views.LastFailureColumn/>
+            <hudson.views.LastDurationColumn/>
+          </columns>
+          <includeRegex>.*Scheduled.*Trigger.*</includeRegex>
+          <recurse>false</recurse>
+        </listView>
+        <listView>
+          <owner class="hudson.plugins.nested_view.NestedView" reference="../../.."/>
+          <name>Formal Triggers</name>
+          <filterExecutors>false</filterExecutors>
+          <filterQueue>false</filterQueue>
+          <properties class="hudson.model.View$PropertyList"/>
+          <jobNames>
+            <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+            <string>OMD_17.03_Formal_Trigger</string>
+            <string>OMD_17.04_Formal_Trigger</string>
+            <string>OMD_17.10_Formal_Trigger</string>
+            <string>OMD_17.11_Formal_Trigger</string>
+            <string>OMD_17.12_Formal_Trigger</string>
+            <string>OMD_17.12_SCA_Formal_Trigger</string>
+            <string>OMD_18.00_Formal_Trigger</string>
+          </jobNames>
+          <jobFilters/>
+          <columns>
+            <hudson.views.StatusColumn/>
+            <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
+            <hudson.views.WeatherColumn/>
+            <hudson.views.JobColumn/>
+            <hudson.views.BuildButtonColumn/>
+            <hudson.views.LastSuccessColumn/>
+            <hudson.views.LastFailureColumn/>
+            <hudson.views.LastDurationColumn/>
+          </columns>
+          <includeRegex>.*Formal.*Trigger.*</includeRegex>
+          <recurse>false</recurse>
+        </listView>
+        <listView>
+          <owner class="hudson.plugins.nested_view.NestedView" reference="../../.."/>
+          <name>Task Triggers</name>
+          <filterExecutors>false</filterExecutors>
+          <filterQueue>false</filterQueue>
+          <properties class="hudson.model.View$PropertyList"/>
+          <jobNames>
+            <comparator class="hudson.util.CaseInsensitiveComparator"/>
+            <string>OMD_17.03_SCA_Task_Trigger</string>
+          </jobNames>
+          <jobFilters/>
+          <columns>
+            <hudson.views.StatusColumn/>
+            <hudson.views.WeatherColumn/>
+            <hudson.views.JobColumn/>
+            <hudson.views.LastSuccessColumn/>
+            <hudson.views.LastFailureColumn/>
+            <hudson.views.LastDurationColumn/>
+            <hudson.views.BuildButtonColumn/>
+            <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
+          </columns>
+          <recurse>false</recurse>
+        </listView>
+      </views>
+      <columns>
+        <columns/>
+      </columns>
+    </hudson.plugins.nested__view.NestedView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Smart Build Flow</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../hudson.plugins.nested__view.NestedView/views/listView/jobNames/comparator"/>
+        <string>Archer Build - Debug Mode</string>
+        <string>Archer Build - Release Mode</string>
+        <string>Archer Meida Creation</string>
+        <string>BuildClosure-Flow</string>
+        <string>Copy Matlab product Debug</string>
+        <string>Copy Matlab product Release</string>
+        <string>Matlab Build</string>
+        <string>NuArcher - Backup Code Debug</string>
+        <string>NuArcher - Backup Code Release</string>
+        <string>NuArcher - Deliver Code change</string>
+        <string>NuArcher Build Preperation Debug</string>
+        <string>NuArcher Build Preperation Release</string>
+        <string>RDM - Backup Code Debug</string>
+        <string>RDM - Backup Code Release</string>
+        <string>RDM - Debug Build</string>
+        <string>RDM - Deliver Code change</string>
+        <string>RDM - Release Build</string>
+        <string>RDM Media creation</string>
+        <string>RDM_NuArcher_CI_Flow</string>
+        <string>Restore Image</string>
+        <string>Sanity Test</string>
+        <string>SetFlowController</string>
+        <string>Silent Installation</string>
+        <string>SimLockCheck</string>
+        <string>UnlockSimulator</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Maintainance</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>Jenkins Utilities - Set Log Rotation</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+  </views>
+  <primaryView>MyJobs</primaryView>
+  <slaveAgentPort>0</slaveAgentPort>
+  <disabledAgentProtocols>
+    <string>CLI-connect</string>
+    <string>CLI2-connect</string>
+    <string>JNLP-connect</string>
+    <string>JNLP2-connect</string>
+  </disabledAgentProtocols>
+  <enabledAgentProtocols>
+    <string>JNLP3-connect</string>
+  </enabledAgentProtocols>
+  <label></label>
+  <crumbIssuer class="hudson.security.csrf.DefaultCrumbIssuer">
+    <excludeClientIPFromCrumb>true</excludeClientIPFromCrumb>
+  </crumbIssuer>
+  <nodeProperties/>
+  <globalNodeProperties/>
+</hudson>

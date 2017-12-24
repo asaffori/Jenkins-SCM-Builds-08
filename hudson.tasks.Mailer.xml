@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.tasks.Mailer_-DescriptorImpl plugin="mailer@1.20">
+  <defaultSuffix>@kla-tencor.com</defaultSuffix>
+  <hudsonUrl>http://SCM-BUILDS-08:8080/</hudsonUrl>
+  <smtpHost>mailhost.kla-tencor.com</smtpHost>
+  <useSsl>false</useSsl>
+  <charset>UTF-8</charset>
+</hudson.tasks.Mailer_-DescriptorImpl>
