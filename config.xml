@@ -386,6 +386,7 @@
         <string>DownLoadFile</string>
         <string>Installation test</string>
         <string>OMD-Archer-Build-Agnes</string>
+        <string>OMD-Build-Pipeline</string>
         <string>UpLoadFile</string>
       </jobNames>
       <jobFilters/>
