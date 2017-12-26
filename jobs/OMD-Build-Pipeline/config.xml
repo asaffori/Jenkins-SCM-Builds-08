@@ -52,28 +52,39 @@
           <description></description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
-        <com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition plugin="extended-choice-parameter@0.76">
-          <name>BuildNodes</name>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>DebugBuildNode</name>
           <description></description>
-          <quoteValue>false</quoteValue>
-          <saveJSONParameterToFile>false</saveJSONParameterToFile>
-          <visibleItemCount>5</visibleItemCount>
-          <type>PT_MULTI_SELECT</type>
-          <value>SCM-Builds-01,SCM-Builds-02</value>
-          <defaultValue>SCM-Builds-01</defaultValue>
-          <multiSelectDelimiter>,</multiSelectDelimiter>
-        </com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
-        <com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition plugin="extended-choice-parameter@0.76">
+          <allowedSlaves/>
+          <defaultSlaves/>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>ReleaseBuildNode</name>
+          <description></description>
+          <allowedSlaves/>
+          <defaultSlaves/>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
           <name>BuildModes</name>
           <description></description>
-          <quoteValue>false</quoteValue>
-          <saveJSONParameterToFile>false</saveJSONParameterToFile>
-          <visibleItemCount>5</visibleItemCount>
-          <type>PT_MULTI_SELECT</type>
-          <value>Debug,Release</value>
-          <defaultValue>Debug</defaultValue>
-          <multiSelectDelimiter>,</multiSelectDelimiter>
-        </com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Debug</string>
+              <string>Release</string>
+              <string>Debug,Release</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -95,9 +106,10 @@
     stages {
         stage(&apos;checkout RTC&apos;) {
             parallel {
+                when { expression { params.BuildModes =~ /Debug/ }
                 stage(&apos;Debug code load&apos;) {
                     agent {
-                        label &quot;SCM-Builds-01&quot;
+                        label params.DebugBuildNode
                     }
                     steps {
                         teamconcert ([
@@ -119,10 +131,10 @@
                         }
                     }
                 }
+                when { expression { params.BuildModes =~ /Release/ }
                 stage(&apos;Release code load&apos;) {
                     agent {
-                        label &quot;SCM-Builds-02&quot;
-                    }
+                        label params.ReleaseBuildNode                    }
                     steps {
                         teamconcert ([
 							 buildType: [
