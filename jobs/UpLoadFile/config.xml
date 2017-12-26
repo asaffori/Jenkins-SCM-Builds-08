@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILDVERSION</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SourceBase</name>
+          <description></description>
+          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILD_TYPE</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Formal</string>
+              <string>Scheduled</string>
+              <string>Tasks</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>UploadEngine</name>
+          <description></description>
+          <allowedSlaves>
+            <string>ALL (no restriction)</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>SCM-CHN-01</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>IF EXIST %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% ( &quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% KLASJ\omdbuild@ca1connect01:/&#xd;
+)&#xd;
+IF NOT %ERRORLEVEL%==0 (&#xd;
+ECHO *************Upload Archer installation failed***************&#xd;
+EXIT /B 1&#xd;
+)&#xd;
+IF EXIST %SourceBase%\SW-RDM\RDM_Installations\RDM_%MajorMinor_Ver%\%BUILD_TYPE%\RDM_%BUILDVERSION% (&#xd;
+&quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m %SourceBase%\SW-RDM\RDM_Installations\RDM_%MajorMinor_Ver%\%BUILD_TYPE%\RDM_%BUILDVERSION% KLASJ\omdbuild@ca1connect01:/&#xd;
+)&#xd;
+IF NOT %ERRORLEVEL%==0 (&#xd;
+ECHO *************Upload RDM installation failed***************&#xd;
+EXIT /B 1&#xd;
+)</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <EnvInjectPasswordWrapper plugin="envinject@1.90">
+      <injectGlobalPasswords>false</injectGlobalPasswords>
+      <maskPasswordParameters>true</maskPasswordParameters>
+      <passwordEntries>
+        <EnvInjectPasswordEntry>
+          <name>ASPERA_SCP_PASS</name>
+          <value>{AQAAABAAAAAQ5eB+ZvsY8FkgW3//tXPgCjyqkqYsGL0+rmZn6wg439Q=}</value>
+        </EnvInjectPasswordEntry>
+      </passwordEntries>
+    </EnvInjectPasswordWrapper>
+  </buildWrappers>
+</project>
