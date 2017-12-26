@@ -102,7 +102,7 @@
     agent none
     environment { 
         repositoryAddress=&apos;http://clm.kla-tencor.com/ccm&apos;
-        load &quot;$JENKINS_HOME/.envvars/stacktest-staging.groovy&quot;
+        load &quot;\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Global_Env.properties&quot;
     }
     stages {
         stage(&apos;checkout RTC&apos;) {
