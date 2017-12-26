@@ -102,6 +102,7 @@
     agent none
     environment { 
         repositoryAddress=&apos;http://clm.kla-tencor.com/ccm&apos;
+        load &quot;$JENKINS_HOME/.envvars/stacktest-staging.groovy&quot;
     }
     stages {
         stage(&apos;checkout RTC&apos;) {
@@ -127,7 +128,7 @@
                     }
                     post {
                         always {
-                            junit &quot;**/TEST-*.xml&quot;
+                            bat &apos;scm delete snapshot -r $repositoryAddress -u omdbuild -P Scm07^&amp; -v $WSName $SnapshotName&apos;
                         }
                     }
                 }
