@@ -155,7 +155,7 @@
                     }
                     post {
                         always {
-                            bat &apos;scm delete snapshot -r $repositoryAddress -u omdbuild -P Scm07^&amp; -v $WSName $SnapshotName&apos;
+                            bat &apos;scm delete snapshot -r %repositoryAddress% -u omdbuild -P Scm07^&amp; -v %WSName% %SnapshotName%&apos;
                         }
                     }
                 }
