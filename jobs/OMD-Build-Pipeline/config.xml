@@ -106,7 +106,7 @@
     stages {
         stage(&apos;checkout RTC&apos;) {
             parallel {
-                when { expression { params.BuildModes =~ /Debug/ }
+                when { expression { params.BuildModes =~ /Debug/ }}
                 stage(&apos;Debug code load&apos;) {
                     agent {
                         label params.DebugBuildNode
@@ -131,7 +131,7 @@
                         }
                     }
                 }
-                when { expression { params.BuildModes =~ /Release/ }
+                when { expression { params.BuildModes =~ /Release/ }}
                 stage(&apos;Release code load&apos;) {
                     agent {
                         label params.ReleaseBuildNode                    }
@@ -158,7 +158,6 @@
             }
         }
     }
-}
 }</script>
     <sandbox>true</sandbox>
   </definition>
