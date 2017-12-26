@@ -113,7 +113,7 @@ EXIT /B 1&#xd;
       <passwordEntries>
         <EnvInjectPasswordEntry>
           <name>ASPERA_SCP_PASS</name>
-          <value>{AQAAABAAAAAQGU1YdfITkFNPtvnF6OeRENrYA2958LD9/s3lrk7jESg=}</value>
+          <value>{AQAAABAAAAAQDXc3uCSoQStsne3xgt6IWhCGaPHCx4fKCVGiCaT2B70=}</value>
         </EnvInjectPasswordEntry>
       </passwordEntries>
     </EnvInjectPasswordWrapper>
