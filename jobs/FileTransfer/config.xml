@@ -57,6 +57,21 @@
             <string>ALL</string>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>FlowController</name>
+          <description></description>
+          <allowedSlaves>
+            <string>master</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>master</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILDVERSION</name>
           <description></description>
@@ -146,9 +161,30 @@
       <string>DestBase</string>
       <string></string>
     </entry>
+    <entry>
+      <string>FlowController</string>
+      <string></string>
+    </entry>
   </globalEnvVars>
   <profiler class="com.amdocs.hudson.plugins.dbprofiler.DBProfiler"/>
   <jobParameterList class="java.util.concurrent.CopyOnWriteArrayList">
+    <com.amdocs.hudson.plugins.flow.JobParameter>
+      <jobName>SetFlowController</jobName>
+      <continueJobIfUnstable>false</continueJobIfUnstable>
+      <continueJobIfAborted>false</continueJobIfAborted>
+      <continueJobAnyway>false</continueJobAnyway>
+      <overrideJobNode>false</overrideJobNode>
+      <specifyModule>false</specifyModule>
+      <step>BUILD</step>
+      <appServerType></appServerType>
+      <platform></platform>
+      <triggersFlag>false</triggersFlag>
+      <triggers>
+        <dailyTriggerFlag>false</dailyTriggerFlag>
+        <weeklyTriggerFlag>false</weeklyTriggerFlag>
+        <monthlyTriggerFlag>false</monthlyTriggerFlag>
+      </triggers>
+    </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>UpLoadFile</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
