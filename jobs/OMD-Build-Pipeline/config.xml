@@ -17,6 +17,19 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.BooleanParameterDefinition>
@@ -74,19 +87,6 @@
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -100,7 +100,7 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>pipeline {
     agent none
-    environment { 
+    environment {
         repositoryAddress=&apos;http://clm.kla-tencor.com/ccm&apos;
     }
     stages {
@@ -112,9 +112,9 @@
                         node &quot;$DebugBuildNode&quot;
                     }
                     steps {
-                        dir(&apos;//isr1appcc02/SCM/OMD/Jenkins_Build_conf_files&apos;) {
-            readFile &apos;Global_Env.properties&apos;
-        }
+                        dir(&apos;\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files&apos;) {
+                            readFile &apos;Global_Env.properties&apos;
+                        }
                         teamconcert ([
 							 buildType: [
 										value:&apos;buildWorkspace&apos;, 
@@ -130,7 +130,7 @@
                     }
                     post {
                         always {
-                            bat &apos;scm delete snapshot -r $repositoryAddress -u omdbuild -P Scm07^&amp; -v $WSName $SnapshotName&apos;
+                            bat &apos;scm delete snapshot -r env.repositoryAddress -u omdbuild -P Scm07^&amp; -v $WSName $SnapshotName&apos;
                         }
                     }
                 }
