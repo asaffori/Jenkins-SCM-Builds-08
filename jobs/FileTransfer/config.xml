@@ -21,6 +21,8 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
@@ -172,6 +174,11 @@
       <overrideJobNode>false</overrideJobNode>
       <specifyModule>false</specifyModule>
       <step>BUILD</step>
+      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>UpLoadFile</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+      </dependencyJobList>
       <appServerType></appServerType>
       <platform></platform>
       <triggersFlag>false</triggersFlag>
