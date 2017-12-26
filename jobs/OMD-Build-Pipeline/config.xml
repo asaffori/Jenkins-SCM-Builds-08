@@ -129,12 +129,10 @@
                     }
                 }
                 stage(&apos;Release code load&apos;) {
-                    print (params.ReleaseBuildNode)
                     when { expression { params.BuildModes =~ /Release/ }}
-                    agent {
-                            node (params.ReleaseBuildNode)
-                        }
+                    
                     steps {
+                        print (params.ReleaseBuildNode)
                         teamconcert ([
 							 buildType: [
 										value:&apos;buildWorkspace&apos;, 
