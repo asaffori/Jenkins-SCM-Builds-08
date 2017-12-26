@@ -384,6 +384,7 @@
         <string>Archer Build test</string>
         <string>AUTO_Deploy_test_flow</string>
         <string>DownLoadFile</string>
+        <string>FileTransfer</string>
         <string>Installation test</string>
         <string>OMD-Archer-Build-Agnes</string>
         <string>OMD-Build-Pipeline</string>
