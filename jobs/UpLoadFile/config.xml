@@ -93,7 +93,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set ASPERA_SCP_PASS=Scm07&amp;&#xd;
+      <command>set ASPERA_SCP_PASS=&quot;Scm07&amp;&quot;&#xd;
 &quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% KLASJ\omdbuild@ca1connect01.kla-tencor.com:/&#xd;
 IF NOT %ERRORLEVEL%==0 (&#xd;
 ECHO *************Upload Archer installation failed***************&#xd;
