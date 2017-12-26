@@ -93,7 +93,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>&quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% KLASJ\omdbuild@ca1connect01.kla-tencor.com:/&#xd;
+      <command>set ASPERA_SCP_PASS=Scm07&amp;&#xd;
+&quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% KLASJ\omdbuild@ca1connect01.kla-tencor.com:/&#xd;
 IF NOT %ERRORLEVEL%==0 (&#xd;
 ECHO *************Upload Archer installation failed***************&#xd;
 EXIT /B 1&#xd;
@@ -110,12 +111,7 @@ EXIT /B 1&#xd;
     <EnvInjectPasswordWrapper plugin="envinject@1.90">
       <injectGlobalPasswords>false</injectGlobalPasswords>
       <maskPasswordParameters>true</maskPasswordParameters>
-      <passwordEntries>
-        <EnvInjectPasswordEntry>
-          <name>ASPERA_SCP_PASS</name>
-          <value>{AQAAABAAAAAQ/dz/6ga/j1Y5zT/X8P+aL20q/91l02P0aQKBW4AHcQw=}</value>
-        </EnvInjectPasswordEntry>
-      </passwordEntries>
+      <passwordEntries/>
     </EnvInjectPasswordWrapper>
   </buildWrappers>
 </project>
