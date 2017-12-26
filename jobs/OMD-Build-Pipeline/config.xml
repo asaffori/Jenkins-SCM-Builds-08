@@ -112,7 +112,7 @@
                         node &quot;$DebugBuildNode&quot;
                     }
                     steps {
-                        dir(&apos;\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files&apos;) {
+                        dir(&apos;//isr1appcc02/SCM/OMD/Jenkins_Build_conf_files&apos;) {
                             readFile &apos;Global_Env.properties&apos;
                         }
                         teamconcert ([
