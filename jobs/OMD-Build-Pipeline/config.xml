@@ -128,11 +128,11 @@
 										]
 									])
                     }
-                    post {
+                    /**post {
                         always {
                             bat &apos;scm delete snapshot -r %repositoryAddress% -u omdbuild -P Scm07^&amp; -v %WSName% %SnapshotName%&apos;
                         }
-                    }
+                    }**/
                 }
                 stage(&apos;Release code load&apos;) {
                     when { expression { params.BuildModes =~ /Release/ }}
@@ -153,11 +153,11 @@
 										]
 									])
                     }
-                    post {
+                    /**post {
                         always {
                             bat &apos;scm delete snapshot -r %repositoryAddress% -u omdbuild -P Scm07^&amp; -v %WSName% %SnapshotName%&apos;
                         }
-                    }
+                    }**/
                 }
             }
         }
