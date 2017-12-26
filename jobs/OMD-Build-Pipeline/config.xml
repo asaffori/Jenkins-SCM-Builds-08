@@ -102,9 +102,6 @@
     agent none
     environment { 
         repositoryAddress=&apos;http://clm.kla-tencor.com/ccm&apos;
-        dir(&apos;//isr1appcc02/SCM/OMD/Jenkins_Build_conf_files&apos;) {
-            readFile &apos;Global_Env.properties&apos;
-        }
     }
     stages {
         stage(&apos;checkout RTC&apos;) {
@@ -115,6 +112,9 @@
                         node &quot;$DebugBuildNode&quot;
                     }
                     steps {
+                        dir(&apos;//isr1appcc02/SCM/OMD/Jenkins_Build_conf_files&apos;) {
+            readFile &apos;Global_Env.properties&apos;
+        }
                         teamconcert ([
 							 buildType: [
 										value:&apos;buildWorkspace&apos;, 
