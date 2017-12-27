@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>This project enable users to rebase stream from another in automatic way. &lt;/br&gt;&#xd;
+  <description>This project enable users to rebase stream from another in automatic way. &lt;br&gt;&#xd;
 Please note that script will fail in case of merge conflicats.</description>
   <keepDependencies>false</keepDependencies>
   <properties>
