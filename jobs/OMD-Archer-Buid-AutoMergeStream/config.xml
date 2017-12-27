@@ -133,7 +133,6 @@ return [user]</script>
 102=Indicates that the zimport subcommand cannot find a project for the member to import with the mapping file as specified. Check the mapping file for errors.
 103=Indicates that a data set could not be browsed for a member to import with the zimport subcommand.</propertiesContent>
         <groovyScriptContent>import hudson.model.User
-print (&quot;BUILD_USER_EMAIL&quot; + BUILD_USER_EMAIL )
 def usermail=User.current().getProperty(hudson.tasks.Mailer.UserProperty.class).getAddress();
 print (&quot;usermail = &quot; + usermail)
 def map = [&quot;usermail&quot;: usermail] 
@@ -169,7 +168,7 @@ If NOT %ERRORLEVEL% == 0 (&#xd;
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
-      <recipientList>${usermail}</recipientList>
+      <recipientList>${BUILD_USER_EMAIL}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
@@ -203,5 +202,6 @@ If NOT %ERRORLEVEL% == 0 (&#xd;
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <org.jenkinsci.plugins.builduser.BuildUser plugin="build-user-vars-plugin@1.5"/>
   </buildWrappers>
 </project>
