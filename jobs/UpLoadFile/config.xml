@@ -109,7 +109,7 @@ EXIT /B 1&#xd;
   <buildWrappers>
     <EnvInjectBuildWrapper plugin="envinject@2.1.5">
       <info>
-        <propertiesFilePath>\\klasj\ktfiles\Regions\China\OMD\SCM\Jenkins_Config\Jenkins_Build_Conf_files\ASPERA.properties</propertiesFilePath>
+        <propertiesFilePath>D:\ASPERA.properties</propertiesFilePath>
         <secureGroovyScript plugin="script-security@1.39">
           <script></script>
           <sandbox>false</sandbox>
