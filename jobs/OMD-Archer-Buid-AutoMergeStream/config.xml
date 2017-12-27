@@ -46,20 +46,6 @@ Please note that script will fail in case of merge conflicats.</description>
           <description></description>
           <defaultValue>Archer_${MajorMinor_Ver}_Adham</defaultValue>
         </hudson.model.StringParameterDefinition>
-        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.4.1">
-          <name>MergeOwner</name>
-          <description>user name for merge owner to get merge status mail</description>
-          <editable>false</editable>
-          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider">
-            <groovyScript plugin="script-security@1.39">
-              <script>import hudson.model.User
-String user =User.current().getId()
-return [user]</script>
-              <sandbox>true</sandbox>
-            </groovyScript>
-            <usePredefinedVariables>false</usePredefinedVariables>
-          </choiceListProvider>
-        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -132,11 +118,6 @@ return [user]</script>
 101=Indicates that the zimport subcommand cannot find a component to own the project that is being created, with the mapping file as specified. Check the mapping file for errors.
 102=Indicates that the zimport subcommand cannot find a project for the member to import with the mapping file as specified. Check the mapping file for errors.
 103=Indicates that a data set could not be browsed for a member to import with the zimport subcommand.</propertiesContent>
-        <groovyScriptContent>import hudson.model.User
-def usermail=User.current().getProperty(hudson.tasks.Mailer.UserProperty.class).getAddress();
-print (&quot;usermail = &quot; + usermail)
-def map = [&quot;usermail&quot;: usermail] 
-return map </groovyScriptContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
       <on>true</on>
