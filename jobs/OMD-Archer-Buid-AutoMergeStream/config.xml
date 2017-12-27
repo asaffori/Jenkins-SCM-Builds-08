@@ -86,7 +86,7 @@
 ::)&#xd;
 set num=0&#xd;
 echo !%num%!&#xd;
-echo %!num!%</command>
+echo %%num%%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
