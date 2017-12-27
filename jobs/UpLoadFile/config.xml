@@ -107,11 +107,5 @@ EXIT /B 1&#xd;
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
-  <buildWrappers>
-    <EnvInjectPasswordWrapper plugin="envinject@2.1.5">
-      <injectGlobalPasswords>false</injectGlobalPasswords>
-      <maskPasswordParameters>false</maskPasswordParameters>
-      <passwordEntries/>
-    </EnvInjectPasswordWrapper>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
