@@ -31,30 +31,34 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>team_scm_fetchDestination</name>
+          <name>MajorMinor_Ver</name>
           <description></description>
-          <defaultValue>D:\Sandboxes\omdbuild_${BUILD_VERSION}</defaultValue>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>fromStream</name>
           <description></description>
-          <defaultValue>Archer_17.10_Dev</defaultValue>
+          <defaultValue>Archer_${MajorMinor_Ver}_Integ</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>toStream</name>
           <description></description>
-          <defaultValue>Archer_17.10_Adham</defaultValue>
+          <defaultValue>Archer_${MajorMinor_Ver}_Adham</defaultValue>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>repoWorkspace</name>
-          <description></description>
-          <defaultValue>automerge_${fromStream}_TO_${toStream}</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>InFailureDontDeleteWorkSpace</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
+        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.4.1">
+          <name>MergeOwner</name>
+          <description>user name for merge owner to get merge status mail</description>
+          <editable>false</editable>
+          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider">
+            <groovyScript plugin="script-security@1.39">
+              <script>import hudson.model.User
+String user =User.current().getId()
+return [user]</script>
+              <sandbox>true</sandbox>
+            </groovyScript>
+            <usePredefinedVariables>false</usePredefinedVariables>
+          </choiceListProvider>
+        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -66,34 +70,7 @@
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-  </properties>
-  <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>SCM-Builds-06</assignedNode>
-  <canRoam>false</canRoam>
-  <disabled>false</disabled>
-  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
-  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers/>
-  <concurrentBuild>false</concurrentBuild>
-  <builders>
-    <hudson.tasks.BatchFile>
-      <command>SETLOCAL ENABLEDELAYEDEXPANSION&#xd;
-::lscm deliver -r http://clm.kla-tencor.com/ccm -u omdbuild -P &quot;Scm07&amp;&quot; -N -v -s Archer_17.12_Dev -t Archer_17.12_TestAutoMerge&#xd;
-::If NOT %ERRORLEVEL% == 0 (&#xd;
-::  echo &quot;Rebase of %toStream% from %fromStream% failed.&quot;&#xd;
-::  echo %&#xd;
-::  exit /b 1&#xd;
-::)&#xd;
-set num=3&#xd;
-echo !%num%!&#xd;
-</command>
-    </hudson.tasks.BatchFile>
-  </builders>
-  <publishers/>
-  <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
-    <EnvInjectBuildWrapper plugin="envinject@1.90">
+    <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesContent>#RTC command exit code and its relevant message
 0=The command completed successfully.
@@ -156,9 +133,34 @@ echo !%num%!&#xd;
 103=Indicates that a data set could not be browsed for a member to import with the zimport subcommand.</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
-    </EnvInjectBuildWrapper>
-    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
-      <failOnError>false</failOnError>
-    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>true</overrideBuildParameters>
+      <contributors/>
+    </EnvInjectJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>SETLOCAL ENABLEDELAYEDEXPANSION&#xd;
+lscm deliver -r http://clm.kla-tencor.com/ccm -u omdbuild -P &quot;Scm07&amp;&quot; -N -v -s Archer_17.12_Dev -t Archer_17.12_TestAutoMerge&#xd;
+If NOT %ERRORLEVEL% == 0 (&#xd;
+  echo &quot;Rebase of %toStream% from %fromStream% failed.&quot;&#xd;
+  echo !%ERRORLEVEL%!  &gt; &#xd;
+  exit /b 1&#xd;
+)</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
   </buildWrappers>
 </project>
