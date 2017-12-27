@@ -151,10 +151,10 @@ return [user]</script>
   <builders>
     <hudson.tasks.BatchFile>
       <command>SETLOCAL ENABLEDELAYEDEXPANSION&#xd;
-lscm deliver -r http://clm.kla-tencor.com/ccm -u omdbuild -P &quot;Scm07&amp;&quot; -N -v -s Archer_17.12_Dev -t Archer_17.12_TestAutoMerge&#xd;
+lscm deliver -r http://clm.kla-tencor.com/ccm -u omdbuild -P &quot;Scm07&amp;&quot; -N -v -s Archer_17.12_Dev -t Archer_17.12_TestAutoMerge --release-locks true&#xd;
 If NOT %ERRORLEVEL% == 0 (&#xd;
-  echo &quot;Rebase of %toStream% from %fromStream% failed.&quot;&#xd;
-  echo !%ERRORLEVEL%!  &gt; &#xd;
+  echo &quot;Rebase of %toStream% from %fromStream% failed with the following error:&quot;&#xd;
+  echo !%ERRORLEVEL%! &#xd;
   exit /b 1&#xd;
 )</command>
     </hudson.tasks.BatchFile>
