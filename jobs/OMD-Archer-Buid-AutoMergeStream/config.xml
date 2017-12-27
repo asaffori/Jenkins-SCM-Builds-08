@@ -132,6 +132,9 @@ return [user]</script>
 101=Indicates that the zimport subcommand cannot find a component to own the project that is being created, with the mapping file as specified. Check the mapping file for errors.
 102=Indicates that the zimport subcommand cannot find a project for the member to import with the mapping file as specified. Check the mapping file for errors.
 103=Indicates that a data set could not be browsed for a member to import with the zimport subcommand.</propertiesContent>
+        <groovyScriptContent>def user.email=User.current().getProperty(hudson.tasks.Mailer.UserProperty.class).getAddress();
+def map = [user.email: user.email] 
+return map </groovyScriptContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
       <on>true</on>
@@ -163,7 +166,7 @@ If NOT %ERRORLEVEL% == 0 (&#xd;
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
-      <recipientList>$DEFAULT_RECIPIENTS</recipientList>
+      <recipientList>${user.email}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
