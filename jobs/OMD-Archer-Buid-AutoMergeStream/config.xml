@@ -180,9 +180,11 @@ If NOT %ERRORLEVEL% == 0 (&#xd;
           </email>
         </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
       </configuredTriggers>
-      <contentType>default</contentType>
+      <contentType>text/html</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
-      <defaultContent>$DEFAULT_CONTENT</defaultContent>
+      <defaultContent>${SCRIPT, template=&quot;static-analysis1.jelly&quot;}
+
+</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
