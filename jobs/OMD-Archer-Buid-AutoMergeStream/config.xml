@@ -78,7 +78,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>::lscm deliver -r http://clm.kla-tencor.com/ccm -u omdbuild -P &quot;Scm07&amp;&quot; -N -v -s Archer_17.12_Dev -t Archer_17.12_TestAutoMerge&#xd;
+      <command>SETLOCAL ENABLEDELAYEDEXPANSION&#xd;
+::lscm deliver -r http://clm.kla-tencor.com/ccm -u omdbuild -P &quot;Scm07&amp;&quot; -N -v -s Archer_17.12_Dev -t Archer_17.12_TestAutoMerge&#xd;
 ::If NOT %ERRORLEVEL% == 0 (&#xd;
 ::  echo &quot;Rebase of %toStream% from %fromStream% failed.&quot;&#xd;
 ::  echo %&#xd;
@@ -86,7 +87,8 @@
 ::)&#xd;
 set num=0&#xd;
 echo !%num%!&#xd;
-echo %%%num%%%</command>
+echo %!num!%&#xd;
+echo %%num%%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
