@@ -280,8 +280,8 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>AutoRebaseStream</string>
         <string>BuildClosure-Flow</string>
-        <string>OMD-Archer-Buid-AutoMergeStream</string>
         <string>OMD-Archer-Buid-CleanLocalBuildData</string>
         <string>OMD-Archer-Buid-CreateCodeViewNew</string>
         <string>OMD-Archer-Build-Create_Snapshot_Baseline</string>
