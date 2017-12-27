@@ -85,10 +85,9 @@
 ::  echo %&#xd;
 ::  exit /b 1&#xd;
 ::)&#xd;
-set num=0&#xd;
+set num=3&#xd;
 echo !%num%!&#xd;
-echo %!num!%&#xd;
-echo %%num%%</command>
+</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
