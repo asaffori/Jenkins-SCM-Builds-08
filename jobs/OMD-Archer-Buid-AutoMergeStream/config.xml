@@ -168,7 +168,7 @@ If NOT %ERRORLEVEL% == 0 (&#xd;
       </configuredTriggers>
       <contentType>text/html</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
-      <defaultContent>${SCRIPT, template=&quot;AutoMerge.jelly&quot;}
+      <defaultContent>${JELLY_SCRIPT, template=&quot;AutoMerge.jelly&quot;}
 
 </defaultContent>
       <attachmentsPattern></attachmentsPattern>
