@@ -135,7 +135,7 @@ return [user]</script>
         <groovyScriptContent>import hudson.model.User
 def usermail=User.current().getProperty(hudson.tasks.Mailer.UserProperty.class).getAddress();
 print (&quot;usermail = &quot; + usermail)
-def map = [usermail: usermail] 
+def map = [&quot;usermail&quot;: usermail] 
 return map </groovyScriptContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
