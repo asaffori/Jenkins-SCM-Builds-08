@@ -107,15 +107,15 @@ EXIT /B 1&#xd;
   </builders>
   <publishers/>
   <buildWrappers>
-    <EnvInjectBuildWrapper plugin="envinject@2.1.5">
-      <info>
-        <propertiesFilePath>D:\ASPERA.properties</propertiesFilePath>
-        <secureGroovyScript plugin="script-security@1.39">
-          <script></script>
-          <sandbox>false</sandbox>
-        </secureGroovyScript>
-        <loadFilesFromMaster>false</loadFilesFromMaster>
-      </info>
-    </EnvInjectBuildWrapper>
+    <EnvInjectPasswordWrapper plugin="envinject@2.1.5">
+      <injectGlobalPasswords>false</injectGlobalPasswords>
+      <maskPasswordParameters>false</maskPasswordParameters>
+      <passwordEntries>
+        <EnvInjectPasswordEntry>
+          <name>ASPERA_SCP_PASS</name>
+          <value>{AQAAABAAAAAQYqBXnYx6ZKDI+HlrUcT9X4GeBv99hf0G0nTTftj6m/0=}</value>
+        </EnvInjectPasswordEntry>
+      </passwordEntries>
+    </EnvInjectPasswordWrapper>
   </buildWrappers>
 </project>
