@@ -82,23 +82,45 @@
     				steps {
     				    script {
     					 print &apos;verify suggested stream name is not occupied&apos;
-    					//if (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) !=0 ){
-    					    switch (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) ) {
-    					        case 1..Integer.MAX_VALUE :
-    						        error &apos;Stream name &apos;+params.SuggestedStreamName+&apos; is already occupied&apos;
+					    switch (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) ) {
+					        case 1..Integer.MAX_VALUE :
+						        error &apos;Stream name &apos;+params.SuggestedStreamName+&apos; is already occupied&apos;
+						        break
+						    default:
+						        print &apos;suggested stream name is free&apos;
+                                break
+					    }
+
+    					print &apos;verify source stream name&apos;
+
+    					     switch (searchStrInCommandOutput(search_target_stream_cmd,params.SourceStreamName) ) {
+    					        case 2..Integer.MAX_VALUE :
+    						        error &apos;Multi stream with prefix &apos;+params.SourceStreamName
     						        break
+    						    case Integer.MIN_VALUE..0:
+    						        error &apos;Invalid source stream name &apos;+params.SourceStreamName
+    						        break
+    						    case 1:
+    						        print &apos;source stream name is verified&apos;
     						    default:
+    						        error &apos;Invalid source stream name &apos; + params.SourceStreamName
                                     break
     					    }
-    					//}
-    					print &apos;verify source stream name&apos;
-    					if (searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName) != 1 ) {
-    						error &apos;Invalid source stream name &apos; + params.SourceStreamName
-    					}
+
     					print &apos;verify suggested stream snapshot&apos;
-    					if (searchStrInCommandOutput(list_snaposhots_cmd,params.SourceStreamSnapshotName) != 1){ 
-    						error &apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
-    					}
+    					switch (searchStrInCommandOutput(search_target_stream_cmd,params.SourceStreamSnapshotName) ) {
+    					        case 2..Integer.MAX_VALUE :
+    						        error &apos;Multi snapshots with prefix &apos;+params.SourceStreamSnapshotName
+    						        break
+    						    case Integer.MIN_VALUE..0:
+    						        error &apos;Invalid snapshot name: &apos;+params.SourceStreamSnapshotName+&apos; for stream: &apos; +params.SourceStreamName
+    						        break
+    						    case 1:
+    						        print &apos;snapshot name is verified&apos;
+    						    default:
+    						        error &apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
+                                    break
+    					    }
     				    }
     				}
     			}
