@@ -81,13 +81,13 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     
     stage &apos;create&apos;
     bat &apos;scm create stream -u omdbuild -p Scm07^&amp; -n $SuggestedStreamName&apos;
-    
+}    
     def getCommandOutput(cmd){
         stdout = bat(returnStdout:true , script: cmd).trim()
         result = stdout.readLines().drop(1).join(&quot; &quot;)       
        return result
     }
-}</script>
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
