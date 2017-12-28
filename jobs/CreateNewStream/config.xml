@@ -55,37 +55,38 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>agent master
-stage &apos;verify&apos;
-print &apos;verify suggested stream name is not occupied&apos;
-if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) !=&quot;&quot;){
-    print (&quot;Stream name &apos;&quot;+params.SuggestedStreamName+&quot;&apos; is already occupied&quot;) 
-    System.exit(1)
-}
-print &apos;verify source stream name&apos;
-if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SourceStreamName}&apos;) == &quot;&quot;) {
-    print (&quot;Invalid source stream name &apos;&quot;+params.SourceStreamName) 
-    System.exit(1)
-}
-print &apos;verify suggested stream snapshot&apos;
-if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) == &quot;&quot;){ 
-    print (&quot;Invalid source stream snapshot name &apos;&quot;+params.SourceStreamSnapshotName)
-    System.exit(1)
-}
-stage &apos;approve&apos;
-def userInput = input(
- id: &apos;userInput&apos;, message: &apos;Let\&apos;s create it?&apos;, parameters: [
- [$class: &apos;TextParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;stream&apos;],
-])
-echo (&quot;Creating Stream: &quot;+userInput[&apos;stream&apos;])
-
-stage &apos;create&apos;
-bat &apos;scm create stream -u omdbuild -p Scm07^&amp; -n $SuggestedStreamName&apos;
-
-def getCommandOutput(cmd){
-    stdout = bat(returnStdout:true , script: cmd).trim()
-    result = stdout.readLines().drop(1).join(&quot; &quot;)       
-   return result
+    <script>node master{
+    stage &apos;verify&apos;
+    print &apos;verify suggested stream name is not occupied&apos;
+    if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) !=&quot;&quot;){
+        print (&quot;Stream name &apos;&quot;+params.SuggestedStreamName+&quot;&apos; is already occupied&quot;) 
+        System.exit(1)
+    }
+    print &apos;verify source stream name&apos;
+    if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SourceStreamName}&apos;) == &quot;&quot;) {
+        print (&quot;Invalid source stream name &apos;&quot;+params.SourceStreamName) 
+        System.exit(1)
+    }
+    print &apos;verify suggested stream snapshot&apos;
+    if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) == &quot;&quot;){ 
+        print (&quot;Invalid source stream snapshot name &apos;&quot;+params.SourceStreamSnapshotName)
+        System.exit(1)
+    }
+    stage &apos;approve&apos;
+    def userInput = input(
+     id: &apos;userInput&apos;, message: &apos;Let\&apos;s create it?&apos;, parameters: [
+     [$class: &apos;TextParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;stream&apos;],
+    ])
+    echo (&quot;Creating Stream: &quot;+userInput[&apos;stream&apos;])
+    
+    stage &apos;create&apos;
+    bat &apos;scm create stream -u omdbuild -p Scm07^&amp; -n $SuggestedStreamName&apos;
+    
+    def getCommandOutput(cmd){
+        stdout = bat(returnStdout:true , script: cmd).trim()
+        result = stdout.readLines().drop(1).join(&quot; &quot;)       
+       return result
+    }
 }</script>
     <sandbox>true</sandbox>
   </definition>
