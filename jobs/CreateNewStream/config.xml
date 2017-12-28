@@ -92,7 +92,7 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
 		}
 	}
 	
-	method {
+	methods {
         def getCommandOutput(cmd) {
             stdout = bat(returnStdout:true , script: cmd).trim()
             result = stdout.readLines().drop(1).join(&quot; &quot;)       
