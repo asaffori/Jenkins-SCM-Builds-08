@@ -58,15 +58,16 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     <script>pipeline {
     agent none
 	
-	 def getCommandOutput(cmd){
-        stdout = bat(returnStdout:true , script: cmd).trim()
-        result = stdout.readLines().drop(1).join(&quot; &quot;)       
-       return result
-    }
+
 	
     stages {
         stage(&apos;Creating new stream&apos;) {
 			stage (&apos;verify&apos;) {
+			    	 def getCommandOutput(cmd){
+        stdout = bat(returnStdout:true , script: cmd).trim()
+        result = stdout.readLines().drop(1).join(&quot; &quot;)       
+       return result
+    }
 				steps {
 					 print &apos;verify suggested stream name is not occupied&apos;
 					if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) !=&quot;&quot;){
