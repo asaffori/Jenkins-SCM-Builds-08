@@ -97,16 +97,16 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     			     script {
     				 env.userInput = input(
     				 id: &apos;userInput&apos;, message: &apos;Let\&apos;s create it?&apos;, parameters: [
-    				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;stream&apos;]
+    				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;userInput&apos;]
     				])
-    				echo (&quot;Creating Stream: ${env.RELEASE_SCOPE}&quot;)
+    				echo (&quot;Creating Stream: ${env.userInput}&quot;)
     			     }
     			 }
     			}
     			stage (&apos;create&apos;) {
                     steps {
                         script {
-    				        echo &quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${userInput}&quot;
+    				        echo &quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${env.userInput}&quot;
                         }
                     }
     			}
