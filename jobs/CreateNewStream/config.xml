@@ -58,7 +58,6 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     <script>pipeline {
     agent none
         stages {
-            stage (&apos;Creating new stream&apos;)
     			stage (&apos;verify&apos;) {
     				steps {
 			            def getCommandOutput = { String cmd -&gt; 
