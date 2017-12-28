@@ -60,17 +60,17 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
         stages {
     			stage (&apos;verify&apos;) {
     				steps {
-    					 print &apos;verify suggested stream name is not occupied&apos;
+    					 echo &apos;verify suggested stream name is not occupied&apos;
     					if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) !=&quot;&quot;){
     						print (&quot;Stream name &apos;&quot;+params.SuggestedStreamName+&quot;&apos; is already occupied&quot;) 
     						System.exit(1)
     					}
-    					print &apos;verify source stream name&apos;
+    					echo &apos;verify source stream name&apos;
     					if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SourceStreamName}&apos;) == &quot;&quot;) {
     						print (&quot;Invalid source stream name &apos;&quot;+params.SourceStreamName) 
     						System.exit(1)
     					}
-    					print &apos;verify suggested stream snapshot&apos;
+    					echo &apos;verify suggested stream snapshot&apos;
     					if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) == &quot;&quot;){ 
     						print (&quot;Invalid source stream snapshot name &apos;&quot;+params.SourceStreamSnapshotName)
     						System.exit(1)
