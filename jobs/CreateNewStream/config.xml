@@ -99,14 +99,14 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     				 id: &apos;userInput&apos;, message: &apos;Let\&apos;s create it?&apos;, parameters: [
     				 [$class: &apos;TextParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;stream&apos;]
     				])
-    				echo (&quot;Creating Stream: &quot;+userInput[&apos;stream&apos;])
+    				echo (&quot;Creating Stream: &quot;+userInput)
     			     }
     			 }
     			}
     			stage (&apos;create&apos;) {
                     steps {
                         script {
-    				        echo &apos;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n $SuggestedStreamName&apos;
+    				        echo &quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${userInput}&quot;
                         }
                     }
     			}
