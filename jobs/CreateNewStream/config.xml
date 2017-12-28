@@ -57,17 +57,17 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>stage &apos;verify&apos;
 print &apos;verify suggested stream name is not occupied&apos;
-if (getCommandOutput(&apos;c:\\scm list stream -u omdbuild -p Scm07^&amp; -n ${params.SuggestedStreamName}&apos;) !=&quot;&quot;){
+if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) !=&quot;&quot;){
     print (&quot;Stream name &apos;&quot;+params.SuggestedStreamName+&quot;&apos; is already occupied&quot;) 
     System.exit(1)
 }
 print &apos;verify source stream name&apos;
-if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07^&amp; -n ${params.SourceStreamName}&apos;) == &quot;&quot;) {
+if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SourceStreamName}&apos;) == &quot;&quot;) {
     print (&quot;Invalid source stream name &apos;&quot;+params.SourceStreamName) 
     System.exit(1)
 }
 print &apos;verify suggested stream snapshot&apos;
-if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07^&amp; -n ${params.SuggestedStreamName}&apos;) == &quot;&quot;){ 
+if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) == &quot;&quot;){ 
     print (&quot;Invalid source stream snapshot name &apos;&quot;+params.SourceStreamSnapshotName)
     System.exit(1)
 }
