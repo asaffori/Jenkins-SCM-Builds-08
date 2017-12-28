@@ -60,11 +60,6 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
         stages {
     			stage (&apos;verify&apos;) {
     				steps {
-			            def getCommandOutput = { String cmd -&gt; 
-                            stdout = bat(returnStdout:true , script: cmd).trim()
-                            result = stdout.readLines().drop(1).join(&quot; &quot;)       
-                           return result
-                        }
     					 print &apos;verify suggested stream name is not occupied&apos;
     					if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) !=&quot;&quot;){
     						print (&quot;Stream name &apos;&quot;+params.SuggestedStreamName+&quot;&apos; is already occupied&quot;) 
@@ -98,6 +93,12 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     			}
     		}
 
+}
+
+def getCommandOutput(cmd){
+    stdout = bat(returnStdout:true , script: cmd).trim()
+    result = stdout.readLines().drop(1).join(&quot; &quot;)       
+    return result
 }</script>
     <sandbox>true</sandbox>
   </definition>
