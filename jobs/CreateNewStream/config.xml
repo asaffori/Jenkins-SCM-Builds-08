@@ -83,11 +83,11 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     				}
     			}
     			stage (&apos;approve&apos;) {
-    			 steps {
     				 def userInput = input(
     				 id: &apos;userInput&apos;, message: &apos;Let\&apos;s create it?&apos;, parameters: [
     				 [$class: &apos;TextParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;stream&apos;],
     				])
+    			 steps {
     				echo (&quot;Creating Stream: &quot;+userInput[&apos;stream&apos;])
     			 }
     			}
