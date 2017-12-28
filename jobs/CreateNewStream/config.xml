@@ -17,6 +17,19 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -37,19 +50,6 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -72,13 +72,12 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     						error &apos;Stream name &apos;+params.SuggestedStreamName+&apos; is already occupied&apos;
     					}
     					print &apos;verify source stream name&apos;
-    					if (getCommandOutput(&apos;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}&apos;) == &quot;&quot;) {
-    						print (&quot;Invalid source stream name &apos;&quot; + params.SourceStreamName) 
+    					if (getCommandOutput(&apos;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}  -m 1&apos;) == &quot;&quot;) {
+     
     						error &apos;Invalid source stream name &apos; + params.SourceStreamName
     					}
     					print &apos;verify suggested stream snapshot&apos;
-    					if (getCommandOutput(&apos;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SuggestedStreamName}&apos;) == &quot;&quot;){ 
-    						print (&quot;Invalid source stream snapshot name &apos;&quot; + params.SourceStreamSnapshotName)
+    					if (getCommandOutput(&apos;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamSnapshotName} -m 1&apos;) == &quot;&quot;){ 
     						error &apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
     					}
     				    }
