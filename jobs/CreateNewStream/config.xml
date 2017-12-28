@@ -77,16 +77,16 @@
     				steps {
     				    script {
     					 print &apos;verify suggested stream name is not occupied&apos;
-    					if (getCommandOutput(&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SuggestedStreamName}&quot;) !=&quot;&quot;){
+    					if (searchStrInCommandOutput(&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SuggestedStreamName}&quot;,params.SuggestedStreamName) !=0 ){
     						error &apos;Stream name &apos;+params.SuggestedStreamName+&apos; is already occupied&apos;
     					}
     					print &apos;verify source stream name&apos;
-    					if (getCommandOutput(&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}  -m 1&quot;) == &quot;&quot;) {
+    					if (searchStrInCommandOutput(&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}&quot;,params.SourceStreamName) != 1 ) {
      
     						error &apos;Invalid source stream name &apos; + params.SourceStreamName
     					}
     					print &apos;verify suggested stream snapshot&apos;
-    					if (getCommandOutput(&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamSnapshotName} -m 1&quot;) == &quot;&quot;){ 
+    					if (searchStrInCommandOutput(&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamSnapshotName}&quot;,params.SourceStreamSnapshotName) != 1){ 
     						error &apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
     					}
     				    }
@@ -114,11 +114,12 @@
 
 }
 
-def getCommandOutput(cmd){
+def searchStrInCommandOutput(cmd,str){
     stdout = bat(returnStdout:true , script: cmd).trim()
-    result = stdout.readLines().drop(1).join(&quot; &quot;)       
+    result = stdout.readLines().drop(1).join(&quot; &quot;)
+    echo (&quot;str=&quot; + str)
     echo (&quot;results=&quot; + result)
-    return result
+    return countSubstring(result,str)
 }</script>
     <sandbox>false</sandbox>
   </definition>
