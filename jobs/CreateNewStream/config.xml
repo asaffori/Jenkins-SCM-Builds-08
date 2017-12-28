@@ -97,7 +97,9 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     			}
     			stage (&apos;create&apos;) {
                     steps {
-    				   echo &apos;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n $SuggestedStreamName&apos;
+                        script {
+    				        echo &apos;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n $SuggestedStreamName&apos;
+                        }
                     }
     			}
     		}
