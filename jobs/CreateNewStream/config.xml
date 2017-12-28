@@ -58,7 +58,7 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     <script>pipeline {
     agent node(&apos;on-demand-t2large&apos;) {
 
-        def getCommandOutput(cmd) {
+        def getCommandOutput = { String cmd -&gt; 
             stdout = bat(returnStdout:true , script: cmd).trim()
             result = stdout.readLines().drop(1).join(&quot; &quot;)       
            return result
