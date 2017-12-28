@@ -81,11 +81,13 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     			}
     			stage (&apos;approve&apos;) {
     			 steps {
+    			     script {
     				 userInput = input(
     				 id: &apos;userInput&apos;, message: &apos;Let\&apos;s create it?&apos;, parameters: [
     				 [$class: &apos;TextParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;stream&apos;],
     				])
     				echo (&quot;Creating Stream: &quot;+userInput[&apos;stream&apos;])
+    			     }
     			 }
     			}
     			stage (&apos;create&apos;) {
