@@ -77,16 +77,16 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     				steps {
     				    script {
     					 print &apos;verify suggested stream name is not occupied&apos;
-    					if (getCommandOutput(&apos;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${SuggestedStreamName}&apos;) !=&quot;&quot;){
+    					if (getCommandOutput(&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SuggestedStreamName}&quot;) !=&quot;&quot;){
     						error &apos;Stream name &apos;+params.SuggestedStreamName+&apos; is already occupied&apos;
     					}
     					print &apos;verify source stream name&apos;
-    					if (getCommandOutput(&apos;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${SourceStreamName}  -m 1&apos;) == &quot;&quot;) {
+    					if (getCommandOutput(&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}  -m 1&quot;) == &quot;&quot;) {
      
     						error &apos;Invalid source stream name &apos; + params.SourceStreamName
     					}
     					print &apos;verify suggested stream snapshot&apos;
-    					if (getCommandOutput(&apos;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${SourceStreamSnapshotName} -m 1&apos;) == &quot;&quot;){ 
+    					if (getCommandOutput(&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamSnapshotName} -m 1&quot;) == &quot;&quot;){ 
     						error &apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
     					}
     				    }
