@@ -57,9 +57,14 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>pipeline {
     agent none
-	
+    method {
+        def getCommandOutput(cmd){
+            stdout = bat(returnStdout:true , script: cmd).trim()
+            result = stdout.readLines().drop(1).join(&quot; &quot;)       
+           return result
+        }
+    }
 
-	
     stages {
         stage(&apos;Creating new stream&apos;) {
 			stage (&apos;verify&apos;) {
