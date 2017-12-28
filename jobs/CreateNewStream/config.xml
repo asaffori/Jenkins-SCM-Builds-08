@@ -95,7 +95,7 @@
     			stage (&apos;approve&apos;) {
     			 steps {
     			     script {
-    				 def env.userInput = input(
+    				 env.userInput = input(
     				 id: &apos;userInput&apos;, message: &apos;Let\&apos;s create it?&apos;, parameters: [
     				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;userInput&apos;]
     				])
