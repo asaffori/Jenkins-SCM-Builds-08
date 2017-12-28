@@ -56,7 +56,7 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>pipeline {
-    node (&apos;master&apos;) {
+    agent none
         stages {
             stage(&apos;Creating new stream&apos;) {
     			stage (&apos;verify&apos;) {
@@ -95,7 +95,6 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     			}
     		}
     	}
-    }
 }</script>
     <sandbox>true</sandbox>
   </definition>
