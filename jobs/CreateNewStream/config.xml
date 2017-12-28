@@ -113,7 +113,7 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
 def getCommandOutput(cmd){
     stdout = bat(returnStdout:true , script: cmd).trim()
     result = stdout.readLines().drop(1).join(&quot; &quot;)       
-    echo (&quot;results=&quot; + results)
+    echo (&quot;results=&quot; + result)
     return result
 }</script>
     <sandbox>false</sandbox>
