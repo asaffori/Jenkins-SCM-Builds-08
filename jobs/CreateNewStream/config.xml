@@ -58,6 +58,7 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     <script>pipeline {
     agent none
         stages {
+            stage (&apos;Creating new stream&apos;) {
     			stage (&apos;verify&apos;) {
     				steps {
 			            def getCommandOutput = { String cmd -&gt; 
@@ -93,6 +94,7 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     				bat &apos;scm create stream -u omdbuild -p Scm07^&amp; -n $SuggestedStreamName&apos;
     			}
     		}
+    	}
 }</script>
     <sandbox>true</sandbox>
   </definition>
