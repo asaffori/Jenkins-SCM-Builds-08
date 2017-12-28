@@ -55,7 +55,8 @@ prefered strean name syntax: fdsfsdfsd &lt;br&gt;</description>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>stage &apos;verify&apos;
+    <script>agent any
+stage &apos;verify&apos;
 print &apos;verify suggested stream name is not occupied&apos;
 if (getCommandOutput(&apos;scm list stream -u omdbuild -p Scm07 -n ${params.SuggestedStreamName}&apos;) !=&quot;&quot;){
     print (&quot;Stream name &apos;&quot;+params.SuggestedStreamName+&quot;&apos; is already occupied&quot;) 
