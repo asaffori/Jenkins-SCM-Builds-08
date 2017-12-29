@@ -147,7 +147,7 @@
   <builders/>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
-      <recipientList>Agnes.Zhang@kla-tencor.com;Cathy.Wang@kla-tencor.com</recipientList>
+      <recipientList>Agnes.Zhang@kla-tencor.com, Cathy.Wang@kla-tencor.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
           <email>
