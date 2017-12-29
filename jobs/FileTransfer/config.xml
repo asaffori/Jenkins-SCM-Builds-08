@@ -168,15 +168,15 @@
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>Dear User&lt;BR&gt;&lt;BR&gt;
  ${ENV, var=&quot;BUILDVERSION&quot;} Archer\RDM installation copied:
-From: ${ENV, var=&quot;SourceBase&quot;}
-To: ${ENV, var=&quot;DestBase&quot;}
+&lt;BR&gt;From: ${ENV, var=&quot;SourceBase&quot;}
+&lt;BR&gt;To: ${ENV, var=&quot;DestBase&quot;}
 
 &lt;BR&gt;&lt;BR&gt;
 
 Regards&lt;BR&gt;
 OMD CM Team</defaultContent>
       <attachmentsPattern></attachmentsPattern>
-      <presendScript>msg.setSubject( Archer and RDM installation transfer +&quot; - &quot; + build.result.toString());</presendScript>
+      <presendScript>msg.setSubject( ${ENV, var=&quot;BUILDVERSION&quot;} + Installation file transfer +&quot; - &quot; + build.result.toString());</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
