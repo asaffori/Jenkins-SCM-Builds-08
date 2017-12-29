@@ -176,7 +176,7 @@
 Regards&lt;BR&gt;
 OMD CM Team</defaultContent>
       <attachmentsPattern></attachmentsPattern>
-      <presendScript>msg.setSubject(FileTransfer + build.result.toString());</presendScript>
+      <presendScript>msg.setSubject(&quot;FileTransfer&quot;+build.getEnvVars().get(&quot;BUILDVERSION&quot;)+ build.result.toString());</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
