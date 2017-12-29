@@ -176,7 +176,7 @@ To: ${ENV, var=&quot;DestBase&quot;}
 Regards&lt;BR&gt;
 OMD CM Team</defaultContent>
       <attachmentsPattern></attachmentsPattern>
-      <presendScript>msg.setSubject( Archer\RDM installation transfer +&quot; - &quot; + build.result.toString());</presendScript>
+      <presendScript>msg.setSubject( Archer and RDM installation transfer +&quot; - &quot; + build.result.toString());</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
