@@ -167,14 +167,16 @@
       <contentType>text/html</contentType>
       <defaultSubject> ${ENV, var=&quot;BUILDVERSION&quot;}  Archer\RDM installation has been copied to ISR server </defaultSubject>
       <defaultContent>Dear User&lt;BR&gt;&lt;BR&gt;
- ${ENV, var=&quot;BUILDVERSION&quot;} Archer\RDM installation has been copied to ISR server.
+ ${ENV, var=&quot;BUILDVERSION&quot;} Archer\RDM installation copied:
+From: ${ENV, var=&quot;SourceBase&quot;}
+To: ${ENV, var=&quot;DestBase&quot;}
 
 &lt;BR&gt;&lt;BR&gt;
 
 Regards&lt;BR&gt;
 OMD CM Team</defaultContent>
       <attachmentsPattern></attachmentsPattern>
-      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <presendScript>msg.setSubject( Archer\RDM installation transfer +&quot; - &quot; + build.result.toString());</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
