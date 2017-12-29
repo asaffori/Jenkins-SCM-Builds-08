@@ -147,7 +147,7 @@
   <builders/>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
-      <recipientList>Agnes.Zhang@kla-tencor.com, Cathy.Wang@kla-tencor.com</recipientList>
+      <recipientList>Agnes.Zhang@kla-tencor.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
@@ -165,7 +165,7 @@
         </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
       </configuredTriggers>
       <contentType>text/html</contentType>
-      <defaultSubject> ${ENV, var=&quot;BUILDVERSION&quot;}  Archer\RDM installation has been copied to ISR server </defaultSubject>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
       <defaultContent>Dear User&lt;BR&gt;&lt;BR&gt;
  ${ENV, var=&quot;BUILDVERSION&quot;} Archer\RDM installation copied:
 From: ${ENV, var=&quot;SourceBase&quot;}
