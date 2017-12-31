@@ -96,13 +96,10 @@
     					     switch (searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName) ) {
     					        case 2..100 :
     						        error &apos;Multi stream with prefix &apos;+params.SourceStreamName
-    						        break
     						    case -100..0:
     						        error &apos;Invalid source stream name &apos;+params.SourceStreamName
-    						        break
     						    case 1:
     						        print &apos;source stream name is verified&apos;
-    						        break
     						    default:
     						        error &apos;Invalid source stream name &apos; + params.SourceStreamName
     					    }
