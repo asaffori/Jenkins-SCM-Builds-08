@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>EXCLUDES_JOBS_LIST</name>
+          <description>Default/Empty Filed: The script will run on all jobs.
+List of jobs to be excludes should be separated by &apos;;&apos;. 
+Example: Migration_Add_Job;Migration_Configure_Job;Migration_validation</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>master</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.TimerTrigger>
+      <spec>00 06 * * 7</spec>
+    </hudson.triggers.TimerTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+      <source class="hudson.plugins.groovy.StringSystemScriptSource">
+        <script plugin="script-security@1.39">
+          <script>import hudson.model.*
+import hudson.tasks.*
+
+
+
+void main(String jobList){
+		for(item in Hudson.instance.items)
+		{
+			if(!jobList.contains(item.name))
+			{
+				println item.name;
+				def artiDaysToKeep;
+				def artiNumToKeep;
+				if(item.logRotator)
+				{
+					println(&quot;============================================&quot;)
+					if (item.logRotator.daysToKeep &gt;= 0){
+						println &quot;\t retains builds for ${item.logRotator.daysToKeep} day(s)&quot;
+					}
+					if (item.logRotator.numToKeep &gt;= 0){
+						println &quot;\t retains ${item.logRotator.numToKeep} build(s)&quot;
+					}
+					artiDaysToKeep= item.logRotator.artifactDaysToKeep;
+					if (artiDaysToKeep &gt;= 0){
+						println &quot;\t retains artifacts for ${item.logRotator.artifactDaysToKeep} day(s)&quot;
+					}
+					artiNumToKeep=item.logRotator.artifactNumToKeep;
+					if (artiNumToKeep &gt;= 0){
+						println &quot;\t retains artifacts of ${item.logRotator.artifactNumToKeep} builds&quot;
+					}
+					println(&quot;*********************************************&quot;)
+				}
+
+				item.logRotator = new hudson.tasks.LogRotator ( 30, -1, -1,-1)
+			}
+		}
+  Hudson.getInstance().save();
+}
+
+
+String paramJobList = &quot;EXCLUDES_JOBS_LIST&quot;;
+def thr = Thread.currentThread();
+def build = thr?.executable;
+def resolver = build.buildVariableResolver;
+def jobList = resolver.resolve(paramJobList);
+
+main(jobList);</script>
+          <sandbox>false</sandbox>
+        </script>
+      </source>
+    </hudson.plugins.groovy.SystemGroovy>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+  </buildWrappers>
+</project>
