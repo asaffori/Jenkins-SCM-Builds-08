@@ -115,7 +115,8 @@
         						    default:
         						        err=&apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
         					    }
-        					    if err !=&quot;&quot; { error err }
+        					    
+        					    if (err !=&quot;&quot;) { error err }
 
     				}
     			}
