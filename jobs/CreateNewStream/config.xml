@@ -114,7 +114,7 @@
         						        print &apos;snapshot name is verified&apos;
         						    default:
         						        error &apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
-        					    }echo &quot;${message}&quot;
+        					    }
 
     				}
     			}
