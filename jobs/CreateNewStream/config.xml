@@ -62,6 +62,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
@@ -72,57 +73,25 @@
         string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is the base stream name?&apos;)
         string(name: &apos;SuggestedStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What should the new stream be named with? \n Prefered syntax:Arhcer_bla_bla_bla&apos;)
     }
-    environment {
-        search_snaposhots_cmd=&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamSnapshotName}&quot;
-        search_source_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}&quot;
-        search_target_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SuggestedStreamName}&quot;
-    }
         stages {
     			stage (&apos;verify&apos;) {
     				steps {
     				    script {
     					 print &apos;verify suggested stream name is not occupied&apos;
-					    switch (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) ) {
-					        case 1..Integer.MAX_VALUE :
-						        error &apos;Stream name &apos;+params.SuggestedStreamName+&apos; is already occupied&apos;
-						        break
-						    default:
-						        print &apos;suggested stream name is free&apos;
-                                break
-					    }
-
+    					if (searchStrInCommandOutput(&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SuggestedStreamName}&quot;,params.SuggestedStreamName) !=0 ){
+    						error &apos;Stream name &apos;+params.SuggestedStreamName+&apos; is already occupied&apos;
+    					}
     					print &apos;verify source stream name&apos;
-                        print searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName)
-    					     switch (searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName) ) {
-    					        case 2..100 :
-    						        error &apos;Multi stream with prefix &apos; + params.SourceStreamName
-    						    case -100..0:
-    						        error &apos;Invalid source stream name &apos; + params.SourceStreamName
-    						    case 1:
-    						        print &apos;source stream name is verified&apos;
-    						    default:
-    						        error &apos;Invalid source stream name &apos; + params.SourceStreamName
-    					    }
-
+    					if (searchStrInCommandOutput(&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}&quot;,params.SourceStreamName) != 1 ) {
+     
+    						error &apos;Invalid source stream name &apos; + params.SourceStreamName
+    					}
     					print &apos;verify suggested stream snapshot&apos;
-        					switch (searchStrInCommandOutput(search_target_stream_cmd,params.SourceStreamSnapshotName) ) {
-        					        case 2..100 :
-        						        err=&apos;Multi snapshots with prefix &apos;+params.SourceStreamSnapshotName
-        						        break
-        						    case -100..0:
-        						        err=&apos;Invalid snapshot name: &apos;+params.SourceStreamSnapshotName+&apos; for stream: &apos; +params.SourceStreamName
-        						        break
-        						    case 1:
-        						        print &apos;snapshot name is verified&apos;
-        						        break
-        						    default:
-        						        err=&apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
-        					    }
-        					    
-        					    if (err !=&quot;&quot;) { error err }
-
+    					if (searchStrInCommandOutput(&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamSnapshotName}&quot;,params.SourceStreamSnapshotName) != 1){ 
+    						error &apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
+    					}
+    				    }
     				}
-    			}
     			}
     			stage (&apos;approve&apos;) {
     			 steps {
@@ -148,9 +117,10 @@
 
 def searchStrInCommandOutput(cmd,str){
     stdout = bat(returnStdout:true , script: cmd).trim()
-    print (&quot;stdout=&quot; + stdout)
     result = stdout.readLines().drop(1).join(&quot; &quot;)
-    print (&quot;count=&quot; +result.count(str))
+    echo (&quot;str=&quot; + str)
+    echo (&quot;results=&quot; + result)
+    print (result.count(str))
     return result.count(str)
 }</script>
     <sandbox>false</sandbox>
