@@ -107,14 +107,15 @@
     					print &apos;verify suggested stream snapshot&apos;
         					switch (searchStrInCommandOutput(search_target_stream_cmd,params.SourceStreamSnapshotName) ) {
         					        case 2..100 :
-        						        error &apos;Multi snapshots with prefix &apos;+params.SourceStreamSnapshotName
+        						        err=&apos;Multi snapshots with prefix &apos;+params.SourceStreamSnapshotName
         						    case -100..0:
-        						        error &apos;Invalid snapshot name: &apos;+params.SourceStreamSnapshotName+&apos; for stream: &apos; +params.SourceStreamName
+        						        err=&apos;Invalid snapshot name: &apos;+params.SourceStreamSnapshotName+&apos; for stream: &apos; +params.SourceStreamName
         						    case 1:
         						        print &apos;snapshot name is verified&apos;
         						    default:
-        						        error &apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
+        						        err=&apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
         					    }
+        					    if err !=&quot;&quot; { error err }
 
     				}
     			}
