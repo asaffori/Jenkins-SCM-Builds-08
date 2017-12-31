@@ -148,7 +148,9 @@
 
 def searchStrInCommandOutput(cmd,str){
     stdout = bat(returnStdout:true , script: cmd).trim()
+    print (&quot;stdout=&quot; + stdout)
     result = stdout.readLines().drop(1).join(&quot; &quot;)
+    print (&quot;count=&quot; +result.count(str))
     return result.count(str)
 }</script>
     <sandbox>false</sandbox>
