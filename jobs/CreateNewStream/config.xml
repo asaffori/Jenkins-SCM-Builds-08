@@ -119,8 +119,9 @@
         						        error &apos;Invalid source stream snapshot name &apos; + params.SourceStreamSnapshotName
                                         break
         					    }
-    					}catch (error e) {
-    					    error e
+    					}catch (Exception e) {
+    					    
+    					    throw e
     					}
     				}
     			}
