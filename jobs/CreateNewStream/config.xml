@@ -94,7 +94,7 @@
     					print &apos;verify source stream name&apos;
 
     					     switch (searchStrInCommandOutput(search_target_stream_cmd,params.SourceStreamName) ) {
-    					        case 2..Integer.MAX_VALUE :
+    					        case 2..10 :
     						        error &apos;Multi stream with prefix &apos;+params.SourceStreamName
     						        break
     						    case Integer.MIN_VALUE..0:
