@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.16">
+  <actions>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.3.5">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins/test</mappedUrl>
+        <modelObject class="flow-definition" reference="../../../.."/>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
+  </actions>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -17,6 +25,8 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
@@ -25,7 +35,79 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>error &apos;I am adham&apos;</script>
+    <script>pipeline {
+    agent { node { label &apos;master&apos; } }
+     parameters {
+        string(name: &apos;SourceStreamSnapshotName&apos;, defaultValue: &apos;&apos;, description: &apos;What is the snapshot name you would use as a base for the new stream?&apos;)
+        string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is the base stream name?&apos;)
+        string(name: &apos;SuggestedStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What should the new stream be named with? \n Prefered syntax:Arhcer_bla_bla_bla&apos;)
+    }
+    environment {
+        search_snaposhots_cmd=&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamSnapshotName}&quot;
+        search_source_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}&quot;
+        search_target_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SuggestedStreamName}&quot;
+    }
+        stages {
+    			stage (&apos;verify&apos;) {
+    				steps {
+    				    script {
+	    					 print &apos;verify suggested stream name is not occupied&apos;
+						     if (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1)
+							        error &apos;Stream name &apos;+params.SuggestedStreamName+&apos; is already occupied&apos;
+						    else
+							        print &apos;suggested stream name is free&apos;
+	                        
+	    					print &apos;verify source stream name&apos;
+	    					if (searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName) &gt; 1){
+	    						        error &apos;Multi stream with prefix &apos; + params.SourceStreamName
+	    					}
+	    				    
+	    				    if (searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName) &lt; 1){ 
+	    						        error &quot;Invalid source stream name&quot;  + params.SourceStreamName
+	    				    }
+	                        print &apos;source stream name is verified&apos;
+	    					
+	    					print &apos;verify suggested stream snapshot&apos;
+	        				if (searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)  &gt; 1)
+	                                    error &apos;Multi snapshots with prefix &apos;+params.SourceStreamSnapshotName
+	                        
+	                        if (searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)  &lt; 1)
+	        						    error (&apos;Invalid snapshot name: &apos;+params.SourceStreamSnapshotName+&apos; for stream: &apos; +params.SourceStreamName)
+
+					        print &apos;snapshot name is verified&apos;
+
+    					}
+    				}
+    			}
+    			stage (&apos;approve&apos;) {
+    			 steps {
+    			     script {
+    				 env.userInput = input(
+    				 id: &apos;userInput&apos;, message: &apos;Let\&apos;s create it?&apos;, parameters: [
+    				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;userInput&apos;]
+    				])
+    				echo (&quot;Creating Stream:&quot;+ env.userInput)
+    			     }
+    			 }
+    			}
+    			stage (&apos;create&apos;) {
+                    steps {
+                        script {
+    				        echo &quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${env.userInput} ${params.SourceStreamName}&quot;
+                        }
+                    }
+    			}
+    		}
+
+}
+
+def searchStrInCommandOutput(cmd,str){
+    stdoutput = bat(returnStdout:true , script: cmd).trim()
+    //print (&quot;stdout=&quot; + stdout)
+    result = stdoutput.readLines().drop(1).join(&quot; &quot;)
+    //print (&quot;count=&quot; +result.count(str))
+    return result.count(str)
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
