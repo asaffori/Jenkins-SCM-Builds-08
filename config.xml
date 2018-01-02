@@ -374,6 +374,7 @@
         <string>SanityTest-Agnes</string>
         <string>SilentInstallation-Agnes</string>
         <string>SimLockCheck-Agnes</string>
+        <string>UnlockSimulator-Agnes</string>
         <string>UpLoadFile</string>
       </jobNames>
       <jobFilters/>
