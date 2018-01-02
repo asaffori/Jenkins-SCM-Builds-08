@@ -245,6 +245,11 @@ return [user]</script>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RDMINSTALLATION</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ClosureBuildEngine</name>
           <description></description>
@@ -258,71 +263,6 @@ return [user]</script>
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERFDC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERFZC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERIMC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERSTAGE</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERUMC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>AUTOINSTALLATION</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMINSTALLATION</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>SimulatorEngine</name>
           <description></description>
@@ -550,10 +490,6 @@ runs.each { remoteJobBuild -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>BUILDCONTROLLERIMC</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>AcronisEngine</string>
       <string></string>
     </entry>
@@ -562,19 +498,11 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
-      <string>AUTOINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ATEControllerEngine</string>
       <string></string>
     </entry>
     <entry>
       <string>TestSuite</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BUILDCONTROLLERSTAGE</string>
       <string></string>
     </entry>
     <entry>
@@ -590,15 +518,7 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
-      <string>BUILDCONTROLLERFDC</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>TestSuitePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BUILDCONTROLLERUMC</string>
       <string></string>
     </entry>
     <entry>
@@ -607,10 +527,6 @@ runs.each { remoteJobBuild -&gt;
     </entry>
     <entry>
       <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BUILDCONTROLLERFZC</string>
       <string></string>
     </entry>
   </globalEnvVars>
@@ -807,29 +723,6 @@ runs.each { remoteJobBuild -&gt;
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes-Archer Meida Creation</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>PACKAGING</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[7]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[7]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[8]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[8]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
-      </dependencyJobList>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>Agnes-RDM Media creation</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
@@ -860,9 +753,10 @@ runs.each { remoteJobBuild -&gt;
       <specifyModule>false</specifyModule>
       <step>PACKAGING</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-Archer Meida Creation</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[7]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[7]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[8]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[8]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
       </dependencyJobList>
       <appServerType></appServerType>
       <platform></platform>
@@ -946,9 +840,10 @@ runs.each { remoteJobBuild -&gt;
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Restore Image</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-Archer Meida Creation</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[7]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[7]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[8]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[8]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
