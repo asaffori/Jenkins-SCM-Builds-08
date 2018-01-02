@@ -371,6 +371,7 @@
         <string>OMD-Archer-Build-Agnes</string>
         <string>OMD-Build-Pipeline</string>
         <string>RestorageImage-Agnes</string>
+        <string>SanityTest-Agnes</string>
         <string>SilentInstallation-Agnes</string>
         <string>SimLockCheck-Agnes</string>
         <string>UpLoadFile</string>
