@@ -188,11 +188,6 @@ return [user]</script>
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMAUTODELIVER</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>SimulatorEngine</name>
           <description></description>
@@ -449,6 +444,10 @@ runs.each { remoteJobBuild -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
+      <string>ClosureBuildEngine</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>AcronisEngine</string>
       <string></string>
     </entry>
@@ -469,7 +468,7 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
-      <string>RDMAUTODELIVER</string>
+      <string>WORKSPACE</string>
       <string></string>
     </entry>
     <entry>
@@ -486,6 +485,10 @@ runs.each { remoteJobBuild -&gt;
     </entry>
     <entry>
       <string>ToolType</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>WSName</string>
       <string></string>
     </entry>
     <entry>
@@ -532,28 +535,6 @@ runs.each { remoteJobBuild -&gt;
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes-RDM - Release Build</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes-RDM - Deliver Code change</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>PACKAGING</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-RDM Media creation</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
