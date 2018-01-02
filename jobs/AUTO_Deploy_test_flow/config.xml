@@ -103,38 +103,6 @@ def reciepts_list=&quot;&quot;;
             <string>ALL</string>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMRELEASE</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>BUILD_VERSION</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ReleaseBuildEngine</name>
-          <description></description>
-          <allowedSlaves/>
-          <defaultSlaves/>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDTYPE</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Tasks</string>
-              <string>Scheduled</string>
-              <string>Formal</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
         <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.4.1">
           <name>buildRequesterUserId</name>
           <description></description>
@@ -151,30 +119,47 @@ return [user]</script>
           </choiceListProvider>
         </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
+          <name>BUILD_VERSION</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>team_scm_fetchDestination</name>
           <description></description>
           <defaultValue>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}</defaultValue>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>WSName</name>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>ReleaseBuildEngine</name>
           <description></description>
-          <defaultValue>omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>WORKSPACE</name>
-          <description></description>
-          <defaultValue>C:\temp\${BUILD_VERSION}</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>Jenkins_Build_Script</name>
-          <description></description>
-          <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build</defaultValue>
-        </hudson.model.StringParameterDefinition>
+          <allowedSlaves/>
+          <defaultSlaves/>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RDMINSTALLATION</name>
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDTYPE</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Tasks</string>
+              <string>Formal</string>
+              <string>Scheduled</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Jenkins_Build_Script</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build</defaultValue>
+        </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ClosureBuildEngine</name>
           <description></description>
@@ -448,7 +433,23 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
+      <string>MajorMinor_Ver</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>AcronisEngine</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ToolType</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>team_scm_fetchDestination</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>Jenkins_Build_Script</string>
       <string></string>
     </entry>
     <entry>
@@ -456,7 +457,23 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
+      <string>TestSuitePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>ATEControllerEngine</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ReleaseBuildEngine</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>RDMINSTALLATION</string>
       <string></string>
     </entry>
     <entry>
@@ -464,11 +481,7 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
-      <string>RDMRELEASE</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>WORKSPACE</string>
+      <string>buildRequesterUserId</string>
       <string></string>
     </entry>
     <entry>
@@ -479,51 +492,9 @@ runs.each { remoteJobBuild -&gt;
       <string>BaseImage</string>
       <string></string>
     </entry>
-    <entry>
-      <string>MajorMinor_Ver</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ToolType</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>WSName</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>TestSuitePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
   </globalEnvVars>
   <profiler class="com.amdocs.hudson.plugins.dbprofiler.DBProfiler"/>
   <jobParameterList class="java.util.concurrent.CopyOnWriteArrayList">
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes-RDM - Release Build</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>BUILD</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>Agnes-RDM Media creation</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
@@ -532,11 +503,7 @@ runs.each { remoteJobBuild -&gt;
       <overrideJobNode>false</overrideJobNode>
       <specifyModule>false</specifyModule>
       <step>PACKAGING</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-RDM - Release Build</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
+      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList"/>
       <appServerType></appServerType>
       <platform></platform>
       <triggersFlag>false</triggersFlag>
