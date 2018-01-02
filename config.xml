@@ -366,6 +366,7 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>Auto Deploy Sanity</string>
         <string>DownLoadFile</string>
         <string>FileTransfer</string>
         <string>OMD-Archer-Build-Agnes</string>
