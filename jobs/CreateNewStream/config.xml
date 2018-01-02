@@ -100,7 +100,7 @@
 	    						        error &apos;Invalid source stream name &apos;  + params.SourceStreamName
 	    				    }
 	    					}catch(err) {
-	    					    error err
+	    					    error err.message
 	    					}
 	                        print &apos;source stream name is verified&apos;
 	    					
