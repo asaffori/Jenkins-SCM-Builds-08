@@ -239,146 +239,25 @@ return [user]</script>
           <description></description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>Formal</string>
               <string>Tasks</string>
+              <string>Formal</string>
               <string>Scheduled</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>StartFromSolution</name>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>ClosureBuildEngine</name>
           <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string></string>
-              <string>BuildMatlabDiagnostics</string>
-              <string>BuildMatlabApps</string>
-              <string>BuildCommonTypes</string>
-              <string>BuildProxy</string>
-              <string>BuildCommon</string>
-              <string>BuildInfrastructure</string>
-              <string>BuildNGPlatformContracts</string>
-              <string>BuildCodeGeneration</string>
-              <string>BuildNGPlatformUtilities</string>
-              <string>BuildNGPlatformComponents</string>
-              <string>BuildNGPlatformRecipe</string>
-              <string>BuildNGPlatformScripting</string>
-              <string>BuildUIServers</string>
-              <string>BuildKernel</string>
-              <string>BuildENV10</string>
-              <string>BuildToolSystemInfoPackage</string>
-              <string>CommonUtilities</string>
-              <string>BuildRTInfrastructure</string>
-              <string>BuildRTPlatform</string>
-              <string>BuildNGiMetrologyContracts</string>
-              <string>BuildLinnikCommonTypes</string>
-              <string>BuildNGLinnikContracts</string>
-              <string>BuildNGLinnikHelpers</string>
-              <string>BuildLinnikCommon</string>
-              <string>BuildNGLinnikMCommon</string>
-              <string>BuildNGLinnikUtilities</string>
-              <string>BuildNGLinnikComponents</string>
-              <string>BuildNGLinnikScripting</string>
-              <string>BuildNGLinnikRecipe</string>
-              <string>BuildMBSCommonTypes</string>
-              <string>BuildNGMBSContracts</string>
-              <string>BuildNGMBSHelpers</string>
-              <string>BuildMBSCommon</string>
-              <string>BuildNGMBSMCommon</string>
-              <string>BuildNGMBSUtilities</string>
-              <string>BuildNGMBSComponents</string>
-              <string>BuildNGMBSScripting</string>
-              <string>BuildNGMBSRecipe</string>
-              <string>BuildCommonOVL_Common</string>
-              <string>BuildNGCommonOVLContracts</string>
-              <string>BuildNGCommonOVLComponents</string>
-              <string>BuildNGCommonOVLRecipe</string>
-              <string>BuildOVLCommon</string>
-              <string>BuildNexGOCommon</string>
-              <string>BuildXYSAIMCommon</string>
-              <string>BuildMOLCommon</string>
-              <string>BuildBLOCommon</string>
-              <string>BuildBFCDCommon</string>
-              <string>BuildArcherCommon</string>
-              <string>BuildJIGCommon</string>
-              <string>BuildJ1Common</string>
-              <string>BuildJ2Common</string>
-              <string>BuildAIMidMLCommon</string>
-              <string>BuildAROLCommon</string>
-              <string>BuildLinnikUIServers</string>
-              <string>BuildOVLUIServers</string>
-              <string>BuildMOLUIServers</string>
-              <string>BuildBLOUIServers</string>
-              <string>BuildMBSUIServers</string>
-              <string>BuildNGAROLContracts</string>
-              <string>BuildNGAROLUtilities</string>
-              <string>BuildNGAROLComponents</string>
-              <string>BuildNGAROLScripting</string>
-              <string>BuildNGAROLRecipe</string>
-              <string>BuildAROLUIServers</string>
-              <string>BuildAIMidMLUIServers</string>
-              <string>BuildArcherKernel</string>
-              <string>BuildLinnikKernel</string>
-              <string>BuildiMetrologyCommon</string>
-              <string>BuildNGiMetrologyComponents</string>
-              <string>BuildiMetrologyKernel</string>
-              <string>BuildIMAdapter</string>
-              <string>BuildMBSKernel</string>
-              <string>BuildCommonOVLKernel</string>
-              <string>BuildOVLKernel</string>
-              <string>BuildAROLKernel</string>
-              <string>BuildLinnikApps</string>
-              <string>BuildMBSApps</string>
-              <string>BuildCommonOVLApps</string>
-              <string>BuildAROLApps</string>
-              <string>BuildArcherApps</string>
-              <string>BuildOVLApps</string>
-              <string>BuildNGOVLContracts</string>
-              <string>BuildNGOVLRecipe</string>
-              <string>BuildNGOVLComponents</string>
-              <string>BuildNGOVLScripting</string>
-              <string>BuildNexGOUIServers</string>
-              <string>BuildXYSAIMUIServers</string>
-              <string>BuildBFCDUIServers</string>
-              <string>BuildNexGOKernel</string>
-              <string>BuildXYSAIMKernel</string>
-              <string>BuildMOLKernel</string>
-              <string>BuildBLOKernel</string>
-              <string>BuildBFCDKernel</string>
-              <string>BuildNexGOENV10</string>
-              <string>BuildNGNexGOContracts</string>
-              <string>BuildNGNexGOComponents</string>
-              <string>BuildNGAIMScripting</string>
-              <string>BuildXYSAIMApps</string>
-              <string>BuildNGXYSAIMContracts</string>
-              <string>BuildNGXYSAIMComponents</string>
-              <string>BuildNGXYSAIMScripting</string>
-              <string>BuildMOLApps</string>
-              <string>BuildBLOApps</string>
-              <string>BuildNGMOLContracts</string>
-              <string>BuildNGMOLComponents</string>
-              <string>BuildNGMOLScripting</string>
-              <string>BuildNGBLOContracts</string>
-              <string>BuildNGBLOComponents</string>
-              <string>BuildNGBLOScripting</string>
-              <string>BuildAIMidMLKernel</string>
-              <string>BuildAIMidMLApps</string>
-              <string>BuildNGMOLMLContracts</string>
-              <string>BuildNGMOLMLComponents</string>
-              <string>BuildNGAIMidMLScripting</string>
-              <string>BuildBFCDApps</string>
-              <string>BuildJ1Kernel</string>
-              <string>BuildJ2Kernel</string>
-              <string>BuildJ1Apps</string>
-              <string>BuildJ2Apps</string>
-              <string>BuildJIGApps</string>
-              <string>BuildiMetrologyApps</string>
-              <string>BuildRTLinnik</string>
-              <string>BuildRTMBS</string>
-              <string>CopyBuild</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
+          <allowedSlaves>
+            <string>ALL (no restriction)</string>
+          </allowedSlaves>
+          <defaultSlaves/>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>BUILDCONTROLLERFDC</name>
           <description></description>
@@ -434,43 +313,6 @@ return [user]</script>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>emailGroups</name>
-          <description>This value is supplied by builds initiated through RTC.
-&lt;br&gt;
-Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_Groups.txt</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>emailGroupsDefFile</name>
-          <description></description>
-          <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_Groups.txt</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>StaticCodeAnalysisModeRelease</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Disabled</string>
-              <string>Warning</string>
-              <string>Error</string>
-              <string>ErrorOnBuildEnd</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ClosureBuildEngine</name>
-          <description></description>
-          <allowedSlaves>
-            <string>ALL (no restriction)</string>
-          </allowedSlaves>
-          <defaultSlaves/>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>AUTOINSTALLATION</name>
           <description></description>
@@ -708,15 +550,15 @@ runs.each { remoteJobBuild -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
+      <string>BUILDCONTROLLERIMC</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>AcronisEngine</string>
       <string></string>
     </entry>
     <entry>
       <string>BaseImagePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>emailGroupsDefFile</string>
       <string></string>
     </entry>
     <entry>
@@ -732,11 +574,11 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
-      <string>FlowController</string>
+      <string>BUILDCONTROLLERSTAGE</string>
       <string></string>
     </entry>
     <entry>
-      <string>emailGroups</string>
+      <string>FlowController</string>
       <string></string>
     </entry>
     <entry>
@@ -748,7 +590,15 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
+      <string>BUILDCONTROLLERFDC</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>TestSuitePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BUILDCONTROLLERUMC</string>
       <string></string>
     </entry>
     <entry>
@@ -760,11 +610,7 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
-      <string>StartFromSolution</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>StaticCodeAnalysisModeRelease</string>
+      <string>BUILDCONTROLLERFZC</string>
       <string></string>
     </entry>
   </globalEnvVars>
@@ -905,31 +751,6 @@ runs.each { remoteJobBuild -&gt;
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes-Archer Build - Release Mode</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>BUILD</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher - Backup Code Debug</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher - Backup Code Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>Agnes-RDM - Debug Build</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
@@ -967,10 +788,13 @@ runs.each { remoteJobBuild -&gt;
       <step>BUILD</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-Archer Build - Release Mode</dependencyJobName>
+          <dependencyJobName>Agnes-RDM - Backup Code Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-RDM - Backup Code Release</dependencyJobName>
+          <dependencyJobName>Agnes-NuArcher - Backup Code Debug</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>Agnes-NuArcher - Backup Code Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
@@ -991,9 +815,8 @@ runs.each { remoteJobBuild -&gt;
       <specifyModule>false</specifyModule>
       <step>PACKAGING</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-Archer Build - Release Mode</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[7]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[7]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
         <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[8]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
         <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[8]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
       </dependencyJobList>
