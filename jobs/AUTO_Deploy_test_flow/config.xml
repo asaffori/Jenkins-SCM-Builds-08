@@ -485,6 +485,10 @@ runs.each { remoteJobBuild -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
+      <string>SkipSandboxLoad</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>BUILDRELEASE</string>
       <string></string>
     </entry>
@@ -494,6 +498,10 @@ runs.each { remoteJobBuild -&gt;
     </entry>
     <entry>
       <string>BaseImagePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>SnapshotName</string>
       <string></string>
     </entry>
     <entry>
@@ -528,28 +536,15 @@ runs.each { remoteJobBuild -&gt;
       <string>RDMINSTALLATION</string>
       <string></string>
     </entry>
+    <entry>
+      <string>BUILDDEBUG</string>
+      <string></string>
+    </entry>
   </globalEnvVars>
   <profiler class="com.amdocs.hudson.plugins.dbprofiler.DBProfiler"/>
   <jobParameterList class="java.util.concurrent.CopyOnWriteArrayList">
     <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>Agnes-NuArcher Build Preperation Release</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>BUILD</step>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes-NuArcher Build Preperation Debug</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
       <continueJobAnyway>false</continueJobAnyway>
@@ -577,9 +572,6 @@ runs.each { remoteJobBuild -&gt;
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes-NuArcher Build Preperation Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher Build Preperation Debug</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
       <platform></platform>
@@ -601,9 +593,6 @@ runs.each { remoteJobBuild -&gt;
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes-NuArcher Build Preperation Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher Build Preperation Debug</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
@@ -631,13 +620,7 @@ runs.each { remoteJobBuild -&gt;
           <dependencyJobName>Agnes-NuArcher Build Preperation Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher Build Preperation Debug</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes-NuArcher Build Preperation Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher Build Preperation Debug</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
@@ -661,10 +644,8 @@ runs.each { remoteJobBuild -&gt;
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes-RDM - Backup Code Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[4]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[5]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
       </dependencyJobList>
       <appServerType></appServerType>
       <platform></platform>
@@ -770,14 +751,10 @@ runs.each { remoteJobBuild -&gt;
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Restore Image</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[4]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[5]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[4]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[5]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
