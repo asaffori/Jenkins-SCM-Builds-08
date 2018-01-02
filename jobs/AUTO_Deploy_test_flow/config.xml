@@ -103,11 +103,6 @@ def reciepts_list=&quot;&quot;;
             <string>ALL</string>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>SkipSandboxLoad</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
@@ -142,6 +137,22 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
         </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>DebugBuildEngine</name>
+          <description></description>
+          <allowedSlaves/>
+          <defaultSlaves/>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RDMAUTODELIVER</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
         <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.4.1">
           <name>buildRequesterUserId</name>
           <description></description>
@@ -158,9 +169,19 @@ return [user]</script>
           </choiceListProvider>
         </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
+          <name>team_scm_fetchDestination</name>
+          <description></description>
+          <defaultValue>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>WSName</name>
           <description></description>
           <defaultValue>omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>WORKSPACE</name>
+          <description></description>
+          <defaultValue>C:\temp\${BUILD_VERSION}</defaultValue>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ReleaseBuildEngine</name>
@@ -173,52 +194,6 @@ return [user]</script>
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>DebugBuildEngine</name>
-          <description></description>
-          <allowedSlaves/>
-          <defaultSlaves/>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>team_scm_fetchDestination</name>
-          <description></description>
-          <defaultValue>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>BUILDRELEASE</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>BUILDDEBUG</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SnapshotName</name>
-          <description></description>
-          <defaultValue>INIT_UOMD_BLD_${BUILD_VERSION}</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>Jenkins_Build_Script</name>
-          <description></description>
-          <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMAUTODELIVER</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>WORKSPACE</name>
-          <description></description>
-          <defaultValue>C:\temp\${BUILD_VERSION}</defaultValue>
-        </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RDMRELEASE</name>
           <description></description>
@@ -229,6 +204,11 @@ return [user]</script>
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Jenkins_Build_Script</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build</defaultValue>
+        </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>BUILDTYPE</name>
           <description></description>
@@ -485,23 +465,11 @@ runs.each { remoteJobBuild -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>SkipSandboxLoad</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BUILDRELEASE</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>AcronisEngine</string>
       <string></string>
     </entry>
     <entry>
       <string>BaseImagePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>SnapshotName</string>
       <string></string>
     </entry>
     <entry>
@@ -536,30 +504,9 @@ runs.each { remoteJobBuild -&gt;
       <string>RDMINSTALLATION</string>
       <string></string>
     </entry>
-    <entry>
-      <string>BUILDDEBUG</string>
-      <string></string>
-    </entry>
   </globalEnvVars>
   <profiler class="com.amdocs.hudson.plugins.dbprofiler.DBProfiler"/>
   <jobParameterList class="java.util.concurrent.CopyOnWriteArrayList">
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes-NuArcher Build Preperation Release</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>BUILD</step>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>Agnes-RDM - Backup Code Debug</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
@@ -568,11 +515,7 @@ runs.each { remoteJobBuild -&gt;
       <overrideJobNode>false</overrideJobNode>
       <specifyModule>false</specifyModule>
       <step>BUILD</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher Build Preperation Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
+      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList"/>
       <appServerType></appServerType>
       <platform></platform>
       <triggersFlag>false</triggersFlag>
@@ -590,11 +533,7 @@ runs.each { remoteJobBuild -&gt;
       <overrideJobNode>false</overrideJobNode>
       <specifyModule>false</specifyModule>
       <step>BUILD</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher Build Preperation Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
+      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList"/>
       <appServerType></appServerType>
       <platform></platform>
       <triggersFlag>false</triggersFlag>
@@ -615,12 +554,6 @@ runs.each { remoteJobBuild -&gt;
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes-RDM - Backup Code Debug</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher Build Preperation Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher Build Preperation Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
@@ -644,8 +577,6 @@ runs.each { remoteJobBuild -&gt;
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes-RDM - Backup Code Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
       </dependencyJobList>
       <appServerType></appServerType>
       <platform></platform>
@@ -751,10 +682,6 @@ runs.each { remoteJobBuild -&gt;
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Restore Image</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[4]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
