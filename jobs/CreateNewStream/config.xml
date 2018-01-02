@@ -100,7 +100,7 @@
 	    						        error &apos;Invalid source stream name &apos;  + params.SourceStreamName
 	    				    }
 	    					}catch(err) {
-	    					    throw hudson.AbortException(err.message)
+	    					    throw err
 	    					}
 	                        print &apos;source stream name is verified&apos;
 	    					
