@@ -370,6 +370,7 @@
         <string>FileTransfer</string>
         <string>OMD-Archer-Build-Agnes</string>
         <string>OMD-Build-Pipeline</string>
+        <string>SimLockCheck-Agnes</string>
         <string>UpLoadFile</string>
       </jobNames>
       <jobFilters/>
