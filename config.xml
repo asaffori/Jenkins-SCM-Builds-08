@@ -366,28 +366,11 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>Agnes-Archer Build - Debug Mode</string>
-        <string>Agnes-Archer Build - Release Mode</string>
-        <string>Agnes-Archer Meida Creation</string>
-        <string>Agnes-NuArcher - Backup Code Debug</string>
-        <string>Agnes-NuArcher - Backup Code Release</string>
-        <string>Agnes-NuArcher - Deliver Code change</string>
-        <string>Agnes-NuArcher Build Preperation Debug</string>
-        <string>Agnes-NuArcher Build Preperation Release</string>
-        <string>Agnes-RDM - Backup Code Debug</string>
-        <string>Agnes-RDM - Backup Code Release</string>
-        <string>Agnes-RDM - Debug Build</string>
-        <string>Agnes-RDM - Deliver Code change</string>
-        <string>Agnes-RDM - Release Build</string>
-        <string>Agnes-RDM Media creation</string>
-        <string>Agnes_Test_Flow</string>
-        <string>Archer Build test</string>
-        <string>AUTO_Deploy_test_flow</string>
         <string>DownLoadFile</string>
         <string>FileTransfer</string>
-        <string>Installation test</string>
         <string>OMD-Archer-Build-Agnes</string>
         <string>OMD-Build-Pipeline</string>
+        <string>SimLockCheck-Agnes</string>
         <string>UpLoadFile</string>
       </jobNames>
       <jobFilters/>
