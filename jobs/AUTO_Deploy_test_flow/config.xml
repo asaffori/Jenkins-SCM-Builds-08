@@ -67,6 +67,14 @@ def reciepts_list=&quot;&quot;;
       <contributors/>
     </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -231,8 +239,8 @@ return [user]</script>
           <description></description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>Tasks</string>
               <string>Formal</string>
+              <string>Tasks</string>
               <string>Scheduled</string>
             </a>
           </choices>
@@ -439,18 +447,6 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
           <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_Groups.txt</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
-          <name>StaticCodeAnalysisModeDebug</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Disabled</string>
-              <string>Warning</string>
-              <string>Error</string>
-              <string>ErrorOnBuildEnd</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
           <name>StaticCodeAnalysisModeRelease</name>
           <description></description>
           <choices class="java.util.Arrays$ArrayList">
@@ -598,14 +594,6 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -720,15 +708,7 @@ runs.each { remoteJobBuild -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>StaticCodeAnalysisModeDebug</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>AcronisEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ToolType</string>
       <string></string>
     </entry>
     <entry>
@@ -736,23 +716,15 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
+      <string>emailGroupsDefFile</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>AUTOINSTALLATION</string>
       <string></string>
     </entry>
     <entry>
-      <string>TestSuitePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ATEControllerEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>RDMINSTALLATION</string>
       <string></string>
     </entry>
     <entry>
@@ -764,11 +736,35 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
-      <string>StaticCodeAnalysisModeRelease</string>
+      <string>emailGroups</string>
       <string></string>
     </entry>
     <entry>
       <string>BaseImage</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ToolType</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuitePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>RDMINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>StartFromSolution</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>StaticCodeAnalysisModeRelease</string>
       <string></string>
     </entry>
   </globalEnvVars>
@@ -909,31 +905,6 @@ runs.each { remoteJobBuild -&gt;
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes-Archer Build - Debug Mode</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>BUILD</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher - Backup Code Debug</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-NuArcher - Backup Code Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>Agnes-Archer Build - Release Mode</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
@@ -971,7 +942,10 @@ runs.each { remoteJobBuild -&gt;
           <dependencyJobName>Agnes-RDM - Backup Code Debug</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-Archer Build - Debug Mode</dependencyJobName>
+          <dependencyJobName>Agnes-NuArcher - Backup Code Debug</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>Agnes-NuArcher - Backup Code Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
@@ -1018,11 +992,10 @@ runs.each { remoteJobBuild -&gt;
       <step>PACKAGING</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-Archer Build - Debug Mode</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes-Archer Build - Release Mode</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[8]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[8]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
       </dependencyJobList>
       <appServerType></appServerType>
       <platform></platform>
