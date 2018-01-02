@@ -138,7 +138,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <omitValueField>true</omitValueField>
         </org.biouno.unochoice.DynamicReferenceParameter>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>DebugBuildEngine</name>
+          <name>ReleaseBuildEngine</name>
           <description></description>
           <allowedSlaves/>
           <defaultSlaves/>
@@ -183,8 +183,18 @@ return [user]</script>
           <description></description>
           <defaultValue>C:\temp\${BUILD_VERSION}</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Jenkins_Build_Script</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RDMDEBUG</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ReleaseBuildEngine</name>
+          <name>DebugBuildEngine</name>
           <description></description>
           <allowedSlaves/>
           <defaultSlaves/>
@@ -194,21 +204,6 @@ return [user]</script>
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMRELEASE</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMDEBUG</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>Jenkins_Build_Script</name>
-          <description></description>
-          <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build</defaultValue>
-        </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>BUILDTYPE</name>
           <description></description>
@@ -220,6 +215,11 @@ return [user]</script>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RDMRELEASE</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RDMINSTALLATION</name>
           <description></description>
@@ -465,6 +465,10 @@ runs.each { remoteJobBuild -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
+      <string>DebugBuildEngine</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>AcronisEngine</string>
       <string></string>
     </entry>
@@ -478,6 +482,10 @@ runs.each { remoteJobBuild -&gt;
     </entry>
     <entry>
       <string>TestSuite</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>RDMRELEASE</string>
       <string></string>
     </entry>
     <entry>
@@ -501,30 +509,16 @@ runs.each { remoteJobBuild -&gt;
       <string></string>
     </entry>
     <entry>
+      <string>RDMDEBUG</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>RDMINSTALLATION</string>
       <string></string>
     </entry>
   </globalEnvVars>
   <profiler class="com.amdocs.hudson.plugins.dbprofiler.DBProfiler"/>
   <jobParameterList class="java.util.concurrent.CopyOnWriteArrayList">
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes-RDM - Backup Code Debug</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>BUILD</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>Agnes-RDM - Backup Code Release</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
@@ -551,11 +545,7 @@ runs.each { remoteJobBuild -&gt;
       <overrideJobNode>false</overrideJobNode>
       <specifyModule>false</specifyModule>
       <step>BUILD</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes-RDM - Backup Code Debug</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
+      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList"/>
       <appServerType></appServerType>
       <platform></platform>
       <triggersFlag>false</triggersFlag>
