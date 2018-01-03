@@ -83,7 +83,7 @@
     				    script {
 	    					 print &apos;verify suggested stream name is not occupied&apos;
 						     if (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1)
-							        error &quot;Stream name &quot;+params.SuggestedStreamName+&quot; is already occupied&quot;
+							        error &quot;Stream name is already occupied&quot;
 						    else
 							        print &apos;suggested stream name is free&apos;
 	                        
