@@ -82,10 +82,12 @@
     				steps {
         				    script {
     	    					print &apos;verify suggested stream name is not occupied&apos;
-    						    if (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1)
+    						    siwtch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
+    						        case 1..Integer.MAX_VALUE :
     							       throw new Exception(&quot;Stream name is already occupied&quot;)
-                                print &apos;suggested stream name is free&apos;
-    	                        
+                                    default:
+                                        print &apos;suggested stream name is free&apos;
+    						    }
     	    					print &apos;verify source stream name&apos;
     	    					switch(searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName)){
     	    					    case 2..Integer.MAX_VALUE :
@@ -96,14 +98,14 @@
     	                                print &apos;source stream name is verified&apos;
     	    					}
     	    					print &apos;verify suggested stream snapshot&apos;
-    	        				if (searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)  &gt; 1)
+    	        				switch(searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)){
+    	        				    case 2..Integer.MAX_VALUE :
     	                                    throw new Exception(&quot;Multi snapshots with prefix &quot;+params.SourceStreamSnapshotName)
-    	                        
-    	                        if (searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)  &lt; 1)
+    	                            case Integer.MIN_VALUE+2..0 :
     	        						    throw new Exception(&apos;Invalid snapshot name: &apos;+params.SourceStreamSnapshotName+&apos; for stream: &apos; +params.SourceStreamName)
-    
-    					        print &apos;snapshot name is verified&apos;
-
+                                    default:    
+    					                    print &apos;snapshot name is verified&apos;
+                                }   
         				    }
     				}
     			}
