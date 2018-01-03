@@ -82,7 +82,7 @@
     				steps {
         				    script {
     	    					print &apos;verify suggested stream name is not occupied&apos;
-    						    siwtch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
+    						    switch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
     						        case 1..Integer.MAX_VALUE :
     							       throw new Exception(&quot;Stream name is already occupied&quot;)
                                     default:
