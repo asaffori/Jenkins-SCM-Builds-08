@@ -130,7 +130,7 @@
 }
 
 def searchStrInCommandOutput(cmd,str){
-    stdoutput = bat(@returnStdout:true , script:cmd).trim()
+    stdoutput = bat(returnStdout:true , script:cmd).trim()
     //print (&quot;stdout=&quot; + stdout)
     result = stdoutput.readLines().drop(1).join(&quot; &quot;)
     //print (&quot;count=&quot; +result.count(str))
