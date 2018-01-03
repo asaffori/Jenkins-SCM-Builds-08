@@ -83,12 +83,13 @@
     				    //script {
 	    					 print &apos;verify suggested stream name is not occupied&apos;
 	    					 script {
-						     if (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1)
+						        if (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1)
 							        error &apos;Stream name &apos;+params.SuggestedStreamName+&apos; is already occupied&apos;
-						    else
+						        else
 							        print &apos;suggested stream name is free&apos;
 	    					 }
 	    					print &apos;verify source stream name&apos;
+	    					 script {
 	    					num = searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName)
 	    					if (num&gt; 1){
 	    						        error &apos;Multi stream with prefix &apos; + params.SourceStreamName
@@ -97,16 +98,17 @@
 	    				    if (num &lt; 1){ 
 	    						        error &apos;Invalid source stream name &apos;  + params.SourceStreamName
 	    				    }
-	    				    
+	    					 }
 	                        print &apos;source stream name is verified&apos;
 	    					
 	    					print &apos;verify suggested stream snapshot&apos;
+	    					 script {
 	        				if (searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)  &gt; 1)
 	                                    error &quot;Multi snapshots with prefix &quot;+params.SourceStreamSnapshotName
 	                        
 	                        if (searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)  &lt; 1)
 	        						    error (&apos;Invalid snapshot name: &apos;+params.SourceStreamSnapshotName+&apos; for stream: &apos; +params.SourceStreamName)
-
+}
 					        print &apos;snapshot name is verified&apos;
 
     					//}
