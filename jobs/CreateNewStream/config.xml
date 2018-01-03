@@ -80,8 +80,9 @@
         stages {
     			stage (&apos;verify&apos;) {
     				steps {
-    				    try{
         				    script {
+    				    try{
+
     	    					 print &apos;verify suggested stream name is not occupied&apos;
     						     if (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1)
     							        error &quot;Stream name is already occupied&quot;
@@ -109,10 +110,11 @@
     
     					        print &apos;snapshot name is verified&apos;
     
-        					}
+
     				    }catch (err){
     				        error err
     				    }
+        				    }
     				}
     			}
     			stage (&apos;approve&apos;) {
