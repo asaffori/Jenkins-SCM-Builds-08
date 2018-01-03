@@ -84,7 +84,7 @@
     	    					print &apos;verify suggested stream name is not occupied&apos;
     						    switch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
     						        case 1..Integer.MAX_VALUE :
-    							       throw new Exception(&quot;Stream name is already occupied&quot;)
+    							       throw new Exception(&quot;Stream name &quot; + params.SuggestedStreamName + &quot; is already occupied&quot;)
                                     default:
                                         print &apos;suggested stream name is free&apos;
     						    }
@@ -118,15 +118,14 @@
     				 id: &apos;userInput&apos;, message: &apos;Let\&apos;s create it?&apos;, parameters: [
     				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;userInput&apos;]
     				])
-    				if (!SuggestedStreamName.equals(env.userInput)){ 
-    				        print &apos;verify suggested stream name is not occupied&apos;
+    				if (!params.SuggestedStreamName.equals(env.userInput)){ 
+    				        print &apos;verify new suggested stream name is not occupied&apos;
 						    switch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
 						        case 1..Integer.MAX_VALUE :
-							       throw new Exception(&quot;Stream name is already occupied&quot;)
+							       throw new Exception(&quot;Stream name &quot; + env.userInput + &quot; is already occupied&quot;)
                                 default:
-                                    print &apos;suggested stream name is free&apos;
+                                    print &apos;new suggested stream name is free&apos;
 						    }
-    			     }
     			     }
     			 }
     			}
