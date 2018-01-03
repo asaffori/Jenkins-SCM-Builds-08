@@ -88,6 +88,7 @@
                                     default:
                                         print &apos;suggested stream name is free&apos;
     						    }
+    						    
     	    					print &apos;verify source stream name&apos;
     	    					switch(searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName)){
     	    					    case 2..Integer.MAX_VALUE :
@@ -97,6 +98,7 @@
     	                            default:
     	                                print &apos;source stream name is verified&apos;
     	    					}
+    	    					
     	    					print &apos;verify suggested stream snapshot&apos;
     	        				switch(searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)){
     	        				    case 2..Integer.MAX_VALUE :
