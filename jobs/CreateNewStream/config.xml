@@ -82,11 +82,12 @@
     				steps {
     				    //script {
 	    					 print &apos;verify suggested stream name is not occupied&apos;
+	    					 script {
 						     if (searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1)
 							        error &apos;Stream name &apos;+params.SuggestedStreamName+&apos; is already occupied&apos;
 						    else
 							        print &apos;suggested stream name is free&apos;
-	                        
+	    					 }
 	    					print &apos;verify source stream name&apos;
 	    					num = searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName)
 	    					if (num&gt; 1){
