@@ -133,6 +133,7 @@
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
         <string>Ca1fs01-TN-analyzes-RO</string>
         <string>CA1NAS02-SSCM-CH</string>
+        <string>DL-OMD-ENG-SCM</string>
         <string>Ca1fs01-SS10K-info-RO</string>
         <string>WIN-DYSD-SQATestData-CH</string>
         <string>Ca1nas11-Autodesk-RO</string>
@@ -173,7 +174,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1514454063447</timestamp>
+      <timestamp>1515106669410</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.35"/>
     <org.jenkinsci.plugins.readonly.UserConfiguration plugin="read-only-configurations@1.10">
