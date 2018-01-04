@@ -52,7 +52,7 @@
             <string>ALL (no restriction)</string>
           </allowedSlaves>
           <defaultSlaves>
-            <string>SCM-SIM7050-01</string>
+            <string>SCM-SIM7050-02</string>
           </defaultSlaves>
           <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
           <allowMultiNodeSelection>false</allowMultiNodeSelection>
