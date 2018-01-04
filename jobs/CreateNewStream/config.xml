@@ -119,7 +119,7 @@
             				 id: &apos;userInput&apos;, message: &apos;Please approve the below stream name?&apos;, parameters: [
             				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;userInput&apos;]
             				,[$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;&apos;, description: &apos;Decline reason&apos;, name: &apos;declineReason&apos;]
-            				]],submitter: &apos;omdbuild&apos;,ok: &apos;Approved, lets create it&apos;)
+            				],submitter: &apos;omdbuild&apos;,ok: &apos;Approved, lets create it&apos;)
     			         } catch(err) { // input false
                             def user = err.getCauses()[0].getUser()
                             userInput = false
