@@ -114,10 +114,18 @@
     			stage (&apos;approve&apos;) {
     			 steps {
     			     script {
-    				 env.userInput = input(
-    				 id: &apos;userInput&apos;, message: &apos;Please approve the below stream name?&apos;, parameters: [
-    				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;userInput&apos;]
-    				],submitter: &apos;omdbuild&apos;,ok: &apos;Approved, lets create it&apos;)
+    			         try{
+            				 env.userInput = input(
+            				 id: &apos;userInput&apos;, message: &apos;Please approve the below stream name?&apos;, parameters: [
+            				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;userInput&apos;]
+            				],[$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;&apos;, description: &apos;Decline reason&apos;, name: &apos;declineReason&apos;]
+            				],submitter: &apos;omdbuild&apos;,ok: &apos;Approved, lets create it&apos;)
+    			         } catch(err) { // input false
+                            def user = err.getCauses()[0].getUser()
+                            userInput = false
+                            echo &quot;Aborted by: [${user}]&quot;
+                            echo &quot;Abort reason: ${env.declineReason}&quot;
+                        }
     				if (!params.SuggestedStreamName.equals(env.userInput)){ 
     				        print &apos;verify new suggested stream name is not occupied&apos;
 						    switch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
