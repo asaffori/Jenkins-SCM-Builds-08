@@ -129,6 +129,7 @@
     			     }
     			 }
     			}
+    			}
     			stage (&apos;create&apos;) {
                     steps {
                         script {
@@ -136,8 +137,8 @@
                         }
                     }
     			}
-    		}
-}
+
+    }
 }
 
 def searchStrInCommandOutput(cmd,str){
