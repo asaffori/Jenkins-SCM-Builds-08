@@ -124,6 +124,7 @@
             				print (userInput)
             				print (userInput[&apos;declineReason&apos;])
     			         }catch(err) { // input false
+    			            print (userInput)
                             def user = err.getCauses()[0].getUser()
                             echo &quot;Aborted by: [${user}]&quot;
                             throw new Exception( &quot;Abort reason: &quot;+ userInput[&apos;declineReason&apos;])
