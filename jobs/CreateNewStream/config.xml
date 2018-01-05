@@ -115,7 +115,7 @@
     			 steps {
     			     script {
     			         try{
-            				 env.userInput = input(
+            				 userInput = input(
             				 id: &apos;userInput&apos;, message: &apos;Please approve the below stream name?&apos;, parameters: [
             				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;userInput&apos;]
             				,[$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;&apos;, description: &apos;Decline reason&apos;, name: &apos;declineReason&apos;]
@@ -123,13 +123,13 @@
     			         } catch(err) { // input false
                             def user = err.getCauses()[0].getUser()
                             echo &quot;Aborted by: [${user}]&quot;
-                            throw new Exception( &quot;Abort reason: &quot;+ env.declineReason)
+                            throw new Exception( &quot;Abort reason: &quot;+ userInput[&apos;declineReason&apos;])
                         }
-    				if (!params.SuggestedStreamName.equals(env.userInput)){ 
-    				        print &apos;verify new suggested stream name is not occupied &apos;+ env.userInput
+    				if (!params.SuggestedStreamName.equals(userInput[&apos;userInput&apos;])){ 
+    				        print &apos;verify new suggested stream name is not occupied &apos;+ userInput[&apos;userInput&apos;]
 						    switch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
 						        case 1..Integer.MAX_VALUE :
-							       throw new Exception(&quot;Stream name &quot; + env.userInput.userInput + &quot; is already occupied&quot;)
+							       throw new Exception(&quot;Stream name &quot; + userInput[&apos;userInput&apos;] + &quot; is already occupied&quot;)
                                 default:
                                     print &apos;new suggested stream name is free&apos;
 						    }
@@ -140,7 +140,7 @@
     			stage (&apos;create&apos;) {
                     steps {
                         script {
-    				        echo &quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${env.userInput} ${params.SourceStreamName}&quot;
+    				        echo &quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${userInput[&apos;userInput&apos;]} ${params.SourceStreamName}&quot;
                         }
                     }
     			}
