@@ -146,14 +146,16 @@ pipeline {
                             echo &quot;Aborted by: [${user}]&quot;
                             echo &quot;Abort reason: &quot;+ userInput
                             //throw new Exception( &quot;Abort reason: &quot;+ userInput)
-                            emailext (
-                                subject: &quot;Declined: Stream creation request ${params.SuggestedStreamName}&apos;&quot;,
-                                body: &quot;&quot;&quot;&lt;p&gt;Reason: &apos;${user}&apos;&lt;/p&gt;
-                                &lt;p&gt;Reason: &apos;${userInput}&apos;&lt;/p&gt;
-                                &lt;p&gt;For execution details, please check console output at &quot;&lt;a href=&quot;${env.BUILD_URL}&quot;&gt;${env.JOB_NAME} [${env.BUILD_NUMBER}]&lt;/a&gt;&quot;&lt;/p&gt;&quot;&quot;&quot;,
-                                 to: &quot;${env.BUILD_USER_EMAIL}&quot;,
-                                recipientProviders: [[$class: &apos;RequesterRecipientProvider&apos;]]
-                            )
+                            wrap([$class: &apos;BuildUser&apos;]) {
+                                emailext (
+                                    subject: &quot;Declined: Stream creation request ${params.SuggestedStreamName}&apos;&quot;,
+                                    body: &quot;&quot;&quot;&lt;p&gt;Reason: &apos;${user}&apos;&lt;/p&gt;
+                                    &lt;p&gt;Reason: &apos;${userInput}&apos;&lt;/p&gt;
+                                    &lt;p&gt;For execution details, please check console output at &quot;&lt;a href=&quot;${env.BUILD_URL}&quot;&gt;${env.JOB_NAME} [${env.BUILD_NUMBER}]&lt;/a&gt;&quot;&lt;/p&gt;&quot;&quot;&quot;,
+                                     to: &quot;${BUILD_USER_EMAIL}&quot;,
+                                    recipientProviders: [[$class: &apos;RequesterRecipientProvider&apos;]]
+                                )
+                            }
                         }
                         print (userInput)
     				if (!params.SuggestedStreamName.equals(userInput[&apos;userInput&apos;])){ 
