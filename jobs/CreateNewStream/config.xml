@@ -137,6 +137,7 @@
             				,submitter: &apos;DL-OMD-ENG-SCM&apos;,ok: &apos;Email user, close request&apos;)
                             def user = err.getCauses()[0].getUser()
                             echo &quot;Aborted by: [${user}]&quot;
+                            echo &quot;Abort reason: &quot;+ userInput
                             throw new Exception( &quot;Abort reason: &quot;+ userInput)
                         }
                         print (userInput)
