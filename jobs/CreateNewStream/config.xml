@@ -127,7 +127,6 @@
             			    userInput = input(
             				 id: &apos;userInput&apos;, message: &apos;Please approve the below stream name?&apos;, parameters: [
             				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;userInput&apos;]
-            				,[$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;&apos;, description: &apos;Decline reason&apos;, name: &apos;declineReason&apos;]
             				],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok: &apos;Approved, lets create it&apos;)
             				print (userInput)
             				print (userInput[&apos;declineReason&apos;])
@@ -135,10 +134,10 @@
                             userInput = input(
             				 id: &apos;userInput&apos;, message: &apos;Please update abortion reason?&apos;, parameters: [
             				[$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;&apos;, description: &apos;Decline reason&apos;, name: &apos;declineReason&apos;]]
-            				,submitter: &apos;DL-OMD-ENG-SCM&apos;)
+            				,submitter: &apos;DL-OMD-ENG-SCM&apos;,ok: &apos;Email user, close request&apos;)
                             def user = err.getCauses()[0].getUser()
                             echo &quot;Aborted by: [${user}]&quot;
-                            throw new Exception( &quot;Abort reason: &quot;+ userInput[&apos;declineReason&apos;])
+                            throw new Exception( &quot;Abort reason: &quot;+ userInput)
                         }
                         print (userInput)
     				if (!params.SuggestedStreamName.equals(userInput[&apos;userInput&apos;])){ 
