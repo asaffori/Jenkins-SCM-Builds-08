@@ -21,26 +21,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>SuggestedStreamName</name>
-          <description>What should the new stream be named with? 
- Prefered syntax:Arhcer_bla_bla_bla</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SourceStreamName</name>
-          <description>What is the base stream name?</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SourceStreamSnapshotName</name>
-          <description>What is the snapshot name you would use as a base for the new stream?</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -62,6 +42,26 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>SuggestedStreamName</name>
+          <description>What should the new stream be named with? 
+ Prefered syntax:Arhcer_bla_bla_bla</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SourceStreamName</name>
+          <description>What is the base stream name?</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SourceStreamSnapshotName</name>
+          <description>What is the snapshot name you would use as a base for the new stream?</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -124,7 +124,7 @@
     			     script {
     			         def userInput
     			         try{
-    			             mail (to: &apos;asaffori@kla-tencor.com&apos;,
+    			             mail (to: &apos;adham.saffori@kla-tencor.com&apos;,
                                  subject: &quot;New stream request with name  &apos;${params.SuggestedStreamName}&apos; is waiting for your approval&quot;,
                                  body: &quot;Please go to ${env.BUILD_URL}/input.&quot;);
             			    userInput = input(
