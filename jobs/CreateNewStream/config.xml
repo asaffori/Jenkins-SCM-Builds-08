@@ -19,6 +19,7 @@
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
   <description></description>
+  <displayName>New stream named &apos;${SuggestedStreamName}&apos; requested by &apos;${$BUILD_USER}&apos;</displayName>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
