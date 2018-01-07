@@ -134,7 +134,7 @@
     			         }catch(err) { // input false
                             userInput = input(
             				 id: &apos;userInput&apos;, message: &apos;Please update abortion reason?&apos;, parameters: [
-            				[$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;&apos;, description: &apos;Decline reason&apos;, name: &apos;declineReason&apos;]
+            				[$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;&apos;, description: &apos;Decline reason&apos;, name: &apos;declineReason&apos;]]
             				,submitter: &apos;DL-OMD-ENG-SCM&apos;,ok: &apos;Approved, lets create it&apos;)
                             def user = err.getCauses()[0].getUser()
                             echo &quot;Aborted by: [${user}]&quot;
