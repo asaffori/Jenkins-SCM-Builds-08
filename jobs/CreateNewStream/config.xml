@@ -91,7 +91,7 @@ pipeline {
     				steps {
         				    script {
                                 wrap([$class: &apos;BuildUser&apos;]) {
-            				        currentBuild.description = &quot;New stream named &apos;${SuggestedStreamName}&apos; requested by &apos;${env.BUILD_USER}&apos;&quot;
+            				        currentBuild.description = &quot;New stream named &apos;${params.SuggestedStreamName}&apos; requested by &apos;${env.BUILD_USER}&apos;&quot;
                                 }
         				        
     	    					print &apos;verify suggested stream name is not occupied&apos;
