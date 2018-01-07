@@ -45,8 +45,9 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>SourceStreamSnapshotName</name>
-          <description>What is the snapshot name you would use as a base for the new stream?</description>
+          <name>SuggestedStreamName</name>
+          <description>What should the new stream be named with? 
+ Prefered syntax:Arhcer_bla_bla_bla</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -55,9 +56,8 @@
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>SuggestedStreamName</name>
-          <description>What should the new stream be named with? 
- Prefered syntax:Arhcer_bla_bla_bla</description>
+          <name>SourceStreamSnapshotName</name>
+          <description>What is the snapshot name you would use as a base for the new stream?</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
