@@ -90,8 +90,9 @@ pipeline {
     			stage (&apos;verify&apos;) {
     				steps {
         				    script {
-        				        currentBuild.description = &quot;New stream named &apos;${SuggestedStreamName}&apos; requested by &apos;${env.BUILD_USER}&apos;&quot;
-        				        
+                                wrap([$class: &apos;BuildUser&apos;]) {
+            				        currentBuild.description = &quot;New stream named &apos;${SuggestedStreamName}&apos; requested by &apos;${env.BUILD_USER}&apos;&quot;
+                                }
         				        
     	    					print &apos;verify suggested stream name is not occupied&apos;
     						    switch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
