@@ -368,6 +368,7 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>Agnes - Archer Build debug</string>
         <string>Agnes - Archer Build release</string>
+        <string>Agnes - Archer media creation</string>
         <string>Auto Deploy Sanity</string>
         <string>Auto Deploy Sanity Trigger</string>
         <string>DownLoadFile</string>
