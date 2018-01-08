@@ -209,11 +209,6 @@ return [user]</script>
   <triggers/>
   <concurrentBuild>true</concurrentBuild>
   <builders>
-    <EnvInjectBuilder plugin="envinject@1.90">
-      <info>
-        <propertiesFilePath>${team_scm_fetchDestination}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
-      </info>
-    </EnvInjectBuilder>
     <hudson.tasks.BatchFile>
       <command>SET BUILDRELEASE=false&#xd;
 SET BUILDDEBUG=false&#xd;
