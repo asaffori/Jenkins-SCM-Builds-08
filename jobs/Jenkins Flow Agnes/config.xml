@@ -42,6 +42,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
+        <propertiesFilePath>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <groovyScriptContent>//reading email reciepts
 def file = new File(emailGroupsDefFile)
 def reciepts_list=&quot;&quot;;
@@ -700,12 +701,6 @@ build.save()</postsendScript>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
-    <EnvInjectBuildWrapper plugin="envinject@1.90">
-      <info>
-        <propertiesFilePath>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
-        <loadFilesFromMaster>false</loadFilesFromMaster>
-      </info>
-    </EnvInjectBuildWrapper>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
