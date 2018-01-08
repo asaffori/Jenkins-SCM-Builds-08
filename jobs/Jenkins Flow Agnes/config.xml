@@ -42,7 +42,6 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
-        <propertiesFilePath>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <groovyScriptContent>//reading email reciepts
 def file = new File(emailGroupsDefFile)
 def reciepts_list=&quot;&quot;;
@@ -710,6 +709,7 @@ build.save()</postsendScript>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+    <hudson.plugins.envfile.EnvFileBuildWrapper plugin="envfile@1.2"/>
   </buildWrappers>
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
