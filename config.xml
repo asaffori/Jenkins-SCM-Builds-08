@@ -384,6 +384,7 @@
         <string>test1</string>
         <string>test2</string>
         <string>test3</string>
+        <string>test_flow</string>
         <string>UnlockSimulator-Agnes</string>
         <string>UpLoadFile</string>
       </jobNames>
