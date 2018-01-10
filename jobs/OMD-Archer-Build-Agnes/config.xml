@@ -156,8 +156,11 @@ if (propsFile.exists()) {
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
-    <overrideGlobal>false</overrideGlobal>
-    <timeout>0</timeout>
+    <overrideGlobal>true</overrideGlobal>
+    <buildTool>BuildToolkit 6.03</buildTool>
+    <serverURI>http://clm.kla-tencor.com/ccm</serverURI>
+    <timeout>60</timeout>
+    <credentialsId>9f004df0-1ce5-4ba0-a0cc-93925b50de48</credentialsId>
     <buildType>
       <value>buildDefinition</value>
       <buildDefinition>${buildDefinitionId}</buildDefinition>
@@ -175,7 +178,7 @@ if (propsFile.exists()) {
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
     <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
-    <avoidUsingToolkit>false</avoidUsingToolkit>
+    <avoidUsingToolkit>true</avoidUsingToolkit>
     <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
     <customizedSnapshotName></customizedSnapshotName>
     <useDynamicLoadRules>false</useDynamicLoadRules>
