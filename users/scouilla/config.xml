@@ -11,7 +11,6 @@
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.16">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.20"/>
     <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.61">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
@@ -46,7 +45,199 @@
       <insensitiveSearch>true</insensitiveSearch>
     </hudson.search.UserSearchProperty>
     <jenkins.security.LastGrantedAuthoritiesProperty>
-      <timestamp>0</timestamp>
+      <roles>
+        <string>Bel1nas01-legacy_swx-RO</string>
+        <string>authenticated</string>
+        <string>DL-DisableAutoDiscoveryRegistry</string>
+        <string>CA1NAS02-WIN-BFDATA-CH</string>
+        <string>DL-Bucket2-Patching</string>
+        <string>DL-IT-ES-TrendPatching</string>
+        <string>Sng2nas04-KTS_Mfg_Eng_HCL_Support-RO</string>
+        <string>WGTest</string>
+        <string>CA1-CTX-DRA-Users</string>
+        <string>CA1NAS12-SSCMdata-RO</string>
+        <string>ITMUser</string>
+        <string>DL-IT-ClearCase-All_Users</string>
+        <string>CA1NAS07-CPG-UNT-RO</string>
+        <string>Ca1nas01-WINdownload-RO</string>
+        <string>CA1NAS05-WST-Install-RO</string>
+        <string>Ca1ucsfs01-EMIE-RO</string>
+        <string>WIN-DYSD-DRCEng-CH</string>
+        <string>ca1nas01-TWave-RO</string>
+        <string>CA1NAS12-SFS-KTSymbols-RO</string>
+        <string>WIN-DYSD-Tools-CH</string>
+        <string>zzz-DL-All-Employees</string>
+        <string>DL-ESPP</string>
+        <string>Austinnt1-Austrain-CH</string>
+        <string>CA1NAS12-SSCMdata-CH</string>
+        <string>WIN-DYSD-Migration-CH</string>
+        <string>ISR1NAS03-FI_OMD-RO</string>
+        <string>DL-All-California</string>
+        <string>WIN-DYSD-sepg-RO</string>
+        <string>MSN-Users</string>
+        <string>CA1-CTX-IE9</string>
+        <string>DL-Bucket3-Patching</string>
+        <string>WIN-DYSD-IMPACT_met-RO</string>
+        <string>WIN-DYSD-Image-CH</string>
+        <string>cc-admins</string>
+        <string>cc-corpPLC</string>
+        <string>DL-FaST-Summit-CC-Checkins</string>
+        <string>DL-All-Managers and Supervisors</string>
+        <string>DL-Development-Servers-Owners</string>
+        <string>Twn1fp01-PCIDData-RO</string>
+        <string>Ca1nas12-ALM-Staging-Area-CH</string>
+        <string>CA1-CTX-Portal-Users</string>
+        <string>Bomgar_SupportReps</string>
+        <string>WIN-DYSD-WSODocs-CH</string>
+        <string>cc-PSG-TFMS</string>
+        <string>CA1NAS12-SFS-OSSymbols-RO</string>
+        <string>Austinnt1-Cleanroom-CH</string>
+        <string>DL-Clearcasehelpdesk</string>
+        <string>cc-training</string>
+        <string>ca1fs01-Eric-R-Jong-CH</string>
+        <string>Isr1nas03-Viking-RO</string>
+        <string>WATest</string>
+        <string>Ca1nas01-GlobalOpsJMP-CH</string>
+        <string>DL-IT-SOT-ENG</string>
+        <string>DL-Fitness Center</string>
+        <string>Survey-Administrative</string>
+        <string>Ca1nas05-WIN-Projects--M37Public-RO</string>
+        <string>Delta-ws_MatchingMasterFiles-RO</string>
+        <string>CA1NAS04-WIN-SQC-RA</string>
+        <string>ACEusers</string>
+        <string>DL-All-USDomestic-PasswordChange</string>
+        <string>DL-MSDN-Users</string>
+        <string>UC-User-SING-Production</string>
+        <string>CA1NAS05-WIN-SCM-Archive2-RO</string>
+        <string>ZZZ-SDL-IT DL</string>
+        <string>CA1-CTX-ALL-TEST</string>
+        <string>WIN-DYSD-Demo_solutions-CH</string>
+        <string>DL-IT-All (IT FTR Employees)</string>
+        <string>CA1NAS02-WIN-APPS-VideoTraining-RO</string>
+        <string>DL-iNotion-Users-old</string>
+        <string>WIN-DYSD-ILM-CH</string>
+        <string>WIN-DYSD-Klarity-CH</string>
+        <string>Ca1nas05-WIN-Software-Blazer-RO</string>
+        <string>ZZZ-SCR11259</string>
+        <string>DL-WinCC-Migration</string>
+        <string>CA1NAS05-DYSD-RDS-Images-RO</string>
+        <string>CMS_USERS</string>
+        <string>INDY Release 7 Group</string>
+        <string>DL-ProjectServer-TM</string>
+        <string>DL-IT-Survey</string>
+        <string>UC-User-Milp-Production</string>
+        <string>JPN1FS01-043-RO</string>
+        <string>JazzAdmins</string>
+        <string>WIN-DYSD-IMPACT_meti-CH</string>
+        <string>WIN-DYSD-ftp-CH</string>
+        <string>CA1NAS12-JAZZCCM_RTC_INDICES_SB-CH</string>
+        <string>BSM_Read</string>
+        <string>RFS-5xxLabview-CH</string>
+        <string>CA1-CTX-KT-Employees</string>
+        <string>WIN-DYSD-Assignment-CH</string>
+        <string>ZZ-ClearcaseHelpdesk</string>
+        <string>PLANTOPS_OPERATOR</string>
+        <string>Addwkstn</string>
+        <string>DL-iNotion-Users</string>
+        <string>WIN-EEP-Reports_Customers-CH</string>
+        <string>WIN-DYSD-ADCAlgorithm-CH</string>
+        <string>WIN-EEP-Logs_Input_Customers-CH</string>
+        <string>WIN-DYSD-Field-Apps-CH</string>
+        <string>DL-MATLAB</string>
+        <string>sfsade-vm6-Fab-Test-CH</string>
+        <string>WIN-DYSD-ace-xp-recipe-CH</string>
+        <string>DL-ALL-REGULAR-EMPLOYEES-SPA</string>
+        <string>Distributed COM Users</string>
+        <string>JazzUsers</string>
+        <string>ISR1NAS01-UserDoc-RO</string>
+        <string>Ca1nas05-WIN-Software-Carrera-RO</string>
+        <string>Ca1fs01-TN-analyzes-RO</string>
+        <string>CA1NAS02-SSCM-CH</string>
+        <string>UCS-VDI-Users</string>
+        <string>DL-IT-RTC-Support</string>
+        <string>ALM_Evaluation_Team</string>
+        <string>Ca1fs01-SS10K-info-RO</string>
+        <string>WIN-DYSD-SQATestData-CH</string>
+        <string>DPM_Users</string>
+        <string>US Employees Survey</string>
+        <string>Ca1nas11-Autodesk-RO</string>
+        <string>DL-Test13</string>
+        <string>allsubscribers47bb6fd7</string>
+        <string>ARS_HelpDesk</string>
+        <string>DPM_Users_Old</string>
+        <string>PasswordManager</string>
+        <string>CA1NAS01-WINField-CH</string>
+        <string>KTUsers</string>
+        <string>ca1fs01-KlearPoint-CH</string>
+        <string>WIN-DYSD-STADB-CH</string>
+        <string>MI Production KLA Mobile</string>
+        <string>Citrix XenApp 7.6 - KT STD Desktops - Prod</string>
+        <string>IT_SCM</string>
+        <string>CA1SFSFP01-Integration-RO</string>
+        <string>DL-ALM-Evaluation</string>
+        <string>DL-IT-Applications</string>
+        <string>clearcase</string>
+        <string>ca1nas11-AMSRCRD-RO</string>
+        <string>DL-ProjectServer-Active-All</string>
+        <string>ScreenSaver-Exception</string>
+        <string>DL-ALL-Employees-SPA</string>
+        <string>ISR1NAS01-ToolsDataCollections-RO</string>
+        <string>WIN-DYSD-Recipe-CH</string>
+        <string>CA1NAS04-WIN-Software-RO</string>
+        <string>C-Jabber-Video-Production</string>
+        <string>Viper-VSS-VSS-CH</string>
+        <string>ZZZ-SRV-CA1XPR08</string>
+        <string>CA1-CTX-Password-Manager</string>
+        <string>CA1UCSFS01-WIN-TestRailData-CH</string>
+        <string>DL-US-LTI</string>
+        <string>CA1NAS12-JAZZCCM_RTC_INDICES-CH</string>
+        <string>DL-Jazz-RTC-Users</string>
+        <string>DL-Q2FY17-SURVEY</string>
+        <string>cc-cm-rel</string>
+        <string>WIN-DYSD-adc-plc-CH</string>
+        <string>ca1nas05-WIN-OpenShares-CH</string>
+        <string>DL-Bucket4-Patching</string>
+        <string>DL-Bucket1-Patching</string>
+        <string>DL-Qtr-Survey</string>
+        <string>CA1-CTX-IE11</string>
+        <string>CA1-CTX-USA-EMPLOYEES-EXTENSITY</string>
+        <string>Ca1nas11-ALM-CH</string>
+        <string>DL-All-Engineering</string>
+        <string>nacktind2-01-cmrel-ch</string>
+        <string>Splunk-RTC Users</string>
+        <string>Travel &amp; Expense</string>
+        <string>sfs-jenkins-sw</string>
+        <string>DL_IT_Q3FY15_SURVEY</string>
+        <string>DL-All-Global_temp</string>
+        <string>Ca1nas11-ALM-RO</string>
+        <string>WIN-DYSD-Picnic-RO</string>
+        <string>MI Production KLA O365 Mail</string>
+        <string>ARS_CC</string>
+        <string>US Regular Employees – Survey</string>
+        <string>UC-User-Production</string>
+        <string>DL-All-E2K3 (Milpitas)</string>
+        <string>DL-ProjectServer-PM</string>
+        <string>IndyRel7</string>
+        <string>ADFS-Testers</string>
+        <string>Ca1nas11-KT-Insight-Program-RO</string>
+        <string>DL-IT-DR</string>
+        <string>WIN-DYSD-IMPACT_Min-CH</string>
+        <string>cc-users-list</string>
+        <string>Domain Users</string>
+        <string>All-IT</string>
+        <string>PCS-Open-CH</string>
+        <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>DL-Unity-Voicemail</string>
+        <string>cc-iNotion</string>
+        <string>DL-iOS-Users</string>
+        <string>MI Production KLA AppConnect</string>
+        <string>Ca1fs01-MFG-RO</string>
+        <string>WIN-DYSD-Satellite_release-RO</string>
+      </roles>
+      <timestamp>1515622654353</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.20">
+      <emailAddress>Stephane.Couillaud@kla-tencor.com</emailAddress>
+    </hudson.tasks.Mailer_-UserProperty>
   </properties>
 </user>
