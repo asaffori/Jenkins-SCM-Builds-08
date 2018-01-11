@@ -72,7 +72,7 @@ Manual Installation instructions:&lt;br&gt;
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>echo &quot;%README% &gt; ReadMe.html&quot;</command>
+      <command>echo &quot;@README&quot; &gt; ReadMe.html</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
