@@ -20,6 +20,37 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.TextParameterDefinition>
+          <name>README</name>
+          <description></description>
+          <defaultValue>Patch V${Patch_Version} - to be installed on top of version V${PATCH_SUPPORT_VERSION}  ${PATCHES_DATA} &lt;br&gt;
+&lt;br&gt;
+This patch is solving the following bugs:&lt;br&gt;
+${RTC_WIs_DATA}&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+Automatic Installation Instructions (Release configuration only):&lt;br&gt;
+&lt;br&gt;
+1.	Copy  \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch to C:\Temp&lt;br&gt;
+&lt;br&gt;
+2.	Run C:\Temp\UOMD_${Patch_Version}_Patch\Release\install.bat&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+Manual Installation instructions:&lt;br&gt;
+1.	Run KT-Stop&lt;br&gt;
+&lt;br&gt;
+2.	Copy build folders from:&lt;br&gt;
+&lt;br&gt;
+                Debug build: \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch\Debug&lt;br&gt;
+                Release build: \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch\Release&lt;br&gt;
+                to C:\5300\&lt;br&gt;
+&lt;br&gt;
+3.	Run KT-start.&lt;br&gt;</defaultValue>
+        </hudson.model.TextParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -41,7 +72,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>mkdir \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_17.04\Formal\UOMD_17.04.00.30600_Patch\Release</command>
+      <command>echo &quot;%README%&quot; &gt; ReadMe.html</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
