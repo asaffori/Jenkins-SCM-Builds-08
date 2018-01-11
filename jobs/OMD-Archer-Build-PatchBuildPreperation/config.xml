@@ -202,6 +202,7 @@ IF %ERRORLEVEL% NEQ 0 call :error &quot;build failed. Please check logs.&quot;&#
 echo ****************************&#xd;
 echo     Copying version files&#xd;
 echo ****************************&#xd;
+md P:\inc&#xd;
 xcopy V:\OMD_Common\INC\ProductVersionInfo.cs P:\inc /f /r&#xd;
 xcopy V:\OMD_Common\INC\KTProductVersion.h P:\inc /f /r&#xd;
 xcopy V:\OMD_Common\INC\KTPlatformVersion.h P:\inc /f /r&#xd;
