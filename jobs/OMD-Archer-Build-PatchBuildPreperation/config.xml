@@ -106,7 +106,7 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
         <hudson.model.TextParameterDefinition>
           <name>README</name>
           <description></description>
-          <defaultValue>Patch V${Patch_Version} - to be installed on top V${PATCH_SUPPORT_VERSION}  ${PATCHES_DATA} 
+          <defaultValue>Patch V${Patch_Version} - to be installed on top of version V${PATCH_SUPPORT_VERSION}  ${PATCHES_DATA} 
 
 This patch is solving the following bugs:
 ${RTC_WIs_DATA}
@@ -177,8 +177,7 @@ Manual Installation instructions:
   <builders>
     <EnvInjectBuilder plugin="envinject@1.90">
       <info>
-        <propertiesContent>PATCHES_DATA=${PATCHES_DATA}
-README=${README}</propertiesContent>
+        <propertiesContent>PATCHES_DATA=${PATCHES_DATA}</propertiesContent>
       </info>
     </EnvInjectBuilder>
     <hudson.tasks.BatchFile>
