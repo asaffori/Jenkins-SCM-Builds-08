@@ -225,7 +225,7 @@ echo ******************************************************&#xd;
 echo ***********************&#xd;
 echo     Run MCDB Checksum&#xd;
 echo ***********************&#xd;
-%team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\MCDBXMLChecksum.bat&#xd;
+CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\MCDBXMLChecksum.bat&#xd;
 IF %ERRORLEVEL% NEQ 0 (&#xd;
    ECHO &quot;MCDB checksum execution failed. Please check logs.&quot;&#xd;
    EXIT /b 1&#xd;
