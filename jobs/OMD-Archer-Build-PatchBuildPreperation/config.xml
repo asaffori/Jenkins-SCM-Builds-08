@@ -177,7 +177,8 @@ Manual Installation instructions:&lt;br&gt;
   <builders>
     <EnvInjectBuilder plugin="envinject@1.90">
       <info>
-        <propertiesContent>PATCHES_DATA=${PATCHES_DATA}</propertiesContent>
+        <propertiesContent>PATCHES_DATA=${PATCHES_DATA}
+PATCH_BASE_PATH=${NETWORKPATH}\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch</propertiesContent>
       </info>
     </EnvInjectBuilder>
     <hudson.tasks.BatchFile>
@@ -185,7 +186,6 @@ Manual Installation instructions:&lt;br&gt;
 &#xd;
 SET team_scm_fetchDestination=%team.scm.fetchDestination%&#xd;
 SET BUILD_MODES=Release,Debug&#xd;
-SET PATCH_BASE_PATH=%NETWORKPATH%\uArcher_%MajorMinor_Ver%\Formal\UOMD_%Patch_Version%_Patch&#xd;
 SET BUILD_VERSION=%Patch_Version%&#xd;
 SET BUILDVERSION=%Patch_Version%&#xd;
 set buildRequesterUserId=omdbuild&#xd;
@@ -299,6 +299,16 @@ goto END&#xd;
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
+      <script plugin="script-security@1.39">
+        <script>def readme_file_path=manager.envVars[&quot;PATCH_BASE_PATH&quot;]+&quot;\\README.html&quot;
+manager.listener.logger.println (&quot;Generating README.html file at: &quot;+ readme_file_path)
+(new File(readme_file_path)).write(manager.envVars[&quot;README&quot;])</script>
+        <sandbox>false</sandbox>
+      </script>
+      <behavior>0</behavior>
+      <runForMatrixParent>false</runForMatrixParent>
+    </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
       <recipientList>adham.saffori@kla-tencor.com</recipientList>
       <configuredTriggers>
