@@ -138,31 +138,7 @@ Manual Installation instructions:
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
-  <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
-    <overrideGlobal>false</overrideGlobal>
-    <timeout>0</timeout>
-    <buildType>
-      <value>buildDefinition</value>
-      <buildDefinition>${buildDefinitionId}</buildDefinition>
-      <clearLoadDirectory>false</clearLoadDirectory>
-      <createFoldersForComponents>false</createFoldersForComponents>
-      <acceptBeforeLoad>true</acceptBeforeLoad>
-      <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
-      <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
-      <customizedSnapshotName></customizedSnapshotName>
-      <useDynamicLoadRules>false</useDynamicLoadRules>
-    </buildType>
-    <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>${buildDefinitionId}</buildDefinition>
-    <clearLoadDirectory>false</clearLoadDirectory>
-    <createFoldersForComponents>false</createFoldersForComponents>
-    <acceptBeforeLoad>true</acceptBeforeLoad>
-    <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
-    <avoidUsingToolkit>false</avoidUsingToolkit>
-    <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
-    <customizedSnapshotName></customizedSnapshotName>
-    <useDynamicLoadRules>false</useDynamicLoadRules>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
