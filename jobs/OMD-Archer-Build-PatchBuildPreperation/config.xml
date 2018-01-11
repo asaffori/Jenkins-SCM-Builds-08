@@ -88,6 +88,34 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
           <description>Comma seperated projects full path list for all the projects participating this build. Example: Archer\Common\Archer_ProductVersion\Archer_ProductVersion.vcxproj,OMD_Common\PlatformVersion\PlatformVersion.vcxproj</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>README</name>
+          <description></description>
+          <defaultValue>Patch V${Patch_Version} - to be installed on top V${Base_Build_Version}  ${PATCHES_DATA} &lt;BR&gt;
+&lt;BR&gt;
+This patch is solving the following bugs:&lt;BR&gt;
+${RTC_WIs_DATA}&lt;BR&gt;
+&lt;BR&gt;
+&lt;BR&gt;
+Automatic Installation Instructions (Release configuration only):&lt;BR&gt;
+&lt;BR&gt;
+1.	Copy  \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch to C:\Temp&lt;BR&gt;
+&lt;BR&gt;
+2.	Run C:\Temp\UOMD_${Patch_Version}_Patch\Release\install.bat&lt;BR&gt;
+&lt;BR&gt;
+&lt;BR&gt;
+&lt;BR&gt;
+Manual Installation instructions:&lt;BR&gt;
+1.	Run KT-Stop&lt;BR&gt;
+&lt;BR&gt;
+2.	Copy build folders from:&lt;BR&gt;
+&lt;BR&gt;
+                Debug build: \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch\Debug
+                Release build: \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch\Release
+                to C:\5300\&lt;BR&gt;
+&lt;BR&gt;
+3.	Run KT-start.&lt;BR&gt;</defaultValue>
+        </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -133,6 +161,12 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <EnvInjectBuilder plugin="envinject@1.90">
+      <info>
+        <propertiesContent>PATCHES_DATA=${PATCHES_DATA}
+README=${README}</propertiesContent>
+      </info>
+    </EnvInjectBuilder>
     <hudson.tasks.BatchFile>
       <command>SET team_scm_fetchDestination=%team.scm.fetchDestination%&#xd;
 echo *****************************************&#xd;
@@ -185,16 +219,58 @@ echo ***********************&#xd;
 IF %ERRORLEVEL% NEQ 0 (&#xd;
    ECHO &quot;MCDB checksum execution failed. Please check logs.&quot;&#xd;
    EXIT /b 1&#xd;
-)</command>
+)&#xd;
+&#xd;
+mkdir \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_%MajorMinor_Ver%\Formal\UOMD_%Patch_Version%_Patch&#xd;
+echo %README% &gt; \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_%MajorMinor_Ver%\Formal\UOMD_%Patch_Version%_Patch\ReadMe.txt</command>
     </hudson.tasks.BatchFile>
   </builders>
-  <publishers/>
+  <publishers>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
+      <recipientList>adham.saffori@kla-tencor.com</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+      </configuredTriggers>
+      <contentType>text/html</contentType>
+      <defaultSubject>Patch ${Patch_Version} is ready</defaultSubject>
+      <defaultContent>${README}</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
         <propertiesFilePath>${team.scm.fetchDestination}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
         <propertiesContent>ProjectsToCompile=Archer\Common\Archer_ProductVersion\Archer_ProductVersion.vcxproj,OMD_Common\PlatformVersion\PlatformVersion.vcxproj,${ProjectsToBuild}</propertiesContent>
+        <groovyScriptContent>def PATCHES_DATA
+if (Depend_Patches_Verions !=&quot;&quot;) 
+    PATCHES_DATA =&quot;with the following patches: &quot;+Depend_Patches_Verions 
+else
+    PATCHES_DATA= Depend_Patches_Verions 
+
+def map = [&quot;PATCHES_DATA&quot;: PATCHES_DATA] 
+return map</groovyScriptContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
