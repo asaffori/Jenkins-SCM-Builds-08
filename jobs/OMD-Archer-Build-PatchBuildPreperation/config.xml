@@ -223,7 +223,7 @@ echo ******************************************************&#xd;
 echo ******************************************************&#xd;
 )&#xd;
 echo ***********************&#xd;
-echo     Run MCDB Checksum&#xd;
+echo Run MCDB Checksum&#xd;
 echo ***********************&#xd;
 CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\MCDBXMLChecksum.bat&#xd;
 IF %ERRORLEVEL% NEQ 0 (&#xd;
