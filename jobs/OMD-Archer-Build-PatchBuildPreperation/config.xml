@@ -272,7 +272,7 @@ echo *******************************************&#xd;
 &#xd;
 set installScript=%PATCH_BASE_PATH%\Release\install.bat&#xd;
 &#xd;
-rename %installScript% %installScript%.tmp&#xd;
+ren %installScript% install.bat.tmp&#xd;
 IF %ERRORLEVEL% NEQ 0 call :error &quot;File rename failed&quot;&#xd;
 &#xd;
 for /f %%a in (%installScript%.tmp) do (&#xd;
@@ -292,7 +292,7 @@ IF %ERRORLEVEL% NEQ 0 call :error &quot;Copy files failed&quot;&#xd;
 goto END&#xd;
 &#xd;
 :ERROR&#xd;
-  Build failed with error: %1&#xd;
+  echo Build failed with error: %1&#xd;
 &#xd;
 :END</command>
     </hudson.tasks.BatchFile>
