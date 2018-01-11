@@ -101,30 +101,29 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
         <hudson.model.TextParameterDefinition>
           <name>README</name>
           <description></description>
-          <defaultValue>Patch V${Patch_Version} - to be installed on top V${PATCH_SUPPORT_VERSION}  ${PATCHES_DATA} &lt;BR&gt;
-&lt;BR&gt;
-This patch is solving the following bugs:&lt;BR&gt;
-${RTC_WIs_DATA}&lt;BR&gt;
-&lt;BR&gt;
-&lt;BR&gt;
-Automatic Installation Instructions (Release configuration only):&lt;BR&gt;
-&lt;BR&gt;
-1.	Copy  \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch to C:\Temp&lt;BR&gt;
-&lt;BR&gt;
-2.	Run C:\Temp\UOMD_${Patch_Version}_Patch\Release\install.bat&lt;BR&gt;
-&lt;BR&gt;
-&lt;BR&gt;
-&lt;BR&gt;
-Manual Installation instructions:&lt;BR&gt;
-1.	Run KT-Stop&lt;BR&gt;
-&lt;BR&gt;
-2.	Copy build folders from:&lt;BR&gt;
-&lt;BR&gt;
+          <defaultValue>Patch V${Patch_Version} - to be installed on top V${PATCH_SUPPORT_VERSION}  ${PATCHES_DATA} 
+
+This patch is solving the following bugs:
+${RTC_WIs_DATA}
+
+
+Automatic Installation Instructions (Release configuration only):
+
+1.	Copy  \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch to C:\Temp
+
+2.	Run C:\Temp\UOMD_${Patch_Version}_Patch\Release\install.bat
+
+
+Manual Installation instructions:
+1.	Run KT-Stop
+
+2.	Copy build folders from:
+
                 Debug build: \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch\Debug
                 Release build: \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch\Release
-                to C:\5300\&lt;BR&gt;
-&lt;BR&gt;
-3.	Run KT-start.&lt;BR&gt;</defaultValue>
+                to C:\5300\
+
+3.	Run KT-start.</defaultValue>
         </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -305,7 +304,7 @@ goto END&#xd;
           </email>
         </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
       </configuredTriggers>
-      <contentType>text/html</contentType>
+      <contentType>text/plain</contentType>
       <defaultSubject>Patch ${Patch_Version} is ready</defaultSubject>
       <defaultContent>${README}</defaultContent>
       <attachmentsPattern></attachmentsPattern>
