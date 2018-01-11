@@ -70,15 +70,11 @@ Manual Installation instructions:&lt;br&gt;
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders>
-    <hudson.tasks.BatchFile>
-      <command>echo &quot;@README&quot; &gt; ReadMe.html</command>
-    </hudson.tasks.BatchFile>
-  </builders>
+  <builders/>
   <publishers>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.39">
-        <script>print (manager.envVars[&quot;README&quot;])</script>
+        <script>manager.listener.logger.println (manager.envVars[&quot;README&quot;])</script>
         <sandbox>false</sandbox>
       </script>
       <behavior>0</behavior>
