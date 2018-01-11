@@ -182,7 +182,9 @@ README=${README}</propertiesContent>
       </info>
     </EnvInjectBuilder>
     <hudson.tasks.BatchFile>
-      <command>SET team_scm_fetchDestination=%team.scm.fetchDestination%&#xd;
+      <command>SETLOCAL=ENABLEDELAYEDEXPANSION&#xd;
+&#xd;
+SET team_scm_fetchDestination=%team.scm.fetchDestination%&#xd;
 SET BUILD_MODES=Release,Debug&#xd;
 SET PATCH_BASE_PATH=\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_%MajorMinor_Ver%\Formal\UOMD_%Patch_Version%_Patch&#xd;
 SET BUILD_VERSION=%Patch_Version%&#xd;
@@ -234,13 +236,13 @@ echo %README% &gt; %PATCH_BASE_PATH%\ReadMe.txt&#xd;
 echo *******************************************&#xd;
 echo     Copy Install.bat to Release Patch dir&#xd;
 echo *******************************************&#xd;
-xcopy V:\OMD_Builds\OMD_Builds\CM\BatchFiles\Template for patch installation\install.bat %PATCH_BASE_PATH%\Release /f /r&#xd;
+xcopy &quot;V:\OMD_Builds\OMD_Builds\CM\BatchFiles\Template for patch installation\install.bat&quot; %PATCH_BASE_PATH%\Release /f /r&#xd;
 IF %ERRORLEVEL% NEQ 0 call :error &quot;Copy files failed&quot;&#xd;
 &#xd;
 echo *******************************************&#xd;
 echo     Edit Install.bat with corrent versions&#xd;
 echo *******************************************&#xd;
-SETLOCAL=ENABLEDELAYEDEXPANSION&#xd;
+&#xd;
 set installScript=%PATCH_BASE_PATH%\Release\install.bat&#xd;
 &#xd;
 rename %installScript% %installScript%.tmp&#xd;
