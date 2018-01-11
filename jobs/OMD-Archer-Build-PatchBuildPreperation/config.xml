@@ -207,6 +207,7 @@ for %%a in (&quot;%ProjectsToCompile:,=&quot; &quot;%&quot;) do (&#xd;
      echo Compiling project: %%a in Mode:%%b Platform:x64&#xd;
      c:\PROGRA~2\MSBuild\14.0\Bin\amd64\msbuild.exe %team_scm_fetchDestination%\\%%a /p:Configuration=%%b /p:Platform=x64&#xd;
      IF %ERRORLEVEL% NEQ 0 call :error &quot;Compilation of project %%a in mode %%b failed. Please check logs.&quot;&#xd;
+   )&#xd;
 )&#xd;
 echo ***********************&#xd;
 echo Run MCDB Checksum&#xd;
