@@ -75,7 +75,7 @@ Manual Installation instructions:&lt;br&gt;
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.39">
         <script>manager.listener.logger.println (manager.envVars[&quot;README&quot;])
-(new File(manager.envVars[&quot;NETWORKPATH&quot;]+&quot;\uArcher_17.12\README.html&quot;)).write(manager.envVars[&quot;README&quot;])</script>
+(new File(manager.envVars[&quot;NETWORKPATH&quot;]+&quot;\\uArcher_17.12\README.html&quot;)).write(manager.envVars[&quot;README&quot;])</script>
         <sandbox>false</sandbox>
       </script>
       <behavior>0</behavior>
