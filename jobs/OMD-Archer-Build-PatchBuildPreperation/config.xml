@@ -186,7 +186,7 @@ README=${README}</propertiesContent>
 &#xd;
 SET team_scm_fetchDestination=%team.scm.fetchDestination%&#xd;
 SET BUILD_MODES=Release,Debug&#xd;
-SET PATCH_BASE_PATH=\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_%MajorMinor_Ver%\Formal\UOMD_%Patch_Version%_Patch&#xd;
+SET PATCH_BASE_PATH=%NETWORKPATH%\uArcher_%MajorMinor_Ver%\Formal\UOMD_%Patch_Version%_Patch&#xd;
 SET BUILD_VERSION=%Patch_Version%&#xd;
 SET BUILDVERSION=%Patch_Version%&#xd;
 set buildRequesterUserId=omdbuild&#xd;
