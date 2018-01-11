@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Base_Build_Version</name>
+          <description>The full build version to run the restore for</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Patch_Version</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Depend_Patches_Verions</name>
+          <description>Comma seperated list of dependent patches to restore</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>team.scm.fetchDestination</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>emailGroups</name>
+          <description>This value is supplied by builds initiated through RTC.
+&lt;br&gt;
+Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_DLs.txt.</description>
+          <defaultValue>CM,</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildResultUUID</name>
+          <description>The UUID of the build result in RTC. It is supplied by builds initiated through RTC. For builds initiated through Hudson/Jenkins, no value should be supplied.</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildDefinitionId</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>team.scm.workspaceUUID</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>buildEngineHostName</name>
+          <description></description>
+          <allowedSlaves/>
+          <defaultSlaves/>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ProjectsToBuild</name>
+          <description>Comma seperated projects full path list for all the projects participating this build. Example: Archer\Common\Archer_ProductVersion\Archer_ProductVersion.vcxproj,OMD_Common\PlatformVersion\PlatformVersion.vcxproj</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
+    <overrideGlobal>false</overrideGlobal>
+    <timeout>0</timeout>
+    <buildType>
+      <value>buildDefinition</value>
+      <buildDefinition>${buildDefinitionId}</buildDefinition>
+      <clearLoadDirectory>false</clearLoadDirectory>
+      <createFoldersForComponents>false</createFoldersForComponents>
+      <acceptBeforeLoad>true</acceptBeforeLoad>
+      <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+      <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+      <customizedSnapshotName></customizedSnapshotName>
+      <useDynamicLoadRules>false</useDynamicLoadRules>
+    </buildType>
+    <buildTypeStr>buildDefinition</buildTypeStr>
+    <buildDefinition>${buildDefinitionId}</buildDefinition>
+    <clearLoadDirectory>false</clearLoadDirectory>
+    <createFoldersForComponents>false</createFoldersForComponents>
+    <acceptBeforeLoad>true</acceptBeforeLoad>
+    <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+    <avoidUsingToolkit>false</avoidUsingToolkit>
+    <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+    <customizedSnapshotName></customizedSnapshotName>
+    <useDynamicLoadRules>false</useDynamicLoadRules>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>SET team_scm_fetchDestination=%team.scm.fetchDestination%&#xd;
+echo *****************************************&#xd;
+ECHO  Loading Build Outputs from share folder&#xd;
+echo *****************************************&#xd;
+CALL D:\Sandboxes\DONOT_DELETE_ADHAM\OMD_Builds\JenkinsBuild\BatchFiles\CreateBuildOutputsFromShare.bat %Base_Build_Version% %Patch_Version% &quot;Release,Debug&quot; Formal %team.scm.workspaceUUID%&#xd;
+IF %ERRORLEVEL% NEQ 0 (&#xd;
+ECHO &quot;CreateBuildOutputsFromShare failed. Please check logs.&quot;&#xd;
+EXIT /b 1&#xd;
+)&#xd;
+ECHO &quot;Updating sources with patch version %Patch_Version% &quot;&#xd;
+SET BUILD_VERSION=%Patch_Version%&#xd;
+SET BUILDVERSION=%Patch_Version%&#xd;
+CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\DoFullBuild.bat&#xd;
+&#xd;
+&#xd;
+echo ****************************&#xd;
+echo     Copying version files&#xd;
+echo ****************************&#xd;
+xcopy V:\OMD_Common\INC\ProductVersionInfo.cs P:\inc /f /r&#xd;
+xcopy V:\OMD_Common\INC\KTProductVersion.h P:\inc /f /r&#xd;
+xcopy V:\OMD_Common\INC\KTPlatformVersion.h P:\inc /f /r&#xd;
+&#xd;
+for %%a in (&quot;%ProjectsToCompile:,=&quot; &quot;%&quot;) do (&#xd;
+echo ******************************************************&#xd;
+echo ******************************************************&#xd;
+   echo Compiling project: %%a in Mode:Release Platform:x64&#xd;
+   c:\PROGRA~2\MSBuild\14.0\Bin\amd64\msbuild.exe %team_scm_fetchDestination%\%%a /p:Configuration=Release /p:Platform=x64&#xd;
+echo ******************************************************&#xd;
+   echo Compiling project: %%a in Mode:Debug Platform:x64&#xd;
+   c:\PROGRA~2\MSBuild\14.0\Bin\amd64\msbuild.exe %team_scm_fetchDestination%\%%a /p:Configuration=Debug /p:Platform=x64&#xd;
+echo ******************************************************&#xd;
+echo ******************************************************&#xd;
+)</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesFilePath>${team.scm.fetchDestination}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
+        <propertiesContent>ProjectsToCompile=Archer\Common\Archer_ProductVersion\Archer_ProductVersion.vcxproj,OMD_Common\PlatformVersion\PlatformVersion.vcxproj,${ProjectsToBuild}</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
+          <regexp></regexp>
+          <description>Preperation for Patch &lt;${Patch_Version}&gt;</description>
+        </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
+      </buildSteps>
+      <failOnError>true</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
+</project>
