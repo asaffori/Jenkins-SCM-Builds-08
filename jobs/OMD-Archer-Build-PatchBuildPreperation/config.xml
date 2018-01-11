@@ -316,7 +316,7 @@ goto END&#xd;
           </email>
         </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
       </configuredTriggers>
-      <contentType>text/plain</contentType>
+      <contentType>default</contentType>
       <defaultSubject>Patch ${Patch_Version} is ready</defaultSubject>
       <defaultContent>${README}</defaultContent>
       <attachmentsPattern></attachmentsPattern>
