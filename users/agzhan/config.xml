@@ -105,6 +105,7 @@
         <string>Ca1fs01-TN-analyzes-RO</string>
         <string>CA1NAS02-SSCM-CH</string>
         <string>DL-All-Asia</string>
+        <string>DL-OMD-ENG-SCM</string>
         <string>Ca1fs01-SS10K-info-RO</string>
         <string>WIN-DYSD-SQATestData-CH</string>
         <string>DPM_Users</string>
@@ -146,7 +147,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1514373776374</timestamp>
+      <timestamp>1515751945419</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
