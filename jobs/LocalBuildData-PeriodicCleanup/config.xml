@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<matrix-project plugin="matrix-project@1.12">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>CLEANUP_SCRIPT_LOCATION</name>
+          <description></description>
+          <defaultValue>D:\sandboxes\DONOT_DELETE_ADHAM\OMD_Builds\JenkinsBuild\Cleanup</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>CLEANUP_ACTION</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>preview</string>
+              <string>delete</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>Debug</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MailSubjectPrefix</name>
+          <description>Mail subject</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MailBodyMessage</name>
+          <description>Mail body message to descript the build list </description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MailAlertMessage</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>EXCLUDES_FILE</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_CleanupConfigurations\Cleanup_Excludes_list.txt</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SandboxesURL</name>
+          <description></description>
+          <defaultValue>D:\sandboxes</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BuildOutputsURL</name>
+          <description></description>
+          <defaultValue>D:\BuildOutputs</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <matrixOptions>
+        <throttleMatrixBuilds>true</throttleMatrixBuilds>
+        <throttleMatrixConfigurations>false</throttleMatrixConfigurations>
+      </matrixOptions>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>C:\\temp\\${BUILD_NUMBER}</customWorkspace>
+  <axes>
+    <hudson.matrix.LabelAxis>
+      <name>label</name>
+      <values>
+        <string>SCM-Builds-01</string>
+        <string>SCM-Builds-02</string>
+        <string>SCM-Builds-03</string>
+        <string>SCM-Builds-04</string>
+        <string>SCM-Builds-05</string>
+        <string>SCM-Builds-06</string>
+        <string>SCM-Builds-V01</string>
+        <string>SCM-Builds-V02</string>
+        <string>SCM-Builds-V03</string>
+        <string>SCM-Builds-V04</string>
+      </values>
+    </hudson.matrix.LabelAxis>
+  </axes>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>del /f /q %WORKSPACE%\*&#xd;
+del /f /q C:\Temp\deletion_list_*.html</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>&#xd;
+ECHO Changing directory to: %CLEANUP_SCRIPT_LOCATION%&#xd;
+Set Debug_Flag=&quot;&quot;&#xd;
+IF &quot;%Debug%&quot; EQU &quot;true&quot; SET Debug_Flag=&quot;--debug&quot;&#xd;
+cd /d %CLEANUP_SCRIPT_LOCATION%&#xd;
+ECHO Running with mode - %CLEANUP_ACTION%&#xd;
+ECHO.&#xd;
+ECHO.&#xd;
+ECHO.&#xd;
+ECHO +++++++++++++++++++++ Cleanning Sandboxes - Started +++++++++++++++++++++&#xd;
+py cleanup.py -p %SandboxesURL% -r *  --olderthan 2d  --action=%CLEANUP_ACTION% --excludesFile=%EXCLUDES_FILE% %Debug_Flag% --html &quot;Sandboxes cleanup list - %COMPUTERNAME% &quot; --excludesPattern KEEP* &#xd;
+if %ERRORLEVEL% NEQ 0 GOTO ERROR&#xd;
+&#xd;
+&#xd;
+py cleanup.py -p %BuildOutputsURL% -r *  --olderthan 2d --action=%CLEANUP_ACTION% --excludesFile=%EXCLUDES_FILE%   %Debug_Flag% --html &quot;BuildOutputs cleanup list - %COMPUTERNAME%&quot; --excludesPattern KEEP* &#xd;
+if %ERRORLEVEL% NEQ 0 GOTO ERROR&#xd;
+ECHO +++++++++++++++++++++ Cleanning Archer Build Outputs - Done +++++++++++++++++++++&#xd;
+GOTO END&#xd;
+&#xd;
+:ERROR&#xd;
+ECHO =============================================&#xd;
+ECHO Cleanup Execution Failed&#xd;
+ECHO =============================================&#xd;
+Exit /b 1&#xd;
+&#xd;
+:END&#xd;
+ECHO =============================================&#xd;
+ECHO Cleanup Execution Completed Successfully &#xd;
+ECHO =============================================&#xd;
+copy C:\Temp\deletion_list_*.html %WORKSPACE%</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <com.michelin.cio.hudson.plugins.copytoslave.CopyToMasterNotifier plugin="copy-to-slave@1.4.4">
+      <includes>deletion_list_*.html</includes>
+      <excludes></excludes>
+      <overrideDestinationFolder>true</overrideDestinationFolder>
+      <destinationFolder>C:\\temp\\${BUILD_NUMBER}</destinationFolder>
+      <runAfterResultFinalised>true</runAfterResultFinalised>
+    </com.michelin.cio.hudson.plugins.copytoslave.CopyToMasterNotifier>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>Generated_Files_BN=${BUILD_NUMBER}</properties>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>MailLocalDiskSpace</projects>
+          <condition>ALWAYS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <triggerFromChildProjects>false</triggerFromChildProjects>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.build__timeout.BuildTimeoutWrapper plugin="build-timeout@1.19">
+      <strategy class="hudson.plugins.build_timeout.impl.AbsoluteTimeOutStrategy">
+        <timeoutMinutes>20</timeoutMinutes>
+      </strategy>
+      <operationList>
+        <hudson.plugins.build__timeout.operations.AbortOperation/>
+      </operationList>
+    </hudson.plugins.build__timeout.BuildTimeoutWrapper>
+  </buildWrappers>
+  <executionStrategy class="hudson.matrix.DefaultMatrixExecutionStrategyImpl">
+    <runSequentially>false</runSequentially>
+  </executionStrategy>
+</matrix-project>
