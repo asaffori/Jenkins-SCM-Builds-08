@@ -47,16 +47,7 @@ for (aSlave in hudson.model.Hudson.instance.slaves) {
         print (&quot;Number of free executers: &quot; + aSlave.getComputer().countExecutors())
         print (&quot;Number of executers: &quot; +aSlave.getComputer().getNumExecutors())
         print (&quot;Number of occupied/dead executers: &quot;+aSlave.getComputer().getNumExecutors() - aSlave.getComputer().countExecutors())
-  /**for( exec in execList ) {
-    if (exec.getCauseOfDeath()) {
-      println(&quot;\tSlave ${aSlave.name} has a dead executor.&quot;)
-      println(&quot;Error:&quot;)
-      exec.getCauseOfDeath().printStackTrace(out) 
-      println(&apos;\n&apos;)
-      println(&quot;\tRemoving Dead Executor.&quot;)
-      exec.doYank()
-    }
-  }**/ 
+
   }
 }
 }</script>
