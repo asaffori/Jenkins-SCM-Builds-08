@@ -1,0 +1,397 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>WSName</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_VERSION</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <randomName>choice-parameter-484401284349267</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.39">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.39">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>Matlab Build</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>BUILD_VERSION</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.4.1">
+          <name>buildRequesterUserId</name>
+          <description></description>
+          <editable>true</editable>
+          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider">
+            <groovyScript plugin="script-security@1.39">
+              <script>import hudson.model.User
+String user =User.current().getId()
+return [user]</script>
+              <sandbox>true</sandbox>
+            </groovyScript>
+            <usePredefinedVariables>false</usePredefinedVariables>
+          </choiceListProvider>
+        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDTYPE</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Tasks</string>
+              <string>Formal</string>
+              <string>Scheduled</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>BUILDRELEASE</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>BUILDDEBUG</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>StartFromSolution</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string></string>
+              <string>BuildCommonTypes</string>
+              <string>BuildProxy</string>
+              <string>BuildCommon</string>
+              <string>BuildInfrastructure</string>
+              <string>BuildNGPlatformContracts</string>
+              <string>BuildCodeGeneration</string>
+              <string>BuildNGPlatformUtilities</string>
+              <string>BuildNGPlatformComponents</string>
+              <string>BuildNGPlatformRecipe</string>
+              <string>BuildNGPlatformScripting</string>
+              <string>BuildUIServers</string>
+              <string>BuildKernel</string>
+              <string>BuildENV10</string>
+              <string>BuildToolSystemInfoPackage</string>
+              <string>CommonUtilities</string>
+              <string>BuildRTInfrastructure</string>
+              <string>BuildRTPlatform</string>
+              <string>BuildNGiMetrologyContracts</string>
+              <string>BuildLinnikCommonTypes</string>
+              <string>BuildNGLinnikContracts</string>
+              <string>BuildNGLinnikHelpers</string>
+              <string>BuildLinnikCommon</string>
+              <string>BuildNGLinnikMCommon</string>
+              <string>BuildNGLinnikUtilities</string>
+              <string>BuildNGLinnikComponents</string>
+              <string>BuildNGLinnikScripting</string>
+              <string>BuildNGLinnikRecipe</string>
+              <string>BuildMBSCommonTypes</string>
+              <string>BuildNGMBSContracts</string>
+              <string>BuildNGMBSHelpers</string>
+              <string>BuildMBSCommon</string>
+              <string>BuildNGMBSMCommon</string>
+              <string>BuildNGMBSUtilities</string>
+              <string>BuildNGMBSComponents</string>
+              <string>BuildNGMBSScripting</string>
+              <string>BuildNGMBSRecipe</string>
+              <string>BuildCommonOVL_Common</string>
+              <string>BuildNGCommonOVLContracts</string>
+              <string>BuildNGCommonOVLComponents</string>
+              <string>BuildNGCommonOVLRecipe</string>
+              <string>BuildOVLCommon</string>
+              <string>BuildNexGOCommon</string>
+              <string>BuildXYSAIMCommon</string>
+              <string>BuildMOLCommon</string>
+              <string>BuildBLOCommon</string>
+              <string>BuildBFCDCommon</string>
+              <string>BuildArcherCommon</string>
+              <string>BuildJIGCommon</string>
+              <string>BuildJ1Common</string>
+              <string>BuildJ2Common</string>
+              <string>BuildAIMidMLCommon</string>
+              <string>BuildAROLCommon</string>
+              <string>BuildLinnikUIServers</string>
+              <string>BuildOVLUIServers</string>
+              <string>BuildMOLUIServers</string>
+              <string>BuildBLOUIServers</string>
+              <string>BuildMBSUIServers</string>
+              <string>BuildNGAROLContracts</string>
+              <string>BuildNGAROLUtilities</string>
+              <string>BuildNGAROLComponents</string>
+              <string>BuildNGAROLScripting</string>
+              <string>BuildNGAROLRecipe</string>
+              <string>BuildAROLUIServers</string>
+              <string>BuildAIMidMLUIServers</string>
+              <string>BuildArcherKernel</string>
+              <string>BuildLinnikKernel</string>
+              <string>BuildiMetrologyCommon</string>
+              <string>BuildNGiMetrologyComponents</string>
+              <string>BuildiMetrologyKernel</string>
+              <string>BuildIMAdapter</string>
+              <string>BuildMBSKernel</string>
+              <string>BuildCommonOVLKernel</string>
+              <string>BuildOVLKernel</string>
+              <string>BuildAROLKernel</string>
+              <string>BuildLinnikApps</string>
+              <string>BuildMBSApps</string>
+              <string>BuildCommonOVLApps</string>
+              <string>BuildAROLApps</string>
+              <string>BuildArcherApps</string>
+              <string>BuildOVLApps</string>
+              <string>BuildNGOVLContracts</string>
+              <string>BuildNGOVLRecipe</string>
+              <string>BuildNGOVLComponents</string>
+              <string>BuildNGOVLScripting</string>
+              <string>BuildNexGOUIServers</string>
+              <string>BuildXYSAIMUIServers</string>
+              <string>BuildBFCDUIServers</string>
+              <string>BuildNexGOKernel</string>
+              <string>BuildXYSAIMKernel</string>
+              <string>BuildMOLKernel</string>
+              <string>BuildBLOKernel</string>
+              <string>BuildBFCDKernel</string>
+              <string>BuildNexGOENV10</string>
+              <string>BuildNGNexGOContracts</string>
+              <string>BuildNGNexGOComponents</string>
+              <string>BuildNGAIMScripting</string>
+              <string>BuildXYSAIMApps</string>
+              <string>BuildNGXYSAIMContracts</string>
+              <string>BuildNGXYSAIMComponents</string>
+              <string>BuildNGXYSAIMScripting</string>
+              <string>BuildMOLApps</string>
+              <string>BuildBLOApps</string>
+              <string>BuildNGMOLContracts</string>
+              <string>BuildNGMOLComponents</string>
+              <string>BuildNGMOLScripting</string>
+              <string>BuildNGBLOContracts</string>
+              <string>BuildNGBLOComponents</string>
+              <string>BuildNGBLOScripting</string>
+              <string>BuildAIMidMLKernel</string>
+              <string>BuildAIMidMLApps</string>
+              <string>BuildNGMOLMLContracts</string>
+              <string>BuildNGMOLMLComponents</string>
+              <string>BuildNGAIMidMLScripting</string>
+              <string>BuildBFCDApps</string>
+              <string>BuildJ1Kernel</string>
+              <string>BuildJ2Kernel</string>
+              <string>BuildJ1Apps</string>
+              <string>BuildJ2Apps</string>
+              <string>BuildJIGApps</string>
+              <string>BuildiMetrologyApps</string>
+              <string>BuildRTLinnik</string>
+              <string>BuildRTMBS</string>
+              <string>CopyBuild</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>StaticCodeAnalysisModeRelease</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Disabled</string>
+              <string>Warning</string>
+              <string>Error</string>
+              <string>ErrorOnBuildEnd</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>StaticCodeAnalysisModeDebug</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Disabled</string>
+              <string>Warning</string>
+              <string>Error</string>
+              <string>ErrorOnBuildEnd</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JENKINCONFIGPATH</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <EnvInjectJobProperty plugin="envinject@1.90">
+      <info>
+        <propertiesContent>team_scm_fetchDestination=D:\Sandboxes\Matlab_${buildRequesterUserId}_${BUILD_VERSION}</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>false</overrideBuildParameters>
+      <contributors/>
+    </EnvInjectJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>Matlab</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>${team_scm_fetchDestination}</customWorkspace>
+  <builders>
+    <EnvInjectBuilder plugin="envinject@1.90">
+      <info>
+        <propertiesFilePath>${team_scm_fetchDestination}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
+      </info>
+    </EnvInjectBuilder>
+    <hudson.tasks.BatchFile>
+      <command>IF NOT EXIST %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\MakeFiles\Matlab.CFG (&#xd;
+ECHO *****Matlab make file doesn&apos;t exist, Matlab seperate build will be skipped**********&#xd;
+GOTO END&#xd;
+)&#xd;
+&#xd;
+SET BUILDVERSION=%BUILD_VERSION%&#xd;
+setlocal enabledelayedexpansion&#xd;
+IF NOT DEFINED BUILDTYPE SET BUILDTYPE=Tasks&#xd;
+ECHO %ValidOptions% | FIND &quot;%BUILDTYPE%&quot;&#xd;
+IF NOT %ERRORLEVEL%==0 SET BUILDTYPE=Tasks&#xd;
+ECHO ********** Current Build Type:**********&#xd;
+ECHO ************* %BUILDTYPE% *************&#xd;
+SET BUILDTYPEFOLDER=!%BUILDTYPE%!&#xd;
+&#xd;
+CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\Mapping.bat %team_scm_fetchDestination% %BUILDVERSION%&#xd;
+SET StoreDataFile=V:\OMD_Builds\JenkinsBuild\VersionUpdater\StoreDataFile_Matlab.xml&#xd;
+python %RootView%\OMD_Builds\JenkinsBuild\VersionUpdater\ArcherVersionUpdater.py&#xd;
+IF NOT %ERRORLEVEL%==0 GOTO ERROR&#xd;
+&#xd;
+IF /I NOT &quot;%BUILDDEBUG%&quot; == &quot;TRUE&quot; (&#xd;
+echo BUILDDEBUG is defined to false, skip Matlab Debug build.&#xd;
+goto DEBUGEND&#xd;
+)&#xd;
+&#xd;
+CALL %RootView%\OMD_Builds\JenkinsBuild\BatchFiles\BuildSW.bat &quot;Debug&quot; &quot;%RootView%\OMD_Builds\JenkinsBuild\MakeFiles\Matlab.CFG&quot;&#xd;
+IF NOT %ERRORLEVEL%==0 GOTO ERROR&#xd;
+CALL %RootView%\OMD_Builds\JenkinsBuild\BatchFiles\CopyMatlabOutputs.bat %BUILDVERSION% Debug&#xd;
+IF NOT %ERRORLEVEL%==0 GOTO ERROR&#xd;
+:DEBUGEND&#xd;
+&#xd;
+IF /I NOT &quot;%BUILDRELEASE%&quot; == &quot;TRUE&quot; (&#xd;
+echo BUILDRELEASEis defined to false, skip Matlab Release build.&#xd;
+goto RELEASEEND&#xd;
+)&#xd;
+&#xd;
+CALL %RootView%\OMD_Builds\JenkinsBuild\BatchFiles\BuildSW.bat &quot;Release&quot; &quot;%RootView%\OMD_Builds\JenkinsBuild\MakeFiles\Matlab.CFG&quot;&#xd;
+IF NOT %ERRORLEVEL%==0 GOTO ERROR&#xd;
+CALL %RootView%\OMD_Builds\JenkinsBuild\BatchFiles\CopyMatlabOutputs.bat %BUILDVERSION% Release&#xd;
+IF NOT %ERRORLEVEL%==0 GOTO ERROR&#xd;
+:RELEASEEND&#xd;
+&#xd;
+GOTO END&#xd;
+:ERROR&#xd;
+MATLAB build failed.&#xd;
+exit /b 1&#xd;
+&#xd;
+:END&#xd;
+</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+          <source class="hudson.plugins.groovy.StringSystemScriptSource">
+            <script plugin="script-security@1.39">
+              <script>import hudson.model.Result;
+
+def StartFromSolution= build.buildVariableResolver.resolve(&quot;StartFromSolution&quot;)
+
+if (StartFromSolution!= &quot;&quot;) {
+	println (&quot;StartFromSolution was defined . Matlab job will be skipped&quot;);
+  	build.getExecutor().interrupt(Result.SUCCESS)
+}</script>
+              <sandbox>false</sandbox>
+            </script>
+          </source>
+        </hudson.plugins.groovy.SystemGroovy>
+        <hudson.tasks.BatchFile>
+          <command>C:\PROGRA~1\Unlocker\Unlocker.exe  D:\Sandboxes\Matlab_%buildRequesterUserId%_%BUILD_VERSION%  /S&#xd;
+taskkill /F /FI &quot;IMAGENAME eq Matlab*&quot;</command>
+        </hudson.tasks.BatchFile>
+        <hudson.tasks.BatchFile>
+          <command>set http_proxy=http://isr1vmrtcproxy01:3128&#xd;
+&#xd;
+rd D:\Sandboxes\Matlab_%buildRequesterUserId%_%BUILD_VERSION% /s /q&#xd;
+&#xd;
+scm load -r http://clm.kla-tencor.com/ccm -u omdbuild -P &quot;Scm07&amp;&quot; -d D:\Sandboxes\Matlab_%buildRequesterUserId%_%BUILD_VERSION% -f -L \\isr1appcc02\scm\OMD\RTC_LoadRules\MatlabBuild.loadrule --allow %WSName%</command>
+        </hudson.tasks.BatchFile>
+        <hudson.tasks.BatchFile>
+          <command>echo ### Removing old build data ###&#xd;
+if exist &quot;D:\BuildOutputs\%WSName%_V%BUILD_VERSION%&quot; rd /q /s &quot;D:\BuildOutputs\%WSName%_V%BUILD_VERSION%&quot;</command>
+        </hudson.tasks.BatchFile>
+      </buildSteps>
+      <failOnError>true</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
+</project>
