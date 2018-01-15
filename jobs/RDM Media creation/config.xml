@@ -151,7 +151,7 @@ return [user]</script>
   <builders>
     <EnvInjectBuilder plugin="envinject@1.90">
       <info>
-        <propertiesFilePath>${team_scm_fetchDestination}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
+        <propertiesFilePath>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
       </info>
     </EnvInjectBuilder>
     <hudson.tasks.BatchFile>
