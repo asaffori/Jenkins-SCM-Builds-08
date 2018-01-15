@@ -42,9 +42,9 @@ for (aSlave in hudson.model.Hudson.instance.slaves) {
   if (!aSlave.getComputer().isOffline()){
       execList = aSlave.getComputer().getExecutors()     
       print (&quot;Reading slave &quot;+ aSlave.getComputer().getName()+&quot; properties&quot;)
-        print (&quot;Number of free executers: &quot; + aSlave.getComputer().countExecutors())
+        print (&quot;Number of free executers: &quot; + (aSlave.getComputer().getNumExecutors()-aSlave.getComputer().countBusy()))
         print (&quot;Number of executers: &quot; +aSlave.getComputer().getNumExecutors())
-        print (&quot;Number of occupied/dead executers: &quot;+aSlave.getComputer().getNumExecutors() - aSlave.getComputer().countExecutors())
+        print (&quot;Number of occupied executers: &quot;+aSlave.getComputer().countBusy())
 
   }else 
      print (&quot;Slave &quot;+ aSlave.getComputer().getName() + &quot; is offline.&quot;)
