@@ -80,8 +80,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>exit /b 1&#xd;
-java -jar %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\Apps\BNG\2.5\BNG.jar -acf %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\Apps\BNG\2.5\Attributeconfig.xml -grf html -p &quot;Scm07&amp;&quot; -u omdbuild -pa &quot;OMD NuArcher&quot; -r http://clm.kla-tencor.com/ccm -rf %ReportName% -rp %WORKSPACE%  -tsw %Stream%&#xd;
+      <command>java -jar %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\Apps\BNG\2.5\BNG.jar -acf %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\Apps\BNG\2.5\Attributeconfig.xml -grf html -p &quot;Scm07&amp;&quot; -u omdbuild -pa &quot;OMD NuArcher&quot; -r http://clm.kla-tencor.com/ccm -rf %ReportName% -rp %WORKSPACE%  -tsw %Stream%&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
     </hudson.tasks.BatchFile>
   </builders>
