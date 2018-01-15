@@ -219,6 +219,11 @@ return [user]</script>
           <description></description>
           <defaultValue>INIT_UOMD_BLD_${BUILD_VERSION}</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JENKINCONFIGPATH</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+        </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>AUTODELIVER</name>
           <description></description>
