@@ -40,7 +40,7 @@
         <hudson.model.StringParameterDefinition>
           <name>ReportName</name>
           <description></description>
-          <defaultValue>${BUILD_VERSION}-Build Notes</defaultValue>
+          <defaultValue>${BUILD_VERSION}-BuildNotes</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>team_scm_fetchDestination</name>
