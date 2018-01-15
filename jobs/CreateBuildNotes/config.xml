@@ -111,13 +111,13 @@ IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
       <attachmentsPattern>${ReportName}.html</attachmentsPattern>
       <presendScript>if (build.result.toString().equals(&apos;SUCCESS&apos;) &amp;&amp; build.logFile.text.readLines().any { it =~ /.*does not contain any change set.*/ }) {
    content = (String)msg.getContent().getBodyPart(0).getContent()
-   content = &quot;&lt;html&gt;&lt;body&gt;&lt;H1&gt;No changes in stream &quot;+build.getEnvVars().get(&quot;Stream&quot;)+&quot; since last snapshot &lt;/H1&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+   content = &quot;No changes in stream &quot;+build.getEnvVars().get(&quot;Stream&quot;)+&quot; since last snapshot&quot;
    msg.setText(content)
    msg.saveChanges() 
 }
 if (build.result.toString().equals(&apos;FAILURE&apos;)) {
    content = (String)msg.getContent().getBodyPart(0).getContent()
-   content = &quot;&lt;html&gt;&lt;body&gt;Build notes generation failed.&lt;BR&gt; Please check errors in execution log, via: &quot;+build.getEnvVars().get(&quot;BUILD_URL&quot;) + &quot;&lt;/html&gt;&lt;/body&gt;&quot;
+   content = &quot;Build notes generation failed.Please check log, via: &quot;+build.getEnvVars().get(&quot;BUILD_URL&quot;)
    msg.setText(content)
    msg.saveChanges() 
 }</presendScript>
