@@ -72,7 +72,7 @@ Manual Installation instructions:&lt;br&gt;
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>echo &quot;buildFailure()&quot;</command>
+      <command>echo &quot;Maximum Users (1) Exceeded&quot;</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
