@@ -78,7 +78,7 @@ Manual Installation instructions:&lt;br&gt;
   <publishers>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.39">
-        <script>if (manager.logContains(&quot;.*Maximum Users /(1/) Exceeded.*&quot;)){
+        <script>if (manager.logContains(&quot;.*Maximum Users.*&quot;)){
      manager.buildFailure()
 }</script>
         <sandbox>false</sandbox>
