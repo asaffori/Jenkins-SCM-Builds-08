@@ -43,11 +43,6 @@ unlock: to release the lock in the given XML files list if exists </description>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>xmlfile</name>
-          <description>XML file contains candidates files list</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>Stream</name>
           <description>Stream to run the lock on</description>
           <defaultValue></defaultValue>
@@ -67,6 +62,11 @@ unlock: to release the lock in the given XML files list if exists </description>
           <name>team_scm_fetchDestination</name>
           <description>Build Sandbox, where the mechanism scripts are avaiable</description>
           <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>xmlfile</name>
+          <description>XML file contains candidates files list</description>
+          <defaultValue>${team_scm_fetchDestination}\OMD_Builds\JenkinsBuild\VersionUpdater\StoreDataFile.xml</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -90,8 +90,7 @@ unlock: to release the lock in the given XML files list if exists </description>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>PYTHON %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\LockUnlockFilesList.py -f %xmlfile% -o %operation%&#xd;
- -s %Stream%</command>
+      <command>PYTHON %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\LockUnlockFilesList.py -f %xmlfile% -o %operation% -s %Stream%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
