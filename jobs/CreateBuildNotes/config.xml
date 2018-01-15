@@ -108,7 +108,12 @@ IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
       <defaultSubject>${BUILD_VERSION} - Build Notes</defaultSubject>
       <defaultContent>${FILE,path=&quot;${ReportName}.html&quot;}</defaultContent>
       <attachmentsPattern>${ReportName}.html</attachmentsPattern>
-      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <presendScript>if (build.result.toString().equals(&apos;SUCCESS&apos;) &amp;&amp; build.logFile.text.readLines().any { it =~ /.*does not contain any change set.*/ }) {
+   content = (String)msg.getContent().getBodyPart(0).getContent()
+   content = &quot;No changes in stream ${env.Stream} since last snapshot&quot; 
+   msg.setText(content)
+   msg.saveChanges() 
+}</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
