@@ -143,7 +143,7 @@ return [user]</script>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
-        <propertiesContent>team_scm_fetchDestination=${team_scm_fetchDestination}</propertiesContent>
+        <propertiesContent>team_scm_fetchDestination=D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
       <on>true</on>
