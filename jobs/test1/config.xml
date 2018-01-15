@@ -78,12 +78,12 @@ Manual Installation instructions:&lt;br&gt;
   <publishers>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.39">
-        <script>if (manager.logContains(&quot;.*Maximum Users (1) Exceeded.*&quot;)){
+        <script>if (manager.logContains(&quot;.*Maximum Users \(1\) Exceeded.*&quot;)){
      manager.buildFailure()
 }</script>
         <sandbox>false</sandbox>
       </script>
-      <behavior>2</behavior>
+      <behavior>0</behavior>
       <runForMatrixParent>false</runForMatrixParent>
     </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
   </publishers>
