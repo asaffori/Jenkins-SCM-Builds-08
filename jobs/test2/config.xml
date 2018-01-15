@@ -20,18 +20,6 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.LabelParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>Label</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <allNodesMatchingLabel>false</allNodesMatchingLabel>
-          <triggerIfResult>allCases</triggerIfResult>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.LabelParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
