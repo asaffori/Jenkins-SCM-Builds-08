@@ -39,7 +39,7 @@
 for (aSlave in hudson.model.Hudson.instance.slaves) {
   // check if executor is dead
   print (&quot;Reading slave &quot;+ aSlave.getComputer().getName() + &quot;  &quot; + aSlave.getComputer().isOffline())
-  if (aSlave.getComputer().isOffline() == false){
+  if (!aSlave.getComputer().isOffline()){
       print (&quot;11&quot;)
       execList = aSlave.getComputer().getExecutors()     
       print (&quot;Reading slave &quot;+ aSlave.getComputer().getName()+&quot; properties&quot;)
