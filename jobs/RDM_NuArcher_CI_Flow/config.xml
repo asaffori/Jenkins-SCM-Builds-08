@@ -745,10 +745,6 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>JENKINCONFIGPATH</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ToolType</string>
       <string></string>
     </entry>
