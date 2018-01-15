@@ -35,8 +35,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>node(&quot;SCM-Builds-06&quot;) {
-
+    <script>
 for (aSlave in hudson.model.Hudson.instance.slaves) {
   // check if executor is dead
   print (&quot;Reading slave &quot;+ aSlave.getComputer().getName() + &quot;  &quot; + aSlave.getComputer().isOffline())
@@ -50,7 +49,7 @@ for (aSlave in hudson.model.Hudson.instance.slaves) {
 
   }
 }
-}</script>
+</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
