@@ -23,13 +23,8 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>MajorMinor_Ver</name>
-          <description>build version to be used for the stream default name</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>Stream</name>
-          <description>Affected stream to gather the changes from</description>
+          <description>Affected stream to gather the changes from. As :Archer_17.12_Integ or Archer_17.04_Integ</description>
           <defaultValue>Archer_${MajorMinor_Ver}_Integ</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
