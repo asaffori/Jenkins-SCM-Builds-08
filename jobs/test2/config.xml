@@ -44,7 +44,8 @@
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
+  <assignedNode>SCM-Builds-06</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
@@ -52,7 +53,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>echo %JOB_NAME%</command>
+      <command>ECHO waiting 30s&#xd;
+ping 1.0.0.1 -n 1 -w 30000 &gt; nul</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
