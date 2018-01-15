@@ -126,7 +126,7 @@ return [user]</script>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
-        <propertiesContent>team_scm_fetchDestination=D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}</propertiesContent>
+        <propertiesContent>team_scm_fetchDestination=${team_scm_fetchDestination}</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
       <on>true</on>
@@ -178,7 +178,7 @@ return [user]</script>
   <builders>
     <EnvInjectBuilder plugin="envinject@1.90">
       <info>
-        <propertiesFilePath>${team_scm_fetchDestination}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
+        <propertiesFilePath>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
       </info>
     </EnvInjectBuilder>
     <hudson.tasks.BatchFile>
