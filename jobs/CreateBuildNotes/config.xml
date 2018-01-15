@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description></description>
+  <description>This Job will use the BNG utility to genrate the build notes and share it by mail</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
@@ -24,27 +24,27 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>MajorMinor_Ver</name>
-          <description></description>
+          <description>build version to be used for the stream default name</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>Stream</name>
-          <description></description>
+          <description>Affected stream to gather the changes from</description>
           <defaultValue>Archer_${MajorMinor_Ver}_Integ</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
-          <description></description>
+          <description>Build Version to be used the report default name and the email</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ReportName</name>
-          <description></description>
+          <description>The relevant name of the generated report</description>
           <defaultValue>${BUILD_VERSION}-BuildNotes</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>team_scm_fetchDestination</name>
-          <description></description>
+          <description>Snadbox which contain the BNG utility</description>
           <defaultValue>D:\Sandboxes\omdbuild_${BUILD_VERSION}</defaultValue>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
@@ -58,6 +58,11 @@
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>recipientList</name>
+          <description>comma seperated list of emails to get the generated build notes</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -86,7 +91,7 @@ IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
-      <recipientList>adham.saffori@kla-tencor.com</recipientList>
+      <recipientList>adham.saffori,${recipientList}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
