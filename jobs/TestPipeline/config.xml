@@ -38,7 +38,7 @@
     <script>
 for (aSlave in hudson.model.Hudson.instance.slaves) {
   // check if executor is dead
-  print (&quot;Reading slave &quot;+ aSlave.getComputer().getName() + &quot;  &quot; + aSlave.getComputer().isOffline())
+  print (&quot;Reading executers of slave &quot;+ aSlave.getComputer().getName())
   if (!aSlave.getComputer().isOffline()){
       print (&quot;11&quot;)
       execList = aSlave.getComputer().getExecutors()     
@@ -47,7 +47,8 @@ for (aSlave in hudson.model.Hudson.instance.slaves) {
         print (&quot;Number of executers: &quot; +aSlave.getComputer().getNumExecutors())
         print (&quot;Number of occupied/dead executers: &quot;+aSlave.getComputer().getNumExecutors() - aSlave.getComputer().countExecutors())
 
-  }
+  }else 
+     print (&quot;Slave &quot;+ aSlave.getComputer().getName() + &quot; is offline.&quot;)
 }
 </script>
     <sandbox>false</sandbox>
