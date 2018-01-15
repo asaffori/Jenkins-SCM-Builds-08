@@ -39,9 +39,9 @@
 for (aSlave in hudson.model.Hudson.instance.slaves) {
   // check if executor is dead
   execList = aSlave.getComputer().getExecutors()     
-    print (&quot;Number of free executers: &quot; + aSlave.getComputer().getExecutors().countExecutors())
-    print (&quot;Number of executers: &quot; +aSlave.getComputer().getExecutors().getNumExecutors())
-    print (&quot;Number of occupied/dead executers: &quot;+aSlave.getComputer().getExecutors().getNumExecutors() - aSlave.getComputer().getExecutors().countExecutors())
+    print (&quot;Number of free executers: &quot; + aSlave.getComputer().countExecutors())
+    print (&quot;Number of executers: &quot; +aSlave.getComputer().getNumExecutors())
+    print (&quot;Number of occupied/dead executers: &quot;+aSlave.getComputer().getNumExecutors() - aSlave.getComputer().countExecutors())
   /**for( exec in execList ) {
     if (exec.getCauseOfDeath()) {
       println(&quot;\tSlave ${aSlave.name} has a dead executor.&quot;)
