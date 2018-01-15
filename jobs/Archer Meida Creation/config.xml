@@ -190,6 +190,7 @@ return [user]</script>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
+        <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <propertiesContent>team_scm_fetchDestination=${team_scm_fetchDestination}</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
@@ -209,11 +210,6 @@ return [user]</script>
   <triggers/>
   <concurrentBuild>true</concurrentBuild>
   <builders>
-    <EnvInjectBuilder plugin="envinject@1.90">
-      <info>
-        <propertiesFilePath>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
-      </info>
-    </EnvInjectBuilder>
     <hudson.tasks.BatchFile>
       <command>SET BUILDRELEASE=false&#xd;
 SET BUILDDEBUG=false&#xd;
@@ -231,7 +227,7 @@ CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\DoFullBuild.
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
-        <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
+        <propertiesFilePath>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
