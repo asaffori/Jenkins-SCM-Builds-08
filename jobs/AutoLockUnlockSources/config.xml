@@ -48,7 +48,7 @@ unlock: to release the lock in the given XML files list if exists </description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>stream</name>
+          <name>Stream</name>
           <description>Stream to run the lock on</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
@@ -91,7 +91,7 @@ unlock: to release the lock in the given XML files list if exists </description>
   <builders>
     <hudson.tasks.BatchFile>
       <command>PYTHON %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\LockUnlockFilesList.py -f %xmlfile% -o %operation%&#xd;
- -s %stream%</command>
+ -s %Stream%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
