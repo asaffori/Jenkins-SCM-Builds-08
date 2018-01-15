@@ -40,7 +40,6 @@ for (aSlave in hudson.model.Hudson.instance.slaves) {
   // check if executor is dead
   print (&quot;Reading executers of slave &quot;+ aSlave.getComputer().getName())
   if (!aSlave.getComputer().isOffline()){
-      print (&quot;11&quot;)
       execList = aSlave.getComputer().getExecutors()     
       print (&quot;Reading slave &quot;+ aSlave.getComputer().getName()+&quot; properties&quot;)
         print (&quot;Number of free executers: &quot; + aSlave.getComputer().countExecutors())
