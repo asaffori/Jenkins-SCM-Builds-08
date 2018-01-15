@@ -117,7 +117,7 @@ IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
 }
 if (build.result.toString().equals(&apos;FAILURE&apos;)) {
    content = (String)msg.getContent().getBodyPart(0).getContent()
-   content = &quot;Buiold notes generation failed. Please check execution log via: &quot;+build.getEnvVars().get(&quot;BUILD_URL&quot;)
+   content = &quot;Build notes generation failed.&lt;BR&gt; Please check errors in execution log, via: &quot;+build.getEnvVars().get(&quot;BUILD_URL&quot;)
    msg.setText(content)
    msg.saveChanges() 
 }</presendScript>
