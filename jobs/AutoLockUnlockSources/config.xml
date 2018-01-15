@@ -90,7 +90,8 @@ unlock: to release the lock in the given XML files list if exists </description>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>PYTHON %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\LockUnlockFilesList.py -f %xmlfile% -o %operation% -s %Stream%</command>
+      <command>if not exist V:\ subst V: %team_scm_fetchDestination%&#xd;
+PYTHON %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\LockUnlockFilesList.py -f %xmlfile% -o %operation% -s %Stream%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
