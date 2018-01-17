@@ -64,7 +64,7 @@
 import hudson.model.*
 
 item=Hudson.instance.getJob(build.buildVariableResolver.resolve(&quot;jenkinsJobName&quot;))
-        if(Action ==&quot;Enable&quot;)
+        if(build.buildVariableResolver.resolve(&quot;Action&quot;) ==&quot;Enable&quot;)
                item.disabled=false
          else
                 item.disabled=true
