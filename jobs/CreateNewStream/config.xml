@@ -173,7 +173,7 @@
     			stage (&apos;create&apos;) {
                     steps {
                         script {
-                             create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${userInput[&apos;userInput&apos;]} ${params.SourceStreamName}&quot;&quot;
+                             create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${userInput[&apos;userInput&apos;]} ${params.SourceStreamName}&quot;
                             switch(searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)){
 						        case 0:
 							       throw new Exception(&quot;Stream creation faild&quot;)
