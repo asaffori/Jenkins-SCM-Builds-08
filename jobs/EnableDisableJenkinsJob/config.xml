@@ -64,14 +64,13 @@
 import hudson.model.*
 
 def item=Hudson.instance.getJob(build.buildVariableResolver.resolve(&quot;JenkinsJobName&quot;))
-if(item !=null){
         if(build.buildVariableResolver.resolve(&quot;Action&quot;) ==&quot;Enable&quot;)
                item.enable()
          else
                 item.disable()
 
      Hudson.instance.save()
-}
+
 </script>
           <sandbox>false</sandbox>
         </script>
