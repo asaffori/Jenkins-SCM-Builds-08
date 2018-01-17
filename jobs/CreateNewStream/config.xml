@@ -127,7 +127,7 @@
     			stage (&apos;approve&apos;) {
     			 steps {
     			     script {
-    			         def userInput
+    			         //def userInput
     			         try{
     			             mail (to: &apos;adham.saffori@kla-tencor.com&apos;,
                                  subject: &quot;New stream request with name  &apos;${params.SuggestedStreamName}&apos; is waiting for your approval&quot;,
@@ -139,30 +139,30 @@
             			//	print (userInput)
     			         } catch (err) { // input false
     			            print(&quot;fdsfsdd&quot; + err)
-                            userInput = input(
+                            env.userInput = input(
             				 id: &apos;userInput&apos;, message: &apos;Please update abortion reason?&apos;, parameters: [
             				[$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;&apos;, description: &apos;Decline reason&apos;, name: &apos;declineReason&apos;]]
             				,submitter: &apos;DL-OMD-ENG-SCM&apos;,ok: &apos;Email user, close request&apos;)
                             def user = err.getCauses()[0].getUser()
                             echo &quot;Aborted by: [${user}]&quot;
-                            echo &quot;Abort reason: &quot;+ userInput
+                            echo &quot;Abort reason: &quot;+ env.userInput
                             //throw new Exception( &quot;Abort reason: &quot;+ userInput)
                             wrap([$class: &apos;BuildUser&apos;]) {
                                 emailext (
                                     subject: &quot;Declined: Stream creation request ${params.SuggestedStreamName}&apos;&quot;,
                                     body: &quot;&quot;&quot;&lt;p&gt;Declined by: &apos;${user}&apos;&lt;/p&gt;
-                                    &lt;p&gt;Reason: &apos;${userInput}&apos;&lt;/p&gt;
+                                    &lt;p&gt;Reason: &apos;${env.userInput}&apos;&lt;/p&gt;
                                     &lt;p&gt;For execution details, please check console output at &quot;&lt;a href=&quot;${env.BUILD_URL}&quot;&gt;${env.JOB_NAME} [${env.BUILD_NUMBER}]&lt;/a&gt;&quot;&lt;/p&gt;&quot;&quot;&quot;,
                                      to: &quot;${BUILD_USER_EMAIL}&quot;
                                 )
                             }
                         }
-                        print (userInput)
-    				if (!params.SuggestedStreamName.equals(userInput)){ 
-    				        print &apos;verify new suggested stream name is not occupied &apos;+ userInput
+                        print (env.userInput)
+    				if (!params.SuggestedStreamName.equals(env.userInput)){ 
+    				        print &apos;verify new suggested stream name is not occupied &apos;+ env.userInput
 						    switch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
 						        case 1..Integer.MAX_VALUE :
-							       throw new Exception(&quot;Stream name &quot; + userInput + &quot; is already occupied&quot;)
+							       throw new Exception(&quot;Stream name &quot; + env.userInput + &quot; is already occupied&quot;)
                                 default:
                                     print &apos;new suggested stream name is free&apos;
 						    }
