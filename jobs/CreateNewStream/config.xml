@@ -77,12 +77,11 @@
     agent { node { label &apos;master&apos; } }
      parameters {
         string(name: &apos;SuggestedStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What should the new stream be named with? \n Prefered syntax:Arhcer_17.12_TASKNAme_WINum&apos;)
-        string(name: &apos;TaskName&apos;, defaultValue: &apos;&apos;, description: &apos;Task name. Use \&apos;_\&apos; for multiwork names and not spaces &apos;)
-        string(name: &apos;WorkItemNum&apos;, defaultValue: &apos;&apos;, description: &apos;Task related work item number&apos;)
         string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is the base stream name?&apos;)
         string(name: &apos;SourceStreamSnapshotName&apos;, defaultValue: &apos;&apos;, description: &apos;What is the snapshot name you would use as a base for the new stream?&apos;)
     }
     environment {
+        
         search_snaposhots_cmd=&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamSnapshotName}&quot;
         search_source_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}&quot;
         search_target_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SuggestedStreamName}&quot;
@@ -174,7 +173,15 @@
     			stage (&apos;create&apos;) {
                     steps {
                         script {
-    				        echo &quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${userInput[&apos;userInput&apos;]} ${params.SourceStreamName}&quot;
+                             create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${userInput[&apos;userInput&apos;]} ${params.SourceStreamName}&quot;&quot;
+                            switch(searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)){
+						        case 0:
+							       throw new Exception(&quot;Stream creation faild&quot;)
+                                default:
+                                    print &apos;new stream was successfully created&apos;
+						    }
+                       
+    				        //echo &quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${userInput[&apos;userInput&apos;]} ${params.SourceStreamName}&quot;
                         }
                     }
     			}
