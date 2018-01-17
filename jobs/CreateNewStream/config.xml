@@ -139,6 +139,7 @@
             				print (userInput)
             				print (userInput[&apos;declineReason&apos;])
     			         }catch(err) { // input false
+    			            print(err)
                             userInput = input(
             				 id: &apos;userInput&apos;, message: &apos;Please update abortion reason?&apos;, parameters: [
             				[$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;&apos;, description: &apos;Decline reason&apos;, name: &apos;declineReason&apos;]]
