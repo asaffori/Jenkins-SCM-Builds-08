@@ -63,7 +63,7 @@
           <script>// Disable all the Jenkins jobs
 import hudson.model.*
 
-item=Hudson.instance.getJob(build.buildVariableResolver.resolve(&quot;jenkinsJobName&quot;))
+def item=Hudson.instance.getJob(build.buildVariableResolver.resolve(&quot;JenkinsJobName&quot;))
         if(build.buildVariableResolver.resolve(&quot;Action&quot;) ==&quot;Enable&quot;)
                item.enable()
          else
