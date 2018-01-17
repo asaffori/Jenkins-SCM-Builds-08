@@ -46,29 +46,6 @@
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <EnvInjectJobProperty plugin="envinject@1.90">
-      <info>
-        <groovyScriptContent>// Disable all the Jenkins jobs
-import hudson.model.*
-
-for(item in Hudson.instance.items) {
-   if  (jenkinsJobName == item.name) {
-        println(Action +&quot; job: &quot; + item.name + &apos;\n&apos;)
-        if(Action ==&quot;Enable&quot;)
-               item.disabled=false
-         else
-                item.disabled=true
-  }
-  item.save()
-}</groovyScriptContent>
-        <loadFilesFromMaster>false</loadFilesFromMaster>
-      </info>
-      <on>true</on>
-      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
-      <keepBuildVariables>true</keepBuildVariables>
-      <overrideBuildParameters>false</overrideBuildParameters>
-      <contributors/>
-    </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -78,7 +55,26 @@ for(item in Hudson.instance.items) {
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+      <source class="hudson.plugins.groovy.StringSystemScriptSource">
+        <script plugin="script-security@1.39">
+          <script>// Disable all the Jenkins jobs
+import hudson.model.*
+
+Hudson.instance.getJob(jenkinsJobName)
+        if(Action ==&quot;Enable&quot;)
+               item.disabled=false
+         else
+                item.disabled=true
+  }
+  Hudson.instance.save()
+</script>
+          <sandbox>false</sandbox>
+        </script>
+      </source>
+    </hudson.plugins.groovy.SystemGroovy>
+  </builders>
   <publishers/>
   <buildWrappers/>
 </project>
