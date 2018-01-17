@@ -135,7 +135,7 @@
             			    userInput = input(
             				 id: &apos;userInput&apos;, message: &apos;Please approve the below stream name?&apos;, parameters: [
             				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;new stream name&apos;, name: &apos;userInput&apos;]
-            				],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok: &apos;Approved, lets create it&apos;)
+            				],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Approved, lets create it&apos;)
             				print (userInput)
     			         } catch (err) { // input false
     			            print(&quot;fdsfsdd&quot; + err)
