@@ -63,12 +63,12 @@
           <script>// Disable all the Jenkins jobs
 import hudson.model.*
 
-Hudson.instance.getJob(jenkinsJobName)
+item=Hudson.instance.getJob(jenkinsJobName)
         if(Action ==&quot;Enable&quot;)
                item.disabled=false
          else
                 item.disabled=true
-  }
+
   Hudson.instance.save()
 </script>
           <sandbox>false</sandbox>
