@@ -173,7 +173,7 @@
     			stage (&apos;create&apos;) {
                     steps {
                         script {
-                            create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; --duplicate  ${params.SourceStreamName} --snapshot ${params.SourceStreamSnapshotName}  --projectarea \&quot;OMD NuArcher\&quot;	 ${userInput}&quot;
+                            create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; --duplicate  ${params.SourceStreamName} --snapshot ${params.SourceStreamSnapshotName}  --projectarea \&quot;OMD NuArcher\&quot;	 ${env.userInput}&quot;
                             switch(searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)){
 						        case 0:
 							       throw new Exception(&quot;Stream creation faild&quot;)
