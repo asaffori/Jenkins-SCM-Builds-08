@@ -47,7 +47,7 @@ def runTestPerConfiguration(test,configuration) {
 } // runTestPerConfiguration
 
 stage(&quot;Yum Deploy&quot;) {
-  AUT_Tests=[&apos;TL&apos;:&apos;test1&apos;,&apos;A700&apos;:&apos;test2&apos;,&apos;A600&apos;:&apos;test3&apos;]
+  AUT_Tests=[&apos;Matlab&apos;:&apos;test1&apos;,&apos;A700&apos;:&apos;test2&apos;,&apos;A600&apos;:&apos;test3&apos;]
   stepsForParallel = [:]
   AUT_Tests.each{
       def configuration = it.key 
