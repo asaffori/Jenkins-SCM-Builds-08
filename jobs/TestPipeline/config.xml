@@ -38,25 +38,32 @@
     <script>
 def runTestPerConfiguration(test,configuration) {
     return {
+        print 00
         def labelNodes = Jenkins.instance.getLabel(configuration)
         def nodes = labelNodes.getNodes()
         def nodeName=null
+        print 11
        // if (nodes.size() &gt; 0) {
          //   result[role] = nodes[0].getNodeName()
         //}
         while(nodeName==null){
+            print 22
          for (node in nodes) {
+             print 33
             if (!nodeName)
                 break
             print (&quot;node=&quot;+node.getNodeName())
              if (!node.getComputer().isOffline()){ 
+                 print 44
                 if (node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0){
+                    print 55
                     set nodeName=node.getNodeName()
                     continue;
                 }
              }
          }
         }
+        print 66
         node (nodeName) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . . . . . &quot;+ configuration
