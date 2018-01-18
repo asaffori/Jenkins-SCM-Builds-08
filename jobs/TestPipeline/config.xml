@@ -53,6 +53,7 @@ stage(&quot;Run ATE tests&quot;) {
       def configuration = it.key 
       def test_suit=it.value
       def stepName = &quot;Test ${test_suit} for ${configuration}&quot;
+      print stepName
       stepsForParallel[stepName] = runTestPerConfiguration(test_suit,configuration)
   }
   stepsForParallel[&apos;failFast&apos;] = false
