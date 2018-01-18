@@ -40,10 +40,10 @@ def RunTestPerConfiguration(test) {
     return {
         node (&apos;master&apos;) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
-        print test
+        print OS
         } } // ts / node
     } // closure
-} // transformDeployBuildStep
+} // RunTestPerConfiguration
 
 stage(&quot;Yum Deploy&quot;) {
   AUT_Tests=[&apos;TL&apos;:&apos;test1&apos;,&apos;A700&apos;:&apos;test2&apos;,&apos;A600&apos;:&apos;test3&apos;]
