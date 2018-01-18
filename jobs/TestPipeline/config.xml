@@ -38,7 +38,7 @@
     <script>
 def runTestPerConfiguration(test,configuration) {
     return {
-        agent{
+        agent {
             label configuration
         }
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
