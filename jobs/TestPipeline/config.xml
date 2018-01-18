@@ -36,14 +36,14 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>
-def RunTestPerConfiguration(test) {
+def runTestPerConfiguration(test) {
     return {
         node (&apos;master&apos;) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print OS
         } } // ts / node
     } // closure
-} // RunTestPerConfiguration
+} // runTestPerConfiguration
 
 stage(&quot;Yum Deploy&quot;) {
   AUT_Tests=[&apos;TL&apos;:&apos;test1&apos;,&apos;A700&apos;:&apos;test2&apos;,&apos;A600&apos;:&apos;test3&apos;]
@@ -52,7 +52,7 @@ stage(&quot;Yum Deploy&quot;) {
       def configuration = it.key 
       def test_suit=it.value
       def stepName = &quot;Running ${test_suit} test suite for ${configuration} configuration&quot;
-      stepsForParallel[stepName] = RunTestPerConfiguration(test_suit,configuration)
+      stepsForParallel[stepName] = runTestPerConfiguration(test_suit,configuration)
   }
   stepsForParallel[&apos;failFast&apos;] = false
   parallel stepsForParallel
