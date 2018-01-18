@@ -55,6 +55,8 @@ def runTestPerConfiguration(test,configuration) {
             print (&quot;node=&quot;+node.getNodeName())
              if (!node.getComputer().isOffline()){ 
                  print 44
+                 print node.getComputer().getNumExecutors()
+                 print node.getComputer().countBusy()
                 if (node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0){
                     print 55
                     nodeName=node.getNodeName()
