@@ -51,7 +51,7 @@ stage(&quot;Yum Deploy&quot;) {
   AUT_Tests.each{
       def configuration = it.key 
       def test_suit=it.value
-      def stepName = &quot;Running ${test_suit} test suite for ${configuration} configuration&quot;
+      def stepName = &quot;Test ${test_suit} for ${configuration}&quot;
       stepsForParallel[stepName] = runTestPerConfiguration(test_suit,configuration)
   }
   stepsForParallel[&apos;failFast&apos;] = false
