@@ -47,7 +47,7 @@ def runTestPerConfiguration(test,configuration) {
 } // runTestPerConfiguration
 
 stage(&quot;Run ATE tests&quot;) {
-  AUT_Tests=[&apos;Matlab&apos;:&apos;test1&apos;,&apos;Matlab&apos;:&apos;test2&apos;,&apos;Matlab&apos;:&apos;test3&apos;]
+  def AUT_Tests=[&apos;Matlab&apos;:&apos;test1&apos;,&apos;Matlab&apos;:&apos;test2&apos;,&apos;Matlab&apos;:&apos;test3&apos;]
   stepsForParallel = [:]
   AUT_Tests.each{
       def configuration = it.key 
