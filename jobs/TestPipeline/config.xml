@@ -43,6 +43,7 @@ def runTestPerConfiguration(test,configuration) {
        // if (nodes.size() &gt; 0) {
          //   result[role] = nodes[0].getNodeName()
         //}
+        print (&quot;node=&quot;+nodes[0].getNodeName())
         node (nodes[0].getNodeName()) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . . . . . &quot;+ configuration
