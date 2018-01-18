@@ -58,6 +58,11 @@
           <description>comma seperated list of emails to get the generated build notes</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>emailGroupsDefFile</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_Groups.txt</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -69,6 +74,43 @@
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <EnvInjectJobProperty plugin="envinject@1.90">
+      <info>
+        <groovyScriptContent>//reading email reciepts
+if (recipientList.contains(&quot;@&quot;)) {
+     def map = [ &quot;recipients_list&quot;:recipientList]
+     return 	map
+}
+def file = new File(emailGroupsDefFile)
+def reciepts_list=&quot;&quot;;
+  	if (file.exists()){
+        //println &quot;Below is the content of the file ${file.absolutePath}&quot;
+      def lineNo = 1
+      def line
+      file.withReader { reader -&gt;
+         while ((line = reader.readLine())!=null) {
+            if (line.trim() ==&quot;&quot;) continue;
+            //println &quot;${lineNo}. ${line}&quot;
+            lineNo++
+            groupOwn=line.substring(0,line.indexOf(&quot;=&quot;))
+            reciepts_list+=recipientList.contains(groupOwn) ? line.substring(line.indexOf(&quot;=&quot;)+1).trim():&quot;&quot;;
+           
+            reciepts_list=(!reciepts_list.trim().endsWith(&quot;,&quot;) &amp; !reciepts_list.trim().equals (&quot;&quot;)) ?reciepts_list.trim()+&quot;,&quot;:reciepts_list.trim()
+           
+         }
+      }
+		
+    }
+      	def map = [ &quot;recipients_list&quot;:reciepts_list]
+	return 	map</groovyScriptContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>false</overrideBuildParameters>
+      <contributors/>
+    </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -86,7 +128,7 @@ IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
-      <recipientList>adham.saffori,${recipientList}</recipientList>
+      <recipientList>adham.saffori,${recipients_list}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
