@@ -55,7 +55,7 @@
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>recipientList</name>
-          <description>comma seperated list of emails to get the generated build notes</description>
+          <description>comma seperated list of emails to get the generated build notes. As Adham.Saffori@kla-tencor.com Or groups of mails seperated by comma.</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
