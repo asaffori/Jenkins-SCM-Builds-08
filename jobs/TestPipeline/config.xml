@@ -36,11 +36,11 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>
-def runTestPerConfiguration(test) {
+def runTestPerConfiguration(test,configuration) {
     return {
         node (&apos;master&apos;) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
-        print OS
+        print test +&quot; . . . . . &quot;+ configuration
         } } // ts / node
     } // closure
 } // runTestPerConfiguration
