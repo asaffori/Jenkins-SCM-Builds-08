@@ -74,6 +74,7 @@
     <permission>hudson.model.Hudson.Read:anonymous</permission>
     <permission>hudson.model.Hudson.Read:asaffori</permission>
     <permission>hudson.model.Hudson.Read:cawang</permission>
+    <permission>hudson.model.Hudson.Read:gappel</permission>
     <permission>hudson.model.Hudson.Read:Gidon.Appel</permission>
     <permission>hudson.model.Hudson.Read:lhou</permission>
     <permission>hudson.model.Hudson.Read:omdbuild</permission>
@@ -83,6 +84,7 @@
     <permission>hudson.model.Item.Build:agzhan</permission>
     <permission>hudson.model.Item.Build:asaffori</permission>
     <permission>hudson.model.Item.Build:cawang</permission>
+    <permission>hudson.model.Item.Build:gappel</permission>
     <permission>hudson.model.Item.Build:Gidon.Appel</permission>
     <permission>hudson.model.Item.Build:lhou</permission>
     <permission>hudson.model.Item.Build:omdbuild</permission>
@@ -92,6 +94,7 @@
     <permission>hudson.model.Item.Cancel:agzhan</permission>
     <permission>hudson.model.Item.Cancel:asaffori</permission>
     <permission>hudson.model.Item.Cancel:cawang</permission>
+    <permission>hudson.model.Item.Cancel:gappel</permission>
     <permission>hudson.model.Item.Cancel:Gidon.Appel</permission>
     <permission>hudson.model.Item.Cancel:lhou</permission>
     <permission>hudson.model.Item.Cancel:omdbuild</permission>
@@ -101,6 +104,7 @@
     <permission>hudson.model.Item.Configure:agzhan</permission>
     <permission>hudson.model.Item.Configure:asaffori</permission>
     <permission>hudson.model.Item.Configure:cawang</permission>
+    <permission>hudson.model.Item.Configure:gappel</permission>
     <permission>hudson.model.Item.Configure:Gidon.Appel</permission>
     <permission>hudson.model.Item.Configure:lhou</permission>
     <permission>hudson.model.Item.Configure:omdbuild</permission>
@@ -134,6 +138,7 @@
     <permission>hudson.model.Item.ExtendedRead:anonymous</permission>
     <permission>hudson.model.Item.ExtendedRead:asaffori</permission>
     <permission>hudson.model.Item.ExtendedRead:cawang</permission>
+    <permission>hudson.model.Item.ExtendedRead:gappel</permission>
     <permission>hudson.model.Item.ExtendedRead:Gidon.Appel</permission>
     <permission>hudson.model.Item.ExtendedRead:lhou</permission>
     <permission>hudson.model.Item.ExtendedRead:omdbuild</permission>
