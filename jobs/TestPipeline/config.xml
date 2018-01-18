@@ -53,10 +53,7 @@ build_list = [&apos;test1&apos;, &apos;test2&apos;, &apos;test3&apos;]
         for(int i=0; i &lt; build_list.size(); i++) {
           stage(build_list[i]){
               print &quot;Running &quot; + build_list[i]
-              b=build job: build_list[i],parameters:
-                [
-                [$class: &apos;BooleanParameterValue&apos;, name: &apos;parameter_name&apos;, value: false],
-                ], wait: true
+              b=build job: build_list[i]
           }
         }</script>
     <sandbox>false</sandbox>
