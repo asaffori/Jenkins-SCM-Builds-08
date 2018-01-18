@@ -104,7 +104,6 @@
     <permission>hudson.model.Item.Configure:agzhan</permission>
     <permission>hudson.model.Item.Configure:asaffori</permission>
     <permission>hudson.model.Item.Configure:cawang</permission>
-    <permission>hudson.model.Item.Configure:gappel</permission>
     <permission>hudson.model.Item.Configure:Gidon.Appel</permission>
     <permission>hudson.model.Item.Configure:lhou</permission>
     <permission>hudson.model.Item.Configure:omdbuild</permission>
