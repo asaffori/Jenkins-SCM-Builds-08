@@ -82,6 +82,7 @@
     <permission>hudson.model.Item.Build:agzhan</permission>
     <permission>hudson.model.Item.Build:asaffori</permission>
     <permission>hudson.model.Item.Build:cawang</permission>
+    <permission>hudson.model.Item.Build:Gidon.Appel</permission>
     <permission>hudson.model.Item.Build:lhou</permission>
     <permission>hudson.model.Item.Build:omdbuild</permission>
     <permission>hudson.model.Item.Build:omdbuildchn</permission>
@@ -90,6 +91,7 @@
     <permission>hudson.model.Item.Cancel:agzhan</permission>
     <permission>hudson.model.Item.Cancel:asaffori</permission>
     <permission>hudson.model.Item.Cancel:cawang</permission>
+    <permission>hudson.model.Item.Cancel:Gidon.Appel</permission>
     <permission>hudson.model.Item.Cancel:lhou</permission>
     <permission>hudson.model.Item.Cancel:omdbuild</permission>
     <permission>hudson.model.Item.Cancel:omdbuildchn</permission>
@@ -130,6 +132,7 @@
     <permission>hudson.model.Item.ExtendedRead:anonymous</permission>
     <permission>hudson.model.Item.ExtendedRead:asaffori</permission>
     <permission>hudson.model.Item.ExtendedRead:cawang</permission>
+    <permission>hudson.model.Item.ExtendedRead:Gidon.Appel</permission>
     <permission>hudson.model.Item.ExtendedRead:lhou</permission>
     <permission>hudson.model.Item.ExtendedRead:omdbuild</permission>
     <permission>hudson.model.Item.ExtendedRead:omdbuildchn</permission>
