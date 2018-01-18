@@ -36,22 +36,23 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>
-def transformDeployBuildStep(OS) {
+def RunTestPerConfiguration(test) {
     return {
         node (&apos;master&apos;) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
-        print OS
+        print test
         } } // ts / node
     } // closure
 } // transformDeployBuildStep
 
 stage(&quot;Yum Deploy&quot;) {
-  TargetOSs=[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]
+  AUT_Tests=[&apos;TL&apos;:&apos;test1&apos;,&apos;A700&apos;:&apos;test2&apos;,&apos;A600&apos;:&apos;test3&apos;]
   stepsForParallel = [:]
-  for (int i = 0; i &lt; TargetOSs.size(); i++) {
-      def s = TargetOSs.get(i)
-      def stepName = &quot;CentOS ${s} Deployment&quot;
-      stepsForParallel[stepName] = transformDeployBuildStep(s)
+  AUT_Tests.each{
+      def configuration = it.key 
+      def test_suit=it.value
+      def stepName = &quot;Running ${test_suit} test suite for ${configuration} configuration&quot;
+      stepsForParallel[stepName] = RunTestPerConfiguration(test_suit,configuration)
   }
   stepsForParallel[&apos;failFast&apos;] = false
   parallel stepsForParallel
