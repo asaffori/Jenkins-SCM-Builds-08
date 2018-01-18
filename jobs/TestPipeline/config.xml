@@ -36,26 +36,13 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>
-for (aSlave in hudson.model.Hudson.instance.slaves) {
-  // check if executor is dead
-  print (&quot;Reading executers of slave &quot;+ aSlave.getComputer().getName())
-  if (!aSlave.getComputer().isOffline()){
-    execList = aSlave.getComputer().getExecutors()     
-    print (&quot;Reading slave &quot;+ aSlave.getComputer().getName()+&quot; properties&quot;)
-    print (&quot;Number of executers: &quot; +aSlave.getComputer().getNumExecutors())
-    print (&quot;Number of occupied executers: &quot;+aSlave.getComputer().countBusy())
-    print (&quot;Number of free executers: &quot; + (aSlave.getComputer().getNumExecutors()-aSlave.getComputer().countBusy()))
-  }else 
-     print (&quot;Slave &quot;+ aSlave.getComputer().getName() + &quot; is offline.&quot;)
-}
-
 build_list = [&apos;test2&apos;, &apos;test3&apos;]
-        for(int i=0; i &lt; build_list.size(); i++) {
-          stage(build_list[i]){
-              print &quot;Running &quot; + build_list[i]
-              b=build job: build_list[i]
-          }
-        }</script>
+for(int i=0; i &lt; build_list.size(); i++) {
+  stage(build_list[i]){
+      print &quot;Running &quot; + build_list[i]
+      b=build job: build_list[i]
+  }
+}</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
