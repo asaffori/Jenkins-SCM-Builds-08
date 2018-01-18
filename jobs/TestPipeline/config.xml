@@ -38,7 +38,7 @@
     <script>
 def runTestPerConfiguration(test,configuration) {
     return {
-        def lrole = lgroup.and(Jenkins.instance.getLabel(configuration))
+        def lrole = Jenkins.instance.getLabel(configuration)
         def nodes = lrole.getNodes()
        // if (nodes.size() &gt; 0) {
          //   result[role] = nodes[0].getNodeName()
