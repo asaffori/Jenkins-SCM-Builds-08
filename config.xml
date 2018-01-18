@@ -74,6 +74,7 @@
     <permission>hudson.model.Hudson.Read:anonymous</permission>
     <permission>hudson.model.Hudson.Read:asaffori</permission>
     <permission>hudson.model.Hudson.Read:cawang</permission>
+    <permission>hudson.model.Hudson.Read:Gidon.Appel</permission>
     <permission>hudson.model.Hudson.Read:lhou</permission>
     <permission>hudson.model.Hudson.Read:omdbuild</permission>
     <permission>hudson.model.Hudson.Read:omdbuildchn</permission>
