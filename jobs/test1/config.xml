@@ -65,7 +65,7 @@ Manual Installation instructions:&lt;br&gt;
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>SCM-Builds-05</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
