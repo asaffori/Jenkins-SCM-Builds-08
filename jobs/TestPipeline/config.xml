@@ -38,7 +38,12 @@
     <script>
 def runTestPerConfiguration(test,configuration) {
     return {
-        node (&apos;master&apos;) { 
+        def lrole = lgroup.and(Jenkins.instance.getLabel(configuration))
+        def nodes = lrole.getNodes()
+       // if (nodes.size() &gt; 0) {
+         //   result[role] = nodes[0].getNodeName()
+        //}
+        node (nodes[0].getNodeName()) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . . . . . &quot;+ configuration
         build job:&apos;test1&apos; , parameters: [[$class: &apos;LabelParameterValue&apos;, name: &apos;node&apos;, label: configuration]]
