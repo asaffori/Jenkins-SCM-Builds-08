@@ -38,13 +38,26 @@
     <script>
 def runTestPerConfiguration(test,configuration) {
     return {
-        def lrole = Jenkins.instance.getLabel(configuration)
-        def nodes = lrole.getNodes()
+        def labelNodes = Jenkins.instance.getLabel(configuration)
+        def nodes = labelNodes.getNodes()
+        def nodeName=null
        // if (nodes.size() &gt; 0) {
          //   result[role] = nodes[0].getNodeName()
         //}
-        print (&quot;node=&quot;+nodes[0].getNodeName())
-        node (nodes[0].getNodeName()) { 
+        while(nodeName==null){
+         for (node in nodes) {
+            if (!nodeName)
+                break
+            print (&quot;node=&quot;+node.getNodeName())
+             if (!node.getComputer().isOffline()){ 
+                if (node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0){
+                    set nodeName=node.getNodeName()
+                    continue;
+                }
+             }
+         }
+        }
+        node (nodeName) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . . . . . &quot;+ configuration
         build job:&apos;test1&apos; , parameters: [[$class: &apos;LabelParameterValue&apos;, name: &apos;node&apos;, label: configuration]]
