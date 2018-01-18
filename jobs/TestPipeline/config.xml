@@ -38,9 +38,10 @@
     <script>
 def runTestPerConfiguration(test,configuration) {
     return {
-        label (&apos;master&apos;) { 
-        wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
-        print test +&quot; . . . . . &quot;+ configuration
+        node{
+            label (&apos;master&apos;)
+            wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
+            print test +&quot; . . . . . &quot;+ configuration
         } } // ts / node
     } // closure
 } // runTestPerConfiguration
