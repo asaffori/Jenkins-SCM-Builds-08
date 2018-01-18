@@ -9,7 +9,7 @@
   </disabledAdministrativeMonitors>
   <version>2.89.2</version>
   <numExecutors>11</numExecutors>
-  <mode>NORMAL</mode>
+  <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.ProjectMatrixAuthorizationStrategy">
     <permission>com.cloudbees.jenkins.support.SupportPlugin.DownloadBundle:agzhan</permission>
