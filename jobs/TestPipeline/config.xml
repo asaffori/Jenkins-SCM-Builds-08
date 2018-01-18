@@ -36,13 +36,26 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>
-build_list = [&apos;test2&apos;, &apos;test3&apos;]
-for(int i=0; i &lt; build_list.size(); i++) {
-  stage(build_list[i]){
-      print &quot;Running &quot; + build_list[i]
-      b=build job: build_list[i]
+def transformDeployBuildStep(OS) {
+    return {
+        node (&apos;master&apos;) { 
+        wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
+        print OS
+        } } // ts / node
+    } // closure
+} // transformDeployBuildStep
+
+stage(&quot;Yum Deploy&quot;) {
+  TargetOSs=[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]
+  stepsForParallel = [:]
+  for (int i = 0; i &lt; TargetOSs.size(); i++) {
+      def s = TargetOSs.get(i)
+      def stepName = &quot;CentOS ${s} Deployment&quot;
+      stepsForParallel[stepName] = transformDeployBuildStep(s)
   }
-}</script>
+  stepsForParallel[&apos;failFast&apos;] = false
+  parallel stepsForParallel
+} // stage</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
