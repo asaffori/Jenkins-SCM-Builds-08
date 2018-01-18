@@ -48,9 +48,11 @@ for (aSlave in hudson.model.Hudson.instance.slaves) {
   }else 
      print (&quot;Slave &quot;+ aSlave.getComputer().getName() + &quot; is offline.&quot;)
 }
+
 build_list = [&apos;test1&apos;, &apos;test2&apos;, &apos;test3&apos;]
         for(int i=0; i &lt; build_list.size(); i++) {
           stage(build_list[i]){
+              print &quot;Running &quot; + build_list[i]
                build job: build_list[i], propagate: false
           }
         }</script>
