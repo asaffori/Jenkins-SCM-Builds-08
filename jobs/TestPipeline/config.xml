@@ -38,7 +38,6 @@
     <script>
 def runTestPerConfiguration(test,configuration) {
     return {
-        static{
         print 00
         def labelNodes = Jenkins.instance.getLabel(configuration)
         def nodes = labelNodes.getNodes()
@@ -72,7 +71,7 @@ def runTestPerConfiguration(test,configuration) {
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . . . . . &quot;+ configuration
         build job:test , parameters: [[$class: &apos;LabelParameterValue&apos;, name: &apos;node&apos;, label: configuration]]
-        } }} // ts / node
+        }} // ts / node
     } // closure
 } // runTestPerConfiguration
 
