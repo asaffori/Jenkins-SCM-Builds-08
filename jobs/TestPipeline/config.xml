@@ -46,7 +46,7 @@
        // if (nodes.size() &gt; 0) {
          //   result[role] = nodes[0].getNodeName()
         //}
-        synchronized {
+        synchronized (lock) {
         while(nodeName==null){
             print 22
          for (node in nodes) {
