@@ -75,8 +75,9 @@ def runTestPerConfiguration(test,configuration) {
     } // closure
 } // runTestPerConfiguration
 
-stage(&quot;Run ATE tests&quot;) {
     agent any
+stage(&quot;Run ATE tests&quot;) {
+
   AUT_Tests=[&apos;test1&apos;:&apos;Matlab&apos;,&apos;test2&apos;:&apos;Matlab&apos;,&apos;test3&apos;:&apos;Matlab&apos;]
   stepsForParallel = [:]
   AUT_Tests.each{
