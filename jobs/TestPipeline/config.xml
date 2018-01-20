@@ -71,7 +71,7 @@ def runTestPerConfiguration(test,configuration) {
         node (nodeName) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . . . . . &quot;+ configuration
-        build job:&apos;test1&apos; , parameters: [[$class: &apos;LabelParameterValue&apos;, name: &apos;node&apos;, label: configuration]]
+        build job:test , parameters: [[$class: &apos;LabelParameterValue&apos;, name: &apos;node&apos;, label: configuration]]
         } } // ts / node
     } // closure
 } // runTestPerConfiguration
