@@ -35,8 +35,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>static{
-def runTestPerConfiguration(test,configuration) {
+    <script>def runTestPerConfiguration(test,configuration) {
     return {
         print 00
         def labelNodes = Jenkins.instance.getLabel(configuration)
@@ -74,7 +73,7 @@ def runTestPerConfiguration(test,configuration) {
         }} // ts / node
     } // closure
 } // runTestPerConfiguration
-}
+
 node (&apos;master&apos;) {
 stage(&quot;Run ATE tests&quot;) {
 
