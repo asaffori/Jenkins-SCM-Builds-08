@@ -36,7 +36,7 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>
-def runTestPerConfiguration(test,configuration) {
+def static runTestPerConfiguration(test,configuration) {
     return {
         print 00
         def labelNodes = Jenkins.instance.getLabel(configuration)
