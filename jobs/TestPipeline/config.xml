@@ -37,7 +37,7 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>
 def runTestPerConfiguration(test,configuration) {
-
+    return {
         print 00
         def labelNodes = Jenkins.instance.getLabel(configuration)
         def nodes = labelNodes.getNodes()
@@ -67,7 +67,6 @@ def runTestPerConfiguration(test,configuration) {
          }
         }
         print 66
-    return {
         node (nodeName) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . . . . . &quot;+ configuration
