@@ -35,7 +35,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>agent any
+    <script>
 def runTestPerConfiguration(test,configuration) {
     return {
         print 00
@@ -76,6 +76,7 @@ def runTestPerConfiguration(test,configuration) {
 } // runTestPerConfiguration
 
 stage(&quot;Run ATE tests&quot;) {
+    agent any
   AUT_Tests=[&apos;test1&apos;:&apos;Matlab&apos;,&apos;test2&apos;:&apos;Matlab&apos;,&apos;test3&apos;:&apos;Matlab&apos;]
   stepsForParallel = [:]
   AUT_Tests.each{
