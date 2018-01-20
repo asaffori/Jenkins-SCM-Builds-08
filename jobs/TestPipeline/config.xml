@@ -37,6 +37,7 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>def runTestPerConfiguration(test,configuration) {
     return {
+        
         print 00
         def labelNodes = Jenkins.instance.getLabel(configuration)
         def nodes = labelNodes.getNodes()
@@ -45,6 +46,7 @@
        // if (nodes.size() &gt; 0) {
          //   result[role] = nodes[0].getNodeName()
         //}
+        synchronized (lock) {
         while(nodeName==null){
             print 22
          for (node in nodes) {
@@ -70,7 +72,7 @@
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . . . . . &quot;+ configuration
         build job:test , parameters: [[$class: &apos;LabelParameterValue&apos;, name: &apos;node&apos;, label: configuration]]
-        }} // ts / node
+        }} }// ts / node
     } // closure
 } // runTestPerConfiguration
 
