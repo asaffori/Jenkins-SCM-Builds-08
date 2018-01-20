@@ -59,7 +59,7 @@ def runTestPerConfiguration(test,configuration) {
                  print node.getComputer().getNumExecutors()
                  print node.getComputer().countBusy()
                 if (node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0){
-                    print 55
+                    print 55 +node.getNodeName()
                     nodeName=node.getNodeName()
                     continue;
                 }
