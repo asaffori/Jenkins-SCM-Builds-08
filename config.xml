@@ -263,6 +263,7 @@
         <string>DiskspaceAlertNew</string>
         <string>OMD-Archer-Build</string>
         <string>RDM_NuArcher_CI_Flow</string>
+        <string>testPipeline1</string>
       </jobNames>
       <jobFilters/>
       <columns>
