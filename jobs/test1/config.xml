@@ -63,7 +63,7 @@
   <concurrentBuild>true</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>ping 1.0.0.1 -n 1 -w 30000</command>
+      <command>ping localhost -n 1 -w 30000</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
