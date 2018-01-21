@@ -62,7 +62,7 @@ def buildJobWithParams(def AUT_Tests, Map results) {
         
     print &quot;bbbb &quot;+it.key
      def jobName=it.key
-     def location=it.value
+     def location=nodeName
     branches[&quot;Test-&quot;+jobName] = {
         print &quot;location=&quot;+location
         print &quot;jobName=&quot;+jobName
