@@ -37,7 +37,7 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>def synchronized runTestPerConfiguration(test,configuration) {
     return {
-        
+        wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print 00
         def labelNodes = Jenkins.instance.getLabel(configuration)
         def nodes = labelNodes.getNodes()
@@ -71,7 +71,7 @@
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . . . . . &quot;+ configuration
         build job:&apos;test1&apos; , parameters: [[$class: &apos;LabelParameterValue&apos;, name: &apos;node&apos;, label: configuration],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: test]]
-        }} // ts / node
+        }}} // ts / node
     } // closure
 } // runTestPerConfiguration
 
