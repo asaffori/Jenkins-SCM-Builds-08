@@ -70,7 +70,7 @@
         node (nodeName) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . .test1 . . . &quot;+ configuration
-        build job:&apos;test1&apos; , parameters: [[$class: &apos;LabelParameterValue&apos;, name: &apos;node&apos;, label: configuration],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: test]]
+        build job:&apos;test1&apos; , parameters: [[$class: &apos;NodeParameterDefinition&apos;, name: &apos;node&apos;, label: configuration],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: test]]
         }}} // ts / node
     } // closure
 } // runTestPerConfiguration
