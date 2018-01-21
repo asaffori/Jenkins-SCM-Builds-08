@@ -49,7 +49,7 @@ def buildJobWithParams(def AUT_Tests, Map results) {
         if (!node.getComputer().isOffline()){ 
                  print node.getComputer().getNumExecutors()
                  print node.getComputer().countBusy()
-                if ((node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0) &amp;&amp; !(node.getName() in allocated_nodes)){
+                if ((node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0) &amp;&amp; !(node.getNodeName() in allocated_nodes)){
                     nodeName=node.getNodeName()
                     allocated_nodes &lt;&lt; nodeName
                     break;
