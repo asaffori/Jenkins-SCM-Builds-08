@@ -60,7 +60,7 @@ def buildJobWithParams(def AUT_Tests, Map results) {
         if (nodeName == null)
             nodeName=nodes[0].getNodeName;
         
-    print &quot;${it.key}&quot;
+    print &quot;bbbb &quot;+it.key
     branches[&quot;Test-${it.key}&quot;] = {
        def jobBuild = build job: it.key, propagate: false, parameters: [[$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$it.value&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: &apos;adham&apos;]]
        def jobResult = jobBuild.getResult()
