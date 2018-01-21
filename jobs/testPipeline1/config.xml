@@ -78,7 +78,7 @@ stage(&apos;Run integration tests&apos;) {
             parallel job_branch
        //   }
 }</script>
-    <sandbox>true</sandbox>
+    <sandbox>false</sandbox>
   </definition>
   <triggers/>
   <disabled>false</disabled>
