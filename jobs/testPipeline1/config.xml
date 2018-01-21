@@ -58,7 +58,7 @@ def buildJobWithParams(def AUT_Tests, Map results) {
              }
     }
         if (nodeName == null)
-            nodeName=nodes[0].getNodeName;
+            nodeName=nodes[0].getNodeName();
         
     print &quot;bbbb &quot;+it.key
      def jobName=it.key
