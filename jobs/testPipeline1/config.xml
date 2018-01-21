@@ -65,7 +65,7 @@ def buildJobWithParams(def AUT_Tests, Map results) {
        def jobResult = jobBuild.getResult()
        jobBuild=null
        echo &quot;Build of &apos;${it.key}&apos; returned result: ${jobResult}&quot;
-       results[job] = jobResult
+       results[it.key] = jobResult
     }
   }    
   return branches
