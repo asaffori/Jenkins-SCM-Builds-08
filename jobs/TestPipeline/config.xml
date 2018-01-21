@@ -78,7 +78,7 @@
 node (&apos;master&apos;) {
 stage(&quot;Run ATE tests&quot;) {
 
-  AUT_Tests=[&apos;test1&apos;:&apos;Matlab&apos;,&apos;test2&apos;:&apos;Matlab&apos;,&apos;test3&apos;:&apos;Matlab&apos;]
+  AUT_Tests=[&apos;test1&apos;:&apos;pipe&apos;,&apos;test2&apos;:&apos;pipe&apos;,&apos;test3&apos;:&apos;pipe&apos;]
   stepsForParallel = [:]
   AUT_Tests.each{
       def test_suit=it.key
