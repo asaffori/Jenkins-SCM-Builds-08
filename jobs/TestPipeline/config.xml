@@ -69,7 +69,7 @@
         print 66
         node (nodeName) { 
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
-        print test +&quot; . . . . . &quot;+ configuration
+        print test +&quot; . .test1 . . . &quot;+ configuration
         build job:&apos;test1&apos; , parameters: [[$class: &apos;LabelParameterValue&apos;, name: &apos;node&apos;, label: configuration],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: test]]
         }}} // ts / node
     } // closure
