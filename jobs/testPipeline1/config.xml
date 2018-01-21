@@ -56,8 +56,8 @@ def buildJobWithParams(def AUT_Tests, Map results) {
                 }
              }
     }
-    if (nodeName == null)
-        nodeName=nodes[0].getNodeName;
+        if (nodeName == null)
+            nodeName=nodes[0].getNodeName;
         
     print &quot;${it.key}&quot;
     branches[&quot;Test-${it.key}&quot;] = {
@@ -75,7 +75,7 @@ stage(&apos;Run integration tests&apos;) {
      // steps {
         AUT_Tests=[&apos;test1&apos;:&apos;pipe&apos;,&apos;test2&apos;:&apos;pipe&apos;,&apos;test3&apos;:&apos;pipe&apos;]
             def job_branch = buildJobWithParams(AUT_Tests, jobResults)
-            print job_branch
+            print &quot;aaaa&quot;+job_branch
             parallel job_branch
        //   }
 }</script>
