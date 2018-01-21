@@ -36,6 +36,7 @@
     <script>Map jobResults = [:]
 
 Boolean failedJobs = false
+@NonCPS
 def buildJobWithParams(def AUT_Tests, Map results) {
   def branches = [:] 
   def allocated_nodes = []
