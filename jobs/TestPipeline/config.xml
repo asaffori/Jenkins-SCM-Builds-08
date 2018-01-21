@@ -35,7 +35,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>def runTestPerConfiguration(test,configuration) {
+    <script>def synchronized runTestPerConfiguration(test,configuration) {
     return {
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print 00
