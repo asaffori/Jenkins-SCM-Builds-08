@@ -1,7 +1,57 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.16">
+  <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
+    <script>Map jobResults = [:]
+
+Boolean failedJobs = false
+def buildJobWithParams(def AUT_Tests, Map results) {
+  def branches = [:]    
+  AUT_Tests.each
+  {
+    print test
+    branches[&quot;Test-${it.key}&quot;] = {
+       def jobBuild = build job: it.key, propagate: false, parameters: [[$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$it.value&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: &apos;adham&apos;]]
+       def jobResult = jobBuild.getResult()
+       echo &quot;Build of &apos;${it.key}&apos; returned result: ${jobResult}&quot;
+       results[job] = jobResult
+    }
+  }    
+  return branches
+}
+
+stage(&apos;Run integration tests&apos;) {
+      steps {
+            def job_branch = buildJobWithParams([&apos;test1&apos;:&apos;pipe&apos;,&apos;test2&apos;:&apos;pipe&apos;,&apos;test3&apos;:&apos;pipe&apos;], jobResults)
+            print job_branch
+            parallel job_branch
+          }
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
   <triggers/>
   <disabled>false</disabled>
 </flow-definition>
