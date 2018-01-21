@@ -32,7 +32,7 @@ Must be in XX.YY.ZZ.VVVVV format.</description>
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-372711412722652</randomName>
-          <visibleItemCount>1</visibleItemCount>
+          <visibleItemCount>0</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
