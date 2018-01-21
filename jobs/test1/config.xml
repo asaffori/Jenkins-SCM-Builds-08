@@ -62,7 +62,8 @@
   <concurrentBuild>true</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>ping 1.0.0.1 -n 1 -w 30000 &gt; nul</command>
+      <command>ping 1.0.0.1 -n 1 -w 30000 &gt; nul&#xd;
+exit 0 </command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
