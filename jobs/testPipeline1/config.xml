@@ -66,15 +66,16 @@ def buildJobWithParams(def AUT_Tests, Map results) {
      def jobName=it.key
      def location=nodeName
      def jobBuild=[]
+     def jobResult=[]
     branches[&quot;Test-&quot;+jobName] = {
         print &quot;location=&quot;+location
         print &quot;jobName=&quot;+jobName
        jobBuild[jobName] = build job: jobName,  propagate: false,parameters: [[$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$location&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: &apos;adham&apos;]]
        print &quot;Job build&quot;+jobBuild[jobName]
-       def jobResult = jobBuild[jobName].getResult()
+       def jobResult[jobName] = jobBuild[jobName].getResult()
       // jobBuild=null
        echo &quot;Build of ${jobName} returned result: ${jobResult}&quot;
-       results[jobName] = jobResult
+       results[jobName] = jobResult[jobName]
        jobResult=null
     }
   }    
