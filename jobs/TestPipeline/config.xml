@@ -70,7 +70,8 @@
        // node (nodeName) { 
         //wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . .test1 . . . &quot;+ configuration
-        build job:&apos;test1&apos; , parameters: [[$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$nodeName&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: test]]
+        def status=build job:&apos;test1&apos; , parameters: [[$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$nodeName&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: test]]
+        print &quot;status=&quot;+status
         //}
         
     //}
