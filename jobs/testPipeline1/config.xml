@@ -41,7 +41,7 @@ def buildJobWithParams(def AUT_Tests, Map results) {
   def allocated_nodes = []
   AUT_Tests.each
   {
-    def labelNodes = Jenkins.instance.getLabel(configuration)
+    def labelNodes = Jenkins.instance.getLabel(it.value)
     def nodes = labelNodes.getNodes()
     def nodeName=null
     
