@@ -68,7 +68,7 @@ def buildJobWithParams(def AUT_Tests, Map results) {
     branches[&quot;Test-&quot;+jobName] = {
         print &quot;location=&quot;+location
         print &quot;jobName=&quot;+jobName
-       def jobBuild = build job: jobName, parameters: [[$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$location&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: &apos;adham&apos;]]
+       def jobBuild = build job: jobName,  propagate: false,parameters: [[$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$location&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: &apos;adham&apos;]]
        print &quot;Job build&quot;+jobBuild
        def jobResult = jobBuild.getResult()
        jobBuild=null
