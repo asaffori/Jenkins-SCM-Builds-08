@@ -70,7 +70,7 @@
        // node (nodeName) { 
         //wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
         print test +&quot; . .test1 . . . &quot;+ configuration
-        build job:&apos;test1&apos; , parameters: [[new org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterValue(&quot;TARGET_NODE&quot;, &quot;description&quot;, nodeName)],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: test]]
+        build job:&apos;test1&apos; , parameters: [[new org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterValue(&quot;node&quot;, &quot;description&quot;, nodeName)],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: test]]
         //}
         
     //}
