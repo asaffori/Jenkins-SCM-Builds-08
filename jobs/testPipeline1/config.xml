@@ -53,7 +53,8 @@ def buildJobWithParams(def AUT_Tests, Map results) {
 
 stage(&apos;Run integration tests&apos;) {
      // steps {
-            def job_branch = buildJobWithParams([&apos;test1&apos;:&apos;pipe&apos;,&apos;test2&apos;:&apos;pipe&apos;,&apos;test3&apos;:&apos;pipe&apos;], jobResults)
+        AUT_Tests=[&apos;test1&apos;:&apos;pipe&apos;,&apos;test2&apos;:&apos;pipe&apos;,&apos;test3&apos;:&apos;pipe&apos;]
+            def job_branch = buildJobWithParams(AUT_Tests, jobResults)
             print job_branch
             parallel job_branch
        //   }
