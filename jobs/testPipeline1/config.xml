@@ -70,8 +70,10 @@ def buildJobWithParams(def AUT_Tests, Map results) {
         print &quot;jobName=&quot;+jobName
        def jobBuild = build job: jobName, parameters: [[$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$location&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: &apos;adham&apos;]]
        def jobResult = jobBuild.getResult()
+       jobBuild=null
        echo &quot;Build of ${jobName} returned result: ${jobResult}&quot;
        results[jobName] = jobResult
+       jobResult=null
     }
   }    
   return branches
