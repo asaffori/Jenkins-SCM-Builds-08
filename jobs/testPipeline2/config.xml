@@ -33,8 +33,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>@NonCPS
-// in this array we&apos;ll place the jobs that we wish to run
+    <script>// in this array we&apos;ll place the jobs that we wish to run
 def branches = [:]
 
 //running the job 4 times concurrently
