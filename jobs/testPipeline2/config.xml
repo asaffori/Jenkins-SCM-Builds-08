@@ -35,52 +35,25 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>// in this array we&apos;ll place the jobs that we wish to run
 def branches = [:]
-
 //running the job 4 times concurrently
 //the dummy parameter is for preventing mutation of the parameter before the execution of the closure.
 //we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;
 //and jenkins will unite them intgetInstanceo a single run of the job
-
-//def labelNodes=getLabelNodes(&quot;pipe&quot;)
-  //def nodes = labelNodes.getNodes()
-def allocated_nodes=[]
-for (int i = 0; i &lt; 4; i++) {
+  AUT_Tests=[&apos;test1&apos;:&apos;pipe&apos;,&apos;test2&apos;:&apos;pipe&apos;,&apos;test3&apos;:&apos;pipe&apos;]
+for (int i = 0; i &lt; AUT_Tests.length(); i++) {
   def index = i //if we tried to use i below, it would equal 4 in each job execution.
   branches[&quot;branch${i}&quot;] = {
 //Parameters:
 //param1 : an example string parameter for the triggered job.
 //dummy: a parameter used to prevent triggering the job with the same parameters value.
 //this parameter has to accept a different value each time the job is triggered.
-    def nodeName=null
-
- /**   
-    for (node in nodes) {
-        if (!node.getComputer().isOffline()){ 
-                 print node.getComputer().getNumExecutors()
-                 print node.getComputer().countBusy()
-                if ((node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0) &amp;&amp; !(node.getNodeName() in allocated_nodes)){
-                    nodeName=node.getNodeName()
-                    allocated_nodes &lt;&lt; nodeName
-                    break;
-                }
-             }
-    }
-        if (nodeName == null)
-            nodeName=nodes[0].getNodeName();
-            
-
-**/
-    build job: &apos;test1&apos;, parameters: [
+    build job: AUT_Tests[i].key(), parameters: [
       string(name: &apos;name&apos;, value:&apos;test_param&apos;),
-      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;pipe&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
+      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [AUT_Tests[i].value], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
 }
 parallel branches
-
-@NonCPS
-def getLabelNodes(String label){
-    return Jenkins.getInstance().getLabel(label)
-}</script>
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
