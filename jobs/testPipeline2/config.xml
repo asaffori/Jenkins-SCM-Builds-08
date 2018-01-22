@@ -71,7 +71,7 @@ for (int i = 0; i &lt; 4; i++) {
 
     build job: &apos;test1&apos;, parameters: [
       string(name: &apos;name&apos;, value:&apos;test_param&apos;),
-      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$nodeName&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
+      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;pipe&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
 }
 parallel branches</script>
