@@ -128,7 +128,7 @@ AUT_Tests.tokenize(&apos;,&apos;).each{
 	  string(name: &apos;TestSuite&apos;, value:test_suite_name),
 	  string(name: &apos;TestSuitePath&apos;, value:test_suite_path),
 	  string(name: &apos;ATEBasePath&apos;, value:ate_base_path),
-	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${ate_controller_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]],
+	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${ate_controller_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
       [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;pipe&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
   i++
