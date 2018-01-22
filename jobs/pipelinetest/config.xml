@@ -36,6 +36,7 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>pipeline {
+    agent any
  parameters {
  text(name: &apos;tests&apos;, value: &apos;val&apos;)
  }
