@@ -34,7 +34,7 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>// in this array we&apos;ll place the jobs that we wish to run
-def branches = [:]
+def tests = [:]
 //running the job 4 times concurrently
 //the dummy parameter is for preventing mutation of the parameter before the execution of the closure.
 //we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;
@@ -46,20 +46,20 @@ AUT_Tests.each{
  //def index = i //if we tried to use i below, it would equal 4 in each job execution.
  print it.value
     print it.key
-  branches[&quot;branch${i}&quot;] = {
+  tests[&quot;test${i}&quot;] = {
 //Parameters:
 //param1 : an example string parameter for the triggered job.
 //dummy: a parameter used to prevent triggering the job with the same parameters value.
 //this parameter has to accept a different value each time the job is triggered.
-def value=it.value
-def jobname=it.key
-    build job:jobname,parameters: [
+//def value=it.value
+//def jobname=it.key
+    build job:it.key,parameters: [
       string(name: &apos;name&apos;, value:&apos;test_param&apos;),
-      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$value&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
+      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [it.value], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
   i++
 }
-parallel branches
+parallel tests
 </script>
     <sandbox>true</sandbox>
   </definition>
