@@ -33,13 +33,16 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>// in this array we&apos;ll place the jobs that we wish to run
+    <script>parameters {
+        string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &quot;TestsArray&quot;)
+    }
+// in this array we&apos;ll place the jobs that we wish to run
 def tests = [:]
 //running the job 4 times concurrently
 //the dummy parameter is for preventing mutation of the parameter before the execution of the closure.
 //we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;
 //and jenkins will unite them intgetInstanceo a single run of the job
-  AUT_Tests=[&apos;test1&apos;:&apos;pipe&apos;,&apos;test2&apos;:&apos;pipe&apos;,&apos;test3&apos;:&apos;pipe&apos;]
+  AUT_Tests=params.TestsArray
 //for (int i = 0; i &lt; AUT_Tests.size(); i++) {
 def i=0
 AUT_Tests.each{    
