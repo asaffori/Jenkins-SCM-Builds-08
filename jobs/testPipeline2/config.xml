@@ -40,7 +40,7 @@ def branches = [:]
 //we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;
 //and jenkins will unite them intgetInstanceo a single run of the job
   AUT_Tests=[&apos;test1&apos;:&apos;pipe&apos;,&apos;test2&apos;:&apos;pipe&apos;,&apos;test3&apos;:&apos;pipe&apos;]
-for (int i = 0; i &lt; 3; i++) {
+for (int i = 0; i &lt; AUT_Tests.size(); i++) {
   def index = i //if we tried to use i below, it would equal 4 in each job execution.
   branches[&quot;branch${i}&quot;] = {
 //Parameters:
