@@ -35,6 +35,18 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>pipeline {
 
+parameters {
+        string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
+    }
+    stages {
+        stage (&quot;Run tests&quot;){
+            steps{
+                runparalleltests(params.TestsArray)
+            }
+        }
+    }
+
+}
 // in this array we&apos;ll place the jobs that we wish to run
 def runparalleltests(AUT_Tests){
 def tests = [:]
@@ -65,20 +77,7 @@ AUT_Tests.each{
 }
 parallel tests
 }
-
-
-parameters {
-        string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
-    }
-    stages {
-        stage (&quot;Run tests&quot;){
-            steps{
-                runparalleltests(params.TestsArray)
-            }
-        }
-    }
-
-}</script>
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
