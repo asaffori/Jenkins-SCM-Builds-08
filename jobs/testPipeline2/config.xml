@@ -38,14 +38,18 @@
     
         string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
     }
+    stage{
+        runparalleltests(params.TestsArray)
+    }
 // in this array we&apos;ll place the jobs that we wish to run
+def runparalleltests(AUT_Tests){
 def tests = [:]
-print &quot;params.TestsArray&quot;+params.TestsArray
+//print &quot;params.TestsArray&quot;+params.TestsArray
 //running the job 4 times concurrently
 //the dummy parameter is for preventing mutation of the parameter before the execution of the closure.
 //we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;
 //and jenkins will unite them intgetInstanceo a single run of the job
-  AUT_Tests=(params.TestsArray).toMapString()
+  //AUT_Tests=(params.TestsArray).toMapString()
 //for (int i = 0; i &lt; AUT_Tests.size(); i++) {
 def i=0
 AUT_Tests.each{    
@@ -66,7 +70,7 @@ AUT_Tests.each{
   i++
 }
 parallel tests
-</script>
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
