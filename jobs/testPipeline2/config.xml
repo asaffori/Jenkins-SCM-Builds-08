@@ -22,6 +22,19 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -60,19 +73,6 @@
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -91,7 +91,6 @@ parameters {
         string(defaultValue: &quot;&quot;, description: &apos;What is the Archer build version you want to test? \n example: 17.12.00.20600&apos;, name: &apos;BUILD_VERSION&apos;)
         string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
         choice(choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;What is your build type?&apos;, name: &apos;BUILDTYPE&apos;)
-        choice(choices: &apos;TL\nA600\nA700&apos;, description: &apos;What is the tool type test will run for?&apos;, name: &apos;ToolType&apos;)
     }
 
     stages {
@@ -135,11 +134,12 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
                     testDetails = it.replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;).tokenize(&apos;,&apos;)
                     def test_suite_name = testDetails[0]
 					def test_suite_path = testDetails[1]
-					def ate_controller_engine_label = testDetails[2]
-					def simulator_engine_label = testDetails[3]
-					def base_image_path = testDetails[4]
-					def base_image = testDetails[5]
-					def ate_base_path = testDetails[6]
+					def tool_type = testDetails[2]
+					def ate_controller_engine_label = testDetails[3]
+					def simulator_engine_label = testDetails[4]
+					def base_image_path = testDetails[5]
+					def base_image = testDetails[6]
+					def ate_base_path = testDetails[7]
  //print it.value
     //print it.key
     //print (&quot;node=&quot;+getNodePerLabel(&quot;pipe&quot;))
@@ -153,7 +153,7 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
     build job:&quot;Auto Deploy Sanity&quot;,parameters: [
       string(name: &apos;BUILD_VERSION&apos;, value:params.BUILD_VERSION),
 	  string(name: &apos;BaseImage&apos;, value:base_image),
-	  string(name:&apos;ToolType&apos;,value:params.ToolType),
+	  string(name:&apos;ToolType&apos;,value:toolType),
 	  string(name:&apos;BUILDTYPE&apos;,value:params.BUILDTYPE),
 	  string(name: &apos;BaseImagePath&apos;, value:base_image_path),
 	  string(name: &apos;TestSuite&apos;, value:test_suite_name),
