@@ -53,7 +53,7 @@ parameters {
                 script{
                 print params.TestsArray
                 def stringMap= params.TestsArray.replaceAll(&apos;\\[|\\]&apos;,&apos;&apos;)
-                def newMap    newMap = [:]
+                def newMap = [:]
                 stringMap.tokenize(&apos;,&apos;).each {
                 kvTuple = it.tokenize(&apos;:&apos;)
                 newMap[kvTuple[0]] = kvTuple[1]
