@@ -48,10 +48,12 @@ parameters {
     }
     stages {
         stage (&quot;Run tests&quot;){
+            def stringMap
+            def newMap
             steps{
                 print params.TestsArray
-                def stringMap = params.TestsArray.replaceAll(&apos;\\[|\\]&apos;,&apos;&apos;)
-                def newMap = [:]
+                stringMap= params.TestsArray.replaceAll(&apos;\\[|\\]&apos;,&apos;&apos;)
+                newMap = [:]
                 stringMap.tokenize(&apos;,&apos;).each {
                 kvTuple = it.tokenize(&apos;:&apos;)
                 newMap[kvTuple[0]] = kvTuple[1]
