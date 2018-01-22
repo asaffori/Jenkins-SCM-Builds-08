@@ -49,7 +49,7 @@ for (int i = 0; i &lt; AUT_Tests.size(); i++) {
 //this parameter has to accept a different value each time the job is triggered.
 def value=$AUT_Tests[i].value
 def jobname=AUT_Tests[i].key
-    build job:jobname  parameters: [
+    build job:jobname,parameters: [
       string(name: &apos;name&apos;, value:&apos;test_param&apos;),
       [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$value&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
