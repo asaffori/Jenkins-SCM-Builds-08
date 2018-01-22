@@ -89,7 +89,7 @@ pipeline {
 agent { node { label &apos;master&apos; } }
 parameters {
         string(defaultValue: &quot;&quot;, description: &apos;What is the Archer build version you want to test? \n example: 17.12.00.20600&apos;, name: &apos;BUILD_VERSION&apos;)
-        string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
+        text(description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
         choice(choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;What is your build type?&apos;, name: &apos;BUILDTYPE&apos;)
     }
 
@@ -98,8 +98,8 @@ parameters {
             
             steps{
                 script{
-                print params.TestsArray
-                def stringMap= params.TestsArray.replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;)
+                //print params.TestsArrayreplaceAll(&quot;[\n\r]&quot;, &quot;&quot;)
+                def stringMap= params.TestsArray.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;).replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;)
                 //def newMap = [:]
                 /**
 				stringMap.tokenize(&apos;,&apos;).each {
