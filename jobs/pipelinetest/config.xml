@@ -39,7 +39,13 @@
  parameters {
  TextParameter(name: &apos;tests&apos;, default:&apos;fdsfdsf&apos;,value: &apos;val&apos;)
  }
-print &quot;11&quot;+params.val+&quot;22&quot;
+ stages{
+     stage &quot;dummy&quot;{
+        steps{
+            print &quot;11&quot;+params.val+&quot;22&quot;
+        }
+     }
+ }
 }</script>
     <sandbox>true</sandbox>
   </definition>
