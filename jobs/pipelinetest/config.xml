@@ -19,13 +19,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.TextParameterDefinition>
-          <name>tests</name>
-        </hudson.model.TextParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -58,7 +51,7 @@ agent { node { label &apos;master&apos; } }
  stages {
      stage (&quot;dummy&quot;) {
         steps{
-            print &quot;11&quot;+params.tests+&quot;22&quot;
+            print &quot;11&quot;+params.tests.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;)+&quot;22&quot;
         }
      }
  }
