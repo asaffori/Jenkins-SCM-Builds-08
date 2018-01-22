@@ -53,15 +53,13 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>
+    <script>allocated_nodes=[]
 pipeline {
 agent { node { label &apos;master&apos; } }
 parameters {
         string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
     }
-    environment{
-        def allocated_nodes=[]
-    }
+
     stages {
         stage (&quot;Run tests&quot;){
             
