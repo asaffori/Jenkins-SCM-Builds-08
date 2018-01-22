@@ -41,7 +41,7 @@
  text(name: &apos;tests&apos;)
  }
  stages {
-     stage &quot;dummy&quot;{
+     stage &quot;dummy&quot; {
         steps{
             print &quot;11&quot;+params.tests+&quot;22&quot;
         }
