@@ -70,13 +70,15 @@ parameters {
                 script{
                 print params.TestsArray
                 def stringMap= params.TestsArray.replaceAll(&apos;\\[|\\]&apos;,&apos;&apos;)
-                def newMap = [:]
-                stringMap.tokenize(&apos;,&apos;).each {
+                //def newMap = [:]
+                /**
+				stringMap.tokenize(&apos;,&apos;).each {
                     kvTuple = it.tokenize(&apos;:&apos;)
                     newMap[kvTuple[0]] = kvTuple[1]
                 }
                 print &quot;newMap=&quot;+newMap
-                runparalleltests(newMap)
+				**/
+                runparalleltests(stringMap)
                 }
                 
             }
@@ -95,10 +97,20 @@ def tests = [:]
   //AUT_Tests=(params.TestsArray).toMapString()
 //for (int i = 0; i &lt; AUT_Tests.size(); i++) {
 def i=0
-AUT_Tests.each{    
+                }
+AUT_Tests.tokenize(&apos;,&apos;).each{    
  //def index = i //if we tried to use i below, it would equal 4 in each job execution.
- print it.value
-    print it.key
+ 
+                    testDetails = it.tokenize(&apos;:&apos;)
+                    def test_suite_name = testDetails[0]
+					def test_suite_path = testDetails[1]
+					def ate_controller_engine_label = testDetails[2]
+					def simulator_engine_label = testDetails[3]
+					def base_image_path = testDetails[4]
+					def base_image = testDetails[5]
+					def ate_base_path = testDetails[6]
+ //print it.value
+    //print it.key
     //print (&quot;node=&quot;+getNodePerLabel(&quot;pipe&quot;))
   tests[&quot;test${i}&quot;] = {
 //Parameters:
@@ -108,8 +120,16 @@ AUT_Tests.each{
 //def value=it.value
 //def jobname=it.key
     build job:&quot;Auto Deploy Sanity&quot;,parameters: [
-      string(name: &apos;name&apos;, value:&apos;test_param&apos;),
-      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;${getNodePerLabel(&quot;pipe&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
+      string(name: &apos;BUILD_VERSION&apos;, value:params.BUILD_VERSION),
+	  string(name: &apos;BaseImage&apos;, value:base_image),
+	  choice(name:&apos;ToolType&apos;,params.ToolType),
+	  choice(name:&apos;BUILDTYPE&apos;,params.BUILDTYPE),
+	  string(name: &apos;BaseImagePath&apos;, value:base_image_path),
+	  string(name: &apos;TestSuite&apos;, value:test_suite_name),
+	  string(name: &apos;TestSuitePath&apos;, value:test_suite_path),
+	  string(name: &apos;ATEBasePath&apos;, value:ate_base_path),
+	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${ate_controller_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]],
+      [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;pipe&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
   i++
 }
