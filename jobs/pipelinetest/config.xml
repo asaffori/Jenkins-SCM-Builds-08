@@ -45,9 +45,9 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script> parameters {
- text(name: &apos;tests&apos;, value: &apos;value&apos;)
+ TextParameter(name: &apos;tests&apos;, default:&apos;fdsfdsf&apos;,value: &apos;val&apos;)
  }
-print &quot;11&quot;+params.value+&quot;22&quot;</script>
+print &quot;11&quot;+params.val+&quot;22&quot;</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
