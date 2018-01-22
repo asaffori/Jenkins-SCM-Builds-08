@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.16">
+  <actions>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.3.5">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins/testPipeline2</mappedUrl>
+        <modelObject class="flow-definition" reference="../../../.."/>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
+  </actions>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -42,7 +50,7 @@ for (int i = 0; i &lt; 4; i++) {
 //       this parameter has to accept a different value each time the job is triggered.
     build job: &apos;test1&apos;, parameters: [
       string(name: &apos;name&apos;, value:&apos;test_param&apos;),
-      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;scm-builds-01&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
+      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;master&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
 }
 parallel branches</script>
