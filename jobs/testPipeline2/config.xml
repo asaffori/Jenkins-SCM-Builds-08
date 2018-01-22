@@ -49,7 +49,7 @@ parameters {
     stages {
         stage (&quot;Run tests&quot;){
             //steps{
-                print params.TestsArray
+                //print params.TestsArray
                 def stringMap = params.TestsArray.replaceAll(&apos;\\[|\\]&apos;,&apos;&apos;)
                 def newMap = [:]
                 stringMap.tokenize(&apos;,&apos;).each {
