@@ -80,7 +80,6 @@ parallel branches
 @NonCPS
 def getLabelNodes(String label){
     return Jenkins.getInstance().getLabel(label)
-}
 }</script>
     <sandbox>true</sandbox>
   </definition>
