@@ -1,7 +1,53 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.16">
+  <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
+    <script>// in this array we&apos;ll place the jobs that we wish to run
+def branches = [:]
+
+//running the job 4 times concurrently
+//the dummy parameter is for preventing mutation of the parameter before the execution of the closure.
+//we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;
+//and jenkins will unite them into a single run of the job
+
+for (int i = 0; i &lt; 4; i++) {
+  def index = i //if we tried to use i below, it would equal 4 in each job execution.
+  branches[&quot;branch${i}&quot;] = {
+//Parameters:
+//param1 : an example string parameter for the triggered job.
+//dummy: a parameter used to prevent triggering the job with the same parameters value.
+//       this parameter has to accept a different value each time the job is triggered.
+    build job: &apos;test1&apos;, parameters: [
+      string(name: &apos;name&apos;, value:&apos;test_param&apos;),
+      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;scm-builds-01&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
+  }
+}
+parallel branches</script>
+    <sandbox>true</sandbox>
+  </definition>
   <triggers/>
   <disabled>false</disabled>
 </flow-definition>
