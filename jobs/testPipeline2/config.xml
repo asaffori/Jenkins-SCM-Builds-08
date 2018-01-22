@@ -22,44 +22,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>BUILD_VERSION</name>
-          <description>What is the Archer build version you want to test? 
- example: 17.12.00.20600</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>TestsArray</name>
-          <description>What tests needs to run and in which confgurations? 
- example: [test1:pipe,test2:pipe,test3:pipe]</description>
-          <defaultValue>[]</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDTYPE</name>
-          <description>What is your build type?</description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Tasks</string>
-              <string>Formal</string>
-              <string>Scheduled</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>ToolType</name>
-          <description>What is the tool type test will run for?</description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>TL</string>
-              <string>A600</string>
-              <string>A700</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -73,6 +35,16 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>TestsArray</name>
+          <description>What tests needs to run and in which confgurations? 
+ example: [test1:pipe,test2:pipe,test3:pipe]</description>
+          <defaultValue>[]</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -132,7 +104,7 @@ def i=0
 AUT_Tests.tokenize(&apos;;&apos;).each{    
  //def index = i //if we tried to use i below, it would equal 4 in each job execution.
  
-                    testDetails = it.tokenize(&apos;,&apos;)
+                    testDetails = it.replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;).tokenize(&apos;,&apos;)
                     def test_suite_name = testDetails[0]
 					def test_suite_path = testDetails[1]
 					def ate_controller_engine_label = testDetails[2]
