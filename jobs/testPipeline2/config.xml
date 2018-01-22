@@ -58,9 +58,9 @@ parameters {
                 kvTuple = it.tokenize(&apos;:&apos;)
                 newMap[kvTuple[0]] = kvTuple[1]
                 }
-            }
-                runparalleltests(newMap)
             
+                runparalleltests(newMap)
+            }
         }
     }
 
