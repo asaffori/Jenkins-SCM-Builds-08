@@ -40,6 +40,7 @@
     }
 // in this array we&apos;ll place the jobs that we wish to run
 def tests = [:]
+print &quot;params.TestsArray&quot;+params.TestsArray
 //running the job 4 times concurrently
 //the dummy parameter is for preventing mutation of the parameter before the execution of the closure.
 //we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;
