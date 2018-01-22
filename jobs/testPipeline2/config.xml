@@ -47,7 +47,7 @@ for (int i = 0; i &lt; AUT_Tests.size(); i++) {
 //param1 : an example string parameter for the triggered job.
 //dummy: a parameter used to prevent triggering the job with the same parameters value.
 //this parameter has to accept a different value each time the job is triggered.
-    build job: AUT_Tests[i].key(), parameters: [
+    build job: AUT_Tests[i].key parameters: [
       string(name: &apos;name&apos;, value:&apos;test_param&apos;),
       [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [AUT_Tests[i].value], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
