@@ -53,7 +53,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>@Field def allocated_nodes=[]
+    <script>def allocated_nodes=[]
 pipeline {
 agent { node { label &apos;master&apos; } }
 parameters {
