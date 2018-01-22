@@ -40,7 +40,9 @@ def branches = [:]
 //the dummy parameter is for preventing mutation of the parameter before the execution of the closure.
 //we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;
 //and jenkins will unite them into a single run of the job
-
+def labelNodes = Jenkins.instance.getLabel(it.value)
+    def nodes = labelNodes.getNodes()
+def allocated_nodes=[]
 for (int i = 0; i &lt; 4; i++) {
   def index = i //if we tried to use i below, it would equal 4 in each job execution.
   branches[&quot;branch${i}&quot;] = {
@@ -48,9 +50,28 @@ for (int i = 0; i &lt; 4; i++) {
 //param1 : an example string parameter for the triggered job.
 //dummy: a parameter used to prevent triggering the job with the same parameters value.
 //       this parameter has to accept a different value each time the job is triggered.
+    def nodeName=null
+
+    
+    for (node in nodes) {
+        if (!node.getComputer().isOffline()){ 
+                 print node.getComputer().getNumExecutors()
+                 print node.getComputer().countBusy()
+                if ((node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0) &amp;&amp; !(node.getNodeName() in allocated_nodes)){
+                    nodeName=node.getNodeName()
+                    allocated_nodes &lt;&lt; nodeName
+                    break;
+                }
+             }
+    }
+        if (nodeName == null)
+            nodeName=nodes[0].getNodeName();
+            
+
+
     build job: &apos;test1&apos;, parameters: [
       string(name: &apos;name&apos;, value:&apos;test_param&apos;),
-      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;master&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
+      [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$nodeName&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
 }
 parallel branches</script>
