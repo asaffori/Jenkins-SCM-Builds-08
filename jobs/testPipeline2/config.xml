@@ -14,7 +14,6 @@
       <parameters>
         <string>TestsArray</string>
         <string>BUILD_VERSION</string>
-        <string>ToolType</string>
         <string>BUILDTYPE</string>
       </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
