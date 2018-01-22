@@ -40,13 +40,13 @@
  parameters {
  text(name: &apos;tests&apos;)
  }
-// stages {
+ stages {
      stage &quot;dummy&quot;{
         steps{
             print &quot;11&quot;+params.tests+&quot;22&quot;
         }
      }
- //}
+ }
 }</script>
     <sandbox>true</sandbox>
   </definition>
