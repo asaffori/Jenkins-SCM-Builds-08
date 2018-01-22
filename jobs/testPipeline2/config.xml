@@ -38,8 +38,10 @@
     
         string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
     }
-    stage{
-        runparalleltests(params.TestsArray)
+    stages{
+        stage &quot;Run tests&quot;{
+            runparalleltests(params.TestsArray)
+        }
     }
 // in this array we&apos;ll place the jobs that we wish to run
 def runparalleltests(AUT_Tests){
