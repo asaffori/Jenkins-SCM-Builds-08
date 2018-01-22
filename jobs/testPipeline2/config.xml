@@ -19,16 +19,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>TestsArray</name>
-          <description>What tests needs to run and in which confgurations? 
- example: [test1:pipe,test2:pipe,test3:pipe]</description>
-          <defaultValue>[]</defaultValue>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -42,6 +32,16 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>TestsArray</name>
+          <description>What tests needs to run and in which confgurations? 
+ example: [test1:pipe,test2:pipe,test3:pipe]</description>
+          <defaultValue>[]</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -57,7 +57,10 @@
 pipeline {
 agent { node { label &apos;master&apos; } }
 parameters {
+        string(defaultValue: &quot;&quot;, description: &apos;What is the Archer build version you want to test? \n example: 17.12.00.20600&apos;, name: &apos;BUILD_VERSION&apos;)
         string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
+        choice(choices: &apos;US-EAST-1\nUS-WEST-2&apos;, description: &apos;What is your build type?&apos;, name: &apos;BUILDTYPE&apos;)
+        choice(choices: &apos;TL\nA600\nA700&apos;, description: &apos;What is the tool type test will run for?&apos;, name: &apos;ToolType&apos;)
     }
 
     stages {
@@ -104,7 +107,7 @@ AUT_Tests.each{
 //this parameter has to accept a different value each time the job is triggered.
 //def value=it.value
 //def jobname=it.key
-    build job:it.key,parameters: [
+    build job:&quot;Auto Deploy Sanity&quot;,parameters: [
       string(name: &apos;name&apos;, value:&apos;test_param&apos;),
       [$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;${getNodePerLabel(&quot;pipe&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
