@@ -40,7 +40,7 @@ def branches = [:]
 //the dummy parameter is for preventing mutation of the parameter before the execution of the closure.
 //we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;
 //and jenkins will unite them intgetInstanceo a single run of the job
-def labelNodes = Jenkins.getInstance().getLabel(&quot;pipe&quot;)
+@NonCPS def labelNodes = Jenkins.getInstance().getLabel(&quot;pipe&quot;)
 //  def nodes = labelNodes.getNodes()
 def allocated_nodes=[]
 for (int i = 0; i &lt; 4; i++) {
