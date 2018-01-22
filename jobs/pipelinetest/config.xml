@@ -47,7 +47,7 @@
     <script> parameters {
  text(name: &apos;tests&apos;, value: &apos;value&apos;)
  }
-print params.tests</script>
+print &quot;11&quot;+params.tests+&quot;22&quot;</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
