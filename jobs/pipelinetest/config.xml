@@ -35,10 +35,12 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script> parameters {
+    <script>pipeline {
+ parameters {
  TextParameter(name: &apos;tests&apos;, default:&apos;fdsfdsf&apos;,value: &apos;val&apos;)
  }
-print &quot;11&quot;+params.val+&quot;22&quot;</script>
+print &quot;11&quot;+params.val+&quot;22&quot;
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
