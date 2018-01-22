@@ -48,7 +48,7 @@ parameters {
     }
     stages {
         stage (&quot;Run tests&quot;){
-            steps{
+            //steps{
                 print params.TestsArray
                 def stringMap = params.TestsArray.replaceAll(&apos;\\[|\\]&apos;,&apos;&apos;)
                 def newMap = [:]
@@ -57,7 +57,7 @@ parameters {
                 newMap[kvTuple[0]] = kvTuple[1]
                 }
                 runparalleltests(newMap)
-            }
+            //}
         }
     }
 
