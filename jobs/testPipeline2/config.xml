@@ -36,6 +36,7 @@
     <script>parameters {
         string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &quot;TestsArray&quot;)
     }
+stages {    
 // in this array we&apos;ll place the jobs that we wish to run
 def tests = [:]
 //running the job 4 times concurrently
@@ -63,7 +64,7 @@ AUT_Tests.each{
   i++
 }
 parallel tests
-</script>
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
