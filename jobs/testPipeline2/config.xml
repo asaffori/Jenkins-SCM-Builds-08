@@ -44,6 +44,8 @@ def branches = [:]
 def i=0
 AUT_Tests.each{    
  //def index = i //if we tried to use i below, it would equal 4 in each job execution.
+ print AUT_Tests.value
+    print AUT_Tests.key
   branches[&quot;branch${i}&quot;] = {
 //Parameters:
 //param1 : an example string parameter for the triggered job.
