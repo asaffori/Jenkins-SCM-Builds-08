@@ -115,7 +115,7 @@ def allocated_nodes=[]
 
 @NonCPS
 def getNodePerLabel(String label){
-    def labelNodes=Jenkins.getInstance().getLabel(label))
+    def labelNodes=Jenkins.getInstance().getLabel(label)
     def nodes=labelNodes.getNodes()
     def nodeName=null
     for (node in nodes) {
