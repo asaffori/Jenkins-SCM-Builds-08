@@ -22,6 +22,19 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -60,19 +73,6 @@
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -160,7 +160,7 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
 	  string(name: &apos;TestSuitePath&apos;, value:test_suite_path),
 	  string(name: &apos;ATEBasePath&apos;, value:ate_base_path),
 	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${ate_controller_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
-      [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;pipe&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
+      [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;SimulatorEngine&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
   i++
 }
