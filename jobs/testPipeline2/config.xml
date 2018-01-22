@@ -34,11 +34,9 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>parameters {
-    
-    
         string(defaultValue: &quot;[]&quot;, description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
     }
-    stages{
+    stages {
         stage (&quot;Run tests&quot;){
             steps{
                 runparalleltests(params.TestsArray)
