@@ -19,16 +19,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>TestsArray</name>
-          <description>What tests needs to run and in which confgurations? 
- example: [test1:pipe,test2:pipe,test3:pipe]</description>
-          <defaultValue>[]</defaultValue>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -61,6 +51,7 @@ parameters {
             
             steps{
                 script{
+                def labelNodes=getLabelNodes(&quot;pipe&quot;)
                 print params.TestsArray
                 def stringMap= params.TestsArray.replaceAll(&apos;\\[|\\]&apos;,&apos;&apos;)
                 def newMap = [:]
@@ -106,6 +97,10 @@ AUT_Tests.each{
   i++
 }
 parallel tests
+}
+
+def getLabelNodes(String label){
+    return Jenkins.getInstance().getLabel(label)
 }
 </script>
     <sandbox>true</sandbox>
