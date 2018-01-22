@@ -63,6 +63,7 @@ parameters {
             
             steps{
                 script{
+                    getNodePerLabel(&quot;pipe&quot;)
                 print params.TestsArray
                 def stringMap= params.TestsArray.replaceAll(&apos;\\[|\\]&apos;,&apos;&apos;)
                 def newMap = [:]
@@ -109,6 +110,29 @@ AUT_Tests.each{
 }
 parallel tests
 }
+
+def allocated_nodes=[]
+
+@NonCPS
+def getNodePerLabel(String label){
+    def nodes=Jenkins.getInstance().getLabel(label).getNodes
+    def nodeName=null
+    for (node in nodes) {
+        if (!node.getComputer().isOffline()){ 
+                 print node.getComputer().getNumExecutors()
+                 print node.getComputer().countBusy()
+                if ((node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0) &amp;&amp; !(node.getNodeName() in allocated_nodes)){
+                    nodeName=node.getNodeName()
+                    allocated_nodes &lt;&lt; nodeName
+                    break;
+                }
+             }
+    }
+        if (nodeName == null)
+            nodeName=nodes[0].getNodeName();
+    return nodeName
+}
+
 </script>
     <sandbox>true</sandbox>
   </definition>
