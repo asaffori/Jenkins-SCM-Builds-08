@@ -88,7 +88,7 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
           <name>ReleaseBuildEngine</name>
           <description>The slave/node where the build was hosted</description>
           <allowedSlaves>
-            <string>master</string>
+            <string>ALL (no restriction)</string>
           </allowedSlaves>
           <defaultSlaves>
             <string>master</string>
