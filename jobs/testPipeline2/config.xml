@@ -61,7 +61,15 @@ ATEControllerMachineLabel:Jenkins label name for ATE controllers machines to let
 SimulatorEngineMachineLabel: Jenkins label name for simulator machines to let the mechanism select one&lt;BR&gt;
 BaseImagePath:Template image file location&lt;BR&gt;
 BaseImageName:Acronis template image to recover simulator machine from prior installation&lt;BR&gt;
-ATEScriptsPath:ATE execution scripts folder&lt;BR&gt;</description>
+ATEScriptsPath:ATE execution scripts folder&lt;BR&gt;
+&lt;BR&gt;
+&lt;BR&gt;
+Example:&lt;BR&gt;
+[&lt;BR&gt;
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,A700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];&lt;BR&gt;
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,A600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];&lt;BR&gt;
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]&lt;BR&gt;
+]&lt;BR&gt;</description>
           <defaultValue></defaultValue>
         </hudson.model.TextParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
