@@ -91,7 +91,7 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
             <string>ALL (no restriction)</string>
           </allowedSlaves>
           <defaultSlaves>
-            <string>master</string>
+            <string>SCM-Builds-01</string>
           </defaultSlaves>
           <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
           <allowMultiNodeSelection>false</allowMultiNodeSelection>
