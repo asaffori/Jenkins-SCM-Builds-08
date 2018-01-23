@@ -90,7 +90,7 @@
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-1396436508196432</randomName>
-          <visibleItemCount>1</visibleItemCount>
+          <visibleItemCount>0</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -104,7 +104,12 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
             </secureFallbackScript>
           </script>
           <projectName>BuildClosure-Flow</projectName>
-          <parameters class="linked-hash-map"/>
+          <parameters class="linked-hash-map">
+            <entry>
+              <string>BUILD_VERSION</string>
+              <string></string>
+            </entry>
+          </parameters>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -250,6 +255,10 @@ if (BuildAutoApproved != &quot;true&quot;) {
   <globalEnvVars>
     <entry>
       <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>DebugBuildEngine</string>
       <string></string>
     </entry>
     <entry>
