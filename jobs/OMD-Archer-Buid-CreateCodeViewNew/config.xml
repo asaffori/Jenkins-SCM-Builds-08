@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_VERSION</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <randomName>choice-parameter-1396436508196432</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.39">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.39">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>OMD-Archer-Buid-CreateCodeViewNew</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>BUILD_VERSION</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>true</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <hudson.model.StringParameterDefinition>
+          <name>WSName</name>
+          <description></description>
+          <defaultValue>omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>CodeViewLoadePath</name>
+          <description></description>
+          <defaultValue>E:\Views\OMD\OMD-UN_${MajorMinor_Ver}\UOMD_BLD_${BUILD_VERSION}_code</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>BuildAutoApproved</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <EnvInjectJobProperty plugin="envinject@1.90">
+      <info>
+        <propertiesFilePath>${TEMP}\WSName.${BUILD_NUMBER}</propertiesFilePath>
+        <scriptContent>FOR /F tokens^=2^ delims^=^&quot; %%X IN (&apos;c:\Progra~2\IBM\TeamConcertBuild\scmtools\eclipse\scm show attr -r http://clm.kla-tencor.com/ccm/  -u omdbuild -P &quot;Scm07&amp;&quot; --workspace %WSName%&apos;) DO (
+			echo WSName=%%X &gt; %TEMP%\WSName.%BUILD_NUMBER%
+			GOTO ENDLOOP
+		)
+:ENDLOOP</scriptContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>true</overrideBuildParameters>
+      <contributors/>
+    </EnvInjectJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
+    <overrideGlobal>false</overrideGlobal>
+    <timeout>0</timeout>
+    <buildType>
+      <value>buildWorkspace</value>
+      <buildWorkspace>${WSName}</buildWorkspace>
+      <loadDirectory></loadDirectory>
+      <clearLoadDirectory>true</clearLoadDirectory>
+      <createFoldersForComponents>true</createFoldersForComponents>
+      <acceptBeforeLoad>false</acceptBeforeLoad>
+      <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+      <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+      <customizedSnapshotName></customizedSnapshotName>
+      <loadPolicy>useComponentLoadConfig</loadPolicy>
+      <componentLoadConfig>loadAllComponents</componentLoadConfig>
+      <useDynamicLoadRules>false</useDynamicLoadRules>
+    </buildType>
+    <buildTypeStr>buildWorkspace</buildTypeStr>
+    <buildWorkspace>${WSName}</buildWorkspace>
+    <loadDirectory></loadDirectory>
+    <clearLoadDirectory>true</clearLoadDirectory>
+    <createFoldersForComponents>true</createFoldersForComponents>
+    <acceptBeforeLoad>false</acceptBeforeLoad>
+    <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+    <avoidUsingToolkit>false</avoidUsingToolkit>
+    <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+    <customizedSnapshotName></customizedSnapshotName>
+    <loadPolicy>useComponentLoadConfig</loadPolicy>
+    <componentLoadConfig>loadAllComponents</componentLoadConfig>
+    <useDynamicLoadRules>false</useDynamicLoadRules>
+  </scm>
+  <assignedNode>ISR1APPCC02_omdbuild</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>${CodeViewLoadePath}</customWorkspace>
+  <builders/>
+  <publishers>
+    <com.chikli.hudson.plugin.naginator.NaginatorPublisher plugin="naginator@1.17.2">
+      <regexpForRerun>()Expected content hash of</regexpForRerun>
+      <rerunIfUnstable>true</rerunIfUnstable>
+      <rerunMatrixPart>false</rerunMatrixPart>
+      <checkRegexp>false</checkRegexp>
+      <regexpForMatrixStrategy>TestParent</regexpForMatrixStrategy>
+      <delay class="com.chikli.hudson.plugin.naginator.FixedDelay">
+        <delay>10</delay>
+      </delay>
+      <maxSchedule>3</maxSchedule>
+    </com.chikli.hudson.plugin.naginator.NaginatorPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
+          <regexp></regexp>
+          <description>Generating CodeView for build ${BUILD_VERSION}</description>
+        </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
+</project>
