@@ -44,8 +44,10 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.TextParameterDefinition>
           <name>TestsArray</name>
-          <description>What tests needs to run and in which confgurations? 
- example: [test1:pipe,test2:pipe,test3:pipe]</description>
+          <description>What tests needs to run and in which confgurations? &lt;BR&gt;
+Test details are shared in arrays, seperated by comma. Test arrays are seperated by simicomma&lt;BR&gt;
+&lt;BR&gt;
+Example: [[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]]&lt;BR&gt;</description>
           <defaultValue></defaultValue>
         </hudson.model.TextParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
@@ -84,7 +86,7 @@ parameters {
     }
 
     stages {
-        stage (&quot;Run Tests&quot;){
+        stage (&quot;Run ATE Tests&quot;){
             
             steps{
                 script{
@@ -101,19 +103,12 @@ parameters {
 }
 // Run multiple ATE tests
 def runparalleltests(AUT_Tests){
-def tests = [:]
-//print &quot;params.TestsArray&quot;+params.TestsArray
-//running the job 4 times concurrently
-//the dummy parameter is for preventing mutation of the parameter before the execution of the closure.
-//we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;
-//and jenkins will unite them intgetInstanceo a single run of the job
-  //AUT_Tests=(params.TestsArray).toMapString()
-//for (int i = 0; i &lt; AUT_Tests.size(); i++) {
-def i=0
-//                }
+//Define &apos;Auto Deploy Sanity&apos; tests exection list
+def ate_tests = [:]
+//For symantic
+def index=0
+//Read each test details and creation a job trigger to AutoDeploy Sanity flow with with the given details
 AUT_Tests.tokenize(&apos;;&apos;).each{    
- //def index = i //if we tried to use i below, it would equal 4 in each job execution.
- 
                     testDetails = it.replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;).tokenize(&apos;,&apos;)
                     def test_suite_name = testDetails[0]
 					def test_suite_path = testDetails[1]
@@ -123,16 +118,8 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
 					def base_image_path = testDetails[5]
 					def base_image = testDetails[6]
 					def ate_scripts_path = testDetails[7]
- //print it.value
-    //print it.key
-    //print (&quot;node=&quot;+getNodePerLabel(&quot;pipe&quot;))
-  tests[&quot;Test ${test_suite_name} for ${tool_type}&quot;] = {
-//Parameters:
-//param1 : an example string parameter for the triggered job.
-//dummy: a parameter used to prevent triggering the job with the same parameters value.
-//this parameter has to accept a different value each time the job is triggered.
-//def value=it.value
-//def jobname=it.key
+
+  ate_tests[&quot;${index}. Test ${test_suite_name} for ${tool_type}&quot;] = {
     build job:&quot;Auto Deploy Sanity&quot;,parameters: [
       string(name: &apos;BUILD_VERSION&apos;, value:params.BUILD_VERSION),
 	  string(name: &apos;BaseImage&apos;, value:base_image),
@@ -145,12 +132,16 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
 	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${ate_controller_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
       [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;SimulatorEngine&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
-  i++
+  index++
 }
-parallel tests
+  //Executing all tests in parallel
+  parallel ate_tests
 }
 
-
+/**
+ * This function will get label name and return a &apos;Free node&apos; labeled with this label. 
+ * &apos;Free node&apos; is a node which wasn&apos;t selected for executing a test yet and has free executer
+ * */
 @NonCPS
 def getNodePerLabel(String label){
     //read all nodes labels with given label
