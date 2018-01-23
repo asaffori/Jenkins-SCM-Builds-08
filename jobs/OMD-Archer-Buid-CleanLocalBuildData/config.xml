@@ -85,7 +85,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <defaultValue>omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace</defaultValue>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>DebugBuildEngine</name>
+          <name>ReleaseBuildEngine</name>
           <description></description>
           <allowedSlaves>
             <string>ALL (no restriction)</string>
@@ -104,6 +104,11 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <description></description>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JENKINCONFIGPATH</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -117,8 +122,6 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
-        <groovyScriptContent>//Sleep 30s to get buidl email generation read Contreollers/3rdparty data before sandbox is deleted
-Thread.sleep(30000)</groovyScriptContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
       <on>true</on>
@@ -138,7 +141,7 @@ Thread.sleep(30000)</groovyScriptContent>
   <concurrentBuild>true</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>CALL d:\sandboxes\DONOT_DELETE_ADHAM\OMD_Builds\JenkinsBuild\BatchFiles\CleanBuildData.bat %BUILD_VERSION% %team_scm_fetchDestination% %WSName%</command>
+      <command>CALL %JENKINCONFIGPATH%\Jenkins_CleanupConfigurations\LocalCleanupSciprt\CleanBuildData.bat %BUILD_VERSION% %team_scm_fetchDestination% %WSName%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
@@ -146,7 +149,7 @@ Thread.sleep(30000)</groovyScriptContent>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
-        <propertiesContent>repositoryAddress=http://clm.kla-tencor.com/ccm/</propertiesContent>
+        <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
