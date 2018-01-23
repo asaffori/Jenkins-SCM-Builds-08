@@ -80,7 +80,7 @@ agent { node { label &apos;master&apos; } }
 parameters {
         string(defaultValue: &quot;&quot;, description: &apos;What is the Archer build version you want to test? \n example: 17.12.00.20600&apos;, name: &apos;BUILD_VERSION&apos;)
         choice(choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;What is your build type?&apos;, name: &apos;BUILDTYPE&apos;)
-        text(description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
+        text(description: &apos;What tests needs to run and in which confgurations? \n example: [[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]]&apos;, name: &apos;TestsArray&apos;)
     }
 
     stages {
@@ -97,7 +97,7 @@ parameters {
     }
 
 }
-// in this array we&apos;ll place the jobs that we wish to run
+// Run multiple ATE tests
 def runparalleltests(AUT_Tests){
 def tests = [:]
 //print &quot;params.TestsArray&quot;+params.TestsArray
@@ -120,11 +120,11 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
 					def simulator_engine_label = testDetails[4]
 					def base_image_path = testDetails[5]
 					def base_image = testDetails[6]
-					def ate_base_path = testDetails[7]
+					def ate_scripts_path = testDetails[7]
  //print it.value
     //print it.key
     //print (&quot;node=&quot;+getNodePerLabel(&quot;pipe&quot;))
-  tests[&quot;test${i}&quot;] = {
+  tests[&quot;Test ${test_suite_name} for ${tool_type}&quot;] = {
 //Parameters:
 //param1 : an example string parameter for the triggered job.
 //dummy: a parameter used to prevent triggering the job with the same parameters value.
@@ -139,7 +139,7 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
 	  string(name: &apos;BaseImagePath&apos;, value:base_image_path),
 	  string(name: &apos;TestSuite&apos;, value:test_suite_name),
 	  string(name: &apos;TestSuitePath&apos;, value:test_suite_path),
-	  string(name: &apos;ATEBasePath&apos;, value:ate_base_path),
+	  string(name: &apos;ATEBasePath&apos;, value:ate_scripts_path),
 	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${ate_controller_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
       [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;SimulatorEngine&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
