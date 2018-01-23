@@ -45,7 +45,7 @@
         <hudson.model.TextParameterDefinition>
           <name>TestsArray</name>
           <description>What tests needs to run and in which confgurations? &lt;BR&gt;
-Test details are shared in arrays, seperated by comma. Test arrays are seperated by simicomma&lt;BR&gt;
+Test details are shared in arrays, seperated by comma. Test arrays are seperated by semicomma and can be entered in diffrent lines&lt;BR&gt;
 &lt;BR&gt;
 Input Syntax: &lt;BR&gt;
 [&lt;BR&gt;
