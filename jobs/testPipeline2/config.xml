@@ -21,6 +21,19 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -33,6 +46,7 @@
           <name>TestsArray</name>
           <description>What tests needs to run and in which confgurations? 
  example: [test1:pipe,test2:pipe,test3:pipe]</description>
+          <defaultValue></defaultValue>
         </hudson.model.TextParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>BUILDTYPE</name>
@@ -47,19 +61,6 @@
         </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -71,31 +72,24 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>allocated_nodes=[]
+    <script>//This list is used to save nodes which were already alocated by one of the tests so that tests will be spreaded to diffrent nodes 
+allocated_nodes=[]
+
 pipeline {
 agent { node { label &apos;master&apos; } }
 parameters {
         string(defaultValue: &quot;&quot;, description: &apos;What is the Archer build version you want to test? \n example: 17.12.00.20600&apos;, name: &apos;BUILD_VERSION&apos;)
-        text(description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
         choice(choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;What is your build type?&apos;, name: &apos;BUILDTYPE&apos;)
+        text(description: &apos;What tests needs to run and in which confgurations? \n example: [test1:pipe,test2:pipe,test3:pipe]&apos;, name: &apos;TestsArray&apos;)
     }
 
     stages {
-        stage (&quot;Run tests&quot;){
+        stage (&quot;Run Tests&quot;){
             
             steps{
                 script{
-                //print params.TestsArrayreplaceAll(&quot;[\n\r]&quot;, &quot;&quot;)
-                def stringMap= params.TestsArray.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;).replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;)
-                //def newMap = [:]
-                /**
-				stringMap.tokenize(&apos;,&apos;).each {
-                    kvTuple = it.tokenize(&apos;:&apos;)
-                    newMap[kvTuple[0]] = kvTuple[1]
-                }
-                print &quot;newMap=&quot;+newMap
-				**/
-                runparalleltests(stringMap)
+                    def stringMap= params.TestsArray.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;).replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;)
+                    runparalleltests(stringMap)
                 }
                 
             }
