@@ -406,6 +406,7 @@ BUILD_VERSION=${BUILD_VERSION}
 WSName=${team.scm.workspaceUUID}
 ClosureBuildEngine=${buildEngineHostName}
 DebugBuildEngine=${buildEngineHostName}
+ReleaseBuildEngine=${buildEngineHostName}
 BUILDTYPE=${BUILD_TYPE}
 VERSIONFILE=${VERSIONFILE}</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
