@@ -408,7 +408,8 @@ ClosureBuildEngine=${buildEngineHostName}
 DebugBuildEngine=${buildEngineHostName}
 ReleaseBuildEngine=${buildEngineHostName}
 BUILDTYPE=${BUILD_TYPE}
-VERSIONFILE=${VERSIONFILE}</properties>
+VERSIONFILE=${VERSIONFILE}
+JENKINCONFIGPATH=${JENKINCONFIGPATH}</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
