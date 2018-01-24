@@ -37,6 +37,7 @@
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -89,7 +90,7 @@
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-1396436508196432</randomName>
-          <visibleItemCount>1</visibleItemCount>
+          <visibleItemCount>0</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -103,7 +104,12 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
             </secureFallbackScript>
           </script>
           <projectName>BuildClosure-Flow</projectName>
-          <parameters class="linked-hash-map"/>
+          <parameters class="linked-hash-map">
+            <entry>
+              <string>BUILD_VERSION</string>
+              <string></string>
+            </entry>
+          </parameters>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -163,21 +169,6 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
           <description></description>
           <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
         </hudson.model.StringParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>DebugBuildEngine</name>
-          <description></description>
-          <allowedSlaves>
-            <string>ALL (no restriction)</string>
-          </allowedSlaves>
-          <defaultSlaves>
-            <string>SCM-Builds-01</string>
-          </defaultSlaves>
-          <triggerIfResult>allowMultiSelectionForConcurrentBuilds</triggerIfResult>
-          <allowMultiNodeSelection>true</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>true</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>VERSIONFILE</name>
           <description></description>
@@ -201,7 +192,6 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
