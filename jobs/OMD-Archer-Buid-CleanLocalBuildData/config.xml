@@ -85,7 +85,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <defaultValue>omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace</defaultValue>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ReleaseBuildEngine</name>
+          <name>DebugBuildEngine</name>
           <description></description>
           <allowedSlaves>
             <string>ALL (no restriction)</string>

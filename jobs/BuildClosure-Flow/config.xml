@@ -169,6 +169,21 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
           <description></description>
           <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>DebugBuildEngine</name>
+          <description></description>
+          <allowedSlaves>
+            <string>ALL (no restriction)</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>SCM-Builds-01</string>
+          </defaultSlaves>
+          <triggerIfResult>allowMultiSelectionForConcurrentBuilds</triggerIfResult>
+          <allowMultiNodeSelection>true</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>true</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>VERSIONFILE</name>
           <description></description>
@@ -240,10 +255,6 @@ if (BuildAutoApproved != &quot;true&quot;) {
   <globalEnvVars>
     <entry>
       <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>DebugBuildEngine</string>
       <string></string>
     </entry>
     <entry>
