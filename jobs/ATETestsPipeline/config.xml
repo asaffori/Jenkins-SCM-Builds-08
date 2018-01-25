@@ -93,7 +93,6 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
@@ -130,7 +129,7 @@ def runparalleltests(AUT_Tests){
 def ate_tests = [:]
 //For symantic
 def index=0
-def masternode=master
+def masternode=&quot;master&quot;
 //Read each test details and creation a job trigger to AutoDeploy Sanity flow with with the given details
 AUT_Tests.tokenize(&apos;;&apos;).each{    
                     testDetails = it.replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;).tokenize(&apos;,&apos;)
