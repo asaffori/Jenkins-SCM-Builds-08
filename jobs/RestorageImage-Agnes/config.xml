@@ -73,7 +73,7 @@
         <hudson.model.BooleanParameterDefinition>
           <name>AUTO_DEPLOY</name>
           <description></description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BaseImagePath</name>
