@@ -93,7 +93,6 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
@@ -152,6 +151,7 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
 	  string(name: &apos;TestSuite&apos;, value:test_suite_name),
 	  string(name: &apos;TestSuitePath&apos;, value:test_suite_path),
 	  string(name: &apos;ATEBasePath&apos;, value:ate_scripts_path),
+	  [$class: &apos;NodeParameterValue&apos;, name: &apos;FlowController&apos;, labels: [&quot;${master}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
 	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${ate_controller_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
       [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;SimulatorEngine&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
