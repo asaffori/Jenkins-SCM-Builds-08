@@ -2,12 +2,6 @@
 <flow-definition plugin="workflow-job@2.16">
   <actions>
     <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.2.5"/>
-    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.3.5">
-      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
-        <mappedUrl>blue/organizations/jenkins/ATETestsPipeline</mappedUrl>
-        <modelObject class="flow-definition" reference="../../../.."/>
-      </blueOceanUrlObject>
-    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
     <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.2.5">
       <jobProperties/>
       <triggers/>
@@ -17,6 +11,12 @@
         <string>BUILDTYPE</string>
       </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.3.5">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins/ATETestsPipeline</mappedUrl>
+        <modelObject class="flow-definition" reference="../../../.."/>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
   </actions>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -42,6 +42,36 @@
  example: 17.12.00.20600</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>TestsArray</name>
+          <description>What tests needs to run and in which confgurations? &lt;BR&gt;
+Test details are shared in arrays, seperated by comma. Test arrays are seperated by semicomma and can be entered in diffrent lines&lt;BR&gt;
+&lt;BR&gt;
+Input Syntax: &lt;BR&gt;
+[&lt;BR&gt;
+[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath];&lt;BR&gt;
+[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]&lt;BR&gt;
+]&lt;BR&gt;
+&lt;BR&gt;
+Details:&lt;BR&gt;
+SuiteName:File name of the test suite (excluding suffix)&lt;BR&gt;
+SuitePath:suite file location&lt;BR&gt;
+ToolType: As TL/A700/A600&lt;BR&gt;
+ATEControllerMachineLabel:Jenkins label name for ATE controllers machines to let the mechanism select one&lt;BR&gt;
+SimulatorEngineMachineLabel: Jenkins label name for simulator machines to let the mechanism select one&lt;BR&gt;
+BaseImagePath:Template image file location&lt;BR&gt;
+BaseImageName:Acronis template image to recover simulator machine from prior installation&lt;BR&gt;
+ATEScriptsPath:ATE execution scripts folder&lt;BR&gt;
+&lt;BR&gt;
+&lt;BR&gt;
+Example:&lt;BR&gt;
+[&lt;BR&gt;
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,A700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];&lt;BR&gt;
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,A600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];&lt;BR&gt;
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]&lt;BR&gt;
+]&lt;BR&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.TextParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>BUILDTYPE</name>
           <description>What is your build type?</description>
@@ -53,12 +83,6 @@
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>TestsArray</name>
-          <description>What tests needs to run and in which confgurations? 
- example: [[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]]</description>
-          <defaultValue></defaultValue>
-        </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -69,6 +93,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
@@ -127,7 +152,6 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
 	  string(name: &apos;TestSuite&apos;, value:test_suite_name),
 	  string(name: &apos;TestSuitePath&apos;, value:test_suite_path),
 	  string(name: &apos;ATEBasePath&apos;, value:ate_scripts_path),
-	  [$class: &apos;NodeParameterValue&apos;, name: &apos;FlowController&apos;, labels: [&quot;${master}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
 	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${ate_controller_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
       [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;SimulatorEngine&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
   }
