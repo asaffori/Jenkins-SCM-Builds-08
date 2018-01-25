@@ -372,7 +372,6 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>Agnes - Archer Build release</string>
         <string>Agnes - Archer media creation</string>
         <string>Agnes - Copy Matlab</string>
         <string>ATETestsPipeline</string>
