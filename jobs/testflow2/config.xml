@@ -1,7 +1,32 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <com.amdocs.hudson.plugins.flow.FlowProject plugin="flow@16.3">
+  <actions/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -30,6 +55,19 @@
             <string>ALL</string>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.LabelParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>Label</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <allNodesMatchingLabel>false</allNodesMatchingLabel>
+          <triggerIfResult>allCases</triggerIfResult>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.LabelParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>tests</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
@@ -45,7 +83,45 @@
   <publishers/>
   <buildWrappers/>
   <flowDefinitionId>-1</flowDefinitionId>
-  <jobParameterList class="java.util.concurrent.CopyOnWriteArrayList"/>
+  <globalEnvVars/>
+  <profiler class="com.amdocs.hudson.plugins.dbprofiler.DBProfiler"/>
+  <jobParameterList class="java.util.concurrent.CopyOnWriteArrayList">
+    <com.amdocs.hudson.plugins.flow.JobParameter>
+      <jobName>test2</jobName>
+      <continueJobIfUnstable>false</continueJobIfUnstable>
+      <continueJobIfAborted>false</continueJobIfAborted>
+      <continueJobAnyway>false</continueJobAnyway>
+      <overrideJobNode>false</overrideJobNode>
+      <specifyModule>false</specifyModule>
+      <step>BUILD</step>
+      <appServerType></appServerType>
+      <platform></platform>
+      <triggersFlag>false</triggersFlag>
+      <triggers>
+        <dailyTriggerFlag>false</dailyTriggerFlag>
+        <weeklyTriggerFlag>false</weeklyTriggerFlag>
+        <monthlyTriggerFlag>false</monthlyTriggerFlag>
+      </triggers>
+    </com.amdocs.hudson.plugins.flow.JobParameter>
+    <com.amdocs.hudson.plugins.flow.JobParameter>
+      <jobName>test3</jobName>
+      <continueJobIfUnstable>false</continueJobIfUnstable>
+      <continueJobIfAborted>false</continueJobIfAborted>
+      <continueJobAnyway>false</continueJobAnyway>
+      <overrideJobNode>false</overrideJobNode>
+      <specifyModule>false</specifyModule>
+      <step>BUILD</step>
+      <appServerType></appServerType>
+      <platform></platform>
+      <triggersFlag>false</triggersFlag>
+      <triggers>
+        <dailyTriggerFlag>false</dailyTriggerFlag>
+        <weeklyTriggerFlag>false</weeklyTriggerFlag>
+        <monthlyTriggerFlag>false</monthlyTriggerFlag>
+      </triggers>
+    </com.amdocs.hudson.plugins.flow.JobParameter>
+  </jobParameterList>
+  <createNodesDef/>
   <allowConcurrentFlow>false</allowConcurrentFlow>
   <allowDeleteProjects>true</allowDeleteProjects>
   <preventFromExecutingJobs>false</preventFromExecutingJobs>
