@@ -336,6 +336,7 @@ team_scm_fetchDestination=${team_scm_fetchDestination}
 BUILD_VERSION=${BUILD_VERSION}
 WSName=${team.scm.workspaceUUID}
 ClosureBuildEngine=${buildEngineHostName}
+ReleaseBuildEngine=${buildEngineHostName}
 BUILDTYPE=${BUILD_TYPE}
 VERSIONFILE=${VERSIONFILE}</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
