@@ -54,6 +54,7 @@
         <string>ca1nas01-TWave-RO</string>
         <string>WIN-DYSD-Tools-CH</string>
         <string>Austinnt1-Austrain-CH</string>
+        <string>CHN2NAS01-Wuhan-RO</string>
         <string>CA1NAS12-SSCMdata-CH</string>
         <string>WIN-DYSD-Migration-CH</string>
         <string>ISR1NAS03-FI_OMD-RO</string>
@@ -147,7 +148,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1515751945419</timestamp>
+      <timestamp>1517219074663</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
