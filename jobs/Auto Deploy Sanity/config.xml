@@ -134,7 +134,7 @@
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-313186242246989</randomName>
-          <visibleItemCount>0</visibleItemCount>
+          <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -147,13 +147,8 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
               <sandbox>false</sandbox>
             </secureFallbackScript>
           </script>
-          <projectName>SilentInstallation-Agnes</projectName>
-          <parameters class="linked-hash-map">
-            <entry>
-              <string>BUILD_VERSION</string>
-              <string>17.04.01.20300</string>
-            </entry>
-          </parameters>
+          <projectName>Auto Deploy Sanity</projectName>
+          <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -184,6 +179,36 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <name>CheckSimTimeout</name>
           <description>(min)</description>
           <defaultValue>180</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>ATEControllerEngine</name>
+          <description></description>
+          <allowedSlaves>
+            <string>SCM-ATE-01</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>SCM-ATE-01</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TestSuite</name>
+          <description>Full file name, XXXXX.csv</description>
+          <defaultValue>AROL_Autorun_ATE_Suite</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TestSuitePath</name>
+          <description>Start with X:</description>
+          <defaultValue>X:\ATE\TestCases\SQC\MBS\AROL</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ATEBasePath</name>
+          <description></description>
+          <defaultValue>\\isr1vmappcm01\Automated_Testing\17.0x_ATE</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -226,19 +251,27 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <string></string>
     </entry>
     <entry>
-      <string>ToolType</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>CheckSimTimeout</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>BaseImagePath</string>
       <string></string>
     </entry>
     <entry>
+      <string>TestSuitePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>BUILDTYPE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ATEControllerEngine</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
@@ -317,6 +350,28 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <overrideJobNode>false</overrideJobNode>
       <specifyModule>false</specifyModule>
       <step>INSTALLATION</step>
+      <appServerType>Tomcat</appServerType>
+      <platform>Windows</platform>
+      <triggersFlag>false</triggersFlag>
+      <triggers>
+        <dailyTriggerFlag>false</dailyTriggerFlag>
+        <weeklyTriggerFlag>false</weeklyTriggerFlag>
+        <monthlyTriggerFlag>false</monthlyTriggerFlag>
+      </triggers>
+    </com.amdocs.hudson.plugins.flow.JobParameter>
+    <com.amdocs.hudson.plugins.flow.JobParameter>
+      <jobName>SanityTest-Agnes</jobName>
+      <continueJobIfUnstable>false</continueJobIfUnstable>
+      <continueJobIfAborted>false</continueJobIfAborted>
+      <continueJobAnyway>false</continueJobAnyway>
+      <overrideJobNode>false</overrideJobNode>
+      <specifyModule>false</specifyModule>
+      <step>SANITY</step>
+      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>SilentInstallation-Agnes</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+      </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
       <triggersFlag>false</triggersFlag>
