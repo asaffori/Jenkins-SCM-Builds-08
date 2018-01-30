@@ -497,7 +497,6 @@
           <properties class="hudson.model.View$PropertyList"/>
           <jobNames>
             <comparator class="hudson.util.CaseInsensitiveComparator"/>
-            <string>OMD_17.12_Scheduled_Trigger_Copy</string>
           </jobNames>
           <jobFilters/>
           <columns>
