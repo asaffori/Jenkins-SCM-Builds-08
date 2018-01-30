@@ -31,10 +31,10 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ClosureBuildEngine</name>
+          <name>FlowController</name>
           <description></description>
           <allowedSlaves>
-            <string>ALL (no restriction)</string>
+            <string>master</string>
           </allowedSlaves>
           <defaultSlaves>
             <string>master</string>
@@ -61,12 +61,7 @@
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>Archer_Sanity</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>AUTO_DEPLOY</name>
+          <name>Auto_Deploy_Sanity</name>
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
@@ -97,9 +92,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>if /I %Archer_Sanity%==false if /I %AUTO_DEPLOY%==false goto end&#xd;
+      <command>if /I %Auto_Deploy_Sanity%==false goto end&#xd;
 &#xd;
-if exist \\isr1appcc02\SCM\OMD\Jenkins_SmulatorLock\%SimulatorEngine%_%BUILD_VERSION%_Lock.txt del /q \\isr1appcc02\SCM\OMD\Jenkins_SmulatorLock\%SimulatorEngine%_%BUILD_VERSION%_Lock.txt&#xd;
+if exist \\isr1appcc02\SCM\OMD\Jenkins_SimulatorLock\%SimulatorEngine%_%BUILD_VERSION%_Lock.txt del /q \\isr1appcc02\SCM\OMD\Jenkins_SimulatorLock\%SimulatorEngine%_%BUILD_VERSION%_Lock.txt&#xd;
 if not %errorlevel%==0 goto error&#xd;
 echo ************unlock simulator successfully*****************&#xd;
 :end &#xd;
