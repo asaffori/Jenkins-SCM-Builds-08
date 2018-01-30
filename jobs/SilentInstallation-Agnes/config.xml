@@ -74,7 +74,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>AUTO_DEPLOY</name>
+          <name>Auto_Deploy_Sanity</name>
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
@@ -86,6 +86,17 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
               <string>Tasks</string>
               <string>Formal</string>
               <string>Scheduled</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>ToolType</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Archer700</string>
+              <string>Archer600</string>
+              <string>Archer TL</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
@@ -143,6 +154,39 @@ REG ADD &quot;HKLM\SOFTWARE\KLA-Tencor\OM\5300\Security\Automatic Logon&quot; /t
 if not %errorlevel% equ 0 goto error&#xd;
 REG ADD &quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon&quot; /v AutoAdminLogon /t REG_SZ /d 1 /f&#xd;
 if not %errorlevel% equ 0 goto error&#xd;
+&#xd;
+echo ****************Running ToolConfiguration for %ToolType%******&#xd;
+cd C:\temp\Archer_Installation_%BUILD_VERSION%\supportfiles&#xd;
+C:\temp\Archer_Installation_%BUILD_VERSION%\supportfiles\ToolConfig.exe -I &quot;%ToolType%&quot;&#xd;
+if not %errorlevel% equ 0 &#xd;
+(&#xd;
+    echo ***************Run ToolConfiguration failed***************&#xd;
+    goto error&#xd;
+)&#xd;
+&#xd;
+echo ***************Inject Simulator license for %ToolType%******&#xd;
+xcopy &quot;D:\licenses\%ToolType%\*.*&quot; &quot;C:\Program Files\KLA-Tencor\Component Suite\Bin\&quot; /f /r /s /y&#xd;
+if not %errorlevel%==0 (&#xd;
+echo *********copy license file failed*************&#xd;
+goto error&#xd;
+)&#xd;
+C:\5300\Bin\McdbActivate.exe -licenses&#xd;
+if not %errorlevel%==0 (&#xd;
+echo ***************active license file failed***********&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+echo ***************Run golden reg file for %ToolType%******&#xd;
+xcopy &quot;\\isr1vmappcm01\Automated_Testing\Install files\Golden reg files\%ToolType%.reg&quot; C:\temp\ /f /r /s /y&#xd;
+if not %errorlevel%==0 (&#xd;
+echo *********copy reg file failed*************&#xd;
+goto error&#xd;
+)&#xd;
+regedit.exe /S &quot;C:\temp\%ToolType%.reg&quot;&#xd;
+if not %errorlevel%==0 (&#xd;
+echo *********Run reg file failed*************&#xd;
+goto error&#xd;
+)&#xd;
 shutdown -r -t 50&#xd;
 set shutdownerror=%errorlevel%&#xd;
 if %shutdownerror%==1190 goto end&#xd;
@@ -174,21 +218,7 @@ exit /b 1&#xd;
 exit /b 0</command>
     </hudson.tasks.BatchFile>
   </builders>
-  <publishers>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
-      <configs>
-        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-          <configs>
-            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
-          </configs>
-          <projects>UnlockSimulator</projects>
-          <condition>FAILED</condition>
-          <triggerWithNoParameters>false</triggerWithNoParameters>
-          <triggerFromChildProjects>false</triggerFromChildProjects>
-        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-      </configs>
-    </hudson.plugins.parameterizedtrigger.BuildTrigger>
-  </publishers>
+  <publishers/>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
@@ -215,10 +245,10 @@ NETWORKPATH=\\isr1nas03</propertiesContent>
             <script plugin="script-security@1.39">
               <script>import hudson.model.Result;
 
-def AUTO_DEPLOY= build.buildVariableResolver.resolve(&quot;AUTO_DEPLOY&quot;)
+def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
 
-if (AUTO_DEPLOY== &quot;false&quot;) {
-	println (&quot;AUTO_DEPLOY was disabled. Archer installation will not run&quot;);
+if (Auto_Deploy_Sanity== &quot;false&quot;) {
+	println (&quot;Auto_Deploy_Sanitywas disabled. Archer installation will not run&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }</script>
               <sandbox>false</sandbox>
