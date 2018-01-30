@@ -39,6 +39,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>DebugBuildEngine,ReleaseBuildEngine</paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
@@ -723,39 +724,19 @@ build.save()</postsendScript>
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>AcronisEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>RunningMode</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>AUTOVERSION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>TestSuite</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BaseImage</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ToolType</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BuildAutoApproved</string>
+      <string>CodeViewLoadePath</string>
       <string></string>
     </entry>
     <entry>
       <string>ClosureBuildEngine</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>AcronisEngine</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ToolType</string>
       <string></string>
     </entry>
     <entry>
@@ -767,19 +748,15 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>RunningMode</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>AUTOVERSION</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>AUTOINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ATEControllerEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>VERSIONFILE</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>CodeViewLoadePath</string>
       <string></string>
     </entry>
     <entry>
@@ -787,7 +764,31 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>ATEControllerEngine</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>RDMINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BuildAutoApproved</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BaseImage</string>
       <string></string>
     </entry>
   </globalEnvVars>

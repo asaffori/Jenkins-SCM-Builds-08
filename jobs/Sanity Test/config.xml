@@ -130,7 +130,8 @@
       <description>Run ${TestSuite} on ${SimulatorEngine} with ${ToolType} configuration.</description>
     </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
     <hudson.tasks.BatchFile>
-      <command>if /I %SimulatorEngine%==SCM-SIM7050-01 set SimulatorEngine=10.158.46.178&#xd;
+      <command>@ECHO OFF&#xd;
+if /I %SimulatorEngine%==SCM-SIM7050-01 set SimulatorEngine=10.158.46.178&#xd;
 set pinglooptimeout=0&#xd;
 :pingloopstart&#xd;
 if %pinglooptimeout%==%CheckSimTimeout% (&#xd;
