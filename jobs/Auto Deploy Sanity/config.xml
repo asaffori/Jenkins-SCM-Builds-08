@@ -220,7 +220,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
-  <concurrentBuild>false</concurrentBuild>
+  <concurrentBuild>true</concurrentBuild>
   <builders/>
   <publishers>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
@@ -383,10 +383,11 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
     </com.amdocs.hudson.plugins.flow.JobParameter>
   </jobParameterList>
   <createNodesDef/>
-  <allowConcurrentFlow>false</allowConcurrentFlow>
+  <allowConcurrentFlow>true</allowConcurrentFlow>
+  <concurrentFlowCanStartAfterStep>BUILD</concurrentFlowCanStartAfterStep>
   <allowDeleteProjects>true</allowDeleteProjects>
   <preventFromExecutingJobs>false</preventFromExecutingJobs>
-  <executeConcurrentFlowAnyway>false</executeConcurrentFlowAnyway>
+  <executeConcurrentFlowAnyway>true</executeConcurrentFlowAnyway>
   <shareParameters>true</shareParameters>
   <smartRebuild>false</smartRebuild>
   <rebuildFromFailuresWithoutParam>false</rebuildFromFailuresWithoutParam>
