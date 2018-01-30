@@ -71,7 +71,7 @@
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>AUTO_DEPLOY</name>
+          <name>Auto_Deploy_Sanity</name>
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
@@ -133,21 +133,7 @@ echo *************recover image finished successfully****************&#xd;
       <description>Recover Image ${BaseImage} on ${SimulatorEngine}</description>
     </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
   </builders>
-  <publishers>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
-      <configs>
-        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-          <configs>
-            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
-          </configs>
-          <projects>UnlockSimulator</projects>
-          <condition>FAILED</condition>
-          <triggerWithNoParameters>false</triggerWithNoParameters>
-          <triggerFromChildProjects>false</triggerFromChildProjects>
-        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-      </configs>
-    </hudson.plugins.parameterizedtrigger.BuildTrigger>
-  </publishers>
+  <publishers/>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
@@ -157,10 +143,10 @@ echo *************recover image finished successfully****************&#xd;
             <script plugin="script-security@1.39">
               <script>import hudson.model.Result;
 
-def AUTO_DEPLOY= build.buildVariableResolver.resolve(&quot;AUTO_DEPLOY&quot;)
+def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
 
-if (AUTO_DEPLOY== &quot;false&quot;) {
-	println (&quot;AUTO_DEPLOYwas disabled. Auot deploy will not run&quot;);
+if (Auto_Deploy_Sanity== &quot;false&quot;) {
+	println (&quot;Auto_Deploy_Sanity was disabled. Auot deploy will not run&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }</script>
               <sandbox>false</sandbox>

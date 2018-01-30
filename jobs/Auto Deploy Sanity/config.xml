@@ -122,9 +122,9 @@
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>AUTO_DEPLOY</name>
+          <name>Auto_Deploy_Sanity</name>
           <description></description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BaseImagePath</name>
@@ -159,6 +159,11 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
         </org.biouno.unochoice.DynamicReferenceParameter>
+        <hudson.model.BooleanParameterDefinition>
+          <name>AUTO_DEPLOY</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>BUILDTYPE</name>
           <description></description>
@@ -221,11 +226,6 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>Auto_Deploy_Sanity</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -262,7 +262,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <string></string>
     </entry>
     <entry>
-      <string>ClosureBuildEngine</string>
+      <string>Archer_Sanity</string>
       <string></string>
     </entry>
     <entry>
@@ -286,6 +286,10 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <string></string>
     </entry>
     <entry>
+      <string>Auto_Deploy_Sanity</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>ATEControllerEngine</string>
       <string></string>
     </entry>
@@ -295,10 +299,6 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
     </entry>
     <entry>
       <string>TestSuite</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>FlowController</string>
       <string></string>
     </entry>
     <entry>
