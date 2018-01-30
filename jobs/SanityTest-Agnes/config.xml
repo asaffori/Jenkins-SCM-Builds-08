@@ -62,7 +62,7 @@
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>Archer_Sanity</name>
+          <name>Auto_Deploy_Sanity</name>
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
@@ -84,23 +84,23 @@
         <hudson.model.StringParameterDefinition>
           <name>CheckSimTimeout</name>
           <description></description>
-          <defaultValue>60</defaultValue>
+          <defaultValue>180</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>ToolType</name>
           <description></description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>TL</string>
-              <string>A600</string>
-              <string>A700</string>
+              <string>Archer TL</string>
+              <string>Archer600</string>
+              <string>Archer700</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
-          <defaultValue>17.04.00.20200</defaultValue>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -217,7 +217,7 @@ echo Run RunScriptsFromFolder failed&#xd;
 goto error&#xd;
 )&#xd;
 &#xd;
-xcopy &quot;C:\Eggplant Reports\*.*&quot; C:\ATElogs\%BUILD_VERSION%\ /f /r /s /y&#xd;
+xcopy &quot;C:\Eggplant Reports\*.*&quot; C:\ATElogs\%BUILD_VERSION%_%ToolType%\ /f /r /s /y&#xd;
 rd /q /s &quot;C:\Eggplant Reports&quot;&#xd;
 &#xd;
 if exist C:\temp\NightRunFailFlag.txt (&#xd;
@@ -234,21 +234,7 @@ exit /b 1&#xd;
       <unstableReturn>1</unstableReturn>
     </hudson.tasks.BatchFile>
   </builders>
-  <publishers>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
-      <configs>
-        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-          <configs>
-            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
-          </configs>
-          <projects>UnlockSimulator</projects>
-          <condition>ALWAYS</condition>
-          <triggerWithNoParameters>false</triggerWithNoParameters>
-          <triggerFromChildProjects>false</triggerFromChildProjects>
-        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-      </configs>
-    </hudson.plugins.parameterizedtrigger.BuildTrigger>
-  </publishers>
+  <publishers/>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
@@ -264,10 +250,10 @@ exit /b 1&#xd;
             <script plugin="script-security@1.39">
               <script>import hudson.model.Result;
 
-def Archer_Sanity= build.buildVariableResolver.resolve(&quot;Archer_Sanity&quot;)
+def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
 
-if (Archer_Sanity== &quot;false&quot;) {
-	println (&quot;Archer_Sanitydisabled. Archer_Sanity will not run&quot;);
+if (Auto_Deploy_Sanity== &quot;false&quot;) {
+	println (&quot;Auto_Deploy_Sanity was disabled. Archer_Sanity will not run&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }</script>
               <sandbox>false</sandbox>
