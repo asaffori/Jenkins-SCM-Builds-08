@@ -138,6 +138,10 @@ BUILDTYPE=${BUILDTYPE}</properties>
       </buildStep>
       <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
     </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
+    <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
+      <regexp></regexp>
+      <description>Run Sanity test for ${BUILD_VERSION}</description>
+    </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
   </builders>
   <publishers/>
   <buildWrappers/>
