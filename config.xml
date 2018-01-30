@@ -373,6 +373,7 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>ATETestsPipeline</string>
         <string>Auto Deploy Sanity</string>
+        <string>Auto Deploy Sanity Trigger</string>
         <string>DownLoadFile</string>
         <string>FileTransfer</string>
         <string>OMD-Archer-Build-Agnes</string>
