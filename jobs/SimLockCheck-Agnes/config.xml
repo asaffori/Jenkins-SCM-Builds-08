@@ -31,7 +31,7 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ClosureBuildEngine</name>
+          <name>FlowController</name>
           <description></description>
           <allowedSlaves>
             <string>master</string>
@@ -68,7 +68,7 @@
         <hudson.model.StringParameterDefinition>
           <name>CheckSimTimeout</name>
           <description>(min)</description>
-          <defaultValue>60</defaultValue>
+          <defaultValue>180</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
@@ -76,9 +76,9 @@
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>Archer_Sanity</name>
+          <name>Auto_Deploy_Sanity</name>
           <description></description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -122,15 +122,15 @@ if %num%==%CheckSimTimeout% (&#xd;
 echo ************* %SimulatorEngine% is been locked for %CheckSimTimeout% mins, build will fail ***************&#xd;
 goto error&#xd;
 )&#xd;
-if not exist \\isr1appcc02\SCM\OMD\Jenkins_SmulatorLock\%SimulatorEngine%_*_Lock.txt goto startlock&#xd;
+if not exist \\isr1appcc02\SCM\OMD\Jenkins_SimulatorLock\%SimulatorEngine%_*_Lock.txt goto startlock&#xd;
 echo ************* The simulator is locked %time% for %num% mins***************&#xd;
 ping 1.0.0.1 -n 1 -w 60000 &gt; nul&#xd;
 set /a num=%num%+1&#xd;
 goto checklock&#xd;
 :startlock&#xd;
 echo *************Lock simualtor for Current build****************&#xd;
-if not exist \\isr1appcc02\SCM\OMD\Jenkins_SmulatorLock MD \\isr1appcc02\SCM\OMD\Jenkins_SmulatorLock&#xd;
-echo Running image recover for %BUILD_VERSION% &gt; \\isr1appcc02\SCM\OMD\Jenkins_SmulatorLock\%SimulatorEngine%_%BUILD_VERSION%_Lock.txt&#xd;
+if not exist \\isr1appcc02\SCM\OMD\Jenkins_SimulatorLock MD \\isr1appcc02\SCM\OMD\Jenkins_SimulatorLock&#xd;
+echo Running image recover for %BUILD_VERSION% &gt; \\isr1appcc02\SCM\OMD\Jenkins_SimulatorLock\%SimulatorEngine%_%BUILD_VERSION%_Lock.txt&#xd;
 echo *************Create lock for %SimulatorEngine% %BUILD_VERSION% successfully****************&#xd;
 goto end&#xd;
 &#xd;
@@ -150,11 +150,11 @@ exit /b 0</command>
             <script plugin="script-security@1.39">
               <script>import hudson.model.Result;
 
-def AUTO_DEPLOY= build.buildVariableResolver.resolve(&quot;AUTO_DEPLOY&quot;)
-def Archer_Sanity= build.buildVariableResolver.resolve(&quot;Archer_Sanity&quot;)
+def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
 
-if (AUTO_DEPLOY== &quot;false&quot;&amp;&amp;Archer_Sanity==&quot;false&quot;) {
-	println (&quot;AUTO_DEPLOY and Archer_Sanity was disabled. lock simulator will not run&quot;);
+
+if (Auto_Deploy_Sanity== &quot;false&quot;) {
+	println (&quot;Auto_Deploy_Sanity was disabled. lock simulator will not run&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }</script>
               <sandbox>false</sandbox>
