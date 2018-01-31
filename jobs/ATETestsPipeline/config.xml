@@ -108,6 +108,7 @@ def index=0
 def masternode=&quot;master&quot;
 def buildversion= params.BUILD_VERSION
 def ate_MajorMinor_Ver =buildversion.substring(0,5)
+println ate_MajorMinor_Ver
 //Read each test details and creation a job trigger to AutoDeploy Sanity flow with with the given details
 AUT_Tests.tokenize(&apos;;&apos;).each{    
                     testDetails = it.replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;).tokenize(&apos;,&apos;)
@@ -130,7 +131,7 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
 	  string(name: &apos;TestSuite&apos;, value:test_suite_name),
 	  string(name: &apos;TestSuitePath&apos;, value:test_suite_path),
 	  string(name: &apos;ATEBasePath&apos;, value:ate_scripts_path),
-	  string(name: &apos;MajorMinor_Ver&apos;, value:ate_MajorMinor_Ver)
+	  string(name: &apos;MajorMinor_Ver&apos;, value:ate_MajorMinor_Ver),
 	  [$class: &apos;NodeParameterValue&apos;, name: &apos;FlowController&apos;, labels: [&quot;${masternode}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
 	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${ate_controller_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
       [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;SimulatorEngine&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
