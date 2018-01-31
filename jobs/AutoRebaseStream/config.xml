@@ -93,7 +93,7 @@ If NOT %ERRORLEVEL% == 0 (&#xd;
      echo &quot;Rebase of %toStream% from %fromStream% failed with the following error:&quot;&#xd;
      echo !%ERRORLEVEL%! &#xd;
      exit /b 1&#xd;
-  ) ESLE (&#xd;
+  ) ELSE (&#xd;
      exit 0&#xd;
   )&#xd;
 )</command>
