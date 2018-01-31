@@ -761,6 +761,10 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>RunAutoRebase</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>StartingStep</string>
       <string></string>
     </entry>
