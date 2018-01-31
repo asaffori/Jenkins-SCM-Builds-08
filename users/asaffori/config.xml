@@ -193,6 +193,10 @@
           <string>CreateNewStream</string>
           <boolean>true</boolean>
         </entry>
+        <entry>
+          <string>OMD_17.12_Scheduled_Trigger</string>
+          <boolean>true</boolean>
+        </entry>
       </data>
     </hudson.plugins.favorite.user.FavoriteUserProperty>
     <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.1">
