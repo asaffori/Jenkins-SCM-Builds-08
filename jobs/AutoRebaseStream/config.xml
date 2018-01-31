@@ -85,8 +85,8 @@ Please note that execution will fail in case of merge conflicts.</description>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>::SETLOCAL ENABLEDELAYEDEXPANSION&#xd;
-lscm deliver -r %repositoryAddress% -u %BuildUser% -P &quot;%BuildPass%&quot; -N -v -s %fromStream% -t %toStream%&#xd;
+      <command>SETLOCAL ENABLEDELAYEDEXPANSION&#xd;
+call lscm deliver -r %repositoryAddress% -u %BuildUser% -P &quot;%BuildPass%&quot; -N -v -s %fromStream% -t %toStream%&#xd;
 echo errror %ERRORLEVEL%&#xd;
 If NOT %ERRORLEVEL% == 0 (&#xd;
   echo &quot;Rebase of %toStream% from %fromStream% failed with the following error:&quot;&#xd;
