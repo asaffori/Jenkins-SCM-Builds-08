@@ -595,6 +595,11 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
           <description></description>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RunAutoRebase</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ATEControllerEngine</name>
           <description></description>
@@ -724,27 +729,7 @@ build.save()</postsendScript>
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ClosureBuildEngine</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>AcronisEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ToolType</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>StartingStep</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BaseImagePath</string>
       <string></string>
     </entry>
     <entry>
@@ -756,19 +741,15 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>AUTOINSTALLATION</string>
+      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
-      <string>TestSuitePath</string>
+      <string>BaseImage</string>
       <string></string>
     </entry>
     <entry>
-      <string>ATEControllerEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ATEBasePath</string>
+      <string>ToolType</string>
       <string></string>
     </entry>
     <entry>
@@ -780,7 +761,19 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>TestSuite</string>
+      <string>StartingStep</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BaseImagePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>AUTOINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ATEControllerEngine</string>
       <string></string>
     </entry>
     <entry>
@@ -788,7 +781,15 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>BaseImage</string>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuitePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ATEBasePath</string>
       <string></string>
     </entry>
   </globalEnvVars>
