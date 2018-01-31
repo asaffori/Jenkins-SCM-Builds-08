@@ -341,7 +341,13 @@ TestSuite=${TestSuite}</properties>
       </configs>
     </hudson.plugins.parameterizedtrigger.TriggerBuilder>
   </builders>
-  <publishers/>
+  <publishers>
+    <hudson.tasks.Mailer plugin="mailer@1.20">
+      <recipients>DL-OMD-ENG-SCM@kla-tencor.com</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+  </publishers>
   <buildWrappers>
     <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
       <deleteDirs>false</deleteDirs>
@@ -395,7 +401,7 @@ IF %ERRORLEVEL% NEQ 0 (&#xd;
                 <propertiesContent>VERSIONFILE=${BUILD_VERSION}
 AUTOVERSION=true
 BUILD_VERSION=${CurrentRunnningVersion}
-SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
+SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
               </info>
             </EnvInjectBuilder>
           </conditionalbuilders>
