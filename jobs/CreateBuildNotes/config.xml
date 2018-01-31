@@ -10,6 +10,14 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -63,6 +71,11 @@
           <description></description>
           <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_Groups.txt</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JENKINCONFIGPATH</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -76,6 +89,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
+        <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <groovyScriptContent>//reading email reciepts
 if (recipientList.contains(&quot;@&quot;)) {
      def map = [ &quot;recipients_list&quot;:recipientList]
@@ -112,14 +126,6 @@ def reciepts_list=&quot;&quot;;
       <contributors/>
     </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -130,7 +136,7 @@ def reciepts_list=&quot;&quot;;
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>java -jar %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\Apps\BNG\2.5\BNG.jar -acf %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\Apps\BNG\2.5\Attributeconfig.xml -grf html -p &quot;Scm07&amp;&quot; -u omdbuild -pa &quot;OMD NuArcher&quot; -r http://clm.kla-tencor.com/ccm -rf %ReportName% -rp %WORKSPACE%  -tsw %Stream%&#xd;
+      <command>java -jar %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\Apps\BNG\BNG.jar -acf %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\Apps\BNG\2.5\Attributeconfig.xml -grf html -p &quot;Scm07&amp;&quot; -u omdbuild -pa &quot;OMD NuArcher&quot; -r http://clm.kla-tencor.com/ccm -rf %ReportName% -rp %WORKSPACE%  -tsw %Stream%&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
     </hudson.tasks.BatchFile>
   </builders>
