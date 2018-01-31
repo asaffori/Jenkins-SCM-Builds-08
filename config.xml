@@ -291,6 +291,9 @@
         <string>OMD-Archer-Buid-CreateCodeViewNew</string>
         <string>OMD-Archer-Build-Create_Snapshot_Baseline</string>
         <string>OMD-Archer-Build-PromoteBuildWIs</string>
+        <string>TriggerAutoRebaseDev</string>
+        <string>TriggerEnableScheduledJob</string>
+        <string>TriggerUnlockBuildSources</string>
       </jobNames>
       <jobFilters/>
       <columns>
