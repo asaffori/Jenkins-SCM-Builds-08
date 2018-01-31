@@ -36,177 +36,9 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>StartingStep</name>
-          <description>The flow will start from the specified step</description>
-          <choices>
-            <string>BUILD</string>
-            <string>PACKAGING</string>
-            <string>INSTALLATION</string>
-            <string>SANITY</string>
-            <string>MAT</string>
-            <string>DOWNSTREAM</string>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>RunningMode</name>
-          <description>The flow will start in the specified mode</description>
-          <choices>
-            <string>NORMAL</string>
-            <string>DAILY</string>
-            <string>WEEKLY</string>
-            <string>DAILY_AND_WEEKLY</string>
-            <string>MONTHLY</string>
-            <string>DAILY_AND_MONTHLY</string>
-            <string>WEEKLY_AND_MONTHLY</string>
-            <string>ALL</string>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>FlowController</name>
-          <description></description>
-          <allowedSlaves>
-            <string>master</string>
-          </allowedSlaves>
-          <defaultSlaves>
-            <string>master</string>
-          </defaultSlaves>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>BUILD_VERSION</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
-          <name>MajorMinor_Ver</name>
-          <description></description>
-          <randomName>choice-parameter-1396436508196432</randomName>
-          <visibleItemCount>0</visibleItemCount>
-          <script class="org.biouno.unochoice.model.GroovyScript">
-            <secureScript plugin="script-security@1.39">
-              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
-return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
-              <sandbox>false</sandbox>
-            </secureScript>
-            <secureFallbackScript plugin="script-security@1.39">
-              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
-return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
-              <sandbox>false</sandbox>
-            </secureFallbackScript>
-          </script>
-          <projectName>BuildClosure-Flow</projectName>
-          <parameters class="linked-hash-map">
-            <entry>
-              <string>BUILD_VERSION</string>
-              <string></string>
-            </entry>
-          </parameters>
-          <referencedParameters>BUILD_VERSION</referencedParameters>
-          <choiceType>ET_FORMATTED_HTML</choiceType>
-          <omitValueField>true</omitValueField>
-        </org.biouno.unochoice.DynamicReferenceParameter>
-        <hudson.model.StringParameterDefinition>
-          <name>WSName</name>
-          <description></description>
-          <defaultValue>omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>CodeViewLoadePath</name>
-          <description></description>
-          <defaultValue>E:\Views\OMD\OMD-UN_${MajorMinor_Ver}\UOMD_BLD_${BUILD_VERSION}_code</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>BuildAutoApproved</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.4.1">
-          <name>buildRequesterUserId</name>
-          <description></description>
-          <editable>true</editable>
-          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider">
-            <groovyScript plugin="script-security@1.39">
-              <script>import hudson.model.User
-String user =User.current().getId()
-return [user]</script>
-              <sandbox>true</sandbox>
-            </groovyScript>
-            <usePredefinedVariables>false</usePredefinedVariables>
-          </choiceListProvider>
-        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>team_scm_fetchDestination</name>
-          <description>Scripts/Sandbox path
-If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   While %BUILD_VERSION% is the value of the parameter BUILD_VERSION</description>
-          <defaultValue>D:\Sandboxes\omdbuild_${BUILD_VERSION}</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ReleaseBuildEngine</name>
-          <description>The slave/node where the build was hosted</description>
-          <allowedSlaves>
-            <string>ALL (no restriction)</string>
-          </allowedSlaves>
-          <defaultSlaves>
-            <string>master</string>
-          </defaultSlaves>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>JENKINCONFIGPATH</name>
-          <description></description>
-          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>DebugBuildEngine</name>
-          <description></description>
-          <allowedSlaves>
-            <string>ALL (no restriction)</string>
-          </allowedSlaves>
-          <defaultSlaves>
-            <string>SCM-Builds-01</string>
-          </defaultSlaves>
-          <triggerIfResult>allowMultiSelectionForConcurrentBuilds</triggerIfResult>
-          <allowMultiNodeSelection>true</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>true</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>VERSIONFILE</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDTYPE</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Tasks</string>
-              <string>Formal</string>
-              <string>Scheduled</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>AUTOVERSION</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -258,19 +90,19 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <string></string>
     </entry>
     <entry>
-      <string>AUTOVERSION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BUILDTYPE</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>VERSIONFILE</string>
       <string></string>
     </entry>
     <entry>
       <string>FlowController</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>AUTOVERSION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BUILDTYPE</string>
       <string></string>
     </entry>
   </globalEnvVars>
