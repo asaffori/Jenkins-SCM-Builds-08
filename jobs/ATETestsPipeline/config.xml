@@ -106,7 +106,7 @@ def ate_tests = [:]
 //For symantic
 def index=0
 def masternode=&quot;master&quot;
-def ate_MajorMinor_Ver = BUILD_VERSION.substring(0,5)
+def ate_MajorMinor_Ver = params.BUILD_VERSION.substring(0,5)
 //Read each test details and creation a job trigger to AutoDeploy Sanity flow with with the given details
 AUT_Tests.tokenize(&apos;;&apos;).each{    
                     testDetails = it.replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;).tokenize(&apos;,&apos;)
