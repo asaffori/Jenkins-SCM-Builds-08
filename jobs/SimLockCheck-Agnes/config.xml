@@ -106,7 +106,7 @@ echo ******* Simulator %SimulatorEngine% can&apos;t be connected ************&#x
 goto error&#xd;
 )&#xd;
 echo ******* Ping %SimulatorEngine% for %pinglooptimeout% time&#xd;
-ping %SimulatorEngine%&#xd;
+wmic.exe /node:&apos;%SimulatorEngine%&apos; computersystem get username| find &quot;autologonuser&quot;&#xd;
 if not %errorlevel%==0 (&#xd;
 set /a pinglooptimeout=%pinglooptimeout%+1&#xd;
 goto pingloopstart&#xd;
