@@ -50,6 +50,11 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
         </org.biouno.unochoice.DynamicReferenceParameter>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RunAutoRebase</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -111,5 +116,26 @@ toStream=Archer_${MajorMinor_Ver}_Dev</properties>
     </hudson.plugins.parameterizedtrigger.TriggerBuilder>
   </builders>
   <publishers/>
-  <buildWrappers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+          <source class="hudson.plugins.groovy.StringSystemScriptSource">
+            <script plugin="script-security@1.39">
+              <script>import hudson.model.Result;
+
+def RunAutoRebase = build.buildVariableResolver.resolve(&quot;RunAutoRebase&quot;)
+
+if (RunAutoRebase != &quot;true&quot;) {
+	println (&quot;RunAutoRebase was disabled. Rebase Dev stream from Integ step will not run&quot;);
+  	build.getExecutor().interrupt(Result.SUCCESS)
+}</script>
+              <sandbox>false</sandbox>
+            </script>
+          </source>
+        </hudson.plugins.groovy.SystemGroovy>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
 </project>
