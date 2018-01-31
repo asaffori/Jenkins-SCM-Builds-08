@@ -211,7 +211,7 @@ echo Run RunScriptsFromFolder failed&#xd;
 goto error&#xd;
 )&#xd;
 &#xd;
-xcopy &quot;C:\Eggplant Reports\*.*&quot; C:\ATElogs\%BUILD_VERSION%_%ToolType%\ /f /r /s /y&#xd;
+xcopy &quot;C:\Eggplant Reports\*.*&quot; &quot;C:\ATElogs\%BUILD_VERSION%_%ToolType%\&quot; /f /r /s /y&#xd;
 rd /q /s &quot;C:\Eggplant Reports&quot;&#xd;
 &#xd;
 if exist C:\temp\NightRunFailFlag.txt (&#xd;

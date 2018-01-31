@@ -136,7 +136,7 @@
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-313186242246989</randomName>
-          <visibleItemCount>1</visibleItemCount>
+          <visibleItemCount>0</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -150,7 +150,12 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
             </secureFallbackScript>
           </script>
           <projectName>Auto Deploy Sanity</projectName>
-          <parameters class="linked-hash-map"/>
+          <parameters class="linked-hash-map">
+            <entry>
+              <string>BUILD_VERSION</string>
+              <string>17.04.01.20322</string>
+            </entry>
+          </parameters>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -244,15 +249,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>MajorMinor_Ver</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
@@ -272,11 +269,19 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <string></string>
     </entry>
     <entry>
-      <string>BaseImage</string>
+      <string>ATEControllerEngine</string>
       <string></string>
     </entry>
     <entry>
-      <string>ATEControllerEngine</string>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BaseImage</string>
       <string></string>
     </entry>
   </globalEnvVars>
