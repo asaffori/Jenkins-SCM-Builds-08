@@ -297,10 +297,6 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <string>FlowController</string>
       <string></string>
     </entry>
-    <entry>
-      <string>RunAutoRebase</string>
-      <string></string>
-    </entry>
   </globalEnvVars>
   <profiler class="com.amdocs.hudson.plugins.dbprofiler.DBProfiler"/>
   <jobParameterList class="java.util.concurrent.CopyOnWriteArrayList">
