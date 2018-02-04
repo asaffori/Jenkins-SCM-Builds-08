@@ -329,7 +329,7 @@ IF NOT %ERRORLEVEL% == 0 (&#xd;
           <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
             <configs>
               <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                <properties>Stream=Archer_${MajorMinor_Ver}_Integ
+                <properties>Stream=Archer_17.12_TestAutoMerge
 BUILD_VERSION=${BUILD_VERSION}
 team_scm_fetchDestination=${team_scm_fetchDestination}
 BuildEngine=${NODE_NAME}
@@ -379,7 +379,7 @@ recipientList=${emailGroups}</properties>
             <configs>
               <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 <properties>operation=lock
-Stream=Archer_${MajorMinor_Ver}_Dev
+Stream=Archer_17.12_TestAutoMerge
 BuildEngine=${NODE_NAME}
 team_scm_fetchDestination=${team_scm_fetchDestination}
 xmlfile=${team_scm_fetchDestination}\OMD_Builds\JenkinsBuild\VersionUpdater\StoreDataFile.xml</properties>
@@ -416,7 +416,7 @@ xmlfile=${team_scm_fetchDestination}\OMD_Builds\JenkinsBuild\VersionUpdater\Stor
             <configs>
               <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 <properties>operation=lock
-Stream=Archer_${MajorMinor_Ver}_Dev
+Stream=Archer_17.12_TestAutoMerge
 BuildEngine=${NODE_NAME}
 team_scm_fetchDestination=${team_scm_fetchDestination}
 xmlfile=${team_scm_fetchDestination}\RDM\RDM_Builds\VersionUpdater\StoreDataFile.xml</properties>
@@ -568,8 +568,8 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
               <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                    <properties>fromStream=Archer_${MajorMinor_Ver}_Dev
-toStream=Archer_${MajorMinor_Ver}_Integ</properties>
+                    <properties>fromStream=Archer_${MajorMinor_Ver}_Integ
+toStream=Archer_17.12_TestAutoMerge</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 </configs>
