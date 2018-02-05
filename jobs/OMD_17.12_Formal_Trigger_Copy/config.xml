@@ -562,7 +562,7 @@ set BUILDTYPE=Formal&#xd;
 set VERSIONCONFIG=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version\VersionConfig.properties&#xd;
 set team_scm_fetchDestination=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version&#xd;
 set BUILDVERSION=%BUILD_VERSION%&#xd;
-\\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat&#xd;
+Call \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat&#xd;
 If NOT %ERRORLEVEL% == 0 (&#xd;
    echo &quot;Error: Build version failed&quot;&#xd;
 )</command>
