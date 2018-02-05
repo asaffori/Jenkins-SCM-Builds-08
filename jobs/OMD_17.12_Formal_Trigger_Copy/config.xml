@@ -591,7 +591,7 @@ List&lt;String&gt; logLines = build.getLog(100);
 logLines.each{
    if (it.contains(&quot;Build version calculation failed&quot;)){
        build.result = Result.UNSTABLE
-       //throw new AbortException(&quot;Build failed in new version calculation.&quot;)
+       throw new AbortException(&quot;Build failed in new version calculation.&quot;)
    }
 }
 </script>
