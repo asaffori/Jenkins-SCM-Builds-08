@@ -435,7 +435,7 @@ xmlfile=${workspace}\\${team_scm_fetchDestination}\\OMD_Builds\\JenkinsBuild\\Ve
 Stream=Archer_17.12_TestAutoMerge
 BuildEngine=${WhereToRun}
 team_scm_fetchDestination=${workspace}\\${team_scm_fetchDestination}
-xmlfile=${workspace}\\${team_scm_fetchDestination}\\RDM\\RDM_Builds\\VersionUpdater\StoreDataFile.xml</properties>
+xmlfile=${workspace}\\${team_scm_fetchDestination}\\RDM\\RDM_Builds\\VersionUpdater\\StoreDataFile.xml</properties>
                 <textParamValueOnNewLine>false</textParamValueOnNewLine>
               </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
             </configs>
