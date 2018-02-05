@@ -567,6 +567,19 @@ IF NOT %ERRORLEVEL% == 0 (&#xd;
        Exit 1&#xd;
 )</command>
             </hudson.tasks.BatchFile>
+            <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+              <source class="hudson.plugins.groovy.StringSystemScriptSource">
+                <script plugin="script-security@1.39">
+                  <script>import manager.build.*
+if(manager.logContains(&quot;.*BUILD VERSION is not correct!!.*&quot;)) {
+    manager.addWarningBadge(&quot;Build failed in version calculation&quot;)
+    manager.createSummary(&quot;warning.gif&quot;).appendText(&quot;&lt;h1&gt;Version calculation failed&lt;/h1&gt;&quot;, false, false, false, &quot;red&quot;)
+    manager.buildUnstable()
+}</script>
+                  <sandbox>false</sandbox>
+                </script>
+              </source>
+            </hudson.plugins.groovy.SystemGroovy>
             <EnvInjectBuilder plugin="envinject@1.90">
               <info>
                 <propertiesFilePath>${BUILD_VERSION}</propertiesFilePath>
