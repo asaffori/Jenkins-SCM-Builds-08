@@ -561,11 +561,7 @@ set BUILDTYPE=Formal&#xd;
 set VERSIONCONFIG=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version\VersionConfig.properties&#xd;
 set team_scm_fetchDestination=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version&#xd;
 set BUILDVERSION=%BUILD_VERSION%&#xd;
-CALL \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat&#xd;
-IF NOT %ERRORLEVEL% == 0 (&#xd;
-       ECHO &quot;Unable to calculate BUILDVERSION. errorlevel: %ERRORLEVEL%&quot;&#xd;
-       Exit 1&#xd;
-)</command>
+CALL \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat</command>
             </hudson.tasks.BatchFile>
             <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
               <source class="hudson.plugins.groovy.StringSystemScriptSource">
