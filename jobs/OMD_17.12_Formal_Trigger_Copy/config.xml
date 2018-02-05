@@ -580,16 +580,7 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
             <script plugin="script-security@1.39">
-              <script>import hudson.model.*
-import org.jvnet.hudson.plugins.groovypostbuild.WorkflowManager.*
-if(manager.logContains(&quot;.*BUILD VERSION is not correct.*&quot;)) {
-    manager.addWarningBadge(&quot;Build failed in version calculation&quot;)
-    manager.createSummary(&quot;warning.gif&quot;).appendText(&quot;&lt;h1&gt;Version calculation failed&lt;/h1&gt;&quot;, false, false, false, &quot;red&quot;)
-    manager.buildUnstable()
-}
-manager.listener.logger.println(&quot;I want to see this line in my job&apos;s output: not finishing &apos;BUILD VERSION is not correct&apos;&quot;);
-
-
+              <script>
 for(action in build.getActions()){
             if(action.toString().contains(&quot;LogParserAction&quot;)){
                 //Get the LogParserResult from the LogParserAction
