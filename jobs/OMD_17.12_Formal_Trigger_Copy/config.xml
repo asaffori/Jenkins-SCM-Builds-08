@@ -580,30 +580,10 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
             <script plugin="script-security@1.39">
-              <script>def logParserResult;
-for(action in build.getActions()){
-            if(action.toString().contains(&quot;LogParserAction&quot;)){
-                //Get the LogParserResult from the LogParserAction
-                logParserResult = action.getResult()
-                break
-            }
-        }
-
-        //Get the ErrorLinksFile from the LogParserResult
-        def errorLinksFile = new File(logParserResult.getErrorLinksFile())
-
-        //Rewrite the URL so it directs to something useful
-        pattern = ~/&lt;a.*?&gt;&lt;font.*?&gt;/
-        def errorList = []
-        for(line in errorLinksFile.getText().split(&quot;\n&quot;)){
-            //All errors have a link, so this makes sure no superfluous text is displayed
-            if(!line.contains(&quot;BUILD VERSION is not correct&quot;)){
-                build.result = &apos;UNSTABLE&apos;
-            }
-            //errorList.add(line.replaceAll(pattern, &quot;&lt;a href=&quot;+ rooturl + build.url + &quot;parsed_console/?\&quot;&gt;&quot;).minus(&quot;&lt;/font&gt;&quot;))
-        }
+              <script>if (build.getLogText().contains(&quot;BUILD VERSION is not correct&quot;))
+ build.result = &apos;UNSTABLE&apos;
 </script>
-              <sandbox>false</sandbox>
+              <sandbox>true</sandbox>
             </script>
           </source>
         </hudson.plugins.groovy.SystemGroovy>
