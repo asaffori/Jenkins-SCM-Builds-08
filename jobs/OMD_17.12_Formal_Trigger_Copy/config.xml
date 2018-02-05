@@ -564,7 +564,7 @@ set team_scm_fetchDestination=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version&#xd;
 set BUILDVERSION=%BUILD_VERSION%&#xd;
 \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat&#xd;
 If NOT %ERRORLEVEL% == 0 (&#xd;
-   echo &quot;Error: Build version calculation failed&quot;&#xd;
+   echo &quot;Error: Build version failed&quot;&#xd;
 )</command>
             </hudson.tasks.BatchFile>
             <EnvInjectBuilder plugin="envinject@1.90">
@@ -589,9 +589,9 @@ import hudson.AbortException
 
 List&lt;String&gt; logLines = build.getLog(100);
 logLines.each{
-   if (it.contains(&quot;Build version calculation failed&quot;)){
+   if (it.contains(&quot;BUILD VERSION is not correct&quot;)){
        build.result = Result.UNSTABLE
-       throw new AbortException(&quot;Build failed in new version calculation.&quot;)
+       //throw new AbortException(&quot;Build failed in new version calculation.&quot;)
    }
 }
 </script>
