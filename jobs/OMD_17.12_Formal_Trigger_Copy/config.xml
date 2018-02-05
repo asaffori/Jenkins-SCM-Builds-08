@@ -580,7 +580,7 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
             <script plugin="script-security@1.39">
-              <script>import manager.build.*
+              <script>import org.jvnet.hudson.plugins.groovypostbuild;
 if(manager.logContains(&quot;.*BUILD VERSION is not correct.*&quot;)) {
     manager.addWarningBadge(&quot;Build failed in version calculation&quot;)
     manager.createSummary(&quot;warning.gif&quot;).appendText(&quot;&lt;h1&gt;Version calculation failed&lt;/h1&gt;&quot;, false, false, false, &quot;red&quot;)
