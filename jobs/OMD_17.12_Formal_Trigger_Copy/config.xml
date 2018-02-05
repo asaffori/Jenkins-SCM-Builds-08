@@ -559,6 +559,7 @@ AUTOVERSION=false</propertiesContent>
 setlocal ENABLEDELAYEDEXPANSION&#xd;
 :: run command for incrementing the version&#xd;
 set BUILDTYPE=Formal&#xd;
+set ValidOptions=Formal,Scheduled,Tasks&#xd;
 set VERSIONCONFIG=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version\VersionConfig.properties&#xd;
 set team_scm_fetchDestination=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version&#xd;
 set BUILDVERSION=%BUILD_VERSION%&#xd;
