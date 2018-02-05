@@ -105,6 +105,7 @@ PYTHON &quot;%team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
+        <propertiesContent>http_proxy=http://isr1vmrtcproxy01:3128</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
