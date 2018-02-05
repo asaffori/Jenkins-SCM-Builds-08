@@ -583,7 +583,7 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
               <script>if (build.getLogText().contains(&quot;BUILD VERSION is not correct&quot;))
  build.result = &apos;UNSTABLE&apos;
 </script>
-              <sandbox>true</sandbox>
+              <sandbox>false</sandbox>
             </script>
           </source>
         </hudson.plugins.groovy.SystemGroovy>
