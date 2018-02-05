@@ -95,5 +95,7 @@ PYTHON &quot;%team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+  </buildWrappers>
 </project>
