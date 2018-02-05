@@ -555,13 +555,17 @@ AUTOVERSION=false</propertiesContent>
           </runCondition>
           <conditionalbuilders>
             <hudson.tasks.BatchFile>
-              <command>:: run command for incrementing the version&#xd;
+              <command>@echo off&#xd;
+:: run command for incrementing the version&#xd;
 set BUILDTYPE=Formal&#xd;
 set VERSIONCONFIG=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version\VersionConfig.properties&#xd;
 set team_scm_fetchDestination=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version&#xd;
 set BUILDVERSION=%BUILD_VERSION%&#xd;
 CALL \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat&#xd;
-exit %ERRORLEVEL%</command>
+IF NOT %ERRORLEVEL% == 0 (&#xd;
+       ECHO &quot;Unable to calculate BUILDVERSION. errorlevel: %ERRORLEVEL%&quot;&#xd;
+       Exit 1&#xd;
+)</command>
             </hudson.tasks.BatchFile>
             <EnvInjectBuilder plugin="envinject@1.90">
               <info>
