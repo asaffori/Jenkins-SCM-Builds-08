@@ -60,13 +60,8 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
               <sandbox>false</sandbox>
             </secureFallbackScript>
           </script>
-          <projectName>TriggerUnlockBuildSources</projectName>
-          <parameters class="linked-hash-map">
-            <entry>
-              <string>BUILD_VERSION</string>
-              <string></string>
-            </entry>
-          </parameters>
+          <projectName>TriggerLockBuildSources</projectName>
+          <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -86,7 +81,6 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -103,7 +97,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
         <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties>operation=unlock
+              <properties>operation=lock
 Stream= Archer_${MajorMinor_Ver}_Dev
 BuildEngine=${ClosureBuildEngine}
 xmlfile= ${team_scm_fetchDestination}\OMD_Builds\JenkinsBuild\VersionUpdater\StoreDataFile.xml</properties>
@@ -145,7 +139,7 @@ xmlfile= ${team_scm_fetchDestination}\OMD_Builds\JenkinsBuild\VersionUpdater\Sto
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties>operation=unlock
+              <properties>operation=lock
 Stream= Archer_${MajorMinor_Ver}_Dev
 BuildEngine=${ClosureBuildEngine}
 xmlfile= ${team_scm_fetchDestination}\RDM\RDM_Builds\VersionUpdater\StoreDataFile.xml</properties>
@@ -193,7 +187,7 @@ xmlfile= ${team_scm_fetchDestination}\RDM\RDM_Builds\VersionUpdater\StoreDataFil
 def RunAutoRebase = build.buildVariableResolver.resolve(&quot;RunAutoRebase&quot;)
 
 if (RunAutoRebase != &quot;true&quot;) {
-	println (&quot;RunAutoRebase was disabled. Sources on Dev stream wasn&apos;t supposed to be locked, so unlock sources step will not run&quot;);
+	println (&quot;RunAutoRebase was disabled. Sources on Dev stream wasn&apos;t supposed to be locked, so lock sources step will not run&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }</script>
               <sandbox>false</sandbox>
