@@ -575,7 +575,8 @@ if(manager.logContains(&quot;.*BUILD VERSION is not correct.*&quot;)) {
     manager.addWarningBadge(&quot;Build failed in version calculation&quot;)
     manager.createSummary(&quot;warning.gif&quot;).appendText(&quot;&lt;h1&gt;Version calculation failed&lt;/h1&gt;&quot;, false, false, false, &quot;red&quot;)
     manager.buildUnstable()
-}</script>
+}
+manager.listener.logger.println(&quot;I want to see this line in my job&apos;s output: not finishing &apos;BUILD VERSION is not correct&apos;&quot;);</script>
                   <sandbox>true</sandbox>
                 </script>
               </source>
