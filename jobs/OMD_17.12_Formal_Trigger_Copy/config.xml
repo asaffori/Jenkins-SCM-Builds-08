@@ -580,7 +580,7 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
             <script plugin="script-security@1.39">
-              <script>if (build.getLogText().contains(&quot;BUILD VERSION is not correct&quot;))
+              <script>if ((String)(build.getLogText()).contains(&quot;BUILD VERSION is not correct&quot;))
  build.result = &apos;UNSTABLE&apos;
 </script>
               <sandbox>false</sandbox>
