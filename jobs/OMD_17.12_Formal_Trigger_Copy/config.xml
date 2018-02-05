@@ -603,7 +603,7 @@ for(action in build.getActions()){
             //errorList.add(line.replaceAll(pattern, &quot;&lt;a href=&quot;+ rooturl + build.url + &quot;parsed_console/?\&quot;&gt;&quot;).minus(&quot;&lt;/font&gt;&quot;))
         }
 </script>
-              <sandbox>true</sandbox>
+              <sandbox>false</sandbox>
             </script>
           </source>
         </hudson.plugins.groovy.SystemGroovy>
