@@ -304,7 +304,8 @@ ToolType=A700</propertiesContent>
     <customizedSnapshotName>${SnapshotName}</customizedSnapshotName>
     <useDynamicLoadRules>false</useDynamicLoadRules>
   </scm>
-  <canRoam>true</canRoam>
+  <assignedNode>master</assignedNode>
+  <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
