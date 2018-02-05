@@ -580,9 +580,13 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
             <script plugin="script-security@1.39">
-              <script>if (build.getLogText().toString().contains(&quot;BUILD VERSION is not correct&quot;))
+              <script>import hudson.model.*
+import hudson.AbortException
+
+if (build.getLogText().toString().contains(&quot;BUILD VERSION is not correct&quot;)){
  build.result = Result.UNSTABLE
-</script>
+throw new AbortException(&quot;Build failed.&quot;)
+}</script>
               <sandbox>false</sandbox>
             </script>
           </source>
