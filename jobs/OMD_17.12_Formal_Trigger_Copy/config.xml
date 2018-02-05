@@ -556,6 +556,7 @@ AUTOVERSION=false</propertiesContent>
           <conditionalbuilders>
             <hudson.tasks.BatchFile>
               <command>@echo off&#xd;
+setlocal ENABLEDELAYEDEXPANSION&#xd;
 :: run command for incrementing the version&#xd;
 set BUILDTYPE=Formal&#xd;
 set VERSIONCONFIG=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version\VersionConfig.properties&#xd;
