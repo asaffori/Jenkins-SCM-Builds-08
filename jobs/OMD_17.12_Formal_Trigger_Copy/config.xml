@@ -580,7 +580,7 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
             <script plugin="script-security@1.39">
-              <script>
+              <script>def logParserResult;
 for(action in build.getActions()){
             if(action.toString().contains(&quot;LogParserAction&quot;)){
                 //Get the LogParserResult from the LogParserAction
