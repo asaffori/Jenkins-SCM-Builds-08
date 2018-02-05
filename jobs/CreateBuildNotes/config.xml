@@ -90,6 +90,7 @@
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
+        <propertiesContent>http_proxy=http://isr1vmrtcproxy01:3128</propertiesContent>
         <groovyScriptContent>//reading email reciepts
 if (recipientList.contains(&quot;@&quot;)) {
      def map = [ &quot;recipients_list&quot;:recipientList]
