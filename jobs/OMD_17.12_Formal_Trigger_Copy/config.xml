@@ -275,7 +275,7 @@
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesContent>BUILDTYPE=Formal
-WSName=omdbuild_Archer_${MajorMinor_Ver}_Dev_Workspace
+WSName=asaffori_Archer_17.12_Dev_Workspace
 SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}
 BaseImage=17.10.00.20900_A700_ATE_Image
 SimulatorEngine=SCM-SIM7050-02
