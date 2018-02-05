@@ -561,10 +561,7 @@ set VERSIONCONFIG=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version\VersionConfig.prop
 set team_scm_fetchDestination=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version&#xd;
 set BUILDVERSION=%BUILD_VERSION%&#xd;
 CALL \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat&#xd;
-IF NOT %ERRORLEVEL% == 0 (&#xd;
-       ECHO &quot;Unable to calculate BUILDVERSION. errorlevel: %ERRORLEVEL%&quot;&#xd;
-	Exit 1&#xd;
-)</command>
+exit %ERRORLEVEL%</command>
             </hudson.tasks.BatchFile>
             <EnvInjectBuilder plugin="envinject@1.90">
               <info>
