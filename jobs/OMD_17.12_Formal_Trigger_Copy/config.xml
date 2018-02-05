@@ -299,7 +299,7 @@ ToolType=A700</propertiesContent>
     <timeout>0</timeout>
     <buildType>
       <value>buildDefinition</value>
-      <buildDefinition>OMD-Archer-V17.12-Formal-Jenkins</buildDefinition>
+      <buildDefinition>OMD-Archer-V17.12-Test-Jenkins</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
       <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -309,7 +309,7 @@ ToolType=A700</propertiesContent>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>OMD-Archer-V17.12-Formal-Jenkins</buildDefinition>
+    <buildDefinition>OMD-Archer-V17.12-Test-Jenkins</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
