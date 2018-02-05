@@ -348,7 +348,7 @@ IF NOT %ERRORLEVEL% == 0 (&#xd;
                 <properties>Stream=Archer_17.12_TestAutoMerge
 BUILD_VERSION=${BUILD_VERSION}
 team_scm_fetchDestination=${workspace}\\${team_scm_fetchDestination}
-BuildEngine=${NODE_NAME}
+BuildEngine=${WhereToRun}
 recipientList=${emailGroups}</properties>
                 <textParamValueOnNewLine>false</textParamValueOnNewLine>
               </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -396,7 +396,7 @@ recipientList=${emailGroups}</properties>
               <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 <properties>operation=lock
 Stream=Archer_17.12_TestAutoMerge
-BuildEngine=${NODE_NAME}
+BuildEngine=${WhereToRun}
 team_scm_fetchDestination=${workspace}\${team_scm_fetchDestination}
 xmlfile=${workspace}\\${team_scm_fetchDestination}\\OMD_Builds\\JenkinsBuild\\VersionUpdater\\StoreDataFile.xml</properties>
                 <textParamValueOnNewLine>false</textParamValueOnNewLine>
@@ -433,7 +433,7 @@ xmlfile=${workspace}\\${team_scm_fetchDestination}\\OMD_Builds\\JenkinsBuild\\Ve
               <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 <properties>operation=lock
 Stream=Archer_17.12_TestAutoMerge
-BuildEngine=${NODE_NAME}
+BuildEngine=${WhereToRun}
 team_scm_fetchDestination=${workspace}\\${team_scm_fetchDestination}
 xmlfile=${workspace}\\${team_scm_fetchDestination}\\RDM\\RDM_Builds\\VersionUpdater\StoreDataFile.xml</properties>
                 <textParamValueOnNewLine>false</textParamValueOnNewLine>
