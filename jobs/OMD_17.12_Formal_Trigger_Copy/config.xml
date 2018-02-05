@@ -581,13 +581,37 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
             <script plugin="script-security@1.39">
               <script>import hudson.model.*
-import org.jvnet.hudson.plugins.groovypostbuild.*
+import org.jvnet.hudson.plugins.groovypostbuild.WorkflowManager.*
 if(manager.logContains(&quot;.*BUILD VERSION is not correct.*&quot;)) {
     manager.addWarningBadge(&quot;Build failed in version calculation&quot;)
     manager.createSummary(&quot;warning.gif&quot;).appendText(&quot;&lt;h1&gt;Version calculation failed&lt;/h1&gt;&quot;, false, false, false, &quot;red&quot;)
     manager.buildUnstable()
 }
-manager.listener.logger.println(&quot;I want to see this line in my job&apos;s output: not finishing &apos;BUILD VERSION is not correct&apos;&quot;);</script>
+manager.listener.logger.println(&quot;I want to see this line in my job&apos;s output: not finishing &apos;BUILD VERSION is not correct&apos;&quot;);
+
+
+for(action in build.getActions()){
+            if(action.toString().contains(&quot;LogParserAction&quot;)){
+                //Get the LogParserResult from the LogParserAction
+                logParserResult = action.getResult()
+                break
+            }
+        }
+
+        //Get the ErrorLinksFile from the LogParserResult
+        def errorLinksFile = new File(logParserResult.getErrorLinksFile())
+
+        //Rewrite the URL so it directs to something useful
+        pattern = ~/&lt;a.*?&gt;&lt;font.*?&gt;/
+        def errorList = []
+        for(line in errorLinksFile.getText().split(&quot;\n&quot;)){
+            //All errors have a link, so this makes sure no superfluous text is displayed
+            if(!line.contains(&quot;BUILD VERSION is not correct&quot;)){
+                build.result = &apos;UNSTABLE&apos;
+            }
+            //errorList.add(line.replaceAll(pattern, &quot;&lt;a href=&quot;+ rooturl + build.url + &quot;parsed_console/?\&quot;&gt;&quot;).minus(&quot;&lt;/font&gt;&quot;))
+        }
+</script>
               <sandbox>true</sandbox>
             </script>
           </source>
