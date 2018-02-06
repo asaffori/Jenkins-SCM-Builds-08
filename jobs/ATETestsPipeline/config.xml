@@ -148,6 +148,7 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
 }
   //Executing all tests in parallel
   parallel ate_tests
+  println ate_tests[index]
 }
 
 /**
