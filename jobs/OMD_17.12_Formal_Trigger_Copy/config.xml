@@ -427,7 +427,7 @@ TestSuite=${TestSuite}</properties>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.20">
-      <recipients>adham.saffori@kla-tencor.com</recipients>
+      <recipients>${BUILD_USER_EMAIL},adham.saffori@kla-tencor.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
@@ -595,5 +595,6 @@ JenkinsJobName=OMD_${MajorMinor_Ver}_Scheduled_Trigger</properties>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+    <org.jenkinsci.plugins.builduser.BuildUser plugin="build-user-vars-plugin@1.5"/>
   </buildWrappers>
 </project>
