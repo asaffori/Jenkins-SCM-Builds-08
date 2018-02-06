@@ -148,7 +148,11 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
   index++
 }
   //Executing all tests in parallel
-  parallel ate_tests
+  def build_results
+  build_results=parallel ate_tests
+  for(k in build_results.keySet()){
+      println build_results[&quot;${k}&quot;].result
+    }
 }
 
 /**
