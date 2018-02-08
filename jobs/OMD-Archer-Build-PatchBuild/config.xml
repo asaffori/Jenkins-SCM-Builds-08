@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Base_Build_Version</name>
+          <description>The full build version to run the restore for</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Patch_Version</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Depend_Patches_Verions</name>
+          <description>Comma seperated list of dependent patches to restore</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>team.scm.fetchDestination</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>emailGroups</name>
+          <description>This value is supplied by builds initiated through RTC.
+&lt;br&gt;
+Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_DLs.txt.</description>
+          <defaultValue>CM,</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildResultUUID</name>
+          <description>The UUID of the build result in RTC. It is supplied by builds initiated through RTC. For builds initiated through Hudson/Jenkins, no value should be supplied.</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildDefinitionId</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>team.scm.workspaceUUID</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>buildEngineHostName</name>
+          <description></description>
+          <allowedSlaves/>
+          <defaultSlaves/>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ProjectsToBuild</name>
+          <description>Comma seperated projects full path list for all the projects participating this build. Example: Archer\Common\Archer_ProductVersion\Archer_ProductVersion.vcxproj,OMD_Common\PlatformVersion\PlatformVersion.vcxproj</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>PATCH_SUPPORT_VERSION</name>
+          <description>Minimum version required to install the patch on top</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>RTC_WIs_DATA</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>README</name>
+          <description></description>
+          <defaultValue>Patch V${Patch_Version} - to be installed on top of version V${PATCH_SUPPORT_VERSION}  ${PATCHES_DATA} &lt;br&gt;
+&lt;br&gt;
+This patch is solving the following bugs:&lt;br&gt;
+${RTC_WIs_DATA}&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+Automatic Installation Instructions (Release configuration only):&lt;br&gt;
+&lt;br&gt;
+1.	Copy  \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch to C:\Temp&lt;br&gt;
+&lt;br&gt;
+2.	Run C:\Temp\UOMD_${Patch_Version}_Patch\Release\install.bat&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+Manual Installation instructions:&lt;br&gt;
+1.	Run KT-Stop&lt;br&gt;
+&lt;br&gt;
+2.	Copy build folders from:&lt;br&gt;
+&lt;br&gt;
+                Debug build: \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch\Debug&lt;br&gt;
+                Release build: \\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_${MajorMinor_Ver}\Formal\UOMD_${Patch_Version}_Patch\Release&lt;br&gt;
+                to C:\5300\&lt;br&gt;
+&lt;br&gt;
+3.	Run KT-start.&lt;br&gt;</defaultValue>
+        </hudson.model.TextParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
+    <overrideGlobal>false</overrideGlobal>
+    <timeout>0</timeout>
+    <buildType>
+      <value>buildDefinition</value>
+      <buildDefinition>${buildDefinitionId}</buildDefinition>
+      <clearLoadDirectory>false</clearLoadDirectory>
+      <createFoldersForComponents>false</createFoldersForComponents>
+      <acceptBeforeLoad>true</acceptBeforeLoad>
+      <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+      <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+      <customizedSnapshotName></customizedSnapshotName>
+      <useDynamicLoadRules>false</useDynamicLoadRules>
+    </buildType>
+    <buildTypeStr>buildDefinition</buildTypeStr>
+    <buildDefinition>${buildDefinitionId}</buildDefinition>
+    <clearLoadDirectory>false</clearLoadDirectory>
+    <createFoldersForComponents>false</createFoldersForComponents>
+    <acceptBeforeLoad>true</acceptBeforeLoad>
+    <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+    <avoidUsingToolkit>false</avoidUsingToolkit>
+    <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+    <customizedSnapshotName></customizedSnapshotName>
+    <useDynamicLoadRules>false</useDynamicLoadRules>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <EnvInjectBuilder plugin="envinject@1.90">
+      <info>
+        <propertiesContent>PATCHES_DATA=${PATCHES_DATA}
+PATCHER_REMOTE_PATH=${NETWORKPATH}\uArcher_${MajorMinor_Ver}\Formal
+PATCH_BASE_PATH=${PATCHER_REMOTE_PATH}\UOMD_${Patch_Version}_Patch</propertiesContent>
+      </info>
+    </EnvInjectBuilder>
+    <hudson.tasks.BatchFile>
+      <command>SETLOCAL=ENABLEDELAYEDEXPANSION&#xd;
+&#xd;
+SET team_scm_fetchDestination=%team.scm.fetchDestination%&#xd;
+SET BUILD_MODES=Release,Debug&#xd;
+SET BUILD_VERSION=%Patch_Version%&#xd;
+SET BUILDVERSION=%Patch_Version%&#xd;
+set buildRequesterUserId=omdbuild&#xd;
+echo *****************************************&#xd;
+ECHO  Loading Build Outputs from share folder&#xd;
+echo *****************************************&#xd;
+CALL D:\Sandboxes\DONOT_DELETE_ADHAM\OMD_Builds\JenkinsBuild\BatchFiles\CreateBuildOutputsFromShare.bat %Base_Build_Version% %Patch_Version% &quot;Release,Debug&quot; Formal %team.scm.workspaceUUID%&#xd;
+IF %ERRORLEVEL% NEQ 0 call :error &quot;CreateBuildOutputsFromShare failed. Please check logs.&quot;&#xd;
+&#xd;
+for /F &quot;delims=, tokens=1*&quot; %%f in (%Depend_Patches_Verions%) do (&#xd;
+   for %%b in (&quot;%BUILD_MODES:,=&quot; &quot;%&quot;) do (&#xd;
+     echo =====================================================&#xd;
+     echo ======== Restoring Patch %%f for mode %%b ===========&#xd;
+     echo =====================================================&#xd;
+     xcopy %PATCHER_REMOTE_PATH%\UOMD_%%f_Patch\%%b\Bin  P:\Bin_%%b /f /s&#xd;
+     xcopy %PATCHER_REMOTE_PATH%\UOMD_%%f_Patch\%%b\Lib_%%b  P:\Lib_%%b /f /s&#xd;
+  )&#xd;
+)&#xd;
+&#xd;
+ECHO &quot;Updating sources with patch version %Patch_Version% &quot;&#xd;
+CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\DoFullBuild.bat&#xd;
+IF %ERRORLEVEL% NEQ 0 call :error &quot;build failed. Please check logs.&quot;&#xd;
+&#xd;
+echo ****************************&#xd;
+echo     Copying version files&#xd;
+echo ****************************&#xd;
+md P:\inc&#xd;
+xcopy V:\OMD_Common\INC\ProductVersionInfo.cs P:\inc /f /r&#xd;
+xcopy V:\OMD_Common\INC\KTProductVersion.h P:\inc /f /r&#xd;
+xcopy V:\OMD_Common\INC\KTPlatformVersion.h P:\inc /f /r&#xd;
+&#xd;
+for %%a in (&quot;%ProjectsToCompile:,=&quot; &quot;%&quot;) do (&#xd;
+   for %%b in (&quot;%BUILD_MODES:,=&quot; &quot;%&quot;) do (&#xd;
+     echo ******************************************************&#xd;
+     echo ******************************************************&#xd;
+     echo Compiling project: %%a in Mode:%%b Platform:x64&#xd;
+     c:\PROGRA~2\MSBuild\14.0\Bin\amd64\msbuild.exe %team_scm_fetchDestination%\\%%a /p:Configuration=%%b /p:Platform=x64&#xd;
+     IF %ERRORLEVEL% NEQ 0 call :error &quot;Compilation of project %%a in mode %%b failed. Please check logs.&quot;&#xd;
+   )&#xd;
+)&#xd;
+echo ***********************&#xd;
+echo Run MCDB Checksum&#xd;
+echo ***********************&#xd;
+CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\MCDBXMLChecksum.bat&#xd;
+IF %ERRORLEVEL% NEQ 0 call :error &quot;MCDB checksum execution failed. Please check logs.&quot;&#xd;
+&#xd;
+echo ***********************&#xd;
+echo Creating remote dirs&#xd;
+echo ***********************&#xd;
+::mkdir %PATCH_BASE_PATH%\Debug\Lib_Debug&#xd;
+::mkdir %PATCH_BASE_PATH%\Debug\Bin&#xd;
+::mkdir %PATCH_BASE_PATH%\Release\Lib_Release&#xd;
+::mkdir %PATCH_BASE_PATH%\Release\Bin&#xd;
+&#xd;
+&#xd;
+echo *******************************************&#xd;
+echo     Copy new binaries to Debug Patch dir&#xd;
+echo *******************************************&#xd;
+xcopy P:\Bin_Debug %PATCH_BASE_PATH%\Debug\Bin /f /s /r /y /i /d:%date:~-10% &#xd;
+IF %ERRORLEVEL% NEQ 0 call :error &quot;Copy files failed&quot;&#xd;
+&#xd;
+echo *******************************************&#xd;
+echo     Copy new binaries to Release Patch dir&#xd;
+echo *******************************************&#xd;
+echo .pdb &gt;&gt; %WORKSPACE%\excludes.txt&#xd;
+xcopy P:\Bin_Release %PATCH_BASE_PATH%\Release\Bin /f /s /r /y /i /d:%date:~-10% /exclude:%WORKSPACE%\excludes.txt&#xd;
+IF %ERRORLEVEL% NEQ 0 call :error &quot;Copy files failed&quot;&#xd;
+&#xd;
+echo *******************************************&#xd;
+echo     Copy new libraries to Debug Patch dir&#xd;
+echo *******************************************&#xd;
+xcopy P:\Lib_Debug %PATCH_BASE_PATH%\Debug\Lib_Debug /f /s /r /y /i /d:%date:~-10% &#xd;
+IF %ERRORLEVEL% NEQ 0 call :error &quot;Copy files failed&quot;&#xd;
+&#xd;
+::echo *******************************************&#xd;
+::echo     Copy new libraries to Release Patch dir&#xd;
+::echo *******************************************&#xd;
+::xcopy P:\Lib_Release %PATCH_BASE_PATH%\Release\Lib_Release /f /s /r /y /i /d:%date:~-10% &#xd;
+::IF %ERRORLEVEL% NEQ 0 call :error &quot;Copy files failed&quot;&#xd;
+&#xd;
+&#xd;
+echo *************************&#xd;
+echo     Creating README file&#xd;
+echo *************************&#xd;
+echo &quot;%README%&quot; &gt; %PATCH_BASE_PATH%\ReadMe.txt&#xd;
+&#xd;
+echo *******************************************&#xd;
+echo     Copy Install.bat to Release Patch dir&#xd;
+echo *******************************************&#xd;
+xcopy &quot;V:\OMD_Builds\OMD_Builds\CM\BatchFiles\Template for patch installation\install.bat&quot; %PATCH_BASE_PATH%\Release /f /s /r /y /i&#xd;
+IF %ERRORLEVEL% NEQ 0 call :error &quot;Copy files failed&quot;&#xd;
+&#xd;
+echo *******************************************&#xd;
+echo     Edit Install.bat with corrent versions&#xd;
+echo *******************************************&#xd;
+&#xd;
+set installScript=%PATCH_BASE_PATH%\Release\install.bat&#xd;
+&#xd;
+rem %installScript% install.bat.tmp&#xd;
+IF %ERRORLEVEL% NEQ 0 call :error &quot;File rename failed&quot;&#xd;
+&#xd;
+for /f &quot;tokens=*&quot; %%a in (&apos;type %installScript%.tmp&apos;) do (&#xd;
+        set foo=%%a&#xd;
+        if &quot;!foo!&quot;==&quot;set MIN_VER=&quot; set foo=&quot;set MIN_VER=%PATCH_SUPPORT_VERSION%&quot;&#xd;
+        if &quot;!foo!&quot;==&quot;set PATCH_VER=&quot; set foo=&quot;set PATCH_VER=%Patch_Version%&quot;&#xd;
+        echo !foo! &gt;&gt; %installScript%) &#xd;
+::del %installScript%.tmp&#xd;
+&#xd;
+echo *******************************************&#xd;
+echo     Copy Install.bat to Debug Patch dir&#xd;
+echo *******************************************&#xd;
+xcopy %installScript% %PATCH_BASE_PATH%\Debug /f /s /r /y /i&#xd;
+IF %ERRORLEVEL% NEQ 0 call :error &quot;Copy files failed&quot;&#xd;
+&#xd;
+&#xd;
+goto END&#xd;
+&#xd;
+:ERROR&#xd;
+  echo Build failed with error: %1&#xd;
+&#xd;
+:END</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
+      <script plugin="script-security@1.39">
+        <script>def readme_file_path=manager.envVars[&quot;PATCH_BASE_PATH&quot;]+&quot;\\README.html&quot;
+manager.listener.logger.println (&quot;Generating README.html file at: &quot;+ readme_file_path)
+(new File(readme_file_path)).write(manager.envVars[&quot;README&quot;])</script>
+        <sandbox>false</sandbox>
+      </script>
+      <behavior>0</behavior>
+      <runForMatrixParent>false</runForMatrixParent>
+    </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
+      <recipientList>adham.saffori@kla-tencor.com</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>Patch ${Patch_Version} is ready</defaultSubject>
+      <defaultContent>${README}</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesFilePath>${team.scm.fetchDestination}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
+        <propertiesContent>ProjectsToCompile=Archer\Common\Archer_ProductVersion\Archer_ProductVersion.vcxproj,OMD_Common\PlatformVersion\PlatformVersion.vcxproj,${ProjectsToBuild}</propertiesContent>
+        <groovyScriptContent>def PATCHES_DATA
+if (Depend_Patches_Verions !=&quot;&quot;) 
+    PATCHES_DATA =&quot;with the following patches: &quot;+Depend_Patches_Verions 
+else
+    PATCHES_DATA= Depend_Patches_Verions 
+
+def map = [&quot;PATCHES_DATA&quot;: PATCHES_DATA] 
+return map</groovyScriptContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
+          <regexp></regexp>
+          <description>Preperation for Patch &lt;${Patch_Version}&gt;</description>
+        </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
+      </buildSteps>
+      <failOnError>true</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
+</project>
