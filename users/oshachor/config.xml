@@ -51,6 +51,7 @@
         <string>CA1NAS12-SSCMdata-RO</string>
         <string>KLAIsraelAcc</string>
         <string>DL-Israel-Managers</string>
+        <string>DL-GSS-Worldwide</string>
         <string>CA1NAS07-CPG-UNT-RO</string>
         <string>DL-CPG-NeXus-Users</string>
         <string>Ca1nas01-WINdownload-RO</string>
@@ -191,7 +192,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1516896614834</timestamp>
+      <timestamp>1518251149028</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
