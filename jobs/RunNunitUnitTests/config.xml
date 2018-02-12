@@ -20,6 +20,15 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>team_scm_fetchDestination</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -41,10 +50,10 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>IF NOT Exists V:\NUL (&#xd;
-  Echo &quot;Missing V: drive. Script van&apos;t run&quot;&#xd;
+  Echo &quot;Missing V: P: drives. Script can&apos;t run&quot;&#xd;
   Exit /b 1&#xd;
 ) Else (&#xd;
-  %%\OMD_Builds\JenkinsBuild\NUnitScripts\SearchAndExecuteNUnitTests\SearchAndExecuteNUnitTests.py -t uTests&#xd;
+  %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\NUnitScripts\SearchAndExecuteNUnitTests\SearchAndExecuteNUnitTests.py -t uTests&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
