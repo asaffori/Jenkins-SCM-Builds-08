@@ -37,7 +37,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -50,11 +49,11 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>IF NOT Exists V:\NUL (&#xd;
-  Echo &quot;Missing V: P: drives. Script can&apos;t run&quot;&#xd;
+      <command>IF NOT Exists P:\NUL (&#xd;
+  Echo &quot;Missing P: drives. Script can&apos;t run&quot;&#xd;
   Exit /b 1&#xd;
 ) Else (&#xd;
-  %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\NUnitScripts\SearchAndExecuteNUnitTests\SearchAndExecuteNUnitTests.py -t uTests&#xd;
+  P:\Nunit\bin\SearchAndExecuteNUnitTests.py -t integTests&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
@@ -64,6 +63,7 @@
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
+      <healthScaleFactor>1.0</healthScaleFactor>
       <failIfNoResults>true</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
   </publishers>
