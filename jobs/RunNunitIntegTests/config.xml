@@ -49,12 +49,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>IF NOT Exists P:\NUL (&#xd;
-  Echo &quot;Missing P: drives. Script can&apos;t run&quot;&#xd;
-  Exit /b 1&#xd;
-) Else (&#xd;
-  P:\Nunit\bin\SearchAndExecuteNUnitTests.py -t integTests&#xd;
-)</command>
+      <command>%Root5300Bin%\Nunit\bin\SearchAndExecuteNUnitTests.py -t integTests</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
