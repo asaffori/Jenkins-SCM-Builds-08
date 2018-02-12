@@ -54,7 +54,7 @@
   </builders>
   <publishers>
     <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.22">
-      <testResultsPattern>P:\Nunit\bin\NunitResults\*.UTests.dll.Results.xml</testResultsPattern>
+      <testResultsPattern>%Root5300Bin%\Nunit\bin\NunitResults\*.UTests.dll.Results.xml</testResultsPattern>
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
