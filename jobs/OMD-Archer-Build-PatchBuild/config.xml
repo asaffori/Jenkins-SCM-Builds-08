@@ -196,7 +196,7 @@ echo *****************************************&#xd;
 CALL D:\Sandboxes\DONOT_DELETE_ADHAM\OMD_Builds\JenkinsBuild\BatchFiles\CreateBuildOutputsFromShare.bat %Base_Build_Version% %Patch_Version% &quot;Release,Debug&quot; Formal %team.scm.workspaceUUID%&#xd;
 IF %ERRORLEVEL% NEQ 0 call :error &quot;CreateBuildOutputsFromShare failed. Please check logs.&quot;&#xd;
 &#xd;
-for /F &quot;delims=, tokens=1*&quot; %%f in (%Depend_Patches_Verions%) do (&#xd;
+for /F &quot;delims=, tokens=*&quot; %%f in (%Depend_Patches_Verions%) do (&#xd;
    for %%b in (&quot;%BUILD_MODES:,=&quot; &quot;%&quot;) do (&#xd;
      echo =====================================================&#xd;
      echo ======== Restoring Patch %%f for mode %%b ===========&#xd;
