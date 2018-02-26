@@ -41,12 +41,12 @@
         <hudson.model.StringParameterDefinition>
           <name>emailGroups</name>
           <description></description>
-          <defaultValue>Faina,CM,Arkadi,Aviram,Vladi,Dror,</defaultValue>
+          <defaultValue>CM,Dror,</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
-          <defaultValue>\\isr1appcc02\scm\OMD\Jenkins_Build_Version\${MajorMinor_Ver}version.txt</defaultValue>
+          <defaultValue>\\isr1appcc02\scm\OMD\Jenkins_Build_Version\17.12.01version.txt</defaultValue>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ReleaseBuildEngine</name>
@@ -265,12 +265,11 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesContent>BUILDTYPE=Scheduled
-WSName=omdbuild_Archer_${MajorMinor_Ver}_Dev_Workspace
+WSName=omdbuild_Archer_17.12_Task_Pre_17.12.01_Workspace
 SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}
 BaseImage=17.10.00.20900_A700_ATE_Image
 SimulatorEngine=SCM-SIM7050-02
@@ -294,7 +293,7 @@ ToolType=A700</propertiesContent>
     <timeout>0</timeout>
     <buildType>
       <value>buildDefinition</value>
-      <buildDefinition>OMD-Archer-V17.12-Scheduled-Jenkins</buildDefinition>
+      <buildDefinition>OMD-Archer-V17.12.01-Scheduled-Jenkins</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
       <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -304,7 +303,7 @@ ToolType=A700</propertiesContent>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>OMD-Archer-V17.12-Scheduled-Jenkins</buildDefinition>
+    <buildDefinition>OMD-Archer-V17.12.01-Scheduled-Jenkins</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
