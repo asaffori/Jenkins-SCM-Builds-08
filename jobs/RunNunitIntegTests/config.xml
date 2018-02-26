@@ -22,11 +22,6 @@
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>team_scm_fetchDestination</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>SimulatorEngine</name>
           <description></description>
@@ -64,7 +59,12 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>%Root5300Bin%\Nunit\bin\SearchAndExecuteNUnitTests.py -t integTests</command>
+      <command>%Root5300Bin%\Nunit\bin\SearchAndExecuteNUnitTests.py -t integTests&#xd;
+For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTests.bat) DO (&#xd;
+	echo Running %%f&#xd;
+        %%f&#xd;
+        if NOT !ERRORLEVEL! ==0 Exit /b 1&#xd;
+)</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
