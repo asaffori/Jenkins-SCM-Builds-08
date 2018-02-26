@@ -229,8 +229,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
 def buildversion= build.getEnvVars().get(&quot;BUILD_VERSION&quot;)
 def tooltype= build.getEnvVars().get(&quot;ToolType&quot;)
 def simulator=build.getEnvVars().get(&quot;SimulatorEngine&quot;)
-def resulthtml= new File(&apos;C:\\Temp\\&apos;+buildversion+tooltype+&apos;.txt&apos;)
-resulthtml.write build.result.toString() + &apos; Auto Deploy Sanity test for &apos;+ buildversion +&apos; &apos;+tooltype +&apos; on &apos; + simulator</script>
+</script>
         <sandbox>false</sandbox>
       </script>
       <behavior>0</behavior>
