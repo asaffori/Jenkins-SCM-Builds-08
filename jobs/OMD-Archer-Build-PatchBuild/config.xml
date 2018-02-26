@@ -374,7 +374,7 @@ BuildAutoApproved=true</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
-          <projects>OMD-Archer-Buid-CreateCodeViewNew, </projects>
+          <projects>OMD-Archer-Buid-CreateCodeViewNew,</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>
@@ -386,7 +386,7 @@ BuildAutoApproved=true</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
-          <projects>OMD-Archer-Build-Create_Snapshot_Baseline, </projects>
+          <projects>OMD-Archer-Build-Create_Snapshot_Baseline,</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>

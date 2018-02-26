@@ -208,6 +208,10 @@
           <boolean>true</boolean>
         </entry>
         <entry>
+          <string>RunNunitColdIntegTests</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>RunNunitUnitTestsDebug</string>
           <boolean>true</boolean>
         </entry>
