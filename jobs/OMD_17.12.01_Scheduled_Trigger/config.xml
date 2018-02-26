@@ -319,7 +319,7 @@ ToolType=A700</propertiesContent>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <hudson.triggers.SCMTrigger>
-      <spec>00 01 * * 0-5</spec>
+      <spec>00 04 * * 0-5</spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
   </triggers>
