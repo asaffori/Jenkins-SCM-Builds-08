@@ -22,11 +22,6 @@
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>team_scm_fetchDestination</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>DebugBuildEngine</name>
           <description></description>
@@ -68,7 +63,7 @@
   Echo &quot;Missing V: P: drives. Script can&apos;t run&quot;&#xd;
   Exit /b 1&#xd;
 ) Else (&#xd;
-  %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\NUnitScripts\SearchAndExecuteNUnitTests\SearchAndExecuteNUnitTests.py -t uTests&#xd;
+  P:\Nunit\Bin\RunStandAloneTests.bat /d&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
