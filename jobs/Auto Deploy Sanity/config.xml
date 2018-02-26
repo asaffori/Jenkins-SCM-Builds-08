@@ -225,7 +225,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
   <publishers>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.39">
-        <script>
+        <script>import hudson.model.*
 def buildversion= build.getEnvVars().get(&quot;BUILD_VERSION&quot;)
 def tooltype= build.getEnvVars().get(&quot;ToolType&quot;)
 def simulator=build.getEnvVars().get(&quot;SimulatorEngine&quot;)
