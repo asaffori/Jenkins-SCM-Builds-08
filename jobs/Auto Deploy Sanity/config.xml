@@ -225,10 +225,10 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
   <publishers>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.39">
-        <script>import hudson.model.Result;
-def buildversion= build.buildVariableResolver.resolve(&quot;BUILD_VERSION&quot;)
-def tooltype= build.buildVariableResolver.resolve(&quot;ToolType&quot;)
-def simulator=build.buildVariableResolver.resolve(&quot;SimulatorEngine&quot;)
+        <script>
+def buildversion= build.getEnvVars().get(&quot;BUILD_VERSION&quot;)
+def tooltype= build.getEnvVars().get(&quot;ToolType&quot;)
+def simulator=build.getEnvVars().get(&quot;SimulatorEngine&quot;)
 def resulthtml= new File(&apos;C:\\Temp\\&apos;+buildversion+tooltype+&apos;.txt&apos;)
 resulthtml.write build.result.toString() + &apos; Auto Deploy Sanity test for &apos;+ buildversion +&apos; &apos;+tooltype +&apos; on &apos; + simulator</script>
         <sandbox>false</sandbox>
