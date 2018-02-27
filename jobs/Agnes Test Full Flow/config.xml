@@ -13,6 +13,14 @@
     <jenkins.plugins.jobicon.CustomIconProperty plugin="custom-job-icon@0.2">
       <iconfile>1ba6e92f5ef5cad74dcadd0226369e90c0212e7c.png</iconfile>
     </jenkins.plugins.jobicon.CustomIconProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -31,7 +39,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>DebugBuildEngine,ReleaseBuildEngine</paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
@@ -66,15 +73,6 @@ def reciepts_list=&quot;&quot;;
       <overrideBuildParameters>false</overrideBuildParameters>
       <contributors/>
     </EnvInjectJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -132,7 +130,7 @@ def reciepts_list=&quot;&quot;;
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-357895302552224</randomName>
-          <visibleItemCount>0</visibleItemCount>
+          <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -147,12 +145,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
             </secureFallbackScript>
           </script>
           <projectName>Agnes Test Full Flow</projectName>
-          <parameters class="linked-hash-map">
-            <entry>
-              <string>BUILD_VERSION</string>
-              <string></string>
-            </entry>
-          </parameters>
+          <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -582,6 +575,7 @@ Example:&lt;BR&gt;
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -593,7 +587,7 @@ Example:&lt;BR&gt;
   <builders/>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
-      <recipientList>adham.saffori@kla-tencor.com,${recipients_list}</recipientList>
+      <recipientList>agnes.zhang@kla-tencor.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
@@ -613,7 +607,7 @@ Example:&lt;BR&gt;
       </configuredTriggers>
       <contentType>text/html</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
-      <defaultContent>${SCRIPT, template=&quot;ARCHERDM_template_New_Flow_SCA.groovy&quot;}</defaultContent>
+      <defaultContent>${SCRIPT, template=&quot;ARCHERDM_template_Sanity_for_all.groovy&quot;}</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript>def buildtype = ((build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=null)&amp;&amp;(build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=&quot;&quot;))?build.getEnvVars().get(&quot;BUILDTYPE&quot;)+&quot; - &quot;:&quot;&quot;;
 def additional =((build.getEnvVars().get(&quot;NIGHTLY&quot;) != null) &amp;&amp;(build.getEnvVars().get(&quot;NIGHTLY&quot;).equals(&quot;TRUE&quot;))) ? &quot;Nightly - &quot;:&quot;&quot;;
