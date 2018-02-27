@@ -45,6 +45,7 @@
         <string>CA1NAS02-WIN-BFDATA-CH</string>
         <string>aspera-users-engineering-kti-omd</string>
         <string>Sng2nas04-KTS_Mfg_Eng_HCL_Support-RO</string>
+        <string>Ca1nas12-BObjclts-RO</string>
         <string>ISR1FP05-DATA-CH</string>
         <string>DL-ISRAEL-OMD-MANAGERS</string>
         <string>DL-cars-users</string>
@@ -192,7 +193,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1518251149028</timestamp>
+      <timestamp>1519722822698</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
