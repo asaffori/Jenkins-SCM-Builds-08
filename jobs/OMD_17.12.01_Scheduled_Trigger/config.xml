@@ -41,7 +41,7 @@
         <hudson.model.StringParameterDefinition>
           <name>emailGroups</name>
           <description></description>
-          <defaultValue>CM,Dror,</defaultValue>
+          <defaultValue>CM,Dror,Faina,Arkadi,Aviram,</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
