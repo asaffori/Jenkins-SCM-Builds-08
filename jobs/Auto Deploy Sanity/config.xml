@@ -230,7 +230,7 @@ def build = Thread.currentThread().executable
 def buildversion= build.getEnvVars().get(&quot;BUILD_VERSION&quot;)
 def tooltype= build.getEnvVars().get(&quot;ToolType&quot;)
 def simulator=build.getEnvVars().get(&quot;SimulatorEngine&quot;)
-def resulthtml= new File(&apos;C:\\Temp\\&apos;+buildversion+&apos;_&apos;+tooltype+&apos;.html&apos;)
+def resulthtml= new File(&apos;C:\\Temp\\TestResult_&apos;+buildversion+&apos;_&apos;+tooltype+&apos;.html&apos;)
 resulthtml.write &apos;&lt;b&gt;&apos;+ build.result.toString() +&apos;  For Auto Deploy Sanity test of &apos;+ buildversion +&apos; &apos;+tooltype +&apos; on &apos; + simulator+&apos; &lt;/b&gt;&lt;/br&gt;&lt;hr&gt;&apos;</script>
         <sandbox>false</sandbox>
       </script>
