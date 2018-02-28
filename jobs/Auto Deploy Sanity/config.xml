@@ -236,9 +236,11 @@ resulthtml.write &apos;&lt;tr&gt;&lt;td&gt;&lt;b&gt;&apos;+ build.result.toStrin
 def historyJobs=build.getJobExecutionHistory()
 historyJobs.getFlowSteps().each { step -&gt;
 historyJobs.getJobsInStep(step).each { flowRecord -&gt;
+def project = hudson.model.Hudson.instance.getItemByFullName(flowRecord.getJobName())
+def theBuild = project.getBuildByNumber(flowRecord.getBuildNumber())
 resulthtml &lt;&lt; flowRecord.getJobName()
 resulthtml &lt;&lt; flowRecord.getStatus().toString()
-resulthtml &lt;&lt; flowRecord.getDurationString()
+resulthtml &lt;&lt; theBuild .getDurationString()
 }
 }
 </script>
