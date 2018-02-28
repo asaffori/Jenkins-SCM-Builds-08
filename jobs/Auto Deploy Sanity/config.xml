@@ -227,8 +227,13 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <script plugin="script-security@1.39">
         <script>import hudson.model.*
 def build = Thread.currentThread().executable
-def steps=build .getFlowSteps()
-println &quot;steps&quot;
+def historyJobs=build.getJobExecutionHistory()
+historyJobs.getFlowSteps().each { step -&gt;
+historyJobs.getJobsInStep(step).each { flowRecord -&gt;
+println flowRecord.getJobName()
+println flowRecord.getStatus().toString()
+}
+}
 def buildversion= build.getEnvVars().get(&quot;BUILD_VERSION&quot;)
 def tooltype= build.getEnvVars().get(&quot;ToolType&quot;)
 def suite=build.getEnvVars().get(&quot;TestSuite&quot;)
