@@ -238,6 +238,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 historyJobs.getJobsInStep(step).each { flowRecord -&gt;
 resulthtml &lt;&lt; flowRecord.getJobName()
 resulthtml &lt;&lt; flowRecord.getStatus().toString()
+resulthtml &lt;&lt; flowRecord.getDurationString()
 }
 }
 </script>
