@@ -245,7 +245,7 @@ else resulthtml &lt;&lt; &quot;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&quot;
 resulthtml &lt;&lt; &quot;&lt;/br&gt;&quot;
 }
 }
-resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+rooturl+build.url +&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/br&gt;&quot;
+resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+ build.getEnvVars().get(&quot;rooturl&quot;)+build.url +&quot;&lt;/td&gt;&lt;/tr&gt;&lt;/br&gt;&quot;
 resulthtml &lt;&lt; &quot;&lt;/br&gt;&quot;
 </script>
         <sandbox>false</sandbox>
