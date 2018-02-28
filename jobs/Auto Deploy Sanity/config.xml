@@ -232,7 +232,7 @@ def tooltype= build.getEnvVars().get(&quot;ToolType&quot;)
 def suite=build.getEnvVars().get(&quot;TestSuite&quot;)
 def simulator=build.getEnvVars().get(&quot;SimulatorEngine&quot;)
 def resulthtml= new File(&apos;C:\\Temp\\TestResult_&apos;+buildversion+&apos;_&apos;+tooltype+&apos;_&apos;+suite+&apos;.html&apos;)
-resulthtml.write &apos;&lt;tr&gt;&lt;td&gt;&lt;b&gt;&apos;+ build.result.toString() +&apos;  Running Sanity for&apos; +&apos; &apos;+tooltype +&apos; on &apos; + simulator+&apos;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/br&gt;&apos;
+resulthtml.write &apos;&lt;tr&gt;&lt;td&gt;&lt;b&gt;&apos;+ build.result.toString() +&apos;Sanity for&apos; +&apos; &apos;+tooltype +&apos;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/br&gt;&apos;
 def historyJobs=build.getJobExecutionHistory()
 historyJobs.getFlowSteps().each { step -&gt;
 historyJobs.getJobsInStep(step).each { flowRecord -&gt;
@@ -245,6 +245,8 @@ else resulthtml &lt;&lt; &quot;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&quot;
 resulthtml &lt;&lt; &quot;&lt;/br&gt;&quot;
 }
 }
+resulthtml &lt;&lt; build.url +&quot;&lt;/br&gt;&quot;
+resulthtml &lt;&lt; &quot;&lt;/br&gt;&quot;
 </script>
         <sandbox>false</sandbox>
       </script>
