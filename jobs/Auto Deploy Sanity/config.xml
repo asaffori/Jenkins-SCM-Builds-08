@@ -242,7 +242,7 @@ resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+ flowRecord.getJobName()+&q
 resulthtml &lt;&lt; &quot;&lt;td&gt;&quot; + flowRecord.getStatus().toString() +&quot;&lt;/td&gt;&quot;
 if (theBuild.result.toString()==&quot;SUCCESS&quot;) resulthtml &lt;&lt; &quot;&lt;td&gt;&quot; + theBuild.getDurationString()+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;
 else resulthtml &lt;&lt; &quot;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&quot;
-
+resulthtml &lt;&lt; &quot;&lt;/br&gt;&quot;
 }
 }
 </script>
