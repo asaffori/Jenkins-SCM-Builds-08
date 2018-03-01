@@ -163,6 +163,20 @@ BUILDTYPE=${BUILDTYPE}</properties>
       <command>type C:\Temp\TestResult_%BUILD_VERSION%_*.html &gt;&gt; C:\temp\TestResult_%BUILD_VERSION%.html</command>
     </hudson.tasks.BatchFile>
   </builders>
-  <publishers/>
+  <publishers>
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
+      <script plugin="script-security@1.39">
+        <script>def buildversion= build.getEnvVars().get(&quot;BUILD_VERSION&quot;)
+def finalhtml=new File(&apos;C:\\Temp\\TestResult_&apos;+buildversion+&apos;.html&apos;)
+def match=&apos;TestResult_&apos;+buildversion+&apos;_&apos;
+new File(&apos;C:\\Temp&apos;).eachFileMatch(FileType.pdf,~/$match/){
+finalhtml &lt;&lt; it.readlines()
+}</script>
+        <sandbox>false</sandbox>
+      </script>
+      <behavior>0</behavior>
+      <runForMatrixParent>false</runForMatrixParent>
+    </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
+  </publishers>
   <buildWrappers/>
 </project>
