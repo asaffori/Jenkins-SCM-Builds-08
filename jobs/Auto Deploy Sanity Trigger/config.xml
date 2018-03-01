@@ -169,9 +169,8 @@ def build = Thread.currentThread().executable
 def buildversion= build.getEnvVars().get(&quot;BUILD_VERSION&quot;)
 def finalhtml=new File(&apos;C:\\Temp\\TestResult_&apos;+buildversion+&apos;.html&apos;)
 def match=&apos;TestResult_&apos;+buildversion+&apos;_&apos;
-finalhtml &lt;&lt; match
 new File(&apos;C:\\Temp&apos;).eachFileMatch(FileType.FILES,~/$match.*\.html/){
-finalhtml &lt;&lt; new File(&apos;C:\\Temp\\&apos;+it.name).readLines()
+finalhtml &lt;&lt; new File(&apos;C:\\Temp\\&apos;+it.name).readLines().replaceAll(&quot;[&quot;,&quot;&quot;).replaceAll(&quot;]&quot;,&quot;&quot;)
 }</script>
         <sandbox>false</sandbox>
       </script>
