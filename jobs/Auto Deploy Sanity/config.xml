@@ -36,9 +36,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -214,6 +212,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -241,8 +240,6 @@ def project = hudson.model.Hudson.instance.getItemByFullName(flowRecord.getJobNa
 def theBuild = project.getBuildByNumber(flowRecord.getBuildNumber())
 resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+ flowRecord.getJobName()+&quot;&lt;/td&gt;&quot;
 resulthtml &lt;&lt; &quot;&lt;td&gt;&quot; + flowRecord.getStatus().toString() +&quot;&lt;/td&gt;&quot;
-if (theBuild.result.toString()==&quot;SUCCESS&quot;) resulthtml &lt;&lt; &quot;&lt;td&gt;&quot; + theBuild.getDurationString()+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;
-else resulthtml &lt;&lt; &quot;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&quot;
 }
 }
 
@@ -272,15 +269,7 @@ else resulthtml &lt;&lt; &quot;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&quot;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>MajorMinor_Ver</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
@@ -300,11 +289,19 @@ else resulthtml &lt;&lt; &quot;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&quot;
       <string></string>
     </entry>
     <entry>
-      <string>BaseImage</string>
+      <string>ATEControllerEngine</string>
       <string></string>
     </entry>
     <entry>
-      <string>ATEControllerEngine</string>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BaseImage</string>
       <string></string>
     </entry>
   </globalEnvVars>
