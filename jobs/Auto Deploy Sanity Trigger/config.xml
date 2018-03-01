@@ -164,6 +164,7 @@ BUILDTYPE=${BUILDTYPE}</properties>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
       <script plugin="script-security@1.39">
         <script>import hudson.model.*
+import groovy.io.FileType
 def build = Thread.currentThread().executable
 def buildversion= build.getEnvVars().get(&quot;BUILD_VERSION&quot;)
 def finalhtml=new File(&apos;C:\\Temp\\TestResult_&apos;+buildversion+&apos;.html&apos;)
