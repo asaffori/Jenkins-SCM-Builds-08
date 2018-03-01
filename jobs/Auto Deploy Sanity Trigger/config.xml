@@ -171,7 +171,7 @@ def finalhtml=new File(&apos;C:\\Temp\\TestResult_&apos;+buildversion+&apos;.htm
 def match=&apos;TestResult_&apos;+buildversion+&apos;_&apos;
 finalhtml &lt;&lt; match
 new File(&apos;C:\\Temp&apos;).eachFileMatch(FileType.FILES,~/$match.*\.html/){
-finalhtml &lt;&lt; it.name
+finalhtml &lt;&lt; new File(it).readLines()
 }</script>
         <sandbox>false</sandbox>
       </script>
