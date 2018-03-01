@@ -146,12 +146,12 @@ BUILDTYPE=${BUILDTYPE}</properties>
             <triggerWithNoParameters>false</triggerWithNoParameters>
             <triggerFromChildProjects>false</triggerFromChildProjects>
             <block>
-              <buildStepFailureThreshold>
+              <unstableThreshold>
                 <name>UNSTABLE</name>
                 <ordinal>1</ordinal>
                 <color>YELLOW</color>
                 <completeBuild>true</completeBuild>
-              </buildStepFailureThreshold>
+              </unstableThreshold>
             </block>
             <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
           </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
