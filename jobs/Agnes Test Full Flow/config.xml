@@ -150,7 +150,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <parameters class="linked-hash-map">
             <entry>
               <string>BUILD_VERSION</string>
-              <string>17.12.00.21000</string>
+              <string></string>
             </entry>
           </parameters>
           <referencedParameters>BUILD_VERSION</referencedParameters>
