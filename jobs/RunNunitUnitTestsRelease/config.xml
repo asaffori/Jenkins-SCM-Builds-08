@@ -57,6 +57,7 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>P:\</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
       <command>set NUNIT_HOME=C:\Program Files (x86)\NUnit 2.6.4&#xd;
@@ -71,7 +72,7 @@ IF NOT Exist V:\NUL (&#xd;
   </builders>
   <publishers>
     <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.22">
-      <testResultsPattern>P:\Nunit\Bin\NunitResults\UnitTests.Results.xml</testResultsPattern>
+      <testResultsPattern>Nunit\Bin\NunitResults\UnitTests.Results.xml</testResultsPattern>
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
