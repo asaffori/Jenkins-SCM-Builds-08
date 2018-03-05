@@ -57,7 +57,7 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <customWorkspace>P:\Nunit\Bin\NunitResults</customWorkspace>
+  <customWorkspace>D:\BuildOutputs\omdbuild_Archer_17.12_Task_Pre_17.12.01_Workspace_V17.12.01.10121\Nunit\Bin\NunitResults</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
       <command>set NUNIT_HOME=C:\Program Files (x86)\NUnit 2.6.4&#xd;
