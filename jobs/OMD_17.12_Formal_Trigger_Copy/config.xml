@@ -427,7 +427,7 @@ TestSuite=${TestSuite}</properties>
   </builders>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.20">
-      <recipients>${BUILD_USER_EMAIL},adham.saffori@kla-tencor.com</recipients>
+      <recipients>adham.saffori@kla-tencor.com</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>false</sendToIndividuals>
     </hudson.tasks.Mailer>
