@@ -65,13 +65,13 @@ IF NOT Exist V:\NUL (&#xd;
   Exit /b 1&#xd;
 ) Else (&#xd;
   IF NOT Exist P:\Nunit\Bin\NunitResults mkdir P:\Nunit\Bin\NunitResults&#xd;
-  P:\Nunit\Bin_Release\RunStandAloneTests.bat /d&#xd;
+  P:\Nunit\Bin\RunStandAloneTests.bat /d&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.22">
-      <testResultsPattern>P:\Nunit\Bin_Release\NunitResults\UnitTests.Results.xml</testResultsPattern>
+      <testResultsPattern>P:\Nunit\Bin\NunitResults\UnitTests.Results.xml</testResultsPattern>
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
