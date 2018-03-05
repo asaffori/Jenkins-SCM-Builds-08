@@ -415,7 +415,7 @@ if (BuildAutoApproved != &quot;true&quot;) {
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>TriggerAutoRebaseDev</jobName>
+      <jobName>TriggerAutoRebaseInteg</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
       <continueJobAnyway>false</continueJobAnyway>
@@ -446,7 +446,7 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <step>PACKAGING</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>TriggerAutoRebaseDev</dependencyJobName>
+          <dependencyJobName>TriggerAutoRebaseInteg</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
@@ -468,7 +468,7 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <step>PACKAGING</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>TriggerAutoRebaseDev</dependencyJobName>
+          <dependencyJobName>TriggerAutoRebaseInteg</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>

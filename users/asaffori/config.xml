@@ -224,6 +224,10 @@
           <boolean>true</boolean>
         </entry>
         <entry>
+          <string>TriggerAutoRebaseInteg</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>OMD_17.12_Scheduled_Trigger</string>
           <boolean>true</boolean>
         </entry>
