@@ -61,6 +61,7 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>set NUNIT_HOME=C:\Program Files (x86)\NUnit 2.6.4&#xd;
+cd ..&#xd;
 IF NOT Exist V:\NUL (&#xd;
   Echo &quot;Missing V: P: drives. Script can&apos;t run&quot;&#xd;
   Exit /b 1&#xd;
