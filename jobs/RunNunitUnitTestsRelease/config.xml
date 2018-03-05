@@ -59,11 +59,12 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>subst&#xd;
+      <command>&#xd;
 IF NOT Exist V:\NUL (&#xd;
   Echo &quot;Missing V: P: drives. Script can&apos;t run&quot;&#xd;
   Exit /b 1&#xd;
 ) Else (&#xd;
+  IF NOT Exist P:\Nunit\Bin\NunitResults mkdir P:\Nunit\Bin\NunitResults&#xd;
   P:\Nunit\Bin_Release\RunStandAloneTests.bat /d&#xd;
 )</command>
     </hudson.tasks.BatchFile>
