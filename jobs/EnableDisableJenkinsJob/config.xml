@@ -72,6 +72,8 @@
         <script plugin="script-security@1.39">
           <script>// Disable all the Jenkins jobs
 import hudson.model.*
+import hudson.AbortException
+
 def req_job_name=build.buildVariableResolver.resolve(&quot;JenkinsJobName&quot;)
 def item=Hudson.instance.getJob(req_job_name)
 if (!item) 
