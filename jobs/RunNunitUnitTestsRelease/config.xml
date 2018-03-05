@@ -68,6 +68,7 @@ IF NOT Exist V:\NUL (&#xd;
   Echo &quot;Missing V: P: drives. Script can&apos;t run&quot;&#xd;
   Exit /b 1&#xd;
 ) Else (&#xd;
+  IF NOT Exist P:\Bin mklink /J P:\Bin P:\Bin_Release&#xd;
   IF NOT Exist P:\Nunit\Bin mklink /J P:\Nunit\Bin P:\Nunit\Bin_Release&#xd;
   IF NOT Exist P:\Nunit\Bin\NunitResults mkdir P:\Nunit\Bin\NunitResults&#xd;
   P:\Nunit\Bin\RunStandAloneTests.bat /d&#xd;
