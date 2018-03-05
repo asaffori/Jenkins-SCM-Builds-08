@@ -79,5 +79,7 @@ IF NOT Exist V:\NUL (&#xd;
       <failIfNoResults>true</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+  </buildWrappers>
 </project>
