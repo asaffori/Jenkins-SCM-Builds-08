@@ -75,7 +75,7 @@ import hudson.model.*
 def req_job_name=build.buildVariableResolver.resolve(&quot;JenkinsJobName&quot;)
 def item=Hudson.instance.getJob(req_job_name)
 if (!item) 
-   println (&quot;No Job with name: &quot;+req_job_name)
+   throw new AbortException (&quot;No Job with name: &quot;+req_job_name)
 if(build.buildVariableResolver.resolve(&quot;Action&quot;) ==&quot;Enable&quot;)
      item.enable()
 else
