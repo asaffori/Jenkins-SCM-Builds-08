@@ -248,7 +248,7 @@ def theBuild = project.getBuildByNumber(flowRecord.getBuildNumber())
        return;
 resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+ flowRecord.getJobName()+&quot;&lt;/td&gt;&quot;
 resulthtml &lt;&lt; &quot;&lt;td&gt;&quot; + flowRecord.getStatus().toString() +&quot;&lt;/td&gt;&quot;
-resulthtml &lt;&lt; &quot;&lt;td&gt;&quot; + theBuild.getDurationString()+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;
+resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;
 if (theBuild.result!= hudson.model.Result.SUCCESS){
     resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;http://scm-builds-08:8080/&quot; + theBuild.url+&quot;&lt;/td&gt;&lt;/tr&gt;&quot; 
 }
