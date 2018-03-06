@@ -69,7 +69,7 @@ return [user]</script>
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
           <name>MajorMinor_Ver</name>
           <description></description>
-          <randomName>choice-parameter-251766197620088</randomName>
+          <randomName>choice-parameter-251790375344352</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
