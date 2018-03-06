@@ -69,7 +69,7 @@ return [user]</script>
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
           <name>MajorMinor_Ver</name>
           <description></description>
-          <randomName>choice-parameter-251300595251351</randomName>
+          <randomName>choice-parameter-251715485146575</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
@@ -109,13 +109,12 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <customWorkspace>D:\BuildOutputs\omdbuild_Archer_17.12_Task_Pre_17.12.01_Workspace_V17.12.01.10121\Nunit\Bin_Release</customWorkspace>
+  <customWorkspace>D:\BuildOutputs\${buildRequesterUserId}_${WSName}_V${BUILD_VERSION}\Nunit\Bin_Release</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set NUNIT_HOME=C:\Program Files (x86)\NUnit 2.6.4&#xd;
-cd ..&#xd;
-subst /d P:&#xd;
-subst P: D:\BuildOutputs\omdbuild_Archer_17.12_Task_Pre_17.12.01_Workspace_V17.12.01.10121&#xd;
+      <command>%team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\Mapping.bat %team_scm_fetchDestination% %BUILDVERSION%&#xd;
+::subst /d P:&#xd;
+::subst P: D:\BuildOutputs\omdbuild_Archer_17.12_Task_Pre_17.12.01_Workspace_V17.12.01.10121&#xd;
 IF NOT Exist V:\NUL (&#xd;
   Echo &quot;Missing V: P: drives. Script can&apos;t run&quot;&#xd;
   Exit /b 1&#xd;
@@ -124,6 +123,7 @@ IF NOT Exist V:\NUL (&#xd;
   IF NOT Exist P:\Nunit\Bin mklink /J P:\Nunit\Bin P:\Nunit\Bin_Release&#xd;
   ::IF NOT Exist P:\Nunit\Bin\Interop_dll mklink /J P:\Nunit\Bin\Interop_dll P:\Interop_dll&#xd;
   ::IF NOT Exist P:\Nunit\Bin\NunitResults mkdir P:\Nunit\Bin\NunitResults&#xd;
+  cd P:\Nunit\Bin&#xd;
   P:\Nunit\Bin\RunStandAloneTests.bat /d&#xd;
 )</command>
     </hudson.tasks.BatchFile>
@@ -140,5 +140,11 @@ IF NOT Exist V:\NUL (&#xd;
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesContent>NUNIT_HOME=C:\Program Files (x86)\NUnit 2.6.4</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
   </buildWrappers>
 </project>
