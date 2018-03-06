@@ -78,7 +78,7 @@ IF NOT Exist V:\NUL (&#xd;
   </builders>
   <publishers>
     <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.22">
-      <testResultsPattern>UnitTests.Results.xml</testResultsPattern>
+      <testResultsPattern>NunitResults\UnitTests.Results.xml</testResultsPattern>
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
