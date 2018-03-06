@@ -69,7 +69,7 @@ return [user]</script>
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
           <name>MajorMinor_Ver</name>
           <description></description>
-          <randomName>choice-parameter-251896403029994</randomName>
+          <randomName>choice-parameter-251990596369929</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
@@ -112,7 +112,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
   <customWorkspace>D:\BuildOutputs\${WSName}_V${BUILD_VERSION}\Nunit\Bin_Release</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>%team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\Mapping.bat %team_scm_fetchDestination% %BUILD_VERSION%&#xd;
+      <command>Call %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\Mapping.bat %team_scm_fetchDestination% %BUILD_VERSION%&#xd;
 ::subst /d P:&#xd;
 ::subst P: D:\BuildOutputs\omdbuild_Archer_17.12_Task_Pre_17.12.01_Workspace_V17.12.01.10121&#xd;
 IF NOT Exist V:\NUL (&#xd;
