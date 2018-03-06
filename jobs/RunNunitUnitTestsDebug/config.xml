@@ -109,7 +109,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <customWorkspace>D:\BuildOutputs\${WSName}_V${BUILD_VERSION}\Nunit\Bin_Release</customWorkspace>
+  <customWorkspace>D:\BuildOutputs\${WSName}_V${BUILD_VERSION}\Nunit\Bin_Debug</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
       <command>Call %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\Mapping.bat %team_scm_fetchDestination% %BUILD_VERSION%&#xd;
