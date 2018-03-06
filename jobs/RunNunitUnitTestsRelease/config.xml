@@ -70,8 +70,8 @@ IF NOT Exist V:\NUL (&#xd;
 ) Else (&#xd;
   IF NOT Exist P:\Bin mklink /J P:\Bin P:\Bin_Release&#xd;
   IF NOT Exist P:\Nunit\Bin mklink /J P:\Nunit\Bin P:\Nunit\Bin_Release&#xd;
-  IF NOT Exist P:\Nunit\Bin\Interop_dll mklink /J P:\Nunit\Bin\Interop_dll P:\Interop_dll&#xd;
-  IF NOT Exist P:\Nunit\Bin\NunitResults mkdir P:\Nunit\Bin\NunitResults&#xd;
+  ::IF NOT Exist P:\Nunit\Bin\Interop_dll mklink /J P:\Nunit\Bin\Interop_dll P:\Interop_dll&#xd;
+  ::IF NOT Exist P:\Nunit\Bin\NunitResults mkdir P:\Nunit\Bin\NunitResults&#xd;
   P:\Nunit\Bin\RunStandAloneTests.bat /d&#xd;
 )</command>
     </hudson.tasks.BatchFile>
