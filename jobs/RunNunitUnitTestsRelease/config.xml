@@ -69,7 +69,7 @@ return [user]</script>
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
           <name>MajorMinor_Ver</name>
           <description></description>
-          <randomName>choice-parameter-251715485146575</randomName>
+          <randomName>choice-parameter-251766197620088</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
@@ -109,7 +109,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <customWorkspace>D:\BuildOutputs\${buildRequesterUserId}_${WSName}_V${BUILD_VERSION}\Nunit\Bin_Release</customWorkspace>
+  <customWorkspace>D:\BuildOutputs\${WSName}_V${BUILD_VERSION}\Nunit\Bin_Release</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
       <command>%team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\Mapping.bat %team_scm_fetchDestination% %BUILDVERSION%&#xd;
