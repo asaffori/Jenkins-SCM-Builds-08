@@ -23,7 +23,7 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ReleaseBuildEngine</name>
+          <name>DebugBuildEngine</name>
           <description></description>
           <allowedSlaves>
             <string>ALL (no restriction)</string>
@@ -83,7 +83,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
               <sandbox>false</sandbox>
             </secureFallbackScript>
           </script>
-          <projectName>RunNunitUnitTestsRelease</projectName>
+          <projectName>RunNunitUnitTestsDebug</projectName>
           <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
@@ -99,7 +99,6 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -120,8 +119,8 @@ IF NOT Exist V:\NUL (&#xd;
   Echo &quot;Missing V: P: drives. Script can&apos;t run&quot;&#xd;
   Exit /b 1&#xd;
 ) Else (&#xd;
-  IF NOT Exist P:\Bin mklink /J P:\Bin P:\Bin_Release&#xd;
-  IF NOT Exist P:\Nunit\Bin mklink /J P:\Nunit\Bin P:\Nunit\Bin_Release&#xd;
+  IF NOT Exist P:\Bin mklink /J P:\Bin P:\Bin_Debug&#xd;
+  IF NOT Exist P:\Nunit\Bin mklink /J P:\Nunit\Bin P:\Nunit\Bin_Debug&#xd;
   ::IF NOT Exist P:\Nunit\Bin\Interop_dll mklink /J P:\Nunit\Bin\Interop_dll P:\Interop_dll&#xd;
   ::IF NOT Exist P:\Nunit\Bin\NunitResults mkdir P:\Nunit\Bin\NunitResults&#xd;
   cd P:\Nunit\Bin&#xd;
@@ -135,6 +134,7 @@ IF NOT Exist V:\NUL (&#xd;
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
+      <healthScaleFactor>1.0</healthScaleFactor>
       <failIfNoResults>true</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
   </publishers>
