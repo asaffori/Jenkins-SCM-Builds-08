@@ -198,7 +198,7 @@
                       // notify users when the Pipeline fails
                       mail to: &apos;adham.saffori@Kla-Tencor.com&apos;,
                           subject: &quot;Stream ${params.SuggestedStreamName} creation - SUCCESS&quot;,
-                          body: &quot;New sream with the name ${params.SuggestedStreamName} was created based on ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}. &quot;
+                          body: &quot;Dear ${env.BUILD_USER} &lt;BR&gt; Your request for new sream with the name ${params.SuggestedStreamName} was approved. &lt;BR&gt; New stream was created based on ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}.&lt;BR&gt; Regards &lt;BR&gt; OMD DevOps team&quot;
                     }
                 }
     		}
