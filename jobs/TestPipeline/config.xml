@@ -35,67 +35,18 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>def runTestPerConfiguration(test,configuration) {
-    return {
-        wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
-        print 00
-        def labelNodes = Jenkins.instance.getLabel(configuration)
-        def nodes = labelNodes.getNodes()
-        def nodeName=null
-        print 11
-       // if (nodes.size() &gt; 0) {
-         //   result[role] = nodes[0].getNodeName()
-        //}
-        while(nodeName==null){
-            print 22
-         for (node in nodes) {
-             print 33
-             print (&quot;nodeNAme=&quot;+nodeName)
-            if (nodeName != null)
-                break
-            print (&quot;node=&quot;+node.getNodeName())
-             if (!node.getComputer().isOffline()){ 
-                 print 44
-                 print node.getComputer().getNumExecutors()
-                 print node.getComputer().countBusy()
-                if (node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0){
-                    print 55 +node.getNodeName()
-                    nodeName=node.getNodeName()
-                    continue;
-                }
-             }
-         }
+    <script>node(&apos;slave&apos;) {
+    def choice1
+    def choice2
+
+    stage (&apos;Select&apos;){
+        choice1 = input( id: &apos;userInput&apos;, message: &apos;Select your choice&apos;, parameters: [ [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;aa\nbb&apos;, description: &apos;&apos;, name: &apos;&apos;] ])
+        if(choice1.equals(&quot;aa&quot;)){
+            choice2 = input( id: &apos;userInput&apos;, message: &apos;Select your choice&apos;, parameters: [ [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;yy\nww&apos;, description: &apos;&apos;, name: &apos;&apos;] ])
+        }else{
+            choice2 = input( id: &apos;userInput&apos;, message: &apos;Select your choice&apos;, parameters: [ [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;gg\nkk&apos;, description: &apos;&apos;, name: &apos;&apos;] ])
         }
-        print 66
-       // node (nodeName) { 
-        //wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {
-        print test +&quot; . .test1 . . . &quot;+ configuration
-         def jobBuild=build job:&apos;test1&apos; , propagate: false, parameters: [[$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$nodeName&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: test]]
-        def jobResult = jobBuild.getResult()
-       echo &quot;Build of &apos;test1&apos; returned result: ${jobResult}&quot;
-        //}
-        
-    //}
-        
-    } // ts / node
-    } // closure
-} // runTestPerConfiguration
-
-node (&apos;master&apos;) {
-stage(&quot;Run ATE tests&quot;) {
-
-  AUT_Tests=[&apos;test1&apos;:&apos;pipe&apos;,&apos;test2&apos;:&apos;pipe&apos;,&apos;test3&apos;:&apos;pipe&apos;]
-  stepsForParallel = [:]
-  AUT_Tests.each{
-      def test_suit=it.key
-      def configuration = it.value
-      def stepName = &quot;Test ${test_suit} for ${configuration}&quot;
-      print stepName
-      stepsForParallel[stepName] = runTestPerConfiguration(test_suit,configuration)
-  }
-  stepsForParallel[&apos;failFast&apos;] = false
-  parallel stepsForParallel
-} // stage
+    }
 }</script>
     <sandbox>false</sandbox>
   </definition>
