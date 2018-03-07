@@ -8,7 +8,7 @@
     <string>jenkins.CLI</string>
   </disabledAdministrativeMonitors>
   <version>2.89.2</version>
-  <numExecutors>11</numExecutors>
+  <numExecutors>15</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.ProjectMatrixAuthorizationStrategy">
