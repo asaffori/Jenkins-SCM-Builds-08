@@ -187,7 +187,21 @@
                         }
                     }
     			}
-
+    			post {
+                    failure {
+                      // notify users when the Pipeline fails
+                      mail to: &apos;adham.saffori@Kla-Tencor.com&apos;,
+                          subject: &quot;Stream ${params.SuggestedStreamName} creation - FAILED&quot;,
+                          body: &quot;Something is wrong during stream creation, please check creation log via ${env.BUILD_URL}&quot;
+                    }
+                    
+                    success {
+                      // notify users when the Pipeline fails
+                      mail to: &apos;adham.saffori@Kla-Tencor.com&apos;,
+                          subject: &quot;Stream ${params.SuggestedStreamName} creation - SUCCESS&quot;,
+                          body: &quot;New sream with the name ${params.SuggestedStreamName} was created based on ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}. &quot;
+                    }
+                }
     }
 }
 
