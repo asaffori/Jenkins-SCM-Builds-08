@@ -186,7 +186,6 @@
     				        //echo &quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -p Scm07^&amp; -n ${userInput[&apos;userInput&apos;]} ${params.SourceStreamName}&quot;
                         }
                     }
-    			}
     			post {
                     failure {
                       // notify users when the Pipeline fails
@@ -202,7 +201,8 @@
                           body: &quot;New sream with the name ${params.SuggestedStreamName} was created based on ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}. &quot;
                     }
                 }
-    }
+    		}
+         }
 }
 
 def searchStrInCommandOutput(cmd,str){
