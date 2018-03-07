@@ -103,6 +103,7 @@
         <string>CA1NAS05-DYSD-RDS-Images-RO</string>
         <string>CMS_USERS</string>
         <string>KLA-ISRAEL</string>
+        <string>DL-PowerApps-ChinaWorkflow</string>
         <string>UC-User-Milp-Production</string>
         <string>JPN1FS01-043-RO</string>
         <string>ISR1NAS01-SW-OMD-CH</string>
@@ -193,7 +194,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1519722822698</timestamp>
+      <timestamp>1520456132182</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
