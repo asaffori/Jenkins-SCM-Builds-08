@@ -88,7 +88,7 @@
         search_target_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SuggestedStreamName}&quot;
     }
         stages {
-    			stage (&apos;verify&apos;) {
+    			stage (&apos;verification&apos;) {
     				steps {
         				    script {
                                 wrap([$class: &apos;BuildUser&apos;]) {
@@ -125,7 +125,7 @@
         				    }
     				}
     			}
-    			stage (&apos;waiting_CM_team_approval&apos;) {
+    			stage (&apos;waiting_for_approval&apos;) {
     			 steps {
     			     script {
     			         //def userInput
@@ -171,7 +171,7 @@
     			 }
     			}
     			}
-    			stage (&apos;create&apos;) {
+    			stage (&apos;creation&apos;) {
                     steps {
                         script {
                              wrap([$class: &apos;BuildUser&apos;]) {
