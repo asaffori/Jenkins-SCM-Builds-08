@@ -126,6 +126,7 @@
         <string>CA1NAS05-DYSD-RDS-Images-RO</string>
         <string>CMS_USERS</string>
         <string>KLA-ISRAEL</string>
+        <string>DL-PowerApps-ChinaWorkflow</string>
         <string>UC-User-Milp-Production</string>
         <string>JPN1FS01-043-RO</string>
         <string>ISR1NAS01-SW-OMD-CH</string>
@@ -192,7 +193,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1519548687774</timestamp>
+      <timestamp>1520548974045</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.35"/>
     <org.jenkinsci.plugins.readonly.UserConfiguration plugin="read-only-configurations@1.10">
