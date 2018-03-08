@@ -78,7 +78,7 @@
      parameters {
         string(name: &apos;SuggestedStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What should the new stream be named with? \n Prefered syntax:Arhcer_17.12_TaskName_WorkItemNum&apos;)
         string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is your base stream name?&apos;)
-        string(name: &apos;SourceStreamSnapshotName&apos;, defaultValue: &apos;&apos;, description: &apos;What is the stream snapshot name you would use as a base for the new stream?&apos;)
+        string(name: &apos;SourceStreamSnapshotName&apos;, defaultValue: &apos;&apos;, description: &apos;What is the stream snapshot name you would use as a base for the new stream?\n Examples:UOMD_BLD_17.12.00.30100 UOMD_BLD_17.12.00.20600&apos;)
     }
     environment {
         snapshot_name_prefix=&quot;UOMD_BLD_&quot;
