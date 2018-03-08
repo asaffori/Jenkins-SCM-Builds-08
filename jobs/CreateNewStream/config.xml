@@ -154,8 +154,8 @@
                                 emailext (
                                     subject: &quot;Declined: Stream creation request ${params.SuggestedStreamName}&apos;&quot;,
                                     body: &quot;&quot;&quot;&lt;p&gt;Dear ${env.BUILD_USER} &lt;/p&gt;
-                                    &lt;p&gt;Your request for new sream with the name ${params.SuggestedStreamName} was declined by: &apos;${user}&apos;&lt;/p&gt;
-                                    &lt;p&gt;Reason: &apos;${env.userInput}&apos;&lt;/p&gt;
+                                    &lt;p&gt;Your request for new sream with the name ${params.SuggestedStreamName} was declined by ${user}&lt;/p&gt;
+                                    &lt;p&gt;Reason: ${env.userInput}&lt;/p&gt;
                                     &lt;p&gt;For execution details, please check console output at &quot;&lt;a href=&quot;${env.BUILD_URL}&quot;&gt;${env.JOB_NAME} [${env.BUILD_NUMBER}]&lt;/a&gt;&quot;&lt;/p&gt;&quot;&quot;&quot;,
                                      to: &quot;${BUILD_USER_EMAIL}&quot;
                                 )
