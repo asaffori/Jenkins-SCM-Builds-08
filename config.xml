@@ -503,6 +503,7 @@
           <jobNames>
             <comparator class="hudson.util.CaseInsensitiveComparator"/>
             <string>OMD_17.12_Formal_Trigger_Copy</string>
+            <string>Test Trigger 17.12 Agnes</string>
           </jobNames>
           <jobFilters/>
           <columns>
