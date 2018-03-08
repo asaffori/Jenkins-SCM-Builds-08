@@ -130,7 +130,7 @@
     			     script {
     			         //def userInput
     			         try{
-    			             mail (to: &apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;,
+    			             mail (to: &apos;adham.saffori@kla-tencor.com&apos;,
                                  subject: &quot;New stream request with name  &apos;${params.SuggestedStreamName}&apos; is pending for your approval&quot;,
                                  body: &quot;&lt;p&gt;Dear CM team &lt;/p&gt;&lt;p&gt;New stream request with name  &apos;${params.SuggestedStreamName}&apos; is pending for your approval&lt;p&gt;&quot;+
                                  &quot;&lt;p&gt;To approve the request, please visit ${env.BUILD_URL}pipeline.&lt;p&gt;&quot;);
