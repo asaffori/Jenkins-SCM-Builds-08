@@ -125,7 +125,7 @@
         				    }
     				}
     			}
-    			stage (&apos;approve&apos;) {
+    			stage (&apos;waiting_CM_team_approval&apos;) {
     			 steps {
     			     script {
     			         //def userInput
