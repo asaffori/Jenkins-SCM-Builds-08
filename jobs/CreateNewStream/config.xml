@@ -135,7 +135,7 @@
                                  body: &quot;Please go to ${env.BUILD_URL}pipeline.&quot;);
             			     env.userInput = input(
             				 id: &apos;userInput&apos;, message: &apos;CM team\nPlease approve the below stream name?&apos;, parameters: [
-            				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;New stream name&apos;, name: &apos;userInput&apos;]
+            				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;Suggested new stream name&apos;, name: &apos;userInput&apos;]
             				],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Approved, lets create it&apos;)
             			//	print (userInput)
     			         } catch (err) { // input false
