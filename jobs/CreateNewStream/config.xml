@@ -156,7 +156,7 @@
                                     body: &quot;&quot;&quot;&lt;p&gt;Dear ${env.BUILD_USER} &lt;/p&gt;
                                     &lt;p&gt;Your request for new sream with the name &lt;b&gt;${params.SuggestedStreamName}&lt;/b&gt; was &lt;strong&gt;declined&lt;strong&gt; by &lt;b&gt;${user}&lt;/b&gt;&lt;/p&gt;
                                     &lt;p&gt;Reason: ${env.userInput}&lt;/p&gt;
-                                    &lt;p&gt;For execution details, please check console output at &quot;&lt;a href=&quot;${env.RUN_DISPLAY_URL}&quot;&gt;${env.JOB_NAME} [${env.BUILD_NUMBER}]&lt;/a&gt;&quot;&lt;/p&gt;&quot;&quot;&quot;,
+                                    &lt;p&gt;For execution details, please check console output at &quot;&lt;a href=&quot;${env.RUN_DISPLAY_URL}&quot;&gt;${env.JOB_NAME} [R${env.BUILD_NUMBER}]&lt;/a&gt;&quot;&lt;/p&gt;&quot;&quot;&quot;,
                                      to: &quot;${BUILD_USER_EMAIL}&quot;
                                 )
                             }
