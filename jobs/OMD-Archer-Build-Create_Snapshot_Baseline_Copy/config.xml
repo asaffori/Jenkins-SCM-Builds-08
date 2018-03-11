@@ -138,7 +138,7 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
     <hudson.tasks.BatchFile>
       <command>If /I &quot;%ReplaceOldSnaps%&quot; == &quot;true&quot; (&#xd;
    set ReplaceOldSnaps = Yes&#xd;
-) ESLE (&#xd;
+) ELSE (&#xd;
   set ReplaceOldSnaps = &quot;&quot;&#xd;
 )&#xd;
 &#xd;
