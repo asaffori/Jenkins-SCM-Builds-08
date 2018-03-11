@@ -67,7 +67,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
               <sandbox>false</sandbox>
             </secureFallbackScript>
           </script>
-          <projectName>OMD-Archer-Build-Create_Snapshot_Baseline</projectName>
+          <projectName>OMD-Archer-Build-Create_Snapshot_Baseline_Copy</projectName>
           <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
@@ -109,6 +109,11 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
           <description></description>
           <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ReplaceOldSnaps</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -119,7 +124,6 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -132,8 +136,13 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>echo PATH=%PATH%&#xd;
-CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\CreateSnapshotBaseline.bat %BUILD_VERSION% %WSName%</command>
+      <command>If /I &quot;%ReplaceOldSnaps%&quot; == &quot;true&quot; (&#xd;
+   set ReplaceOldSnaps = Yes&#xd;
+) ESLE (&#xd;
+  set ReplaceOldSnaps = &quot;&quot;&#xd;
+)&#xd;
+&#xd;
+CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\CreateSnapshotBaseline.bat %BUILD_VERSION% %WSName% %ReplaceOldSnaps%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
