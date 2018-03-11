@@ -137,12 +137,12 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
   <builders>
     <hudson.tasks.BatchFile>
       <command>If /I &quot;%ReplaceOldSnaps%&quot; == &quot;true&quot; (&#xd;
-   set ReplaceOldSnaps = Yes&#xd;
+   set ReplaceSnaps = Yes&#xd;
 ) ELSE (&#xd;
-  set ReplaceOldSnaps = &quot;&quot;&#xd;
+  set ReplaceSnaps = &quot;&quot;&#xd;
 )&#xd;
 &#xd;
-CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\CreateSnapshotBaseline.bat %BUILD_VERSION% %WSName% %ReplaceOldSnaps%</command>
+CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\CreateSnapshotBaseline.bat %BUILD_VERSION% %WSName% %ReplaceSnaps%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
