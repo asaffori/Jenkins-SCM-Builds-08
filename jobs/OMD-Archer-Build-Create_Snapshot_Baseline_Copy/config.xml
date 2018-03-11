@@ -143,7 +143,7 @@ If /I &quot;%ReplaceSnaps%&quot; == &quot;true&quot; (&#xd;
   set ReplaceOldSnaps = &quot;&quot;&#xd;
 )&#xd;
 &#xd;
-CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\CreateSnapshotBaseline.bat %BUILD_VERSION% %WSName% %ReplaceOldSnaps%</command>
+CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\CreateSnapshotBaseline.bat %BUILD_VERSION% %WSName% !ReplaceOldSnaps!</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
