@@ -130,7 +130,6 @@
         <string>DL-ALL-REGULAR-EMPLOYEES-SPA</string>
         <string>JazzUsers</string>
         <string>ISR1NAS01-UserDoc-RO</string>
-        <string>DL-All-Managers with direct reports</string>
         <string>DL-Israel-OMD-ENG-SW</string>
         <string>SW-OMD-RO</string>
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
@@ -194,7 +193,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1520456132182</timestamp>
+      <timestamp>1520888316011</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
