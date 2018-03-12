@@ -21,25 +21,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>SuggestedStreamName</name>
-          <description>What should the new stream be named with? Prefered syntax:Archer_17.12_TaskName_WorkItemNum</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SourceStreamName</name>
-          <description>What is your base stream name?</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SourceStreamSnapshotName</name>
-          <description>What is the stream snapshot name you would use as a base for the new stream? Examples:UOMD_BLD_17.12.00.30100 UOMD_BLD_17.12.00.20600</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -61,6 +42,25 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>SuggestedStreamName</name>
+          <description>What should the new stream be named with? Prefered syntax:Archer_17.12_TaskName_WorkItemNum</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SourceStreamName</name>
+          <description>What is your base stream name?</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SourceStreamSnapshotName</name>
+          <description>What is the stream snapshot name you would use as a base for the new stream? Examples:UOMD_BLD_17.12.00.30100 UOMD_BLD_17.12.00.20600</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -129,10 +129,12 @@
     			     script {
     			         //def userInput
     			         try{
-    			             emailext (to: &apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;,cc: &quot;${env.BUILD_USER_EMAIL}&quot;,
-                                 subject: &quot;New stream request is pending for your approval&quot;,
-                                 body: &quot;&quot;&quot;&lt;p&gt;Dear CM team &lt;/p&gt;&lt;p&gt;New stream request with name  &apos;${params.SuggestedStreamName}&apos; is pending for your approval&lt;p&gt;
-                                 &lt;p&gt;To approve the request, please visit ${env.BUILD_URL}input/ &lt;p&gt;&quot;&quot;&quot;);
+    			             wrap([$class: &apos;BuildUser&apos;]) {
+        			             emailext (to: &apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;,cc: &quot;${env.BUILD_USER_EMAIL}&quot;,
+                                     subject: &quot;New stream request is pending for your approval&quot;,
+                                     body: &quot;&quot;&quot;&lt;p&gt;Dear CM team &lt;/p&gt;&lt;p&gt;New stream request with name  &apos;${params.SuggestedStreamName}&apos; is pending for your approval&lt;p&gt;
+                                     &lt;p&gt;To approve the request, please visit ${env.BUILD_URL}input/ &lt;p&gt;&quot;&quot;&quot;);
+    			             }
             			     env.userInput = input(
             				 id: &apos;userInput&apos;, message: &apos;CM team\nPlease approve the below stream name?&apos;, parameters: [
             				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;Suggested new stream name&apos;, name: &apos;userInput&apos;]
@@ -188,17 +190,21 @@
                     }
     			post {
                     failure {
-                      // notify users when the Pipeline fails
-                      mail to: &apos;${env.BUILD_USER_EMAIL}&apos;,
-                          subject: &quot;Stream ${params.SuggestedStreamName} creation - FAILED&quot;,
-                          body: &quot;Something is wrong during stream creation, please check creation log via ${env.BUILD_URL}&quot;
+                        wrap([$class: &apos;BuildUser&apos;]) {
+                            // notify users when the Pipeline fails
+                            mail to: &apos;${env.BUILD_USER_EMAIL}&apos;,
+                            subject: &quot;Stream ${params.SuggestedStreamName} creation - FAILED&quot;,
+                            body: &quot;Something is wrong during stream creation, please check creation log via ${env.BUILD_URL}&quot;
+                        }
                     }
                     
                     success {
-                      // notify users when the Pipeline fails
-                      mail to: &apos;${env.BUILD_USER_EMAIL}&apos;,
-                          subject: &quot;Stream ${params.SuggestedStreamName} creation - SUCCESS&quot;,
-                          body: &quot;Dear ${env.BUILD_USER} &lt;BR&gt; Your request for new sream with the name ${params.SuggestedStreamName} was approved. &lt;BR&gt; New stream was created based on ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}.&lt;BR&gt; Regards &lt;BR&gt; OMD DevOps team&quot;
+                        wrap([$class: &apos;BuildUser&apos;]) {
+                            // notify users when the Pipeline fails
+                            mail to: &apos;${env.BUILD_USER_EMAIL}&apos;,
+                            subject: &quot;Stream ${params.SuggestedStreamName} creation - SUCCESS&quot;,
+                            body: &quot;Dear ${env.BUILD_USER} &lt;BR&gt; Your request for new sream with the name ${params.SuggestedStreamName} was approved. &lt;BR&gt; New stream was created based on ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}.&lt;BR&gt; Regards &lt;BR&gt; OMD DevOps team&quot;
+                        }
                     }
                 }
     		}
