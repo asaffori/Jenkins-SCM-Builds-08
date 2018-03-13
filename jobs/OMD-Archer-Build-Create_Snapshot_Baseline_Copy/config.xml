@@ -137,8 +137,8 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
   <builders>
     <hudson.tasks.BatchFile>
       <command>setlocal ENABLEDELAYEDEXPANSION&#xd;
-If /I &quot;%ReplaceSnaps%&quot; == &quot;true&quot; (&#xd;
-   set ReplaceOldSnaps = Yes&#xd;
+If /I &quot;%ReplaceSnaps%&quot;==&quot;true&quot; (&#xd;
+   set ReplaceOldSnaps=Yes&#xd;
 ) ELSE (&#xd;
   set ReplaceOldSnaps = &quot;&quot;&#xd;
 )&#xd;
