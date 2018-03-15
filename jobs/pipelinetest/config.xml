@@ -52,15 +52,15 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>stage &apos;promotion&apos;
-def userInput = input(
- id: &apos;userInput&apos;, message: &apos;Let\&apos;s promote?&apos;, parameters: [
- [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat&apos;, description: &apos;Environment&apos;, name: &apos;env&apos;],
- [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat1&apos;, description: &apos;Target&apos;, name: &apos;target&apos;]
-])
-echo (&quot;Env: &quot;+userInput[&apos;env&apos;])
-echo (&quot;Target: &quot;+userInput[&apos;target&apos;])
-</script>
+    <script>stage &apos;promotion&apos; (
+    def userInput = input(
+     id: &apos;userInput&apos;, message: &apos;Let\&apos;s promote?&apos;, parameters: [
+     [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat&apos;, description: &apos;Environment&apos;, name: &apos;env&apos;],
+     [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat1&apos;, description: &apos;Target&apos;, name: &apos;target&apos;]
+    ])
+    echo (&quot;Env: &quot;+userInput[&apos;env&apos;])
+    echo (&quot;Target: &quot;+userInput[&apos;target&apos;])
+)</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
