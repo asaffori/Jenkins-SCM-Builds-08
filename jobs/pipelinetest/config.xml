@@ -59,7 +59,8 @@ def userInput = input(
  [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat1&apos;, description: &apos;Target&apos;, name: &apos;target&apos;]
 ])
 echo (&quot;Env: &quot;+userInput[&apos;env&apos;])
-echo (&quot;Target: &quot;+userInput[&apos;target&apos;])</script>
+echo (&quot;Target: &quot;+userInput[&apos;target&apos;])
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
