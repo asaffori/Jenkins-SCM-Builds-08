@@ -52,7 +52,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>stage &apos;promotion&apos; (
+    <script>stage &apos;promotion&apos; {
     steps{
     def userInput = input(
      id: &apos;userInput&apos;, message: &apos;Let\&apos;s promote?&apos;, parameters: [
@@ -62,7 +62,7 @@
     echo (&quot;Env: &quot;+userInput[&apos;env&apos;])
     echo (&quot;Target: &quot;+userInput[&apos;target&apos;])
     }
-)</script>
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
