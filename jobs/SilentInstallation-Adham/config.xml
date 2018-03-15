@@ -206,6 +206,7 @@ if not exist  C:\5300\Nunit\Bin\Link2Bin mklink /d C:\5300\Nunit\Bin\Link2Bin  C
 if not %errorlevel%==0 goto error&#xd;
 echo ########################################### NUNIT preperation:End ####################################################################&#xd;
 &#xd;
+&#xd;
 echo Changing registry key for auto logon:HKLM\SOFTWARE\KLA-Tencor\OM\5300\Security\Automatic Logon&#xd;
 REG ADD &quot;HKLM\SOFTWARE\KLA-Tencor\OM\5300\Security\Automatic Logon&quot; /t REG_SZ /d O1 /f&#xd;
 if not %errorlevel% equ 0 goto error&#xd;
