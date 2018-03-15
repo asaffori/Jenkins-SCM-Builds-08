@@ -388,6 +388,7 @@
         <string>OMD-Build-Pipeline</string>
         <string>RestorageImage-Agnes</string>
         <string>SanityTest-Agnes</string>
+        <string>SilentInstallation-Adham</string>
         <string>SilentInstallation-Agnes</string>
         <string>SimLockCheck-Agnes</string>
         <string>test trigger</string>
