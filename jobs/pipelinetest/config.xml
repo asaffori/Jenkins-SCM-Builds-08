@@ -11,9 +11,7 @@
     <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.2.5">
       <jobProperties/>
       <triggers/>
-      <parameters>
-        <string>tests</string>
-      </parameters>
+      <parameters/>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
   <description></description>
@@ -32,6 +30,15 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.TextParameterDefinition>
+          <name>tests</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.TextParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -52,7 +59,7 @@ stages {
                 def userInput = input(
                  id: &apos;userInput&apos;, message: &apos;Let\&apos;s promote?&apos;, parameters: [
                  [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat&apos;, description: &apos;Environment&apos;, name: &apos;env&apos;],
-                 [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat1&apos;, description: &apos;Target&apos;, name: &apos;target&apos;]
+                 [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat1&apos;, description: &apos;Target&apos;, name: &apos;target&apos;, isHidden: true]
                 ])
                 echo (&quot;Env: &quot;+userInput[&apos;env&apos;])
                 echo (&quot;Target: &quot;+userInput[&apos;target&apos;])
