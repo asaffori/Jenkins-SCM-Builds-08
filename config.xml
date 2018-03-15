@@ -380,6 +380,7 @@
         <string>Auto Deploy Sanity Trigger</string>
         <string>DownLoadFile</string>
         <string>FileTransfer</string>
+        <string>NUnit Test Full Flow</string>
         <string>OMD-Archer-Build-Agnes</string>
         <string>OMD-Build-Pipeline</string>
         <string>RestorageImage-Agnes</string>
