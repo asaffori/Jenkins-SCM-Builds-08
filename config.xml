@@ -376,6 +376,7 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>Agnes Test Full Flow</string>
         <string>ATETestsPipeline</string>
+        <string>ATETestsPipelineNunit</string>
         <string>Auto Deploy Sanity</string>
         <string>Auto Deploy Sanity Trigger</string>
         <string>Auto Deploy Sanity Trigger Nunit</string>
