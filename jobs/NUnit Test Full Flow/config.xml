@@ -1115,7 +1115,7 @@ build.save()</postsendScript>
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Auto Deploy Sanity Trigger</jobName>
+      <jobName>Auto Deploy Sanity Trigger Nunit</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
       <continueJobAnyway>false</continueJobAnyway>
