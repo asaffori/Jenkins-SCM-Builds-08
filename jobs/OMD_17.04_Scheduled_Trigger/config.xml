@@ -218,15 +218,17 @@
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>AUTO_DEPLOY</name>
+          <name>Auto_Deploy_Sanity</name>
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>Archer_Sanity</name>
+        <hudson.model.TextParameterDefinition>
+          <name>TestsArray</name>
           <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
+          <defaultValue>[
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]
+]</defaultValue>
+        </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -243,12 +245,6 @@
         <propertiesContent>BUILDTYPE=Scheduled
 WSName=omdbuild_Archer_${MajorMinor_Ver}_Dev_Workspace
 SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}
-BaseImage=17.02.00.30500_TL_ATE_Image
-SimulatorEngine=SCM-SIM7050-01
-TestSuite=AROL_Autorun_ATE_Suite
-TestSuitePath=X:\ATE\TestCases\SQC\MBS\AROL
-ATEBasePath=\\isr1vmappcm01\Automated_Testing\17.0x_ATE
-ToolType=TL
 </propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
@@ -321,14 +317,8 @@ AUTOVERSION=${AUTOVERSION}
 RunningMode=DAILY
 BuildAutoApproved=true
 SnapshotName=${SnapshotName}
-BaseImage=${BaseImage}
-SimulatorEngine=${SimulatorEngine}
 buildResultUUID=${buildResultUUID}
 team_scm_workspaceUUID=${team_scm_workspaceUUID}
-ToolType=${ToolType}
-ATEBasePath=${ATEBasePath}
-TestSuitePath=${TestSuitePath}
-TestSuite=${TestSuite}
 
 </properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
