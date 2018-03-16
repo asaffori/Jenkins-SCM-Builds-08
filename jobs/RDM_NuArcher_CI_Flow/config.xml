@@ -39,7 +39,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>DebugBuildEngine,ReleaseBuildEngine</paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
@@ -74,7 +73,6 @@ def reciepts_list=&quot;&quot;;
       <overrideBuildParameters>false</overrideBuildParameters>
       <contributors/>
     </EnvInjectJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -132,7 +130,7 @@ def reciepts_list=&quot;&quot;;
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-357895302552224</randomName>
-          <visibleItemCount>0</visibleItemCount>
+          <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -147,12 +145,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
             </secureFallbackScript>
           </script>
           <projectName>RDM_NuArcher_CI_Flow</projectName>
-          <parameters class="linked-hash-map">
-            <entry>
-              <string>BUILD_VERSION</string>
-              <string></string>
-            </entry>
-          </parameters>
+          <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -500,76 +493,6 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ClosureBuildEngine</name>
-          <description></description>
-          <allowedSlaves>
-            <string>master</string>
-          </allowedSlaves>
-          <defaultSlaves>
-            <string>master</string>
-          </defaultSlaves>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>SimulatorEngine</name>
-          <description></description>
-          <allowedSlaves>
-            <string>ALL (no restriction)</string>
-          </allowedSlaves>
-          <defaultSlaves>
-            <string>SCM-SIM7050-01</string>
-          </defaultSlaves>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>AUTO_DEPLOY</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>CheckSimTimeout</name>
-          <description>(min)</description>
-          <defaultValue>60</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>Archer_Sanity</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>AcronisEngine</name>
-          <description></description>
-          <allowedSlaves>
-            <string>master</string>
-          </allowedSlaves>
-          <defaultSlaves>
-            <string>master</string>
-          </defaultSlaves>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>BaseImage</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>BaseImagePath</name>
-          <description></description>
-          <defaultValue>D:\BaseImage</defaultValue>
-        </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RDMINSTALLATION</name>
           <description></description>
@@ -601,13 +524,13 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ATEControllerEngine</name>
+          <name>ClosureBuildEngine</name>
           <description></description>
           <allowedSlaves>
-            <string>SCM-ATE-01</string>
+            <string>master</string>
           </allowedSlaves>
           <defaultSlaves>
-            <string>SCM-ATE-01</string>
+            <string>master</string>
           </defaultSlaves>
           <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
           <allowMultiNodeSelection>false</allowMultiNodeSelection>
@@ -615,34 +538,44 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>TestSuite</name>
-          <description>Full file name, XXXXX.csv</description>
-          <defaultValue>AROL_Autorun_ATE_Suite</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>TestSuitePath</name>
-          <description>Start with X:</description>
-          <defaultValue>X:\ATE\TestCases\SQC\MBS\AROL</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>ATEBasePath</name>
+        <hudson.model.TextParameterDefinition>
+          <name>TestsArray</name>
+          <description>What tests needs to run and in which confgurations? &lt;BR&gt;
+Test details are shared in arrays, seperated by comma. Test arrays are seperated by semicomma and can be entered in diffrent lines&lt;BR&gt;
+&lt;BR&gt;
+Input Syntax: &lt;BR&gt;
+[&lt;BR&gt;
+[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath];&lt;BR&gt;
+[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]&lt;BR&gt;
+]&lt;BR&gt;
+&lt;BR&gt;
+Details:&lt;BR&gt;
+SuiteName:File name of the test suite (excluding suffix)&lt;BR&gt;
+SuitePath:suite file location&lt;BR&gt;
+ToolType: As TL/A700/A600&lt;BR&gt;
+ATEControllerMachineLabel:Jenkins label name for ATE controllers machines to let the mechanism select one&lt;BR&gt;
+SimulatorEngineMachineLabel: Jenkins label name for simulator machines to let the mechanism select one&lt;BR&gt;
+BaseImagePath:Template image file location&lt;BR&gt;
+BaseImageName:Acronis template image to recover simulator machine from prior installation&lt;BR&gt;
+ATEScriptsPath:ATE execution scripts folder&lt;BR&gt;
+&lt;BR&gt;
+&lt;BR&gt;
+Example:&lt;BR&gt;
+[&lt;BR&gt;
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,A700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];&lt;BR&gt;
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,A600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];&lt;BR&gt;
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]&lt;BR&gt;
+]&lt;BR&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>Auto_Deploy_Sanity</name>
           <description></description>
-          <defaultValue>\\isr1vmappcm01\Automated_Testing\17.0x_ATE</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>ToolType</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>TL</string>
-              <string>A600</string>
-              <string>A700</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -700,19 +633,6 @@ build.save()</postsendScript>
       <saveOutput>true</saveOutput>
       <disabled>false</disabled>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
-      <configs>
-        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-          <configs>
-            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
-          </configs>
-          <projects>UnlockSimulator</projects>
-          <condition>ALWAYS</condition>
-          <triggerWithNoParameters>false</triggerWithNoParameters>
-          <triggerFromChildProjects>false</triggerFromChildProjects>
-        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-      </configs>
-    </hudson.plugins.parameterizedtrigger.BuildTrigger>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
@@ -729,7 +649,15 @@ build.save()</postsendScript>
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>AcronisEngine</string>
+      <string>TestsArray</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>StartingStep</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>AUTOINSTALLATION</string>
       <string></string>
     </entry>
     <entry>
@@ -741,42 +669,6 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>TestSuite</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BaseImage</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ToolType</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BuildAutoApproved</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>StartingStep</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BaseImagePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>AUTOINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ATEControllerEngine</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>VERSIONFILE</string>
       <string></string>
     </entry>
@@ -785,11 +677,15 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>TestSuitePath</string>
+      <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
     <entry>
-      <string>ATEBasePath</string>
+      <string>RDMINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BuildAutoApproved</string>
       <string></string>
     </entry>
   </globalEnvVars>
@@ -1032,70 +928,6 @@ build.save()</postsendScript>
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>SimLockCheck</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>INSTALLATION</step>
-      <appServerType>Tomcat</appServerType>
-      <platform>Windows</platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Restore Image</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>INSTALLATION</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>SimLockCheck</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType>Tomcat</appServerType>
-      <platform>Windows</platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Silent Installation</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>INSTALLATION</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Archer Meida Creation</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Restore Image</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType>Tomcat</appServerType>
-      <platform>Windows</platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>RDM Media creation</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
@@ -1178,28 +1010,6 @@ build.save()</postsendScript>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>NuArcher - Deliver Code change</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType>Tomcat</appServerType>
-      <platform>Windows</platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Sanity Test</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>SANITY</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Silent Installation</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
@@ -1314,6 +1124,28 @@ build.save()</postsendScript>
       <triggers>
         <dailyTriggerFlag>false</dailyTriggerFlag>
         <weeklyTriggerFlag>true</weeklyTriggerFlag>
+        <monthlyTriggerFlag>false</monthlyTriggerFlag>
+      </triggers>
+    </com.amdocs.hudson.plugins.flow.JobParameter>
+    <com.amdocs.hudson.plugins.flow.JobParameter>
+      <jobName>Auto Deploy Sanity Trigger</jobName>
+      <continueJobIfUnstable>false</continueJobIfUnstable>
+      <continueJobIfAborted>false</continueJobIfAborted>
+      <continueJobAnyway>false</continueJobAnyway>
+      <overrideJobNode>false</overrideJobNode>
+      <specifyModule>false</specifyModule>
+      <step>SANITY</step>
+      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>Archer Meida Creation</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+      </dependencyJobList>
+      <appServerType>Tomcat</appServerType>
+      <platform>Windows</platform>
+      <triggersFlag>false</triggersFlag>
+      <triggers>
+        <dailyTriggerFlag>false</dailyTriggerFlag>
+        <weeklyTriggerFlag>false</weeklyTriggerFlag>
         <monthlyTriggerFlag>false</monthlyTriggerFlag>
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
