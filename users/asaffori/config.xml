@@ -205,11 +205,35 @@
     <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
       <data class="concurrent-hash-map">
         <entry>
+          <string>Old---Sanity Test</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Old---UnlockSimulator</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>OMD-Archer-Build-PatchBuild</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>TriggerAutoRebaseInteg</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Old---Silent Installation</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>AutoRebaseStream</string>
           <boolean>true</boolean>
         </entry>
         <entry>
           <string>SanityTest</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Old---SimLockCheck</string>
           <boolean>true</boolean>
         </entry>
         <entry>
@@ -225,15 +249,7 @@
           <boolean>true</boolean>
         </entry>
         <entry>
-          <string>OMD-Archer-Build-PatchBuild</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
           <string>CreateNewStream</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>TriggerAutoRebaseInteg</string>
           <boolean>true</boolean>
         </entry>
         <entry>
@@ -241,7 +257,15 @@
           <boolean>true</boolean>
         </entry>
         <entry>
+          <string>SimLockCheck</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>OMD_17.12_Scheduled_Trigger</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Old---Restore Image</string>
           <boolean>true</boolean>
         </entry>
       </data>

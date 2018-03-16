@@ -287,15 +287,7 @@ resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>MajorMinor_Ver</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
@@ -315,11 +307,19 @@ resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&
       <string></string>
     </entry>
     <entry>
-      <string>BaseImage</string>
+      <string>ATEControllerEngine</string>
       <string></string>
     </entry>
     <entry>
-      <string>ATEControllerEngine</string>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BaseImage</string>
       <string></string>
     </entry>
   </globalEnvVars>
@@ -352,7 +352,7 @@ resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&
       <step>INSTALLATION</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>SimLockCheck-Agnes</dependencyJobName>
+          <dependencyJobName>SimLockCheck</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
@@ -387,7 +387,7 @@ resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>SimLockCheck-Agnes</jobName>
+      <jobName>SimLockCheck</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
       <continueJobAnyway>false</continueJobAnyway>
