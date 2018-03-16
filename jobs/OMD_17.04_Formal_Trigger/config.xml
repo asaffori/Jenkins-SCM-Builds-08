@@ -218,15 +218,40 @@
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>AUTO_DEPLOY</name>
+          <name>Auto_Deploy_Sanity</name>
           <description></description>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>Archer_Sanity</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>TestsArray</name>
+          <description>What tests needs to run and in which confgurations? &lt;BR&gt;
+Test details are shared in arrays, seperated by comma. Test arrays are seperated by semicomma and can be entered in diffrent lines&lt;BR&gt;
+&lt;BR&gt;
+Input Syntax: &lt;BR&gt;
+[&lt;BR&gt;
+[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath];&lt;BR&gt;
+[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]&lt;BR&gt;
+]&lt;BR&gt;
+&lt;BR&gt;
+Details:&lt;BR&gt;
+SuiteName:File name of the test suite (excluding suffix)&lt;BR&gt;
+SuitePath:suite file location&lt;BR&gt;
+ToolType: As TL/A700/A600&lt;BR&gt;
+ATEControllerMachineLabel:Jenkins label name for ATE controllers machines to let the mechanism select one&lt;BR&gt;
+SimulatorEngineMachineLabel: Jenkins label name for simulator machines to let the mechanism select one&lt;BR&gt;
+BaseImagePath:Template image file location&lt;BR&gt;
+BaseImageName:Acronis template image to recover simulator machine from prior installation&lt;BR&gt;
+ATEScriptsPath:ATE execution scripts folder&lt;BR&gt;
+&lt;BR&gt;
+&lt;BR&gt;
+Example:&lt;BR&gt;
+[&lt;BR&gt;
+[Autorun_XYS_Suite_ATE,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE];
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];
+[Autorun_XYS_Suite_ATE_A600,X:\ATE\TestCases\SQC\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Mil_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]
+]&lt;BR&gt;</description>
+          <defaultValue></defaultValue>
+        </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -242,13 +267,7 @@
       <info>
         <propertiesContent>BUILDTYPE=Formal
 WSName=omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace
-SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}
-BaseImage=17.02.00.30500_TL_ATE_Image
-SimulatorEngine=SCM-SIM7050-01
-TestSuite=AROL_Autorun_ATE_Suite
-TestSuitePath=X:\ATE\TestCases\SQC\MBS\AROL
-ATEBasePath=\\isr1vmappcm01\Automated_Testing\17.0x_ATE
-ToolType=TL</propertiesContent>
+SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
       <on>true</on>
@@ -315,14 +334,8 @@ AUTOVERSION=${AUTOVERSION}
 RunningMode=WEEKLY
 BuildAutoApproved=true
 SnapshotName=${SnapshotName}
-BaseImage=${BaseImage}
-SimulatorEngine=${SimulatorEngine}
 buildResultUUID=${buildResultUUID}
-team_scm_workspaceUUID=${team_scm_workspaceUUID}
-ToolType=${ToolType}
-ATEBasePath=${ATEBasePath}
-TestSuitePath=${TestSuitePath}
-TestSuite=${TestSuite}</properties>
+team_scm_workspaceUUID=${team_scm_workspaceUUID}</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
