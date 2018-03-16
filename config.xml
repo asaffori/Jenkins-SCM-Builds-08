@@ -396,7 +396,7 @@
         <string>test2</string>
         <string>test3</string>
         <string>test_flow</string>
-        <string>UnlockSimulator-Agnes</string>
+        <string>UnlockSimulator</string>
         <string>UpLoadFile</string>
       </jobNames>
       <jobFilters/>

@@ -273,7 +273,7 @@ resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&
           <configs>
             <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
           </configs>
-          <projects>UnlockSimulator-Agnes</projects>
+          <projects>UnlockSimulator</projects>
           <condition>ALWAYS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
           <triggerFromChildProjects>false</triggerFromChildProjects>

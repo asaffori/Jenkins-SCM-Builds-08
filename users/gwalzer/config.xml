@@ -195,6 +195,10 @@
           <boolean>true</boolean>
         </entry>
         <entry>
+          <string>UnlockSimulator</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>Old---SimLockCheck</string>
           <boolean>true</boolean>
         </entry>
