@@ -287,7 +287,15 @@ resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>MajorMinor_Ver</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
@@ -307,19 +315,11 @@ resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&
       <string></string>
     </entry>
     <entry>
-      <string>ATEControllerEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>TestSuite</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>BaseImage</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ATEControllerEngine</string>
       <string></string>
     </entry>
   </globalEnvVars>
