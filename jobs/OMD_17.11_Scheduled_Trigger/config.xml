@@ -255,7 +255,7 @@ Example:&lt;BR&gt;
 [Autorun_XYS_Suite_ATE_A600,X:\ATE\TestCases\SQC\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Mil_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]
 ]&lt;BR&gt;</description>
           <defaultValue>[
-[Autorun_XYS_Suite_ATE,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE]
+[Autorun_XYS_Suite_ATE,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.10.00.20900_A700_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE]
 ]</defaultValue>
         </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
