@@ -46,7 +46,15 @@
           <boolean>true</boolean>
         </entry>
         <entry>
+          <string>SanityTest</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>RunNunitColdIntegTests</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>RestorageImage</string>
           <boolean>true</boolean>
         </entry>
         <entry>
@@ -59,6 +67,10 @@
         </entry>
         <entry>
           <string>TriggerAutoRebaseInteg</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>SilentInstallation</string>
           <boolean>true</boolean>
         </entry>
       </data>
