@@ -57,6 +57,7 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>%Root5300Bin%</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
       <command>For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTests.bat) DO (&#xd;
@@ -68,7 +69,7 @@
   </builders>
   <publishers>
     <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.22">
-      <testResultsPattern>%Root5300Bin%\Nunit\bin\NunitResults\*.CIntegTests.Results.xml</testResultsPattern>
+      <testResultsPattern>Nunit\bin\NunitResults\*.CIntegTests.Results.xml</testResultsPattern>
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
