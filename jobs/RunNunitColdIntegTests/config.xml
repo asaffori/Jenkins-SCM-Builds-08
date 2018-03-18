@@ -83,5 +83,12 @@ For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTest.bat) DO (&#xd;
       <failIfNoResults>true</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesContent>NUNIT_HOME=C:\Program Files (x86)\NUnit 2.6.4</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+  </buildWrappers>
 </project>
