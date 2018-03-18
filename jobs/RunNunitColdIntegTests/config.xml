@@ -61,7 +61,7 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>ECHO Shutting down machine - Running KillAll exe&#xd;
-Killall -user&#xd;
+CAll Killall -user&#xd;
 Echo #####################END of KillAll########################&#xd;
 &#xd;
 Echo ######################## Running Integ tests ###############&#xd;
