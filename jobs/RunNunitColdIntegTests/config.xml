@@ -60,7 +60,9 @@
   <customWorkspace>%Root5300Bin%</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTests.bat) DO (&#xd;
+      <command>ECHO Shutting down machine - Running KillAll exe&#xd;
+Killall -user&#xd;
+For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTests.bat) DO (&#xd;
 	echo Running %%f&#xd;
         %%f&#xd;
         if NOT !ERRORLEVEL! ==0 Exit /b 1&#xd;
