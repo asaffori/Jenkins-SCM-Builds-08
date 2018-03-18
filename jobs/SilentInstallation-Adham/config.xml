@@ -152,7 +152,7 @@ if not %errorlevel% equ 0 (&#xd;
 echo ########################################## NUNIT preperation: Start ################################################################&#xd;
 echo ***************Copy Nunit scripts ******&#xd;
 If Exist C:\5300\Bin_Common\FileVer.bat call C:\5300\Bin_Common\FileVer.bat&#xd;
-find /i &quot;Release Configuration&quot; filename.ext C:\Temp\VerInfo.txt&#xd;
+If exist C:\Temp\VerInfo.txt find /i &quot;Release Configuration&quot; C:\Temp\VerInfo.txt&#xd;
 if %errorlevel% EQU 0 (set BuildMode=Release) else (set BuildMode=Debug)&#xd;
 &#xd;
 robocopy /MT:128 /r:2 %NETWORKPATH%\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_%MajorMinor_Ver%\%BUILDTYPE%\UOMD_%BUILD_VERSION%_%BuildMode%\NUnit  C:\5300\NUnit /s&#xd;
