@@ -60,7 +60,8 @@
   <customWorkspace>%Root5300Bin%</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>ECHO Shutting down machine - Running KillAll exe&#xd;
+      <command>@ECHO Off&#xd;
+ECHO Shutting down machine - Running KillAll exe&#xd;
 CAll Killall -user&#xd;
 Echo #####################END of KillAll########################&#xd;
 &#xd;
