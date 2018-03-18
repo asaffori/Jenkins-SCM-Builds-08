@@ -57,7 +57,7 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <customWorkspace>${Root5300Bin}</customWorkspace>
+  <customWorkspace>C:\5300\Bin</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
       <command>@ECHO Off&#xd;
