@@ -62,6 +62,9 @@
     <hudson.tasks.BatchFile>
       <command>ECHO Shutting down machine - Running KillAll exe&#xd;
 Killall -user&#xd;
+Echo #####################END of KillAll########################&#xd;
+&#xd;
+Echo ######################## Running Integ tests ###############&#xd;
 For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTests.bat) DO (&#xd;
 	echo Running %%f&#xd;
         %%f&#xd;
