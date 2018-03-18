@@ -75,7 +75,7 @@ For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTest.bat) DO (&#xd;
   </builders>
   <publishers>
     <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.22">
-      <testResultsPattern>Nunit/bin/NunitResults/*.CIntegTest.Results.xml</testResultsPattern>
+      <testResultsPattern>Nunit\bin\NunitResults\*.CIntegTest.Results.xml</testResultsPattern>
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
