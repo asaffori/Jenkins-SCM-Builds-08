@@ -68,7 +68,7 @@ Echo #####################END of KillAll########################&#xd;
 Echo ######################## Running Integ tests ###############&#xd;
 For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTests.bat) DO (&#xd;
 	echo Running %%f&#xd;
-        %%f&#xd;
+        %%f /d&#xd;
         if NOT !ERRORLEVEL! ==0 Exit /b 1&#xd;
 )</command>
     </hudson.tasks.BatchFile>
@@ -83,12 +83,5 @@ For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTests.bat) DO (&#xd;
       <failIfNoResults>true</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
   </publishers>
-  <buildWrappers>
-    <EnvInjectBuildWrapper plugin="envinject@1.90">
-      <info>
-        <propertiesContent>NUNIT_HOME=C:\Program Files (x86)\NUnit 2.6.4</propertiesContent>
-        <loadFilesFromMaster>false</loadFilesFromMaster>
-      </info>
-    </EnvInjectBuildWrapper>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
