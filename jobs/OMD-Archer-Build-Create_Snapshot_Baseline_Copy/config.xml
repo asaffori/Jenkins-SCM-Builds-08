@@ -111,7 +111,8 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>ReplaceSnaps</name>
-          <description></description>
+          <description>Replace snapshots/baselines with same build number if exists. &lt;BR&gt;
+Since RTC is not supporing baseline replce/delete, old snapshots and baselines will be renamed.</description>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
