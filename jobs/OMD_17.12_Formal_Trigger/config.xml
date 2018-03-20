@@ -222,6 +222,16 @@
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
+          <name>RunAutoMerge</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>GenerateAndShareBuildNotes</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
           <name>Auto_Deploy_Sanity</name>
           <description></description>
           <defaultValue>false</defaultValue>
@@ -256,6 +266,11 @@ Example:&lt;BR&gt;
 ]&lt;BR&gt;</description>
           <defaultValue></defaultValue>
         </hudson.model.TextParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JENKINCONFIGPATH</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -269,9 +284,11 @@ Example:&lt;BR&gt;
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
+        <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <propertiesContent>BUILDTYPE=Formal
 WSName=omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace
-SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
+SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}
+ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
       <on>true</on>
@@ -315,8 +332,61 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>C:\Progra~2\Jenkins\tools\hudson.tasks.Ant_AntInstallation\RenameBuildLabel\bin\ant.bat -file %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\VersionUpdater\Build.xml -DbuildResultUUID=%buildResultUUID% -Dlabel=&quot;%BUILDTYPE%_UOMD_BLD_%BUILD_VERSION%&quot; &quot;-Dpassword=Scm07&amp;&quot; -DuserId=omdbuild -DtoolkitPath=C:\Build\TeamConcertBuild\buildsystem\buildtoolkit -DsnapshotUUID=%team_scm_workspaceUUID% &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\Build\TeamConcertBuild\buildsystem\buildtoolkit</command>
+      <command>C:\Progra~2\Jenkins\tools\hudson.tasks.Ant_AntInstallation\RenameBuildLabel\bin\ant.bat -file %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\VersionUpdater\Build.xml -DbuildResultUUID=%buildResultUUID% -Dlabel=&quot;%BUILDTYPE%_UOMD_BLD_%BUILD_VERSION%&quot; &quot;-Dpassword=%BuildPass%&quot; -DuserId=%BuildUser% -DtoolkitPath=C:\Build\TeamConcertBuild\buildsystem\buildtoolkit -DsnapshotUUID=%team_scm_workspaceUUID% &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\Build\TeamConcertBuild\buildsystem\buildtoolkit&#xd;
+IF NOT %ERRORLEVEL% == 0 (&#xd;
+       ECHO &quot;Unable build label name failed&quot;&#xd;
+	Exit /b 1&#xd;
+)</command>
     </hudson.tasks.BatchFile>
+    <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
+      <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
+        <arg1>${GenerateAndShareBuildNotes}</arg1>
+        <arg2>true</arg2>
+        <ignoreCase>true</ignoreCase>
+      </condition>
+      <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
+        <configs>
+          <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            <configs>
+              <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                <properties>Stream=Archer_${MajorMinor_Ver}_Dev
+BUILD_VERSION=${BUILD_VERSION}
+team_scm_fetchDestination=${workspace}\\${team_scm_fetchDestination}
+BuildEngine=master
+recipientList=${emailGroups}</properties>
+                <textParamValueOnNewLine>false</textParamValueOnNewLine>
+              </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+            </configs>
+            <projects>CreateBuildNotes</projects>
+            <condition>ALWAYS</condition>
+            <triggerWithNoParameters>false</triggerWithNoParameters>
+            <triggerFromChildProjects>false</triggerFromChildProjects>
+            <block>
+              <buildStepFailureThreshold>
+                <name>FAILURE</name>
+                <ordinal>2</ordinal>
+                <color>RED</color>
+                <completeBuild>true</completeBuild>
+              </buildStepFailureThreshold>
+              <unstableThreshold>
+                <name>UNSTABLE</name>
+                <ordinal>1</ordinal>
+                <color>YELLOW</color>
+                <completeBuild>true</completeBuild>
+              </unstableThreshold>
+              <failureThreshold>
+                <name>FAILURE</name>
+                <ordinal>2</ordinal>
+                <color>RED</color>
+                <completeBuild>true</completeBuild>
+              </failureThreshold>
+            </block>
+            <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+          </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+        </configs>
+      </buildStep>
+      <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+    </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
       <configs>
         <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
@@ -420,6 +490,106 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <hudson.tasks.BatchFile>
           <command>C:\PROGRA~1\Unlocker\Unlocker.exe %team_scm_fetchDestination% /S</command>
         </hudson.tasks.BatchFile>
+        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+          <source class="hudson.plugins.groovy.StringSystemScriptSource">
+            <script plugin="script-security@1.39">
+              <script>import hudson.model.*
+import hudson.AbortException
+
+build.getLog(100).each{
+   if (it.contains(&quot;Build version calculation failed&quot;)){
+       build.result = Result.UNSTABLE
+       throw new AbortException(&quot;Build failed in new version calculation.&quot;)
+   }
+}</script>
+              <sandbox>false</sandbox>
+            </script>
+          </source>
+        </hudson.plugins.groovy.SystemGroovy>
+        <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
+          <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
+            <arg1>${RunAutoMerge}</arg1>
+            <arg2>true</arg2>
+            <ignoreCase>true</ignoreCase>
+          </condition>
+          <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
+            <configs>
+              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+                <configs>
+                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                    <properties>fromStream=Archer_${MajorMinor_Ver}_Dev
+toStream=Archer_${MajorMinor_Ver}_Integ</properties>
+                    <textParamValueOnNewLine>false</textParamValueOnNewLine>
+                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                </configs>
+                <projects>AutoRebaseStream</projects>
+                <condition>ALWAYS</condition>
+                <triggerWithNoParameters>false</triggerWithNoParameters>
+                <triggerFromChildProjects>false</triggerFromChildProjects>
+                <block>
+                  <buildStepFailureThreshold>
+                    <name>FAILURE</name>
+                    <ordinal>2</ordinal>
+                    <color>RED</color>
+                    <completeBuild>true</completeBuild>
+                  </buildStepFailureThreshold>
+                  <unstableThreshold>
+                    <name>UNSTABLE</name>
+                    <ordinal>1</ordinal>
+                    <color>YELLOW</color>
+                    <completeBuild>true</completeBuild>
+                  </unstableThreshold>
+                  <failureThreshold>
+                    <name>FAILURE</name>
+                    <ordinal>2</ordinal>
+                    <color>RED</color>
+                    <completeBuild>true</completeBuild>
+                  </failureThreshold>
+                </block>
+                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            </configs>
+          </buildStep>
+          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+        </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
+        <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
+          <configs>
+            <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+              <configs>
+                <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                  <properties>Action=Disable
+JenkinsJobName=OMD_${MajorMinor_Ver}_Scheduled_Trigger</properties>
+                  <textParamValueOnNewLine>false</textParamValueOnNewLine>
+                </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              </configs>
+              <projects>EnableDisableJenkinsJob</projects>
+              <condition>ALWAYS</condition>
+              <triggerWithNoParameters>false</triggerWithNoParameters>
+              <triggerFromChildProjects>false</triggerFromChildProjects>
+              <block>
+                <buildStepFailureThreshold>
+                  <name>FAILURE</name>
+                  <ordinal>2</ordinal>
+                  <color>RED</color>
+                  <completeBuild>true</completeBuild>
+                </buildStepFailureThreshold>
+                <unstableThreshold>
+                  <name>UNSTABLE</name>
+                  <ordinal>1</ordinal>
+                  <color>YELLOW</color>
+                  <completeBuild>true</completeBuild>
+                </unstableThreshold>
+                <failureThreshold>
+                  <name>FAILURE</name>
+                  <ordinal>2</ordinal>
+                  <color>RED</color>
+                  <completeBuild>true</completeBuild>
+                </failureThreshold>
+              </block>
+              <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+            </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          </configs>
+        </hudson.plugins.parameterizedtrigger.TriggerBuilder>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
