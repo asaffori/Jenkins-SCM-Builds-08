@@ -97,7 +97,7 @@
             				        currentBuild.description = &quot;Request for new stream creation &apos;${suggested_stream_name}&apos; by &apos;${env.BUILD_USER}&apos;&quot;
                                 }
         				        if (suggested_stream_name.length &gt; 70) (
-        				            throw new Exception (&quot; suggested stream name: \&apos;${suggested_stream_name}\&apos; is longer than 70 characters.&quot;)
+        				            throw new Exception (&quot;Error: suggested stream name: \&apos;${suggested_stream_name}\&apos; is longer than 70 characters.&quot;)
         				        )
     	    					print &apos;verify suggested stream name is not occupied&apos;
     						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name) &gt;= 1){
