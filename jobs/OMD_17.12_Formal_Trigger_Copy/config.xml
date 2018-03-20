@@ -54,21 +54,6 @@
           <defaultValue>\\isr1appcc02\scm\OMD\Jenkins_Build_Version\${MajorMinor_Ver}version.txt</defaultValue>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>WhereToRun</name>
-          <description></description>
-          <allowedSlaves>
-            <string>ALL (no restriction)</string>
-          </allowedSlaves>
-          <defaultSlaves>
-            <string>master</string>
-          </defaultSlaves>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ReleaseBuildEngine</name>
           <description></description>
           <allowedSlaves>
@@ -348,7 +333,7 @@ IF NOT %ERRORLEVEL% == 0 (&#xd;
                 <properties>Stream=Archer_17.12_TestAutoMerge
 BUILD_VERSION=${BUILD_VERSION}
 team_scm_fetchDestination=${workspace}\\${team_scm_fetchDestination}
-BuildEngine=${WhereToRun}
+BuildEngine=master
 recipientList=${emailGroups}</properties>
                 <textParamValueOnNewLine>false</textParamValueOnNewLine>
               </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
