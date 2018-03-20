@@ -57,7 +57,7 @@
     agent { node { label &apos;master&apos; } }
      parameters {
          string (name: &apos;WorkItem&apos;, defaultValue:&apos;&apos;, description: &apos;What is the Work Item number of the new project?&apos;)
-         string (name: &apos;streamTitle&apos;, default:&apos;&apos;, description:&apos;What is the short project title (use _ as delimter for multiple words, max 40 characters)?&apos;)
+         string (name: &apos;streamTitle&apos;, defaultValue:&apos;&apos;, description:&apos;What is the short project title (use _ as delimter for multiple words, max 40 characters)?&apos;)
         //string(name: &apos;SuggestedStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What should the new stream be named with? Prefered syntax:Archer_17.12_TaskName_WorkItemNum&apos;)
         string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is your base stream name?&apos;)
         string(name: &apos;SourceStreamSnapshotName&apos;, defaultValue: &apos;&apos;, description: &quot;What is the stream snapshot name you would use as a base for the new stream? Examples:UOMD_BLD_17.12.00.30100 UOMD_BLD_17.12.00.20600&quot;)
