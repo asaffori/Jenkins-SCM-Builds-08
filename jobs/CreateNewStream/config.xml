@@ -94,13 +94,13 @@
     				steps {
         				    script {
                                 wrap([$class: &apos;BuildUser&apos;]) {
-            				        currentBuild.description = &quot;Request for new stream creation &apos;${params.SuggestedStreamName}&apos; by &apos;${env.BUILD_USER}&apos;&quot;
+            				        currentBuild.description = &quot;Request for new stream creation &apos;${suggested_stream_name}&apos; by &apos;${env.BUILD_USER}&apos;&quot;
                                 }
         				        
     	    					print &apos;verify suggested stream name is not occupied&apos;
-    						    switch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
+    						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name) &gt;= 1){
     						        case 1..Integer.MAX_VALUE :
-    							       throw new Exception(&quot;Stream name &quot; + params.SuggestedStreamName + &quot; is already occupied&quot;)
+    							       throw new Exception(&quot;Stream name &quot; + suggested_stream_name + &quot; is already occupied&quot;)
                                     default:
                                         print &apos;suggested stream name is free&apos;
     						    }
@@ -115,7 +115,7 @@
     	                                print &apos;source stream name is verified&apos;
     	    					}
     	    					
-    	    					print &apos;verify suggested stream snapshot&apos;
+    	    					print &apos;verify source stream snapshot&apos;
     	        				switch(searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)){
     	        				    case 2..Integer.MAX_VALUE :
     	                                    throw new Exception(&quot;Multi snapshots with prefix &quot;+params.SourceStreamSnapshotName)
@@ -135,12 +135,12 @@
     			             wrap([$class: &apos;BuildUser&apos;]) {
         			             emailext (to: &apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;,cc: &quot;${env.BUILD_USER_EMAIL}&quot;,
                                      subject: &quot;New stream request is pending for your approval&quot;,
-                                     body: &quot;&quot;&quot;&lt;p&gt;Dear CM team &lt;/p&gt;&lt;p&gt;New stream request with name  &apos;${params.SuggestedStreamName}&apos; is pending for your approval&lt;p&gt;
+                                     body: &quot;&quot;&quot;&lt;p&gt;Dear CM team &lt;/p&gt;&lt;p&gt;New stream request with name  &apos;${suggested_stream_name}&apos; is pending for your approval&lt;p&gt;
                                      &lt;p&gt;To approve the request, please visit ${env.BUILD_URL}input/ &lt;p&gt;&quot;&quot;&quot;);
     			             }
             			     env.userInput = input(
             				 id: &apos;userInput&apos;, message: &apos;CM team\nPlease approve the below stream name?&apos;, parameters: [
-            				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: params.SuggestedStreamName, description: &apos;Suggested new stream name&apos;, name: &apos;userInput&apos;]
+            				 [$class: &apos;StringParameterDefinition&apos;, defaultValue: suggested_stream_name, description: &apos;Suggested new stream name&apos;, name: &apos;userInput&apos;]
             				],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Approved, lets create it&apos;)
             			//	print (userInput)
     			         } catch (err) { // input false
@@ -155,9 +155,9 @@
                             //throw new Exception( &quot;Abort reason: &quot;+ userInput)
                             wrap([$class: &apos;BuildUser&apos;]) {
                                 emailext (
-                                    subject: &quot;Declined: Stream creation request ${params.SuggestedStreamName}&apos;&quot;,
+                                    subject: &quot;Declined: Stream creation request ${suggested_stream_name}&apos;&quot;,
                                     body: &quot;&quot;&quot;&lt;p&gt;Dear ${env.BUILD_USER} &lt;/p&gt;
-                                    &lt;p&gt;Your request for new sream with the name &lt;b&gt;${params.SuggestedStreamName}&lt;/b&gt; was &lt;strong&gt;declined&lt;strong&gt; by &lt;b&gt;${user}&lt;/b&gt;&lt;/p&gt;
+                                    &lt;p&gt;Your request for new sream with the name &lt;b&gt;${suggested_stream_name}&lt;/b&gt; was &lt;strong&gt;declined&lt;strong&gt; by &lt;b&gt;${user}&lt;/b&gt;&lt;/p&gt;
                                     &lt;p&gt;Reason: ${env.userInput}&lt;/p&gt;
                                     &lt;p&gt;For execution details, please check console output at &quot;&lt;a href=&quot;${env.BUILD_URL}console&quot;&gt;${env.JOB_NAME} [R${env.BUILD_NUMBER}]&lt;/a&gt;&quot;&lt;/p&gt;&quot;&quot;&quot;,
                                      to: &quot;${BUILD_USER_EMAIL}&quot;
@@ -165,9 +165,9 @@
                             }
                         }
                         print (env.userInput)
-    				if (!params.SuggestedStreamName.equals(env.userInput)){ 
+    				if (!suggested_stream_name.equals(env.userInput)){ 
     				        print &apos;verify new suggested stream name is not occupied &apos;+ env.userInput
-						    switch(searchStrInCommandOutput(search_target_stream_cmd,params.SuggestedStreamName) &gt;= 1){
+						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name) &gt;= 1){
 						        case 1..Integer.MAX_VALUE :
 							       throw new Exception(&quot;Stream name &quot; + env.userInput + &quot; is already occupied&quot;)
                                 default:
@@ -181,7 +181,7 @@
                     steps {
                         script {
                              wrap([$class: &apos;BuildUser&apos;]) {
-                                create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  --description \&quot;Created by ${BUILD_USER}, based on stream ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}\&quot; --snapshot ${params.SourceStreamSnapshotName}  --projectarea \&quot;OMD NuArcher\&quot; &quot;
+                                create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  --description \&quot;Created by ${BUILD_USER}, based on stream ${suggested_stream_name}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; --snapshot ${params.SourceStreamSnapshotName}  --projectarea \&quot;OMD NuArcher\&quot; &quot;
                                 switch(searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)){
     						        case 0:
     							       throw new Exception(&quot;Stream creation faild&quot;)
@@ -196,7 +196,7 @@
                         wrap([$class: &apos;BuildUser&apos;]) {
                             // notify users when the Pipeline fails
                             mail to: &apos;${env.BUILD_USER_EMAIL}&apos;,
-                            subject: &quot;Stream ${params.SuggestedStreamName} creation - FAILED&quot;,
+                            subject: &quot;Stream ${suggested_stream_name} creation - FAILED&quot;,
                             body: &quot;Something is wrong during stream creation, please check creation log via ${env.BUILD_URL}&quot;
                         }
                     }
@@ -205,8 +205,8 @@
                         wrap([$class: &apos;BuildUser&apos;]) {
                             // notify users when the Pipeline fails
                             mail to: &apos;${env.BUILD_USER_EMAIL}&apos;,
-                            subject: &quot;Stream ${params.SuggestedStreamName} creation - SUCCESS&quot;,
-                            body: &quot;Dear ${env.BUILD_USER} &lt;BR&gt; Your request for new sream with the name ${params.SuggestedStreamName} was approved. &lt;BR&gt; New stream was created based on ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}.&lt;BR&gt; Regards &lt;BR&gt; OMD DevOps team&quot;
+                            subject: &quot;Stream ${suggested_stream_name} creation - SUCCESS&quot;,
+                            body: &quot;Dear ${env.BUILD_USER} &lt;BR&gt; Your request for new sream with the name ${suggested_stream_name} was approved. &lt;BR&gt; New stream was created based on ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}.&lt;BR&gt; Regards &lt;BR&gt; OMD DevOps team&quot;
                         }
                     }
                 }
