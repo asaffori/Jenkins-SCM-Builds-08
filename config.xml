@@ -540,6 +540,9 @@
         <string>Archer Build - Debug Mode</string>
         <string>Archer Build - Release Mode</string>
         <string>Archer Meida Creation</string>
+        <string>ATETestsPipeline</string>
+        <string>Auto Deploy Sanity</string>
+        <string>Auto Deploy Sanity Trigger</string>
         <string>BuildClosure-Flow</string>
         <string>Copy Matlab product Debug</string>
         <string>Copy Matlab product Release</string>
@@ -549,11 +552,6 @@
         <string>NuArcher - Deliver Code change</string>
         <string>NuArcher Build Preperation Debug</string>
         <string>NuArcher Build Preperation Release</string>
-        <string>Old---Restore Image</string>
-        <string>Old---Sanity Test</string>
-        <string>Old---Silent Installation</string>
-        <string>Old---SimLockCheck</string>
-        <string>Old---UnlockSimulator</string>
         <string>RDM - Backup Code Debug</string>
         <string>RDM - Backup Code Release</string>
         <string>RDM - Debug Build</string>
@@ -561,7 +559,11 @@
         <string>RDM - Release Build</string>
         <string>RDM Media creation</string>
         <string>RDM_NuArcher_CI_Flow</string>
+        <string>SanityTest</string>
         <string>SetFlowController</string>
+        <string>SilentInstallation</string>
+        <string>SimLockCheck</string>
+        <string>UnlockSimulator</string>
       </jobNames>
       <jobFilters/>
       <columns>
