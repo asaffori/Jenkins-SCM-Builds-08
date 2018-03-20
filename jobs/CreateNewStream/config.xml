@@ -77,7 +77,14 @@
                                 wrap([$class: &apos;BuildUser&apos;]) {
             				        currentBuild.description = &quot;Request for new stream creation &apos;${suggested_stream_name}&apos; by &apos;${env.BUILD_USER}&apos;&quot;
                                 }
-                                
+                                switch(suggested_stream_name.indexOf(&apos; &apos;)){
+                                    case -1 :
+    							       print &apos;New stream doesnt conatin spaces&apos;
+    							       break;
+                                    default:
+                                        throw new Exception(&quot;Error: stream name: &apos;${suggested_stream_name}&apos; is invalid.Cant contain white characters [spaces]&quot;)
+                                        
+                                }
                                 switch(suggested_stream_name.length){
     						        case 71..Integer.MAX_VALUE :
     							       throw new Exception(&quot;Error: suggested stream name: &apos;${suggested_stream_name}&apos; is longer than 70 characters&quot;)
