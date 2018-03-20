@@ -49,9 +49,14 @@
           <defaultValue>Faina,CM,Arkadi,Aviram,Vladi,Dror,</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
+          <name>JENKINCONFIGPATH</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
-          <defaultValue>\\isr1appcc02\scm\OMD\Jenkins_Build_Version\${MajorMinor_Ver}version.txt</defaultValue>
+          <defaultValue>${JENKINCONFIGPATH}\Jenkins_Build_Version\${MajorMinor_Ver}version.txt</defaultValue>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ReleaseBuildEngine</name>
@@ -266,11 +271,6 @@ Example:&lt;BR&gt;
 ]&lt;BR&gt;</description>
           <defaultValue></defaultValue>
         </hudson.model.TextParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>JENKINCONFIGPATH</name>
-          <description></description>
-          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
-        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
