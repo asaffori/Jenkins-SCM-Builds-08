@@ -375,28 +375,20 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>Agnes Test Full Flow</string>
-        <string>ATETestsPipeline</string>
         <string>ATETestsPipelineNunit</string>
-        <string>Auto Deploy Sanity</string>
         <string>Auto Deploy Sanity Nunit</string>
-        <string>Auto Deploy Sanity Trigger</string>
         <string>Auto Deploy Sanity Trigger Nunit</string>
         <string>DownLoadFile</string>
         <string>FileTransfer</string>
         <string>NUnit Test Full Flow</string>
         <string>OMD-Archer-Build-Agnes</string>
         <string>OMD-Build-Pipeline</string>
-        <string>RestorageImage</string>
-        <string>SanityTest</string>
-        <string>SilentInstallation</string>
         <string>SilentInstallation-Adham</string>
-        <string>SimLockCheck</string>
         <string>test trigger</string>
         <string>test1</string>
         <string>test2</string>
         <string>test3</string>
         <string>test_flow</string>
-        <string>UnlockSimulator</string>
         <string>UpLoadFile</string>
       </jobNames>
       <jobFilters/>
