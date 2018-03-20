@@ -96,6 +96,7 @@
                                 wrap([$class: &apos;BuildUser&apos;]) {
             				        currentBuild.description = &quot;Request for new stream creation &apos;${suggested_stream_name}&apos; by &apos;${env.BUILD_USER}&apos;&quot;
                                 }
+                                
         				        if (suggested_stream_name.length &gt; 70) (
         				            throw new Exception (&quot;Error: suggested stream name: \&apos;${suggested_stream_name}\&apos; is longer than 70 characters.&quot;)
         				        )
