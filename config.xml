@@ -551,6 +551,7 @@
         <string>RDM - Release Build</string>
         <string>RDM Media creation</string>
         <string>RDM_NuArcher_CI_Flow</string>
+        <string>RestorageImage</string>
         <string>SanityTest</string>
         <string>SetFlowController</string>
         <string>SilentInstallation</string>
