@@ -98,10 +98,10 @@
                                 }
                                 
                                 switch(suggested_stream_name.length){
-						        case 71..Integer.MAX_VALUE :
-							       throw new Exception(&quot;Error: suggested stream name: &apos;${suggested_stream_name}&apos; is longer than 70 characters&quot;)
-                                default:
-                                    print &apos;new stream legth was verified&apos;
+    						        case 71..Integer.MAX_VALUE :
+    							       throw new Exception(&quot;Error: suggested stream name: &apos;${suggested_stream_name}&apos; is longer than 70 characters&quot;)
+                                    default:
+                                        print &apos;new stream legth was verified&apos;
 						        }
         				        
     	    					print &apos;verify suggested stream name is not occupied&apos;
