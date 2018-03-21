@@ -140,7 +140,7 @@ echo ******* autologonuser is not logged on ************&#xd;
 goto error&#xd;
 )&#xd;
 echo ******* check autologonuser status on %SimulatorEngine% for %pinglooptimeout% time&#xd;
-wmic.exe /node:&apos;%SimulatorEngine%&apos; computersystem get username| find &quot;autologonuser&quot;&#xd;
+rem wmic.exe /node:&apos;%SimulatorEngine%&apos; computersystem get username| find &quot;autologonuser&quot;&#xd;
 if not %errorlevel%==0 (&#xd;
 set /a pinglooptimeout=%pinglooptimeout%+1&#xd;
 ping 1.0.0.1 -n 1 -w 60000 &gt; nul&#xd;
