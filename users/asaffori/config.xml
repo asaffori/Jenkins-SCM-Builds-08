@@ -258,7 +258,7 @@
         </entry>
         <entry>
           <string>SilentInstallation</string>
-          <boolean>true</boolean>
+          <boolean>false</boolean>
         </entry>
         <entry>
           <string>SimLockCheck</string>
