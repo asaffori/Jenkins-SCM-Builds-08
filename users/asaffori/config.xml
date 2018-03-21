@@ -250,7 +250,7 @@
         </entry>
         <entry>
           <string>RunNunitUnitTestsDebug</string>
-          <boolean>true</boolean>
+          <boolean>false</boolean>
         </entry>
         <entry>
           <string>CreateNewStream</string>
