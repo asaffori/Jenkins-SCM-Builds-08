@@ -266,7 +266,7 @@
         </entry>
         <entry>
           <string>OMD_17.12_Scheduled_Trigger</string>
-          <boolean>true</boolean>
+          <boolean>false</boolean>
         </entry>
         <entry>
           <string>Old---Restore Image</string>
