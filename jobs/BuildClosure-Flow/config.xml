@@ -90,7 +90,7 @@
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-1396436508196432</randomName>
-          <visibleItemCount>1</visibleItemCount>
+          <visibleItemCount>0</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -159,6 +159,12 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ReplaceSnaps</name>
+          <description>Replace snapshots/baselines with same build number if exists. &lt;BR&gt;
+Since RTC is not supporing baseline replce/delete, old snapshots and baselines will be renamed.</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>JENKINCONFIGPATH</name>
           <description></description>
