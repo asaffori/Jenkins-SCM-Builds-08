@@ -108,12 +108,16 @@
     							       print &apos;New stream doesnt conatin spaces&apos;
     							       break;
                                     default:
-                                        throw new Exception(&quot;Error: stream name: &apos;${suggested_stream_name}&apos; is invalid. Stream name can&apos;t contain white characters [spaces]&quot;)
+                                        msg=&quot;Error: stream name: &apos;${suggested_stream_name}&apos; is invalid. Stream name can&apos;t contain white characters [spaces]&quot;
+                                        input(message:msg ,ok:&apos;Abort&apos;)
+                                        throw new Exception(msg)
                                         
                                 }
                                 switch(suggested_stream_name.length()){
     						        case 71..Integer.MAX_VALUE :
-    							       throw new Exception(&quot;Error: suggested stream name: &apos;${suggested_stream_name}&apos; is longer than 70 characters&quot;)
+    						           msg=&quot;Error: suggested stream name: &apos;${suggested_stream_name}&apos; is longer than 70 characters&quot;
+    						           input(message:msg ,ok:&apos;Abort&apos;)
+    							       throw new Exception(msg)
                                     default:
                                         print &apos;new stream legth was verified&apos;
 						        }
@@ -121,7 +125,9 @@
     	    					print &apos;verify suggested stream name is not occupied&apos;
     						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name) &gt;= 1){
     						        case 1..Integer.MAX_VALUE :
-    							       throw new Exception(&quot;Stream name &quot; + suggested_stream_name + &quot; is already occupied&quot;)
+    						           msg=&quot;Stream name &quot; + suggested_stream_name + &quot; is already occupied&quot;
+    						           input(message:msg ,ok:&apos;Abort&apos;)
+    							       throw new Exception(msg)
                                     default:
                                         print &apos;suggested stream name is free&apos;
     						    }
@@ -129,9 +135,13 @@
     	    					print &apos;verify source stream name&apos;
     	    					switch(searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName)){
     	    					    case 2..Integer.MAX_VALUE :
-    	    						        throw new Exception(&apos;Multi stream with prefix &apos; + params.SourceStreamName)
+    	    					            msg=&apos;Multi stream with prefix &apos; + params.SourceStreamName
+    						                input(message:msg ,ok:&apos;Abort&apos;)
+    							            throw new Exception(msg)
     	    					    case Integer.MIN_VALUE+2..0 :
-    	    						        throw new Exception( &apos;Invalid source stream name &apos;  + params.SourceStreamName)
+    	    					            msg=&apos;Invalid source stream name &apos;  + params.SourceStreamName
+    	    					            input(message:msg ,ok:&apos;Abort&apos;)
+    							            throw new Exception(msg)
     	                            default:
     	                                print &apos;source stream name is verified&apos;
     	    					}
@@ -139,9 +149,13 @@
     	    					print &apos;verify source stream snapshot&apos;
     	        				switch(searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)){
     	        				    case 2..Integer.MAX_VALUE :
-    	                                    throw new Exception(&quot;Multi snapshots with prefix &quot;+params.SourceStreamSnapshotName)
+    	        				            msg=&quot;Multi snapshots with prefix &quot;+params.SourceStreamSnapshotName
+    						                input(message:msg ,ok:&apos;Abort&apos;)
+    							            throw new Exception(msg)
     	                            case Integer.MIN_VALUE+2..0 :
-    	        						    throw new Exception(&apos;Invalid snapshot name: &apos;+params.SourceStreamSnapshotName+&apos; for stream: &apos; +params.SourceStreamName)
+    	                                    msg=&apos;Invalid snapshot name: &apos;+params.SourceStreamSnapshotName+&apos; for stream: &apos; +params.SourceStreamName
+    						                input(message:msg ,ok:&apos;Abort&apos;)
+    							            throw new Exception(msg)
                                     default:    
     					                    print &apos;snapshot name is verified&apos;
                                 }   
@@ -190,7 +204,9 @@
     				        print &apos;verify new suggested stream name is not occupied &apos;+ env.userInput
 						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name) &gt;= 1){
 						        case 1..Integer.MAX_VALUE :
-							       throw new Exception(&quot;Stream name &quot; + env.userInput + &quot; is already occupied&quot;)
+                                    msg=&quot;Stream name &quot; + env.userInput + &quot; is already occupied&quot;
+    						        input(message:msg ,ok:&apos;Abort&apos;)
+    							    throw new Exception(msg)
                                 default:
                                     print &apos;new suggested stream name is free&apos;
 						    }
@@ -205,7 +221,9 @@
                                 create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  --description \&quot;Created by ${BUILD_USER}, based on stream ${suggested_stream_name}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; --snapshot ${params.SourceStreamSnapshotName}  --projectarea \&quot;OMD NuArcher\&quot; &quot;
                                 switch(searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)){
     						        case 0:
-    							       throw new Exception(&quot;Stream creation faild&quot;)
+    						            msg=&quot;Stream creation faild&quot;
+    						            input(message:msg ,ok:&apos;Abort&apos;)
+    							        throw new Exception(msg)
                                     default:
                                         print &apos;New stream was successfully created&apos;
     						    }
