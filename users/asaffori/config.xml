@@ -222,7 +222,7 @@
         </entry>
         <entry>
           <string>Old---Silent Installation</string>
-          <boolean>true</boolean>
+          <boolean>false</boolean>
         </entry>
         <entry>
           <string>AutoRebaseStream</string>
