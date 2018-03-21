@@ -206,7 +206,7 @@
       <data class="concurrent-hash-map">
         <entry>
           <string>Old---Sanity Test</string>
-          <boolean>true</boolean>
+          <boolean>false</boolean>
         </entry>
         <entry>
           <string>Old---UnlockSimulator</string>
