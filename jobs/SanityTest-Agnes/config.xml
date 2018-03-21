@@ -51,6 +51,8 @@
           <allowedSlaves>
             <string>SCM-SIM7050-01</string>
             <string>SCM-SIM7050-02</string>
+            <string>SCM-SIM7050-03</string>
+            <string>SCM-SIM7050-V01</string>
           </allowedSlaves>
           <defaultSlaves>
             <string>SCM-SIM7050-01</string>
@@ -112,7 +114,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>true</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>SimulatorEngine</paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
