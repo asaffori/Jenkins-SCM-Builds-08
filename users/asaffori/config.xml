@@ -242,7 +242,7 @@
         </entry>
         <entry>
           <string>RunNunitColdIntegTests</string>
-          <boolean>true</boolean>
+          <boolean>false</boolean>
         </entry>
         <entry>
           <string>RestorageImage</string>
