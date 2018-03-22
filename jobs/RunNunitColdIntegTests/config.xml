@@ -66,7 +66,7 @@ CAll Killall -user&#xd;
 Echo #####################END of KillAll########################&#xd;
 &#xd;
 Echo ######################## Running Integ tests ###############&#xd;
-For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTest.bat) DO (&#xd;
+For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTests.bat) DO (&#xd;
 	echo Running %%f&#xd;
         %%f /d&#xd;
         if NOT %ERRORLEVEL% == 0 Exit /b 1&#xd;
