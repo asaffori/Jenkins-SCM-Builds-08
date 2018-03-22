@@ -383,6 +383,7 @@
         <string>NUnit Test Full Flow</string>
         <string>OMD-Archer-Build-Agnes</string>
         <string>OMD-Build-Pipeline</string>
+        <string>SanityTest-Agnes</string>
         <string>SilentInstallation-Adham</string>
         <string>test trigger</string>
         <string>test1</string>
