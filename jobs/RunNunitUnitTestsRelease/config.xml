@@ -120,7 +120,7 @@ IF NOT Exist V:\NUL (&#xd;
   IF NOT Exist P:\Bin mklink /J P:\Bin P:\Bin_Release&#xd;
   IF NOT Exist P:\Nunit\Bin mklink /J P:\Nunit\Bin P:\Nunit\Bin_Release&#xd;
   cd P:\Nunit\Bin&#xd;
-  P:\Nunit\Bin\RunStandAloneTests.bat /d&#xd;
+  P:\Nunit\Bin\RunStandAloneTest.bat /d&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
