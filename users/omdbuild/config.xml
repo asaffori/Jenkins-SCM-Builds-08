@@ -71,6 +71,7 @@
         <string>WIN-DYSD-Tools-CH</string>
         <string>Ca1fs01-SS10K-info-RO</string>
         <string>WIN-DYSD-SQATestData-CH</string>
+        <string>DPM_Users</string>
         <string>Austinnt1-Austrain-CH</string>
         <string>Ca1nas11-Autodesk-RO</string>
         <string>CA1FS01-OMD-CH</string>
@@ -136,7 +137,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1520259211836</timestamp>
+      <timestamp>1521770800897</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
