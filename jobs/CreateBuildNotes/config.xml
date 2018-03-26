@@ -163,7 +163,7 @@ IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
       </configuredTriggers>
       <contentType>text/html</contentType>
       <defaultSubject>${BUILD_VERSION} - Build Notes</defaultSubject>
-      <defaultContent>${FILE,path=&quot;${ReportName}.html&quot;}</defaultContent>
+      <defaultContent>Build ${BUILD_VERSION} is ready for build . build notes attached</defaultContent>
       <attachmentsPattern>${ReportName}.html</attachmentsPattern>
       <presendScript>if (build.result.toString().equals(&apos;SUCCESS&apos;) &amp;&amp; build.logFile.text.readLines().any { it =~ /.*does not contain any change set.*/ }) {
    content = (String)msg.getContent().getBodyPart(0).getContent()
