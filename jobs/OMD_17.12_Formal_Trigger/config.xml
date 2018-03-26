@@ -364,7 +364,7 @@ IF NOT %ERRORLEVEL% == 0 (&#xd;
           <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
             <configs>
               <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                <properties>Stream=Archer_${MajorMinor_Ver}_Dev
+                <properties>Stream=Archer_${MajorMinor_Ver}_Integ
 BUILD_VERSION=${BUILD_VERSION}
 team_scm_fetchDestination=${workspace}\\${team_scm_fetchDestination}
 BuildEngine=${FlowController}
