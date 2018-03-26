@@ -143,7 +143,7 @@ IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
-      <recipientList>adham.saffori,${recipients_list},${BUILD_USER_EMAIL}</recipientList>
+      <recipientList>${recipients_list},${BUILD_USER_EMAIL}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
