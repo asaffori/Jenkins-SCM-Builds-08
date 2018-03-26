@@ -367,7 +367,7 @@ IF NOT %ERRORLEVEL% == 0 (&#xd;
                 <properties>Stream=Archer_${MajorMinor_Ver}_Dev
 BUILD_VERSION=${BUILD_VERSION}
 team_scm_fetchDestination=${workspace}\\${team_scm_fetchDestination}
-BuildEngine=${NODE_NAME}
+BuildEngine=${FlowController}
 recipientList=${emailGroups}</properties>
                 <textParamValueOnNewLine>false</textParamValueOnNewLine>
               </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
