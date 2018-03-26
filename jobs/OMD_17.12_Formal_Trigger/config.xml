@@ -244,12 +244,12 @@
         <hudson.model.BooleanParameterDefinition>
           <name>RunAutoMerge</name>
           <description></description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>GenerateAndShareBuildNotes</name>
           <description></description>
-          <defaultValue>false</defaultValue>
+          <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>Auto_Deploy_Sanity</name>
