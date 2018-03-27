@@ -47,7 +47,8 @@
           <configs>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               <properties>BUILD_VERSION=17.12.00.20200
-sStream=&quot;&quot;</properties>
+MajorMinor_Ver=17.12
+sStream=</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
