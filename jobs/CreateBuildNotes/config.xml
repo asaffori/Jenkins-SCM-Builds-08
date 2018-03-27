@@ -42,8 +42,9 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>sStream</name>
-          <description>Source stream to compare with. As :Archer_17.12_Dev or Archer_17.04_Dev</description>
-          <defaultValue></defaultValue>
+          <description>Source stream to compare with. As :Archer_17.12_Dev or Archer_17.04_Dev&lt;br&gt;
+If empty: compare will be done on the target stream only with latest changes against last snapshot there.</description>
+          <defaultValue>Archer_${MajorMinor_Ver}_Integ</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
