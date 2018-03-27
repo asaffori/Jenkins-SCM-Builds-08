@@ -92,7 +92,7 @@ JENKINCONFIGPATH=\\isr1appcc02\SCM\OMD</propertiesContent>
   <builders>
     <hudson.tasks.BatchFile>
       <command>set cmd_suffix=&quot;&quot;&#xd;
-if NOT &quot;%sStream%&quot;==&quot;&quot; set cmd_suffix=-ss %sStream%&#xd;
+if NOT &quot;%sStream%&quot;==&quot;&quot; set cmd_suffix=-s %sStream%&#xd;
 &#xd;
 java -jar &quot;%BNG_PATH%\BNG.jar&quot; -acf &quot;%BNG_PATH%\Attributeconfig.xml&quot; -grf html -r %repositoryAddress% -u %BuildUser% -p &quot;%BuildPass%&quot; -pa &quot;OMD NuArcher&quot; -rf %ReportName% -rp &quot;%WORKSPACE%&quot;  -tsw %tStream% %cmd_suffix%&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
