@@ -603,6 +603,8 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>CreateBuildNotes</string>
+        <string>CreateNewStream</string>
       </jobNames>
       <jobFilters/>
       <columns>
