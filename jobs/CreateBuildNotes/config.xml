@@ -31,14 +31,14 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>sStream</name>
-          <description>Source stream to gather the changes from or compare with. As :Archer_17.12_Integ or Archer_17.04_Integ</description>
+          <name>tStream</name>
+          <description>Target stream to gather the changes from or to compare to. As :Archer_17.12_Integ or Archer_17.04_Integ</description>
           <defaultValue>Archer_${MajorMinor_Ver}_Integ</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>tStream</name>
-          <description>Target stream to compare to. As :Archer_17.12_Dev or Archer_17.04_Dev</description>
-          <defaultValue>Archer_${MajorMinor_Ver}_Dev</defaultValue>
+          <name>sStream</name>
+          <description>Source stream to compare with. As :Archer_17.12_Dev or Archer_17.04_Dev</description>
+          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
@@ -92,9 +92,9 @@ JENKINCONFIGPATH=\\isr1appcc02\SCM\OMD</propertiesContent>
   <builders>
     <hudson.tasks.BatchFile>
       <command>set cmd_suffix=&quot;&quot;&#xd;
-if NOT &quot;%tStream%&quot;==&quot;&quot; set cmd_suffix=-ss %tStream%&#xd;
+if NOT &quot;%sStream%&quot;==&quot;&quot; set cmd_suffix=-ss %sStream%&#xd;
 &#xd;
-java -jar &quot;%BNG_PATH%\BNG.jar&quot; -acf &quot;%BNG_PATH%\Attributeconfig.xml&quot; -grf html -r %repositoryAddress% -u %BuildUser% -p &quot;%BuildPass%&quot; -pa &quot;OMD NuArcher&quot; -rf %ReportName% -rp &quot;%WORKSPACE%&quot;  -tsw %sStream% %cmd_suffix%&#xd;
+java -jar &quot;%BNG_PATH%\BNG.jar&quot; -acf &quot;%BNG_PATH%\Attributeconfig.xml&quot; -grf html -r %repositoryAddress% -u %BuildUser% -p &quot;%BuildPass%&quot; -pa &quot;OMD NuArcher&quot; -rf %ReportName% -rp &quot;%WORKSPACE%&quot;  -tsw %tStream% %cmd_suffix%&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
     </hudson.tasks.BatchFile>
   </builders>
