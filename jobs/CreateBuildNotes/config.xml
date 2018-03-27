@@ -31,10 +31,33 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>MajorMinor_Ver</name>
-          <description></description>
+          <name>BUILD_VERSION</name>
+          <description>Build Version to be used the report default name and the email</description>
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <randomName>choice-parameter-252401820114567</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.39">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.39">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>CreateBuildNotes</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>BUILD_VERSION</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>true</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
         <hudson.model.StringParameterDefinition>
           <name>tStream</name>
           <description>Target stream to gather the changes from or to compare to. As :Archer_17.12_Integ or Archer_17.04_Integ</description>
@@ -45,11 +68,6 @@
           <description>Source stream to compare with. As :Archer_17.12_Dev or Archer_17.04_Dev&lt;br&gt;
 If empty: compare will be done on the target stream only with latest changes against last snapshot there.</description>
           <defaultValue>Archer_${MajorMinor_Ver}_Dev</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>BUILD_VERSION</name>
-          <description>Build Version to be used the report default name and the email</description>
-          <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ReportName</name>
