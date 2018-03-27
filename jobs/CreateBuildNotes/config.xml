@@ -31,9 +31,14 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>Stream</name>
-          <description>Affected stream to gather the changes from. As :Archer_17.12_Integ or Archer_17.04_Integ</description>
+          <name>sStream</name>
+          <description>Source stream to gather the changes from or compare with. As :Archer_17.12_Integ or Archer_17.04_Integ</description>
           <defaultValue>Archer_${MajorMinor_Ver}_Integ</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>tStream</name>
+          <description>Target stream to compare to. As :Archer_17.12_Dev or Archer_17.04_Dev</description>
+          <defaultValue>Archer_${MajorMinor_Ver}_Dev</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
@@ -44,11 +49,6 @@
           <name>ReportName</name>
           <description>The relevant name of the generated report</description>
           <defaultValue>${BUILD_VERSION}-BuildNotes</defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>team_scm_fetchDestination</name>
-          <description>Snadbox which contain the BNG utility</description>
-          <defaultValue>D:\Sandboxes\omdbuild_${BUILD_VERSION}</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>recipientList</name>
@@ -91,7 +91,10 @@ JENKINCONFIGPATH=\\isr1appcc02\SCM\OMD</propertiesContent>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>java -jar &quot;%BNG_PATH%\BNG.jar&quot; -acf &quot;%BNG_PATH%\Attributeconfig.xml&quot; -grf html -r %repositoryAddress% -u %BuildUser% -p &quot;%BuildPass%&quot; -pa &quot;OMD NuArcher&quot; -rf %ReportName% -rp &quot;%WORKSPACE%&quot;  -tsw %Stream%&#xd;
+      <command>set cmd_suffix=&quot;&quot;&#xd;
+if NOT &quot;%tStream%&quot;==&quot;&quot; set cmd_suffix=-ss %tStream%&#xd;
+&#xd;
+java -jar &quot;%BNG_PATH%\BNG.jar&quot; -acf &quot;%BNG_PATH%\Attributeconfig.xml&quot; -grf html -r %repositoryAddress% -u %BuildUser% -p &quot;%BuildPass%&quot; -pa &quot;OMD NuArcher&quot; -rf %ReportName% -rp &quot;%WORKSPACE%&quot;  -tsw %sStream% %cmd_suffix%&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
     </hudson.tasks.BatchFile>
   </builders>
