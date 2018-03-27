@@ -31,6 +31,11 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>tStream</name>
           <description>Target stream to gather the changes from or to compare to. As :Archer_17.12_Integ or Archer_17.04_Integ</description>
           <defaultValue>Archer_${MajorMinor_Ver}_Integ</defaultValue>
