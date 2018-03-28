@@ -87,7 +87,6 @@ FOR %%G IN (%Technologies%) DO (&#xd;
         echo Running command: %Root5300Bin%\Nunit\Bin\%%G.HIntegTest.bat /d&#xd;
         %Root5300Bin%\Nunit\Bin\%%G.HIntegTest.bat /d&#xd;
         if NOT %ERRORLEVEL% ==0 Exit /b 1&#xd;
-&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
