@@ -61,7 +61,6 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>@ECHO Off&#xd;
-SETLOCAL EnableDelayedExpansion&#xd;
 ECHO Shutting down machine - Running KillAll exe&#xd;
 CAll Killall -user&#xd;
 Echo #####################END of KillAll########################&#xd;
