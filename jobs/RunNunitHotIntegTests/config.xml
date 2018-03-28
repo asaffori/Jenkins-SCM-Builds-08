@@ -86,6 +86,7 @@ echo Working with Tehchnology types: %Technologies%&#xd;
 FOR %%G IN (%Technologies%) DO (&#xd;
     echo 111 %%G&#xd;
    For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (%%G.HIntegTest.bat) DO (&#xd;
+        echo 222 %%f&#xd;
 	echo Running %%f&#xd;
         %%f /d&#xd;
         if NOT %ERRORLEVEL% ==0 Exit /b 1&#xd;
