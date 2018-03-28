@@ -60,16 +60,29 @@
   <customWorkspace>C:\5300</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>::@ECHO Off&#xd;
+      <command>@ECHO Off&#xd;
 ECHO Shutting down machine - Running KillAll exe&#xd;
 CAll Killall -user&#xd;
 Echo #####################END of KillAll########################&#xd;
 &#xd;
 Echo ######################## Running Integ tests ###############&#xd;
-For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.CIntegTest.bat) DO (&#xd;
-	echo Running %%f&#xd;
-        %%f /d&#xd;
-        if NOT %ERRORLEVEL% == 0 Exit /b 1&#xd;
+set Technologies=Platform&#xd;
+for /f &quot;tokens=3&quot; %%A in (&apos;reg query &quot;HKLM\SOFTWARE\KLA-TENCOR\OM\5300\Machine\Supported Features\Hardware\Heads\Linnik\Active&quot; /ve&apos;) do (&#xd;
+   IF &quot;%%A&quot; == &quot;O1&quot; set Technologies=%Technologies% Imaging &#xd;
+)&#xd;
+&#xd;
+for /f &quot;tokens=3&quot; %%A in (&apos;reg query &quot;HKLM\SOFTWARE\KLA-TENCOR\OM\5300\Machine\Supported Features\Hardware\Heads\MBS\Active&quot; /ve&apos;) do (&#xd;
+   IF &quot;%%A&quot; == &quot;O1&quot; set Technologies=%Technologies% Scol &#xd;
+)&#xd;
+&#xd;
+echo Working with Tehchnology types: %Technologies%&#xd;
+&#xd;
+&#xd;
+FOR %%G IN (%Technologies%) DO (&#xd;
+        set CMD=%Root5300Bin%\Nunit\Bin\%%G.CIntegTest.bat /d&#xd;
+        echo Running command: !CMD!&#xd;
+        !CMD!&#xd;
+        if NOT %ERRORLEVEL% ==0 Exit /b 1&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
