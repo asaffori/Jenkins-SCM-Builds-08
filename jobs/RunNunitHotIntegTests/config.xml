@@ -90,7 +90,7 @@ FOR %%G IN (%Technologies%) DO (&#xd;
 	echo Running %%G.HIntegTest.bat&#xd;
         %%G.HIntegTest.bat /d&#xd;
         if NOT %ERRORLEVEL% ==0 Exit /b 1&#xd;
-   )&#xd;
+   ::)&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
