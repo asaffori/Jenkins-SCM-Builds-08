@@ -59,10 +59,25 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (*.HIntegTests.bat) DO (&#xd;
+      <command>@echo off&#xd;
+set Technologies=Platform&#xd;
+for /f &quot;tokens=3&quot; %%A in (&apos;reg query &quot;HKLM\SOFTWARE\KLA-TENCOR\OM\5300\Machine\Supported Features\Hardware\Heads\Linnik\Active&quot; /ve&apos;) do (&#xd;
+   IF &quot;%%A&quot; == &quot;O1&quot; set Technologies=%Technologies% Imaging &#xd;
+)&#xd;
+&#xd;
+for /f &quot;tokens=3&quot; %%A in (&apos;reg query &quot;HKLM\SOFTWARE\KLA-TENCOR\OM\5300\Machine\Supported Features\Hardware\Heads\MBS\Active&quot; /ve&apos;) do (&#xd;
+   IF &quot;%%A&quot; == &quot;O1&quot; set Technologies=%Technologies% Scol &#xd;
+)&#xd;
+&#xd;
+echo Working with Tehchnology types: %Technologies%&#xd;
+&#xd;
+&#xd;
+FOR %%G IN (%Technologies%) DO (&#xd;
+   For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (%%G.HIntegTests.bat) DO (&#xd;
 	echo Running %%f&#xd;
         %%f&#xd;
         if NOT !ERRORLEVEL! ==0 Exit /b 1&#xd;
+   )&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
