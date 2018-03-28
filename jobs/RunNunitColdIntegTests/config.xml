@@ -60,7 +60,7 @@
   <customWorkspace>C:\5300</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>@ECHO Off&#xd;
+      <command>::@ECHO Off&#xd;
 ECHO Shutting down machine - Running KillAll exe&#xd;
 CAll Killall -user&#xd;
 Echo #####################END of KillAll########################&#xd;
