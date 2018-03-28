@@ -61,6 +61,7 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>@ECHO Off&#xd;
+SETLOCAL EnableDelayedExpansion&#xd;
 ECHO Shutting down machine - Running KillAll exe&#xd;
 CAll Killall -user&#xd;
 Echo #####################END of KillAll########################&#xd;
@@ -80,8 +81,8 @@ echo Working with Tehchnology types: %Technologies%&#xd;
 &#xd;
 FOR %%G IN (%Technologies%) DO (&#xd;
         set CMD=%Root5300Bin%\Nunit\Bin\%%G.CIntegTest.bat /d&#xd;
-        echo Running command: %CMD%&#xd;
-        %CMD%&#xd;
+        echo Running command: !CMD!&#xd;
+        !CMD!&#xd;
         if NOT %ERRORLEVEL% ==0 Exit /b 1&#xd;
 )</command>
     </hudson.tasks.BatchFile>
