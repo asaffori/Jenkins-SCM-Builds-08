@@ -131,7 +131,7 @@ IF NOT Exist V:\NUL (&#xd;
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
       <healthScaleFactor>1.0</healthScaleFactor>
-      <failIfNoResults>true</failIfNoResults>
+      <failIfNoResults>false</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
   </publishers>
   <buildWrappers>
