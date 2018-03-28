@@ -84,8 +84,8 @@ echo Working with Tehchnology types: %Technologies%&#xd;
 &#xd;
 &#xd;
 FOR %%G IN (%Technologies%) DO (&#xd;
-        echo Running %%G.HIntegTest.bat&#xd;
-        %%G.HIntegTest.bat /d&#xd;
+        echo Running command: %Root5300Bin%\Nunit\Bin\%%G.HIntegTest.bat /d&#xd;
+        %Root5300Bin%\Nunit\Bin\%%G.HIntegTest.bat /d&#xd;
         if NOT %ERRORLEVEL% ==0 Exit /b 1&#xd;
 &#xd;
 )</command>
