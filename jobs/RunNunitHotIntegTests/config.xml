@@ -87,7 +87,7 @@ FOR %%G IN (%Technologies%) DO (&#xd;
    For /R &quot;%Root5300Bin%\Nunit\Bin&quot;  %%f in (%%G.HIntegTest.bat) DO (&#xd;
 	echo Running %%f&#xd;
         Call %%f /d&#xd;
-        if NOT !ERRORLEVEL! ==0 Exit /b 1&#xd;
+        if NOT %ERRORLEVEL% ==0 Exit /b 1&#xd;
    )&#xd;
 )</command>
     </hudson.tasks.BatchFile>
