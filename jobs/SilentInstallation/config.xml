@@ -127,7 +127,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <description>Running  installation ${BUILD_VERSION} on ${SimulatorEngine}</description>
     </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
     <hudson.tasks.BatchFile>
-      <command>@echo off&#xd;
+      <command>::@echo off&#xd;
 echo %NETWORKPATH% &quot;%BuildPass%&quot; &quot;klasj\%BuildUser%&quot; &#xd;
 net use %NETWORKPATH%\ipc$ &quot;%BuildPass%&quot; /user:&quot;klasj\%BuildUser%&quot;  &#xd;
 if not exist %NETWORKPATH%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILDTYPE%\Archer_Installation_%BUILD_VERSION% (&#xd;
