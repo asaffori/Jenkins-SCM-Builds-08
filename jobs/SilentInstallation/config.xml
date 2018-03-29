@@ -156,7 +156,7 @@ If exist C:\Temp\VerInfo.txt find /i &quot;Release Configuration&quot; C:\Temp\V
 if %errorlevel% EQU 0 (set BuildMode=Release) else (set BuildMode=Debug)&#xd;
 &#xd;
 robocopy /MT:128 /r:2 %NETWORKPATH%\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_%MajorMinor_Ver%\%BUILDTYPE%\UOMD_%BUILD_VERSION%_%BuildMode%\NUnit  C:\5300\NUnit /s&#xd;
-if not %errorlevel%==0 goto error&#xd;
+if NOT %ERRORLEVEL% LEQ 7 goto error&#xd;
 echo *********Creating NUnit links*************&#xd;
 if not exist %OutDirCommon%\Nunit\Bin 	mklink /d %OutDirCommon%\Nunit\Bin %OutDirCommon%\Nunit\Bin_%BuildMode%&#xd;
 if not %errorlevel%==0 goto error&#xd;
