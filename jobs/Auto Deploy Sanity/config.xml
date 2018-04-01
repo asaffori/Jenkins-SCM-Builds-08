@@ -270,7 +270,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 			}
 
 		}
-
+	def rooturl=Jenkins.getActiveInstance().getRootUrl()
 	buildsToNUnit.each{
 		resultNunitHtml &lt;&lt; &quot;&lt;BR/&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot; &lt;table&gt;&quot;
