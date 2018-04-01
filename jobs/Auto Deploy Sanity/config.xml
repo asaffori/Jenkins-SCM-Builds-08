@@ -265,7 +265,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 	  
 			//Nunit Analysis - collect data code : start
 			def action = theBuild.getAction(hudson.tasks.test.AbstractTestResultAction.class);
-			if (action != null){
+			if (action != null &amp; !action.isEmpty()){
 				buildsToNUnit.put(theBuild,action)
 			}
 			//Nunit Analysis - collect data code : end
