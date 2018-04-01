@@ -310,9 +310,9 @@ historyJobs.getFlowSteps().each { step -&gt;
 		  resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
 		}
 		resultNunitHtml &lt;&lt; &quot;&lt;/table&gt;&quot;
-		resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&lt;a href=\&quot;http://scm-builds-08:8080/&quot;+theBuild.url+&quot;\&quot;&gt;&quot;+ flowRecord.getJobName()+&quot;&lt;/td&gt;&quot;
+		resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&lt;a href=\&quot;http://scm-builds-08:8080/&quot;+build.url+&quot;\&quot;&gt;&quot;+ flowRecord.getJobName()+&quot;&lt;/td&gt;&quot;
 		resulthtml &lt;&lt; &quot;&lt;td&gt;&quot; + flowRecord.getStatus().toString() +&quot;&lt;/td&gt;&quot;
-		resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;
+		resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + build.getDurationString()+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;
 	}
 }
 
