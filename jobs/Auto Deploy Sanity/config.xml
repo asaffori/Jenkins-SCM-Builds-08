@@ -278,6 +278,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 		}
 
 	}
+}
 	def rooturl=manager.hudson.rootUrl
 	buildsToNUnit.each{
                 manager.listener.logger.println(&quot;${it.key}&quot;)
@@ -320,7 +321,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 		}
 		resultNunitHtml &lt;&lt; &quot;&lt;/table&gt;&quot;
 	}
-}
+
 
 
 
