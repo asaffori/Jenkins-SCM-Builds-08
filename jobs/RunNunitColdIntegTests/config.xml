@@ -37,6 +37,11 @@
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>Auto_Deploy_Sanity</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -102,5 +107,28 @@ FOR %%G IN (%Technologies%) DO (&#xd;
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.groovy.Groovy plugin="groovy@2.0">
+          <scriptSource class="hudson.plugins.groovy.StringScriptSource">
+            <command>import hudson.model.Result;
+
+def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+
+if (Auto_Deploy_Sanity== &quot;false&quot;) {
+	println (&quot;Auto_Deploy_Sanity was disabled. Nunit Cold Integration tests will not run&quot;);
+  	build.getExecutor().interrupt(Result.SUCCESS)
+}</command>
+          </scriptSource>
+          <groovyName>(Default)</groovyName>
+          <parameters></parameters>
+          <scriptParameters></scriptParameters>
+          <properties></properties>
+          <javaOpts></javaOpts>
+          <classPath></classPath>
+        </hudson.plugins.groovy.Groovy>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
   </buildWrappers>
 </project>
