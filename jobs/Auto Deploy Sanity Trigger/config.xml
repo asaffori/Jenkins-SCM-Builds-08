@@ -10,6 +10,14 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -98,17 +106,8 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -169,9 +168,14 @@ import groovy.io.FileType
 def build = Thread.currentThread().executable
 def buildversion= build.getEnvVars().get(&quot;BUILD_VERSION&quot;)
 def finalhtml=new File(&apos;C:\\Temp\\TestResult_&apos;+buildversion+&apos;.html&apos;)
+def finalNunithtml=new File(&apos;C:\\Temp\\NunitTestResult_&apos;+buildversion+&apos;.html&apos;)
 def match=&apos;TestResult_&apos;+buildversion+&apos;_&apos;
+def NunitMatch=&apos;TestResult_&apos;+buildversion+&apos;_&apos;
 new File(&apos;C:\\Temp&apos;).eachFileMatch(FileType.FILES,~/$match.*\.html/){
 finalhtml &lt;&lt; new File(&apos;C:\\Temp\\&apos;+it.name).readLines()
+}
+new File(&apos;C:\\Temp&apos;).eachFileMatch(FileType.FILES,~/$NunitMatch.*\.html/){
+finalNunithtml &lt;&lt; new File(&apos;C:\\Temp\\&apos;+it.name).readLines()
 }</script>
         <sandbox>false</sandbox>
       </script>
