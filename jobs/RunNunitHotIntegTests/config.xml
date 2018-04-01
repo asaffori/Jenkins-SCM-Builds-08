@@ -100,5 +100,26 @@ FOR %%G IN (%Technologies%) DO (&#xd;
       <failIfNoResults>false</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+          <source class="hudson.plugins.groovy.StringSystemScriptSource">
+            <script plugin="script-security@1.39">
+              <script>import hudson.model.Result;
+
+def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+
+if (Auto_Deploy_Sanity== &quot;false&quot;) {
+	println (&quot;Auto_Deploy_Sanity was disabled. Nunit Hot Integration tests will not run&quot;);
+  	build.getExecutor().interrupt(Result.SUCCESS)
+}</script>
+              <sandbox>false</sandbox>
+            </script>
+          </source>
+        </hudson.plugins.groovy.SystemGroovy>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
 </project>
