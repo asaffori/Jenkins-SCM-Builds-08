@@ -241,79 +241,80 @@ Map&lt;hudson.model.Build, List&lt;hudson.model.Action&gt;&gt; buildsToNUnit=new
 def historyJobs=build.getJobExecutionHistory()
 
 historyJobs.getFlowSteps().each { step -&gt;
-		java.util.LinkedList buildsToDisplay=new java.util.LinkedList();
-		if (historyJobs.getJobsNumberInStep(step) != 0){
-			historyJobs.getJobsInStep(step).each { flowRecord -&gt;
-				def project = hudson.model.Hudson.instance.getItemByFullName(flowRecord.getJobName())
-				def theBuild = project.getBuildByNumber(flowRecord.getBuildNumber())
-				if (flowRecord.getStatus().toString()==&quot;CANCELED&quot;)
-					return;
-				if (flowRecord.getStatus().toString()==&quot;SKIPPED&quot;)
-					return;
-				if (flowRecord.getStatus().toString()==&quot;DISABLED&quot;)
-					return;
-				if (flowRecord.getStatus().toString()==&quot;P.E.S&quot;)
-					return;
-				//Job is a matrix build.  Display the indivdual MatrixRuns instead of the parent job
-				if (theBuild.getClass().getName().equals(&apos;hudson.matrix.MatrixBuild&apos;)){
-					buildsToDisplay.addAll(theBuild.getExactRuns())
-				}else{
-					buildsToDisplay.add(theBuild)
-				}
-		  
-				//Nunit Analysis - collect data code : start
-				def action = theBuild.getAction(hudson.tasks.test.AbstractTestResultAction.class);
-				if (action != null){
-					buildsToNUnit.put(theBuild,action)
-				}
-				//Nunit Analysis - collect data code : end
+	java.util.LinkedList buildsToDisplay=new java.util.LinkedList();
+	if (historyJobs.getJobsNumberInStep(step) != 0){
+		historyJobs.getJobsInStep(step).each { flowRecord -&gt;
+			def project = hudson.model.Hudson.instance.getItemByFullName(flowRecord.getJobName())
+			def theBuild = project.getBuildByNumber(flowRecord.getBuildNumber())
+			if (flowRecord.getStatus().toString()==&quot;CANCELED&quot;)
+				return;
+			if (flowRecord.getStatus().toString()==&quot;SKIPPED&quot;)
+				return;
+			if (flowRecord.getStatus().toString()==&quot;DISABLED&quot;)
+				return;
+			if (flowRecord.getStatus().toString()==&quot;P.E.S&quot;)
+				return;
+			//Job is a matrix build.  Display the indivdual MatrixRuns instead of the parent job
+			if (theBuild.getClass().getName().equals(&apos;hudson.matrix.MatrixBuild&apos;)){
+				buildsToDisplay.addAll(theBuild.getExactRuns())
+			}else{
+				buildsToDisplay.add(theBuild)
 			}
-
+	  
+			//Nunit Analysis - collect data code : start
+			def action = theBuild.getAction(hudson.tasks.test.AbstractTestResultAction.class);
+			if (action != null){
+				buildsToNUnit.put(theBuild,action)
+			}
+			//Nunit Analysis - collect data code : end
+			
+		resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&lt;a href=\&quot;http://scm-builds-08:8080/&quot;+build.url+&quot;\&quot;&gt;&quot;+ flowRecord.getJobName()+&quot;&lt;/td&gt;&quot;
+		resulthtml &lt;&lt; &quot;&lt;td&gt;&quot; + flowRecord.getStatus().toString() +&quot;&lt;/td&gt;&quot;
+		resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + build.getDurationString()+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;
 		
-		def rooturl=manager.hudson.rootUrl
-		buildsToNUnit.each{
-			resultNunitHtml &lt;&lt; &quot;&lt;BR/&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot; &lt;table&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;td colspan=&apos;5&apos; class=&apos;title&apos; &gt;Nunit Execution Results: ${it.key}&lt;/td&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;th&gt;&lt;/th&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Name&lt;/th&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Result&lt;/th&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Total&lt;/th&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Failed&lt;/th&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Skipped&lt;/th&gt;&quot;
-			resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
-			for (action in it.value){
-			  resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
-			  resultNunitHtml &lt;&lt; &quot;&lt;td&gt;&quot;
-			  resultNunitHtml &lt;&lt; &quot;&lt;img src=&apos;${rooturl}/images/16x16/warning.gif&apos;/&gt;&quot;
-			  resultNunitHtml &lt;&lt; &quot;&lt;/td&gt;&quot;
-			  resultNunitHtml &lt;&lt; &quot;&lt;td&gt;&quot;
-			  resultNunitHtml &lt;&lt; &quot;&lt;a href=&apos;${rooturl}${it.key.url}/${action.urlName}&apos;&gt;${action.displayName}&lt;/a&gt;&quot;
-			  resultNunitHtml &lt;&lt; &quot;&lt;/td&gt;      &lt;td class=&apos;center&apos;&gt;&quot;
-
-			  if (action.getFailCount()==0){
-					resultNunitHtml &lt;&lt; &quot;&lt;img src=&apos;${rooturl}static/e59dfe28/images/16x16/blue.gif&apos; /&gt;&quot;
-			  }else {
-				  if (action.getFailCount()&gt;0){
-					 resultNunitHtml &lt;&lt; &quot;&lt;img src=&apos;${rooturl}static/e59dfe28/images/16x16/red.gif&apos; /&gt;&quot;
-				   }else { 
-					  resultNunitHtml &lt;&lt; &quot;&lt;img src=&apos;${rooturl}static/e59dfe28/images/16x16/yellow.gif&apos; /&gt;&quot;
-				   }
-			  }
-			  resultNunitHtml &lt;&lt; &quot;&lt;/td&gt;&quot;
-			  resultNunitHtml &lt;&lt; &quot;&lt;td class=\&quot;center\&quot;&gt;${action.getTotalCount()} &lt;/td&gt;&quot;
-			  resultNunitHtml &lt;&lt; &quot;&lt;td class=\&quot;center\&quot;&gt;${action.getFailCount()} &lt;/td&gt;&quot;
-			  resultNunitHtml &lt;&lt; &quot;&lt;td class=\&quot;center\&quot;&gt;${action.getSkipCount()} &lt;/td&gt;&quot;
-			  resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
-			}
-			resultNunitHtml &lt;&lt; &quot;&lt;/table&gt;&quot;
-			resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&lt;a href=\&quot;http://scm-builds-08:8080/&quot;+build.url+&quot;\&quot;&gt;&quot;+ flowRecord.getJobName()+&quot;&lt;/td&gt;&quot;
-			resulthtml &lt;&lt; &quot;&lt;td&gt;&quot; + flowRecord.getStatus().toString() +&quot;&lt;/td&gt;&quot;
-			resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + build.getDurationString()+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;
 		}
+
+	}
+	def rooturl=manager.hudson.rootUrl
+	buildsToNUnit.each{
+		resultNunitHtml &lt;&lt; &quot;&lt;BR/&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot; &lt;table&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;td colspan=&apos;5&apos; class=&apos;title&apos; &gt;Nunit Execution Results: ${it.key}&lt;/td&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;&lt;/th&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Name&lt;/th&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Result&lt;/th&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Total&lt;/th&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Failed&lt;/th&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Skipped&lt;/th&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
+		for (action in it.value){
+		  resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;td&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;img src=&apos;${rooturl}/images/16x16/warning.gif&apos;/&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;/td&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;td&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;a href=&apos;${rooturl}${it.key.url}/${action.urlName}&apos;&gt;${action.displayName}&lt;/a&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;/td&gt;      &lt;td class=&apos;center&apos;&gt;&quot;
+
+		  if (action.getFailCount()==0){
+				resultNunitHtml &lt;&lt; &quot;&lt;img src=&apos;${rooturl}static/e59dfe28/images/16x16/blue.gif&apos; /&gt;&quot;
+		  }else {
+			  if (action.getFailCount()&gt;0){
+				 resultNunitHtml &lt;&lt; &quot;&lt;img src=&apos;${rooturl}static/e59dfe28/images/16x16/red.gif&apos; /&gt;&quot;
+			   }else { 
+				  resultNunitHtml &lt;&lt; &quot;&lt;img src=&apos;${rooturl}static/e59dfe28/images/16x16/yellow.gif&apos; /&gt;&quot;
+			   }
+		  }
+		  resultNunitHtml &lt;&lt; &quot;&lt;/td&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;td class=\&quot;center\&quot;&gt;${action.getTotalCount()} &lt;/td&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;td class=\&quot;center\&quot;&gt;${action.getFailCount()} &lt;/td&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;td class=\&quot;center\&quot;&gt;${action.getSkipCount()} &lt;/td&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
+		}
+		resultNunitHtml &lt;&lt; &quot;&lt;/table&gt;&quot;
 	}
 }
 
