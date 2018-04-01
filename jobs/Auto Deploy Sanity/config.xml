@@ -10,6 +10,14 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -28,9 +36,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -206,14 +212,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -233,6 +232,7 @@ def tooltype= build.getEnvVars().get(&quot;ToolType&quot;)
 def suite=build.getEnvVars().get(&quot;TestSuite&quot;)
 def simulator=build.getEnvVars().get(&quot;SimulatorEngine&quot;)
 def resulthtml= new File(&apos;C:\\Temp\\TestResult_&apos;+buildversion+&apos;_&apos;+tooltype+&apos;_&apos;+suite+&apos;.html&apos;)
+def resultNunitHtml= new File(&apos;C:\\Temp\\NunitTestResult_&apos;+buildversion+&apos;_&apos;+tooltype+&apos;_&apos;+suite+&apos;.html&apos;)
 
 if(build.result.toString()==&quot;SUCCESS&quot;) resulthtml.write &apos;&lt;tr&gt;&lt;td&gt;&lt;b&gt;&lt;font color=\&quot;green\&quot;&gt;&apos;+ build.result.toString() +&apos;   for&apos; +&apos; &apos;+tooltype +&apos;&lt;/font&gt;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&apos;
 else resulthtml.write &apos;&lt;tr&gt;&lt;td&gt;&lt;b&gt;&lt;font color=\&quot;red\&quot;&gt;&apos;+ build.result.toString() +&apos;   for&apos; +&apos; &apos;+tooltype +&apos;&lt;/font&gt;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&apos;
@@ -287,15 +287,7 @@ resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>MajorMinor_Ver</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
@@ -315,11 +307,19 @@ resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&
       <string></string>
     </entry>
     <entry>
-      <string>BaseImage</string>
+      <string>ATEControllerEngine</string>
       <string></string>
     </entry>
     <entry>
-      <string>ATEControllerEngine</string>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BaseImage</string>
       <string></string>
     </entry>
   </globalEnvVars>
