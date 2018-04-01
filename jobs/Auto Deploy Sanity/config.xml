@@ -245,7 +245,9 @@ historyJobs.getFlowSteps().each { step -&gt;
 	if (historyJobs.getJobsNumberInStep(step) != 0){
 		historyJobs.getJobsInStep(step).each { flowRecord -&gt;
 			def project = hudson.model.Hudson.instance.getItemByFullName(flowRecord.getJobName())
-			if (flowRecord.getBuildNumber() != build.getBuildNumber()) continue
+			if (flowRecord.getBuildNumber() != manager.build.number) {
+				continue
+			}
 			def theBuild = project.getBuildByNumber(flowRecord.getBuildNumber())
 			if (flowRecord.getStatus().toString()==&quot;CANCELED&quot;)
 				return;
