@@ -73,7 +73,6 @@ def reciepts_list=&quot;&quot;;
       <overrideBuildParameters>false</overrideBuildParameters>
       <contributors/>
     </EnvInjectJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -131,7 +130,7 @@ def reciepts_list=&quot;&quot;;
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-357895302552224</randomName>
-          <visibleItemCount>0</visibleItemCount>
+          <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.39">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -578,6 +577,7 @@ Example:&lt;BR&gt;
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -1020,6 +1020,12 @@ build.save()</postsendScript>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>NuArcher - Deliver Code change</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>RunNunitUnitTestsDebug</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>RunNunitUnitTestsRelease</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
