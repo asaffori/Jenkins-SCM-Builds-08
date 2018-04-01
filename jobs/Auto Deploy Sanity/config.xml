@@ -266,6 +266,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 			//Nunit Analysis - collect data code : start
 			def action = theBuild.getAction(hudson.tasks.test.AbstractTestResultAction.class);
 			if (action != null){
+                                manager.listener.logger.println(&quot;Adding job:&quot;+flowRecord.getJobName())
 				buildsToNUnit.put(theBuild,action)
 			}
 			//Nunit Analysis - collect data code : end
@@ -279,6 +280,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 	}
 	def rooturl=manager.hudson.rootUrl
 	buildsToNUnit.each{
+                manager.listener.logger.println(&quot;${it.key}&quot;)
 		resultNunitHtml &lt;&lt; &quot;&lt;BR/&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot; &lt;table&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
