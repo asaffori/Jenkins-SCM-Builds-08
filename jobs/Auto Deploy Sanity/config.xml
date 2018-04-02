@@ -280,12 +280,14 @@ historyJobs.getFlowSteps().each { step -&gt;
 	}
 }
 	def rooturl=manager.hudson.rootUrl
+        def nunitTestType=&quot;&quot;
 	buildsToNUnit.each{
+               nunitTestType=it.key.contains(&quot;Cold&quot;)?&quot;Cold&quot;:&quot;Hot&quot;
                 //manager.listener.logger.println(&quot;${it.key}&quot;)
 		resultNunitHtml &lt;&lt; &quot;&lt;BR/&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot; &lt;table&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
-		resultNunitHtml &lt;&lt; &quot;&lt;td colspan=&apos;5&apos; class=&apos;title&apos; &gt;Nunit Execution Results for Tool &apos;${tooltype} &apos;: ${it.key}&lt;/td&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;td colspan=&apos;5&apos; class=&apos;title&apos; &gt;${nunitTestType} Nunit Execution Results for Tool &apos;${tooltype}&apos;:&lt;/td&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;&lt;/th&gt;&quot;
