@@ -10,6 +10,14 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -81,7 +89,6 @@ If empty: compare will be done on the target stream only with latest changes aga
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
@@ -97,14 +104,6 @@ JENKINCONFIGPATH=\\isr1appcc02\SCM\OMD</propertiesContent>
       <contributors/>
     </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>master</assignedNode>
@@ -147,9 +146,10 @@ IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
       <defaultSubject>${BUILD_VERSION} - Build Notes</defaultSubject>
       <defaultContent>Build ${BUILD_VERSION} is ready for build . build notes attached</defaultContent>
       <attachmentsPattern>${ReportName}.html</attachmentsPattern>
-      <presendScript>if (build.result.toString().equals(&apos;SUCCESS&apos;) &amp;&amp; build.logFile.text.readLines().any { it =~ /.*does not contain any change set.*/ }) {
+      <presendScript>if (build.result.toString().equals(&apos;SUCCESS&apos;) &amp;&amp; (build.logFile.text.readLines().any { it =~ /.*does not contain any change set.*/ } || build.logFile.text.readLines().any { it =~ /.*No change sets for.*/ } )
+{
    content = (String)msg.getContent().getBodyPart(0).getContent()
-   content = &quot;No new changes in stream &quot;+build.getEnvVars().get(&quot;Stream&quot;)+&quot; since last snapshot&quot;
+   content = &quot;No new changes since last snapshot&quot;
    msg.setSubject(build.getEnvVars().get(&quot;BUILD_VERSION&quot;)+&quot; - Build Notes [No Changes]&quot;);
    msg.setText(content)
    msg.saveChanges() 
