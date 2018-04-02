@@ -118,7 +118,7 @@ Example:&lt;BR&gt;
   <concurrentBuild>true</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>del /F /Q C:\Temp\TestResult_%BUILD_VERSION%*.html</command>
+      <command>::del /F /Q C:\Temp\*TestResult_%BUILD_VERSION%*.html</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
       <regexp></regexp>
