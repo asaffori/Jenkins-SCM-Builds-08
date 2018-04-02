@@ -170,7 +170,7 @@ def buildversion= build.getEnvVars().get(&quot;BUILD_VERSION&quot;)
 def finalhtml=new File(&apos;C:\\Temp\\TestResult_&apos;+buildversion+&apos;.html&apos;)
 def finalNunithtml=new File(&apos;C:\\Temp\\NunitTestResult_&apos;+buildversion+&apos;.html&apos;)
 def match=&apos;TestResult_&apos;+buildversion+&apos;_&apos;
-def NunitMatch=&apos;TestResult_&apos;+buildversion+&apos;_&apos;
+def NunitMatch=&apos;NunitTestResult_&apos;+buildversion+&apos;_&apos;
 new File(&apos;C:\\Temp&apos;).eachFileMatch(FileType.FILES,~/$match.*\.html/){
 finalhtml &lt;&lt; new File(&apos;C:\\Temp\\&apos;+it.name).readLines()
 }
