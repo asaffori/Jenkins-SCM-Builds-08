@@ -284,7 +284,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 	buildsToNUnit.each{
            manager.listener.logger.println(&quot;${it} -${it.value}&quot;)
            String str=it.key.getDisplayName()
-               nunitTestType=str.contains(&quot;Cold&quot;)?&quot;Cold&quot;:&quot;Hot&quot;
+               nunitTestType=str.contains(&quot;Cold&quot;)?&quot;C&quot;:&quot;H&quot;
                 //manager.listener.logger.println(&quot;${it.key}&quot;)
 		resultNunitHtml &lt;&lt; &quot;&lt;BR/&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot; &lt;table&gt;&quot;
@@ -304,7 +304,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 		  resultNunitHtml &lt;&lt; &quot;&lt;img src=&apos;${rooturl}/images/16x16/warning.gif&apos;/&gt;&quot;
 		  resultNunitHtml &lt;&lt; &quot;&lt;/td&gt;&quot;
 		  resultNunitHtml &lt;&lt; &quot;&lt;td&gt;&quot;
-		  resultNunitHtml &lt;&lt; &quot;&lt;a href=&apos;${rooturl}${it.key.url}/${action.urlName}&apos;&gt;${nunitTestType} Nunit Results for Tool &apos;${tooltype}&apos;&lt;/a&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;a href=&apos;${rooturl}${it.key.url}/${action.urlName}&apos;&gt;${nunitTestType}Nunit for &apos;${tooltype}&apos;&lt;/a&gt;&quot;
 		  resultNunitHtml &lt;&lt; &quot;&lt;/td&gt;      &lt;td class=&apos;center&apos;&gt;&quot;
 
 		  if (action.getFailCount()==0){
