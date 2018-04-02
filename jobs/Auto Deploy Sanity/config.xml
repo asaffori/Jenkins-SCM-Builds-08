@@ -283,7 +283,8 @@ historyJobs.getFlowSteps().each { step -&gt;
         def nunitTestType=&quot;&quot;
 	buildsToNUnit.each{
            manager.listener.logger.println(&quot;${it} -${it.value}&quot;)
-               nunitTestType=it.contains(&quot;Cold&quot;)?&quot;Cold&quot;:&quot;Hot&quot;
+           def str=it.key
+               nunitTestType=str.contains(&quot;Cold&quot;)?&quot;Cold&quot;:&quot;Hot&quot;
                 //manager.listener.logger.println(&quot;${it.key}&quot;)
 		resultNunitHtml &lt;&lt; &quot;&lt;BR/&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot; &lt;table&gt;&quot;
