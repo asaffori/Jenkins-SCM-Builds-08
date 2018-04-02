@@ -175,7 +175,7 @@ new File(&apos;C:\\Temp&apos;).eachFileMatch(FileType.FILES,~/$match.*\.html/){
 finalhtml &lt;&lt; new File(&apos;C:\\Temp\\&apos;+it.name).readLines()
 }
 new File(&apos;C:\\Temp&apos;).eachFileMatch(FileType.FILES,~/$NunitMatch.*\.html/){
-finalNunithtml &lt;&lt; new File(&apos;C:\\Temp\\&apos;+it.name).readLines()
+finalNunithtml &lt;&lt; new File(&apos;C:\\Temp\\&apos;+it.name).text
 }</script>
         <sandbox>false</sandbox>
       </script>
