@@ -292,6 +292,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 		resultNunitHtml &lt;&lt; &quot;&lt;td colspan=&apos;5&apos; class=&apos;title&apos; &gt;Nunit Execution Results&lt;/td&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
+                resultNunitHtml &lt;&lt; &quot;&lt;th&gt;&lt;/th&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Name&lt;/th&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Result&lt;/th&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Total&lt;/th&gt;&quot;
