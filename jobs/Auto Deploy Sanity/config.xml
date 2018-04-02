@@ -37,7 +37,6 @@
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -213,6 +212,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -285,7 +285,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 		resultNunitHtml &lt;&lt; &quot;&lt;BR/&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot; &lt;table&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
-		resultNunitHtml &lt;&lt; &quot;&lt;td colspan=&apos;5&apos; class=&apos;title&apos; &gt;Nunit Execution Results: ${it.key}&lt;/td&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;td colspan=&apos;5&apos; class=&apos;title&apos; &gt;Nunit Execution Results for Tool &apos;${tooltype} &apos;: ${it.key}&lt;/td&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;&lt;/th&gt;&quot;
