@@ -287,10 +287,9 @@ historyJobs.getFlowSteps().each { step -&gt;
 		resultNunitHtml &lt;&lt; &quot;&lt;BR/&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot; &lt;table&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
-		resultNunitHtml &lt;&lt; &quot;&lt;td colspan=&apos;5&apos; class=&apos;title&apos; &gt;${nunitTestType} Nunit Execution Results for Tool &apos;${tooltype}&apos;:&lt;/td&gt;&quot;
+		resultNunitHtml &lt;&lt; &quot;&lt;td colspan=&apos;5&apos; class=&apos;title&apos; &gt;Nunit Execution Results&lt;/td&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;/tr&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;tr&gt;&quot;
-		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;&lt;/th&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Name&lt;/th&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Result&lt;/th&gt;&quot;
 		resultNunitHtml &lt;&lt; &quot;&lt;th&gt;Total&lt;/th&gt;&quot;
@@ -303,7 +302,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 		  resultNunitHtml &lt;&lt; &quot;&lt;img src=&apos;${rooturl}/images/16x16/warning.gif&apos;/&gt;&quot;
 		  resultNunitHtml &lt;&lt; &quot;&lt;/td&gt;&quot;
 		  resultNunitHtml &lt;&lt; &quot;&lt;td&gt;&quot;
-		  resultNunitHtml &lt;&lt; &quot;&lt;a href=&apos;${rooturl}${it.key.url}/${action.urlName}&apos;&gt;${action.displayName}&lt;/a&gt;&quot;
+		  resultNunitHtml &lt;&lt; &quot;&lt;a href=&apos;${rooturl}${it.key.url}/${action.urlName}&apos;&gt;${nunitTestType} Nunit Results for Tool &apos;${tooltype}&apos;&lt;/a&gt;&quot;
 		  resultNunitHtml &lt;&lt; &quot;&lt;/td&gt;      &lt;td class=&apos;center&apos;&gt;&quot;
 
 		  if (action.getFailCount()==0){
