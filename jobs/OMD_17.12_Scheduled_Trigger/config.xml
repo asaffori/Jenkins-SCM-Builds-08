@@ -255,11 +255,6 @@
           <description>What tests needs to run and in which confgurations? &lt;BR&gt;
 Test details are shared in arrays, seperated by comma. Test arrays are seperated by semicomma and can be entered in diffrent lines&lt;BR&gt;
 &lt;BR&gt;
-Input Syntax: &lt;BR&gt;
-[&lt;BR&gt;
-[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath];&lt;BR&gt;
-[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]&lt;BR&gt;
-]&lt;BR&gt;
 &lt;BR&gt;
 Details:&lt;BR&gt;
 SuiteName:File name of the test suite (excluding suffix)&lt;BR&gt;
@@ -274,14 +269,14 @@ ATEScriptsPath:ATE execution scripts folder&lt;BR&gt;
 &lt;BR&gt;
 Example:&lt;BR&gt;
 [&lt;BR&gt;
-[Autorun_XYS_Suite_ATE,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE];
-[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];
-[Autorun_XYS_Suite_ATE_A600,X:\ATE\TestCases\SQC\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Mil_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]
+[Autorun_XYS_Suite_ATE,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE];
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];
+[Autorun_XYS_Suite_ATE_A600,X:\ATE\TestCases\SQC\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Nunit_Mil_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]
 ]&lt;BR&gt;</description>
           <defaultValue>[
-[Autorun_XYS_Suite_ATE,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE];
-[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];
-[Autorun_XYS_Suite_ATE_A600,X:\ATE\TestCases\SQC\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Mil_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]
+[Autorun_XYS_Suite_ATE,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE];
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];
+[Autorun_XYS_Suite_ATE_A600,X:\ATE\TestCases\SQC\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Mil_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]
 ]</defaultValue>
         </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
@@ -294,7 +289,6 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
