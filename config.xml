@@ -449,10 +449,8 @@
             <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
             <string>OMD_17.03_Formal_Trigger</string>
             <string>OMD_17.04_Formal_Trigger</string>
-            <string>OMD_17.10_Formal_Trigger</string>
             <string>OMD_17.11_Formal_Trigger</string>
             <string>OMD_17.12_Formal_Trigger</string>
-            <string>OMD_17.12_SCA_Formal_Trigger</string>
             <string>OMD_18.00_Formal_Trigger</string>
           </jobNames>
           <jobFilters/>
@@ -466,7 +464,7 @@
             <hudson.views.LastFailureColumn/>
             <hudson.views.LastDurationColumn/>
           </columns>
-          <includeRegex>.*Formal.*Trigger.*</includeRegex>
+          <includeRegex>.*Formal.*Trigger</includeRegex>
           <recurse>false</recurse>
         </listView>
         <listView>
