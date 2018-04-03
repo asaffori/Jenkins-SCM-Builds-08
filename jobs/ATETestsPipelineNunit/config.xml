@@ -98,15 +98,15 @@ parameters {
                           fallbackScript(&apos;return [&quot;error&quot;]&apos;)
                       }
                   }
-                  activeChoiceReactiveParam(&apos;choice2&apos;) {
+        activeChoiceReactiveParam(&apos;choice2&apos;) {
                       description(&apos;select your choice&apos;)
                       choiceType(&apos;RADIO&apos;)
                       groovyScript {
-                          script(&quot;if(choice1.equals(&quot;aaa&quot;)){return [&apos;a&apos;, &apos;b&apos;]} else {return [&apos;aaaaaa&apos;,&apos;fffffff&apos;]}&quot;)
+                          script(&quot;if(choice1.equals(&apos;aaa&apos;)){return [&apos;a&apos;, &apos;b&apos;]} else {return [&apos;aaaaaa&apos;,&apos;fffffff&apos;]}&quot;)
                           fallbackScript(&apos;return [&quot;error&quot;]&apos;)
-                      }
+                    }
                       referencedParameter(&apos;choice1&apos;)
-                  }        
+        }        
     }
 
     stages {
