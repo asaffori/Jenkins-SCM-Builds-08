@@ -89,26 +89,26 @@ parameters {
         string(description: &apos;What is the Archer build version you want to test? \n example: 17.12.00.20600&apos;, name: &apos;BUILD_VERSION&apos;)
         choice(choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;What is your build type?&apos;, name: &apos;BUILDTYPE&apos;)
         text(description: &apos;What tests needs to run and in which confgurations? \n example: [[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]]&apos;, name: &apos;TestsArray&apos;)
-        
-        activeChoiceParam(&apos;choice1&apos;) {
-                      description(&apos;select your choice&apos;)
-                      choiceType(&apos;RADIO&apos;)
-                      groovyScript {
-                          script(&quot;return[&apos;aaa&apos;,&apos;bbb&apos;]&quot;)
-                          fallbackScript(&apos;return [&quot;error&quot;]&apos;)
-                      }
-                  }
-        activeChoiceReactiveParam(&apos;choice2&apos;) {
-                      description(&apos;select your choice&apos;)
-                      choiceType(&apos;RADIO&apos;)
-                      groovyScript {
-                          script(&quot;if(choice1.equals(&apos;aaa&apos;)){return [&apos;a&apos;, &apos;b&apos;]} else {return [&apos;aaaaaa&apos;,&apos;fffffff&apos;]}&quot;)
-                          fallbackScript(&apos;return [&quot;error&quot;]&apos;)
-                    }
-                      referencedParameter(&apos;choice1&apos;)
-        }        
-    }
 
+    }
+properties(
+[
+        [
+                $class              : &apos;ParametersDefinitionProperty&apos;,
+                parameterDefinitions: [
+                        [
+                                $class     : &apos;ChoiceParameterDefinition&apos;,
+                                choices    : &apos;aaa\nbbb&apos;,
+                                description: &apos;select your choice : &apos;,
+                                name       : &apos;choice1&apos;
+                        ],
+                        [
+                                $class     : &apos;ChoiceParameterDefinition&apos;,
+                                choices    : &apos;ccc\nddd&apos;,
+                                description: &apos;select another choice : &apos;,
+                                name       : &apos;choice2&apos;
+                        ]
+                        )
     stages {
         stage (&quot;Run ATE Tests&quot;){
             
