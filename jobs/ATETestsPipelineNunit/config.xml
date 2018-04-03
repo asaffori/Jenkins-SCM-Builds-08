@@ -91,7 +91,7 @@ parameters {
         text(description: &apos;What tests needs to run and in which confgurations? \n example: [[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]]&apos;, name: &apos;TestsArray&apos;)
 
     }
-properties(
+options(
 [
         [
                 $class              : &apos;ParametersDefinitionProperty&apos;,
