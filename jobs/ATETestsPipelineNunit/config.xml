@@ -108,6 +108,9 @@ properties(
                                 description: &apos;select another choice : &apos;,
                                 name       : &apos;choice2&apos;
                         ]
+                        ]
+                        ]
+                        ]
                         )
     stages {
         stage (&quot;Run ATE Tests&quot;){
