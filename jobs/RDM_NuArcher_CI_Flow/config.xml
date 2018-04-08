@@ -642,11 +642,12 @@ build.save()</postsendScript>
       <buildSteps>
         <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
           <regexp></regexp>
-          <description>${BUILDTYPE} - ${BUILD_VERSION} triggered by ${buildRequesterUserId}</description>
+          <description>${BUILDTYPE} - ${BUILD_VERSION} triggered by ${BUILD_USER}</description>
         </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+    <org.jenkinsci.plugins.builduser.BuildUser plugin="build-user-vars-plugin@1.5"/>
   </buildWrappers>
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
