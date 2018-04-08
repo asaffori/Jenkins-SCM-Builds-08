@@ -642,7 +642,7 @@ build.save()</postsendScript>
       <buildSteps>
         <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
           <regexp></regexp>
-          <description>${BUILDTYPE} - ${BUILD_VERSION} triggered by ${BUILD_USER}</description>
+          <description>${BUILDTYPE} - ${BUILD_VERSION} triggered by ${buildRequesterUserId}</description>
         </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
       </buildSteps>
       <failOnError>false</failOnError>
