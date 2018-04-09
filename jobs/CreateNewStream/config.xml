@@ -168,7 +168,7 @@
     			         //def userInput
     			         try{
     			             wrap([$class: &apos;BuildUser&apos;]) {
-        			             emailext (to: &apos;adham.saffori@kla-tencor.com&apos;,cc: &quot;${env.BUILD_USER_EMAIL}&quot;,
+        			             emailext (to: &quot;${BUILD_USER_EMAIL}&quot;,
                                      subject: &quot;New stream request is pending for your approval&quot;,
                                      body: &quot;&quot;&quot;&lt;p&gt;Dear CM team &lt;/p&gt;&lt;p&gt;New stream request requested by ${env.BUILD_USER} with name  &apos;${suggested_stream_name}&apos; is pending for your approval&lt;p&gt;
                                      &lt;p&gt;To approve the request, please visit ${env.BUILD_URL}input/ &lt;p&gt;&quot;&quot;&quot;);
