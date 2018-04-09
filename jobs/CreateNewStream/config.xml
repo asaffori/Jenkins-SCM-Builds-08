@@ -229,7 +229,7 @@
     						    }
 
 								create_stream_snapshot_cmd=&quot;scm create snapshot -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  -f ${env.userInput}  -d \&quot;Init snapshot create automatically by ${BUILD_USER}, based on stream ${env.userInput}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; -n ${params.SourceStreamSnapshotName}&quot;
-								searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)
+								searchStrInCommandOutput(create_stream_snapshot_cmd,&quot; successfully created.&quot;)
                              }
                         }
                     }
