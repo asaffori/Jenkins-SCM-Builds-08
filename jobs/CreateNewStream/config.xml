@@ -240,7 +240,7 @@
             failure {
                 wrap([$class: &apos;BuildUser&apos;]) {
                     // notify users when the Pipeline fails
-                    emailext (to: &apos;${BUILD_USER_EMAIL}&apos;,
+                    emailext (to: &quot;${BUILD_USER_EMAIL}&quot;,
                     subject: &quot;Stream ${suggested_stream_name} creation - FAILED&quot;,
                     body: &quot;&quot;&quot;Something is wrong during stream creation, please check creation log via ${env.BUILD_URL}&quot;&quot;&quot;);
                 }
