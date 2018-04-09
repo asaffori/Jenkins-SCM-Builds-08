@@ -36,7 +36,7 @@
         <hudson.model.StringParameterDefinition>
           <name>MajorMinor_Ver</name>
           <description></description>
-          <defaultValue>17.12</defaultValue>
+          <defaultValue>17.13</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>emailGroups</name>
@@ -55,7 +55,7 @@
             <string>ALL (no restriction)</string>
           </allowedSlaves>
           <defaultSlaves>
-            <string>SCM-Builds-V03</string>
+            <string>SCM-Builds-V01</string>
           </defaultSlaves>
           <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
           <allowMultiNodeSelection>false</allowMultiNodeSelection>
@@ -70,7 +70,7 @@
             <string>ALL (no restriction)</string>
           </allowedSlaves>
           <defaultSlaves>
-            <string>SCM-Builds-V04</string>
+            <string>SCM-Builds-V02</string>
           </defaultSlaves>
           <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
           <allowMultiNodeSelection>false</allowMultiNodeSelection>
@@ -289,7 +289,6 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
@@ -311,7 +310,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
     <timeout>0</timeout>
     <buildType>
       <value>buildDefinition</value>
-      <buildDefinition>OMD-Archer-V17.12-Scheduled-Jenkins</buildDefinition>
+      <buildDefinition>OMD-Archer-V17.13-Scheduled-Jenkins</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
       <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -321,7 +320,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>OMD-Archer-V17.12-Scheduled-Jenkins</buildDefinition>
+    <buildDefinition>OMD-Archer-V17.13-Scheduled-Jenkins</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -337,7 +336,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
     <hudson.triggers.SCMTrigger>
-      <spec>00 01 * * 0-5</spec>
+      <spec>03 23 * * 0-6</spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
   </triggers>
