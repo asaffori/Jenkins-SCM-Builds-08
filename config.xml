@@ -423,6 +423,7 @@
             <string>OMD_17.04_Scheduled_Trigger</string>
             <string>OMD_17.12.01_Scheduled_Trigger</string>
             <string>OMD_17.12_Scheduled_Trigger</string>
+            <string>OMD_17.13_Scheduled_Trigger</string>
             <string>OMD_18.00_Scheduled_Trigger</string>
           </jobNames>
           <jobFilters/>
