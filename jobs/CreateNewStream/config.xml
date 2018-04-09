@@ -22,6 +22,27 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -46,27 +67,6 @@
         </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -240,7 +240,7 @@
             failure {
                 wrap([$class: &apos;BuildUser&apos;]) {
                     // notify users when the Pipeline fails
-                    emailext (to: &apos;${env.BUILD_USER_EMAIL}&apos;,
+                    emailext (to: &apos;${BUILD_USER_EMAIL}&apos;,
                     subject: &quot;Stream ${suggested_stream_name} creation - FAILED&quot;,
                     body: &quot;&quot;&quot;Something is wrong during stream creation, please check creation log via ${env.BUILD_URL}&quot;&quot;&quot;);
                 }
@@ -249,7 +249,7 @@
             success {
                 wrap([$class: &apos;BuildUser&apos;]) {
                     // notify users when the Pipeline success
-                    emailext (to: &apos;${env.BUILD_USER_EMAIL}&apos;,
+                    emailext (to: &apos;${BUILD_USER_EMAIL}&apos;,
                                      subject: &quot;Stream ${suggested_stream_name} creation - SUCCESS&quot;,
                                      body: &quot;&quot;&quot;Dear ${env.BUILD_USER} &lt;BR&gt; Your request for new sream with the name ${suggested_stream_name} was approved. &lt;BR&gt; New stream was created based on ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}.&lt;BR&gt; Regards &lt;BR&gt; OMD DevOps team&quot;&quot;&quot;);
                 }
