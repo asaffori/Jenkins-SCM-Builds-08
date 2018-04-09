@@ -28,6 +28,14 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -67,16 +75,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
     <script>pipeline {
@@ -169,9 +168,9 @@
     			         //def userInput
     			         try{
     			             wrap([$class: &apos;BuildUser&apos;]) {
-        			             emailext (to: &apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;,cc: &quot;${env.BUILD_USER_EMAIL}&quot;,
+        			             emailext (to: &apos;adham.saffori@kla-tencor.com&apos;,cc: &apos;${env.BUILD_USER_EMAIL}&apos;,
                                      subject: &quot;New stream request is pending for your approval&quot;,
-                                     body: &quot;&quot;&quot;&lt;p&gt;Dear CM team &lt;/p&gt;&lt;p&gt;New stream request with name  &apos;${suggested_stream_name}&apos; is pending for your approval&lt;p&gt;
+                                     body: &quot;&quot;&quot;&lt;p&gt;Dear CM team &lt;/p&gt;&lt;p&gt;New stream request requested by ${env.BUILD_USER} with name  &apos;${suggested_stream_name}&apos; is pending for your approval&lt;p&gt;
                                      &lt;p&gt;To approve the request, please visit ${env.BUILD_URL}input/ &lt;p&gt;&quot;&quot;&quot;);
     			             }
             			     env.userInput = input(
@@ -219,7 +218,8 @@
                     steps {
                         script {
                              wrap([$class: &apos;BuildUser&apos;]) {
-                                create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  --description \&quot;Created by ${BUILD_USER}, based on stream ${suggested_stream_name}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; --snapshot ${params.SourceStreamSnapshotName}  --projectarea \&quot;OMD NuArcher\&quot; &quot;
+                                //create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  --description \&quot;Created by ${BUILD_USER}, based on stream ${suggested_stream_name}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; --snapshot ${params.SourceStreamSnapshotName}  --projectarea \&quot;OMD NuArcher\&quot; &quot;
+                                create_stream_cmd=&quot;&quot;
                                 switch(searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)){
     						        case 0:
     						            msg=&quot;Stream creation faild&quot;
@@ -229,8 +229,8 @@
                                         print &apos;New stream was successfully created&apos;
     						    }
 
-								create_stream_snapshot_cmd=&quot;scm create snapshot -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  -f ${env.userInput}  -d \&quot;Init snapshot create automatically by ${BUILD_USER}, based on stream ${suggested_stream_name}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; -n ${params.SourceStreamSnapshotName}&quot;
-								searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)
+								//create_stream_snapshot_cmd=&quot;scm create snapshot -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  -f ${env.userInput}  -d \&quot;Init snapshot create automatically by ${BUILD_USER}, based on stream ${suggested_stream_name}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; -n ${params.SourceStreamSnapshotName}&quot;
+								//searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)
                              }
                         }
                     }
