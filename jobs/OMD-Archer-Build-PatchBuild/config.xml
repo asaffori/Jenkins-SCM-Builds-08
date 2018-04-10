@@ -140,7 +140,6 @@ Manual Installation instructions:&lt;br&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -197,14 +196,16 @@ echo *****************************************&#xd;
 CALL D:\Sandboxes\DONOT_DELETE_ADHAM\OMD_Builds\JenkinsBuild\BatchFiles\CreateBuildOutputsFromShare.bat %Base_Build_Version% %Patch_Version% &quot;Release,Debug&quot; Formal %team.scm.workspaceUUID%&#xd;
 IF %ERRORLEVEL% NEQ 0 call :error &quot;CreateBuildOutputsFromShare failed. Please check logs.&quot;&#xd;
 &#xd;
-for /F &quot;delims=, tokens=*&quot; %%f in (%Depend_Patches_Verions%) do (&#xd;
-   for %%b in (&quot;%BUILD_MODES:,=&quot; &quot;%&quot;) do (&#xd;
-     echo =====================================================&#xd;
-     echo ======== Restoring Patch %%f for mode %%b ===========&#xd;
-     echo =====================================================&#xd;
-     xcopy %PATCHER_REMOTE_PATH%\UOMD_%%f_Patch\%%b\Bin  P:\Bin_%%b /f /s&#xd;
-     IF exists %PATCHER_REMOTE_PATH%\UOMD_%%f_Patch\%%b\Lib_%%b xcopy %PATCHER_REMOTE_PATH%\UOMD_%%f_Patch\%%b\Lib_%%b  P:\Lib_%%b /f /s&#xd;
-  )&#xd;
+if NOT &quot;%Depend_Patches_Verions%&quot;==&quot;&quot; (&#xd;
+ for /F &quot;delims=, tokens=*&quot; %%f in (%Depend_Patches_Verions%) do (&#xd;
+    for %%b in (&quot;%BUILD_MODES:,=&quot; &quot;%&quot;) do (&#xd;
+      echo =====================================================&#xd;
+      echo ======== Restoring Patch %%f for mode %%b ===========&#xd;
+      echo =====================================================&#xd;
+      xcopy %PATCHER_REMOTE_PATH%\UOMD_%%f_Patch\%%b\Bin  P:\Bin_%%b /f /s&#xd;
+      IF exists %PATCHER_REMOTE_PATH%\UOMD_%%f_Patch\%%b\Lib_%%b xcopy %PATCHER_REMOTE_PATH%\UOMD_%%f_Patch\%%b\Lib_%%b  P:\Lib_%%b /f /s&#xd;
+   )&#xd;
+ )&#xd;
 )&#xd;
 &#xd;
 ECHO &quot;Updating sources with patch version %Patch_Version% &quot;&#xd;
