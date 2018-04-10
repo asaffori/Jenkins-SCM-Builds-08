@@ -197,6 +197,7 @@ CALL D:\Sandboxes\DONOT_DELETE_ADHAM\OMD_Builds\JenkinsBuild\BatchFiles\CreateBu
 IF %ERRORLEVEL% NEQ 0 call :error &quot;CreateBuildOutputsFromShare failed. Please check logs.&quot;&#xd;
 Echo 999999999990&quot;%Depend_Patches_Verions%&quot;099999999999999999999&#xd;
 if NOT &quot;%Depend_Patches_Verions%&quot;==&quot;&quot; (&#xd;
+ECHO &quot; I am there unfortunatly&quot;&#xd;
  for /F &quot;delims=, tokens=*&quot; %%f in (%Depend_Patches_Verions%) do (&#xd;
     for %%b in (&quot;%BUILD_MODES:,=&quot; &quot;%&quot;) do (&#xd;
       echo =====================================================&#xd;
@@ -207,7 +208,7 @@ if NOT &quot;%Depend_Patches_Verions%&quot;==&quot;&quot; (&#xd;
    )&#xd;
  )&#xd;
 )&#xd;
-&#xd;
+Echo 999999999991&quot;%Depend_Patches_Verions%&quot;199999999999999999999&#xd;
 ECHO &quot;Updating sources with patch version %Patch_Version% &quot;&#xd;
 CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\DoFullBuild.bat&#xd;
 IF %ERRORLEVEL% NEQ 0 call :error &quot;build failed. Please check logs.&quot;&#xd;
