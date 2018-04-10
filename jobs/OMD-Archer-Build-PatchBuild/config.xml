@@ -325,16 +325,40 @@ goto END&#xd;
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
-      <script plugin="script-security@1.39">
-        <script>def readme_file_path=manager.envVars[&quot;PATCH_BASE_PATH&quot;]+&quot;\\README.html&quot;
+    <org.jenkins__ci.plugins.flexible__publish.FlexiblePublisher plugin="flexible-publish@0.15.2">
+      <publishers>
+        <org.jenkins__ci.plugins.flexible__publish.ConditionalPublisher>
+          <condition class="org.jenkins_ci.plugins.run_condition.core.StatusCondition" plugin="run-condition@1.0">
+            <worstResult>
+              <name>SUCCESS</name>
+              <ordinal>0</ordinal>
+              <color>BLUE</color>
+              <completeBuild>true</completeBuild>
+            </worstResult>
+            <bestResult>
+              <name>SUCCESS</name>
+              <ordinal>0</ordinal>
+              <color>BLUE</color>
+              <completeBuild>true</completeBuild>
+            </bestResult>
+          </condition>
+          <publisherList>
+            <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.3.1">
+              <script plugin="script-security@1.39">
+                <script>def readme_file_path=manager.envVars[&quot;PATCH_BASE_PATH&quot;]+&quot;\\README.html&quot;
 manager.listener.logger.println (&quot;Generating README.html file at: &quot;+ readme_file_path)
 (new File(readme_file_path)).write(manager.envVars[&quot;README&quot;])</script>
-        <sandbox>false</sandbox>
-      </script>
-      <behavior>0</behavior>
-      <runForMatrixParent>false</runForMatrixParent>
-    </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
+                <sandbox>false</sandbox>
+              </script>
+              <behavior>0</behavior>
+              <runForMatrixParent>false</runForMatrixParent>
+            </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
+          </publisherList>
+          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+          <executionStrategy class="org.jenkins_ci.plugins.flexible_publish.strategy.FailAtEndExecutionStrategy"/>
+        </org.jenkins__ci.plugins.flexible__publish.ConditionalPublisher>
+      </publishers>
+    </org.jenkins__ci.plugins.flexible__publish.FlexiblePublisher>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
       <recipientList>adham.saffori@kla-tencor.com</recipientList>
       <configuredTriggers>
