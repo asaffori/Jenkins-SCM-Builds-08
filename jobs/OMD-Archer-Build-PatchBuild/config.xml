@@ -148,7 +148,7 @@ Manual Installation instructions:&lt;br&gt;
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
-        <scriptFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</scriptFilePath>
+        <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
       <on>true</on>
