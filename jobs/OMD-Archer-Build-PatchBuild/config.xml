@@ -130,6 +130,11 @@ Manual Installation instructions:&lt;br&gt;
 &lt;br&gt;
 3.	Run KT-start.&lt;br&gt;</defaultValue>
         </hudson.model.TextParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JENKINCONFIGPATH</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -141,9 +146,44 @@ Manual Installation instructions:&lt;br&gt;
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <EnvInjectJobProperty plugin="envinject@1.90">
+      <info>
+        <scriptFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</scriptFilePath>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>false</overrideBuildParameters>
+      <contributors/>
+    </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
+    <overrideGlobal>false</overrideGlobal>
+    <timeout>0</timeout>
+    <buildType>
+      <value>buildDefinition</value>
+      <buildDefinition>${buildDefinitionId}</buildDefinition>
+      <clearLoadDirectory>false</clearLoadDirectory>
+      <createFoldersForComponents>false</createFoldersForComponents>
+      <acceptBeforeLoad>true</acceptBeforeLoad>
+      <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+      <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+      <customizedSnapshotName></customizedSnapshotName>
+      <useDynamicLoadRules>false</useDynamicLoadRules>
+    </buildType>
+    <buildTypeStr>buildDefinition</buildTypeStr>
+    <buildDefinition>${buildDefinitionId}</buildDefinition>
+    <clearLoadDirectory>false</clearLoadDirectory>
+    <createFoldersForComponents>false</createFoldersForComponents>
+    <acceptBeforeLoad>true</acceptBeforeLoad>
+    <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+    <avoidUsingToolkit>false</avoidUsingToolkit>
+    <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+    <customizedSnapshotName></customizedSnapshotName>
+    <useDynamicLoadRules>false</useDynamicLoadRules>
+  </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -169,7 +209,7 @@ set buildRequesterUserId=omdbuild&#xd;
 echo *****************************************&#xd;
 ECHO  Loading Build Outputs from share folder&#xd;
 echo *****************************************&#xd;
-::CALL D:\Sandboxes\DONOT_DELETE_ADHAM\OMD_Builds\JenkinsBuild\BatchFiles\CreateBuildOutputsFromShare.bat %Base_Build_Version% %Patch_Version% &quot;Release,Debug&quot; Formal %team.scm.workspaceUUID%&#xd;
+CALL D:\Sandboxes\DONOT_DELETE_ADHAM\OMD_Builds\JenkinsBuild\BatchFiles\CreateBuildOutputsFromShare.bat %Base_Build_Version% %Patch_Version% &quot;Release,Debug&quot; Formal %team.scm.workspaceUUID%&#xd;
 IF %ERRORLEVEL% NEQ 0 call :error &quot;CreateBuildOutputsFromShare failed. Please check logs.&quot;&#xd;
 Echo 999999999990&quot;%Depend_Patches_Verions%&quot;099999999999999999999&#xd;
 ::if NOT &quot;%Depend_Patches_Verions%&quot; == &quot;&quot; (&#xd;
