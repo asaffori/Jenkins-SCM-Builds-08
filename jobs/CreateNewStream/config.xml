@@ -97,7 +97,7 @@
         text(name: &apos;SourceStreamSnapshotName&apos;, defaultValue: &apos;&apos;, description: &quot;What is the stream snapshot name you would use as a base for the new stream? Examples:UOMD_BLD_17.12.00.30100 UOMD_BLD_17.12.00.20600&quot;)
     }
     environment {
-        suggested_stream_name=&quot;${params.SourceStreamName}&quot;.substring(0,&quot;${params.SourceStreamName}&quot;.lastIndexOf(&apos;_&apos;)-1)+&quot;_${params.streamTitle}_${params.WorkItem}&quot;
+        suggested_stream_name=&quot;${params.SourceStreamName}&quot;.substring(0,&quot;${params.SourceStreamName}&quot;.lastIndexOf(&apos;_&apos;)-1)+&quot;_&quot;+&quot;${params.streamTitle}&quot;+&quot;_&quot;+&quot;${params.WorkItem}&quot;
         snapshot_name_prefix=&quot;UOMD_BLD_&quot;
         search_snaposhots_cmd=&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamSnapshotName}&quot;
         search_snaposhots_by_stream_cmd=&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -m 1 ${params.SourceStreamName}&quot;
