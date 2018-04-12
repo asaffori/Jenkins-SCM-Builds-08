@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>ATEControllerEngine</name>
+          <description></description>
+          <allowedSlaves>
+            <string>SCM-ATE-01</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>SCM-ATE-01</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>SimulatorEngine</name>
+          <description></description>
+          <allowedSlaves>
+            <string>SCM-SIM7050-01</string>
+            <string>SCM-SIM7050-02</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>SCM-SIM7050-01</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>Auto_Deploy_Sanity</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TestSuite</name>
+          <description>Full file name, XXXXX.csv</description>
+          <defaultValue>AROL_Autorun_ATE_Suite</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TestSuitePath</name>
+          <description>Start with X:</description>
+          <defaultValue>X:\ATE\TestCases\SQC\MBS\AROL</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ATEBasePath</name>
+          <description></description>
+          <defaultValue>\\isr1vmappcm01\Automated_Testing\17.0x_ATE</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>CheckSimTimeout</name>
+          <description></description>
+          <defaultValue>180</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>ToolType</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Archer TL</string>
+              <string>Archer600</string>
+              <string>Archer700</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_VERSION</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>10</maxConcurrentPerNode>
+      <maxConcurrentTotal>10</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>true</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>true</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit>SimulatorEngine</paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <quietPeriod>50</quietPeriod>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>C:\Eggplant Reports</customWorkspace>
+  <builders>
+    <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
+      <regexp></regexp>
+      <description>Run ${TestSuite} on ${SimulatorEngine} with ${ToolType} configuration.</description>
+    </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
+    <hudson.tasks.BatchFile>
+      <command>if /I %SimulatorEngine%==SCM-SIM7050-01 set SimulatorEngine=10.158.46.178&#xd;
+set pinglooptimeout=0&#xd;
+:pingloopstart&#xd;
+if %pinglooptimeout%==%CheckSimTimeout% (&#xd;
+echo ******* autologonuser is not logged on ************&#xd;
+goto error&#xd;
+)&#xd;
+echo ******* check autologonuser status on %SimulatorEngine% for %pinglooptimeout% time&#xd;
+wmic.exe /node:&apos;%SimulatorEngine%&apos; computersystem get username| find &quot;autologonuser&quot;&#xd;
+if not %errorlevel%==0 (&#xd;
+set /a pinglooptimeout=%pinglooptimeout%+1&#xd;
+ping 1.0.0.1 -n 1 -w 60000 &gt; nul&#xd;
+goto pingloopstart&#xd;
+)&#xd;
+&#xd;
+echo cleaning old log under C:\EggPlant report older than 7 days&#xd;
+forfiles -p &quot;C:\ATELogs&quot; -d -7 -c &quot;cmd /c IF @isdir == TRUE rd /S /Q @path&quot;&#xd;
+&#xd;
+net use * /d /y&#xd;
+&#xd;
+net use X: %ATEBasePath%&#xd;
+if not %errorlevel%==0 (&#xd;
+echo map %ATEBasePath% to X failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+net use Y: \\%SimulatorEngine%\c$&#xd;
+if not %errorlevel%==0 (&#xd;
+echo map \\%SimulatorEngine%\c$ to Y failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+net use W: \\%SimulatorEngine%\D$&#xd;
+if not %errorlevel%==0 (&#xd;
+echo map \\%SimulatorEngine%\D$ to W failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+xcopy &quot;%ATEConfigPath%\SDP for %ToolType%\*.*&quot; Y:\5300\SDP\ /f /r /s /y&#xd;
+if not %errorlevel%==0 (&#xd;
+echo Update SDP folder on %SimulatorEngine% failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+xcopy &quot;%ATEConfigPath%\Golden_reg_for_%ToolType%\*.*&quot; Y:\Automation\ /f /r /s /y&#xd;
+if not %errorlevel%==0 (&#xd;
+echo Copy Golden reg files to %SimulatorEngine% failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+if exist Y:\Automation\RecipesCounters.csv (&#xd;
+del  /Q /F Y:\Automation\RecipesCounters_backup.csv&#xd;
+ren Y:\Automation\RecipesCounters.csv RecipesCounters_backup.csv&#xd;
+)&#xd;
+if not %errorlevel%==0 (&#xd;
+echo backup RecipesCounters.csv failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+xcopy \\isr1vmappcm01\Automated_Testing\ATE_LatestApps\*.* Y:\Automation\ /f /r /s /y&#xd;
+if not %errorlevel%==0 (&#xd;
+echo Update Automation folder on %SimulatorEngine% failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+if exist Y:\Automation\RecipesCounters_backup.csv (&#xd;
+del /Q /F Y:\Automation\RecipesCounters.csv&#xd;
+ren Y:\Automation\RecipesCounters_backup.csv RecipesCounters.csv&#xd;
+)&#xd;
+if not %errorlevel%==0 (&#xd;
+echo Update RecipesCounters.csv failed&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+if not exist Y:\DataForEggplant md Y:\DataForEggplant&#xd;
+if not %errorlevel%==0 (&#xd;
+echo Create DataForEggplant folder on %SimulatorEngine% failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+cd C:\RunScript&#xd;
+RunScriptsFromFolder.exe &quot;%TestSuitePath%&quot; &quot;%TestSuite%.csv&quot; &quot;%SimulatorEngine%&quot;&#xd;
+if not %errorlevel%==0 (&#xd;
+echo Run RunScriptsFromFolder failed&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+xcopy &quot;C:\Eggplant Reports\*.*&quot; &quot;C:\ATElogs\%BUILD_VERSION%_%ToolType%\&quot; /f /r /s /y&#xd;
+rd /q /s &quot;C:\Eggplant Reports&quot;&#xd;
+&#xd;
+if exist C:\temp\NightRunFailFlag.txt (&#xd;
+echo There are failures during Testing, please check the logs under %ATEControllerEngine%\C$\Eggplant Reports for more information.&#xd;
+goto error&#xd;
+)&#xd;
+goto end&#xd;
+:error&#xd;
+echo Run Sanity test on %SimulatorEngine% failed.&#xd;
+exit /b 1&#xd;
+:end&#xd;
+&#xd;
+</command>
+      <unstableReturn>1</unstableReturn>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesContent>ATEConfigPath=\\isr1vmappcm01\Automated_Testing\Install files</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+          <source class="hudson.plugins.groovy.StringSystemScriptSource">
+            <script plugin="script-security@1.39">
+              <script>import hudson.model.Result;
+
+def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+
+if (Auto_Deploy_Sanity== &quot;false&quot;) {
+	println (&quot;Auto_Deploy_Sanity was disabled. Archer_Sanity will not run&quot;);
+  	build.getExecutor().interrupt(Result.SUCCESS)
+}</script>
+              <sandbox>false</sandbox>
+            </script>
+          </source>
+        </hudson.plugins.groovy.SystemGroovy>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
+</project>
