@@ -46,7 +46,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
-          <defaultValue>\\isr1appcc02\scm\OMD\Jenkins_Build_Version\${MajorMinor_Ver}version.txt</defaultValue>
+          <defaultValue>\\isr1appcc02\scm\OMD\Jenkins_Build_Version\${MajorMinor_Ver}_Beta_version.txt</defaultValue>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ReleaseBuildEngine</name>
@@ -289,12 +289,11 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesContent>BUILDTYPE=Scheduled
-WSName=omdbuild_Archer_${MajorMinor_Ver}_Dev_Workspace
+WSName=omdbuild_Archer_${MajorMinor_Ver}_Beta_Dev_Workspace
 SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
@@ -311,7 +310,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
     <timeout>0</timeout>
     <buildType>
       <value>buildDefinition</value>
-      <buildDefinition>OMD-Archer-V17.13-Scheduled-Jenkins</buildDefinition>
+      <buildDefinition>OMD-Archer-V17.13_Beta-Scheduled-Jenkins</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
       <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -321,7 +320,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>OMD-Archer-V17.13-Scheduled-Jenkins</buildDefinition>
+    <buildDefinition>OMD-Archer-V17.13_Beta-Scheduled-Jenkins</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
