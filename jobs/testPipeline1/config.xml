@@ -35,9 +35,28 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script> def get_snaposhot_UUID_cmd=&quot;scm -u y list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; Archer_17.12_Integ| findstr /R /c:\&quot;UOMD_BLD_17.13.00.10027\&quot;| cut -d) -f1 | cut -d: -f2&quot;
- 
- def cc = bat returnStdout: true , script: &apos;${get_snaposhot_UUID_cmd}&apos;</script>
+    <script>pipeline {
+    agent { node { label &apos;master&apos; } }
+     parameters {
+         string (name: &apos;WorkItem&apos;, defaultValue:&apos;&apos;, description: &apos;What is the Work Item number of the new project?&apos;)
+         text (name: &apos;streamTitle&apos;, defaultValue:&apos;&apos;, description:&apos;What is the short project title (use _ as delimter for multiple words, max 40 characters)?&apos;)
+        //string(name: &apos;SuggestedStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What should the new stream be named with? Prefered syntax:Archer_17.12_TaskName_WorkItemNum&apos;)
+        string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is your base stream name?&apos;)
+        text(name: &apos;SourceStreamSnapshotName&apos;, defaultValue: &apos;&apos;, description: &quot;What is the stream snapshot name you would use as a base for the new stream? Examples:UOMD_BLD_17.12.00.30100 UOMD_BLD_17.12.00.20600&quot;)
+    }
+    environment {
+ def get_snaposhot_UUID_cmd=&quot;scm -u y list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; Archer_17.12_Integ| findstr /R /c:\&quot;UOMD_BLD_17.13.00.10027\&quot;| cut -d) -f1 | cut -d: -f2&quot;
+    }
+            stages {
+    			stage (&apos;verification&apos;) {
+    				steps {
+        				    script {
+ def cc = bat returnStdout: true , script: &apos;${get_snaposhot_UUID_cmd}&apos;
+        				    }
+    				}
+    			}
+            }
+}</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
