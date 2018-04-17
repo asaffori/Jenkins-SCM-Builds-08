@@ -235,13 +235,14 @@
                                 &apos;&apos;&apos;
 
                                 snapsList.readLines().each { line -&gt;
-                                    if(line.contains(&apos;\&quot;${params.SourceStreamSnapshotName}\&quot;&apos;)){
+                                    if(line.contains(&quot;\&quot;${params.SourceStreamSnapshotName}\&quot;&quot;)){
                                         if (line.contains(&apos;)&apos;)){
                                             snapshot_UUID=line.split(&quot;\\)&quot;)[0].split(&quot;\\:&quot;)[1]
                                         }
                                     }
                                 }
-                                create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  --description \&quot;Created by ${BUILD_USER}, based on stream ${params.SourceStreamName}, snapshot ${params.SourceStreamSnapshotName} and work item ${params.WorkItem}\&quot; --snapshot ${snaposhot_UUID}  --projectarea \&quot;OMD NuArcher\&quot;&quot;
+
+                                create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  --description \&quot;Created by ${BUILD_USER}, based on stream ${params.SourceStreamName}, snapshot ${params.SourceStreamSnapshotName} and work item ${params.WorkItem}\&quot; --snapshot ${snapshot_UUID}  --projectarea \&quot;OMD NuArcher\&quot;&quot;
                                 switch(searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)){
     						        case 0:
     						            msg=&quot;Stream creation faild&quot;
