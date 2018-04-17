@@ -71,7 +71,7 @@
   if(line.contains(&apos;\&quot;UOMD_BLD_17.12.01.20600\&quot;&apos;)){
       if (line.contains(&quot;)&quot;)){
             print (&quot;Line split:&quot;+line.split(&quot;)&quot;))
-            return line.split(&apos;)&apos;)[0]     
+            return line.split(&quot;)&quot;)[0]     
         }
   }
         				    }
