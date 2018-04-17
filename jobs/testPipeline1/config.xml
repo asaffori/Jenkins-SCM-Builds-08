@@ -68,7 +68,8 @@
  
  def UUID= cc.readLines().each { line -&gt;
     print (&quot;line=&quot;+line)
-  if(line.contains(&apos;\&quot;UOMD_BLD_17.12.00.20600\&quot;&apos;)){
+  if(line.contains(&quot;\&quot;UOMD_BLD_17.12.00.20600\&quot;&quot;)){
+            print (&quot;Line split:&quot;+line.split(&apos;)&apos;))
             return line.split(&apos;)&apos;)[0]     
         }
         				    }
