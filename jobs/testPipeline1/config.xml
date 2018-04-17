@@ -25,6 +25,8 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
@@ -33,56 +35,9 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
-    <script>Map jobResults = [:]
-
-Boolean failedJobs = false
-@NonCPS
-def buildJobWithParams(def AUT_Tests, Map results) {
-  def branches = [:] 
-  def allocated_nodes = []
-  AUT_Tests.each
-  {
-    def labelNodes = Jenkins.instance.getLabel(it.value)
-    def nodes = labelNodes.getNodes()
-    def nodeName=null
-    
-    for (node in nodes) {
-        if (!node.getComputer().isOffline()){ 
-                 print node.getComputer().getNumExecutors()
-                 print node.getComputer().countBusy()
-                if ((node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0) &amp;&amp; !(node.getNodeName() in allocated_nodes)){
-                    nodeName=node.getNodeName()
-                    allocated_nodes &lt;&lt; nodeName
-                    break;
-                }
-             }
-    }
-        if (nodeName == null)
-            nodeName=nodes[0].getNodeName();
-        
-    print &quot;bbbb &quot;+it.key
-     def jobName=it.key
-     def location=nodeName
-    branches[&quot;Test-&quot;+jobName] = {
-        print &quot;location=&quot;+location
-        print &quot;jobName=&quot;+jobName
-       /**def jobBuild = **/build job: jobName, parameters: [[$class: &apos;NodeParameterValue&apos;, name: &apos;node&apos;, labels: [&quot;$location&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],[$class: &apos;StringParameterValue&apos;, name: &apos;name&apos;, value: &apos;adham&apos;]]
-       //def jobResult = jobBuild.getResult()
-       //echo &quot;Build of ${jobName} returned result: ${jobResult}&quot;
-       //results[jobName] = jobResult
-    }
-  }    
-  return branches
-}
-
-stage(&apos;Run integration tests&apos;) {
-     // steps {
-        AUT_Tests=[&apos;test1&apos;:&apos;pipe&apos;,&apos;test2&apos;:&apos;pipe&apos;,&apos;test3&apos;:&apos;pipe&apos;]
-            def job_branch = buildJobWithParams(AUT_Tests, jobResults)
-            print &quot;aaaa&quot;+job_branch
-            parallel job_branch
-       //   }
-}</script>
+    <script> def get_snaposhot_UUID_cmd=&quot;scm -u y list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; Archer_17.12_Integ| findstr /R /c:\&quot;UOMD_BLD_17.13.00.10027\&quot;| cut -d) -f1 | cut -d: -f2&quot;
+ 
+ def cc = bat returnStdout: true , script: &apos;${get_snaposhot_UUID_cmd}&apos;</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
