@@ -22,30 +22,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>WorkItem</name>
-          <description>What is the Work Item number of the new project?</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>streamTitle</name>
-          <description>What is the short project title (use _ as delimter for multiple words, max 40 characters)?</description>
-          <defaultValue></defaultValue>
-        </hudson.model.TextParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SourceStreamName</name>
-          <description>What is your base stream name?</description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>SourceStreamSnapshotName</name>
-          <description>What is the stream snapshot name you would use as a base for the new stream? Examples:UOMD_BLD_17.12.00.30100 UOMD_BLD_17.12.00.20600</description>
-          <defaultValue></defaultValue>
-        </hudson.model.TextParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -86,7 +62,7 @@
     			stage (&apos;verification&apos;) {
     				steps {
         				    script {
- def cc = bat returnStdout: true , script: &apos;${env.get_snaposhot_UUID_cmd}&apos;
+ def cc = bat returnStdout: true , script: &quot;${get_snaposhot_UUID_cmd}&quot;
         				    }
     				}
     			}
