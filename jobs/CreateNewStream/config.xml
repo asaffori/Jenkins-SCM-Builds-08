@@ -229,8 +229,19 @@
                     steps {
                         script {
                              wrap([$class: &apos;BuildUser&apos;]) {
-                                def snaposhot_UUID = bat returnStdout:true , script: &apos;${get_snaposhot_UUID_cmd}&apos;
-                                create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  --description \&quot;Created by ${BUILD_USER}, based on stream ${params.SourceStreamName}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; --snapshot ${snaposhot_UUID}  --projectarea \&quot;OMD NuArcher\&quot;&quot;
+                                def snaposhot_UUID;
+                                def snapsList = bat returnStdout: true , script: &apos;&apos;&apos;
+                                        scm -u y list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; ${params.SourceStreamName}
+                                &apos;&apos;&apos;
+
+                                snapsList.readLines().each { line -&gt;
+                                    if(line.contains(&apos;\&quot;${params.SourceStreamSnapshotName}\&quot;&apos;)){
+                                        if (line.contains(&apos;)&apos;)){
+                                            snapshot_UUID=line.split(&quot;\\)&quot;)[0].split(&quot;\\:&quot;)[1]
+                                        }
+                                    }
+                                }
+                                create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  --description \&quot;Created by ${BUILD_USER}, based on stream ${params.SourceStreamName}, snapshot ${params.SourceStreamSnapshotName} and work item ${params.WorkItem}\&quot; --snapshot ${snaposhot_UUID}  --projectarea \&quot;OMD NuArcher\&quot;&quot;
                                 switch(searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)){
     						        case 0:
     						            msg=&quot;Stream creation faild&quot;
@@ -239,7 +250,8 @@
                                     default:
                                         print &apos;New stream was successfully created&apos;
     						    }
-								create_stream_snapshot_cmd=&quot;scm create snapshot -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  -d \&quot;Init snapshot create automatically by ${BUILD_USER}, based on stream ${params.SourceStreamName}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; -n ${params.SourceStreamSnapshotName}&quot;
+
+        						create_stream_snapshot_cmd=&quot;scm create snapshot -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  -d \&quot;Init snapshot create automatically by ${BUILD_USER}, based on stream ${params.SourceStreamName}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; -n ${params.SourceStreamSnapshotName}&quot;
 								searchStrInCommandOutput(create_stream_snapshot_cmd,&quot; successfully created.&quot;)
                              }
                         }
