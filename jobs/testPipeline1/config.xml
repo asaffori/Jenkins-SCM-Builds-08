@@ -65,6 +65,8 @@
  def cc = bat returnStdout: true , script: &apos;&apos;&apos;
                         scm -u y list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; Archer_17.12_Integ
  &apos;&apos;&apos;
+ 
+ print (cc)
         				    }
     				}
     			}
