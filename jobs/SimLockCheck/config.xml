@@ -121,7 +121,7 @@ goto error&#xd;
 if not exist \\isr1appcc02\SCM\OMD\Jenkins_SimulatorLock\%SimulatorEngine%_*_Lock.txt goto startlock&#xd;
 echo ************* The simulator is locked %time% for %num% mins***************&#xd;
 ping 1.0.0.1 -n 1 -w 60000 &gt; nul&#xd;
-SLEEP 60&#xd;
+TIMEOUT /T 60&#xd;
 set /a num=%num%+1&#xd;
 goto checklock&#xd;
 :startlock&#xd;
