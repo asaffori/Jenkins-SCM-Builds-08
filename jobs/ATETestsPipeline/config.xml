@@ -15,6 +15,7 @@
         <string>TestsArray</string>
         <string>BUILD_VERSION</string>
         <string>BUILDTYPE</string>
+        <string>RunNunitTests</string>
       </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
