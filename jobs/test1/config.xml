@@ -44,8 +44,8 @@
       <enableConcurrentBuild>false</enableConcurrentBuild>
       <host>mailhost.kla-tencor.com</host>
       <username>omdbuild</username>
-      <password>{AQAAABAAAAAQCaet5vsocEWQ8q7p5UC1weCvr+r0tPBVWjDxAaqKJzU=}</password>
-      <script>mail.imaps.port=25
+      <password>{AQAAABAAAAAQ62v2o4Uxbt4EGYDiNLxMnZLsgvQh/o6ULIeE7C93s48=}</password>
+      <script>mail.imaps.port=465
 mail.imap.ssl.enable=false
 mail.imap.starttls.enable=true
 folder=INBOX
