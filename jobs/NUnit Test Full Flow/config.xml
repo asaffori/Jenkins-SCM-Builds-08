@@ -670,10 +670,6 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>RunNunitTests</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>CodeViewLoadePath</string>
       <string></string>
     </entry>
