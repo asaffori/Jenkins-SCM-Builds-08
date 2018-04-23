@@ -289,7 +289,6 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
@@ -369,7 +368,8 @@ BuildAutoApproved=true
 SnapshotName=${SnapshotName}
 buildResultUUID=${buildResultUUID}
 team_scm_workspaceUUID=${team_scm_workspaceUUID}
-CheckSimTimeout=180</properties>
+CheckSimTimeout=180
+RunNunitTests=true</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
