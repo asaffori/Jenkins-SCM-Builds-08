@@ -3,7 +3,6 @@
   <defaultSuffix>@kla-tencor.com</defaultSuffix>
   <smtpHost>mailhost.kla-tencor.com</smtpHost>
   <useSsl>false</useSsl>
-  <smtpPort>465</smtpPort>
   <charset>UTF-8</charset>
   <defaultContentType>text/html</defaultContentType>
   <defaultSubject>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!</defaultSubject>
