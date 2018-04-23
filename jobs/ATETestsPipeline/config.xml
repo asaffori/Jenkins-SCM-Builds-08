@@ -89,7 +89,6 @@ parameters {
         string(description: &apos;What is the Archer build version you want to test? \n example: 17.12.00.20600&apos;, name: &apos;BUILD_VERSION&apos;)
         choice(choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;What is your build type?&apos;, name: &apos;BUILDTYPE&apos;)
         text(description: &apos;What tests needs to run and in which confgurations? \n example: [[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]]&apos;, name: &apos;TestsArray&apos;)
-        bool(description: &apos;Should Nunit intergration tests be executed?&apos; )
         booleanParam(name: &apos;RunNunitTests&apos;, defaultValue: false, description: &apos;Should Nunit intergration tests be executed?&apos;)
     }
 
