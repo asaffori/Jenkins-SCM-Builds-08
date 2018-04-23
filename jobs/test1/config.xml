@@ -44,10 +44,9 @@
       <enableConcurrentBuild>false</enableConcurrentBuild>
       <host>mailhost.kla-tencor.com</host>
       <username>omdbuild@kla-tencor.com</username>
-      <password>{AQAAABAAAAAQcsuvunkmm1qCqbfXzT3Ag7WxVe6YNvVEcrZ9YwAoN5Y=}</password>
+      <password>{AQAAABAAAAAQUiApJu6K33J8u8rsViVYBOAqa94URwx2NawlPXJMs0Y=}</password>
       <script>mail.imaps.port=25
-mail.imap.ssl.enable=true
-mail.imap.starttls.enable=true
+mail.imap.ssl.enable=false
 folder=INBOX
 subjectContains=jenkins &gt;
 receivedXMinutesAgo=1440</script>
