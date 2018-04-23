@@ -37,7 +37,23 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers/>
+  <triggers>
+    <org.jenkinsci.plugins.pollmailboxtrigger.PollMailboxTrigger plugin="poll-mailbox-trigger-plugin@1.026">
+      <spec>H/5 * * * *</spec>
+      <labelRestriction>false</labelRestriction>
+      <enableConcurrentBuild>false</enableConcurrentBuild>
+      <host>mailhost.kla-tencor.com</host>
+      <username>omdbuild@kla-tencor.com</username>
+      <password>{AQAAABAAAAAQcsuvunkmm1qCqbfXzT3Ag7WxVe6YNvVEcrZ9YwAoN5Y=}</password>
+      <script>mail.imaps.port=25
+mail.imap.ssl.enable=true
+mail.imap.starttls.enable=true
+folder=INBOX
+subjectContains=jenkins &gt;
+receivedXMinutesAgo=1440</script>
+      <attachments>IGNORE</attachments>
+    </org.jenkinsci.plugins.pollmailboxtrigger.PollMailboxTrigger>
+  </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders/>
   <publishers>
