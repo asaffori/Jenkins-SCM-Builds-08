@@ -38,43 +38,19 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <org.jenkinsci.plugins.pollmailboxtrigger.PollMailboxTrigger plugin="poll-mailbox-trigger-plugin@1.026">
-      <spec>H/5 * * * *</spec>
-      <labelRestriction>false</labelRestriction>
-      <enableConcurrentBuild>false</enableConcurrentBuild>
-      <host>mailhost.kla-tencor.com</host>
-      <username>omdbuild</username>
-      <password>{AQAAABAAAAAQ62v2o4Uxbt4EGYDiNLxMnZLsgvQh/o6ULIeE7C93s48=}</password>
-      <script>mail.imaps.port=465
-mail.imap.ssl.enable=false
-mail.imap.starttls.enable=true
-folder=INBOX
-subjectContains=jenkins &gt;
-receivedXMinutesAgo=1440</script>
-      <attachments>IGNORE</attachments>
-    </org.jenkinsci.plugins.pollmailboxtrigger.PollMailboxTrigger>
+    <com.gmail.sikakura.MailCommandTrigger plugin="mailcommander@1.0.0">
+      <spec>* * * * *</spec>
+    </com.gmail.sikakura.MailCommandTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
-  <publishers>
-    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
-      <configs>
-        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-          <configs>
-            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties>BUILD_VERSION=17.12.00.20200
-MajorMinor_Ver=17.12
-sStream=</properties>
-              <textParamValueOnNewLine>false</textParamValueOnNewLine>
-            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-          </configs>
-          <projects>CreateBuildNotes</projects>
-          <condition>SUCCESS</condition>
-          <triggerWithNoParameters>false</triggerWithNoParameters>
-          <triggerFromChildProjects>false</triggerFromChildProjects>
-        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-      </configs>
-    </hudson.plugins.parameterizedtrigger.BuildTrigger>
-  </publishers>
+  <builders>
+    <com.gmail.sikakura.MailCommandBuilder plugin="mailcommander@1.0.0">
+      <address>mailhost.kla-tencor.com</address>
+      <port>110</port>
+      <username>omdbuild</username>
+      <password>Scm07&amp;</password>
+    </com.gmail.sikakura.MailCommandBuilder>
+  </builders>
+  <publishers/>
   <buildWrappers/>
 </project>
