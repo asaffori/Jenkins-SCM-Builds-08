@@ -108,5 +108,8 @@
     <org.jenkinsci.plugins.readonly.UserConfiguration plugin="read-only-configurations@1.10">
       <displayForReadOnlyPermission>true</displayForReadOnlyPermission>
     </org.jenkinsci.plugins.readonly.UserConfiguration>
+    <jenkins.security.LastGrantedAuthoritiesProperty>
+      <timestamp>0</timestamp>
+    </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
