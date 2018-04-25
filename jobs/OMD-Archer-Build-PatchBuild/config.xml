@@ -433,7 +433,8 @@ buildRequesterUserId=omdbuild</properties>
 MajorMinor_Ver=${MajorMinor_Ver}
 WSName=${team.scm.workspaceUUID}
 BuildAutoApproved=true
-buildRequesterUserId=omdbuild</properties>
+buildRequesterUserId=omdbuild
+ReleaseBuildEngine=${buildEngineHostName}</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
@@ -443,7 +444,17 @@ buildRequesterUserId=omdbuild</properties>
           <triggerFromChildProjects>false</triggerFromChildProjects>
         </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
-          <configs class="empty-list"/>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>BUILD_VERSION=${Patch_Version}
+MajorMinor_Ver=${MajorMinor_Ver}
+WSName=${team.scm.workspaceUUID}
+BuildAutoApproved=true
+buildRequesterUserId=omdbuild
+ReleaseBuildEngine=${buildEngineHostName}</properties>
+              <textParamValueOnNewLine>false</textParamValueOnNewLine>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
           <projects>OMD-Archer-Build-PromoteBuildWIs</projects>
           <condition>SUCCESS</condition>
           <triggerWithNoParameters>false</triggerWithNoParameters>
