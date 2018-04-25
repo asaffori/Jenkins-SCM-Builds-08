@@ -414,8 +414,10 @@ manager.listener.logger.println (&quot;Generating README.html file at: &quot;+ r
           <configs>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               <properties>BUILD_VERSION=${Patch_Version}
+MajorMinor_Ver=${MajorMinor_Ver}
 WSName=${team.scm.workspaceUUID}
-BuildAutoApproved=true</properties>
+BuildAutoApproved=true
+buildRequesterUserId=omdbuild</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
@@ -427,7 +429,11 @@ BuildAutoApproved=true</properties>
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties></properties>
+              <properties>BUILD_VERSION=${Patch_Version}
+MajorMinor_Ver=${MajorMinor_Ver}
+WSName=${team.scm.workspaceUUID}
+BuildAutoApproved=true
+buildRequesterUserId=omdbuild</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
