@@ -61,6 +61,7 @@ SET BUILD_MODES=Release,Debug&#xd;
 echo *****************************************&#xd;
 ECHO  Loading Build Outputs from share folder&#xd;
 echo *****************************************&#xd;
+set Depend_Patches_Verions=%Depend_Patches_Verions:&quot;=%&#xd;
 if NOT &quot;%Depend_Patches_Verions%&quot; == &quot;&quot; (&#xd;
 for /F &quot;tokens=* delims=,&quot; %%f in (&apos;echo %Depend_Patches_Verions%&apos;) do (&#xd;
     for %%b in (%BUILD_MODES:,= %) do (&#xd;
