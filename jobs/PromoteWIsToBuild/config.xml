@@ -110,6 +110,7 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>C:\Temp</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
       <command>CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\PromoteWIs.bat %BUILD_VERSION% dispositionToPB</command>
@@ -137,7 +138,7 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
       <contentType>text/html</contentType>
       <defaultSubject> ${BUILD_VERSION} - build assocoated WIs</defaultSubject>
       <defaultContent>Attached report for WIs associated with build ${BUILD_VERSION} promoted from &apos;Resolved&apos; state to &apos;Pending Build&apos;.</defaultContent>
-      <attachmentsPattern>C:\Temp\${BUILD_VERSION}_Problem_And_Feature_WIs_list.csv</attachmentsPattern>
+      <attachmentsPattern>${BUILD_VERSION}_Problem_And_Feature_WIs_list.csv</attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
