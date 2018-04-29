@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -10,13 +10,16 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -37,19 +40,28 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <com.gmail.sikakura.MailCommandTrigger plugin="mailcommander@1.0.0">
-      <spec>* * * * *</spec>
-    </com.gmail.sikakura.MailCommandTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <com.gmail.sikakura.MailCommandBuilder plugin="mailcommander@1.0.0">
-      <address>mailhost.kla-tencor.com</address>
-      <port>110</port>
-      <username>omdbuild</username>
-      <password>Scm07&amp;</password>
-    </com.gmail.sikakura.MailCommandBuilder>
+    <hudson.tasks.BatchFile>
+      <command>set Depend_Patches_Verions=17.12.00.30200&#xd;
+SET BUILD_MODES=Release,Debug&#xd;
+&#xd;
+echo *****************************************&#xd;
+ECHO  Loading Build Outputs from share folder&#xd;
+echo *****************************************&#xd;
+if NOT &quot;%Depend_Patches_Verions%&quot; == &quot;&quot; (&#xd;
+for /F &quot;delims=, tokens=*&quot; %%f in (%Depend_Patches_Verions%) do (&#xd;
+    for %%b in (&quot;%BUILD_MODES:,=&quot; &quot;%&quot;) do (&#xd;
+      echo =====================================================&#xd;
+      echo ======== Restoring Patch %%f for mode %%b ===========&#xd;
+      echo =====================================================&#xd;
+      echo %PATCHER_REMOTE_PATH%\UOMD_%%f_Patch\%%b\Bin  P:\Bin_%%b /f /s&#xd;
+&#xd;
+   )&#xd;
+ )&#xd;
+)</command>
+    </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
   <buildWrappers/>
