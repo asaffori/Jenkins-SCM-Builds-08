@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -10,13 +10,13 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -28,6 +28,7 @@
 version as 17.01.00.20600 &lt;BR&gt;
 Version file which contain the version as a value for the &apos;CurrentVersion&apos; property. As \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\17.02Version.txt&lt;BR&gt;</description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MajorMinor_Ver</name>
@@ -35,6 +36,7 @@ Version file which contain the version as a value for the &apos;CurrentVersion&a
 version as 17.01 &lt;BR&gt;
 This value will be used ONLY if BUILD_VERSION was provided as a filepath and not a specific version</description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>executeIn</name>
@@ -96,7 +98,7 @@ del C:\Temp\diskSpaceAlert.html</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
       <source class="hudson.plugins.groovy.StringSystemScriptSource">
-        <script plugin="script-security@1.39">
+        <script plugin="script-security@1.44">
           <script>/**
 *
 * This script is respinsible to calculate free disk spaces in given paths list. 
@@ -202,7 +204,7 @@ if (shouldAlertBeSent)
     </hudson.plugins.groovy.SystemGroovy>
   </builders>
   <publishers>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>Adham.Saffori@kla-tencor.com,Omer.Shachor@kla-tencor.com, Michal.Chiel@kla-tencor.com,Agnes.Zhang@kla-tencor.com,Sharon.Mizrachi@kla-tencor.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
