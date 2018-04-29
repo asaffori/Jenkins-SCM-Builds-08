@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -10,10 +10,10 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -38,91 +38,109 @@
           <name>CLEANUP_SCRIPT_LOCATION</name>
           <description></description>
           <defaultValue>D:\sandboxes\DONOT_DELETE_ADHAM\OMD_Builds\JenkinsBuild\Cleanup</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>EXCLUDES_FILE</name>
           <description></description>
           <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_CleanupConfigurations\Cleanup_Excludes_list.txt</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ARCHER_BUILDS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Formal</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RDM_BUILDS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Builds\RDM_*\Formal</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ARCHER_INSTALLERS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Installations\NuArcher_V*\Formal</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RDM_INSTALLERS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Installations\RDM_*\Formal</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLOSSOM_INSTALLERS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Installations\RDM_*\Formal\BlossomTDD</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>CODEVIEW_URL</name>
           <description></description>
           <defaultValue>\\isr1appcc02\views\OMD\OMD-UN_*</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ARCHER_TASKS_BUILDS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Tasks</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RDM_TASKS_BUILDS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Builds\RDM_*\Tasks</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ARCHER_SCHEDULED_BUILDS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Scheduled</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RDM_SCHEDULED_BUILDS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Builds\RDM_*\Scheduled</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ARCHER_SCHEDULED_INSTALLERS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Installations\NuArcher_V*\Scheduled</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RDM_SCHEDULED_INSTALLERS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Installations\RDM_*\Scheduled</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLOSSOM_SCHEDULED_INSTALLERS_URL</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Installations\RDM_*\Scheduled\BlossomTDD</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MailSubjectPrefix</name>
           <description>Mail subject</description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MailBodyMessage</name>
           <description>Mail body message to descript the build list </description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>MailAlertMessage</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -262,7 +280,7 @@ type C:\Temp\deletion_list_* &gt;&gt; C:\Temp\cleanup_html_mail.html</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>${Email_Recipient_List}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
