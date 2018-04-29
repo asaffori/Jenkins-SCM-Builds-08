@@ -23,6 +23,16 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Depend_Patches_Verions</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>5</maxConcurrentPerNode>
       <maxConcurrentTotal>5</maxConcurrentTotal>
@@ -45,7 +55,6 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>@ECHO OFF&#xd;
-set Depend_Patches_Verions=&#xd;
 SET BUILD_MODES=Release,Debug&#xd;
 &#xd;
 echo *****************************************&#xd;
