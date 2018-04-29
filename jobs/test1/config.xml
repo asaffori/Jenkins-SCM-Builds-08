@@ -63,7 +63,7 @@ ECHO  Loading Build Outputs from share folder&#xd;
 echo *****************************************&#xd;
 set Depend_Patches_Verions=%Depend_Patches_Verions:&quot;=%&#xd;
 if NOT &quot;%Depend_Patches_Verions%&quot; == &quot;&quot; (&#xd;
-for /f &quot;tokens=1* delims=,&quot; %%f in (&quot;%Depend_Patches_Verions%&quot;) do (&#xd;
+for /f &quot;tokens=* delims=,&quot; %%f in (&quot;%Depend_Patches_Verions%&quot;) do (&#xd;
     for %%b in (%BUILD_MODES:,= %) do (&#xd;
       echo =====================================================&#xd;
       echo ======== Restoring Patch %%f for mode %%b ===========&#xd;
