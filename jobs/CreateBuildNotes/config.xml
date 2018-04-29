@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description>This Job will use the BNG utility to genrate the build notes and share it by mail</description>
@@ -10,13 +10,13 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -26,19 +26,20 @@
           <name>BUILD_VERSION</name>
           <description>Build Version to be used the report default name and the email</description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-252401820114567</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
-            <secureScript plugin="script-security@1.39">
+            <secureScript plugin="script-security@1.44">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
 return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
               <sandbox>false</sandbox>
             </secureScript>
-            <secureFallbackScript plugin="script-security@1.39">
+            <secureFallbackScript plugin="script-security@1.44">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
 return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
               <sandbox>false</sandbox>
@@ -54,22 +55,26 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <name>tStream</name>
           <description>Target stream to gather the changes from or to compare to. As :Archer_17.12_Integ or Archer_17.04_Integ</description>
           <defaultValue>Archer_${MajorMinor_Ver}_Integ</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>sStream</name>
           <description>Source stream to compare with. As :Archer_17.12_Dev or Archer_17.04_Dev&lt;br&gt;
 If empty: compare will be done on the target stream only with latest changes against last snapshot there.</description>
           <defaultValue>Archer_${MajorMinor_Ver}_Dev</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ReportName</name>
           <description>The relevant name of the generated report</description>
           <defaultValue>${BUILD_VERSION}-BuildNotes</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>recipientList</name>
           <description>comma seperated list of emails to get the generated build notes. As Adham.Saffori@kla-tencor.com Or groups of mails seperated by comma.</description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -124,7 +129,7 @@ IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.61">
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>${recipients_list},${BUILD_USER_EMAIL}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
