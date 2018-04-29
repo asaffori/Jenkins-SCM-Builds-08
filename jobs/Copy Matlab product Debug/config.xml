@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -10,13 +10,13 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -26,24 +26,26 @@
           <name>WSName</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-484401284349267</randomName>
           <visibleItemCount>0</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
-            <secureScript plugin="script-security@1.39">
+            <secureScript plugin="script-security@1.44">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
 return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
               <sandbox>false</sandbox>
             </secureScript>
-            <secureFallbackScript plugin="script-security@1.39">
+            <secureFallbackScript plugin="script-security@1.44">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
 return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
               <sandbox>false</sandbox>
@@ -55,12 +57,12 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>false</omitValueField>
         </org.biouno.unochoice.DynamicReferenceParameter>
-        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.4.1">
+        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.5.0">
           <name>buildRequesterUserId</name>
           <description></description>
           <editable>true</editable>
           <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider">
-            <groovyScript plugin="script-security@1.39">
+            <groovyScript plugin="script-security@1.44">
               <script>import hudson.model.User
 String user =User.current().getId()
 return [user]</script>
@@ -102,6 +104,7 @@ return [user]</script>
           <name>JENKINCONFIGPATH</name>
           <description></description>
           <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
