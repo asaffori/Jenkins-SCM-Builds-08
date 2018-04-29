@@ -45,7 +45,7 @@
   <builders>
     <hudson.tasks.BatchFile>
       <command>@ECHO OFF&#xd;
-set Depend_Patches_Verions=17.12.00.30200&#xd;
+set Depend_Patches_Verions=&#xd;
 SET BUILD_MODES=Release,Debug&#xd;
 &#xd;
 echo *****************************************&#xd;
