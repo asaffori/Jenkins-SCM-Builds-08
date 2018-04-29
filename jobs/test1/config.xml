@@ -58,7 +58,6 @@ for /F &quot;delims=, tokens=*&quot; %%f in (&apos;echo %Depend_Patches_Verions%
       echo ======== Restoring Patch %%f for mode %%b ===========&#xd;
       echo =====================================================&#xd;
       echo %PATCHER_REMOTE_PATH%\UOMD_%%f_Patch\%%b\Bin  P:\Bin_%%b /f /s&#xd;
-&#xd;
    )&#xd;
  )&#xd;
 )</command>
