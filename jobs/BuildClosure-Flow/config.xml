@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <com.amdocs.hudson.plugins.flow.FlowProject plugin="flow@16.3">
   <actions/>
   <description></description>
@@ -10,13 +10,13 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -78,19 +78,20 @@
           <name>BUILD_VERSION</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.0">
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-1396436508196432</randomName>
           <visibleItemCount>0</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
-            <secureScript plugin="script-security@1.39">
+            <secureScript plugin="script-security@1.44">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
 return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
               <sandbox>false</sandbox>
             </secureScript>
-            <secureFallbackScript plugin="script-security@1.39">
+            <secureFallbackScript plugin="script-security@1.44">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
 return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
               <sandbox>false</sandbox>
@@ -111,23 +112,25 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <name>WSName</name>
           <description></description>
           <defaultValue>omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>CodeViewLoadePath</name>
           <description></description>
           <defaultValue>E:\Views\OMD\OMD-UN_${MajorMinor_Ver}\UOMD_BLD_${BUILD_VERSION}_code</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>BuildAutoApproved</name>
           <description></description>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
-        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.4.1">
+        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.5.0">
           <name>buildRequesterUserId</name>
           <description></description>
           <editable>true</editable>
           <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider">
-            <groovyScript plugin="script-security@1.39">
+            <groovyScript plugin="script-security@1.44">
               <script>import hudson.model.User
 String user =User.current().getId()
 return [user]</script>
@@ -141,6 +144,7 @@ return [user]</script>
           <description>Scripts/Sandbox path
 If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   While %BUILD_VERSION% is the value of the parameter BUILD_VERSION</description>
           <defaultValue>D:\Sandboxes\omdbuild_${BUILD_VERSION}</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ReleaseBuildEngine</name>
@@ -167,6 +171,7 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
           <name>JENKINCONFIGPATH</name>
           <description></description>
           <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>DebugBuildEngine</name>
@@ -187,6 +192,7 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
           <name>VERSIONFILE</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>BUILDTYPE</name>
@@ -235,7 +241,7 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
       <buildSteps>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
-            <script plugin="script-security@1.39">
+            <script plugin="script-security@1.44">
               <script>import hudson.model.Result;
 
 def BuildAutoApproved = build.buildVariableResolver.resolve(&quot;BuildAutoApproved&quot;)
