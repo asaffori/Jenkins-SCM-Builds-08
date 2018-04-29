@@ -60,7 +60,7 @@
           </choices>
         </hudson.model.ChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name></name>
+          <name>Depend_Patches_Verions</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
