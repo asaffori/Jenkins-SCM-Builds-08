@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <user>
   <fullName>Saffori, Adham</fullName>
   <properties>
@@ -18,7 +18,7 @@
             <name>blueocean-github-domain</name>
             <description>blueocean-github-domain to store credentials by BlueOcean</description>
             <specifications>
-              <io.jenkins.blueocean.rest.impl.pipeline.credential.BlueOceanDomainSpecification plugin="blueocean-pipeline-scm-api@1.3.5"/>
+              <io.jenkins.blueocean.rest.impl.pipeline.credential.BlueOceanDomainSpecification plugin="blueocean-pipeline-scm-api@1.5.0"/>
             </specifications>
           </com.cloudbees.plugins.credentials.domains.Domain>
           <list>
@@ -36,7 +36,7 @@
             <name>blueocean-git-domain</name>
             <description>blueocean-git-domain to store credentials by BlueOcean</description>
             <specifications>
-              <io.jenkins.blueocean.rest.impl.pipeline.credential.BlueOceanDomainSpecification plugin="blueocean-pipeline-scm-api@1.3.5"/>
+              <io.jenkins.blueocean.rest.impl.pipeline.credential.BlueOceanDomainSpecification plugin="blueocean-pipeline-scm-api@1.5.0"/>
             </specifications>
           </com.cloudbees.plugins.credentials.domains.Domain>
           <list>
@@ -50,7 +50,7 @@
         </entry>
       </domainCredentialsMap>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.61">
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.62">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
     <hudson.model.MyViewsProperty>
@@ -73,7 +73,7 @@
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.20">
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.21">
       <emailAddress>Adham.Saffori@kla-tencor.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <jenkins.security.LastGrantedAuthoritiesProperty>
@@ -107,7 +107,6 @@
         <string>Twn1fp01-PCIDData-RO</string>
         <string>DL-eQuality Users</string>
         <string>CA1-CTX-Portal-Users</string>
-        <string>DL-OMD-Global</string>
         <string>WIN-DYSD-WSODocs-CH</string>
         <string>Austinnt1-Cleanroom-CH</string>
         <string>ca1fs01-Eric-R-Jong-CH</string>
@@ -177,8 +176,6 @@
         <string>ZZZ-SRV-ISREXCHANGE</string>
         <string>WIN-DYSD-adc-plc-CH</string>
         <string>ca1nas05-WIN-OpenShares-CH</string>
-        <string>DL-Z-Group-All</string>
-        <string>DL-IT-RTC-Users</string>
         <string>WIN-DYSD-Picnic-RO</string>
         <string>MI Production KLA O365 Mail</string>
         <string>UC-User-Production</string>
@@ -196,7 +193,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1524908943221</timestamp>
+      <timestamp>1525125635996</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.35"/>
     <org.jenkinsci.plugins.readonly.UserConfiguration plugin="read-only-configurations@1.10">
