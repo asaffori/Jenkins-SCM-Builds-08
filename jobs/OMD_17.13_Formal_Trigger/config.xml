@@ -367,11 +367,13 @@ IF NOT %ERRORLEVEL% == 0 (&#xd;
           <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
             <configs>
               <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                <properties>Stream=Archer_${MajorMinor_Ver}_Integ
+                <properties>tStream=Archer_${MajorMinor_Ver}_Integ
+sStream=
 BUILD_VERSION=${BUILD_VERSION}
 team_scm_fetchDestination=${workspace}\\${team_scm_fetchDestination}
 BuildEngine=${FlowController}
-recipientList=CM,</properties>
+recipientList=${emailGroups}
+CopyToShare=true</properties>
                 <textParamValueOnNewLine>false</textParamValueOnNewLine>
               </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
             </configs>
