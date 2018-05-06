@@ -145,7 +145,9 @@ java -jar &quot;%BNG_PATH%\BNG.jar&quot; -acf &quot;%BNG_PATH%\Attributeconfig.x
 IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; Exit /b 1&#xd;
 &#xd;
 IF &quot;%CopyToShare%&quot;==&quot;true&quot; (&#xd;
- xcopy %WORKSPACE%\%ReportName% \\isr1fp04\OMD_InternalBuildNotes\V%MajorMinor_Ver%&#xd;
+   IF exist &quot;%WORKSPACE%\%ReportName%.%Format%&quot; (&#xd;
+         xcopy %WORKSPACE%\%ReportName%.%Format% \\isr1fp04\OMD_InternalBuildNotes\V%MajorMinor_Ver%&#xd;
+   )&#xd;
    IF NOT &quot;%ERRORLEVEL%&quot; ==&quot;0&quot; (&#xd;
         Echo &quot;Failed to copy Build notes: &apos;%WORKSPACE%\%ReportName%&apos;  to network folder: &apos;\\isr1fp04\OMD_InternalBuildNotes\V%MajorMinor_Ver%&apos;&#xd;
         Exit /b 1&#xd;
