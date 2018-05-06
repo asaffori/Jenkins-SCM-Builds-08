@@ -78,7 +78,7 @@ If empty: compare will be done on the target stream only with latest changes aga
         <hudson.model.StringParameterDefinition>
           <name>ReportName</name>
           <description>The relevant name of the generated report</description>
-          <defaultValue>${BUILD_VERSION}-BuildNotes</defaultValue>
+          <defaultValue>Build_Notes_${BUILD_VERSION}</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
