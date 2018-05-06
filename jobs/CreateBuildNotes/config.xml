@@ -138,7 +138,7 @@ JENKINCONFIGPATH=\\isr1appcc02\SCM\OMD</propertiesContent>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>@Echo off&#xd;
+      <command>::@Echo off&#xd;
 set cmd_suffix=&quot;&quot;&#xd;
 if NOT &quot;%sStream%&quot;==&quot;&quot; set cmd_suffix=-s %sStream%&#xd;
 &#xd;
