@@ -113,7 +113,198 @@
       <displayForReadOnlyPermission>true</displayForReadOnlyPermission>
     </org.jenkinsci.plugins.readonly.UserConfiguration>
     <jenkins.security.LastGrantedAuthoritiesProperty>
-      <timestamp>0</timestamp>
+      <roles>
+        <string>Bel1nas01-legacy_swx-RO</string>
+        <string>DL-SharePoint2013-SiteAdmin</string>
+        <string>authenticated</string>
+        <string>DL-DisableAutoDiscoveryRegistry</string>
+        <string>CA1NAS02-WIN-BFDATA-CH</string>
+        <string>Sng2nas04-KTS_Mfg_Eng_HCL_Support-RO</string>
+        <string>Ca1nas12-BObjclts-RO</string>
+        <string>DL-ISRAEL-OMD-MANAGERS</string>
+        <string>Germany-Dresden-OCD-CH</string>
+        <string>DL-cars-users</string>
+        <string>CA1NAS12-SSCMdata-RO</string>
+        <string>KLAIsraelAcc</string>
+        <string>DL-Israel-Managers</string>
+        <string>DL-GSS-Worldwide</string>
+        <string>CA1NAS07-CPG-UNT-RO</string>
+        <string>Ca1nas01-WINdownload-RO</string>
+        <string>Ca1ucsfs01-EMIE-RO</string>
+        <string>WIN-DYSD-DRCEng-CH</string>
+        <string>DL-OMD-Escalations</string>
+        <string>ca1nas01-TWave-RO</string>
+        <string>WIN-DYSD-Tools-CH</string>
+        <string>zzz-DL-All-Employees</string>
+        <string>DL-FaST HW-SW Engineering</string>
+        <string>DL-ALL-ISRAEL</string>
+        <string>DL-ESPP</string>
+        <string>Austinnt1-Austrain-CH</string>
+        <string>CA1FS01-OMD-CH</string>
+        <string>CA1NAS12-SSCMdata-CH</string>
+        <string>DL-SW-GWconX300</string>
+        <string>cc-com-comet-RW</string>
+        <string>WIN-DYSD-Migration-CH</string>
+        <string>ISR1NAS03-FI_OMD-RO</string>
+        <string>WIN-DYSD-sepg-RO</string>
+        <string>MSN-Users</string>
+        <string>KLAIsrael SW</string>
+        <string>DL-PLC-Engineering-iConnect</string>
+        <string>DL-Israel-CC Users</string>
+        <string>WIN-DYSD-IMPACT_met-RO</string>
+        <string>WIN-DYSD-Image-CH</string>
+        <string>CA1NAS04-Fast-Enzo-CH</string>
+        <string>Twn1fp01-PCIDData-RO</string>
+        <string>European Users</string>
+        <string>DL-Factory Automation-Council (Software)</string>
+        <string>CA1-CTX-Portal-Users</string>
+        <string>WIN-DYSD-WSODocs-CH</string>
+        <string>DL-All-Managers-International</string>
+        <string>DL-MI-Registration</string>
+        <string>Austinnt1-Cleanroom-CH</string>
+        <string>ca1fs01-Eric-R-Jong-CH</string>
+        <string>ISR1NAS01-SW-MEG-CH</string>
+        <string>Isr1nas03-Viking-RO</string>
+        <string>Ca1nas01-GlobalOpsJMP-CH</string>
+        <string>KLAIsraelEng</string>
+        <string>Ca1nas05-WIN-Projects--M37Public-RO</string>
+        <string>Delta-ws_MatchingMasterFiles-RO</string>
+        <string>ACEusers</string>
+        <string>UC-User-SING-Production</string>
+        <string>Aspera-users</string>
+        <string>CA1NAS05-WIN-SCM-Archive2-RO</string>
+        <string>CA1-CTX-ALL-TEST</string>
+        <string>WIN-DYSD-Demo_solutions-CH</string>
+        <string>DL-Engineering-All</string>
+        <string>CA1NAS02-WIN-APPS-VideoTraining-RO</string>
+        <string>DL-iNotion-Users-old</string>
+        <string>Isreng-ReqProUser-CH</string>
+        <string>ISR1NAS01-MegStorage-CH</string>
+        <string>DL-CPG-KTCS-Users</string>
+        <string>Isr5300 SW Group</string>
+        <string>WIN-DYSD-ILM-CH</string>
+        <string>WIN-DYSD-Klarity-CH</string>
+        <string>Ca1nas05-WIN-Software-Blazer-RO</string>
+        <string>aspera-users-engineering-OMD</string>
+        <string>CA1NAS05-DYSD-RDS-Images-RO</string>
+        <string>CMS_USERS</string>
+        <string>KLA-ISRAEL</string>
+        <string>DL-PowerApps-ChinaWorkflow</string>
+        <string>DL-OMD-ARCHER-17-13</string>
+        <string>DL-OMD-ARCHER-17-12</string>
+        <string>DL-IT-Survey</string>
+        <string>DL-OMD-ARCHER-17-11</string>
+        <string>ISR1FP05-MI-RO</string>
+        <string>UC-User-Milp-Production</string>
+        <string>JPN1FS01-043-RO</string>
+        <string>CA1NAS01-ATLAS-RO</string>
+        <string>WIN-DYSD-IMPACT_meti-CH</string>
+        <string>IND5NAS01-FastSummit-RO</string>
+        <string>zsvcHROnline</string>
+        <string>DL-INTL-LTI</string>
+        <string>WIN-DYSD-ftp-CH</string>
+        <string>DL-All-Israel-PasswordChange</string>
+        <string>DL-MGR</string>
+        <string>DL-All-Managers</string>
+        <string>CA1-CTX-KT-Employees</string>
+        <string>WIN-DYSD-Assignment-CH</string>
+        <string>PLANTOPS_OPERATOR</string>
+        <string>DL-iNotion-Users</string>
+        <string>ISR1FP04-SWDATA-RO</string>
+        <string>Bentley-Field_Dat-RO</string>
+        <string>ISR1NAS01-SW-CPG-CH</string>
+        <string>WIN-EEP-Reports_Customers-CH</string>
+        <string>ISRCCUSERS</string>
+        <string>WIN-DYSD-ADCAlgorithm-CH</string>
+        <string>WIN-EEP-Logs_Input_Customers-CH</string>
+        <string>WIN-DYSD-Field-Apps-CH</string>
+        <string>sfsade-vm6-Fab-Test-CH</string>
+        <string>IsrXP Software Group</string>
+        <string>WIN-DYSD-ace-xp-recipe-CH</string>
+        <string>DL-ALL-REGULAR-EMPLOYEES-SPA</string>
+        <string>JazzUsers</string>
+        <string>ISR1NAS01-UserDoc-RO</string>
+        <string>DL-All-Managers with direct reports</string>
+        <string>DL-Israel-OMD-ENG-SW</string>
+        <string>Ca1nas05-WIN-Software-Carrera-RO</string>
+        <string>Ca1fs01-TN-analyzes-RO</string>
+        <string>CA1NAS02-SSCM-CH</string>
+        <string>VMWare_ISR_FaSTVM_Snapshot</string>
+        <string>Frparisnt1-frchan-RO</string>
+        <string>Ca1fs01-SS10K-info-RO</string>
+        <string>WIN-DYSD-SQATestData-CH</string>
+        <string>FAST-NAS1-Fijifs01-RO</string>
+        <string>DPM_Users</string>
+        <string>Ca1nas12-FAST-Shelby$-CH</string>
+        <string>Ca1nas11-Autodesk-RO</string>
+        <string>ISR1FP05-LSERV4-CH</string>
+        <string>DL-WiFi-Users</string>
+        <string>frparisnt1-absen-RO</string>
+        <string>DPM_Users_Old</string>
+        <string>Isr1nas03-External_Files_for_Sharing-RO</string>
+        <string>Ca1nas04-OCD-XT-PLC-CH</string>
+        <string>PasswordManager</string>
+        <string>OMD Nightly Build Recipients</string>
+        <string>DL-OMD-SW-Imaging</string>
+        <string>CA1NAS01-WINField-CH</string>
+        <string>JPN1FS01-031ENG-CH</string>
+        <string>KTUsers</string>
+        <string>ca1fs01-KlearPoint-CH</string>
+        <string>WIN-DYSD-STADB-CH</string>
+        <string>MI Production KLA Mobile</string>
+        <string>Citrix XenApp 7.6 - KT STD Desktops - Prod</string>
+        <string>CA1SFSFP01-Integration-RO</string>
+        <string>Israel-OMD-ENG</string>
+        <string>ca1nas11-AMSRCRD-RO</string>
+        <string>DL-ALL-Employees-SPA</string>
+        <string>ISR1NAS01-ToolsDataCollections-RO</string>
+        <string>WIN-DYSD-Recipe-CH</string>
+        <string>CA1NAS04-WIN-Software-RO</string>
+        <string>DL-Jazz-RTC-Users</string>
+        <string>DL-SoftwareReporting-OMD</string>
+        <string>ZZZ-SRV-ISREXCHANGE</string>
+        <string>WIN-DYSD-adc-plc-CH</string>
+        <string>ca1nas05-WIN-OpenShares-CH</string>
+        <string>ISR1NAS03-Arch600-CH</string>
+        <string>allsubscribers2ea70d23</string>
+        <string>ISR1NAS01-SW-RO</string>
+        <string>fra2tacit1-ceemployee-ro</string>
+        <string>DL-OMD-ENG-MANAGERS</string>
+        <string>DL-Qtr-Survey</string>
+        <string>DL-RSA-Notification</string>
+        <string>Grenoble Users</string>
+        <string>DL-HR-KTInsight-ISR-Reb13</string>
+        <string>DL-O365</string>
+        <string>DL-All-Engineering</string>
+        <string>Ca1nas07-ASD_DOA-RO</string>
+        <string>Travel &amp; Expense</string>
+        <string>DL-All-Global_temp</string>
+        <string>WIN-DYSD-Picnic-RO</string>
+        <string>MI Production KLA O365 Mail</string>
+        <string>UC-User-Production</string>
+        <string>cc-com-comet</string>
+        <string>ISRSWENG</string>
+        <string>Survey-Engineering</string>
+        <string>ISR1NAS03-OpsIsrael</string>
+        <string>Quota</string>
+        <string>Ca1nas11-KT-Insight-Program-RO</string>
+        <string>allsubscribers58123b4d</string>
+        <string>WIN-DYSD-IMPACT_Min-CH</string>
+        <string>cc-users-list</string>
+        <string>cc-israel</string>
+        <string>Domain Users</string>
+        <string>PCS-Open-CH</string>
+        <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>CA1NAS01-TFComet-RO</string>
+        <string>DL-Sherpa Users Israel</string>
+        <string>ISR1NAS01-SW-COMM-CH</string>
+        <string>DL-iOS-Users</string>
+        <string>MI Production KLA AppConnect</string>
+        <string>DL-KTFA-UG</string>
+        <string>Ca1fs01-MFG-RO</string>
+        <string>WIN-DYSD-Satellite_release-RO</string>
+      </roles>
+      <timestamp>1525623721022</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
