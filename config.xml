@@ -6,6 +6,7 @@
     <string>OldData</string>
     <string>jenkins.security.s2m.MasterKillSwitchWarning</string>
     <string>jenkins.CLI</string>
+    <string>hudsonHomeIsFull</string>
   </disabledAdministrativeMonitors>
   <version>2.107.2</version>
   <installState class="jenkins.install.InstallState$5">
