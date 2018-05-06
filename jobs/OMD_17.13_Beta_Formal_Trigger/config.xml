@@ -368,7 +368,7 @@ IF NOT %ERRORLEVEL% == 0 (&#xd;
             <configs>
               <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 <properties>MajorMinor_Ver=${MajorMinor_Ver}
-tStream=Archer_${MajorMinor_Ver}_Integ
+tStream=Archer_${MajorMinor_Ver}_Beta_Integ
 sStream=
 BUILD_VERSION=${BUILD_VERSION}
 recipientList=${emailGroups}
