@@ -46,8 +46,8 @@
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <groovyScriptContent>//reading email reciepts
-if (emailGroupsDefFile.contains(&quot;@&quot;)) {
-     def map = [ &quot;recipients_list&quot;:emailGroupsDefFile]
+if (emailGroups.contains(&quot;@&quot;)) {
+     def map = [ &quot;recipients_list&quot;:emailGroups]
      return 	map
 }
 
