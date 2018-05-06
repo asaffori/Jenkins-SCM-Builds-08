@@ -367,11 +367,12 @@ IF NOT %ERRORLEVEL% == 0 (&#xd;
           <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
             <configs>
               <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                <properties>Stream=Archer_${MajorMinor_Ver}_Beta_Integ
+                <properties>MajorMinor_Ver=${MajorMinor_Ver}
+tStream=Archer_${MajorMinor_Ver}_Integ
+sStream=
 BUILD_VERSION=${BUILD_VERSION}
-team_scm_fetchDestination=${workspace}\\${team_scm_fetchDestination}
-BuildEngine=${FlowController}
-recipientList=CM,</properties>
+recipientList=${emailGroups}
+CopyToShare=true</properties>
                 <textParamValueOnNewLine>false</textParamValueOnNewLine>
               </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
             </configs>
@@ -555,7 +556,8 @@ build.getLog(100).each{
               <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                    <properties>fromStream=Archer_${MajorMinor_Ver}_Beta_Dev
+                    <properties>MajorMinor_Ver=${MajorMinor_Ver}
+fromStream=Archer_${MajorMinor_Ver}_Beta_Dev
 toStream=Archer_${MajorMinor_Ver}_Beta_Integ</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -601,6 +603,45 @@ JenkinsJobName=OMD_${MajorMinor_Ver}_Beta_Scheduled_Trigger</properties>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
               <projects>EnableDisableJenkinsJob</projects>
+              <condition>ALWAYS</condition>
+              <triggerWithNoParameters>false</triggerWithNoParameters>
+              <triggerFromChildProjects>false</triggerFromChildProjects>
+              <block>
+                <buildStepFailureThreshold>
+                  <name>FAILURE</name>
+                  <ordinal>2</ordinal>
+                  <color>RED</color>
+                  <completeBuild>true</completeBuild>
+                </buildStepFailureThreshold>
+                <unstableThreshold>
+                  <name>UNSTABLE</name>
+                  <ordinal>1</ordinal>
+                  <color>YELLOW</color>
+                  <completeBuild>true</completeBuild>
+                </unstableThreshold>
+                <failureThreshold>
+                  <name>FAILURE</name>
+                  <ordinal>2</ordinal>
+                  <color>RED</color>
+                  <completeBuild>true</completeBuild>
+                </failureThreshold>
+              </block>
+              <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+            </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          </configs>
+        </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+        <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
+          <configs>
+            <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+              <configs>
+                <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+                <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                  <properties>BUILD_VERSION=${BUILD_VERSION}
+MajorMinor_Ver=${MajorMinor_Ver}</properties>
+                  <textParamValueOnNewLine>false</textParamValueOnNewLine>
+                </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              </configs>
+              <projects>PromoteWIsToBuild</projects>
               <condition>ALWAYS</condition>
               <triggerWithNoParameters>false</triggerWithNoParameters>
               <triggerFromChildProjects>false</triggerFromChildProjects>
