@@ -180,11 +180,11 @@ IF &quot;%CopyToShare%&quot;==&quot;true&quot; (&#xd;
       </configuredTriggers>
       <contentType>text/html</contentType>
       <defaultSubject>${BUILD_VERSION} - Build Notes</defaultSubject>
-      <defaultContent>Build ${BUILD_VERSION} is ready for build . Build notes attached
-For CSV build notes, to autoFit columns and rows:
-             Open the file and press the following keyboard shortcuts:
-                         &gt; To AutoFit column width: Alt + H, then O, and then I
-                         &gt; To AutoFit row height: Alt + H, then O, and then A</defaultContent>
+      <defaultContent>Build ${BUILD_VERSION} is ready for build . Build notes attached&lt;br&gt;
+For CSV build notes, to autoFit columns and rows:&lt;br&gt;
+             Open the file and press the following keyboard shortcuts:&lt;br&gt;
+                         &gt; To AutoFit column width: Alt + H, then O, and then I&lt;br&gt;
+                         &gt; To AutoFit row height: Alt + H, then O, and then A&lt;br&gt;</defaultContent>
       <attachmentsPattern>${ReportName}.${Format}</attachmentsPattern>
       <presendScript>if (build.result.toString().equals(&apos;SUCCESS&apos;) &amp;&amp; (build.logFile.text.readLines().any { it =~ /.*does not contain any change set.*/ } || build.logFile.text.readLines().any { it =~ /.*No change sets for.*/ } ))
 {
