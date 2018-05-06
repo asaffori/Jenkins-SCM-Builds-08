@@ -66,7 +66,7 @@
         <hudson.model.StringParameterDefinition>
           <name>emailGroups</name>
           <description></description>
-          <defaultValue>Faina,CM,Arkadi,Aviram,Vladi,Dror,</defaultValue>
+          <defaultValue>DL-OMD-SW-SQC@KLA-Tencor.com,DL-OMD-SW-SCOL@KLA-Tencore.com,DL-OMD-ENG-SCM@KLA-Tencore.com</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
