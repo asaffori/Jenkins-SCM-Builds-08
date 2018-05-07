@@ -4,6 +4,15 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+      <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
+      <permission>hudson.model.Item.Build:DL-Israel-OMD-ENG-SW</permission>
+      <permission>hudson.model.Item.Cancel:DL-Israel-OMD-ENG-SW</permission>
+      <permission>hudson.model.Item.Discover:DL-Israel-OMD-ENG-SW</permission>
+      <permission>hudson.model.Item.ExtendedRead:DL-Israel-OMD-ENG-SW</permission>
+      <permission>hudson.model.Item.Read:DL-Israel-OMD-ENG-SW</permission>
+      <permission>hudson.model.Run.Replay:DL-Israel-OMD-ENG-SW</permission>
+    </hudson.security.AuthorizationMatrixProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
