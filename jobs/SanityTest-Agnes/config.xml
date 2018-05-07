@@ -157,8 +157,6 @@ goto pingloopstart&#xd;
 echo cleaning old log under C:\EggPlant report older than 7 days&#xd;
 forfiles -p &quot;C:\ATELogs&quot; -d -7 -c &quot;cmd /c IF @isdir == TRUE rd /S /Q @path&quot;&#xd;
 &#xd;
-net use * /d /y&#xd;
-&#xd;
 net use X: %ATEBasePath%&#xd;
 if not %errorlevel%==0 (&#xd;
 echo map %ATEBasePath% to X failed.&#xd;
