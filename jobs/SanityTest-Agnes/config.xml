@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -18,13 +18,16 @@
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -52,7 +55,6 @@
             <string>SCM-SIM7050-01</string>
             <string>SCM-SIM7050-02</string>
             <string>SCM-SIM7050-03</string>
-            <string>SCM-SIM7050-V01</string>
           </allowedSlaves>
           <defaultSlaves>
             <string>SCM-SIM7050-01</string>
@@ -72,21 +74,25 @@
           <name>TestSuite</name>
           <description>Full file name, XXXXX.csv</description>
           <defaultValue>AROL_Autorun_ATE_Suite</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>TestSuitePath</name>
           <description>Start with X:</description>
           <defaultValue>X:\ATE\TestCases\SQC\MBS\AROL</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ATEBasePath</name>
           <description></description>
           <defaultValue>\\isr1vmappcm01\Automated_Testing\17.0x_ATE</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>CheckSimTimeout</name>
           <description></description>
           <defaultValue>180</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>ToolType</name>
@@ -103,6 +109,7 @@
           <name>BUILD_VERSION</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -158,59 +165,6 @@ echo map %ATEBasePath% to X failed.&#xd;
 goto error&#xd;
 )&#xd;
 &#xd;
-net use Y: \\%SimulatorEngine%\c$&#xd;
-if not %errorlevel%==0 (&#xd;
-echo map \\%SimulatorEngine%\c$ to Y failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-net use W: \\%SimulatorEngine%\D$&#xd;
-if not %errorlevel%==0 (&#xd;
-echo map \\%SimulatorEngine%\D$ to W failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-xcopy &quot;%ATEConfigPath%\SDP for %ToolType%\*.*&quot; Y:\5300\SDP\ /f /r /s /y&#xd;
-if not %errorlevel%==0 (&#xd;
-echo Update SDP folder on %SimulatorEngine% failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-xcopy &quot;%ATEConfigPath%\Golden_reg_for_%ToolType%\*.*&quot; Y:\Automation\ /f /r /s /y&#xd;
-if not %errorlevel%==0 (&#xd;
-echo Copy Golden reg files to %SimulatorEngine% failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-if exist Y:\Automation\RecipesCounters.csv (&#xd;
-del  /Q /F Y:\Automation\RecipesCounters_backup.csv&#xd;
-ren Y:\Automation\RecipesCounters.csv RecipesCounters_backup.csv&#xd;
-)&#xd;
-if not %errorlevel%==0 (&#xd;
-echo backup RecipesCounters.csv failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-xcopy \\isr1vmappcm01\Automated_Testing\ATE_LatestApps\*.* Y:\Automation\ /f /r /s /y&#xd;
-if not %errorlevel%==0 (&#xd;
-echo Update Automation folder on %SimulatorEngine% failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-if exist Y:\Automation\RecipesCounters_backup.csv (&#xd;
-del /Q /F Y:\Automation\RecipesCounters.csv&#xd;
-ren Y:\Automation\RecipesCounters_backup.csv RecipesCounters.csv&#xd;
-)&#xd;
-if not %errorlevel%==0 (&#xd;
-echo Update RecipesCounters.csv failed&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-if not exist Y:\DataForEggplant md Y:\DataForEggplant&#xd;
-if not %errorlevel%==0 (&#xd;
-echo Create DataForEggplant folder on %SimulatorEngine% failed.&#xd;
-goto error&#xd;
-)&#xd;
 &#xd;
 cd C:\RunScript&#xd;
 RunScriptsFromFolder.exe &quot;%TestSuitePath%&quot; &quot;%TestSuite%.csv&quot; &quot;%SimulatorEngine%&quot;&#xd;
@@ -249,7 +203,7 @@ exit /b 1&#xd;
       <buildSteps>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
-            <script plugin="script-security@1.39">
+            <script plugin="script-security@1.44">
               <script>import hudson.model.Result;
 
 def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
