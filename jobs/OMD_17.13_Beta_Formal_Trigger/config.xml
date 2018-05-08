@@ -428,7 +428,8 @@ RunningMode=WEEKLY
 BuildAutoApproved=true
 SnapshotName=${SnapshotName}
 buildResultUUID=${buildResultUUID}
-team_scm_workspaceUUID=${team_scm_workspaceUUID}</properties>
+team_scm_workspaceUUID=${team_scm_workspaceUUID}
+RunAutoRebase=${RunAutoMerge}</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
