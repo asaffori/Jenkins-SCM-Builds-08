@@ -206,7 +206,7 @@ For CSV build notes, to autoFit columns and rows:&lt;br&gt;
   } else {
     if (build.getEnvVars().get(&quot;CopyToShare&quot;) ==&quot;true&quot;) {
        content = (String)msg.getContent().getBodyPart(0).getContent()
-       content += &quot;&lt;br&gt; Generated report was copied to \\isr1fp04\OMD_InternalBuildNotes\V&quot; +build.getEnvVars().get(&quot;MajorMinor_Ver&quot;) 
+       content += &quot;&lt;br&gt; Generated report was copied to \\\\isr1fp0\\OMD_InternalBuildNotes\\V&quot; +build.getEnvVars().get(&quot;MajorMinor_Ver&quot;) 
      msg.setText(content)
      msg.saveChanges() 
     }
