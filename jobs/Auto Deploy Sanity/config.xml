@@ -10,9 +10,20 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
@@ -28,9 +39,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -131,7 +140,7 @@
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-313186242246989</randomName>
-          <visibleItemCount>0</visibleItemCount>
+          <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.44">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -145,12 +154,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
             </secureFallbackScript>
           </script>
           <projectName>Auto Deploy Sanity</projectName>
-          <parameters class="linked-hash-map">
-            <entry>
-              <string>BUILD_VERSION</string>
-              <string></string>
-            </entry>
-          </parameters>
+          <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -223,14 +227,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -241,7 +238,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
   <concurrentBuild>true</concurrentBuild>
   <builders/>
   <publishers>
-    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4">
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4.1">
       <script plugin="script-security@1.44">
         <script>import hudson.model.*
 def build = Thread.currentThread().executable
@@ -291,7 +288,7 @@ historyJobs.getFlowSteps().each { step -&gt;
 			
 		resulthtml &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&lt;a href=\&quot;http://scm-builds-08:8080/&quot;+build.url+&quot;\&quot;&gt;&quot;+ flowRecord.getJobName()+&quot;&lt;/td&gt;&quot;
 		resulthtml &lt;&lt; &quot;&lt;td&gt;&quot; + flowRecord.getStatus().toString() +&quot;&lt;/td&gt;&quot;
-		resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + build.getDurationString()+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;
+		resulthtml &lt;&lt; &quot;&lt;td&gt;     &quot; + theBuild.getDurationString()+&quot;&lt;/td&gt;&lt;/tr&gt;&quot;
 		
 		}
 
@@ -398,15 +395,7 @@ historyJobs.getFlowSteps().each { step -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>MajorMinor_Ver</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
@@ -426,15 +415,19 @@ historyJobs.getFlowSteps().each { step -&gt;
       <string></string>
     </entry>
     <entry>
-      <string>BaseImage</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ATEControllerEngine</string>
       <string></string>
     </entry>
     <entry>
-      <string>RunNunitTests</string>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BaseImage</string>
       <string></string>
     </entry>
   </globalEnvVars>
