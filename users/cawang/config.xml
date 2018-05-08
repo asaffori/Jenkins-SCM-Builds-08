@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <user>
   <fullName>Wang, Cathy</fullName>
   <properties>
@@ -8,7 +8,7 @@
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.16">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.61">
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.62">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
     <hudson.model.MyViewsProperty>
@@ -35,7 +35,7 @@
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.20">
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.21">
       <emailAddress>Cathy.Wang@kla-tencor.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
@@ -65,6 +65,7 @@
         <string>WIN-DYSD-sepg-RO</string>
         <string>WIN-DYSD-IMPACT_met-RO</string>
         <string>WIN-DYSD-Image-CH</string>
+        <string>DL-OMD-SW-Family</string>
         <string>Twn1fp01-PCIDData-RO</string>
         <string>CA1-CTX-Portal-Users</string>
         <string>WIN-DYSD-WSODocs-CH</string>
@@ -83,6 +84,7 @@
         <string>WIN-DYSD-Demo_solutions-CH</string>
         <string>CA1NAS02-WIN-APPS-VideoTraining-RO</string>
         <string>CA1NAS04-WINAPPSCommon-RO</string>
+        <string>DL-China-Engineering</string>
         <string>WIN-DYSD-ILM-CH</string>
         <string>WIN-DYSD-Klarity-CH</string>
         <string>Ca1nas05-WIN-Software-Blazer-RO</string>
@@ -110,6 +112,7 @@
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
         <string>Ca1fs01-TN-analyzes-RO</string>
         <string>CA1NAS02-SSCM-CH</string>
+        <string>DL-All-Asia</string>
         <string>Ca1fs01-SS10K-info-RO</string>
         <string>WIN-DYSD-SQATestData-CH</string>
         <string>DPM_Users</string>
@@ -129,6 +132,9 @@
         <string>CA1NAS04-WIN-Software-RO</string>
         <string>WIN-DYSD-adc-plc-CH</string>
         <string>ca1nas05-WIN-OpenShares-CH</string>
+        <string>DL-All-China</string>
+        <string>DL-OMD-ARCHER-16-14</string>
+        <string>DL-OMD-ARCHER-16-13</string>
         <string>ZZZ-SRV-CHN2EX01</string>
         <string>Shanghai Users</string>
         <string>WIN-DYSD-Picnic-RO</string>
@@ -139,37 +145,18 @@
         <string>Domain Users</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>ISR1NAS01-SW-COMM-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1523497404489</timestamp>
+      <timestamp>1525765142332</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
-    <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.1">
+    <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
     <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
       <data class="concurrent-hash-map">
-        <entry>
-          <string>Old---Sanity Test</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---UnlockSimulator</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>OMD-Archer-Build-PatchBuild</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>TriggerAutoRebaseInteg</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---Silent Installation</string>
-          <boolean>true</boolean>
-        </entry>
         <entry>
           <string>SanityTest</string>
           <boolean>true</boolean>
@@ -180,10 +167,6 @@
         </entry>
         <entry>
           <string>UnlockSimulator</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---SimLockCheck</string>
           <boolean>true</boolean>
         </entry>
         <entry>
@@ -199,6 +182,14 @@
           <boolean>true</boolean>
         </entry>
         <entry>
+          <string>OMD-Archer-Build-PatchBuild</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>TriggerAutoRebaseInteg</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>SilentInstallation</string>
           <boolean>true</boolean>
         </entry>
@@ -207,7 +198,7 @@
           <boolean>true</boolean>
         </entry>
         <entry>
-          <string>Old---Restore Image</string>
+          <string>Agnes Test Full Flow</string>
           <boolean>true</boolean>
         </entry>
       </data>
