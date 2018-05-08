@@ -195,7 +195,7 @@ For CSV build notes, to autoFit columns and rows:&lt;br&gt;
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&gt; To AutoFit column width: Alt + H, then O, and then I&lt;br&gt;
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&gt; To AutoFit row height: Alt + H, then O, and then A&lt;br&gt;</defaultContent>
       <attachmentsPattern>${ReportName}.${Format}</attachmentsPattern>
-      <presendScript>if (build.result.toString().equals(&apos;SUCCESS&apos;) {
+      <presendScript>if (build.result.toString().equals(&apos;SUCCESS&apos;) ){
   if (build.logFile.text.readLines().any { it =~ /.*does not contain any change set.*/ } || build.logFile.text.readLines().any { it =~ /.*No change sets for.*/ } )
   {
      content = (String)msg.getContent().getBodyPart(0).getContent()
