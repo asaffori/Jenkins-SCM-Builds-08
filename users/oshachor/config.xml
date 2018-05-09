@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <user>
   <fullName>Shachor, Omer</fullName>
   <properties>
@@ -8,7 +8,7 @@
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.16">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.61">
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.62">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
     <hudson.model.MyViewsProperty>
@@ -35,7 +35,7 @@
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.20">
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.21">
       <emailAddress>Omer.Shachor@kla-tencor.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <jenkins.security.LastGrantedAuthoritiesProperty>
@@ -56,8 +56,9 @@
         <string>CA1NAS07-CPG-UNT-RO</string>
         <string>DL-CPG-NeXus-Users</string>
         <string>Ca1nas01-WINdownload-RO</string>
-        <string>DL-ALL-ISRAEL-OMD</string>
+        <string>DL-OMD-ARCHER-17-04</string>
         <string>Ca1ucsfs01-EMIE-RO</string>
+        <string>DL-OMD-ARCHER-17-03</string>
         <string>WIN-DYSD-DRCEng-CH</string>
         <string>ca1nas01-TWave-RO</string>
         <string>WIN-DYSD-Tools-CH</string>
@@ -104,6 +105,10 @@
         <string>CMS_USERS</string>
         <string>KLA-ISRAEL</string>
         <string>DL-PowerApps-ChinaWorkflow</string>
+        <string>DL-OMD-SW-SQC</string>
+        <string>DL-OMD-ARCHER-17-13</string>
+        <string>DL-OMD-ARCHER-17-12</string>
+        <string>DL-OMD-ARCHER-17-11</string>
         <string>UC-User-Milp-Production</string>
         <string>JPN1FS01-043-RO</string>
         <string>ISR1NAS01-SW-OMD-CH</string>
@@ -112,7 +117,6 @@
         <string>WIN-DYSD-ftp-CH</string>
         <string>DL-All-Israel-PasswordChange</string>
         <string>DL-MGR</string>
-        <string>DL-Israel-OMD-ENG</string>
         <string>DL-All-Managers</string>
         <string>CA1-CTX-KT-Employees</string>
         <string>WIN-DYSD-Assignment-CH</string>
@@ -194,24 +198,16 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1523911087201</timestamp>
+      <timestamp>1525355972166</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
     </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
-    <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.1">
+    <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
     <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
       <data class="concurrent-hash-map">
-        <entry>
-          <string>Old---Sanity Test</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---UnlockSimulator</string>
-          <boolean>true</boolean>
-        </entry>
         <entry>
           <string>OMD-Archer-Build-PatchBuild</string>
           <boolean>true</boolean>
@@ -221,7 +217,7 @@
           <boolean>true</boolean>
         </entry>
         <entry>
-          <string>Old---Silent Installation</string>
+          <string>Agnes Test Full Flow</string>
           <boolean>true</boolean>
         </entry>
         <entry>
@@ -234,10 +230,6 @@
         </entry>
         <entry>
           <string>UnlockSimulator</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---SimLockCheck</string>
           <boolean>true</boolean>
         </entry>
         <entry>
@@ -258,10 +250,6 @@
         </entry>
         <entry>
           <string>SimLockCheck</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---Restore Image</string>
           <boolean>true</boolean>
         </entry>
       </data>
