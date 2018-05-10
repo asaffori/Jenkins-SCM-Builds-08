@@ -42,7 +42,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>DebugBuildEngine,ReleaseBuildEngine</paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
@@ -154,7 +153,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
               <sandbox>false</sandbox>
             </secureFallbackScript>
           </script>
-          <projectName>RDM_NuArcher_CI_Flow</projectName>
+          <projectName>Flow for test Mail Notice</projectName>
           <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
@@ -634,7 +633,7 @@ Example:&lt;BR&gt;
       </configuredTriggers>
       <contentType>text/html</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
-      <defaultContent>${SCRIPT, template=&quot;ARCHERDM_template_New_Flow_SCA_Nunit.groovy&quot;}</defaultContent>
+      <defaultContent>${SCRIPT, template=&quot;ARCHERDM_template_New_Flow_SCA_Nunit _Agnes.groovy&quot;}</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript>def buildtype = ((build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=null)&amp;&amp;(build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=&quot;&quot;))?build.getEnvVars().get(&quot;BUILDTYPE&quot;)+&quot; - &quot;:&quot;&quot;;
 def additional =((build.getEnvVars().get(&quot;NIGHTLY&quot;) != null) &amp;&amp;(build.getEnvVars().get(&quot;NIGHTLY&quot;).equals(&quot;TRUE&quot;))) ? &quot;Nightly - &quot;:&quot;&quot;;
@@ -682,27 +681,11 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ClosureBuildEngine</string>
       <string></string>
     </entry>
     <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BuildAutoApproved</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>StartingStep</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>VERSIONFILE</string>
       <string></string>
     </entry>
     <entry>
@@ -718,11 +701,27 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
     <entry>
       <string>ReplaceSnaps</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>RDMINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BuildAutoApproved</string>
       <string></string>
     </entry>
   </globalEnvVars>
