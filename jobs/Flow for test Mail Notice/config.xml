@@ -613,7 +613,7 @@ Example:&lt;BR&gt;
   <builders/>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
-      <recipientList>adham.saffori@kla-tencor.com,${recipients_list}</recipientList>
+      <recipientList>${recipients_list}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
@@ -643,7 +643,7 @@ msg.setSubject(buildtype + additional + &quot;OMD-Archer-Build - Build # &quot;+
 
 //set recipents
 if(buildtype==&quot;Formal&quot; &amp;&amp; build.result.toString()==&quot;SUCCESS&quot;){
-msg.addRecipent(Message.RecipientType.TO,agnes.zhang@kla-tencor.com)
+msg.addRecipent(Message.RecipientType.TO,&quot;agnes.zhang@kla-tencor.com&quot;)
 }
  
 
