@@ -386,6 +386,7 @@
         <string>Auto Deploy Sanity Trigger Nunit</string>
         <string>DownLoadFile</string>
         <string>FileTransfer</string>
+        <string>Flow for test Mail Notice</string>
         <string>NUnit Test Full Flow</string>
         <string>OMD-Build-Pipeline</string>
         <string>SanityTest-Agnes</string>
