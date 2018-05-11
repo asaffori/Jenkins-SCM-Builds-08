@@ -384,6 +384,7 @@
         <string>ATETestsPipelineNunit</string>
         <string>Auto Deploy Sanity Nunit</string>
         <string>Auto Deploy Sanity Trigger Nunit</string>
+        <string>CleanUpTestController</string>
         <string>DownLoadFile</string>
         <string>FileTransfer</string>
         <string>Flow for test Mail Notice</string>
