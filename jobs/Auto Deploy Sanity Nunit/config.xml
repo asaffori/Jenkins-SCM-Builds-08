@@ -236,7 +236,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
   <concurrentBuild>true</concurrentBuild>
   <builders/>
   <publishers>
-    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4">
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4.1">
       <script plugin="script-security@1.44">
         <script>import hudson.model.*
 def build = Thread.currentThread().executable
