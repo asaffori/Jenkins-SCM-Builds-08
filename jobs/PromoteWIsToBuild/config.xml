@@ -134,7 +134,7 @@ CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\PromoteW
       <contentType>text/html</contentType>
       <defaultSubject> ${BUILD_VERSION} - build assocoated WIs</defaultSubject>
       <defaultContent>Attached report for WIs associated with build ${BUILD_VERSION} promoted from &apos;Resolved&apos; state to &apos;Pending Build&apos;.</defaultContent>
-      <attachmentsPattern>${BUILD_VERSION}_Problem_And_Feature_WIs_list.csv</attachmentsPattern>
+      <attachmentsPattern>${BUILD_VERSION}_Problem_And_Feature_WIs_list_Filtered.csv</attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
