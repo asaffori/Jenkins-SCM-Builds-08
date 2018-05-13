@@ -201,13 +201,13 @@ For CSV build notes, to autoFit columns and rows:&lt;br&gt;
      content = (String)msg.getContent().getBodyPart(0).getContent()
      content = &quot;No new changes since last snapshot&quot;
      msg.setSubject(build.getEnvVars().get(&quot;BUILD_VERSION&quot;)+&quot; - Build Notes [No Changes]&quot;);
-     msg.setText(content)
+     msg.setText(content, null, &quot;html&quot;)
      msg.saveChanges() 
   } else {
     if (build.getEnvVars().get(&quot;CopyToShare&quot;) ==&quot;true&quot;) {
        content = (String)msg.getContent().getBodyPart(0).getContent()
        content += &quot;&lt;br&gt; Generated report was copied to \\\\isr1fp04\\OMD_InternalBuildNotes\\V&quot; +build.getEnvVars().get(&quot;MajorMinor_Ver&quot;)
-     msg.setText(content)
+     msg.setText(content, null, &quot;html&quot;)
      msg.saveChanges() 
     
    }
