@@ -226,7 +226,7 @@ xcopy %OutDirCommon%\CodeAnalysis\*.* %team_scm_fetchDestination%\CodeAnalysis /
             </condition>
           </condition>
           <publisherList>
-            <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.64">
+            <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.66">
               <healthy></healthy>
               <unHealthy></unHealthy>
               <thresholdLimit>low</thresholdLimit>
