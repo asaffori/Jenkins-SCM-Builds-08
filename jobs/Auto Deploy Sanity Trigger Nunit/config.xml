@@ -164,7 +164,7 @@ BUILDTYPE=${BUILDTYPE}</properties>
     </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
   </builders>
   <publishers>
-    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4">
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4.1">
       <script plugin="script-security@1.44">
         <script>import hudson.model.*
 import groovy.io.FileType
