@@ -74,7 +74,9 @@
         <string>CA1NAS12-SSCMdata-RO</string>
         <string>CA1NAS07-CPG-UNT-RO</string>
         <string>Ca1nas01-WINdownload-RO</string>
+        <string>DL-OMD-ARCHER-17-04</string>
         <string>Ca1ucsfs01-EMIE-RO</string>
+        <string>DL-OMD-ARCHER-17-03</string>
         <string>WIN-DYSD-DRCEng-CH</string>
         <string>ca1nas01-TWave-RO</string>
         <string>WIN-DYSD-Tools-CH</string>
@@ -113,6 +115,9 @@
         <string>CA1NAS05-DYSD-RDS-Images-RO</string>
         <string>CMS_USERS</string>
         <string>DL-PowerApps-ChinaWorkflow</string>
+        <string>DL-OMD-ARCHER-17-13</string>
+        <string>DL-OMD-ARCHER-17-12</string>
+        <string>DL-OMD-ARCHER-17-11</string>
         <string>UC-User-Milp-Production</string>
         <string>JPN1FS01-043-RO</string>
         <string>ISR1NAS01-SW-OMD-CH</string>
@@ -176,7 +181,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1520912955742</timestamp>
+      <timestamp>1526266520146</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
