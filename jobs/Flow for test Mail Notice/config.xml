@@ -652,19 +652,13 @@ build.setDescription(buildtype + additional  + build.getEnvVars().get(&quot;BUIL
 import  javax.mail.Multipart;
 
 // create the summary with the document icon and attach to the build
-//GroovyPostbuildSummaryAction action = new GroovyPostbuildSummaryAction(&quot;notepad.png&quot;);
-//build.getActions().add(action);
+GroovyPostbuildSummaryAction action = new GroovyPostbuildSummaryAction(&quot;notepad.png&quot;);
+build.getActions().add(action);
 // Read mail content and attach it to the build summary
-//Multipart mp= (Multipart)msg.getContent()
-//action.appendText(mp.getBodyPart(0).getContent().toString(), false);
+Multipart mp= (Multipart)msg.getContent()
+action.appendText(mp.getBodyPart(0).getContent().toString(), false);
 //save the build!
-//build.save()
-
-def buildnotice= new File(&apos;C:\\Temp\\buildhnotice.html&apos;)
-def maincontent=msg.getContent();
-for(String line : maincontent){	
- buildnotice&lt;&lt; line
- }</postsendScript>
+build.save()</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
       <replyTo>$DEFAULT_REPLYTO</replyTo>
