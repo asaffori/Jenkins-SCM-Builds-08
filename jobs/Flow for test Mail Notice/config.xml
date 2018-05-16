@@ -612,6 +612,17 @@ Example:&lt;BR&gt;
   <concurrentBuild>true</concurrentBuild>
   <builders/>
   <publishers>
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4.1">
+      <script plugin="script-security@1.44">
+        <script>if(buildtype==&quot;Formal&quot; &amp;&amp; build.result.toString()==&quot;SUCCESS&quot;){
+recipients_list+=&quot;; Agnes.Zhang@kla-tencor.com&quot;
+}
+ </script>
+        <sandbox>false</sandbox>
+      </script>
+      <behavior>0</behavior>
+      <runForMatrixParent>false</runForMatrixParent>
+    </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>${recipients_list}</recipientList>
       <configuredTriggers>
