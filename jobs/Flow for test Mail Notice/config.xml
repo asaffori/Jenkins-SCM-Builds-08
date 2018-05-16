@@ -621,6 +621,8 @@ Example:&lt;BR&gt;
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.RequesterRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
             </recipientProviders>
             <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
@@ -641,7 +643,8 @@ msg.setSubject(buildtype + additional + &quot;OMD-Archer-Build - Build # &quot;+
 
 //set recipents
 if(buildtype==&quot;Formal&quot; &amp;&amp; build.result.toString()==&quot;SUCCESS&quot;){
-msg.addRecipent(Message.RecipientType.TO,&quot;agnes.zhang@kla-tencor.com&quot;)
+msg.addRecipent(Message.RecipientType.TO,&quot;agnes.zhang@kla-tencor.com&quot;);
+msg.setSubject(&quot;OMD-UN &quot;+ msg_version +&quot; Integ Build &quot; );
 }
  
 
