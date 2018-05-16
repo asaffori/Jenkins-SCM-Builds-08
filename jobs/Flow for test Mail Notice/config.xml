@@ -653,7 +653,6 @@ msg.setSubject(buildtype + additional + &quot;OMD-Archer-Build - Build # &quot;+
 
 //set recipents
 if(buildtype==&quot;Formal&quot; &amp;&amp; build.result.toString()==&quot;SUCCESS&quot;){
-msg.addRecipent(Message.RecipientType.TO,&quot;agnes.zhang@kla-tencor.com&quot;);
 msg.setSubject(&quot;OMD-UN &quot;+ msg_version +&quot; Integ Build &quot; );
 }
  
