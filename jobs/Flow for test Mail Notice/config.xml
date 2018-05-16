@@ -616,10 +616,10 @@ Example:&lt;BR&gt;
       <script plugin="script-security@1.44">
         <script>def build = Thread.currentThread().executable;
 def buildtype = ((build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=null)&amp;&amp;(build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=&quot;&quot;))?build.getEnvVars().get(&quot;BUILDTYPE&quot;)+&quot; - &quot;:&quot;&quot;;
-if(buildtype==&quot;Formal&quot; &amp;&amp; build.result.toString()==&quot;SUCCESS&quot;){
-	def map = [ &quot;recipients_list&quot;:&quot;Agnes.Zhang@kla-tencor.com&quot;];
+//if(buildtype==&quot;Formal&quot; &amp;&amp; build.result.toString()==&quot;SUCCESS&quot;){
+	def map = [ &quot;recipients_list&quot;:&quot;Agnes.Zhang@kla-tencor.com&quot;]
 	return map
-}
+//}
  </script>
         <sandbox>false</sandbox>
       </script>
