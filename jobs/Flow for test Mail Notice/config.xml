@@ -614,7 +614,9 @@ Example:&lt;BR&gt;
   <publishers>
     <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4.1">
       <script plugin="script-security@1.44">
-        <script>if(buildtype==&quot;Formal&quot; &amp;&amp; build.result.toString()==&quot;SUCCESS&quot;){
+        <script>def build = Thread.currentThread().executable;
+def buildtype = ((build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=null)&amp;&amp;(build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=&quot;&quot;))?build.getEnvVars().get(&quot;BUILDTYPE&quot;)+&quot; - &quot;:&quot;&quot;;
+if(buildtype==&quot;Formal&quot; &amp;&amp; build.result.toString()==&quot;SUCCESS&quot;){
 recipients_list+=&quot;; Agnes.Zhang@kla-tencor.com&quot;
 }
  </script>
