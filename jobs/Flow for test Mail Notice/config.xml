@@ -585,7 +585,7 @@ Example:&lt;BR&gt;
   <builders/>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
-      <recipientList>${SCRIPT, template=&quot;recipients.groovy&quot;}</recipientList>
+      <recipientList>${SCRIPT, template=&quot;recipients.template&quot;}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
