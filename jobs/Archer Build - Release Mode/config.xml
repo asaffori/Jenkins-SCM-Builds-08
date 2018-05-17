@@ -527,8 +527,13 @@ xcopy /hievry %OutDirCommon%\CodeAnalysis %team_scm_fetchDestination%\CodeAnalys
           </configs>
         </hudson.plugins.parameterizedtrigger.TriggerBuilder>
         <hudson.tasks.BatchFile>
-          <command>taskkill /F /FI &quot;IMAGENAME eq Matlab*&quot;&#xd;
-If &quot;%StartFromSolution%&quot; ==&quot;&quot; rd %WSName%_V%BUILD_VERSION% /s /q</command>
+          <command>taskkill /F /FI &quot;IMAGENAME eq Matlab*&quot;</command>
+        </hudson.tasks.BatchFile>
+        <hudson.tasks.BatchFile>
+          <command>echo ### Removing old build data ###&#xd;
+if defined StartFromSolution goto end&#xd;
+if exist &quot;D:\BuildOutputs\%WSName%_V%BUILD_VERSION%&quot; rd /q /s &quot;D:\BuildOutputs\%WSName%_V%BUILD_VERSION%&quot;&#xd;
+:end</command>
         </hudson.tasks.BatchFile>
       </buildSteps>
       <failOnError>false</failOnError>
