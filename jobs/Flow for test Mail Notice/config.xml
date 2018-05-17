@@ -45,34 +45,6 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
-        <groovyScriptContent>//reading email reciepts
-if (emailGroups.contains(&quot;@&quot;)) {
-     def map = [ &quot;recipients_list&quot;:emailGroups]
-     return 	map
-}
-
-def file = new File(emailGroupsDefFile)
-def reciepts_list=&quot;&quot;;
-  	if (file.exists()){
-        //println &quot;Below is the content of the file ${file.absolutePath}&quot;
-      def lineNo = 1
-      def line
-      file.withReader { reader -&gt;
-         while ((line = reader.readLine())!=null) {
-            if (line.trim() ==&quot;&quot;) continue;
-            //println &quot;${lineNo}. ${line}&quot;
-            lineNo++
-            groupOwn=line.substring(0,line.indexOf(&quot;=&quot;))
-            reciepts_list+=emailGroups.contains(groupOwn) ? line.substring(line.indexOf(&quot;=&quot;)+1).trim():&quot;&quot;;
-           
-            reciepts_list=(!reciepts_list.trim().endsWith(&quot;,&quot;) &amp; !reciepts_list.trim().equals (&quot;&quot;)) ?reciepts_list.trim()+&quot;,&quot;:reciepts_list.trim()
-           
-         }
-      }
-		
-    }
-      	def map = [ &quot;recipients_list&quot;:reciepts_list]
-	return 	map</groovyScriptContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
       <on>true</on>
@@ -612,22 +584,8 @@ Example:&lt;BR&gt;
   <concurrentBuild>true</concurrentBuild>
   <builders/>
   <publishers>
-    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4.1">
-      <script plugin="script-security@1.44">
-        <script>def build = Thread.currentThread().executable;
-def buildtype = ((build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=null)&amp;&amp;(build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=&quot;&quot;))?build.getEnvVars().get(&quot;BUILDTYPE&quot;)+&quot; - &quot;:&quot;&quot;;
-if(buildtype==&quot;Formal&quot; &amp;&amp; build.result.toString()==&quot;SUCCESS&quot;){
-	def map = [ &quot;recipients_list&quot;:&quot;Agnes.Zhang@kla-tencor.com&quot;]
-	return map
-}
- </script>
-        <sandbox>false</sandbox>
-      </script>
-      <behavior>0</behavior>
-      <runForMatrixParent>false</runForMatrixParent>
-    </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
-      <recipientList>${recipients_list}</recipientList>
+      <recipientList>${SCRIPT, template=&quot;recipients.groovy&quot;}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
@@ -647,7 +605,7 @@ if(buildtype==&quot;Formal&quot; &amp;&amp; build.result.toString()==&quot;SUCCE
       </configuredTriggers>
       <contentType>text/html</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
-      <defaultContent>${SCRIPT, template=&quot;ARCHERDM_template_New_Flow_SCA_Nunit _Agnes.groovy&quot;}</defaultContent>
+      <defaultContent></defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript>def buildtype = ((build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=null)&amp;&amp;(build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=&quot;&quot;))?build.getEnvVars().get(&quot;BUILDTYPE&quot;)+&quot; - &quot;:&quot;&quot;;
 def additional =((build.getEnvVars().get(&quot;NIGHTLY&quot;) != null) &amp;&amp;(build.getEnvVars().get(&quot;NIGHTLY&quot;).equals(&quot;TRUE&quot;))) ? &quot;Nightly - &quot;:&quot;&quot;;
