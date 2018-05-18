@@ -594,6 +594,7 @@ Example:&lt;BR&gt;
             <recipientProviders>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.RequesterRecipientProvider/>
             </recipientProviders>
             <attachmentsPattern></attachmentsPattern>
             <attachBuildLog>false</attachBuildLog>
@@ -611,7 +612,6 @@ Example:&lt;BR&gt;
 def additional =((build.getEnvVars().get(&quot;NIGHTLY&quot;) != null) &amp;&amp;(build.getEnvVars().get(&quot;NIGHTLY&quot;).equals(&quot;TRUE&quot;))) ? &quot;Nightly - &quot;:&quot;&quot;;
 def msg_version = build.getEnvVars().get(&quot;BUILD_VERSION&quot;);
 msg.setSubject(buildtype + additional + &quot;OMD-Archer-Build - Build # &quot;+ msg_version +&quot; - &quot; + build.result.toString());
-if (buildtype==&quot;Formal&quot;&amp;&amp;build.result.toString()==&quot;SUCCESS&quot;) msg.setSubject(&quot;OMD-UN &quot;+ msg_version +&quot; Integ Build &quot; );
 
 //Final update for build description
 build.setDescription(buildtype + additional  + build.getEnvVars().get(&quot;BUILD_VERSION&quot;) + &quot; triggered by &apos;&quot; + User.current().getId());</presendScript>
