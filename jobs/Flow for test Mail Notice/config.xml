@@ -606,7 +606,7 @@ Example:&lt;BR&gt;
       </configuredTriggers>
       <contentType>text/html</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
-      <defaultContent>${SCRIPT, template=&quot;ARCHERDM_template_New_Flow_SCA_Nunit _Agnes.groovy&quot;}</defaultContent>
+      <defaultContent>${SCRIPT, template=&quot;ARCHERDM_template_New_Flow_SCA_Nunit.groovy&quot;}</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript>def buildtype = ((build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=null)&amp;&amp;(build.getEnvVars().get(&quot;BUILDTYPE&quot;)!=&quot;&quot;))?build.getEnvVars().get(&quot;BUILDTYPE&quot;)+&quot; - &quot;:&quot;&quot;;
 def additional =((build.getEnvVars().get(&quot;NIGHTLY&quot;) != null) &amp;&amp;(build.getEnvVars().get(&quot;NIGHTLY&quot;).equals(&quot;TRUE&quot;))) ? &quot;Nightly - &quot;:&quot;&quot;;
