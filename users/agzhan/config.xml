@@ -98,6 +98,7 @@
         <string>Isr1nas03-Viking-RO</string>
         <string>ISR1NAS01-SW-RMD-CH</string>
         <string>Ca1nas01-GlobalOpsJMP-CH</string>
+        <string>DL-OMD-SW-Formal-Release</string>
         <string>New HIRE Group</string>
         <string>Ca1nas05-WIN-Projects--M37Public-RO</string>
         <string>Delta-ws_MatchingMasterFiles-RO</string>
@@ -181,7 +182,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1526266520146</timestamp>
+      <timestamp>1527050891763</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
