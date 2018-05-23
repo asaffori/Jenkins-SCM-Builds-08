@@ -146,7 +146,13 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>true</concurrentBuild>
-  <builders/>
+  <builders>
+    <EnvInjectBuilder plugin="envinject@1.90">
+      <info>
+        <propertiesFilePath>\\klasj\ktfiles\Regions\China\OMD\SCM\Jenkins_Config\Jenkins_Build_Conf_files\Global_Env.properties</propertiesFilePath>
+      </info>
+    </EnvInjectBuilder>
+  </builders>
   <publishers/>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
