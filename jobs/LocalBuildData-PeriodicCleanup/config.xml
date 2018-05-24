@@ -177,7 +177,7 @@ copy C:\Temp\deletion_list_*.html %WORKSPACE%</command>
       <excludes></excludes>
       <overrideDestinationFolder>true</overrideDestinationFolder>
       <destinationFolder>C:\\temp\\${BUILD_NUMBER}</destinationFolder>
-      <runAfterResultFinalised>true</runAfterResultFinalised>
+      <runAfterResultFinalised>false</runAfterResultFinalised>
     </com.michelin.cio.hudson.plugins.copytoslave.CopyToMasterNotifier>
     <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.35.2">
       <configs>
