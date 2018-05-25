@@ -4,9 +4,29 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
@@ -19,20 +39,11 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
-  <assignedNode>master</assignedNode>
+  <assignedNode>SCM-CHN-02</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -53,7 +64,21 @@
               <properties>MailSubjectPrefix= HeadsUp - Tonight deletion candidates 
 CLEANUP_ACTION=preview
 MailBodyMessage=going to be cleaned.
-MailAlertMessage=&lt;span style=&quot;background-color: #FFFF00&quot;&gt;&lt;B&gt;Please verify that any of your important builds is not part of the below deletion list. &lt;/B&gt;&lt;/span&gt;&lt;BR&gt;</properties>
+MailAlertMessage=&lt;span style=&quot;background-color: #FFFF00&quot;&gt;&lt;B&gt;Please verify that any of your important builds is not part of the below deletion list. &lt;/B&gt;&lt;/span&gt;&lt;BR&gt;
+ARCHER_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Formal
+RDM_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Builds\RDM_*\Formal
+ARCHER_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-OMD\Archer_Installations\NuArcher_V*\Formal
+RDM_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Installations\RDM_*\Formal
+BLOSSOM_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Installations\RDM_*\Formal\BlossomTDD
+ARCHER_TASKS_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Tasks
+RDM_TASKS_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Builds\RDM_*\Tasks
+ARCHER_SCHEDULED_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Scheduled
+RDM_SCHEDULED_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Builds\RDM_*\Scheduled
+ARCHER_SCHEDULED_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SWGRP\SW-OMD\Archer_Installations\NuArcher_V*\Scheduled
+RDM_SCHEDULED_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Installations\RDM_*\Scheduled
+BLOSSOM_SCHEDULED_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SWGRP\SW-RDM\RDM_Installations\RDM_*\Scheduled\BlossomTDD
+Email_Recipient_List=Agnes.Zhang@kla-tencor.com
+</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
