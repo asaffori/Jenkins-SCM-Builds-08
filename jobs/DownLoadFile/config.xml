@@ -42,7 +42,7 @@
         <hudson.model.StringParameterDefinition>
           <name>DestBase</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP</defaultValue>
+          <defaultValue>\\klasj\ktfiles\Regions\China\OMD</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
