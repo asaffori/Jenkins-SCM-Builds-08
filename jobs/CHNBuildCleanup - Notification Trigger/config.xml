@@ -65,18 +65,7 @@
 CLEANUP_ACTION=preview
 MailBodyMessage=going to be cleaned.
 MailAlertMessage=&lt;span style=&quot;background-color: #FFFF00&quot;&gt;&lt;B&gt;Please verify that any of your important builds is not part of the below deletion list. &lt;/B&gt;&lt;/span&gt;&lt;BR&gt;
-ARCHER_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Formal
-RDM_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Builds\RDM_*\Formal
-ARCHER_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-OMD\Archer_Installations\NuArcher_V*\Formal
-RDM_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Installations\RDM_*\Formal
-BLOSSOM_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Installations\RDM_*\Formal\BlossomTDD
-ARCHER_TASKS_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Tasks
-RDM_TASKS_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Builds\RDM_*\Tasks
-ARCHER_SCHEDULED_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Scheduled
-RDM_SCHEDULED_BUILDS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Builds\RDM_*\Scheduled
-ARCHER_SCHEDULED_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SWGRP\SW-OMD\Archer_Installations\NuArcher_V*\Scheduled
-RDM_SCHEDULED_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SW-RDM\RDM_Installations\RDM_*\Scheduled
-BLOSSOM_SCHEDULED_INSTALLERS_URL=\\klasj\ktfiles\Regions\China\OMD\SWGRP\SW-RDM\RDM_Installations\RDM_*\Scheduled\BlossomTDD
+NETWORKPATHROOT=\\\\klasj\\ktfiles\\Regions\\China\\OMD
 Email_Recipient_List=Agnes.Zhang@kla-tencor.com
 </properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
