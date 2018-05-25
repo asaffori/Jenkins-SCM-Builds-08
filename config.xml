@@ -616,6 +616,7 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>CreateBuildNotes</string>
         <string>CreateNewStream</string>
+        <string>FileTransfer</string>
         <string>PromoteWIsToBuild</string>
       </jobNames>
       <jobFilters/>
