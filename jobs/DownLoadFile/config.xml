@@ -134,7 +134,7 @@ EXIT /B 0</command>
       <passwordEntries>
         <EnvInjectPasswordEntry>
           <name>ASPERA_SCP_PASS</name>
-          <value>{AQAAABAAAAAQ5eB+ZvsY8FkgW3//tXPgCjyqkqYsGL0+rmZn6wg439Q=}</value>
+          <value>{AQAAABAAAAAQd1ZtVR77YC+2tGrzFimPSJA3SNA23frOcB3ugTZzz+Q=}</value>
         </EnvInjectPasswordEntry>
       </passwordEntries>
     </EnvInjectPasswordWrapper>
