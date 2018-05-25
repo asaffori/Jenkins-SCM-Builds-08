@@ -6,8 +6,8 @@
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
       <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
-      <permission>hudson.model.Item.Build:DL-OMD-SW-SQC@kla-tencor.com</permission>
-      <permission>hudson.model.Item.Cancel:DL-OMD-SW-SQC@kla-tencor.com</permission>
+      <permission>hudson.model.Item.Build:DL-OMD-SW-SQC</permission>
+      <permission>hudson.model.Item.Cancel:DL-OMD-SW-SQC</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
