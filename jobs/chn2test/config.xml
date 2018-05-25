@@ -152,6 +152,9 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
         <propertiesFilePath>\\klasj\ktfiles\Regions\China\OMD\SCM\Jenkins_Config\Jenkins_Build_Conf_files\Global_Env.properties</propertiesFilePath>
       </info>
     </EnvInjectBuilder>
+    <hudson.tasks.BatchFile>
+      <command>IF NOT EXIST \\klasj\ktfiles\Regions\China\OMD\SW-OMD\Archer_Installations\NuArcher_V17.13\Formal\Archer_Installation_17.13.00.20600 MD \\klasj\ktfiles\Regions\China\OMD\SW-OMD\Archer_Installations\NuArcher_V17.13\Formal\Archer_Installation_17.13.00.20600</command>
+    </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
   <buildWrappers>
