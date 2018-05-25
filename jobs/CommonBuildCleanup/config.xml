@@ -63,31 +63,31 @@
         <hudson.model.StringParameterDefinition>
           <name>ARCHER_BUILDS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Formal</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Formal</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RDM_BUILDS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Builds\RDM_*\Formal</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-RDM\RDM_Builds\RDM_*\Formal</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ARCHER_INSTALLERS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Installations\NuArcher_V*\Formal</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-OMD\Archer_Installations\NuArcher_V*\Formal</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RDM_INSTALLERS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Installations\RDM_*\Formal</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-RDM\RDM_Installations\RDM_*\Formal</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLOSSOM_INSTALLERS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Installations\RDM_*\Formal\BlossomTDD</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-RDM\RDM_Installations\RDM_*\Formal\BlossomTDD</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -99,43 +99,43 @@
         <hudson.model.StringParameterDefinition>
           <name>ARCHER_TASKS_BUILDS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Tasks</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Tasks</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RDM_TASKS_BUILDS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Builds\RDM_*\Tasks</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-RDM\RDM_Builds\RDM_*\Tasks</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ARCHER_SCHEDULED_BUILDS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Scheduled</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_*\Scheduled</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RDM_SCHEDULED_BUILDS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Builds\RDM_*\Scheduled</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-RDM\RDM_Builds\RDM_*\Scheduled</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>ARCHER_SCHEDULED_INSTALLERS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Archer_Installations\NuArcher_V*\Scheduled</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-OMD\Archer_Installations\NuArcher_V*\Scheduled</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>RDM_SCHEDULED_INSTALLERS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Installations\RDM_*\Scheduled</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-RDM\RDM_Installations\RDM_*\Scheduled</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BLOSSOM_SCHEDULED_INSTALLERS_URL</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-RDM\RDM_Installations\RDM_*\Scheduled\BlossomTDD</defaultValue>
+          <defaultValue>${NETWORKPATHROOT}\SW-RDM\RDM_Installations\RDM_*\Scheduled\BlossomTDD</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -160,6 +160,12 @@
           <name>Email_Recipient_List</name>
           <description></description>
           <defaultValue>DL-OMD-SW-SCOL@KLA-Tencor.com,DL-OMD-SW-Imaging@KLA-Tencor.com,DL-OMD-ENG-SCM@KLA-Tencor.com</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>NETWORKPATHROOT</name>
+          <description></description>
+          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
