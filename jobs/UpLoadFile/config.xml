@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -18,13 +18,16 @@
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -34,11 +37,13 @@
           <name>BUILDVERSION</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SourceBase</name>
           <description></description>
           <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>BUILD_TYPE</name>
@@ -51,11 +56,6 @@
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>MajorMinor_Ver</name>
-          <description></description>
-          <defaultValue></defaultValue>
-        </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>UploadEngine</name>
           <description></description>
@@ -93,7 +93,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>IF EXIST %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% ( &quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% KLASJ\omdbuild@ca1connect01.kla-tencor.com:/&#xd;
+      <command>set MajorMinor_Ver=%BUILD_VERSION:~0,5%&#xd;
+SET SUBSTRING=!TEXT:~3,5!&#xd;
+IF EXIST %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% ( &quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% KLASJ\omdbuild@ca1connect01.kla-tencor.com:/&#xd;
 )&#xd;
 IF NOT %ERRORLEVEL%==0 (&#xd;
 ECHO *************Upload Archer installation failed***************&#xd;
@@ -101,6 +103,13 @@ EXIT /B 1&#xd;
 )&#xd;
 IF EXIST %SourceBase%\SW-RDM\RDM_Installations\RDM_%MajorMinor_Ver%\%BUILD_TYPE%\RDM_%BUILDVERSION% (&#xd;
 &quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m %SourceBase%\SW-RDM\RDM_Installations\RDM_%MajorMinor_Ver%\%BUILD_TYPE%\RDM_%BUILDVERSION% KLASJ\omdbuild@ca1connect01.kla-tencor.com:/&#xd;
+)&#xd;
+IF NOT %ERRORLEVEL%==0 (&#xd;
+ECHO *************Upload RDM installation failed***************&#xd;
+EXIT /B 1&#xd;
+)&#xd;
+IF EXIST %SourceBase%\SW-RDM\RDM_Installations\RDM_%MajorMinor_Ver%\%BUILD_TYPE%\BlossomTDD\TDD_%BUILDVERSION% (&#xd;
+&quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m %SourceBase%\SW-RDM\RDM_Installations\RDM_%MajorMinor_Ver%\%BUILD_TYPE%\BlossomTDD\TDD_%BUILDVERSION% KLASJ\omdbuild@ca1connect01.kla-tencor.com:/&#xd;
 )&#xd;
 IF NOT %ERRORLEVEL%==0 (&#xd;
 ECHO *************Upload RDM installation failed***************&#xd;
