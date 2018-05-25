@@ -351,7 +351,7 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView[2]/jobNames/comparator"/>
-        <string>CHNBuildCleanup</string>
+        <string>CHNBuildCleanup - Notification Trigger</string>
         <string>CommonBuildCleanup</string>
         <string>CommonBuildCleanup - actual deletion trigger</string>
         <string>CommonBuildCleanup - notification trigger</string>
