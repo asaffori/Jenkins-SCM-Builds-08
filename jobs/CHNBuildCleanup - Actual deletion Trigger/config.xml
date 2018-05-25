@@ -66,7 +66,7 @@ CLEANUP_ACTION=delete
 MailBodyMessage= were deleted.
 MailAlertMessage=
 NETWORKPATHROOT=\\klasj\ktfiles\Regions\China\OMD
-Email_Recipient_List=Agnes.Zhang@kla-tencor.com</properties>
+Email_Recipient_List=DL-OMD-SW-ADV@kla-tencor.com</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
