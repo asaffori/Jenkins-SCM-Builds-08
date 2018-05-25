@@ -129,7 +129,7 @@
         <hudson.model.StringParameterDefinition>
           <name>DestBase</name>
           <description></description>
-          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP</defaultValue>
+          <defaultValue>\\klasj\ktfiles\Regions\China\OMD</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
