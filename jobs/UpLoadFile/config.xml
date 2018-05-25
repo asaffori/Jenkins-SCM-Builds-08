@@ -93,8 +93,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set MajorMinor_Ver=%BUILD_VERSION:~0,5%&#xd;
-SET SUBSTRING=!TEXT:~3,5!&#xd;
+      <command>set MajorMinor_Ver=%BUILDVERSION:~0,5%&#xd;
+&#xd;
 IF EXIST %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% ( &quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% KLASJ\omdbuild@ca1connect01.kla-tencor.com:/&#xd;
 )&#xd;
 IF NOT %ERRORLEVEL%==0 (&#xd;

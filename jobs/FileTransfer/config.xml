@@ -202,6 +202,10 @@ OMD CM Team</defaultContent>
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
+      <string>MajorMinor_Ver</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>UploadEngine</string>
       <string></string>
     </entry>
