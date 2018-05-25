@@ -130,7 +130,7 @@ EXIT /B 0</command>
   <buildWrappers>
     <EnvInjectPasswordWrapper plugin="envinject@1.90">
       <injectGlobalPasswords>false</injectGlobalPasswords>
-      <maskPasswordParameters>true</maskPasswordParameters>
+      <maskPasswordParameters>false</maskPasswordParameters>
       <passwordEntries>
         <EnvInjectPasswordEntry>
           <name>ASPERA_SCP_PASS</name>
