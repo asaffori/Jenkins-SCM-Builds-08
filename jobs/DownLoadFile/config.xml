@@ -10,9 +10,20 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
@@ -45,12 +56,6 @@
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>MajorMinor_Ver</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>DownLoadEngine</name>
           <description></description>
@@ -82,17 +87,8 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -103,7 +99,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>&quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ --remove-after-transfer -l 50m -m 1m KLASJ\omdbuild@ca1connect01:Archer_Installation_%BUILDVERSION% %DestBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% &#xd;
+      <command>set MajorMinor_Ver=%BUILDVERSION:~0,5%&#xd;
+&quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ --remove-after-transfer -l 50m -m 1m KLASJ\omdbuild@ca1connect01:Archer_Installation_%BUILDVERSION% %DestBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% &#xd;
 IF NOT %ERRORLEVEL%==0 (&#xd;
 IF NOT EXIST %SourceBase%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILD_TYPE%\Archer_Installation_%BUILDVERSION% GOTO SKIPARCHER&#xd;
 ECHO *************Download Archer installation failed***************&#xd;
@@ -115,6 +112,13 @@ EXIT /B 1&#xd;
 IF NOT %ERRORLEVEL%==0 (&#xd;
 IF NOT EXIST %SourceBase%\SW-RDM\RDM_Installations\RDM_%MajorMinor_Ver%\%BUILD_TYPE%\RDM_%BUILDVERSION% GOTO SKIPRDM&#xd;
 ECHO *************Download RDM installation failed***************&#xd;
+EXIT /B 1&#xd;
+)&#xd;
+&#xd;
+&quot;%LOCALAPPDATA%\Programs\Aspera\Aspera Connect\bin\ascp.exe&quot; -TQ -l 50m -m 1m KLASJ\omdbuild@ca1connect01:RDM_%BUILDVERSION% %DestBase%\SW-RDM\RDM_Installations\RDM_%MajorMinor_Ver%\%BUILD_TYPE%\BlossomTDD\TDD_%BUILDVERSION% &#xd;
+IF NOT %ERRORLEVEL%==0 (&#xd;
+IF NOT EXIST %SourceBase%\SW-RDM\RDM_Installations\RDM_%MajorMinor_Ver%\%BUILD_TYPE%\BlossomTDD\TDD_%BUILDVERSION% GOTO SKIPRDM&#xd;
+ECHO *************Download TDD installation failed***************&#xd;
 EXIT /B 1&#xd;
 )&#xd;
 :SKIPRDM&#xd;
