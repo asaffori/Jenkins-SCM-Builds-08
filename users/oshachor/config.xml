@@ -88,6 +88,7 @@
         <string>Isr1nas03-Viking-RO</string>
         <string>ISR1NAS01-SW-RMD-CH</string>
         <string>Ca1nas01-GlobalOpsJMP-CH</string>
+        <string>DL-OMD-SW-Formal-Release</string>
         <string>New HIRE Group</string>
         <string>Ca1nas05-WIN-Projects--M37Public-RO</string>
         <string>Delta-ws_MatchingMasterFiles-RO</string>
@@ -198,7 +199,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1525355972166</timestamp>
+      <timestamp>1527618268289</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
@@ -208,18 +209,6 @@
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
     <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
       <data class="concurrent-hash-map">
-        <entry>
-          <string>OMD-Archer-Build-PatchBuild</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>TriggerAutoRebaseInteg</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Agnes Test Full Flow</string>
-          <boolean>true</boolean>
-        </entry>
         <entry>
           <string>SanityTest</string>
           <boolean>true</boolean>
@@ -245,11 +234,23 @@
           <boolean>true</boolean>
         </entry>
         <entry>
+          <string>OMD-Archer-Build-PatchBuild</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>TriggerAutoRebaseInteg</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>SilentInstallation</string>
           <boolean>true</boolean>
         </entry>
         <entry>
           <string>SimLockCheck</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Agnes Test Full Flow</string>
           <boolean>true</boolean>
         </entry>
       </data>
