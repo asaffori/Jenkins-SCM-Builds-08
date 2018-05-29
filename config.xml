@@ -75,6 +75,7 @@
     <permission>hudson.model.Computer.Disconnect:smizrach</permission>
     <permission>hudson.model.Hudson.Administer:agzhan</permission>
     <permission>hudson.model.Hudson.Administer:asaffori</permission>
+    <permission>hudson.model.Hudson.Administer:omdbuild</permission>
     <permission>hudson.model.Hudson.Read:agzhan</permission>
     <permission>hudson.model.Hudson.Read:anonymous</permission>
     <permission>hudson.model.Hudson.Read:asaffori</permission>
