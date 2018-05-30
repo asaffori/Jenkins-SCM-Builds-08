@@ -305,66 +305,6 @@ return [user]</script>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERFDC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERFZC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERIMC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERSTAGE</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERUMC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>AUTOINSTALLATION</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RDMINSTALLATION</name>
           <description></description>
@@ -672,15 +612,7 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>BUILDCONTROLLERIMC</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>StartingStep</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>AUTOINSTALLATION</string>
       <string></string>
     </entry>
     <entry>
@@ -696,15 +628,7 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>BUILDCONTROLLERSTAGE</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BUILDCONTROLLERFDC</string>
       <string></string>
     </entry>
     <entry>
@@ -716,19 +640,11 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>BUILDCONTROLLERUMC</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>RDMINSTALLATION</string>
       <string></string>
     </entry>
     <entry>
       <string>BuildAutoApproved</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BUILDCONTROLLERFZC</string>
       <string></string>
     </entry>
     <entry>
@@ -928,31 +844,6 @@ build.save()</postsendScript>
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes Archer Meida Creation</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>PACKAGING</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Copy Matlab product Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Copy Matlab product Debug</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>Agnes RDM Media creation</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
@@ -1009,7 +900,10 @@ build.save()</postsendScript>
       <step>PACKAGING</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes Archer Meida Creation</dependencyJobName>
+          <dependencyJobName>Copy Matlab product Release</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>Copy Matlab product Debug</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
@@ -1145,9 +1039,8 @@ build.save()</postsendScript>
       <specifyModule>false</specifyModule>
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes Archer Meida Creation</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[12]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[12]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
@@ -1167,7 +1060,7 @@ build.save()</postsendScript>
       <specifyModule>false</specifyModule>
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[17]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[16]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
@@ -1187,7 +1080,7 @@ build.save()</postsendScript>
       <specifyModule>false</specifyModule>
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[16]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[15]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
