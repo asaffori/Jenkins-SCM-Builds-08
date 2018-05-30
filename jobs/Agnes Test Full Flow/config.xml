@@ -75,6 +75,14 @@ def reciepts_list=&quot;&quot;;
       <contributors/>
     </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -261,6 +269,141 @@ return [user]</script>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
+          <name>StaticCodeAnalysisModeDebug</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Disabled</string>
+              <string>Warning</string>
+              <string>Error</string>
+              <string>ErrorOnBuildEnd</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>LOG_VERBOSITY</name>
+          <description>MSBuild verbosity to run the build with</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>minimal</string>
+              <string>normal</string>
+              <string>detailed</string>
+              <string>diagnostic</string>
+              <string>quiet</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>StaticCodeAnalysisModeRelease</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Disabled</string>
+              <string>Warning</string>
+              <string>Error</string>
+              <string>ErrorOnBuildEnd</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDCONTROLLERFDC</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>TRUE</string>
+              <string>FALSE</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDCONTROLLERFZC</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>TRUE</string>
+              <string>FALSE</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDCONTROLLERIMC</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>TRUE</string>
+              <string>FALSE</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDCONTROLLERSTAGE</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>TRUE</string>
+              <string>FALSE</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDCONTROLLERUMC</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>TRUE</string>
+              <string>FALSE</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>AUTOINSTALLATION</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RDMINSTALLATION</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>CodeViewLoadePath</name>
+          <description></description>
+          <defaultValue>E:\Views\OMD\OMD-UN_${MajorMinor_Ver}\UOMD_BLD_${BUILD_VERSION}_code</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>BuildAutoApproved</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ReplaceSnaps</name>
+          <description>Replace snapshots/baselines with same build number if exists. &lt;BR&gt;
+Since RTC is not supporing baseline replce/delete, old snapshots and baselines will be renamed.</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>VERSIONFILE</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>AUTOVERSION</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RunAutoRebase</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
           <name>StartFromSolution</name>
           <description></description>
           <choices class="java.util.Arrays$ArrayList">
@@ -392,61 +535,6 @@ return [user]</script>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERFDC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERFZC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERIMC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERSTAGE</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDCONTROLLERUMC</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>AUTO</string>
-              <string>TRUE</string>
-              <string>FALSE</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>emailGroups</name>
           <description>This value is supplied by builds initiated through RTC.
@@ -461,86 +549,6 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
           <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_Groups.txt</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>StaticCodeAnalysisModeDebug</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Disabled</string>
-              <string>Warning</string>
-              <string>Error</string>
-              <string>ErrorOnBuildEnd</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>LOG_VERBOSITY</name>
-          <description>MSBuild verbosity to run the build with</description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>minimal</string>
-              <string>normal</string>
-              <string>detailed</string>
-              <string>diagnostic</string>
-              <string>quiet</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>StaticCodeAnalysisModeRelease</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Disabled</string>
-              <string>Warning</string>
-              <string>Error</string>
-              <string>ErrorOnBuildEnd</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>AUTOINSTALLATION</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMINSTALLATION</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>CodeViewLoadePath</name>
-          <description></description>
-          <defaultValue>E:\Views\OMD\OMD-UN_${MajorMinor_Ver}\UOMD_BLD_${BUILD_VERSION}_code</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>BuildAutoApproved</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ReplaceSnaps</name>
-          <description>Replace snapshots/baselines with same build number if exists. &lt;BR&gt;
-Since RTC is not supporing baseline replce/delete, old snapshots and baselines will be renamed.</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>VERSIONFILE</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>AUTOVERSION</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RunAutoRebase</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ClosureBuildEngine</name>
           <description></description>
@@ -595,14 +603,6 @@ Example:&lt;BR&gt;
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -682,19 +682,7 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ClosureBuildEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BuildAutoApproved</string>
       <string></string>
     </entry>
     <entry>
@@ -702,7 +690,7 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>VERSIONFILE</string>
+      <string>emailGroupsDefFile</string>
       <string></string>
     </entry>
     <entry>
@@ -718,11 +706,31 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>emailGroups</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
     <entry>
       <string>ReplaceSnaps</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>RDMINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BuildAutoApproved</string>
       <string></string>
     </entry>
   </globalEnvVars>
@@ -856,28 +864,6 @@ build.save()</postsendScript>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes NuAgnes Archer Build Preperation Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes Archer Build - Debug Mode</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>BUILD</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes NuAgnes Archer - Backup Code Debug</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
@@ -1091,10 +1077,10 @@ build.save()</postsendScript>
       <step>BUILD</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes Archer Build - Debug Mode</dependencyJobName>
+          <dependencyJobName>Matlab Build</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Matlab Build</dependencyJobName>
+          <dependencyJobName>Agnes NuAgnes Archer - Backup Code Debug</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
@@ -1223,9 +1209,7 @@ build.save()</postsendScript>
       <specifyModule>false</specifyModule>
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes Archer Build - Debug Mode</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[16]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
