@@ -535,20 +535,6 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>emailGroups</name>
-          <description>This value is supplied by builds initiated through RTC.
-&lt;br&gt;
-Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_Groups.txt</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>emailGroupsDefFile</name>
-          <description></description>
-          <defaultValue>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_Groups.txt</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ClosureBuildEngine</name>
           <description></description>
@@ -686,11 +672,11 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>StartingStep</string>
+      <string>BUILDCONTROLLERIMC</string>
       <string></string>
     </entry>
     <entry>
-      <string>emailGroupsDefFile</string>
+      <string>StartingStep</string>
       <string></string>
     </entry>
     <entry>
@@ -710,11 +696,15 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>emailGroups</string>
+      <string>BUILDCONTROLLERSTAGE</string>
       <string></string>
     </entry>
     <entry>
       <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BUILDCONTROLLERFDC</string>
       <string></string>
     </entry>
     <entry>
@@ -726,11 +716,23 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>BUILDCONTROLLERUMC</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>RDMINSTALLATION</string>
       <string></string>
     </entry>
     <entry>
       <string>BuildAutoApproved</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BUILDCONTROLLERFZC</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>StartFromSolution</string>
       <string></string>
     </entry>
   </globalEnvVars>
@@ -1102,30 +1104,8 @@ build.save()</postsendScript>
       <step>BUILD</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes Archer Build - Release Mode</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Matlab Build</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes Archer Build - Release Mode</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>BUILD</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes NuAgnes Archer - Backup Code Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
@@ -1187,9 +1167,7 @@ build.save()</postsendScript>
       <specifyModule>false</specifyModule>
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes Archer Build - Release Mode</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[17]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
