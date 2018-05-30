@@ -541,42 +541,6 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
           <description></description>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>TestsArray</name>
-          <description>What tests needs to run and in which confgurations? &lt;BR&gt;
-Test details are shared in arrays, seperated by comma. Test arrays are seperated by semicomma and can be entered in diffrent lines&lt;BR&gt;
-&lt;BR&gt;
-Input Syntax: &lt;BR&gt;
-[&lt;BR&gt;
-[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath];&lt;BR&gt;
-[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]&lt;BR&gt;
-]&lt;BR&gt;
-&lt;BR&gt;
-Details:&lt;BR&gt;
-SuiteName:File name of the test suite (excluding suffix)&lt;BR&gt;
-SuitePath:suite file location&lt;BR&gt;
-ToolType: As TL/A700/A600&lt;BR&gt;
-ATEControllerMachineLabel:Jenkins label name for ATE controllers machines to let the mechanism select one&lt;BR&gt;
-SimulatorEngineMachineLabel: Jenkins label name for simulator machines to let the mechanism select one&lt;BR&gt;
-BaseImagePath:Template image file location&lt;BR&gt;
-BaseImageName:Acronis template image to recover simulator machine from prior installation&lt;BR&gt;
-ATEScriptsPath:ATE execution scripts folder&lt;BR&gt;
-&lt;BR&gt;
-&lt;BR&gt;
-Example:&lt;BR&gt;
-[&lt;BR&gt;
-[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,A700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];&lt;BR&gt;
-[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,A600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];&lt;BR&gt;
-[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.00.30500_TL_ATE_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]&lt;BR&gt;
-]&lt;BR&gt;</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>Auto_Deploy_Sanity</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RunNunitTests</name>
           <description></description>
@@ -657,10 +621,6 @@ build.save()</postsendScript>
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>TestsArray</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>StartingStep</string>
       <string></string>
     </entry>
@@ -682,10 +642,6 @@ build.save()</postsendScript>
     </entry>
     <entry>
       <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
     <entry>
@@ -1119,28 +1075,6 @@ build.save()</postsendScript>
       </dependencyJobList>
       <appServerType></appServerType>
       <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Auto Deploy Sanity Trigger Nunit</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>SANITY</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Archer Meida Creation</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType>Tomcat</appServerType>
-      <platform>Windows</platform>
       <triggersFlag>false</triggersFlag>
       <triggers>
         <dailyTriggerFlag>false</dailyTriggerFlag>
