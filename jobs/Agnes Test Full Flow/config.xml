@@ -126,36 +126,17 @@ def reciepts_list=&quot;&quot;;
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RDMRELEASE</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
-          <name>MajorMinor_Ver</name>
-          <description></description>
-          <randomName>choice-parameter-357895302552224</randomName>
-          <visibleItemCount>1</visibleItemCount>
-          <script class="org.biouno.unochoice.model.GroovyScript">
-            <secureScript plugin="script-security@1.44">
-              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
-return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
-              <sandbox>false</sandbox>
-            </secureScript>
-            <secureFallbackScript plugin="script-security@1.44">
-              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
-return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;
-</script>
-              <sandbox>false</sandbox>
-            </secureFallbackScript>
-          </script>
-          <projectName>Agnes Test Full Flow2</projectName>
-          <parameters class="linked-hash-map"/>
-          <referencedParameters>BUILD_VERSION</referencedParameters>
-          <choiceType>ET_FORMATTED_HTML</choiceType>
-          <omitValueField>true</omitValueField>
-        </org.biouno.unochoice.DynamicReferenceParameter>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ReleaseBuildEngine</name>
           <description></description>
@@ -167,11 +148,17 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMAUTODELIVER</name>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDTYPE</name>
           <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Tasks</string>
+              <string>Scheduled</string>
+              <string>Formal</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
         <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.5.0">
           <name>buildRequesterUserId</name>
           <description></description>
@@ -204,28 +191,6 @@ return [user]</script>
           <defaultValue>C:\temp\${BUILD_VERSION}</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>JENKINCONFIGPATH</name>
-          <description></description>
-          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMRELEASE</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDTYPE</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Tasks</string>
-              <string>Scheduled</string>
-              <string>Formal</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>StaticCodeAnalysisModeRelease</name>
           <description></description>
@@ -251,6 +216,12 @@ return [user]</script>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JENKINCONFIGPATH</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RDMINSTALLATION</name>
           <description></description>
@@ -268,6 +239,35 @@ return [user]</script>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RDMAUTODELIVER</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <randomName>choice-parameter-357895302552224</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;
+</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>Agnes Test Full Flow2</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>BUILD_VERSION</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>true</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
         <hudson.model.StringParameterDefinition>
           <name>CodeViewLoadePath</name>
           <description></description>
@@ -607,6 +607,10 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>RDMAUTODELIVER</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>VERSIONFILE</string>
       <string></string>
     </entry>
@@ -659,24 +663,6 @@ build.save()</postsendScript>
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes RDM - Backup Code Release</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>BUILD</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>Agnes RDM - Release Build</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
@@ -687,9 +673,6 @@ build.save()</postsendScript>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Copy Matlab product Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes RDM - Backup Code Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType></appServerType>
@@ -869,8 +852,8 @@ build.save()</postsendScript>
       <specifyModule>false</specifyModule>
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[6]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[4]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[6]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[5]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[4]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[5]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[5]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
