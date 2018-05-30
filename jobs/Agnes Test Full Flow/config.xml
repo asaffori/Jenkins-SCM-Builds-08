@@ -305,11 +305,6 @@ return [user]</script>
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>AUTODELIVER</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>CodeViewLoadePath</name>
           <description></description>
@@ -632,10 +627,6 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>AUTODELIVER</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
@@ -851,31 +842,6 @@ build.save()</postsendScript>
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes NuAgnes Archer - Deliver Code change</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>PACKAGING</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Copy Matlab product Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Copy Matlab product Debug</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
       <jobName>BuildClosure-Flow</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
@@ -885,9 +851,6 @@ build.save()</postsendScript>
       <step>MAT</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes NuAgnes Archer - Deliver Code change</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>RunNunitUnitTestsDebug</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
@@ -895,6 +858,12 @@ build.save()</postsendScript>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>Agnes RDM - Deliver Code change</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>Copy Matlab product Release</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>Copy Matlab product Debug</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
@@ -999,8 +968,8 @@ build.save()</postsendScript>
       <specifyModule>false</specifyModule>
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[10]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[10]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[10]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[4]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[10]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[5]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
@@ -1020,7 +989,7 @@ build.save()</postsendScript>
       <specifyModule>false</specifyModule>
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[14]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[13]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
@@ -1040,7 +1009,7 @@ build.save()</postsendScript>
       <specifyModule>false</specifyModule>
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[13]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[12]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[2]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
