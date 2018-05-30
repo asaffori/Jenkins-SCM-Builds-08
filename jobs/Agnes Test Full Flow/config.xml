@@ -126,93 +126,10 @@ def reciepts_list=&quot;&quot;;
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.5.0">
-          <name>buildRequesterUserId</name>
-          <description></description>
-          <editable>true</editable>
-          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider">
-            <groovyScript plugin="script-security@1.44">
-              <script>import hudson.model.User
-String user =User.current().getId()
-return [user]</script>
-              <sandbox>true</sandbox>
-            </groovyScript>
-            <usePredefinedVariables>false</usePredefinedVariables>
-          </choiceListProvider>
-        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
           <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>team_scm_fetchDestination</name>
-          <description></description>
-          <defaultValue>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>ReleaseBuildEngine</name>
-          <description></description>
-          <allowedSlaves/>
-          <defaultSlaves/>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMINSTALLATION</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDTYPE</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Tasks</string>
-              <string>Formal</string>
-              <string>Scheduled</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>WSName</name>
-          <description></description>
-          <defaultValue>omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>StaticCodeAnalysisModeDebug</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Disabled</string>
-              <string>Warning</string>
-              <string>Error</string>
-              <string>ErrorOnBuildEnd</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>StaticCodeAnalysisModeRelease</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Disabled</string>
-              <string>Warning</string>
-              <string>Error</string>
-              <string>ErrorOnBuildEnd</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>JENKINCONFIGPATH</name>
-          <description></description>
-          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
@@ -240,6 +157,12 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <omitValueField>true</omitValueField>
         </org.biouno.unochoice.DynamicReferenceParameter>
         <hudson.model.StringParameterDefinition>
+          <name>WSName</name>
+          <description></description>
+          <defaultValue>omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
           <name>CodeViewLoadePath</name>
           <description></description>
           <defaultValue>E:\Views\OMD\OMD-UN_${MajorMinor_Ver}\UOMD_BLD_${BUILD_VERSION}_code</defaultValue>
@@ -250,12 +173,49 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <description></description>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
+        <jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition plugin="extensible-choice-parameter@1.5.0">
+          <name>buildRequesterUserId</name>
+          <description></description>
+          <editable>true</editable>
+          <choiceListProvider class="jp.ikedam.jenkins.plugins.extensible_choice_parameter.SystemGroovyChoiceListProvider">
+            <groovyScript plugin="script-security@1.44">
+              <script>import hudson.model.User
+String user =User.current().getId()
+return [user]</script>
+              <sandbox>true</sandbox>
+            </groovyScript>
+            <usePredefinedVariables>false</usePredefinedVariables>
+          </choiceListProvider>
+        </jp.ikedam.jenkins.plugins.extensible__choice__parameter.ExtensibleChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>team_scm_fetchDestination</name>
+          <description></description>
+          <defaultValue>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>ReleaseBuildEngine</name>
+          <description></description>
+          <allowedSlaves/>
+          <defaultSlaves/>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>ReplaceSnaps</name>
           <description>Replace snapshots/baselines with same build number if exists. &lt;BR&gt;
 Since RTC is not supporing baseline replce/delete, old snapshots and baselines will be renamed.</description>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JENKINCONFIGPATH</name>
+          <description></description>
+          <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>DebugBuildEngine</name>
           <description></description>
@@ -273,6 +233,17 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDTYPE</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Tasks</string>
+              <string>Formal</string>
+              <string>Scheduled</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>AUTOVERSION</name>
           <description></description>
@@ -425,6 +396,30 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>StaticCodeAnalysisModeRelease</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Disabled</string>
+              <string>Warning</string>
+              <string>Error</string>
+              <string>ErrorOnBuildEnd</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>StaticCodeAnalysisModeDebug</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Disabled</string>
+              <string>Warning</string>
+              <string>Error</string>
+              <string>ErrorOnBuildEnd</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ClosureBuildEngine</name>
           <description></description>
@@ -558,6 +553,10 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>StaticCodeAnalysisModeDebug</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>ClosureBuildEngine</string>
       <string></string>
     </entry>
@@ -590,15 +589,15 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>BuildAutoApproved</string>
       <string></string>
     </entry>
     <entry>
       <string>StartFromSolution</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>StaticCodeAnalysisModeRelease</string>
       <string></string>
     </entry>
   </globalEnvVars>
@@ -612,28 +611,6 @@ build.save()</postsendScript>
       <overrideJobNode>false</overrideJobNode>
       <specifyModule>false</specifyModule>
       <step>BUILD</step>
-      <appServerType></appServerType>
-      <platform></platform>
-      <triggersFlag>false</triggersFlag>
-      <triggers>
-        <dailyTriggerFlag>false</dailyTriggerFlag>
-        <weeklyTriggerFlag>false</weeklyTriggerFlag>
-        <monthlyTriggerFlag>false</monthlyTriggerFlag>
-      </triggers>
-    </com.amdocs.hudson.plugins.flow.JobParameter>
-    <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>Agnes RDM Media creation</jobName>
-      <continueJobIfUnstable>false</continueJobIfUnstable>
-      <continueJobIfAborted>false</continueJobIfAborted>
-      <continueJobAnyway>false</continueJobAnyway>
-      <overrideJobNode>false</overrideJobNode>
-      <specifyModule>false</specifyModule>
-      <step>PACKAGING</step>
-      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Copy Matlab product Release</dependencyJobName>
-        </com.amdocs.hudson.plugins.flow.DependencyJob>
-      </dependencyJobList>
       <appServerType></appServerType>
       <platform></platform>
       <triggersFlag>false</triggersFlag>
@@ -665,10 +642,10 @@ build.save()</postsendScript>
           <dependencyJobName>Copy Matlab product Debug</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Agnes RDM Media creation</dependencyJobName>
+          <dependencyJobName>Copy Matlab product Debug</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>Copy Matlab product Debug</dependencyJobName>
+          <dependencyJobName>Copy Matlab product Release</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
@@ -767,8 +744,8 @@ build.save()</postsendScript>
       <specifyModule>false</specifyModule>
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[3]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
-        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[3]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[4]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[2]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[3]"/>
+        <com.amdocs.hudson.plugins.flow.DependencyJob reference="../../../com.amdocs.hudson.plugins.flow.JobParameter[2]/dependencyJobList/com.amdocs.hudson.plugins.flow.DependencyJob[4]"/>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
