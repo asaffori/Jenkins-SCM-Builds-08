@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <user>
   <fullName>Walzer, Gil</fullName>
   <properties>
@@ -8,7 +8,7 @@
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.16">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.61">
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.62">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
     <hudson.model.MyViewsProperty>
@@ -32,7 +32,7 @@
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.20">
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.21">
       <emailAddress>Gil.Walzer@kla-tencor.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
@@ -52,8 +52,9 @@
         <string>KLAIsraelAcc</string>
         <string>CA1NAS07-CPG-UNT-RO</string>
         <string>Ca1nas01-WINdownload-RO</string>
-        <string>DL-ALL-ISRAEL-OMD</string>
+        <string>DL-OMD-ARCHER-17-04</string>
         <string>Ca1ucsfs01-EMIE-RO</string>
+        <string>DL-OMD-ARCHER-17-03</string>
         <string>WIN-DYSD-DRCEng-CH</string>
         <string>ca1nas01-TWave-RO</string>
         <string>WIN-DYSD-Tools-CH</string>
@@ -77,6 +78,7 @@
         <string>ca1fs01-Eric-R-Jong-CH</string>
         <string>Isr1nas03-Viking-RO</string>
         <string>Ca1nas01-GlobalOpsJMP-CH</string>
+        <string>DL-OMD-SW-Formal-Release</string>
         <string>New HIRE Group</string>
         <string>Ca1nas05-WIN-Projects--M37Public-RO</string>
         <string>Delta-ws_MatchingMasterFiles-RO</string>
@@ -92,12 +94,13 @@
         <string>CMS_USERS</string>
         <string>KLA-ISRAEL</string>
         <string>DL-PowerApps-ChinaWorkflow</string>
+        <string>DL-OMD-ARCHER-17-13</string>
+        <string>DL-OMD-ARCHER-17-12</string>
         <string>UC-User-Milp-Production</string>
         <string>JPN1FS01-043-RO</string>
         <string>DL-Hasaot-users</string>
         <string>WIN-DYSD-IMPACT_meti-CH</string>
         <string>WIN-DYSD-ftp-CH</string>
-        <string>DL-Israel-OMD-ENG</string>
         <string>CA1-CTX-KT-Employees</string>
         <string>WIN-DYSD-Assignment-CH</string>
         <string>PLANTOPS_OPERATOR</string>
@@ -130,6 +133,7 @@
         <string>CA1SFSFP01-Integration-RO</string>
         <string>Israel-OMD-ENG</string>
         <string>ca1nas11-AMSRCRD-RO</string>
+        <string>DL-OMD-SW-SCOL</string>
         <string>DL-ALL-Employees-SPA</string>
         <string>ISR1NAS01-ToolsDataCollections-RO</string>
         <string>WIN-DYSD-Recipe-CH</string>
@@ -159,9 +163,9 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1520259044156</timestamp>
+      <timestamp>1527765679942</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
-    <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.1">
+    <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
     <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
@@ -180,6 +184,10 @@
         </entry>
         <entry>
           <string>TriggerAutoRebaseInteg</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Agnes Test Full Flow</string>
           <boolean>true</boolean>
         </entry>
         <entry>
