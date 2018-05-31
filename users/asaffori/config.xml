@@ -217,10 +217,6 @@
           <boolean>false</boolean>
         </entry>
         <entry>
-          <string>Agnes Test Full Flow</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
           <string>AutoRebaseStream</string>
           <boolean>false</boolean>
         </entry>
