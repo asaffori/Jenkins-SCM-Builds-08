@@ -1,0 +1,366 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>emailGroups</name>
+          <description>This value is supplied by builds initiated through RTC.
+&lt;br&gt;
+Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Email_Groups.txt</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildDefinitionId</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_VERSION</name>
+          <description>The product build version. This value is set by RTC build request.</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>team.scm.fetchDestination</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>team.scm.workspaceUUID</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildRequesterUserId</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>NIGHTLY</name>
+          <description></description>
+          <defaultValue>FALSE</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_TYPE</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>buildEngineHostName</name>
+          <description></description>
+          <allowedSlaves>
+            <string>SCM-Builds-01</string>
+            <string>SCM-Builds-02</string>
+            <string>SCM-Builds-03</string>
+            <string>SCM-Builds-04</string>
+            <string>SCM-Builds-05</string>
+            <string>SCM-Builds-06</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>master</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SandboxesPath</name>
+          <description></description>
+          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\Sandboxes</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BuildOutputsPath</name>
+          <description></description>
+          <defaultValue>\\klasj\ktfiles\Regions\Israel\SWGRP\SW-OMD\BuildOutputs</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildResultUUID</name>
+          <description>The UUID of the build result in RTC. It is supplied by builds initiated through RTC. For builds initiated through Hudson/Jenkins, no value should be supplied.</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MATLAB_INTERFACES_ONLY</name>
+          <description></description>
+          <defaultValue>FALSE</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>1</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>true</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <EnvInjectJobProperty plugin="envinject@1.90">
+      <info>
+        <groovyScriptContent>import hudson.model.User
+import hudson.tasks.Mailer
+
+def path = BUILD_VERSION
+File propsFile = new File(path)
+def additional = ((currentBuild.getEnvVars().get(&quot;NIGHTLY&quot;) != null) &amp;&amp; (currentBuild.getEnvVars().get(&quot;NIGHTLY&quot;).equals(&quot;TRUE&quot;)) )? &quot;Nightly - &quot;:&quot;&quot;;
+def buildtype = ((currentBuild.getEnvVars().get(&quot;BUILD_TYPE&quot;)!=null)&amp;&amp;(currentBuild.getEnvVars().get(&quot;BUILD_TYPE&quot;)!=&quot;&quot;))?currentBuild.getEnvVars().get(&quot;BUILD_TYPE&quot;)+&quot; - &quot;:&quot;&quot;;
+if (propsFile.exists()) {
+   currentBuild.setDescription(buildtype + additional +&quot; Executing new build for &quot;+MajorMinor_Ver+ &quot;by &apos;&quot; + currentBuild.getEnvVars().get(&quot;buildRequesterUserId&quot;) + &quot;&apos; in &apos;&quot; + currentBuild.getEnvVars().get(&quot;buildEngineHostName&quot;) +&quot;&apos; . Full build version will be updated at the end of the build.&quot;)
+} else {
+  currentBuild.setDescription(buildtype + additional + BUILD_VERSION + &quot; executed by &apos;&quot; + currentBuild.getEnvVars().get(&quot;buildRequesterUserId&quot;) + &quot;&apos; in &apos;&quot; + currentBuild.getEnvVars().get(&quot;buildEngineHostName&quot;) +&quot;&apos;&quot;)
+}</groovyScriptContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>true</overrideBuildParameters>
+      <contributors/>
+    </EnvInjectJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
+  <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
+    <overrideGlobal>false</overrideGlobal>
+    <timeout>0</timeout>
+    <buildType>
+      <value>buildDefinition</value>
+      <buildDefinition>${buildDefinitionId}</buildDefinition>
+      <clearLoadDirectory>false</clearLoadDirectory>
+      <createFoldersForComponents>false</createFoldersForComponents>
+      <acceptBeforeLoad>true</acceptBeforeLoad>
+      <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+      <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+      <customizedSnapshotName></customizedSnapshotName>
+      <useDynamicLoadRules>false</useDynamicLoadRules>
+    </buildType>
+    <buildTypeStr>buildDefinition</buildTypeStr>
+    <buildDefinition>${buildDefinitionId}</buildDefinition>
+    <clearLoadDirectory>false</clearLoadDirectory>
+    <createFoldersForComponents>false</createFoldersForComponents>
+    <acceptBeforeLoad>true</acceptBeforeLoad>
+    <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+    <avoidUsingToolkit>false</avoidUsingToolkit>
+    <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+    <customizedSnapshotName></customizedSnapshotName>
+    <useDynamicLoadRules>false</useDynamicLoadRules>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder plugin="conditional-buildstep@1.3.6">
+      <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$DontRun" plugin="run-condition@1.0"/>
+      <runCondition class="org.jenkins_ci.plugins.run_condition.logic.Not" plugin="run-condition@1.0">
+        <condition class="org.jenkins_ci.plugins.run_condition.core.ExpressionCondition">
+          <expression>.*${BUILD_TYPE}.*</expression>
+          <label>${ValidOptions}</label>
+        </condition>
+      </runCondition>
+      <conditionalbuilders>
+        <EnvInjectBuilder plugin="envinject@1.90">
+          <info>
+            <propertiesContent>BUILDTYPE=Tasks
+BUILD_TYPE=Tasks</propertiesContent>
+          </info>
+        </EnvInjectBuilder>
+      </conditionalbuilders>
+    </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
+    <hudson.tasks.BatchFile>
+      <command>::@echo off&#xd;
+setlocal ENABLEDELAYEDEXPANSION&#xd;
+&#xd;
+IF EXIST %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat (&#xd;
+  echo AutoVersion is adopted in this build&#xd;
+  CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat&#xd;
+  IF NOT %ERRORLEVEL%==0 GOTO VERSIONERROR&#xd;
+  ECHO ********Rename Sandbox Name********&#xd;
+  IF EXIST %SandboxesPath%\%buildRequesterUserId%_!BUILDVERSION! RD /s /q %SandboxesPath%\%buildRequesterUserId%_!BUILDVERSION!&#xd;
+  SET team_scm_fetchDestination=%SandboxesPath%\%buildRequesterUserId%_!BUILDVERSION!&#xd;
+  Ren %SandboxesPath%\%buildRequesterUserId%_%MajorMinorVer% %buildRequesterUserId%_!BUILDVERSION!&#xd;
+&#xd;
+  IF %ERRORLEVEL% NEQ 0 (&#xd;
+    ECHO **************Rename Sandbox failed***********&#xd;
+    EXIT /B 1&#xd;
+  )&#xd;
+) ELSE (&#xd;
+  echo AutoVersion is not adopted in this build&#xd;
+)</command>
+    </hudson.tasks.BatchFile>
+    <org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder plugin="conditional-buildstep@1.3.6">
+      <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+      <runCondition class="org.jenkins_ci.plugins.run_condition.core.FileExistsCondition" plugin="run-condition@1.0">
+        <file>${BUILD_VERSION}</file>
+        <baseDir class="org.jenkins_ci.plugins.run_condition.common.BaseDirectory$Workspace"/>
+      </runCondition>
+      <conditionalbuilders>
+        <EnvInjectBuilder plugin="envinject@1.90">
+          <info>
+            <propertiesFilePath>${BUILD_VERSION}</propertiesFilePath>
+            <propertiesContent>VERSIONFILE=${BUILD_VERSION}
+BUILD_VERSION=${CurrentRunnningVersion}
+BUILDVERSION=${CurrentRunnningVersion}
+AUTOVERSION=TRUE</propertiesContent>
+          </info>
+        </EnvInjectBuilder>
+      </conditionalbuilders>
+    </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
+    <EnvInjectBuilder plugin="envinject@1.90">
+      <info>
+        <propertiesContent>team_scm_fetchDestination=%SandboxesPath%\${buildRequesterUserId}_${BUILDVERSION}</propertiesContent>
+      </info>
+    </EnvInjectBuilder>
+    <hudson.tasks.BatchFile>
+      <command>CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\DoFullBuild.bat&#xd;
+</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
+      <recipientList>${recipients_list}</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+      </configuredTriggers>
+      <contentType>text/html</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>${SCRIPT, template=&quot;ARCHERDM_template_New_buildtype.groovy&quot;}
+</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>def buildtype = ((build.getEnvVars().get(&quot;BUILD_TYPE&quot;)!=null)&amp;&amp;(build.getEnvVars().get(&quot;BUILD_TYPE&quot;)!=&quot;&quot;))?build.getEnvVars().get(&quot;BUILD_TYPE&quot;)+&quot; - &quot;:&quot;&quot;;
+def additional =((build.getEnvVars().get(&quot;NIGHTLY&quot;) != null) &amp;&amp;(build.getEnvVars().get(&quot;NIGHTLY&quot;).equals(&quot;TRUE&quot;))) ? &quot;Nightly - &quot;:&quot;&quot;;
+def msg_version = build.getEnvVars().get(&quot;BUILDVERSION&quot;);
+msg.setSubject(buildtype + additional + &quot;OMD-Archer-Build - Build # &quot;+ msg_version +&quot; - &quot; + build.result.toString());
+
+//Final update for build description
+
+build.setDescription(buildtype + additional  + build.getEnvVars().get(&quot;BUILD_VERSION&quot;) + &quot; executed by &apos;&quot; + currentBuild.getEnvVars().get(&quot;buildRequesterUserId&quot;) + &quot;&apos; in &apos;&quot; + currentBuild.getEnvVars().get(&quot;buildEngineHostName&quot;) +&quot;&apos;&quot;);</presendScript>
+      <postsendScript>import org.jvnet.hudson.plugins.groovypostbuild.*;
+import  javax.mail.Multipart;
+
+// create the summary with the document icon and attach to the build
+GroovyPostbuildSummaryAction action = new GroovyPostbuildSummaryAction(&quot;notepad.png&quot;);
+build.getActions().add(action);
+// Read mail content and attach it to the build summary
+Multipart mp= (Multipart)msg.getContent()
+action.appendText(mp.getBodyPart(0).getContent().toString(), false);
+//save the build!
+build.save()</postsendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>true</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesFilePath>${team.scm.fetchDestination}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
+        <groovyScriptContent>def file = new File(&quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\Email_Groups.txt&quot;)
+
+def reciepts_list=&quot;&quot;;
+  	if (file.exists()){
+        //println &quot;Below is the content of the file ${file.absolutePath}&quot;
+      def lineNo = 1
+      def line
+      file.withReader { reader -&gt;
+         while ((line = reader.readLine())!=null) {
+            if (line.trim() ==&quot;&quot;) continue;
+            //println &quot;${lineNo}. ${line}&quot;
+            lineNo++
+            groupOwn=line.substring(0,line.indexOf(&quot;=&quot;))
+            reciepts_list+=emailGroups.contains(groupOwn) ? line.substring(line.indexOf(&quot;=&quot;)+1).trim():&quot;&quot;;
+           
+            reciepts_list=(!reciepts_list.trim().endsWith(&quot;,&quot;) &amp; !reciepts_list.trim().equals (&quot;&quot;)) ?reciepts_list.trim()+&quot;,&quot;:reciepts_list.trim()
+           
+         }
+      }
+		
+    }
+      	def map = [ &quot;recipients_list&quot;:reciepts_list]
+	return 	map</groovyScriptContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
+          <configs>
+            <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+              <configs>
+                <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+              </configs>
+              <projects>DiskspaceAlert</projects>
+              <condition>ALWAYS</condition>
+              <triggerWithNoParameters>false</triggerWithNoParameters>
+              <triggerFromChildProjects>false</triggerFromChildProjects>
+              <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+            </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          </configs>
+        </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+        <hudson.tasks.BatchFile>
+          <command>@ECHO OFF&#xd;
+&#xd;
+::C:\Python35\python.exe C:\Build\CheckDiskSpace.py&#xd;
+taskkill /F /FI &quot;IMAGENAME eq Matlab*&quot;</command>
+        </hudson.tasks.BatchFile>
+      </buildSteps>
+      <failOnError>true</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
+</project>

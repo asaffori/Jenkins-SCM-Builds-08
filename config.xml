@@ -382,26 +382,29 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>Agnes Test Full Flow</string>
-        <string>ATETestsPipelineNunit</string>
-        <string>Auto Deploy Sanity Nunit</string>
-        <string>Auto Deploy Sanity Trigger Nunit</string>
-        <string>chn2test</string>
+        <string>AdhamsPipelineTest</string>
+        <string>cleanupTest</string>
         <string>CleanUpTestController</string>
-        <string>DownLoadFile</string>
-        <string>FileTransfer</string>
         <string>Flow for test Mail Notice</string>
-        <string>Generate Installation Instructions</string>
         <string>NUnit Test Full Flow</string>
+        <string>OMD-Archer-Buid-CreateCodeViewN</string>
+        <string>OMD-Archer-Build-Create_Snapshot_Baseline_Copy</string>
         <string>OMD-Build-Pipeline</string>
+        <string>OMD_Adham_Trigger</string>
+        <string>pipelinetest</string>
+        <string>rttreerter</string>
         <string>SanityTest-Agnes</string>
+        <string>SCA Testing</string>
         <string>SilentInstallation-Adham</string>
+        <string>Sync_Jenkin_Build</string>
+        <string>test</string>
         <string>test trigger</string>
         <string>test1</string>
         <string>test2</string>
         <string>test3</string>
-        <string>test_flow</string>
-        <string>UpLoadFile</string>
+        <string>TestPipeline</string>
+        <string>TestPipeline01</string>
+        <string>testPipeline1</string>
       </jobNames>
       <jobFilters/>
       <columns>
@@ -434,6 +437,7 @@
             <string>OMD_17.04_Scheduled_Trigger</string>
             <string>OMD_17.12.01_Scheduled_Trigger</string>
             <string>OMD_17.12_Scheduled_Trigger</string>
+            <string>OMD_17.13.01_Scheduled_Trigger</string>
             <string>OMD_17.13_Beta_Scheduled_Trigger</string>
             <string>OMD_17.13_Scheduled_Trigger</string>
             <string>OMD_18.00_Scheduled_Trigger</string>
@@ -617,8 +621,10 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>CreateBuildNotes</string>
         <string>CreateNewStream</string>
+        <string>DownLoadFile</string>
         <string>FileTransfer</string>
         <string>PromoteWIsToBuild</string>
+        <string>UpLoadFile</string>
       </jobNames>
       <jobFilters/>
       <columns>
