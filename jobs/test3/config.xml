@@ -100,6 +100,9 @@
           </buildStep>
           <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
         </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
+        <hudson.tasks.BatchFile>
+          <command>echo 111</command>
+        </hudson.tasks.BatchFile>
       </buildSteps>
       <failOnError>true</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
