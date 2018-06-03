@@ -529,7 +529,7 @@
             <hudson.views.LastDurationColumn/>
             <hudson.views.BuildButtonColumn/>
             <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
-            <hudson.plugins.favorite.column.FavoriteColumn plugin="favorite@2.3.1"/>
+            <hudson.plugins.favorite.column.FavoriteColumn plugin="favorite@2.3.2"/>
           </columns>
           <recurse>false</recurse>
         </listView>
@@ -636,7 +636,7 @@
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
         <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
-        <hudson.plugins.favorite.column.FavoriteColumn plugin="favorite@2.3.1"/>
+        <hudson.plugins.favorite.column.FavoriteColumn plugin="favorite@2.3.2"/>
       </columns>
       <recurse>false</recurse>
     </listView>
