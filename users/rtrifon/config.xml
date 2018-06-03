@@ -5,7 +5,7 @@
     <jenkins.security.ApiTokenProperty>
       <apiToken>{AQAAABAAAAAw1vMGxVJNsdlCT6mgF9U+KpTzrUcisfRb84LFtSwX2dhl2xfW6fjR5g7sY+BzRGm2/AyXI6MOurN0tGXzmm67oA==}</apiToken>
     </jenkins.security.ApiTokenProperty>
-    <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.1">
+    <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.16">
@@ -14,12 +14,8 @@
     <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.62">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
-    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
+    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.2">
       <data class="concurrent-hash-map">
-        <entry>
-          <string>Old---Sanity Test</string>
-          <boolean>true</boolean>
-        </entry>
         <entry>
           <string>SanityTest</string>
           <boolean>true</boolean>
@@ -29,15 +25,7 @@
           <boolean>true</boolean>
         </entry>
         <entry>
-          <string>Old---SimLockCheck</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
           <string>RestorageImage</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---UnlockSimulator</string>
           <boolean>true</boolean>
         </entry>
         <entry>
@@ -50,14 +38,6 @@
         </entry>
         <entry>
           <string>CreateNewStream</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---Restore Image</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---Silent Installation</string>
           <boolean>true</boolean>
         </entry>
       </data>
@@ -76,7 +56,7 @@
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
     </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
-    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.1.1">
+    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.2">
       <identifiers/>
     </hudson.plugins.openid.OpenIdUserProperty>
     <hudson.model.PaneStatusProperties>
