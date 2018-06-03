@@ -22,7 +22,7 @@
         </hudson.model.AllView>
       </views>
     </hudson.model.MyViewsProperty>
-    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.1.1">
+    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.2">
       <identifiers/>
     </hudson.plugins.openid.OpenIdUserProperty>
     <hudson.model.PaneStatusProperties>
@@ -41,20 +41,8 @@
     <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
-    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
+    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.2">
       <data class="concurrent-hash-map">
-        <entry>
-          <string>OMD-Archer-Build-PatchBuild</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>TriggerAutoRebaseInteg</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Agnes Test Full Flow</string>
-          <boolean>true</boolean>
-        </entry>
         <entry>
           <string>SanityTest</string>
           <boolean>true</boolean>
@@ -80,11 +68,23 @@
           <boolean>true</boolean>
         </entry>
         <entry>
+          <string>OMD-Archer-Build-PatchBuild</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>TriggerAutoRebaseInteg</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>SilentInstallation</string>
           <boolean>true</boolean>
         </entry>
         <entry>
           <string>SimLockCheck</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Agnes Test Full Flow</string>
           <boolean>true</boolean>
         </entry>
       </data>
@@ -141,6 +141,7 @@
         <string>ISR1NAS01-SW-MEG-CH</string>
         <string>Isr1nas03-Viking-RO</string>
         <string>Ca1nas01-GlobalOpsJMP-CH</string>
+        <string>DL-OMD-SW-Formal-Release</string>
         <string>CA1NAS04-OCD-SOG-SQC-RO</string>
         <string>Ca1nas05-WIN-Projects--M37Public-RO</string>
         <string>Delta-ws_MatchingMasterFiles-RO</string>
@@ -266,7 +267,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1525692091517</timestamp>
+      <timestamp>1528027156349</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
