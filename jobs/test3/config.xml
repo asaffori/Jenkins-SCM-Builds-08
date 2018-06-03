@@ -133,7 +133,7 @@
           <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
         </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
       </buildSteps>
-      <failOnError>true</failOnError>
+      <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
   </buildWrappers>
 </project>
