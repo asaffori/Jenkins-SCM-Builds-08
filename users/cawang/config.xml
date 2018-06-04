@@ -22,7 +22,7 @@
         </hudson.model.AllView>
       </views>
     </hudson.model.MyViewsProperty>
-    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.1.1">
+    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.2">
       <identifiers/>
     </hudson.plugins.openid.OpenIdUserProperty>
     <hudson.model.PaneStatusProperties>
@@ -69,6 +69,7 @@
         <string>Twn1fp01-PCIDData-RO</string>
         <string>CA1-CTX-Portal-Users</string>
         <string>WIN-DYSD-WSODocs-CH</string>
+        <string>Citrix XenApp 7.6 - eQuality - Prod-English</string>
         <string>Austinnt1-Cleanroom-CH</string>
         <string>DL-China-Engineering-SW</string>
         <string>ca1fs01-Eric-R-Jong-CH</string>
@@ -132,6 +133,7 @@
         <string>CA1NAS04-WIN-Software-RO</string>
         <string>WIN-DYSD-adc-plc-CH</string>
         <string>ca1nas05-WIN-OpenShares-CH</string>
+        <string>Citrix XenApp 7.6 - eQuality - Prod-Chinese</string>
         <string>DL-All-China</string>
         <string>DL-OMD-ARCHER-16-14</string>
         <string>DL-OMD-ARCHER-16-13</string>
@@ -150,12 +152,12 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1525765142332</timestamp>
+      <timestamp>1528098499722</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
-    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
+    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.2">
       <data class="concurrent-hash-map">
         <entry>
           <string>SanityTest</string>
