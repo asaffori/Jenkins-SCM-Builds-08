@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <user>
   <fullName>Hou, Lusong</fullName>
   <properties>
@@ -8,7 +8,7 @@
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.16">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash"/>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.61">
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.62">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
     <hudson.model.MyViewsProperty>
@@ -22,7 +22,7 @@
         </hudson.model.AllView>
       </views>
     </hudson.model.MyViewsProperty>
-    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.1.1">
+    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.2">
       <identifiers/>
     </hudson.plugins.openid.OpenIdUserProperty>
     <hudson.model.PaneStatusProperties>
@@ -35,7 +35,7 @@
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>false</insensitiveSearch>
     </hudson.search.UserSearchProperty>
-    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.20">
+    <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.21">
       <emailAddress>Lusong.Hou@kla-tencor.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <jenkins.security.LastGrantedAuthoritiesProperty>
@@ -45,6 +45,7 @@
         <string>CA1NAS02-WIN-BFDATA-CH</string>
         <string>aspera-users-engineering-kti-omd</string>
         <string>Sng2nas04-KTS_Mfg_Eng_HCL_Support-RO</string>
+        <string>Ca1nas12-BObjclts-RO</string>
         <string>ISR1FP05-DATA-CH</string>
         <string>DL-All-Shanghai</string>
         <string>CA1NAS12-SSCMdata-RO</string>
@@ -54,6 +55,7 @@
         <string>WIN-DYSD-DRCEng-CH</string>
         <string>ca1nas01-TWave-RO</string>
         <string>WIN-DYSD-Tools-CH</string>
+        <string>DL-NEXUS-BUILD</string>
         <string>Austinnt1-Austrain-CH</string>
         <string>CA1NAS12-SSCMdata-CH</string>
         <string>WIN-DYSD-Migration-CH</string>
@@ -61,9 +63,11 @@
         <string>WIN-DYSD-sepg-RO</string>
         <string>WIN-DYSD-IMPACT_met-RO</string>
         <string>WIN-DYSD-Image-CH</string>
+        <string>DL-OMD-SW-Family</string>
         <string>Twn1fp01-PCIDData-RO</string>
         <string>CA1-CTX-Portal-Users</string>
         <string>WIN-DYSD-WSODocs-CH</string>
+        <string>Citrix XenApp 7.6 - eQuality - Prod-English</string>
         <string>Austinnt1-Cleanroom-CH</string>
         <string>DL-China-Engineering-SW</string>
         <string>ca1fs01-Eric-R-Jong-CH</string>
@@ -78,12 +82,15 @@
         <string>WIN-DYSD-Demo_solutions-CH</string>
         <string>CA1NAS02-WIN-APPS-VideoTraining-RO</string>
         <string>CA1NAS04-WINAPPSCommon-RO</string>
+        <string>DL-China-Engineering</string>
         <string>WIN-DYSD-ILM-CH</string>
         <string>WIN-DYSD-Klarity-CH</string>
         <string>Ca1nas05-WIN-Software-Blazer-RO</string>
         <string>CA1NAS05-DYSD-RDS-Images-RO</string>
         <string>CMS_USERS</string>
+        <string>DL-PowerApps-ChinaWorkflow</string>
         <string>UC-User-Milp-Production</string>
+        <string>Chn2nas01-Omd-CH</string>
         <string>JPN1FS01-043-RO</string>
         <string>WIN-DYSD-IMPACT_meti-CH</string>
         <string>WIN-DYSD-ftp-CH</string>
@@ -102,6 +109,7 @@
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
         <string>Ca1fs01-TN-analyzes-RO</string>
         <string>CA1NAS02-SSCM-CH</string>
+        <string>DL-All-Asia</string>
         <string>Ca1fs01-SS10K-info-RO</string>
         <string>WIN-DYSD-SQATestData-CH</string>
         <string>DPM_Users</string>
@@ -121,7 +129,11 @@
         <string>CA1NAS04-WIN-Software-RO</string>
         <string>WIN-DYSD-adc-plc-CH</string>
         <string>ca1nas05-WIN-OpenShares-CH</string>
+        <string>Citrix XenApp 7.6 - eQuality - Prod-Chinese</string>
+        <string>DL-All-China</string>
         <string>ISR1NAS01-SW-RO</string>
+        <string>DL-OMD-ARCHER-16-14</string>
+        <string>DL-OMD-ARCHER-16-13</string>
         <string>ZZZ-SRV-CHN2EX01</string>
         <string>Shanghai Users</string>
         <string>WIN-DYSD-Picnic-RO</string>
@@ -138,15 +150,15 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1509679266422</timestamp>
+      <timestamp>1528099147881</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
     </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
-    <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.1">
+    <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
-    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
+    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.2">
       <data class="concurrent-hash-map">
         <entry>
           <string>Old---Sanity Test</string>
@@ -162,6 +174,10 @@
         </entry>
         <entry>
           <string>TriggerAutoRebaseInteg</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Agnes Test Full Flow</string>
           <boolean>true</boolean>
         </entry>
         <entry>
