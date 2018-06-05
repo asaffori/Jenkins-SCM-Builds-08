@@ -66,8 +66,9 @@ CLEANUP_ACTION=preview
 MailBodyMessage=going to be cleaned.
 MailAlertMessage=&lt;span style=&quot;background-color: #FFFF00&quot;&gt;&lt;B&gt;Please verify that any of your important builds is not part of the below deletion list. &lt;/B&gt;&lt;/span&gt;&lt;BR&gt;
 NETWORKPATHROOT=\\\\klasj\\ktfiles\\Regions\\China\\OMD
-Email_Recipient_List=DL-OMD-SW-ADV@kla-tencor.com
-CleanUpEngine=SCM-CHN-02</properties>
+Email_Recipient_List=DL-OMD-SW-ADV@kla-tencor.com;Agnes.Zhang@kla-tencor.com
+CleanUpEngine=SCM-CHN-02
+CODEVIEW_URL=\\\\klasj\\ktfiles\\Regions\\China\\OMD\\views\\OMD\\OMD-UN_*</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
