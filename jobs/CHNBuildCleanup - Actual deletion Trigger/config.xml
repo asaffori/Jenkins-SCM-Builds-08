@@ -66,8 +66,9 @@ CLEANUP_ACTION=delete
 MailBodyMessage= were deleted.
 MailAlertMessage=
 NETWORKPATHROOT=\\\\klasj\\ktfiles\\Regions\\China\\OMD
-Email_Recipient_List=DL-OMD-SW-ADV@kla-tencor.com
-CleanUpEngine=SCM-CHN-02</properties>
+Email_Recipient_List=DL-OMD-SW-ADV@kla-tencor.com;Agnes.Zhang@kla-tencor.com
+CleanUpEngine=SCM-CHN-02
+CODEVIEW_URL=\\\\klasj\\ktfiles\\Regions\\China\\OMD\\views\\OMD\\OMD-UN_*</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
