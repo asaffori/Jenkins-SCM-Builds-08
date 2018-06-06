@@ -486,6 +486,12 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ReleaseEmailGroups</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>StaticCodeAnalysisModeRelease</name>
           <description></description>
@@ -607,7 +613,7 @@ build.save()</postsendScript>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
@@ -621,7 +627,23 @@ build.save()</postsendScript>
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>RDMINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BuildAutoApproved</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>StartingStep</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>VERSIONFILE</string>
       <string></string>
     </entry>
     <entry>
@@ -637,23 +659,7 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>VERSIONFILE</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ReplaceSnaps</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BuildAutoApproved</string>
       <string></string>
     </entry>
     <entry>

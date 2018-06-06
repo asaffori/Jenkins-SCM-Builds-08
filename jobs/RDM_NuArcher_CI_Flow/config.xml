@@ -24,7 +24,7 @@
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
       <leastLoadDisabled>false</leastLoadDisabled>
     </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
@@ -42,6 +42,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>DebugBuildEngine,ReleaseBuildEngine</paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
@@ -53,6 +54,7 @@
       <overrideBuildParameters>false</overrideBuildParameters>
       <contributors/>
     </EnvInjectJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -464,6 +466,12 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ReleaseEmailGroups</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
           <name>StaticCodeAnalysisModeRelease</name>
           <description></description>
@@ -573,7 +581,6 @@ Example:&lt;BR&gt;
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -635,7 +642,7 @@ build.save()</postsendScript>
     </hudson.plugins.emailext.ExtendedEmailPublisher>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
     <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
       <buildSteps>
         <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
@@ -654,11 +661,27 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>ClosureBuildEngine</string>
       <string></string>
     </entry>
     <entry>
+      <string>RDMINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BuildAutoApproved</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>StartingStep</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>VERSIONFILE</string>
       <string></string>
     </entry>
     <entry>
@@ -674,27 +697,11 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>VERSIONFILE</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
     <entry>
       <string>ReplaceSnaps</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BuildAutoApproved</string>
       <string></string>
     </entry>
   </globalEnvVars>
