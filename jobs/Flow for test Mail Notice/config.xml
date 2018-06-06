@@ -666,27 +666,11 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ClosureBuildEngine</string>
       <string></string>
     </entry>
     <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BuildAutoApproved</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>StartingStep</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>VERSIONFILE</string>
       <string></string>
     </entry>
     <entry>
@@ -702,11 +686,31 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ReleaseEmailGroups</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
     <entry>
       <string>ReplaceSnaps</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>RDMINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BuildAutoApproved</string>
       <string></string>
     </entry>
   </globalEnvVars>

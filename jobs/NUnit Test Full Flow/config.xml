@@ -627,23 +627,7 @@ build.save()</postsendScript>
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BuildAutoApproved</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>StartingStep</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>VERSIONFILE</string>
       <string></string>
     </entry>
     <entry>
@@ -659,7 +643,27 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ReleaseEmailGroups</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>ReplaceSnaps</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>RDMINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BuildAutoApproved</string>
       <string></string>
     </entry>
     <entry>
