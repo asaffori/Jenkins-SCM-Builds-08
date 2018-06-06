@@ -694,10 +694,6 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>ReleaseEmailGroups</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>

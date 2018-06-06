@@ -651,10 +651,6 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>ReleaseEmailGroups</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ReplaceSnaps</string>
       <string></string>
     </entry>
