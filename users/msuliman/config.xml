@@ -17,14 +17,6 @@
     <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.2">
       <data class="concurrent-hash-map">
         <entry>
-          <string>Old---Sanity Test</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---UnlockSimulator</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
           <string>OMD-Archer-Build-PatchBuild</string>
           <boolean>true</boolean>
         </entry>
@@ -33,23 +25,11 @@
           <boolean>true</boolean>
         </entry>
         <entry>
-          <string>Agnes Test Full Flow</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---Silent Installation</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
           <string>SanityTest</string>
           <boolean>true</boolean>
         </entry>
         <entry>
           <string>UnlockSimulator</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---SimLockCheck</string>
           <boolean>true</boolean>
         </entry>
         <entry>
@@ -70,10 +50,6 @@
         </entry>
         <entry>
           <string>SimLockCheck</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Old---Restore Image</string>
           <boolean>true</boolean>
         </entry>
       </data>
