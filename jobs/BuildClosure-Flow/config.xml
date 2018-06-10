@@ -280,19 +280,23 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <string></string>
     </entry>
     <entry>
-      <string>VERSIONFILE</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>FlowController</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>AUTOVERSION</string>
       <string></string>
     </entry>
     <entry>
       <string>BUILDTYPE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ReplaceSnaps</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>FlowController</string>
       <string></string>
     </entry>
     <entry>
