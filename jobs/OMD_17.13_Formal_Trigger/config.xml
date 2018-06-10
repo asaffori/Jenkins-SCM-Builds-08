@@ -66,7 +66,7 @@
         <hudson.model.StringParameterDefinition>
           <name>emailGroups</name>
           <description></description>
-          <defaultValue>DL-OMD-SW-SQC@KLA-Tencor.com,DL-OMD-SW-SCOL@KLA-Tencor.com,DL-OMD-SW-Imaging@KLA-Tencor.com,DL-OMD-ENG-SCM@KLA-Tencor.com,DL-OMD-SW-ARCH@KLA-Tencor.com</defaultValue>
+          <defaultValue>DL-OMD-SW-SQC@KLA-Tencor.com,DL-OMD-SW-SCOL@KLA-Tencor.com,DL-OMD-SW-Imaging@KLA-Tencor.com,DL-OMD-ENG-SCM@KLA-Tencor.com</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -289,12 +289,6 @@ Example:&lt;BR&gt;
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.TextParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>ReleaseEmailGroups</name>
-          <description></description>
-          <defaultValue>DL-OMD-SWFormalRelease@kla-tencor.com</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -362,6 +356,56 @@ IF NOT %ERRORLEVEL% == 0 (&#xd;
 	Exit /b 1&#xd;
 )</command>
     </hudson.tasks.BatchFile>
+    <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
+      <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
+        <arg1>${GenerateAndShareBuildNotes}</arg1>
+        <arg2>true</arg2>
+        <ignoreCase>true</ignoreCase>
+      </condition>
+      <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
+        <configs>
+          <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            <configs>
+              <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                <properties>MajorMinor_Ver=${MajorMinor_Ver}
+tStream=Archer_${MajorMinor_Ver}_Integ
+sStream=
+BUILD_VERSION=${BUILD_VERSION}
+recipientList=${emailGroups}
+CopyToShare=true</properties>
+                <textParamValueOnNewLine>false</textParamValueOnNewLine>
+              </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+            </configs>
+            <projects>CreateBuildNotes</projects>
+            <condition>ALWAYS</condition>
+            <triggerWithNoParameters>false</triggerWithNoParameters>
+            <triggerFromChildProjects>false</triggerFromChildProjects>
+            <block>
+              <buildStepFailureThreshold>
+                <name>FAILURE</name>
+                <ordinal>2</ordinal>
+                <color>RED</color>
+                <completeBuild>true</completeBuild>
+              </buildStepFailureThreshold>
+              <unstableThreshold>
+                <name>UNSTABLE</name>
+                <ordinal>1</ordinal>
+                <color>YELLOW</color>
+                <completeBuild>true</completeBuild>
+              </unstableThreshold>
+              <failureThreshold>
+                <name>FAILURE</name>
+                <ordinal>2</ordinal>
+                <color>RED</color>
+                <completeBuild>true</completeBuild>
+              </failureThreshold>
+            </block>
+            <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+          </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+        </configs>
+      </buildStep>
+      <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+    </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
       <configs>
         <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
@@ -431,7 +475,6 @@ RunAutoRebase=${RunAutoMerge}</properties>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
         <groovyScriptContent>def action = currentBuild.getAction(com.ibm.team.build.internal.hjplugin.RTCBuildResultAction.class)
@@ -451,7 +494,8 @@ return map </groovyScriptContent>
         <EnvInjectBuilder plugin="envinject@1.90">
           <info>
             <propertiesContent>VERSIONFILE=${BUILD_VERSION}
-AUTOVERSION=false</propertiesContent>
+AUTOVERSION=false
+team_scm_fetchDestination=${team_scm_fetchDestination}</propertiesContent>
           </info>
         </EnvInjectBuilder>
         <org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder plugin="conditional-buildstep@1.3.6">
@@ -479,7 +523,8 @@ IF %ERRORLEVEL% NEQ 0 (&#xd;
                 <propertiesContent>VERSIONFILE=${BUILD_VERSION}
 AUTOVERSION=true
 BUILD_VERSION=${CurrentRunnningVersion}
-SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
+SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}
+</propertiesContent>
               </info>
             </EnvInjectBuilder>
           </conditionalbuilders>
@@ -626,58 +671,8 @@ MajorMinor_Ver=${MajorMinor_Ver}</properties>
             </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           </configs>
         </hudson.plugins.parameterizedtrigger.TriggerBuilder>
-        <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
-          <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
-            <arg1>${GenerateAndShareBuildNotes}</arg1>
-            <arg2>true</arg2>
-            <ignoreCase>true</ignoreCase>
-          </condition>
-          <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
-            <configs>
-              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-                <configs>
-                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                    <properties>MajorMinor_Ver=${MajorMinor_Ver}
-tStream=Archer_${MajorMinor_Ver}_Integ
-sStream=
-BUILD_VERSION=${BUILD_VERSION}
-recipientList=${emailGroups}
-CopyToShare=true</properties>
-                    <textParamValueOnNewLine>false</textParamValueOnNewLine>
-                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                </configs>
-                <projects>CreateBuildNotes</projects>
-                <condition>ALWAYS</condition>
-                <triggerWithNoParameters>false</triggerWithNoParameters>
-                <triggerFromChildProjects>false</triggerFromChildProjects>
-                <block>
-                  <buildStepFailureThreshold>
-                    <name>FAILURE</name>
-                    <ordinal>2</ordinal>
-                    <color>RED</color>
-                    <completeBuild>true</completeBuild>
-                  </buildStepFailureThreshold>
-                  <unstableThreshold>
-                    <name>UNSTABLE</name>
-                    <ordinal>1</ordinal>
-                    <color>YELLOW</color>
-                    <completeBuild>true</completeBuild>
-                  </unstableThreshold>
-                  <failureThreshold>
-                    <name>FAILURE</name>
-                    <ordinal>2</ordinal>
-                    <color>RED</color>
-                    <completeBuild>true</completeBuild>
-                  </failureThreshold>
-                </block>
-                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
-              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-            </configs>
-          </buildStep>
-          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
-        </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
       </buildSteps>
-      <failOnError>true</failOnError>
+      <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
   </buildWrappers>
 </project>
