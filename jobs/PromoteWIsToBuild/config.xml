@@ -52,7 +52,7 @@
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-92960044358151</randomName>
-          <visibleItemCount>0</visibleItemCount>
+          <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.44">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -94,7 +94,6 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -109,8 +108,10 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
   <customWorkspace>C:\Temp</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>set buildRequesterUserId=omdbuild&#xd;
-CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\PromoteWIs.bat %BUILD_VERSION% dispositionToPB</command>
+      <command>::set buildRequesterUserId=omdbuild&#xd;
+py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutomations\UpdateAndPromoteBNWIs.py -a UpdateFixedBuild,UpdateOwner,PromoteToPB  -f \\isr1fp04\OMD_InternalBuildNotes\V%MajorMinor_Ver%\Build_Notes_%BUILD_VERSION%.csv -b %BUILD_VERSION%&#xd;
+&#xd;
+::CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\PromoteWIs.bat %BUILD_VERSION% dispositionToPB</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
