@@ -672,7 +672,7 @@ MajorMinor_Ver=${MajorMinor_Ver}</properties>
           </configs>
         </hudson.plugins.parameterizedtrigger.TriggerBuilder>
       </buildSteps>
-      <failOnError>false</failOnError>
+      <failOnError>true</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
   </buildWrappers>
 </project>
