@@ -230,7 +230,7 @@ CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\BatchFiles\DoFullBuild.
   </builders>
   <publishers/>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.9"/>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
         <propertiesFilePath>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
