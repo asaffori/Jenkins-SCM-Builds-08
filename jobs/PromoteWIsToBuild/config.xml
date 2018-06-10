@@ -100,7 +100,7 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>master</assignedNode>
   <canRoam>false</canRoam>
-  <disabled>true</disabled>
+  <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
