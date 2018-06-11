@@ -45,9 +45,54 @@
           <filterable>false</filterable>
           <filterLength>1</filterLength>
         </org.biouno.unochoice.ChoiceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>Choice2</name>
+          <description></description>
+          <randomName>choice-parameter-755162588187325</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>if(choice1.equals(&apos;aaa&apos;)){return [&apos;a&apos;, &apos;b&apos;]} else {return [&apos;aaaaaa&apos;,&apos;fffffff&apos;]}</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script>return [&quot;error&quot;]</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>AgnesChoiceTest</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>Choice1</referencedParameters>
+          <choiceType>ET_TEXT_BOX</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.biouno.unochoice.CascadeChoiceParameter plugin="uno-choice@2.1">
+          <name>Choice2</name>
+          <description></description>
+          <randomName>choice-parameter-755162616124395</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>if(choice1.equals(&apos;aaa&apos;)){return [&apos;a&apos;, &apos;b&apos;]} else {return [&apos;aaaaaa&apos;,&apos;fffffff&apos;]}</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script>return [&quot;error&quot;]</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>AgnesChoiceTest</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>Choice1</referencedParameters>
+          <choiceType>PT_RADIO</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.CascadeChoiceParameter>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
