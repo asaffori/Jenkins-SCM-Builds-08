@@ -400,11 +400,10 @@
         <string>test</string>
         <string>test trigger</string>
         <string>test1</string>
-        <string>test2</string>
-        <string>test3</string>
         <string>TestPipeline</string>
         <string>TestPipeline01</string>
         <string>testPipeline1</string>
+        <string>TestPipelineAgnes</string>
       </jobNames>
       <jobFilters/>
       <columns>
