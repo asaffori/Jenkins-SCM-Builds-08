@@ -54,7 +54,10 @@
     stages {
         stage(&quot;build&quot;) {
             steps {
-               step{}
+               stage(&apos;Build&apos;) {
+            steps {
+                echo &apos;Building..&apos;
+            }
                }
             }
         }
