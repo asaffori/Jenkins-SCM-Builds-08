@@ -52,7 +52,7 @@
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.44">
-              <script>if(choice1.equals(&apos;aaa&apos;)){return [&apos;a&apos;, &apos;b&apos;]} else {return [&apos;aaaaaa&apos;,&apos;fffffff&apos;]}</script>
+              <script>if(test.equals(&apos;true&apos;)){return [&apos;a&apos;, &apos;b&apos;]} else {return [&apos;aaaaaa&apos;,&apos;fffffff&apos;]}</script>
               <sandbox>false</sandbox>
             </secureScript>
             <secureFallbackScript plugin="script-security@1.44">
@@ -67,6 +67,11 @@
           <filterable>false</filterable>
           <filterLength>1</filterLength>
         </org.biouno.unochoice.CascadeChoiceParameter>
+        <hudson.model.BooleanParameterDefinition>
+          <name>test</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
