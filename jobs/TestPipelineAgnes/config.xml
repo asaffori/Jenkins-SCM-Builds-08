@@ -56,8 +56,6 @@
             steps {
                 echo &apos;Building..&apos;
             }
-               }
-            }
         }
     }
 }</script>
