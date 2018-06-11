@@ -25,26 +25,6 @@
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
-        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.1">
-          <name>Choice1</name>
-          <description></description>
-          <randomName>choice-parameter-755030301622412</randomName>
-          <visibleItemCount>1</visibleItemCount>
-          <script class="org.biouno.unochoice.model.GroovyScript">
-            <secureScript plugin="script-security@1.44">
-              <script>return[&apos;aaa&apos;,&apos;bbb&apos;]</script>
-              <sandbox>false</sandbox>
-            </secureScript>
-            <secureFallbackScript plugin="script-security@1.44">
-              <script>return [&quot;error&quot;]</script>
-              <sandbox>false</sandbox>
-            </secureFallbackScript>
-          </script>
-          <projectName>AgnesChoiceTest</projectName>
-          <choiceType>PT_RADIO</choiceType>
-          <filterable>false</filterable>
-          <filterLength>1</filterLength>
-        </org.biouno.unochoice.ChoiceParameter>
         <org.biouno.unochoice.CascadeChoiceParameter plugin="uno-choice@2.1">
           <name>Choice2</name>
           <description></description>
@@ -62,7 +42,7 @@
           </script>
           <projectName>AgnesChoiceTest</projectName>
           <parameters class="linked-hash-map"/>
-          <referencedParameters>Choice1</referencedParameters>
+          <referencedParameters>test</referencedParameters>
           <choiceType>PT_RADIO</choiceType>
           <filterable>false</filterable>
           <filterLength>1</filterLength>
