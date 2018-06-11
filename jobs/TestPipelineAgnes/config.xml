@@ -33,16 +33,14 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.53">
     <script> pipeline {
     agent any
-    parameters {
-                  activeChoiceParam(&apos;choice1&apos;) {
+    parameters {activeChoiceParam(&apos;choice1&apos;) {
                       description(&apos;select your choice&apos;)
                       choiceType(&apos;RADIO&apos;)
                       groovyScript {
                           script(&quot;return[&apos;aaa&apos;,&apos;bbb&apos;]&quot;)
                           fallbackScript(&apos;return [&quot;error&quot;]&apos;)
                       }
-                  }
-                  activeChoiceReactiveParam(&apos;choice2&apos;) {
+                  }activeChoiceReactiveParam(&apos;choice2&apos;) {
                       description(&apos;select your choice&apos;)
                       choiceType(&apos;RADIO&apos;)
                       groovyScript {
@@ -56,7 +54,9 @@
     stages {
         stage(&quot;build&quot;) {
             steps {
-               
+               step{
+               }
+               }
             }
         }
     }
