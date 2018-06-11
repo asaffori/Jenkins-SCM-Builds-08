@@ -54,8 +54,7 @@
     stages {
         stage(&quot;build&quot;) {
             steps {
-               step{
-               }
+               step{}
                }
             }
         }
