@@ -48,7 +48,8 @@
                           fallbackScript(&apos;return [&quot;error&quot;]&apos;)
                       }
                       referencedParameter(&apos;choice1&apos;)
-                  }</script>
+                  }
+ }</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
