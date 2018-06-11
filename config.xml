@@ -383,6 +383,7 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>AdhamsPipelineTest</string>
+        <string>AgnesChoiceTest</string>
         <string>cleanupTest</string>
         <string>CleanUpTestController</string>
         <string>Flow for test Mail Notice</string>
