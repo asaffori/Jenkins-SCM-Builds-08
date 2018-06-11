@@ -32,8 +32,8 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.53">
     <script> pipeline {
-     
- parameters {
+    agent any
+    parameters {
                   activeChoiceParam(&apos;choice1&apos;) {
                       description(&apos;select your choice&apos;)
                       choiceType(&apos;RADIO&apos;)
@@ -51,8 +51,8 @@
                       }
                       referencedParameter(&apos;choice1&apos;)
                   }
- }
-agent any
+    }
+
     stages {
         stage(&quot;build&quot;) {
             steps {
