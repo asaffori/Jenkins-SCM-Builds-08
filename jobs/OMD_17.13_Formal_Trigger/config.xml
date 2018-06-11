@@ -289,6 +289,12 @@ Example:&lt;BR&gt;
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.TextParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ReleaseEmailGroups</name>
+          <description></description>
+          <defaultValue>DL-OMD-SWFormalRelease@kla-tencor.com</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
