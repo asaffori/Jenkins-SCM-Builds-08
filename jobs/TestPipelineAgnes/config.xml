@@ -1,7 +1,53 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.21">
+  <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.53">
+    <script> parameters {
+                  activeChoiceParam(&apos;choice1&apos;) {
+                      description(&apos;select your choice&apos;)
+                      choiceType(&apos;RADIO&apos;)
+                      groovyScript {
+                          script(&quot;return[&apos;aaa&apos;,&apos;bbb&apos;]&quot;)
+                          fallbackScript(&apos;return [&quot;error&quot;]&apos;)
+                      }
+                  }
+                  activeChoiceReactiveParam(&apos;choice2&apos;) {
+                      description(&apos;select your choice&apos;)
+                      choiceType(&apos;RADIO&apos;)
+                      groovyScript {
+                          script(&quot;if(choice1.equals(&quot;aaa&quot;)){return [&apos;a&apos;, &apos;b&apos;]} else {return [&apos;aaaaaa&apos;,&apos;fffffff&apos;]}&quot;)
+                          fallbackScript(&apos;return [&quot;error&quot;]&apos;)
+                      }
+                      referencedParameter(&apos;choice1&apos;)
+                  }</script>
+    <sandbox>true</sandbox>
+  </definition>
   <triggers/>
   <disabled>false</disabled>
 </flow-definition>
