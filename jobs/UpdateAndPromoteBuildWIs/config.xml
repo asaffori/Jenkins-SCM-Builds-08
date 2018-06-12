@@ -80,7 +80,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
         <hudson.model.StringParameterDefinition>
           <name>BuildNotesFullPath</name>
           <description></description>
-          <defaultValue>\\isr1fp04\OMD_InternalBuildNotes\V%MajorMinor_Ver%\Build_Notes_%BUILD_VERSION%_TemporaryForPromotion.csv</defaultValue>
+          <defaultValue>\\isr1fp04\OMD_InternalBuildNotes\V${MajorMinor_Ver}\Build_Notes_${BUILD_VERSION}_TemporaryForPromotion.csv</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
