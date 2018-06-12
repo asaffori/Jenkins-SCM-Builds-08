@@ -33,21 +33,9 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.53">
     <script> pipeline {
     agent any
-    parameters {activeChoiceParam(&apos;choice1&apos;) {
-                      description(&apos;select your choice&apos;)
-                      choiceType(&apos;RADIO&apos;)
-                      groovyScript {
-                          script(&quot;return[&apos;aaa&apos;,&apos;bbb&apos;]&quot;)
-                          fallbackScript(&apos;return [&quot;error&quot;]&apos;)
-                      }
-                  }activeChoiceReactiveParam(&apos;choice2&apos;) {
-                      description(&apos;select your choice&apos;)
-                      choiceType(&apos;RADIO&apos;)
-                      groovyScript {
-                          script(&quot;if(choice1.equals(&apos;aaa&apos;)){return [&apos;a&apos;, &apos;b&apos;]} else {return [&apos;aaaaaa&apos;,&apos;fffffff&apos;]}&quot;)
-                          fallbackScript(&apos;return [&quot;error&quot;]&apos;)
-                      }
-                      referencedParameter(&apos;choice1&apos;)
+    parameters {[
+          [$class: &apos;ChoiceParameterDefinition&apos;, choices: deployOptions, description: &apos;Approve/Disallow deployment&apos;, name: &apos;deploy-check&apos;]
+          ]
                   }
     }
 
