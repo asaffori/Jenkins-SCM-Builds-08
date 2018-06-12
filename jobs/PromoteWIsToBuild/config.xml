@@ -108,17 +108,17 @@ If not provided, it will be assumed as D:\Sandboxes\omdbuild_%BUILD_VERSION%   W
   <customWorkspace>C:\Temp</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>::set buildRequesterUserId=omdbuild&#xd;
-py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutomations\UpdateAndPromoteBNWIs.py -a UpdateFixedBuild,UpdateOwner,PromoteToPB  -f \\isr1fp04\OMD_InternalBuildNotes\V%MajorMinor_Ver%\Build_Notes_%BUILD_VERSION%.csv -b %BUILD_VERSION%&#xd;
+      <command>&#xd;
+py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutomations\UpdateAndPromoteBNWIs.py -a UpdateFixedBuild,UpdateOwner,PromoteToPB  -f \\isr1fp04\OMD_InternalBuildNotes\V%MajorMinor_Ver%\Build_Notes_%BUILD_VERSION%_TemporaryForPromotion.csv -b %BUILD_VERSION%&#xd;
 &#xd;
-::CALL %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\RTCAutomations\PromoteWIs.bat %BUILD_VERSION% dispositionToPB</command>
+</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>${BUILD_USER_EMAIL}</recipientList>
       <configuredTriggers>
-        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+        <hudson.plugins.emailext.plugins.trigger.XNthFailureTrigger>
           <email>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
@@ -131,12 +131,14 @@ py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutoma
             <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
             <contentType>project</contentType>
           </email>
-        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <failureCount>0</failureCount>
+          <requiredFailureCount>0</requiredFailureCount>
+        </hudson.plugins.emailext.plugins.trigger.XNthFailureTrigger>
       </configuredTriggers>
       <contentType>text/html</contentType>
       <defaultSubject> ${BUILD_VERSION} - build assocoated WIs</defaultSubject>
       <defaultContent>Attached report for WIs associated with build ${BUILD_VERSION} promoted from &apos;Resolved&apos; state to &apos;Pending Build&apos;.</defaultContent>
-      <attachmentsPattern>${BUILD_VERSION}_Problem_And_Feature_WIs_list_Filtered.csv</attachmentsPattern>
+      <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
