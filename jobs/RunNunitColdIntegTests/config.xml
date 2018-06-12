@@ -111,7 +111,7 @@ FOR %%G IN (%Technologies%) DO (&#xd;
   <buildWrappers>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
-        <propertiesContent>NUNIT_HOME=C:\Program Files (x86)\NUnit 2.6.4</propertiesContent>
+        <propertiesContent>NUNIT_HOME=C:\Program Files (x86)\NUnit.org\nunit-console</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
