@@ -355,46 +355,6 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
-      <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
-        <arg1>${GenerateAndShareBuildNotes}</arg1>
-        <arg2>true</arg2>
-        <ignoreCase>true</ignoreCase>
-      </condition>
-      <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
-        <configs>
-          <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-            <configs class="empty-list"/>
-            <projects>CreateBuildNotes</projects>
-            <condition>ALWAYS</condition>
-            <triggerWithNoParameters>false</triggerWithNoParameters>
-            <triggerFromChildProjects>false</triggerFromChildProjects>
-            <block>
-              <buildStepFailureThreshold>
-                <name>FAILURE</name>
-                <ordinal>2</ordinal>
-                <color>RED</color>
-                <completeBuild>true</completeBuild>
-              </buildStepFailureThreshold>
-              <unstableThreshold>
-                <name>UNSTABLE</name>
-                <ordinal>1</ordinal>
-                <color>YELLOW</color>
-                <completeBuild>true</completeBuild>
-              </unstableThreshold>
-              <failureThreshold>
-                <name>FAILURE</name>
-                <ordinal>2</ordinal>
-                <color>RED</color>
-                <completeBuild>true</completeBuild>
-              </failureThreshold>
-            </block>
-            <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
-          </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-        </configs>
-      </buildStep>
-      <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
-    </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
     <hudson.tasks.BatchFile>
       <command>C:\Progra~2\Jenkins\tools\hudson.tasks.Ant_AntInstallation\RenameBuildLabel\bin\ant.bat -file %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\VersionUpdater\Build.xml -DbuildResultUUID=%buildResultUUID% -Dlabel=&quot;%BUILDTYPE%_UOMD_BLD_%BUILD_VERSION%&quot; &quot;-Dpassword=%BuildPass%&quot; -DuserId=%BuildUser% -DtoolkitPath=C:\Build\TeamConcertBuild\buildsystem\buildtoolkit -DsnapshotUUID=%team_scm_workspaceUUID% &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\Build\TeamConcertBuild\buildsystem\buildtoolkit&#xd;
 IF NOT %ERRORLEVEL% == 0 (&#xd;
