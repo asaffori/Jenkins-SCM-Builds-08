@@ -181,6 +181,12 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
           <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BuildNotesFullPath</name>
+          <description></description>
+          <defaultValue>\\isr1fp04\OMD_InternalBuildNotes\V${MajorMinor_Ver}\Build_Notes_${BUILD_VERSION}.csv</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>DebugBuildEngine</name>
           <description></description>
