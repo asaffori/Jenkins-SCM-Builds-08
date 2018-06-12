@@ -280,14 +280,6 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <string></string>
     </entry>
     <entry>
-      <string>VERSIONFILE</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>FlowController</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>AUTOVERSION</string>
       <string></string>
     </entry>
@@ -297,6 +289,14 @@ if (BuildAutoApproved != &quot;true&quot;) {
     </entry>
     <entry>
       <string>ReplaceSnaps</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>FlowController</string>
       <string></string>
     </entry>
     <entry>
@@ -358,7 +358,7 @@ if (BuildAutoApproved != &quot;true&quot;) {
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>OMD-Archer-Build-PromoteBuildWIs</jobName>
+      <jobName>OMD-Archer-Build-PromoteBuildWIsToPV</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
       <continueJobAnyway>false</continueJobAnyway>
@@ -384,7 +384,7 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <step>PACKAGING</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>OMD-Archer-Build-PromoteBuildWIs</dependencyJobName>
+          <dependencyJobName>OMD-Archer-Build-PromoteBuildWIsToPV</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
         <com.amdocs.hudson.plugins.flow.DependencyJob>
           <dependencyJobName>OMD-Archer-Build-Create_Snapshot_Baseline</dependencyJobName>
