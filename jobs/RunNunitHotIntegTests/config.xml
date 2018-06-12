@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -10,13 +10,16 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -55,7 +58,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
-        <propertiesContent>NUNIT_HOME=C:\Program Files (x86)\NUnit 2.6.4</propertiesContent>
+        <propertiesContent>NUNIT_HOME=C:\Program Files (x86)\NUnit.org\nunit-console</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
       <on>true</on>
@@ -96,7 +99,7 @@ FOR %%G IN (%Technologies%) DO (&#xd;
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.22">
+    <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.23">
       <testResultsPattern>Nunit\bin\NunitResults\*.HIntegTests.Results.xml</testResultsPattern>
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
@@ -110,7 +113,7 @@ FOR %%G IN (%Technologies%) DO (&#xd;
       <buildSteps>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
-            <script plugin="script-security@1.39">
+            <script plugin="script-security@1.44">
               <script>import hudson.model.Result;
 
 def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
@@ -125,7 +128,7 @@ if (Auto_Deploy_Sanity== &quot;false&quot;) {
         </hudson.plugins.groovy.SystemGroovy>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
-            <script plugin="script-security@1.39">
+            <script plugin="script-security@1.44">
               <script>import hudson.model.Result;
 
 def RunNunitTests= build.buildVariableResolver.resolve(&quot;RunNunitTests&quot;)
