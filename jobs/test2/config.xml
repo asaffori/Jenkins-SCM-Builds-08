@@ -49,7 +49,7 @@
     // do steps for manual trigger here
   print (&quot;Hiiiiii&quot;)
 }</script>
-          <sandbox>false</sandbox>
+          <sandbox>true</sandbox>
         </script>
       </source>
     </hudson.plugins.groovy.SystemGroovy>
