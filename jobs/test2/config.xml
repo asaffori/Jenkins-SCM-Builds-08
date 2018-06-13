@@ -48,7 +48,7 @@
         <script plugin="script-security@1.44">
           <script> hudson.model.Cause cause = build.getCause(hudson.model.Cause.class)
   println &quot;Is triggered by user: &quot; + (cause.class == hudson.model.Cause.UserIdCause.class)</script>
-          <sandbox>true</sandbox>
+          <sandbox>false</sandbox>
         </script>
       </source>
     </hudson.plugins.groovy.SystemGroovy>
