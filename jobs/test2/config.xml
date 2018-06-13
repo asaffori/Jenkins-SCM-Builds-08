@@ -46,11 +46,8 @@
     <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
       <source class="hudson.plugins.groovy.StringSystemScriptSource">
         <script plugin="script-security@1.44">
-          <script>def action = build.getAction(hudson.model.CauseAction.class)
-if ( action.getCauses()[0].toString().contains(&apos;UserIdCause&apos;) ){
-    // do steps for manual trigger here
-  print (&quot;Hiiiiii&quot;)
-}</script>
+          <script> hudson.model.Cause cause = build.getCause(hudson.model.Cause.class)
+  println &quot;Is triggered by user: &quot; + (cause.class == hudson.model.Cause.UserIdCause.class)</script>
           <sandbox>true</sandbox>
         </script>
       </source>
