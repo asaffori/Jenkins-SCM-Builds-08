@@ -624,6 +624,7 @@
         <string>CreateNewStream</string>
         <string>DownLoadFile</string>
         <string>FileTransfer</string>
+        <string>FileTransfer_Test</string>
         <string>UpdateAndPromoteBuildWIs</string>
         <string>UpLoadFile</string>
       </jobNames>
