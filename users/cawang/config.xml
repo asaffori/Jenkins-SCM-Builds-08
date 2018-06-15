@@ -199,10 +199,6 @@
           <string>SimLockCheck</string>
           <boolean>true</boolean>
         </entry>
-        <entry>
-          <string>Agnes Test Full Flow</string>
-          <boolean>true</boolean>
-        </entry>
       </data>
     </hudson.plugins.favorite.user.FavoriteUserProperty>
   </properties>
