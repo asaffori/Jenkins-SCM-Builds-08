@@ -486,7 +486,7 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}
           </conditionalbuilders>
         </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
         <hudson.tasks.BatchFile>
-          <command>C:\PROGRA~1\Unlocker\Unlocker.exe %team_scm_fetchDestination% /S</command>
+          <command>::C:\PROGRA~1\Unlocker\Unlocker.exe %team_scm_fetchDestination% /S</command>
         </hudson.tasks.BatchFile>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
