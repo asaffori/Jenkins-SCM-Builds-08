@@ -491,7 +491,7 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
             <script plugin="script-security@1.44">
-              <script>/*import hudson.model.*
+              <script>import hudson.model.*
 import hudson.AbortException
 
 build.getLog(100).each{
@@ -499,7 +499,7 @@ build.getLog(100).each{
        build.result = Result.UNSTABLE
        throw new AbortException(&quot;Build failed in new version calculation.&quot;)
    }
-}*/</script>
+}</script>
               <sandbox>false</sandbox>
             </script>
           </source>
