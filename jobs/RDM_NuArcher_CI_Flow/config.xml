@@ -42,7 +42,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>DebugBuildEngine,ReleaseBuildEngine</paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
@@ -54,7 +53,6 @@
       <overrideBuildParameters>false</overrideBuildParameters>
       <contributors/>
     </EnvInjectJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -113,7 +111,7 @@
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-357895302552224</randomName>
-          <visibleItemCount>0</visibleItemCount>
+          <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.44">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -127,13 +125,8 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
               <sandbox>false</sandbox>
             </secureFallbackScript>
           </script>
-          <projectName>NuArcher Build Preperation Release</projectName>
-          <parameters class="linked-hash-map">
-            <entry>
-              <string>BUILD_VERSION</string>
-              <string></string>
-            </entry>
-          </parameters>
+          <projectName>RDM_NuArcher_CI_Flow</projectName>
+          <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -592,6 +585,7 @@ Example:&lt;BR&gt;
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -633,11 +627,12 @@ msg.setSubject(buildtype + additional + &quot;OMD-Archer-Build - Build # &quot;+
 
 //Final update for build description
 build.setDescription(buildtype + additional  + build.getEnvVars().get(&quot;BUILD_VERSION&quot;) + &quot; triggered by &apos;&quot; + User.current().getId());</presendScript>
-      <postsendScript>import org.jvnet.hudson.plugins.groovypostbuild.*;
+      <postsendScript>//import org.jvnet.hudson.plugins.groovypostbuild.*;
+import com.jenkinsci.plugins.badge.action.*;
 import  javax.mail.Multipart;
 
 // create the summary with the document icon and attach to the build
-GroovyPostbuildSummaryAction action = new GroovyPostbuildSummaryAction(&quot;notepad.png&quot;);
+BadgeSummaryAction action = new BadgeSummaryAction(&quot;notepad.png&quot;);
 build.getActions().add(action);
 // Read mail content and attach it to the build summary
 Multipart mp= (Multipart)msg.getContent()
@@ -672,27 +667,15 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ClosureBuildEngine</string>
       <string></string>
     </entry>
     <entry>
-      <string>RDMINSTALLATION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BuildAutoApproved</string>
+      <string>BuildNotesFullPath</string>
       <string></string>
     </entry>
     <entry>
       <string>StartingStep</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>VERSIONFILE</string>
       <string></string>
     </entry>
     <entry>
@@ -708,11 +691,27 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
     <entry>
       <string>ReplaceSnaps</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>RDMINSTALLATION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BuildAutoApproved</string>
       <string></string>
     </entry>
   </globalEnvVars>
