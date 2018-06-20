@@ -99,8 +99,8 @@ FOR %%G IN (%Technologies%) DO (&#xd;
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.23">
-      <testResultsPattern>NUnit/Bin/NunitResults/*.CIntegTest.Results.xml</testResultsPattern>
+    <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.22">
+      <testResultsPattern>NUnit/Bin/NunitResults/*_CIntegTest_Results.xml</testResultsPattern>
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
