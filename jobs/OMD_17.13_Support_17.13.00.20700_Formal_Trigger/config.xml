@@ -450,7 +450,7 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
           </conditionalbuilders>
         </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
         <hudson.tasks.BatchFile>
-          <command>C:\PROGRA~1\Unlocker\Unlocker.exe %WORKSPACE% /S</command>
+          <command>::C:\PROGRA~1\Unlocker\Unlocker.exe %WORKSPACE% /S</command>
         </hudson.tasks.BatchFile>
       </buildSteps>
       <failOnError>true</failOnError>
