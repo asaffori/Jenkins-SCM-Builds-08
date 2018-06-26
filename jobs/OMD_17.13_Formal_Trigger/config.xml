@@ -604,7 +604,7 @@ JenkinsJobName=OMD_${MajorMinor_Ver}_Scheduled_Trigger</properties>
 tStream=Archer_${MajorMinor_Ver}_Integ
 sStream=
 BUILD_VERSION=${BUILD_VERSION}
-recipientList=${emailGroups}
+recipientList=DL-OMD-ENG-SCM@KLA-Tencor.com
 CopyToShare=true</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
