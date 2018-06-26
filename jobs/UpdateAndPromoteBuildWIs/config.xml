@@ -127,11 +127,12 @@ py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutoma
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>${BUILD_USER_EMAIL}</recipientList>
       <configuredTriggers>
-        <hudson.plugins.emailext.plugins.trigger.XNthFailureTrigger>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
             <subject>$PROJECT_DEFAULT_SUBJECT</subject>
             <body>$PROJECT_DEFAULT_CONTENT</body>
             <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
               <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
             </recipientProviders>
             <attachmentsPattern></attachmentsPattern>
@@ -140,13 +141,11 @@ py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutoma
             <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
             <contentType>project</contentType>
           </email>
-          <failureCount>0</failureCount>
-          <requiredFailureCount>0</requiredFailureCount>
-        </hudson.plugins.emailext.plugins.trigger.XNthFailureTrigger>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
       </configuredTriggers>
       <contentType>text/html</contentType>
-      <defaultSubject> ${BUILD_VERSION} - build assocoated WIs</defaultSubject>
-      <defaultContent>Attached report for WIs associated with build ${BUILD_VERSION} promoted from &apos;Resolved&apos; state to &apos;Pending Build&apos;.</defaultContent>
+      <defaultSubject>Build WI update and Promotion - ${build.result}</defaultSubject>
+      <defaultContent>${SCRIPT, template=&quot;WI_Promotion.groovy&quot;}</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
