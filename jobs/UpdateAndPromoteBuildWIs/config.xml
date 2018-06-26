@@ -125,7 +125,7 @@ py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutoma
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
-      <recipientList>${BUILD_USER_EMAIL}</recipientList>
+      <recipientList>${BUILD_USER_EMAIL},DL-OMD-ENG-SCM@KLA-Tencor.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
