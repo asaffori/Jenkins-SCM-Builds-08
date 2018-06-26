@@ -144,7 +144,7 @@ py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutoma
         </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
       </configuredTriggers>
       <contentType>text/html</contentType>
-      <defaultSubject>Build WI update and Promotion - ${build.result}</defaultSubject>
+      <defaultSubject>Build WI update and Promotion - ${BUILD_STATUS}</defaultSubject>
       <defaultContent>${SCRIPT, template=&quot;WI_Promotion.groovy&quot;}</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
