@@ -109,6 +109,7 @@ FOR %%G IN (%Technologies%) DO (&#xd;
     </hudson.plugins.nunit.NUnitPublisher>
   </publishers>
   <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
         <propertiesContent>NUNIT_HOME=C:\Program Files (x86)\NUnit.org\nunit-console</propertiesContent>
