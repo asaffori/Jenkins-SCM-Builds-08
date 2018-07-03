@@ -105,9 +105,19 @@ echo ---------------------------------------&#xd;
 &quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws clone &quot;E:\Virtual Machines\%ImageBaseName%\%ImageBaseName%.vmx&quot; &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; %CloneType% -cloneName=&quot;%TargetMachineName% %CloneType% clone of %ImageBaseName%&quot;&#xd;
 &#xd;
 echo ---------------------------------------&#xd;
-echo        Create MachineName file&#xd;
+echo        Starting cloned VM &#xd;
 echo ---------------------------------------&#xd;
-&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -gu autologonuser -gp Columbia03 runScriptInGuest &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; &quot;&quot;  &quot;CMD.exe /k echo %TargetMachineName% &gt; c:\COMPUTERNAME.txt&quot;</command>
+&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws start &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot;&#xd;
+&#xd;
+echo ---------------------------------------&#xd;
+echo        Creating MachineName file&#xd;
+echo ---------------------------------------&#xd;
+&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -gu autologonuser -gp Columbia03 runScriptInGuest &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; &quot;&quot;  &quot;CMD.exe /k echo %TargetMachineName% &gt; c:\COMPUTERNAME.txt&quot;&#xd;
+&#xd;
+echo ---------------------------------------&#xd;
+echo        Restarting cloned VM &#xd;
+echo ---------------------------------------&#xd;
+&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws start &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot;</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
