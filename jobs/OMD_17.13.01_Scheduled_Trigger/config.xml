@@ -60,7 +60,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
-          <defaultValue>\\isr1appcc02\scm\OMD\Jenkins_Build_Version\17.13.01_Dev_version.txt</defaultValue>
+          <defaultValue>\\isr1appcc02\scm\OMD\Jenkins_Build_Version\17.13.02_Dev_version.txt</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
@@ -306,12 +306,11 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesContent>BUILDTYPE=Scheduled
-WSName=omdbuild_Archer_17.13.01_Dev_Workspace
+WSName=omdbuild_Archer_17.13.02_Dev_Workspace
 SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
@@ -328,7 +327,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
     <timeout>0</timeout>
     <buildType>
       <value>buildDefinition</value>
-      <buildDefinition>OMD-Archer-V17.13.01-Scheduled-Jenkins</buildDefinition>
+      <buildDefinition>OMD-Archer-V17.13.02-Scheduled-Jenkins</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
       <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -338,7 +337,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>OMD-Archer-V17.13.01-Scheduled-Jenkins</buildDefinition>
+    <buildDefinition>OMD-Archer-V17.13.02-Scheduled-Jenkins</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
