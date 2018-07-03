@@ -82,7 +82,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws clone E:\Virtual Machines\%ImageBaseName%.vmx E:\Virtual Machines\%TargetMachineName%.vmx full -cloneName=&quot;%TargetMachineName% cloned of %ImageBaseName%&quot;&#xd;
+      <command>&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws clone &quot;E:\Virtual Machines\%ImageBaseName%.vmx&quot; E:\Virtual &quot;Machines\%TargetMachineName%.vmx&quot; full -cloneName=&quot;%TargetMachineName% cloned of %ImageBaseName%&quot;&#xd;
 &quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -gu autologonuser -gp Columbia03 runScriptInGuest &quot;E:\Virtual Machines\%TargetMachineName%.vmx&quot; &quot;&quot;  &quot;CMD.exe /k echo %TargetMachineName% &gt; c:\COMPUTERNAME.txt&quot;</command>
     </hudson.tasks.BatchFile>
   </builders>
