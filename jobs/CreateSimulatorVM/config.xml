@@ -93,7 +93,7 @@
   <concurrentBuild>true</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>@ECHO off&#xd;
+      <command>::@ECHO off&#xd;
 echo ---------------------------------------&#xd;
 echo        Shudown source VM &#xd;
 echo ---------------------------------------&#xd;
