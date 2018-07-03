@@ -82,7 +82,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>echo ---------------------------------------&#xd;
+      <command>@ECHO off&#xd;
+echo ---------------------------------------&#xd;
 echo        Shudown source VM &#xd;
 echo ---------------------------------------&#xd;
 &quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws stop &quot;E:\Virtual Machines\%ImageBaseName%\%ImageBaseName%.vmx&quot;&#xd;
