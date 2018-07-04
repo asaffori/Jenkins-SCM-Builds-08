@@ -110,14 +110,17 @@ echo ---------------------------------------&#xd;
 &quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws start &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot;&#xd;
 &#xd;
 echo ---------------------------------------&#xd;
-echo        Creating MachineName file&#xd;
+echo        Creating And Copy MachineName file&#xd;
 echo ---------------------------------------&#xd;
-&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -gu autologonuser -gp Columbia03 runScriptInGuest &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; &quot;&quot;  &quot;CMD.exe /k echo %TargetMachineName% &gt; c:\COMPUTERNAME.txt&quot;&#xd;
+echo %TargetMachineName% &gt; &quot;E:\Virtual Machines\%TargetMachineName%\COMPUTERNAME.txt&quot;&#xd;
+&#xd;
+&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot;  -T ws -gu autologonuser -gp Columbia03 copyFileFromHostToGuest &quot;E:\Virtual Machines\SCM-SIM-V32\SCM-SIM-V32.vmx&quot; &quot;E:\Virtual Machines\%TargetMachineName%\COMPUTERNAME.txt&quot; &quot;C:\COMPUTERNAME.txt&quot;&#xd;
 &#xd;
 echo ---------------------------------------&#xd;
 echo        Restarting cloned VM &#xd;
 echo ---------------------------------------&#xd;
-&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws start &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot;</command>
+&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws reset &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; soft&#xd;
+</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
