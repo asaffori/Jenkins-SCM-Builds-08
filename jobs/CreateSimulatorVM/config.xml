@@ -138,7 +138,7 @@ echo ---------------------------------------&#xd;
 PING localhost -n 30 &gt;NUL&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR  &#xd;
 &#xd;
-&quot;vmrun.exe&quot; -T ws start &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot;&#xd;
+&quot;vmrun.exe&quot; -T ws start &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; nogui&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
 GOTO END&#xd;
 &#xd;
