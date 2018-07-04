@@ -49,6 +49,17 @@
           <ignoreOfflineNodes>false</ignoreOfflineNodes>
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>StaticCodeAnalysisModeRelease</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Disabled</string>
+              <string>Error</string>
+              <string>Warning</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -71,7 +82,8 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>Echo %StaticCodeAnalysisModeDebug%</command>
+      <command>Echo StaticCodeAnalysisModeDebug=%StaticCodeAnalysisModeDebug%&#xd;
+Echo StaticCodeAnalysisModeRelease=%StaticCodeAnalysisModeRelease%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
