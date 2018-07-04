@@ -30,7 +30,7 @@
           <description></description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>Dsiabled</string>
+              <string>Disabled</string>
               <string>Error</string>
               <string>Warning</string>
             </a>
@@ -40,7 +40,9 @@
           <name>TestNode</name>
           <description></description>
           <allowedSlaves/>
-          <defaultSlaves/>
+          <defaultSlaves>
+            <string>SCM-TST-V03</string>
+          </defaultSlaves>
           <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
           <allowMultiNodeSelection>false</allowMultiNodeSelection>
           <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
