@@ -375,8 +375,6 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
-        <propertiesContent>team_scm_fetchDestination=${team_scm_fetchDestination}
-WORKSPACE=${team_scm_fetchDestination}</propertiesContent>
         <groovyScriptContent>currentBuild.setDescription(BUILDTYPE + &quot;-&quot;+ BUILD_VERSION + &quot; triggered by &apos;&quot; + buildRequesterUserId + &quot;&apos; in &apos;&quot; + ReleaseBuildEngine +&quot;&apos;&quot;)</groovyScriptContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
@@ -504,7 +502,8 @@ xcopy /hievry %OutDirCommon%\CodeAnalysis %team_scm_fetchDestination%\CodeAnalys
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
-        <propertiesContent>PATH=C:\Python35;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\lib</propertiesContent>
+        <propertiesContent>team_scm_fetchDestination=${team_scm_fetchDestination}
+WORKSPACE=${team_scm_fetchDestination}</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
