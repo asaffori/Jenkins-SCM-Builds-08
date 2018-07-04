@@ -98,7 +98,7 @@ echo ---------------------------------------&#xd;
 echo        Shudown source VM &#xd;
 echo ---------------------------------------&#xd;
 &quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws stop &quot;E:\Virtual Machines\%ImageBaseName%\%ImageBaseName%.vmx&quot; soft&#xd;
-IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
+::IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
 &#xd;
 echo ---------------------------------------&#xd;
 echo        Clonning VM &#xd;
