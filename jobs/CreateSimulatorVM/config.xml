@@ -123,7 +123,7 @@ echo        Creating And Copy MachineName file&#xd;
 echo ---------------------------------------&#xd;
 echo %TargetMachineName% &gt; &quot;E:\Virtual Machines\%TargetMachineName%\COMPUTERNAME.txt&quot;&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
-&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot;  -T ws -gu autologonuser -gp Columbia03 copyFileFromHostToGuest &quot;E:\Virtual Machines\SCM-SIM-V32\SCM-SIM-V32.vmx&quot; &quot;E:\Virtual Machines\%TargetMachineName%\COMPUTERNAME.txt&quot; &quot;C:\COMPUTERNAME.txt&quot;&#xd;
+&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot;  -T ws -gu autologonuser -gp Columbia03 copyFileFromHostToGuest &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; &quot;E:\Virtual Machines\%TargetMachineName%\COMPUTERNAME.txt&quot; &quot;C:\COMPUTERNAME.txt&quot;&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
 echo ---------------------------------------&#xd;
 echo        Restarting cloned VM &#xd;
