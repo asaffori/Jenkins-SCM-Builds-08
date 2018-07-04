@@ -498,11 +498,6 @@ xcopy /hievry %OutDirCommon%\CodeAnalysis %team_scm_fetchDestination%\CodeAnalys
         </org.jenkins__ci.plugins.flexible__publish.ConditionalPublisher>
       </publishers>
     </org.jenkins__ci.plugins.flexible__publish.FlexiblePublisher>
-    <hudson.tasks.Mailer plugin="mailer@1.21">
-      <recipients>adham.saffori@kla-tencor.com</recipients>
-      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
-      <sendToIndividuals>false</sendToIndividuals>
-    </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
