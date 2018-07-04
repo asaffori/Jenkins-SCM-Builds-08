@@ -504,7 +504,7 @@ xcopy /hievry %OutDirCommon%\CodeAnalysis %team_scm_fetchDestination%\CodeAnalys
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
-        <propertiesContent>PATH=C:WINDOWS\system32;C:\Python35</propertiesContent>
+        <propertiesContent>PATH=C:\Python35;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\lib</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
