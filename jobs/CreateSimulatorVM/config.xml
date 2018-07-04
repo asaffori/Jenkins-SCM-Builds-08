@@ -116,7 +116,7 @@ IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
 echo ---------------------------------------&#xd;
 echo        Sleep waiting machine to get up &#xd;
 echo ---------------------------------------&#xd;
-PING localhost -n 150 &gt;NUL&#xd;
+PING localhost -n 100 &gt;NUL&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
 &#xd;
 echo ---------------------------------------&#xd;
