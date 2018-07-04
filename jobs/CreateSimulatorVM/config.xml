@@ -110,7 +110,7 @@ IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
 echo ---------------------------------------&#xd;
 echo        Starting cloned VM &#xd;
 echo ---------------------------------------&#xd;
-&quot;vmware.exe&quot; -x &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot;&#xd;
+start /b &quot;vmware.exe&quot; -x &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot;&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
 &#xd;
 echo ---------------------------------------&#xd;
