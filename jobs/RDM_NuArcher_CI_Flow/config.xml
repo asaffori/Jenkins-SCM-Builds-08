@@ -131,7 +131,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <parameters class="linked-hash-map">
             <entry>
               <string>BUILD_VERSION</string>
-              <string>17.13.01.29100</string>
+              <string></string>
             </entry>
           </parameters>
           <referencedParameters>BUILD_VERSION</referencedParameters>
@@ -673,6 +673,10 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>ClosureBuildEngine</string>
       <string></string>
     </entry>
@@ -697,14 +701,6 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>VERSIONFILE</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
@@ -718,6 +714,10 @@ build.save()</postsendScript>
     </entry>
     <entry>
       <string>BuildAutoApproved</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>VERSIONFILE</string>
       <string></string>
     </entry>
   </globalEnvVars>
