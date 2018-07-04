@@ -396,6 +396,7 @@
         <string>pipelinetest</string>
         <string>rttreerter</string>
         <string>SanityTest-Agnes</string>
+        <string>SCA Parameter Test</string>
         <string>SCA Testing</string>
         <string>SilentInstallation-Adham</string>
         <string>Sync_Jenkin_Build</string>
