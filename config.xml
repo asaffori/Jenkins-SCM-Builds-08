@@ -13,7 +13,7 @@
     <isSetupComplete>true</isSetupComplete>
     <name>RESTART</name>
   </installState>
-  <numExecutors>15</numExecutors>
+  <numExecutors>20</numExecutors>
   <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.ProjectMatrixAuthorizationStrategy">
