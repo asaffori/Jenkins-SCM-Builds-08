@@ -103,7 +103,7 @@ echo ---------------------------------------&#xd;
 echo ---------------------------------------&#xd;
 echo        Clonning VM &#xd;
 echo ---------------------------------------&#xd;
-&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws clone &quot;E:\Virtual Machines\%ImageBaseName%\%ImageBaseName%.vmx&quot; &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; %CloneType% -cloneName=&quot;%TargetMachineName% %CloneType% clone of %ImageBaseName%&quot;&#xd;
+&quot;C:\Program Files (x86)\VMware\VMware Workstation\vmrun.exe&quot; -T ws clone &quot;E:\Virtual Machines\%ImageBaseName%\%ImageBaseName%.vmx&quot; &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; %CloneType% &quot;Snapshot for SCM-SIM-V32&quot;-cloneName=&quot;%TargetMachineName% %CloneType% clone of %ImageBaseName%&quot;&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
 &#xd;
 echo ---------------------------------------&#xd;
