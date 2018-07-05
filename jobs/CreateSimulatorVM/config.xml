@@ -166,6 +166,7 @@ echo -----------------------------------------------&#xd;
 &#xd;
 %windir%\System32\WindowsPowerShell\v1.0\powershell.exe -command &quot;add-content -path &apos;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx.edit&apos; -value `r`nethernet0.address=%MACAddress%&quot;&#xd;
 &#xd;
+deL &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot;&#xd;
 ren &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx.edit&quot; %TargetMachineName%.vmx&#xd;
 &#xd;
 :Startup&#xd;
