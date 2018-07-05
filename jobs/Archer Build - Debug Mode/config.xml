@@ -396,7 +396,7 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
   <builders>
     <EnvInjectBuilder plugin="envinject@1.90">
       <info>
-        <propertiesFilePath>${team_scm_fetchDestination}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
+        <propertiesFilePath>D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}\OMD_Builds\JenkinsBuild\MakeFiles\Env.properties</propertiesFilePath>
       </info>
     </EnvInjectBuilder>
     <hudson.tasks.BatchFile>
@@ -508,7 +508,7 @@ xcopy /hievry %OutDirCommon%\CodeAnalysis %team_scm_fetchDestination%\CodeAnalys
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
-        <propertiesContent>team_scm_fetchDestination=D:\Sandboxes\${buildRequesterUserId}_${BUILD_VERSION}
+        <propertiesContent>team_scm_fetchDestination=${team_scm_fetchDestination}
 WORKSPACE=${team_scm_fetchDestination}</propertiesContent>
         <groovyScriptContent>currentBuild.setDescription(BUILDTYPE + &quot;-&quot;+ BUILD_VERSION + &quot; triggered by &apos;&quot; + buildRequesterUserId + &quot;&apos; in &apos;&quot; + DebugBuildEngine +&quot;&apos;&quot;)</groovyScriptContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
