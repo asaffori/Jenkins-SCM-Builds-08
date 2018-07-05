@@ -75,7 +75,7 @@
           <name>SnapshotName</name>
           <description>Source machine snapshot &lt;BR&gt;
 In case of empty value, machine will be created from last source machine start</description>
-          <defaultValue>LATEST</defaultValue>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -107,18 +107,80 @@ MAC Address pattern: 00:50:56:xx:xx:xx</description>
   <concurrentBuild>true</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command></command>
-    </hudson.tasks.BatchFile>
-    <hudson.plugins.powershell.PowerShell plugin="powershell@1.3">
-      <command>#Remove MAC Address proprties
-Get-Content SCM-SIM-V41.vmx | Where-Object {$_ -notmatch &apos;ethernet0.addressType&apos;} | Set-Content &quot;E:\Virtual Machines\$TargetMachineName\$TargetMachineName&quot;.vmx
-Get-Content SCM-SIM-V41.vmx | Where-Object {$_ -notmatch &apos;ethernet0.address&apos;} | Set-Content &quot;E:\Virtual Machines\$TargetMachineName\$TargetMachineName&quot;.vmx
-
-#Set new MAC Address
-add-content -path &quot;E:\Virtual Machines\$env:TargetMachineName\$env.TargetMachineName&quot;.vmx -value &quot;`r`nethernet0.addressType = static&quot;
-add-content -path &quot;E:\Virtual Machines\$env:TargetMachineName\$env.TargetMachineName&quot;.vmx -value &quot;`r`nethernet0.address=$env:MACAdress&quot;
+      <command>::@ECHO off&#xd;
+echo ---------------------------------------&#xd;
+echo        Shudown source VM &#xd;
+echo ---------------------------------------&#xd;
+cd &quot;C:\Program Files (x86)\VMware\VMware Workstation&quot;&#xd;
+&quot;vmrun.exe&quot; -T ws stop &quot;E:\Virtual Machines\%ImageBaseName%\%ImageBaseName%.vmx&quot; soft&#xd;
+::IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
+&#xd;
+echo ---------------------------------------&#xd;
+echo        Clonning VM &#xd;
+echo ---------------------------------------&#xd;
+&quot;vmrun.exe&quot; -T ws clone &quot;E:\Virtual Machines\%ImageBaseName%\%ImageBaseName%.vmx&quot; &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; %CloneType% %SnapshotName% -cloneName=&quot;%TargetMachineName%&quot;&#xd;
+IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
+&#xd;
+echo ---------------------------------------&#xd;
+echo        Starting cloned VM &#xd;
+echo ---------------------------------------&#xd;
+&quot;vmrun.exe&quot; -T ws start &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot;&#xd;
+IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
+&#xd;
+echo ---------------------------------------&#xd;
+echo        Sleep waiting machine to get up &#xd;
+echo ---------------------------------------&#xd;
+PING localhost -n 100 &gt;NUL&#xd;
+IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
+&#xd;
+echo ---------------------------------------&#xd;
+echo        Setting Machine/Computer name&#xd;
+echo ---------------------------------------&#xd;
+echo %TargetMachineName%&gt; &quot;E:\Virtual Machines\%TargetMachineName%\COMPUTERNAME.txt&quot;&#xd;
+IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
+&quot;vmrun.exe&quot;  -T ws -gu autologonuser -gp Columbia03 copyFileFromHostToGuest &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; &quot;E:\Virtual Machines\%TargetMachineName%\COMPUTERNAME.txt&quot; &quot;C:\COMPUTERNAME.txt&quot;&#xd;
+IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
+&#xd;
+echo ---------------------------------------&#xd;
+echo        Restarting cloned VM &#xd;
+echo ---------------------------------------&#xd;
+&quot;vmrun.exe&quot; -T ws stop &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; soft&#xd;
+IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
+&#xd;
+echo ---------------------------------------&#xd;
+echo        Sleep .... zzzzzzz..zzzz&#xd;
+echo ---------------------------------------&#xd;
+PING localhost -n 30 &gt;NUL&#xd;
+IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR  &#xd;
+&#xd;
+If &quot;%MACAdress%&quot; == &quot;&quot; GOTO Startup&#xd;
+echo -----------------------------------------------&#xd;
+echo        Configure Machine MAC Address&#xd;
+echo -----------------------------------------------&#xd;
+::Remove MAC Address proprties&#xd;
+powershell -command &quot;Get-Content &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; | Where-Object {$_ -notmatch &apos;ethernet0.addressType&apos;} | Set-Content SCM-SIM-V41_new.vmx&quot;&#xd;
+powershell -command &quot;Get-Content &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; | Where-Object {$_ -notmatch &apos;ethernet0.address&apos;} | Set-Content SCM-SIM-V41_new.vmx&quot;&#xd;
+&#xd;
+:: Set new MAC Address&#xd;
+powershell -command &quot;add-content -path &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; -value `r`nethernet0.addressType=static&quot;&#xd;
+&#xd;
+powershell -command &quot;add-content -path &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; -value `r`nethernet0.address=%MACAdress%&quot;&#xd;
+&#xd;
+:Startup&#xd;
+echo -----------------------------------------------&#xd;
+echo        Start Machine and Connect to Jenkins&#xd;
+echo -----------------------------------------------&#xd;
+&quot;vmrun.exe&quot; -T ws start &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; nogui&#xd;
+IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
+GOTO END&#xd;
+&#xd;
+:ERROR&#xd;
+ECHO SORRY WE HAD FAILED&#xd;
+&#xd;
+:END&#xd;
+ECHO Good job Adham, we are ok&#xd;
 </command>
-    </hudson.plugins.powershell.PowerShell>
+    </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
   <buildWrappers>
