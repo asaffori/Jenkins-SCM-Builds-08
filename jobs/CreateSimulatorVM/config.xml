@@ -153,7 +153,7 @@ echo ---------------------------------------&#xd;
 PING localhost -n 30 &gt;NUL&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR  &#xd;
 &#xd;
-If &quot;%MACAdress%&quot; == &quot;&quot; GOTO Startup&#xd;
+If &quot;%MACAddress%&quot; == &quot;&quot; GOTO Startup&#xd;
 echo -----------------------------------------------&#xd;
 echo        Configure Machine MAC Address&#xd;
 echo -----------------------------------------------&#xd;
