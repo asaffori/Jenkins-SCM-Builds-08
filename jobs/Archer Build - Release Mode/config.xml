@@ -306,12 +306,6 @@ return [user]</script>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>WORKSPACE</name>
-          <description></description>
-          <defaultValue>C:\temp\${BUILD_VERSION}</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>emailGroups</name>
           <description>This value is supplied by builds initiated through RTC.
 &lt;br&gt;
