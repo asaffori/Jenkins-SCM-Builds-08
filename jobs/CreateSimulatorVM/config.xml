@@ -111,7 +111,7 @@ MAC Address pattern: 00:50:56:xx:xx:xx</description>
     </hudson.tasks.BatchFile>
     <hudson.plugins.powershell.PowerShell plugin="powershell@1.3">
       <command>#Remove MAC Address proprties
-Get-Content SCM-SIM-V41.vmx | Where-Object {$_ -notmatch &apos;ethernet0.addressType&apos;} | Set-Content &quot;E:\Virtual Machines\$env:TargetMachineName\$env.TargetMachineName&quot;.vmx
+Get-Content SCM-SIM-V41.vmx | Where-Object {$_ -notmatch &apos;ethernet0.addressType&apos;} | Set-Content &quot;E:\Virtual Machines\$TargetMachineName\$TargetMachineName&quot;.vmx
 Get-Content SCM-SIM-V41.vmx | Where-Object {$_ -notmatch &apos;ethernet0.address&apos;} | Set-Content &quot;E:\Virtual Machines\$env:TargetMachineName\$env.TargetMachineName&quot;.vmx
 
 #Set new MAC Address
