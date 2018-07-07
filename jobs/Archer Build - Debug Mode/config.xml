@@ -418,11 +418,11 @@ rem echo ClosureBuildEngine=%DebugBuildEngine% &gt;&gt; %OVERWRITE%</command>
       <publishers>
         <org.jenkins__ci.plugins.flexible__publish.ConditionalPublisher>
           <condition class="org.jenkins_ci.plugins.run_condition.contributed.BatchFileCondition" plugin="run-condition@1.0">
-            <command>IF EXIST %OutDirCommon%\CodeAnalysis (
+            <command>IF EXIST %OutDirArcher%\CodeAnalysis (
 echo =====================================================
 echo Copying build CodeAnalysis files to Sandbox
 echo =====================================================
-xcopy /hievry %OutDirCommon%\CodeAnalysis %team_scm_fetchDestination%\CodeAnalysis
+xcopy /hievry %OutDirArcher%\CodeAnalysis %team_scm_fetchDestination%\CodeAnalysis
 )</command>
           </condition>
           <publisherList/>
