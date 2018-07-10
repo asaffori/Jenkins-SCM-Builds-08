@@ -10,6 +10,14 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -41,7 +49,7 @@
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>ImageBaseName</name>
+          <name>BaseMachineName</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -89,14 +97,6 @@ MAC Address pattern: 00:50:56:xx:xx:xx</description>
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -112,13 +112,13 @@ echo ---------------------------------------&#xd;
 echo        Shudown source VM &#xd;
 echo ---------------------------------------&#xd;
 cd &quot;C:\Program Files (x86)\VMware\VMware Workstation&quot;&#xd;
-&quot;vmrun.exe&quot; -T ws stop &quot;E:\Virtual Machines\%ImageBaseName%\%ImageBaseName%.vmx&quot; soft&#xd;
+&quot;vmrun.exe&quot; -T ws stop &quot;E:\Virtual Machines\%BaseMachineName%\%BaseMachineName%.vmx&quot; soft&#xd;
 ::IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
 &#xd;
 echo ---------------------------------------&#xd;
 echo        Clonning VM &#xd;
 echo ---------------------------------------&#xd;
-&quot;vmrun.exe&quot; -T ws clone &quot;E:\Virtual Machines\%ImageBaseName%\%ImageBaseName%.vmx&quot; &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; %CloneType% %SnapshotName% -cloneName=&quot;%TargetMachineName%&quot;&#xd;
+&quot;vmrun.exe&quot; -T ws clone &quot;E:\Virtual Machines\%BaseMachineName%\%BaseMachineName%.vmx&quot; &quot;E:\Virtual Machines\%TargetMachineName%\%TargetMachineName%.vmx&quot; %CloneType% %SnapshotName% -cloneName=&quot;%TargetMachineName%&quot;&#xd;
 IF NOT &quot;%ERRORLEVEL%&quot; EQU &quot;0&quot; GOTO ERROR &#xd;
 &#xd;
 echo ---------------------------------------&#xd;
