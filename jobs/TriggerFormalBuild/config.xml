@@ -49,7 +49,6 @@
               <string>17.11</string>
               <string>17.12</string>
               <string>17.13</string>
-              <string>17.13.02</string>
               <string>17.13_Beta</string>
             </a>
           </choices>
@@ -70,7 +69,7 @@
     <script>pipeline {
 agent { node { label &apos;master&apos; } }
 parameters {
-        choice(choices: &apos;17.11\n17.12\n17.13\n17.13_Beta&apos;, description: &apos;Which version to run Formal build for? \n example: 17.13&apos;, name: &apos;Version&apos;)
+        choice(choices: &apos;17.11\n17.12\n17.13\n17.13.02\n17.13_Beta&apos;, description: &apos;Which version to run Formal build for? \n example: 17.13&apos;, name: &apos;Version&apos;)
     }
 
     stages {
