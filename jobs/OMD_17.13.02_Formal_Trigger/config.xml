@@ -646,7 +646,7 @@ CopyToShare=true</properties>
               <configs>
                 <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                   <properties>BUILD_VERSION=${BUILD_VERSION}
-MajorMinor_Ver=17.13.02</properties>
+MajorMinor_Ver=17.13</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
