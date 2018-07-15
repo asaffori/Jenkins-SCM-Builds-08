@@ -280,6 +280,61 @@ Example:&lt;BR&gt;
           <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDCONTROLLERFDC</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>TRUE</string>
+              <string>FALSE</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDCONTROLLERFZC</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>TRUE</string>
+              <string>FALSE</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDCONTROLLERIMC</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>TRUE</string>
+              <string>FALSE</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDCONTROLLERSTAGE</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>TRUE</string>
+              <string>FALSE</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDCONTROLLERUMC</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>TRUE</string>
+              <string>FALSE</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -369,7 +424,11 @@ RunningMode=WEEKLY
 BuildAutoApproved=true
 SnapshotName=${SnapshotName}
 buildResultUUID=${buildResultUUID}
-team_scm_workspaceUUID=${team_scm_workspaceUUID}</properties>
+team_scm_workspaceUUID=${team_scm_workspaceUUID}
+BUILDCONTROLLERFDC=${BUILDCONTROLLERFDC}
+BUILDCONTROLLERFZC=${BUILDCONTROLLERFZC}
+BUILDCONTROLLERIMC=${BUILDCONTROLLERIMC}
+BUILDCONTROLLERUMC=${BUILDCONTROLLERUMC}</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
