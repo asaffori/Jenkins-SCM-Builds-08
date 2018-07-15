@@ -11,6 +11,14 @@ Please note that execution will fail in case of merge conflicts.</description>
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -60,7 +68,6 @@ Please note that execution will fail in case of merge conflicts.</description>
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
@@ -75,14 +82,6 @@ Please note that execution will fail in case of merge conflicts.</description>
       <contributors/>
     </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <assignedNode>master</assignedNode>
@@ -98,13 +97,17 @@ Please note that execution will fail in case of merge conflicts.</description>
 call lscm deliver -r %repositoryAddress% -u %BuildUser% -P &quot;%BuildPass%&quot; -N -v -s %fromStream% -t %toStream%&#xd;
 &#xd;
 If NOT %ERRORLEVEL% == 0 (&#xd;
-  If NOT &quot;%ERRORLEVEL%&quot; == &quot;53&quot; (&#xd;
-     echo &quot;Rebase of %toStream% from %fromStream% failed with the following error:&quot;&#xd;
-     echo !%ERRORLEVEL%! &#xd;
-     exit /b 1&#xd;
-  ) ELSE (&#xd;
-     exit 0&#xd;
-  )&#xd;
+ If &quot;%ERRORLEVEL%&quot; == &quot;13&quot; (&#xd;
+    call lscm deliver -r %repositoryAddress% -u %BuildUser% -P &quot;%BuildPass%&quot; -N -v -s %fromStream% -t %toStream%   &#xd;
+ ) ELSE (&#xd;
+    If NOT &quot;%ERRORLEVEL%&quot; == &quot;53&quot; (&#xd;
+       echo &quot;Rebase of %toStream% from %fromStream% failed with the following error:&quot;&#xd;
+       echo !%ERRORLEVEL%! &#xd;
+       exit /b 1&#xd;
+    ) ELSE (&#xd;
+       exit 0&#xd;
+    )&#xd;
+ )&#xd;
 )</command>
     </hudson.tasks.BatchFile>
   </builders>
