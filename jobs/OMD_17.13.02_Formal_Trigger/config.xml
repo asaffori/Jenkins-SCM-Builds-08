@@ -385,7 +385,10 @@ BuildAutoApproved=true
 SnapshotName=${SnapshotName}
 buildResultUUID=${buildResultUUID}
 team_scm_workspaceUUID=${team_scm_workspaceUUID}
-RunAutoRebase=${RunAutoMerge}</properties>
+RunAutoRebase=${RunAutoMerge}
+ScheduledBuildJenkinsJobName=OMD_17.13.02_Scheduled_Trigger
+Integ_Stream_Name=Archer_17.13.02_Integ
+Dev_Stream_Name=Archer_17.13.02_Dev</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
