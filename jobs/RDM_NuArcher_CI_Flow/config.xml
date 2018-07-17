@@ -131,7 +131,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <parameters class="linked-hash-map">
             <entry>
               <string>BUILD_VERSION</string>
-              <string>17.13.02.20999</string>
+              <string></string>
             </entry>
           </parameters>
           <referencedParameters>BUILD_VERSION</referencedParameters>
@@ -517,12 +517,6 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>BuildNotesFullPath</name>
-          <description></description>
-          <defaultValue>\\isr1fp04\OMD_InternalBuildNotes\V${MajorMinor_Ver}\Build_Notes_${BUILD_VERSION}.csv</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
           <name>VERSIONFILE</name>
           <description></description>
           <defaultValue></defaultValue>
@@ -538,6 +532,24 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
           <description></description>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Dev_Stream_Name</name>
+          <description></description>
+          <defaultValue>Archer_${MajorMinor_Ver}_Dev</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Integ_Stream_Name</name>
+          <description></description>
+          <defaultValue>Archer_${MajorMinor_Ver}_Integ</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ScheduledBuildJenkinsJobName</name>
+          <description></description>
+          <defaultValue>OMD_${MajorMinor_Ver}_Scheduled_Trigger</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>ClosureBuildEngine</name>
           <description></description>
@@ -673,6 +685,10 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>ClosureBuildEngine</string>
       <string></string>
     </entry>
@@ -697,14 +713,6 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>VERSIONFILE</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
@@ -718,6 +726,10 @@ build.save()</postsendScript>
     </entry>
     <entry>
       <string>BuildAutoApproved</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>VERSIONFILE</string>
       <string></string>
     </entry>
   </globalEnvVars>
