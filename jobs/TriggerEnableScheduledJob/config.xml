@@ -60,6 +60,11 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <defaultValue>OMD_${MajorMinor_Ver}_Scheduled_Trigger</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RunAutoRebase</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -122,5 +127,26 @@ JenkinsJobName=${ScheduledBuildJenkinsJobName}</properties>
     </hudson.plugins.parameterizedtrigger.TriggerBuilder>
   </builders>
   <publishers/>
-  <buildWrappers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+          <source class="hudson.plugins.groovy.StringSystemScriptSource">
+            <script plugin="script-security@1.44">
+              <script>import hudson.model.Result;
+
+def RunAutoRebase = build.buildVariableResolver.resolve(&quot;RunAutoRebase&quot;)
+
+if (RunAutoRebase != &quot;true&quot;) {
+	println (&quot;RunAutoRebase was disabled. Scheduled job enable process  will not run&quot;);
+  	build.getExecutor().interrupt(Result.SUCCESS)
+}</script>
+              <sandbox>false</sandbox>
+            </script>
+          </source>
+        </hudson.plugins.groovy.SystemGroovy>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
 </project>
