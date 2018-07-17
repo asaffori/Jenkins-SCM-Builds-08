@@ -105,8 +105,10 @@ If NOT %ERRORLEVEL% == 0 (&#xd;
        echo !%ERRORLEVEL%! &#xd;
        exit /b 1&#xd;
     ) ELSE (&#xd;
+      ECHO ERRORLEVEL=%ERRORLEVEL%&#xd;
        exit 0&#xd;
     )&#xd;
+      ECHO ERRORLEVEL=%ERRORLEVEL%&#xd;
  )&#xd;
 )</command>
     </hudson.tasks.BatchFile>
