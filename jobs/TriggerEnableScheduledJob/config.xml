@@ -55,7 +55,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <omitValueField>true</omitValueField>
         </org.biouno.unochoice.DynamicReferenceParameter>
         <hudson.model.StringParameterDefinition>
-          <name>JenkinsJobName</name>
+          <name>ScheduledBuildJenkinsJobName</name>
           <description></description>
           <defaultValue>OMD_${MajorMinor_Ver}_Scheduled_Trigger</defaultValue>
           <trim>false</trim>
@@ -88,7 +88,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <configs>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               <properties>Action=Enable
-JenkinsJobName=${JenkinsJobName}</properties>
+JenkinsJobName=${ScheduledBuildJenkinsJobName}</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>

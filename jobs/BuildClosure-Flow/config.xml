@@ -239,7 +239,7 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>JenkinsJobName</name>
+          <name>ScheduledBuildJenkinsJobName</name>
           <description></description>
           <defaultValue>OMD_${MajorMinor_Ver}_Scheduled_Trigger</defaultValue>
           <trim>false</trim>
@@ -322,6 +322,10 @@ if (BuildAutoApproved != &quot;true&quot;) {
     </entry>
     <entry>
       <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>JenkinsJobName</string>
       <string></string>
     </entry>
     <entry>
