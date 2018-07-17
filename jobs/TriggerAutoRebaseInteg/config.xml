@@ -62,13 +62,13 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
         <hudson.model.StringParameterDefinition>
           <name>Dev_Stream_Name</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>Archer_${MajorMinor_Ver}_Dev</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>Integ_Stream_Name</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>Archer_${MajorMinor_Ver}_Integ</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>

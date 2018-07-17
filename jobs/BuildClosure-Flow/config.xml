@@ -321,11 +321,11 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <string></string>
     </entry>
     <entry>
-      <string>VERSIONFILE</string>
+      <string>ScheduledBuildJenkinsJobName</string>
       <string></string>
     </entry>
     <entry>
-      <string>JenkinsJobName</string>
+      <string>VERSIONFILE</string>
       <string></string>
     </entry>
     <entry>
