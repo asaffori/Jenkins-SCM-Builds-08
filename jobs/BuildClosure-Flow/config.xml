@@ -109,7 +109,12 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
             </secureFallbackScript>
           </script>
           <projectName>BuildClosure-Flow</projectName>
-          <parameters class="linked-hash-map"/>
+          <parameters class="linked-hash-map">
+            <entry>
+              <string>BUILD_VERSION</string>
+              <string></string>
+            </entry>
+          </parameters>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -233,6 +238,12 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JenkinsJobName</name>
+          <description></description>
+          <defaultValue>OMD_${MajorMinor_Ver}_Scheduled_Trigger</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
@@ -286,19 +297,7 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <string></string>
     </entry>
     <entry>
-      <string>BuildNotesFullPath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>DebugBuildEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>VERSIONFILE</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>FlowController</string>
       <string></string>
     </entry>
     <entry>
@@ -311,6 +310,22 @@ if (BuildAutoApproved != &quot;true&quot;) {
     </entry>
     <entry>
       <string>ReplaceSnaps</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>Dev_Stream_Name</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>Integ_Stream_Name</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>FlowController</string>
       <string></string>
     </entry>
     <entry>
