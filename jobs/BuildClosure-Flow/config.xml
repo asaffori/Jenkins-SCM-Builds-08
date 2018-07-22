@@ -10,14 +10,6 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -39,6 +31,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
@@ -245,6 +238,14 @@ Since RTC is not supporing baseline replce/delete, old snapshots and baselines w
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -296,22 +297,6 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <string></string>
     </entry>
     <entry>
-      <string>DebugBuildEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>AUTOVERSION</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BUILDTYPE</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ReplaceSnaps</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>Dev_Stream_Name</string>
       <string></string>
     </entry>
@@ -324,11 +309,27 @@ if (BuildAutoApproved != &quot;true&quot;) {
       <string></string>
     </entry>
     <entry>
+      <string>DebugBuildEngine</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>VERSIONFILE</string>
       <string></string>
     </entry>
     <entry>
       <string>FlowController</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>AUTOVERSION</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BUILDTYPE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ReplaceSnaps</string>
       <string></string>
     </entry>
     <entry>
