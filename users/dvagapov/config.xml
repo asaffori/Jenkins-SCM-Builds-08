@@ -122,6 +122,7 @@
         <string>Ca1nas12-BObjclts-RO</string>
         <string>CA1NAS12-SSCMdata-RO</string>
         <string>CA1NAS07-CPG-UNT-RO</string>
+        <string>DL-CPG-NeXus-Users</string>
         <string>Ca1nas01-WINdownload-RO</string>
         <string>Ca1ucsfs01-EMIE-RO</string>
         <string>WIN-DYSD-DRCEng-CH</string>
@@ -251,7 +252,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1528462396619</timestamp>
+      <timestamp>1532361757408</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
