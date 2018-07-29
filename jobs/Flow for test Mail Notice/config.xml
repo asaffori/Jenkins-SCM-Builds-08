@@ -47,14 +47,6 @@
       <contributors/>
     </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -599,6 +591,14 @@ Example:&lt;BR&gt;
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -684,15 +684,7 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ClosureBuildEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>BuildNotesFullPath</string>
       <string></string>
     </entry>
     <entry>
@@ -712,6 +704,22 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>Dev_Stream_Name</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>Integ_Stream_Name</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
@@ -728,7 +736,7 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>VERSIONFILE</string>
+      <string>ScheduledBuildJenkinsJobName</string>
       <string></string>
     </entry>
   </globalEnvVars>
