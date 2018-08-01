@@ -22,7 +22,7 @@
         </hudson.model.AllView>
       </views>
     </hudson.model.MyViewsProperty>
-    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.1.1">
+    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.2">
       <identifiers/>
     </hudson.plugins.openid.OpenIdUserProperty>
     <hudson.model.PaneStatusProperties>
@@ -38,20 +38,8 @@
     <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
-    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
+    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.2">
       <data class="concurrent-hash-map">
-        <entry>
-          <string>OMD-Archer-Build-PatchBuild</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>TriggerAutoRebaseInteg</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>Agnes Test Full Flow</string>
-          <boolean>true</boolean>
-        </entry>
         <entry>
           <string>SanityTest</string>
           <boolean>true</boolean>
@@ -77,11 +65,23 @@
           <boolean>true</boolean>
         </entry>
         <entry>
+          <string>OMD-Archer-Build-PatchBuild</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>TriggerAutoRebaseInteg</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
           <string>SilentInstallation</string>
           <boolean>true</boolean>
         </entry>
         <entry>
           <string>SimLockCheck</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Agnes Test Full Flow</string>
           <boolean>true</boolean>
         </entry>
       </data>
@@ -122,10 +122,12 @@
         <string>DL-Transportation</string>
         <string>CA1-CTX-Portal-Users</string>
         <string>WIN-DYSD-WSODocs-CH</string>
+        <string>Citrix XenApp 7.6 - eQuality - Prod-English</string>
         <string>Austinnt1-Cleanroom-CH</string>
         <string>ca1fs01-Eric-R-Jong-CH</string>
         <string>Isr1nas03-Viking-RO</string>
         <string>Ca1nas01-GlobalOpsJMP-CH</string>
+        <string>DL-OMD-SW-Formal-Release</string>
         <string>New HIRE Group</string>
         <string>Ca1nas05-WIN-Projects--M37Public-RO</string>
         <string>Delta-ws_MatchingMasterFiles-RO</string>
@@ -171,6 +173,7 @@
         <string>DPM_Users_Old</string>
         <string>Isr1nas03-External_Files_for_Sharing-RO</string>
         <string>PasswordManager</string>
+        <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
         <string>OMD Nightly Build Recipients</string>
         <string>CA1NAS01-WINField-CH</string>
         <string>ca1fs01-KlearPoint-CH</string>
@@ -191,8 +194,10 @@
         <string>ZZZ-SRV-ISREXCHANGE</string>
         <string>WIN-DYSD-adc-plc-CH</string>
         <string>ca1nas05-WIN-OpenShares-CH</string>
+        <string>Citrix XenApp 7.6 - eQuality - Prod-Chinese</string>
         <string>DL-HR-KTINSIGHT-ISR-11.19.14</string>
         <string>ISR1NAS01-SW-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
         <string>Travel &amp; Expense</string>
         <string>WIN-DYSD-Picnic-RO</string>
         <string>MI Production KLA O365 Mail</string>
@@ -200,17 +205,19 @@
         <string>KTI Insight 2015</string>
         <string>ISR1NAS03-OpsIsrael</string>
         <string>NewHireGroup-10-19</string>
+        <string>chn2vmfs01-Shanghai-I-GF-S-CH</string>
         <string>Ca1nas11-KT-Insight-Program-RO</string>
         <string>WIN-DYSD-IMPACT_Min-CH</string>
         <string>cc-israel</string>
         <string>Domain Users</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1526535773878</timestamp>
+      <timestamp>1533121372002</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
