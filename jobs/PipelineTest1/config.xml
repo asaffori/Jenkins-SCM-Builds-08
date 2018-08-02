@@ -42,9 +42,7 @@
     agent { docker { image &apos;php&apos; } }
     stages {
         stage(&apos;build&apos;) {
-            steps {
-                bat &apos;set&apos;
-            }
+
         }
     }
 }</script>
