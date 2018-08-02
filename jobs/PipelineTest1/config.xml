@@ -43,7 +43,7 @@
     stages {
         stage(&apos;build&apos;) {
             steps {
-                sh(&apos;&apos;&apos;#!C:\copssh_x86\bin\bash.exe echo &quot;I am in bash&quot;                &apos;&apos;&apos;)
+                sh(&apos;&apos;&apos;#!C:/copssh_x86/bin/bash.exe echo &quot;I am in bash&quot;                &apos;&apos;&apos;)
             }
         }
     }
