@@ -43,7 +43,9 @@
     stages {
         stage(&apos;build&apos;) {
             steps {
-                bat &apos;python --version&apos;
+                sh(&apos;&apos;&apos;#!c:\path\to\bash.exe
+                echo &quot;I am in bash&quot;
+                &apos;&apos;&apos;)
             }
         }
     }
