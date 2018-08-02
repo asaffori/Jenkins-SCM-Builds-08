@@ -39,10 +39,10 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>pipeline {
-    agent { docker { image &apos;php&apos; } }
+    agent { docker { image &apos;python:3.5.1&apos; } }
     stages {
         stage(&apos;build&apos;) {
-
+            bat &apos;python --version&apos;
         }
     }
 }</script>
