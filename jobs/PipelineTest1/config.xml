@@ -43,7 +43,7 @@
     stages {
         stage(&apos;build&apos;) {
             steps {
-                bat &apos;php --version&apos;
+                bat &apos;set&apos;
             }
         }
     }
