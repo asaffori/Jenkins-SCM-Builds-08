@@ -243,7 +243,13 @@
   <markupFormatter class="hudson.markup.RawHtmlMarkupFormatter" plugin="antisamy-markup-formatter@1.5">
     <disableSyntaxHighlighting>false</disableSyntaxHighlighting>
   </markupFormatter>
-  <jdks/>
+  <jdks>
+    <jdk>
+      <name>Java_1.8.0_101</name>
+      <home>c:\Program Files\Java\jdk1.8.0_101\</home>
+      <properties/>
+    </jdk>
+  </jdks>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds/>
