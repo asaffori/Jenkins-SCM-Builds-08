@@ -14,7 +14,7 @@
     <name>RESTART</name>
   </installState>
   <numExecutors>20</numExecutors>
-  <mode>EXCLUSIVE</mode>
+  <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.ProjectMatrixAuthorizationStrategy">
     <permission>com.cloudbees.jenkins.support.SupportPlugin.DownloadBundle:agzhan</permission>
