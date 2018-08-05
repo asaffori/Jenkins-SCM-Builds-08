@@ -125,8 +125,10 @@
         <string>CA1-CTX-KT-Employees</string>
         <string>WIN-DYSD-Assignment-CH</string>
         <string>PLANTOPS_OPERATOR</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-P-CH</string>
         <string>ISR1NAS01-SW-COMET-CH</string>
         <string>DL-iNotion-Users</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-TS-CH</string>
         <string>Bentley-Field_Dat-RO</string>
         <string>WIN-EEP-Reports_Customers-CH</string>
         <string>ISRCCUSERS</string>
@@ -138,6 +140,7 @@
         <string>WIN-DYSD-ace-xp-recipe-CH</string>
         <string>DL-ALL-REGULAR-EMPLOYEES-SPA</string>
         <string>JazzUsers</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-S-CH</string>
         <string>ISR1NAS01-UserDoc-RO</string>
         <string>DL-Israel-OMD-ENG-SW</string>
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
@@ -153,7 +156,9 @@
         <string>DPM_Users_Old</string>
         <string>Isr1nas03-External_Files_for_Sharing-RO</string>
         <string>PasswordManager</string>
+        <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
         <string>OMD Nightly Build Recipients</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-C-CH</string>
         <string>CA1NAS01-WINField-CH</string>
         <string>SW-OMD-CH</string>
         <string>JPN1FS01-031ENG-CH</string>
@@ -178,6 +183,7 @@
         <string>allsubscribers2ea70d23</string>
         <string>ISR1NAS01-SW-RO</string>
         <string>DL-Qtr-Survey</string>
+        <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
         <string>DL-RSA-Notification</string>
         <string>DL-O365</string>
         <string>DL-All-Engineering</string>
@@ -189,6 +195,7 @@
         <string>UC-User-Production</string>
         <string>ISRSWENG</string>
         <string>Survey-Engineering</string>
+        <string>chn2vmfs01-Shanghai-I-GF-S-CH</string>
         <string>Quota</string>
         <string>Ca1nas11-KT-Insight-Program-RO</string>
         <string>allsubscribers58123b4d</string>
@@ -197,12 +204,13 @@
         <string>Domain Users</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>ISR1NAS01-SW-COMM-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1528209142933</timestamp>
+      <timestamp>1533481667649</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
