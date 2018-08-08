@@ -124,8 +124,10 @@
         <string>WIN-DYSD-Assignment-CH</string>
         <string>ISR1NAS01-Comet-CH</string>
         <string>PLANTOPS_OPERATOR</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-P-CH</string>
         <string>ISR1NAS01-SW-COMET-CH</string>
         <string>DL-iNotion-Users</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-TS-CH</string>
         <string>WIN-EEP-Reports_Customers-CH</string>
         <string>CA1NAS06-Fast-Meg-cc-RO</string>
         <string>WIN-DYSD-ADCAlgorithm-CH</string>
@@ -135,6 +137,7 @@
         <string>WIN-DYSD-ace-xp-recipe-CH</string>
         <string>DL-ALL-REGULAR-EMPLOYEES-SPA</string>
         <string>JazzUsers</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-S-CH</string>
         <string>ISR1NAS01-UserDoc-RO</string>
         <string>DL-All-Managers with direct reports</string>
         <string>DL-Israel-OMD-ENG-SW</string>
@@ -151,7 +154,9 @@
         <string>DPM_Users_Old</string>
         <string>Isr1nas03-External_Files_for_Sharing-RO</string>
         <string>PasswordManager</string>
+        <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
         <string>OMD Nightly Build Recipients</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-C-CH</string>
         <string>CA1NAS01-WINField-CH</string>
         <string>SW-OMD-CH</string>
         <string>ca1fs01-KlearPoint-CH</string>
@@ -176,6 +181,7 @@
         <string>Citrix XenApp 7.6 - eQuality - Prod-Chinese</string>
         <string>ISR1NAS01-SW-RO</string>
         <string>DL-OMD-ENG-MANAGERS</string>
+        <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
         <string>DL-All-Engineering</string>
         <string>Travel &amp; Expense</string>
         <string>Ca1nas11-ALM-RO</string>
@@ -186,6 +192,7 @@
         <string>DL-All-eQuality Users</string>
         <string>ISR1NAS03-OpsIsrael</string>
         <string>NewHireGroup-10-19</string>
+        <string>chn2vmfs01-Shanghai-I-GF-S-CH</string>
         <string>Quota</string>
         <string>Ca1nas11-KT-Insight-Program-RO</string>
         <string>WIN-DYSD-IMPACT_Min-CH</string>
@@ -196,12 +203,13 @@
         <string>Ca1nas11-Fast-AlgoFTML-RO</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>DL-Israel-People-Managers</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1531683179747</timestamp>
+      <timestamp>1533755178152</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
