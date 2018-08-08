@@ -131,6 +131,7 @@
         <string>DL-Transportation</string>
         <string>CA1-CTX-Portal-Users</string>
         <string>WIN-DYSD-WSODocs-CH</string>
+        <string>Citrix XenApp 7.6 - eQuality - Prod-English</string>
         <string>CA1NAS04-OCD-SOG-SCM-CH</string>
         <string>Austinnt1-Cleanroom-CH</string>
         <string>ca1fs01-Eric-R-Jong-CH</string>
@@ -177,8 +178,10 @@
         <string>CA1-CTX-KT-Employees</string>
         <string>WIN-DYSD-Assignment-CH</string>
         <string>PLANTOPS_OPERATOR</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-P-CH</string>
         <string>ISR1NAS01-SW-COMET-CH</string>
         <string>DL-iNotion-Users</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-TS-CH</string>
         <string>WIN-EEP-Reports_Customers-CH</string>
         <string>CA1NAS06-Fast-Meg-cc-RO</string>
         <string>ISRCCUSERS</string>
@@ -190,6 +193,7 @@
         <string>WIN-DYSD-ace-xp-recipe-CH</string>
         <string>DL-ALL-REGULAR-EMPLOYEES-SPA</string>
         <string>JazzUsers</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-S-CH</string>
         <string>ISR1NAS01-UserDoc-RO</string>
         <string>DL-Israel-OMD-ENG-SW</string>
         <string>CA1NAS04-OCD-SOG-SSSW-RO</string>
@@ -206,6 +210,8 @@
         <string>DPM_Users_Old</string>
         <string>Isr1nas03-External_Files_for_Sharing-RO</string>
         <string>PasswordManager</string>
+        <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-C-CH</string>
         <string>CA1NAS01-WINField-CH</string>
         <string>KTUsers</string>
         <string>ca1fs01-KlearPoint-CH</string>
@@ -228,9 +234,11 @@
         <string>ZZZ-SRV-ISREXCHANGE</string>
         <string>WIN-DYSD-adc-plc-CH</string>
         <string>ca1nas05-WIN-OpenShares-CH</string>
+        <string>Citrix XenApp 7.6 - eQuality - Prod-Chinese</string>
         <string>allsubscribers2ea70d23</string>
         <string>ISR1NAS01-SW-RO</string>
         <string>DL-Qtr-Survey</string>
+        <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
         <string>DL-O365</string>
         <string>DL-All-Engineering</string>
         <string>ISR1FP04-SWDATA-CH</string>
@@ -245,6 +253,7 @@
         <string>ISRSWENG</string>
         <string>Survey-Engineering</string>
         <string>ISR1NAS03-OpsIsrael</string>
+        <string>chn2vmfs01-Shanghai-I-GF-S-CH</string>
         <string>Quota</string>
         <string>Ca1nas11-KT-Insight-Program-RO</string>
         <string>allsubscribers58123b4d</string>
@@ -258,12 +267,13 @@
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
         <string>DL-FaST India</string>
         <string>CA1NAS01-TFComet-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>ISR1NAS01-SW-COMM-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1528027156349</timestamp>
+      <timestamp>1533716034541</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
