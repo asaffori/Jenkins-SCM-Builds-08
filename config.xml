@@ -1,5 +1,12 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <hudson>
+  <temporaryOfflineCause class="hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace">
+    <timestamp>1534215768851</timestamp>
+    <path>C:\Program Files (x86)\Jenkins</path>
+    <size>1038090240</size>
+    <triggered>true</triggered>
+    <trigger>hudson.node_monitors.DiskSpaceMonitor</trigger>
+  </temporaryOfflineCause>
   <disabledAdministrativeMonitors>
     <string>hudson.diagnosis.ReverseProxySetupMonitor</string>
     <string>jenkins.model.DownloadSettings$Warning</string>
@@ -392,7 +399,6 @@
         <string>AgnesChoiceTest</string>
         <string>cleanupTest</string>
         <string>CleanUpTestController</string>
-        <string>Flow for test Mail Notice</string>
         <string>Matlab Test</string>
         <string>mutibranch</string>
         <string>NUnit Test Full Flow</string>
