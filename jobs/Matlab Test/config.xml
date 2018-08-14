@@ -50,7 +50,7 @@ SET PATH=p:\Bin_Debug;p:\Bin_Release;V:\OMD_ThirdParty\Bin_Common;V:\OMD_ThirdPa
 &#xd;
 CD V:\OMD_Matlab\Diagnostics\BuildMatlabDiagnostics&#xd;
 &#xd;
-call V:\OMD_Builds\JenkinsBuild\BatchFiles\BuildMatlab.bat BuildMatlabDiagnostics release x64</command>
+call V:\OMD_Builds\JenkinsBuild\BatchFiles\BuildMatlab.bat BuildMatlabDiagnostics Release x64</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
