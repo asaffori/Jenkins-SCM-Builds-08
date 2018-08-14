@@ -47,6 +47,9 @@
       <command>subst V: D:\sandboxes\omdbuild_16.15.00.20300&#xd;
 subst P: D:\BuildOutputs\omdbuild_Archer_16.15_Integ_Workspace_V16.15.00.20300&#xd;
 SET PATH=p:\Bin_Debug;p:\Bin_Release;V:\OMD_ThirdParty\Bin_Common;V:\OMD_ThirdParty\KTOS\lib;V:\OMD_ThirdParty\MIL\bin;C:\Windows\Microsoft.NET\Framework\v4.0.30319;&#xd;
+&#xd;
+CD V:\OMD_Matlab\Diagnostics\BuildMatlabDiagnostics&#xd;
+&#xd;
 call V:\OMD_Builds\JenkinsBuild\BatchFiles\BuildMatlab.bat BuildMatlabDiagnostics release x64</command>
     </hudson.tasks.BatchFile>
   </builders>
