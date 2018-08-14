@@ -1,12 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <hudson>
-  <temporaryOfflineCause class="hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace">
-    <timestamp>1534226569268</timestamp>
-    <path>C:\Program Files (x86)\Jenkins</path>
-    <size>1023885312</size>
-    <triggered>true</triggered>
-    <trigger>hudson.node_monitors.DiskSpaceMonitor</trigger>
-  </temporaryOfflineCause>
   <disabledAdministrativeMonitors>
     <string>hudson.diagnosis.ReverseProxySetupMonitor</string>
     <string>jenkins.model.DownloadSettings$Warning</string>
@@ -484,7 +477,6 @@
             <string>OMD_17.11_Formal_Trigger</string>
             <string>OMD_17.12_Formal_Trigger</string>
             <string>OMD_17.13.02_Formal_Trigger</string>
-            <string>OMD_17.13_Beta_Formal_Trigger</string>
             <string>OMD_17.13_Formal_Trigger</string>
             <string>OMD_18.00_Formal_Trigger</string>
           </jobNames>
