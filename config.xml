@@ -1,11 +1,18 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <hudson>
-  <temporaryOfflineCause class="hudson.node_monitors.DiskSpaceMonitorDescriptor$DiskSpace">
-    <timestamp>1534226569268</timestamp>
-    <path>C:\Program Files (x86)\Jenkins</path>
-    <size>1023885312</size>
-    <triggered>true</triggered>
-    <trigger>hudson.node_monitors.DiskSpaceMonitor</trigger>
+  <temporaryOfflineCause class="hudson.slaves.OfflineCause$UserCause">
+    <timestamp>1534228282473</timestamp>
+    <description>
+      <holder>
+        <owner>hudson.slaves.Messages</owner>
+      </holder>
+      <key>SlaveComputer.DisconnectedBy</key>
+      <args>
+        <string>asaffori</string>
+        <string> : Disk space is too low. Only 0.976GB left on C:\Program Files (x86)\Jenkins.</string>
+      </args>
+    </description>
+    <userId>asaffori</userId>
   </temporaryOfflineCause>
   <disabledAdministrativeMonitors>
     <string>hudson.diagnosis.ReverseProxySetupMonitor</string>
