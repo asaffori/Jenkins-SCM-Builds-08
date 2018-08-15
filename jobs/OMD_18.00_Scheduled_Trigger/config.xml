@@ -258,7 +258,7 @@
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesContent>BUILDTYPE=Scheduled
-WSName=Archer_${MajorMinor_Ver}_Dev_Workspace
+WSName=Archer_${MajorMinor_Ver}_Integ_Workspace
 SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}
 BaseImage=17.10.00.20900_A700_ATE_Image
 SimulatorEngine=SCM-SIM7050-02
