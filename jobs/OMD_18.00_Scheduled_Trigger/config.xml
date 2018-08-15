@@ -282,7 +282,7 @@ ToolType=A700</propertiesContent>
     <timeout>0</timeout>
     <buildType>
       <value>buildWorkspace</value>
-      <buildWorkspace>Archer_${MajorMinor_Ver}_Dev_Workspace</buildWorkspace>
+      <buildWorkspace>${WSName}</buildWorkspace>
       <loadDirectory>${team_scm_fetchDestination}</loadDirectory>
       <clearLoadDirectory>true</clearLoadDirectory>
       <createFoldersForComponents>true</createFoldersForComponents>
@@ -295,7 +295,7 @@ ToolType=A700</propertiesContent>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildWorkspace</buildTypeStr>
-    <buildWorkspace>Archer_${MajorMinor_Ver}_Dev_Workspace</buildWorkspace>
+    <buildWorkspace>${WSName}</buildWorkspace>
     <loadDirectory>${team_scm_fetchDestination}</loadDirectory>
     <clearLoadDirectory>true</clearLoadDirectory>
     <createFoldersForComponents>true</createFoldersForComponents>
