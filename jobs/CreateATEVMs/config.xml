@@ -1,0 +1,191 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.23">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>VMsMasterServer</name>
+          <description></description>
+          <allowedSlaves>
+            <string>Validation-7050</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>Validation-7050</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BaseMachineName</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TargetMachineName</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>CloneType</name>
+          <description>&lt;B&gt;linked&lt;/B&gt;: A linked clone is a copy of a virtual machine that shares virtual disks with the parent virtual machine in an ongoing manner. Ongoing changes to the virtual disk of the parent do not affect the linked clone, and changes to the disk of the linked clone do not affect the parent. &lt;BR&gt;
+&lt;B&gt;full&lt;/B&gt;: A full clone is a complete and independent copy of a virtual machine. It shares nothing with the parent virtual machine after the cloning operation. Ongoing operation of a full clone is entirely separate from the parent virtual machine.</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>linked</string>
+              <string>full</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SnapshotName</name>
+          <description>Source machine snapshot &lt;BR&gt;
+In case of empty value, machine will be created from last source machine start</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MacAddress</name>
+          <description>In case of empty machine will get the MAC address as source &lt;BR&gt;
+MAC Address pattern: 00:50:56:xx:xx:xx</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
+    <script>pipeline {
+    agent { node { label &apos;master&apos; } }
+    parameters {
+        string(description: &apos;What is the name of the machine to clone? \n example: SCM-SIM-V30&apos;, name: &apos;BaseMachineName&apos;)
+        string(description: &apos;Please suggest a name to the new machine? \n example: SCM-SIM-V90&apos;,  name: &apos;TargetMachineName&apos;)
+        choice(choices: &apos;linked\full&apos;, description: &apos;Which clone type you would like to use?\n	linked: A linked clone is a copy 
+        of a virtual machine that shares virtual disks with the parent virtual machine in an ongoing manner. 
+        Ongoing changes to the virtual disk of the parent do not affect the linked clone, and changes to the disk of the 
+        linked clone do not affect the parent. 
+        \nfull: A full clone is a complete and independent copy of a virtual machine. 
+        It shares nothing with the parent virtual machine after the cloning operation. 
+        Ongoing operation of a full clone is entirely separate from the parent virtual machine.&apos;, name: &apos;CloneType&apos;)
+        string(description: &apos;What is the source machine snapshot name? \n In case of empty value, machine will be created from last source machine start \n
+        example: SCM-SIM-V90&apos;, default:&apos;LATEST&apos;, name: &apos;SnapshotName&apos;)
+        string(description: &apos;Would you like to set a special MAC Adress to the target machine? if yes please specify, if not new machine will get the MAC address
+        of the source one\nMAC Address pattern: 00:50:56:xx:xx:xx\n&apos;, default:&apos;LATEST&apos;, name: &apos;MacAddress&apos;)
+        
+    }
+    environment {
+        VMWareHomeDir=&apos;C:\Program Files (x86)\VMware\VMware Workstation&apos;
+        VMWareExe=&apos;vmrun.exe&apos;
+        VMMachinesRootPath=&apos;E:\Virtual Machines&apos;
+    }
+    stages {
+        stage (&quot;Verify and shudown source VM&quot;){
+            
+            steps{
+                script{
+                    shutdownMachine(params.BaseMachineName)
+                }
+            }
+        }
+        stage (&quot;Clonning VM&quot;){
+            steps{
+                script{
+                    cloneMachine(params.BaseMachineName,params.TargetMachineName)
+                }
+            }
+        }
+        stage (&quot;Start clonned VM&quot;){
+            steps{
+                script{
+                    startMachine(params.TargetMachineName)
+                    sleep time:2 unit:MINUTES
+                }
+            }
+        }
+        stage (&quot;Set Machine Name and configure MACAddress&quot;){
+            steps{
+                script{
+                    updateMachineName(params.TargetMachineName)
+                    updateMachineMAC(params.TargetMachineName,params.MACAddress)
+                }
+            }
+        }
+        stage (&quot;Start new VM and connect it to Jenkins&quot;){
+            steps{
+                script{
+                    startMachine(params.TargetMachineName)
+                }
+            }
+        }
+    }
+}
+
+
+def updateMachineName(String machine){
+    f=new File(VMMachinesRootPath+&apos;\\&apos;+machine+&apos;\\COMPUTERNAME.txt&apos;)
+    file &lt;&lt; machine
+    bat &apos;${VMWareHomeDir}\\${VMWareExe} -T ws -gu autologonuser -gp Columbia03 copyFileFromHostToGuest ${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${machine}\\COMPUTERNAME.txt C:\\COMPUTERNAME.txt&apos;
+}
+
+def shutdownMachine(String machine){
+   bat &apos;${VMWareHomeDir}\\${VMWareExe} -T ws stop ${VMMachinesRootPath}\\${machine}\\${machine}.vmx soft&apos;
+}
+
+def startMachine(String machine){
+   bat &apos;${VMWareHomeDir}\\${VMWareExe} -T ws start ${VMMachinesRootPath}\\${machine}\\${machine}.vmx nogui&apos;
+}
+
+def cloneMachine(String machine,String newMachine){
+   bat &apos;${VMWareHomeDir}\\${VMWareExe} -T ws clone ${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${newMachine}\\${newMachine}.vmx ${params.CloneType} ${params.SnapshotName} -cloneName=${newMachine}&apos;
+}
+
+def updateMachineMAC(String machine,String MACAddress){
+    def file = new File(&apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${newMachine}\\${newMachine}.vmx&apos;)
+    def newConfig = file.text.replaceRegex(&apos;ethernet0.addressType\=.*&apos;, &apos;ethernet0.addressType=static&apos;)
+    file.text = newConfig.replaceRegex(&apos;ethernet0.address\=.*&apos;, &apos;ethernet0.address=${MACAddress}&apos;)
+}</script>
+    <sandbox>false</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
