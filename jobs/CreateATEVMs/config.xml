@@ -44,7 +44,7 @@
     parameters {
         string(description: &apos;What is the name of the machine to clone? \n example: SCM-SIM-V30&apos;, name: &apos;BaseMachineName&apos;)
         string(description: &apos;Please suggest a name to the new machine? \n example: SCM-SIM-V90&apos;,  name: &apos;TargetMachineName&apos;)
-        choice(choices: &apos;linked\full&apos;, description: &apos;Which clone type you would like to use?\n	linked: A linked clone is a copy 
+        choice(choices: &apos;linked\nfull&apos;, description: &apos;Which clone type you would like to use?\n	linked: A linked clone is a copy 
         of a virtual machine that shares virtual disks with the parent virtual machine in an ongoing manner. 
         Ongoing changes to the virtual disk of the parent do not affect the linked clone, and changes to the disk of the 
         linked clone do not affect the parent. 
