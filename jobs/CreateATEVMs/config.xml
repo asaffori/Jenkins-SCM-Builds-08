@@ -28,62 +28,6 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>VMsMasterServer</name>
-          <description></description>
-          <allowedSlaves>
-            <string>Validation-7050</string>
-          </allowedSlaves>
-          <defaultSlaves>
-            <string>Validation-7050</string>
-          </defaultSlaves>
-          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
-          <allowMultiNodeSelection>false</allowMultiNodeSelection>
-          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
-          <ignoreOfflineNodes>false</ignoreOfflineNodes>
-          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
-        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>BaseMachineName</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>TargetMachineName</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>CloneType</name>
-          <description>&lt;B&gt;linked&lt;/B&gt;: A linked clone is a copy of a virtual machine that shares virtual disks with the parent virtual machine in an ongoing manner. Ongoing changes to the virtual disk of the parent do not affect the linked clone, and changes to the disk of the linked clone do not affect the parent. &lt;BR&gt;
-&lt;B&gt;full&lt;/B&gt;: A full clone is a complete and independent copy of a virtual machine. It shares nothing with the parent virtual machine after the cloning operation. Ongoing operation of a full clone is entirely separate from the parent virtual machine.</description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>linked</string>
-              <string>full</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SnapshotName</name>
-          <description>Source machine snapshot &lt;BR&gt;
-In case of empty value, machine will be created from last source machine start</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>MacAddress</name>
-          <description>In case of empty machine will get the MAC address as source &lt;BR&gt;
-MAC Address pattern: 00:50:56:xx:xx:xx</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
