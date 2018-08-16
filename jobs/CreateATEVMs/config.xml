@@ -45,8 +45,8 @@
         string(description: &apos;What is the name of the machine to clone? \n example: SCM-SIM-V30&apos;, name: &apos;BaseMachineName&apos;)
         string(description: &apos;Please suggest a name to the new machine? \n example: SCM-SIM-V90&apos;,  name: &apos;TargetMachineName&apos;)
         choice(choices: &apos;linked\nfull&apos;, description: &apos;Which clone type you would like to use? \n linked: A linked clone is a copy of a virtual machine that shares virtual disks with the parent virtual machine in an ongoing manner. Ongoing changes to the virtual disk of the parent do not affect the linked clone, and changes to the disk of the linked clone do not affect the parent. \n full: A full clone is a complete and independent copy of a virtual machine. It shares nothing with the parent virtual machine after the cloning operation. Ongoing operation of a full clone is entirely separate from the parent virtual machine.&apos;, name: &apos;CloneType&apos;)
-        string(description: &apos;What is the source machine snapshot name? \n In case of empty value, machine will be created from last source machine start \n example: SCM-SIM-V90&apos;, default:&apos;LATEST&apos;, name: &apos;SnapshotName&apos;)
-        string(description: &apos;Would you like to set a special MAC Adress to the target machine? if yes please specify, if not new machine will get the MAC address of the source one\nMAC Address pattern: 00:50:56:xx:xx:xx\n&apos;, default:&apos;LATEST&apos;, name: &apos;MacAddress&apos;)
+        string(description: &apos;What is the source machine snapshot name? \n In case of empty value, machine will be created from last source machine start \n example: SCM-SIM-V90&apos;, defaultValue:&apos;LATEST&apos;, name: &apos;SnapshotName&apos;)
+        string(description: &apos;Would you like to set a special MAC Adress to the target machine? if yes please specify, if not new machine will get the MAC address of the source one\nMAC Address pattern: 00:50:56:xx:xx:xx\n&apos;, defaultValue:&apos;LATEST&apos;, name: &apos;MacAddress&apos;)
         
     }
     environment {
