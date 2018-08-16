@@ -21,37 +21,12 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
-      <leastLoadDisabled>false</leastLoadDisabled>
-    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description>What is the Archer build version you want to test? 
  example: 17.12.00.20600</description>
-          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
@@ -69,7 +44,6 @@
           <name>TestsArray</name>
           <description>What tests needs to run and in which confgurations? 
  example: [[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]]</description>
-          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.TextParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
@@ -79,6 +53,19 @@
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -87,90 +74,122 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
-    <script>pipeline {
-    agent { node { label &apos;master&apos; } }
-    parameters {
-        string(description: &apos;What is the name of the machine to clone? \n example: SCM-SIM-V30&apos;, name: &apos;BaseMachineName&apos;)
-        string(description: &apos;Please suggest a name to the new machine? \n example: SCM-SIM-V90&apos;,  name: &apos;TargetMachineName&apos;)
-        choice(choices: &apos;linked\nfull&apos;, description: &apos;Which clone type you would like to use? \n linked: A linked clone is a copy of a virtual machine that shares virtual disks with the parent virtual machine in an ongoing manner. Ongoing changes to the virtual disk of the parent do not affect the linked clone, and changes to the disk of the linked clone do not affect the parent. \n full: A full clone is a complete and independent copy of a virtual machine. It shares nothing with the parent virtual machine after the cloning operation. Ongoing operation of a full clone is entirely separate from the parent virtual machine.&apos;, name: &apos;CloneType&apos;)
-        string(description: &apos;What is the source machine snapshot name? \n In case of empty value, machine will be created from last source machine start \n example: SCM-SIM-V90&apos;, defaultValue:&apos;LATEST&apos;, name: &apos;SnapshotName&apos;)
-        string(description: &apos;Would you like to set a special MAC Adress to the target machine? if yes please specify, if not new machine will get the MAC address of the source one\nMAC Address pattern: 00:50:56:xx:xx:xx\n&apos;, name: &apos;MacAddress&apos;)
-        
+    <script>//This list is used to save nodes which were already alocated by one of the tests so that tests will be spreaded to diffrent nodes 
+allocated_nodes=[]
+
+pipeline {
+agent { node { label &apos;master&apos; } }
+parameters {
+        string(description: &apos;What is the Archer build version you want to test? \n example: 17.12.00.20600&apos;, name: &apos;BUILD_VERSION&apos;)
+        choice(choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;What is your build type?&apos;, name: &apos;BUILDTYPE&apos;)
+        text(description: &apos;What tests needs to run and in which confgurations? \n example: [[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]]&apos;, name: &apos;TestsArray&apos;)
+        booleanParam(name: &apos;RunNunitTests&apos;, defaultValue: false, description: &apos;Should Nunit intergration tests be executed?&apos;)
     }
-    environment {
-        VMWareHomeDir=&apos;C:\\Program Files (x86)\\VMware\\VMware Workstation&apos;
-        VMWareExe=&apos;vmrun.exe&apos;
-        VMMachinesRootPath=&apos;E:\\Virtual Machines&apos;
-    }
+
     stages {
-        stage (&quot;Verify and shudown source VM&quot;){
+        stage (&quot;Run ATE Tests&quot;){
             
             steps{
                 script{
-                    shutdownMachine(params.BaseMachineName)
+                    //Delete new line characters and read all test arrays 
+                    def stringMap= params.TestsArray.replaceAll(&quot;[\n\r]&quot;, &quot;&quot;).replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;)
+                    //send all test arrays to processing
+                    runparalleltests(stringMap)
                 }
-            }
-        }
-        stage (&quot;Clonning VM&quot;){
-            steps{
-                script{
-                    cloneMachine(params.BaseMachineName,params.TargetMachineName)
-                }
-            }
-        }
-        stage (&quot;Start clonned VM&quot;){
-            steps{
-                script{
-                    startMachine(params.TargetMachineName)
-                    sleep 100
-                }
-            }
-        }
-        stage (&quot;Set Machine Name and configure MACAddress&quot;){
-            steps{
-                script{
-                    updateMachineName(params.TargetMachineName)
-                    updateMachineMAC(params.TargetMachineName,params.MACAddress)
-                }
-            }
-        }
-        stage (&quot;Start new VM and connect it to Jenkins&quot;){
-            steps{
-                script{
-                    startMachine(params.TargetMachineName)
-                }
+                
             }
         }
     }
+
+}
+// Run multiple ATE tests
+def runparalleltests(AUT_Tests){
+//Define &apos;Auto Deploy Sanity&apos; tests exection list
+def ate_tests = [:]
+//For symantic
+def index=0
+def masternode=&quot;master&quot;
+def buildversion= params.BUILD_VERSION
+def ate_MajorMinor_Ver=&quot;&quot;
+if(params.BUILD_VERSION!=&quot;&quot;) ate_MajorMinor_Ver =buildversion.substring(0,5)
+//Read each test details and creation a job trigger to AutoDeploy Sanity flow with with the given details
+AUT_Tests.tokenize(&apos;;&apos;).each{    
+                    testDetails = it.replaceAll(&apos;^\\[|\\]$&apos;,&apos;&apos;).tokenize(&apos;,&apos;)
+                    def test_suite_name = testDetails[0]
+					def test_suite_path = testDetails[1]
+					def tool_type = testDetails[2]
+					def ate_controller_engine_label = testDetails[3]
+					def simulator_engine_label = testDetails[4]
+					def base_image_path = testDetails[5]
+					def base_image = testDetails[6]
+					def ate_scripts_path = testDetails[7]
+
+  ate_tests[&quot;${index}. Test ${test_suite_name} for ${tool_type}&quot;] = {
+    build job:&quot;Auto Deploy Sanity&quot;,parameters: [
+      booleanParam(name: &apos;RunNunitTests&apos;, value:params.RunNunitTests),
+      string(name: &apos;BUILD_VERSION&apos;, value:params.BUILD_VERSION),
+	  string(name: &apos;BaseImage&apos;, value:base_image),
+	  string(name:&apos;ToolType&apos;,value:tool_type),
+	  string(name:&apos;BUILDTYPE&apos;,value:params.BUILDTYPE),
+	  string(name: &apos;BaseImagePath&apos;, value:base_image_path),
+	  string(name: &apos;TestSuite&apos;, value:test_suite_name),
+	  string(name: &apos;TestSuitePath&apos;, value:test_suite_path),
+	  string(name: &apos;ATEBasePath&apos;, value:ate_scripts_path),
+	  string(name: &apos;MajorMinor_Ver&apos;, value:ate_MajorMinor_Ver),
+	  [$class: &apos;NodeParameterValue&apos;, name: &apos;FlowController&apos;, labels: [&quot;${masternode}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
+	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${ate_controller_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
+      [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;SimulatorEngine&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
+
+  }
+  index++
+}
+  //Executing all tests in parallel
+parallel ate_tests
+
 }
 
-
-def updateMachineName(String machine){
-    f=new File(VMMachinesRootPath+&apos;\\&apos;+machine+&apos;\\COMPUTERNAME.txt&apos;)
-    file &lt;&lt; machine
-    bat &apos;${VMWareHomeDir}\\${VMWareExe} -T ws -gu autologonuser -gp Columbia03 copyFileFromHostToGuest ${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${machine}\\COMPUTERNAME.txt C:\\COMPUTERNAME.txt&apos;
+/**
+ * This function will get label name and return a &apos;Free node&apos; labeled with this label. 
+ * &apos;Free node&apos; is a node which wasn&apos;t selected for executing a test yet and has free executer
+ * */
+@NonCPS
+def getNodePerLabel(String label){
+    //read all nodes labels with given label
+    def labelNodes=Jenkins.getInstance().getLabel(label)
+    def nodes=labelNodes.getNodes()
+    def nodeName=null
+    //iterating nodes to select free one for execution
+    for (node in nodes) {
+        //exclude Offline nodes
+        if (!node.getComputer().isOffline()){
+                 //Select nodes which has free executers and which wasn&apos;t already selected by any of the current execution tests
+                if ((node.getComputer().getNumExecutors()-node.getComputer().countBusy() &gt;0) &amp;&amp; !(node.getNodeName() in allocated_nodes)){
+                    nodeName=node.getNodeName()
+                    //Update global list for that node was selected for execution
+                    allocated_nodes &lt;&lt; nodeName
+                    break;
+                }
+             }
+    }
+    //In case there is no nodes with free execution, take last selected node (test will be pending till once of the node executers released)
+    if (nodeName == null)
+        nodeName=nodes[0].getNodeName();
+    return nodeName
 }
 
-def shutdownMachine(String machine){
-   bat &apos;${VMWareHomeDir}\\${VMWareExe} -T ws stop ${VMMachinesRootPath}\\${machine}\\${machine}.vmx soft&apos;
-}
-
-def startMachine(String machine){
-   bat &apos;${VMWareHomeDir}\\${VMWareExe} -T ws start ${VMMachinesRootPath}\\${machine}\\${machine}.vmx nogui&apos;
-}
-
-def cloneMachine(String machine,String newMachine){
-   bat &apos;${VMWareHomeDir}\\${VMWareExe} -T ws clone ${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${newMachine}\\${newMachine}.vmx ${params.CloneType} ${params.SnapshotName} -cloneName=${newMachine}&apos;
-}
-
-def updateMachineMAC(String machine,String MACAddress){
-    def file = new File(&apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${newMachine}\\${newMachine}.vmx&apos;)
-    def newConfig = file.text.replaceRegex(&apos;ethernet0.addressType=.*&apos;, &apos;ethernet0.addressType=static&apos;)
-    file.text = newConfig.replaceRegex(&apos;ethernet0.address=.*&apos;, &apos;ethernet0.address=${MACAddress}&apos;)
-}</script>
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
