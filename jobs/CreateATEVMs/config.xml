@@ -107,32 +107,30 @@
             }
         }
     }
-    methods {
+}
 
-        def updateMachineName(String machine){
-            f=new File(VMMachinesRootPath+&apos;\\&apos;+machine+&apos;\\COMPUTERNAME.txt&apos;)
-            file &lt;&lt; machine
-            bat &apos;${env.VMWareHomeDir}\\${env.VMWareExe} -T ws -gu autologonuser -gp Columbia03 copyFileFromHostToGuest ${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${machine}\\COMPUTERNAME.txt C:\\COMPUTERNAME.txt&apos;
-        }
+def updateMachineName(String machine){
+    f=new File(VMMachinesRootPath+&apos;\\&apos;+machine+&apos;\\COMPUTERNAME.txt&apos;)
+    file &lt;&lt; machine
+    bat &apos;&apos;&apos;${env.VMWareHomeDir}\\${env.VMWareExe} -T ws -gu autologonuser -gp Columbia03 copyFileFromHostToGuest ${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${machine}\\COMPUTERNAME.txt C:\\COMPUTERNAME.txt&apos;&apos;&apos;
+}
 
-        def shutdownMachine(String machine){
-        bat &apos;${env.VMWareHomeDir}\\${env.VMWareExe} -T ws stop ${VMMachinesRootPath}\\${machine}\\${machine}.vmx soft&apos;
-        }
+def shutdownMachine(String machine){
+bat &apos;&apos;&apos;${env.VMWareHomeDir}\\${env.VMWareExe} -T ws stop ${VMMachinesRootPath}\\${machine}\\${machine}.vmx soft&apos;&apos;&apos;
+}
 
-        def startMachine(String machine){
-        bat &apos;${env.VMWareHomeDir}\\${env.VMWareExe} -T ws start ${VMMachinesRootPath}\\${machine}\\${machine}.vmx nogui&apos;
-        }
+def startMachine(String machine){
+bat &apos;${env.VMWareHomeDir}\\${env.VMWareExe} -T ws start ${VMMachinesRootPath}\\${machine}\\${machine}.vmx nogui&apos;
+}
 
-        def cloneMachine(String machine,String newMachine){
-        bat &apos;${env.VMWareHomeDir}\\${env.VMWareExe} -T ws clone ${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${newMachine}\\${newMachine}.vmx ${params.CloneType} ${params.SnapshotName} -cloneName=${newMachine}&apos;
-        }
+def cloneMachine(String machine,String newMachine){
+bat &apos;${env.VMWareHomeDir}\\${env.VMWareExe} -T ws clone ${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${newMachine}\\${newMachine}.vmx ${params.CloneType} ${params.SnapshotName} -cloneName=${newMachine}&apos;
+}
 
-        def updateMachineMAC(String machine,String MACAddress){
-            def file = new File(&apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${newMachine}\\${newMachine}.vmx&apos;)
-            def newConfig = file.text.replaceRegex(&apos;ethernet0.addressType=.*&apos;, &apos;ethernet0.addressType=static&apos;)
-            file.text = newConfig.replaceRegex(&apos;ethernet0.address=.*&apos;, &apos;ethernet0.address=${MACAddress}&apos;)
-        }
-    }
+def updateMachineMAC(String machine,String MACAddress){
+    def file = new File(&apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${newMachine}\\${newMachine}.vmx&apos;)
+    def newConfig = file.text.replaceRegex(&apos;ethernet0.addressType=.*&apos;, &apos;ethernet0.addressType=static&apos;)
+    file.text = newConfig.replaceRegex(&apos;ethernet0.address=.*&apos;, &apos;ethernet0.address=${MACAddress}&apos;)
 }</script>
     <sandbox>false</sandbox>
   </definition>
