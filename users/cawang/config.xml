@@ -143,7 +143,6 @@
         <string>DL-OMD-ARCHER-16-14</string>
         <string>DL-OMD-ARCHER-16-13</string>
         <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
-        <string>DL-IT-RTC-Users</string>
         <string>ZZZ-SRV-CHN2EX01</string>
         <string>Shanghai Users</string>
         <string>WIN-DYSD-Picnic-RO</string>
@@ -161,7 +160,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1534341213474</timestamp>
+      <timestamp>1534382799857</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
