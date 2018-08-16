@@ -17,6 +17,49 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BaseMachineName</name>
+          <description>What is the name of the machine to clone? 
+ example: SCM-SIM-V30</description>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TargetMachineName</name>
+          <description>Please suggest a name to the new machine? 
+ example: SCM-SIM-V90</description>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>CloneType</name>
+          <description>Which clone type you would like to use? 
+ linked: A linked clone is a copy of a virtual machine that shares virtual disks with the parent virtual machine in an ongoing manner. Ongoing changes to the virtual disk of the parent do not affect the linked clone, and changes to the disk of the linked clone do not affect the parent. 
+ full: A full clone is a complete and independent copy of a virtual machine. It shares nothing with the parent virtual machine after the cloning operation. Ongoing operation of a full clone is entirely separate from the parent virtual machine.</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>linked</string>
+              <string>full</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SnapshotName</name>
+          <description>What is the source machine snapshot name? 
+ In case of empty value, machine will be created from last source machine start 
+ example: SCM-SIM-V90</description>
+          <defaultValue>LATEST</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MacAddress</name>
+          <description>Would you like to set a special MAC Adress to the target machine? if yes please specify, if not new machine will get the MAC address of the source one
+MAC Address pattern: 00:50:56:xx:xx:xx
+</description>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
