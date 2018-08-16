@@ -50,9 +50,9 @@
         
     }
     environment {
-        VMWareHomeDir=&apos;C:\Program Files (x86)\VMware\VMware Workstation&apos;
+        VMWareHomeDir=&apos;C:\\Program Files (x86)\\VMware\\VMware Workstation&apos;
         VMWareExe=&apos;vmrun.exe&apos;
-        VMMachinesRootPath=&apos;E:\Virtual Machines&apos;
+        VMMachinesRootPath=&apos;E:\\Virtual Machines&apos;
     }
     stages {
         stage (&quot;Verify and shudown source VM&quot;){
