@@ -172,7 +172,7 @@ def updateMachineName(String machine){
 }
 
 def shutdownMachine(String machine){
-    stdout=bat(returnStdout:true ,returnStdout:true , script:&quot;${VMWareHomeDir}\\${VMWareExe} -T ws stop ${VMMachinesRootPath}\\${machine}\\${machine}.vmx soft&quot;)
+    stdout=bat(returnStdout:true , script:&quot;${VMWareHomeDir}\\${VMWareExe} -T ws stop ${VMMachinesRootPath}\\${machine}\\${machine}.vmx soft&quot;)
     print &quot;stdout=&quot;+stdout
 }
 
