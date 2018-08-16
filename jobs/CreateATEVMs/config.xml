@@ -117,8 +117,8 @@ def cloneMachine(String machine,String newMachine){
 
 def updateMachineMAC(String machine,String MACAddress){
     def file = new File(&apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${newMachine}\\${newMachine}.vmx&apos;)
-    def newConfig = file.text.replaceRegex(&apos;ethernet0.addressType\=.*&apos;, &apos;ethernet0.addressType=static&apos;)
-    file.text = newConfig.replaceRegex(&apos;ethernet0.address\=.*&apos;, &apos;ethernet0.address=${MACAddress}&apos;)
+    def newConfig = file.text.replaceRegex(&apos;ethernet0.addressType=.*&apos;, &apos;ethernet0.addressType=static&apos;)
+    file.text = newConfig.replaceRegex(&apos;ethernet0.address=.*&apos;, &apos;ethernet0.address=${MACAddress}&apos;)
 }</script>
     <sandbox>false</sandbox>
   </definition>
