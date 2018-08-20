@@ -138,6 +138,11 @@ if not exist %NETWORKPATH%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver
 echo isntallation package doesn&apos;t exist on network&#xd;
 goto error&#xd;
 )&#xd;
+echo ****clean KT logs start*****&#xd;
+forfiles /p &quot;D:\Logs&quot; /s /d -7 /c &quot;cmd /c del /q /f @file&quot;&#xd;
+&#xd;
+echo ****clean KT logs end*****&#xd;
+&#xd;
 echo begin copy Archer installation&#xd;
 robocopy /MT:128 /r:2 %NETWORKPATH%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILDTYPE%\Archer_Installation_%BUILD_VERSION% C:\temp\Archer_Installation_%BUILD_VERSION% /s&#xd;
 if NOT %errorlevel% LEQ 7 (&#xd;
