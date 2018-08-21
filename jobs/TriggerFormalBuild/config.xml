@@ -51,6 +51,7 @@
               <string>17.13</string>
               <string>17.13.02</string>
               <string>17.13_Beta</string>
+              <string>17.13.03</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
