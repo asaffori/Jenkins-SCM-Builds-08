@@ -22,7 +22,7 @@
         </hudson.model.AllView>
       </views>
     </hudson.model.MyViewsProperty>
-    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.1.1">
+    <hudson.plugins.openid.OpenIdUserProperty plugin="openid@2.2">
       <identifiers/>
     </hudson.plugins.openid.OpenIdUserProperty>
     <hudson.model.PaneStatusProperties>
@@ -91,6 +91,8 @@
         <string>WIN-DYSD-ftp-CH</string>
         <string>WIN-DYSD-Assignment-CH</string>
         <string>PLANTOPS_OPERATOR</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-P-CH</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-TS-CH</string>
         <string>WIN-EEP-Reports_Customers-CH</string>
         <string>ISRCCUSERS</string>
         <string>WIN-DYSD-ADCAlgorithm-CH</string>
@@ -99,6 +101,7 @@
         <string>sfsade-vm6-Fab-Test-CH</string>
         <string>WIN-DYSD-ace-xp-recipe-CH</string>
         <string>JazzUsers</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-S-CH</string>
         <string>Generic users</string>
         <string>ISR1NAS01-UserDoc-RO</string>
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
@@ -109,6 +112,8 @@
         <string>DPM_Users</string>
         <string>Ca1nas11-Autodesk-RO</string>
         <string>ISR1FP04-CC6-CH</string>
+        <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-C-CH</string>
         <string>CA1NAS01-ATLAS-CH</string>
         <string>CA1NAS01-WINField-CH</string>
         <string>ca1fs01-KlearPoint-CH</string>
@@ -122,10 +127,11 @@
         <string>WIN-DYSD-adc-plc-CH</string>
         <string>ca1nas05-WIN-OpenShares-CH</string>
         <string>ISR1NAS01-SW-RO</string>
-        <string>DL-IT-RTC-Users</string>
+        <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
         <string>Ca1nas07-ASD_DOA-RO</string>
         <string>WIN-DYSD-Picnic-RO</string>
         <string>cc-com-comet</string>
+        <string>chn2vmfs01-Shanghai-I-GF-S-CH</string>
         <string>Quota</string>
         <string>Ca1nas11-KT-Insight-Program-RO</string>
         <string>WIN-DYSD-IMPACT_Min-CH</string>
@@ -134,16 +140,17 @@
         <string>Domain Users</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>cc-service</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1527595586285</timestamp>
+      <timestamp>1535098598540</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
     </org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty>
-    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.1">
+    <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.2">
       <data class="concurrent-hash-map">
         <entry>
           <string>Old---Sanity Test</string>
