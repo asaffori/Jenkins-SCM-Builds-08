@@ -17,18 +17,44 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BaseMachineName</name>
           <description>What is the name of the machine to clone? 
  example: SCM-SIM-V30</description>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>TargetMachineName</name>
           <description>Please suggest a name to the new machine? 
  example: SCM-SIM-V90</description>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
@@ -56,34 +82,11 @@
           <description>Would you like to set a special MAC Adress to the target machine? if yes please specify, if not new machine will get the MAC address of the source one
 MAC Address pattern: 00:50:56:xx:xx:xx
 </description>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
-      <leastLoadDisabled>false</leastLoadDisabled>
-    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -191,9 +194,14 @@ def updateMachineMAC(String machine,String MACAddress){
     
 bat: 
 &apos;&apos;&apos;
+::Remove MAC Address proprties
+${windir}\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -command &quot;Get-Content &apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx&apos; | Where-Object {$_ -notmatch &apos;ethernet0.addressType&apos;} | Set-Content &apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx.edit&apos;&quot;
+${windir}\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -command &quot;Get-Content &apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx&apos; | Where-Object {$_ -notmatch &apos;ethernet0.address&apos;} | Set-Content &apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx.edit&apos;&quot;
+
+:: Set new MAC Address
 ${windir}\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -command &quot;add-content -path &apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx.edit&apos; -value `r`nethernet0.addressType=static&quot;
 
-${windir}\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -command &quot;add-content -path &apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx.edit&apos; -value `r`nethernet0.address=%MACAddress%&quot;
+${windir}\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -command &quot;add-content -path &apos;${VMMachinesRootPath}\\${machine}\\${machine}.vmx.edit&apos; -value `r`nethernet0.address=${MACAddress}&quot;
 
 deL &quot;${VMMachinesRootPath}\\${machine}\\${machine}.vmx&quot;
 ren &quot;${VMMachinesRootPath}\\${machine}\\${machine}.vmx.edit&quot; ${machine}.vmx
