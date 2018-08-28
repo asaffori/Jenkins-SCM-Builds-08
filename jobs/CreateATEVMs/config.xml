@@ -204,6 +204,7 @@ withEnv([&quot;MACAddress=$MACAddress&quot;,&quot;machine=$machine&quot;]) {
   %windir%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command &quot;(gc %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp) -replace &apos;^ethernet0.address.*\$&apos;, &apos;ethernet0.address=%MACAddress%&apos; |   Out-File %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp1&quot;
   ren %VMMachinesRootPath%\\%machine%\\%machine%.vmx %machine%.vmx.old
   ren %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp1 %machine%.vmx
+  del /f %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp
 
   &quot;&quot;&quot;)
 }
