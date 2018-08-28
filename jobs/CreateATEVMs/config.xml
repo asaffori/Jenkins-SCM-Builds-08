@@ -200,7 +200,9 @@ def updateMachineMAC(String machine,String MACAddress){
 
 
   :: Set new MAC Address
-  %windir%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command &quot;(gc %VMMachinesRootPath%\\${machine}\\${machine}.vmx) -replace &quot;^ethernet0.addressType.*$&quot;, &apos;ethernet0.addressType=static&apos; | Out-File %VMMachinesRootPath%\\${machine}\\myFile.txt&quot;
+  %windir%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command &quot;(gc %VMMachinesRootPath%\\${machine}\\${machine}.vmx)&quot;
+  -replace &quot;^ethernet0.addressType.*$&quot;, &apos;ethernet0.addressType=static&apos; | Out-File %VMMachinesRootPath%\\${machine}\\myFile.txt&quot;
+  
 
   &quot;&quot;&quot;)
 //}
