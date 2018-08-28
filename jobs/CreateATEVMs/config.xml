@@ -201,7 +201,7 @@ withEnv([&quot;machine=$machine&quot;,&quot;MACAddress=$MACAddress&quot;]) {
 
   :: Set new MAC Address
   %windir%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command &quot;(gc %VMMachinesRootPath%\\%machine%\\%machine%.vmx) -replace &apos;^ethernet0.addressType.*\$&apos;, &apos;ethernet0.addressType=static&apos; |   Out-File %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp&quot;
-  %windir%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command &quot;(gc %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp) -replace &apos;^ethernet0.address.*\$&apos;, &quot;ethernet0.address=%MACAddress%&quot; |   Out-File %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp1&quot;
+  %windir%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command &quot;(gc %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp) -replace &apos;^ethernet0.address.*\$&apos;, ethernet0.address=%MACAddress% |   Out-File %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp1&quot;
   ren %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp1 %machine%.vmx
 
   &quot;&quot;&quot;)
