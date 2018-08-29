@@ -676,13 +676,6 @@
   </views>
   <primaryView>MyJobs</primaryView>
   <slaveAgentPort>0</slaveAgentPort>
-  <disabledAgentProtocols>
-    <string>CLI-connect</string>
-    <string>CLI2-connect</string>
-    <string>JNLP-connect</string>
-    <string>JNLP2-connect</string>
-    <string>JNLP4-connect</string>
-  </disabledAgentProtocols>
   <enabledAgentProtocols>
     <string>JNLP3-connect</string>
   </enabledAgentProtocols>
