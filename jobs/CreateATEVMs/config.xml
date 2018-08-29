@@ -151,7 +151,7 @@ pipeline {
             steps{
                 script{
                     updateMachineName(params.TargetMachineName)
-                    updateMachineMAC(params.TargetMachineName,params.MACAddress)
+                    stdoutCode=bat(returnStatus:true , script:&quot;\&quot;${VMWareHomeDir}\&quot;\\${VMWareExe} -T ws -gu autologonuser -gp Columbia03 runScriptInGuest ${VMMachinesRootPath}\\${params.TargetMachineName}\\${params.TargetMachineName}.vmx \&quot;\&quot; \&quot;cmd.exe /k \&quot;C:\\ChangeMACAddressBatch.bat change \&quot;Local Area Connection\&quot; \&quot;${params.MACAddress}\&quot; \&quot; x86\&quot; &quot;)
                 }
             }
         }
