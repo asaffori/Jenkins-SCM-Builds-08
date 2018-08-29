@@ -161,7 +161,7 @@ pipeline {
                 //shutdownMachine(params.TargetMachineName)
                  //   sleep 60
                  //   startMachine(params.TargetMachineName)
-                  stdoutCode=bat(returnStatus:true , script:&quot;${VMWareHomeDir}\\${VMWareExe} -T ws -gu autologonuser -gp Columbia03 runScriptInGuest ${VMMachinesRootPath}\\${machine}\\${machine}.vmx &quot;&quot; &quot;cmd.exe /k \&quot;C:\\ConnectJenkins.bat\&quot; x86&quot; &quot;)
+                  stdoutCode=bat(returnStatus:true , script:&quot;${VMWareHomeDir}\\${VMWareExe} -T ws -gu autologonuser -gp Columbia03 runScriptInGuest ${VMMachinesRootPath}\\${machine}\\${machine}.vmx \&quot;\&quot; \&quot;cmd.exe /k \&quot;C:\\ConnectJenkins.bat\&quot; x86\&quot; &quot;)
                 }
             }
         }
