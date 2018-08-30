@@ -463,7 +463,7 @@ JENKINCONFIGPATH=${JENKINCONFIGPATH}</properties>
       </configuredTriggers>
       <contentType>text/html</contentType>
       <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
-      <defaultContent>${SCRIPT, template=&quot;ARCHERDM_template_New_MasterSlave.groovy&quot;}
+      <defaultContent>${SCRIPT, template=&quot;template_CathyTest.groovy&quot;}
 </defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript>def buildtype = ((build.getEnvVars().get(&quot;BUILD_TYPE&quot;)!=null)&amp;&amp;(build.getEnvVars().get(&quot;BUILD_TYPE&quot;)!=&quot;&quot;))?build.getEnvVars().get(&quot;BUILD_TYPE&quot;)+&quot; - &quot;:&quot;&quot;;
