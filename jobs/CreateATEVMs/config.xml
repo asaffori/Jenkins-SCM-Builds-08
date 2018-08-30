@@ -98,7 +98,7 @@ MAC Address pattern: 00:50:56:xx:xx:xx
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
-    <script>def VMWareHomeDir=&apos;C:\\Program Files (x86)\\VMware\\VMware Workstation&apos;
+    <script>def VMWareHomeDir=&apos;C:\\PROGRA~2\\VMware\\VMWARE~1&apos;
 def VMWareExe=&apos;vmrun.exe&apos;
 def VMMachinesRootPath=&apos;E:\\VirtualMachines&apos;
 
