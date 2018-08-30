@@ -47,6 +47,7 @@
     <permission>hudson.model.Computer.Build:smizrach</permission>
     <permission>hudson.model.Computer.Configure:agzhan</permission>
     <permission>hudson.model.Computer.Configure:asaffori</permission>
+    <permission>hudson.model.Computer.Configure:omdbuild</permission>
     <permission>hudson.model.Computer.Connect:agzhan</permission>
     <permission>hudson.model.Computer.Connect:asaffori</permission>
     <permission>hudson.model.Computer.Connect:cawang</permission>
@@ -65,6 +66,7 @@
     <permission>hudson.model.Computer.Create:smizrach</permission>
     <permission>hudson.model.Computer.Delete:agzhan</permission>
     <permission>hudson.model.Computer.Delete:asaffori</permission>
+    <permission>hudson.model.Computer.Delete:omdbuild</permission>
     <permission>hudson.model.Computer.Disconnect:agzhan</permission>
     <permission>hudson.model.Computer.Disconnect:asaffori</permission>
     <permission>hudson.model.Computer.Disconnect:cawang</permission>
