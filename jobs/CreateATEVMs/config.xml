@@ -161,10 +161,10 @@ pipeline {
                       agent { node { label &apos;Validation-7050&apos; } } 
             steps{
                 script{
-//                shutdownMachine(params.TargetMachineName)
-//                sleep 60
-//                startMachine(params.TargetMachineName)
-                  stdoutCode=bat(returnStatus:true , script:&quot;${VMWareHomeDir}\\${VMWareExe} -T ws -gu autologonuser -gp Columbia03 runProgramInGuest ${VMMachinesRootPath}\\${params.TargetMachineName}\\${params.TargetMachineName}.vmx \&quot;C:\\Windows\\System32\\cmd.exe\&quot; \&quot;/c C:\\ConnectJenkins.bat \&quot; &quot;)
+                shutdownMachine(params.TargetMachineName)
+                sleep 60
+                startMachine(params.TargetMachineName)
+                //  stdoutCode=bat(returnStatus:true , script:&quot;\&quot;${VMWareHomeDir}\&quot;\\${VMWareExe} -T ws -gu autologonuser -gp Columbia03 runScriptInGuest ${VMMachinesRootPath}\\${params.TargetMachineName}\\${params.TargetMachineName}.vmx \&quot;\&quot; \&quot;cmd.exe /k \&quot;C:\\ConnectJenkins.bat\&quot; x86\&quot; &quot;)
                 }
             }
         }
