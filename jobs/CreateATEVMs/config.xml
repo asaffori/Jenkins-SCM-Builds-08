@@ -341,7 +341,7 @@ pipeline {
                         exit /b 1
                         :end
                     &quot;&quot;&quot;
-
+				}
             }
         }
     }
