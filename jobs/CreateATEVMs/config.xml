@@ -210,7 +210,7 @@ pipeline {
                 }
             }
         }
-        stage (&quot;Installing new version - Copy media and preperation Updating simulator with build version&quot;) {
+        stage (&quot;Installing new version - Copy media and preperation&quot;) {
             agent { node { label &quot;${params.TargetMachineName}&quot; } } 
             steps {
                 bat &quot;&quot;&quot;
@@ -240,6 +240,10 @@ pipeline {
                         echo ***************Copy MIPmanager failed failed***************
                         goto error
                     )
+					goto end
+					:error
+                     exit /b 1
+                    :end
                &quot;&quot;&quot;
             }
         }
@@ -247,11 +251,8 @@ pipeline {
         stage (&quot;Installing new version - installing new Archer version&quot;) {
             agent { node { label &quot;${params.TargetMachineName}&quot; } } 
             steps {
-            
-                    
-                    
-          bat:          
-              &quot;&quot;&quot;      
+ 
+            bat &quot;&quot;&quot;      
                     echo ****************Exporting software version from registry******
                     regedit.exe /e &quot;C:\\temp\\CurrentVersion.reg&quot; &quot;HKEY_LOCAL_MACHINE\\SOFTWARE\\KLA-Tencor\\OM\\5300\\Machine\\Software Version&quot;
                     if not %errorlevel% equ 0 goto error
@@ -278,59 +279,68 @@ pipeline {
                     goto installerror
                     :installsucceed
                     echo Archer installation finished successfully
+					goto end
 
-
-                    echo ***************Inject Simulator license for %ToolType%******
-                    del /q /f &quot;C:\\Program Files\\KLA-Tencor\\Component Suite\\Bin\\*.ktlic&quot;
-                    
-                    xcopy &quot;%LicensesFilePath%\\%ToolType%\\*.*&quot; &quot;C:\\Program Files\\KLA-Tencor\\Component Suite\\Bin\\&quot; /f /r /s /y
-                    if not %errorlevel%==0 (
-                        echo *********copy license file failed*************
+					:installerror
+                        echo Archer installation failed to excute
+                        For /f &quot;tokens=2-4 delims=/ &quot; %%a in (&apos;date /t&apos;) do (set mydate=%%c-%%a-%%b)
+                        set mydate=%mydate: =_%
+                        echo begin compress installation logs
+                        7z a C:\\temp\\ArcherSetupLogs_%BUILD_VERSION%_%mydate%.zip C:\\Temp\\ArcherSetupLogs_%BUILD_VERSION%\
+                        if not %errorlevel% equ 0 (
+                        echo Compress installation logs failed, please go to %SimulatorEngine% for more information
                         goto error
-                    )
-                    C:\\5300\\Bin\\McdbActivate.exe -licenses
-                    if not %errorlevel%==0 (
-                        echo ***************active license file failed***********
+                        )  
+                        echo begin copy Archer installation logs to D:\\Archer_Installations\\Logs
+                        echo clean logs older than 7 days
+                        forfiles /p &quot;D:\\Archer_Installations\\Logs&quot; /s /d -7 /c &quot;cmd /c del /q /f @file&quot;
+                        xcopy C:\\temp\\ArcherSetupLogs_%BUILD_VERSION%_%mydate%.zip D:\\Archer_Installations\\Logs\\ /f /s
+                        if not %errorlevel% equ 0 (
+                        echo copy Archer installation logs failed
                         goto error
-                    )
-                    
-                    echo Changing registry key for auto logon:HKLM\\SOFTWARE\\KLA-Tencor\\OM\\5300\\Security\\Automatic Logon
-                    REG ADD &quot;HKLM\\SOFTWARE\\KLA-Tencor\\OM\\5300\\Security\\Automatic Logon&quot; /t REG_SZ /d O1 /f
-                    if not %errorlevel% equ 0 goto error
-                    REG ADD &quot;HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon&quot; /v AutoAdminLogon /t REG_SZ /d 1 /f
-                    if not %errorlevel% equ 0 goto error
-                    
-                    shutdown -r -t 50
-                    set shutdownerror=%errorlevel%
-                    if %shutdownerror%==1190 goto end
-                    if not %shutdownerror% equ 0 goto error
-                    goto end
-                    :installerror
-                    echo Archer installation failed to excute
-                    For /f &quot;tokens=2-4 delims=/ &quot; %%a in (&apos;date /t&apos;) do (set mydate=%%c-%%a-%%b)
-                    set mydate=%mydate: =_%
-                    echo begin compress installation logs
-                    7z a C:\\temp\\ArcherSetupLogs_%BUILD_VERSION%_%mydate%.zip C:\\Temp\\ArcherSetupLogs_%BUILD_VERSION%\
-                    if not %errorlevel% equ 0 (
-                    echo Compress installation logs failed, please go to %SimulatorEngine% for more information
-                    goto error
-                    )  
-                    echo begin copy Archer installation logs to D:\\Archer_Installations\\Logs
-                    echo clean logs older than 7 days
-                    forfiles /p &quot;D:\\Archer_Installations\\Logs&quot; /s /d -7 /c &quot;cmd /c del /q /f @file&quot;
-                    xcopy C:\\temp\\ArcherSetupLogs_%BUILD_VERSION%_%mydate%.zip D:\\Archer_Installations\\Logs\\ /f /s
-                    if not %errorlevel% equ 0 (
-                    echo copy Archer installation logs failed
-                    goto error
-                    )
-                    echo copy end 
-                    
-                    :error
-                    exit /b 1
-                    :end
-                    exit /b 0
-
+                        )
+                        echo copy end 
+                        
+                        :error
+                        exit /b 1
+                        :end
                 &quot;&quot;&quot;
+            }
+            
+            stage (&quot;Installing new version - Inject and activate licenses&quot;) {
+                agent { node { label &quot;${params.TargetMachineName}&quot; } } 
+                steps {
+                    bat &quot;&quot;&quot;
+                        echo ***************Inject Simulator license for %ToolType%******
+                        del /q /f &quot;C:\\Program Files\\KLA-Tencor\\Component Suite\\Bin\\*.ktlic&quot;
+                        
+                        xcopy &quot;%LicensesFilePath%\\%ToolType%\\*.*&quot; &quot;C:\\Program Files\\KLA-Tencor\\Component Suite\\Bin\\&quot; /f /r /s /y
+                        if not %errorlevel%==0 (
+                            echo *********copy license file failed*************
+                            goto error
+                        )
+                        C:\\5300\\Bin\\McdbActivate.exe -licenses
+                        if not %errorlevel%==0 (
+                            echo ***************active license file failed***********
+                            goto error
+                        )
+                        
+                        echo Changing registry key for auto logon:HKLM\\SOFTWARE\\KLA-Tencor\\OM\\5300\\Security\\Automatic Logon
+                        REG ADD &quot;HKLM\\SOFTWARE\\KLA-Tencor\\OM\\5300\\Security\\Automatic Logon&quot; /t REG_SZ /d O1 /f
+                        if not %errorlevel% equ 0 goto error
+                        REG ADD &quot;HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon&quot; /v AutoAdminLogon /t REG_SZ /d 1 /f
+                        if not %errorlevel% equ 0 goto error
+                        
+                        shutdown -r -t 50
+                        set shutdownerror=%errorlevel%
+                        if %shutdownerror%==1190 goto end
+                        if not %shutdownerror% equ 0 goto error
+                        goto end
+ 
+                        :error
+                        exit /b 1
+                        :end
+                    &quot;&quot;&quot;
 
             }
         }
