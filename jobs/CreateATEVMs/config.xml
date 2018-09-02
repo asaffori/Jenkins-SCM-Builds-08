@@ -7,9 +7,12 @@
       <triggers/>
       <parameters>
         <string>BaseMachineName</string>
+        <string>BUILD_VERSION</string>
         <string>MACAddress</string>
+        <string>ToolType</string>
         <string>TargetMachineName</string>
         <string>SnapshotName</string>
+        <string>BUILDTYPE</string>
         <string>CloneType</string>
       </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
