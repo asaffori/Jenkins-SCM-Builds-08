@@ -93,8 +93,8 @@ MAC Address pattern: 00:50:56:xx:xx:xx
           <description>Which tool type you would like to install ?</description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>A700</string>
-              <string>A600</string>
+              <string>Archer700</string>
+              <string>Archer600</string>
               <string>Archer TL</string>
             </a>
           </choices>
