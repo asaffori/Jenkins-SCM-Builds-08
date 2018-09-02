@@ -111,8 +111,9 @@ pipeline {
         choice(choices: &apos;linked\nfull&apos;, description: &apos;Which clone type you would like to use? \n linked: A linked clone is a copy of a virtual machine that shares virtual disks with the parent virtual machine in an ongoing manner. Ongoing changes to the virtual disk of the parent do not affect the linked clone, and changes to the disk of the linked clone do not affect the parent. \n full: A full clone is a complete and independent copy of a virtual machine. It shares nothing with the parent virtual machine after the cloning operation. Ongoing operation of a full clone is entirely separate from the parent virtual machine.&apos;, name: &apos;CloneType&apos;)
         string(description: &apos;What is the source machine snapshot name? \n In case of empty value, machine will be created from last source machine start \n example: SCM-SIM-V90&apos;, defaultValue:&apos;LATEST&apos;, name: &apos;SnapshotName&apos;)
         string(description: &apos;Would you like to set a special MAC Adress to the target machine? if yes please specify, if not new machine will get the MAC address of the source one\nMAC Address pattern: 00:50:56:xx:xx:xx\n&apos;, name: &apos;MACAddress&apos;)
-        ToolType
-        BUILDTYPE
+        choice(choices: &apos;A700\A600\ATL&apos;, description: &apos;Which tool type you would like to install &apos;, name: &apos;ToolType&apos;)
+        choice(choices: &apos;Tasks\Formal\Scheduled&apos;, description: &apos;Which build type you would like to install ?&apos;, name: &apos;BUILDTYPE&apos;)
+        
         BUILD_VERSION
         
         
@@ -124,6 +125,7 @@ pipeline {
         BuildUser=&apos;omdbuild&apos;
         NETWORKPATH=&apos;\\\\isr1nas03&apos;
         BuildPass=&apos;Scm07&amp;&apos;
+        LicensesFilePAth=&apos;\\\\klasj\\ktfiles\\Corporate\\HomeFolders\\Israel\\asaffori\\Licenses&apos;
     }
     stages {
         stage (&quot;Verify and shudown source VM&quot;){
@@ -242,7 +244,7 @@ pipeline {
                     echo ***************Inject Simulator license for %ToolType%******
                     del /q /f &quot;C:\\Program Files\\KLA-Tencor\\Component Suite\\Bin\\*.ktlic&quot;
                     
-                    xcopy &quot;D:\\licenses\\%ToolType%\\*.*&quot; &quot;C:\\Program Files\\KLA-Tencor\\Component Suite\\Bin\\&quot; /f /r /s /y
+                    xcopy &quot;%LicensesFilePath%\\%ToolType%\\*.*&quot; &quot;C:\\Program Files\\KLA-Tencor\\Component Suite\\Bin\\&quot; /f /r /s /y
                     if not %errorlevel%==0 (
                         echo *********copy license file failed*************
                         goto error
@@ -276,7 +278,7 @@ pipeline {
                     )  
                     echo begin copy Archer installation logs to D:\\Archer_Installations\\Logs
                     echo clean logs older than 7 days
-                    forfiles /p &quot;D:\\Archer_Installations\Logs&quot; /s /d -7 /c &quot;cmd /c del /q /f @file&quot;
+                    forfiles /p &quot;D:\\Archer_Installations\\Logs&quot; /s /d -7 /c &quot;cmd /c del /q /f @file&quot;
                     xcopy C:\\temp\\ArcherSetupLogs_%BUILD_VERSION%_%mydate%.zip D:\\Archer_Installations\\Logs\\ /f /s
                     if not %errorlevel% equ 0 (
                     echo copy Archer installation logs failed
