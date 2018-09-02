@@ -68,7 +68,7 @@ MAC Address pattern: 00:50:56:xx:xx:xx
             <a class="string-array">
               <string>A700</string>
               <string>A600</string>
-              <string>ATL</string>
+              <string>Archer TL</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
