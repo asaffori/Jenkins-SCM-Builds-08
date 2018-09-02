@@ -306,8 +306,8 @@ pipeline {
                         :end
                 &quot;&quot;&quot;
             }
-            
-            stage (&quot;Installing new version - Inject and activate licenses&quot;) {
+        }
+        stage (&quot;Installing new version - Inject and activate licenses&quot;) {
                 agent { node { label &quot;${params.TargetMachineName}&quot; } } 
                 steps {
                     bat &quot;&quot;&quot;
