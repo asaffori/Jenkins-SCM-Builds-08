@@ -178,7 +178,7 @@ pipeline {
                 }
             }
         }
-        stage (&quot;Updating ${SimulatorEngine} simulator with version ${BUILD_VERSION}&quot;) {
+        stage (&quot;Updating simulator with build version&quot;) {
             agent { node { label &quot;${params.TargetMachineName}&quot; } } 
             steps {
                 bat &quot;&quot;&quot;
