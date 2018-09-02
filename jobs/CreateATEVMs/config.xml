@@ -20,18 +20,44 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>BaseMachineName</name>
           <description>What is the name of the machine to clone? 
  example: SCM-SIM-V30</description>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>TargetMachineName</name>
           <description>Please suggest a name to the new machine? 
  example: SCM-SIM-V90</description>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
@@ -59,6 +85,7 @@
           <description>Would you like to set a special MAC Adress to the target machine? if yes please specify, if not new machine will get the MAC address of the source one
 MAC Address pattern: 00:50:56:xx:xx:xx
 </description>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.ChoiceParameterDefinition>
@@ -86,34 +113,11 @@ MAC Address pattern: 00:50:56:xx:xx:xx
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description>Which build version you wold like to install ?</description>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
-      <leastLoadDisabled>false</leastLoadDisabled>
-    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -152,7 +156,7 @@ pipeline {
         BuildUser=&apos;omdbuild&apos;
         NETWORKPATH=&apos;\\\\isr1nas03&apos;
         BuildPass=&apos;Scm07&amp;&apos;
-        LicensesFilePAth=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\ForAdham\\Licenses&apos;
+        LicensesFilePAth=&apos;\\\\isr1nas03\\SW-OMD\\ForAdham\\Licenses&apos;
         MajorMinor_Ver=params.BUILD_VERSION.substring(0,5)
     }
     stages {
@@ -303,7 +307,7 @@ pipeline {
                 &quot;&quot;&quot;
             }
         }
-        stage (&quot;Installing new version - Inject and activate licenses&quot;) {
+        stage (&quot;Installing new version - Inject and activate licenses as well as MCDB&quot;) {
                 agent { node { label &quot;${params.TargetMachineName}&quot; } } 
                 steps {
                     bat &quot;&quot;&quot;
@@ -326,8 +330,19 @@ pipeline {
                         if not %errorlevel% equ 0 goto error
                         REG ADD &quot;HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon&quot; /v AutoAdminLogon /t REG_SZ /d 1 /f
                         if not %errorlevel% equ 0 goto error
-                        
-                        shutdown -r -t 50
+                        goto end
+ 
+                        :error
+                        exit /b 1
+                        :end
+                    &quot;&quot;&quot;
+				}
+				
+        stage (&quot;Installing new version - restart simulator&quot;) {
+                agent { node { label &quot;${params.TargetMachineName}&quot; } } 
+                steps {
+				    bat &quot;&quot;&quot;
+				        shutdown -r -t 50
                         set shutdownerror=%errorlevel%
                         if %shutdownerror%==1190 goto end
                         if not %shutdownerror% equ 0 goto error
@@ -338,17 +353,13 @@ pipeline {
                         :end
                     &quot;&quot;&quot;
 				}
+				
             }
         }
     }
 
 def updateMachineName(String machine){
-     //   print (&quot;Iam here0&quot;)
-    //file=new File(&quot;${VMMachinesRootPath}\\${machine}\\COMPUTERNAME.txt&quot;)
-   // print (&quot;Iam here:&quot;+machine)
-    
     writeFile file: &quot;${VMMachinesRootPath}\\${machine}\\COMPUTERNAME.txt&quot;, text: machine
-   
     bat &quot;${VMWareHomeDir}\\${VMWareExe} -T ws -gu autologonuser -gp Columbia03 copyFileFromHostToGuest ${VMMachinesRootPath}\\${machine}\\${machine}.vmx ${VMMachinesRootPath}\\${machine}\\COMPUTERNAME.txt C:\\COMPUTERNAME.txt&quot;
 }
 
@@ -366,24 +377,20 @@ def cloneMachine(String machine,String newMachine){
 }
 
 def updateMachineMAC(String machine,String MACAddress){
-//    def file = new File(&quot;${VMMachinesRootPath}\\${machine}\\${machine}.vmx&quot;)
- //   def newConfig = file.text.replaceRegex(&apos;ethernet0.addressType=.*&apos;, &apos;ethernet0.addressType=static&apos;)
-  //  file.text = newConfig.replaceRegex(&apos;ethernet0.address=.*&apos;, &quot;ethernet0.address=${MACAddress}&quot;)
-
-withEnv([&quot;MACAddress=$MACAddress&quot;,&quot;machine=$machine&quot;]) {
-  stdout=bat(returnStdout:true, script: 
-  &quot;&quot;&quot;
-  :: Set new MAC Address
-  %windir%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command &quot;(gc %VMMachinesRootPath%\\%machine%\\%machine%.vmx ) -replace &apos;^ethernet0.addressType.*\$&apos;, &apos;ethernet0.addressType=static&apos;| Out-File -FilePath %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp -Encoding UTF8&quot;
-  %windir%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command &quot; &apos;ethernet0.address=$env.MACAddress&apos; |Out-File -FilePath %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp&quot; -Append  -Encoding UTF8
-  
-  ren %VMMachinesRootPath%\\%machine%\\%machine%.vmx %machine%.vmx.old
-  ren %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp %machine%.vmx
-  ::del /f %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp
-  &quot;&quot;&quot;)
-  
-}
-  println (&quot;stdout ################################## &quot;+stdout+ &quot;  #######################&quot;)
+    withEnv([&quot;MACAddress=$MACAddress&quot;,&quot;machine=$machine&quot;]) {
+      stdout=bat(returnStdout:true, script: 
+          &quot;&quot;&quot;
+          :: Set new MAC Address
+          %windir%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command &quot;(gc %VMMachinesRootPath%\\%machine%\\%machine%.vmx ) -replace &apos;^ethernet0.addressType.*\$&apos;, &apos;ethernet0.addressType=static&apos;| Out-File -FilePath %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp -Encoding UTF8&quot;
+          %windir%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -Command &quot; &apos;ethernet0.address=$env.MACAddress&apos; |Out-File -FilePath %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp&quot; -Append  -Encoding UTF8
+          
+          ren %VMMachinesRootPath%\\%machine%\\%machine%.vmx %machine%.vmx.old
+          ren %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp %machine%.vmx
+          ::del /f %VMMachinesRootPath%\\%machine%\\%machine%.vmx.tmp
+          &quot;&quot;&quot;)
+      
+    }
+    println (&quot;stdout ################################## &quot;+stdout+ &quot;  #######################&quot;)
 }</script>
     <sandbox>false</sandbox>
   </definition>
