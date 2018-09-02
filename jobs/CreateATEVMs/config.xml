@@ -345,7 +345,6 @@ pipeline {
             }
         }
     }
-}
 
 def updateMachineName(String machine){
      //   print (&quot;Iam here0&quot;)
