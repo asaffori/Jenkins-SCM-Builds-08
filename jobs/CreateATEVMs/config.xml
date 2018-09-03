@@ -337,6 +337,7 @@ pipeline {
                         :end
                     &quot;&quot;&quot;
 				}
+        }
 				
         stage (&quot;Installing new version - restart simulator&quot;) {
                 agent { node { label &quot;${params.TargetMachineName}&quot; } } 
@@ -354,7 +355,7 @@ pipeline {
                     &quot;&quot;&quot;
 				}
 				
-            }
+            
         }
     }
 }
