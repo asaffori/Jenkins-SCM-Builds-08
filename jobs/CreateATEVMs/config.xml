@@ -357,6 +357,7 @@ pipeline {
             }
         }
     }
+}
 
 def updateMachineName(String machine){
     writeFile file: &quot;${VMMachinesRootPath}\\${machine}\\COMPUTERNAME.txt&quot;, text: machine
@@ -392,7 +393,7 @@ def updateMachineMAC(String machine,String MACAddress){
     }
     println (&quot;stdout ################################## &quot;+stdout+ &quot;  #######################&quot;)
 }
-}</script>
+</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
