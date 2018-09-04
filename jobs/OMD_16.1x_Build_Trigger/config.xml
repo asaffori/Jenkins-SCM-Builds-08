@@ -393,6 +393,30 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <hudson.tasks.BatchFile>
           <command>::C:\PROGRA~1\Unlocker\Unlocker.exe %team_scm_fetchDestination% /S</command>
         </hudson.tasks.BatchFile>
+        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+          <source class="hudson.plugins.groovy.StringSystemScriptSource">
+            <script plugin="script-security@1.44">
+              <script>import hudson.model.*
+import hudson.AbortException
+
+build.getLog(100).each{
+   if (it.contains(&quot;Build version calculation failed&quot;)){
+       build.result = Result.UNSTABLE
+       throw new AbortException(&quot;Build failed in new version calculation.&quot;)
+   }
+}</script>
+              <sandbox>true</sandbox>
+            </script>
+          </source>
+        </hudson.plugins.groovy.SystemGroovy>
+        <org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder plugin="conditional-buildstep@1.3.6">
+          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+          <runCondition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
+            <arg1>${RunAutoMerge}</arg1>
+            <arg2>true</arg2>
+            <ignoreCase>true</ignoreCase>
+          </runCondition>
+        </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
