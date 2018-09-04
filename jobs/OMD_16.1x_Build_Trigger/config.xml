@@ -459,11 +459,37 @@ toStream=Archer_16.15_Integ</properties>
         <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
           <configs>
             <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-              <configs class="empty-list"/>
+              <configs>
+                <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                  <properties>Action=Disable
+JenkinsJobName=OMD_17.13.02_Scheduled_Trigger</properties>
+                  <textParamValueOnNewLine>false</textParamValueOnNewLine>
+                </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              </configs>
               <projects>EnableDisableJenkinsJob</projects>
               <condition>ALWAYS</condition>
               <triggerWithNoParameters>false</triggerWithNoParameters>
               <triggerFromChildProjects>false</triggerFromChildProjects>
+              <block>
+                <buildStepFailureThreshold>
+                  <name>FAILURE</name>
+                  <ordinal>2</ordinal>
+                  <color>RED</color>
+                  <completeBuild>true</completeBuild>
+                </buildStepFailureThreshold>
+                <unstableThreshold>
+                  <name>UNSTABLE</name>
+                  <ordinal>1</ordinal>
+                  <color>YELLOW</color>
+                  <completeBuild>true</completeBuild>
+                </unstableThreshold>
+                <failureThreshold>
+                  <name>FAILURE</name>
+                  <ordinal>2</ordinal>
+                  <color>RED</color>
+                  <completeBuild>true</completeBuild>
+                </failureThreshold>
+              </block>
               <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
             </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           </configs>
