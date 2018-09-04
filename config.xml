@@ -276,6 +276,7 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>DiskspaceAlertNew</string>
         <string>OMD-Archer-Build</string>
+        <string>OMD_16.1x_Build_Trigger</string>
         <string>RDM_NuArcher_CI_Flow</string>
         <string>TriggerFormalBuild</string>
       </jobNames>
