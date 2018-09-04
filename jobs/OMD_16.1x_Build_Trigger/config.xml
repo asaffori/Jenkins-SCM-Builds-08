@@ -462,7 +462,7 @@ toStream=Archer_16.15_Integ</properties>
               <configs>
                 <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                   <properties>Action=Disable
-JenkinsJobName=OMD_17.13.02_Scheduled_Trigger</properties>
+JenkinsJobName=OMD-Archer_Build</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
