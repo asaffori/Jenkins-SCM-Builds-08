@@ -1,7 +1,234 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
+  <actions/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.plugins.jobicon.CustomIconProperty plugin="custom-job-icon@0.2">
+      <iconfile>5d7d5975606624f52977a1d1d77e045b61323dae.png</iconfile>
+    </jenkins.plugins.jobicon.CustomIconProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>FlowController</name>
+          <description></description>
+          <allowedSlaves>
+            <string>ALL (no restriction)</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>master</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildResultUUID</name>
+          <description>The UUID of the build result in RTC. It is supplied by builds initiated through RTC. For builds initiated through Hudson/Jenkins, no value should be supplied.</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <defaultValue>16.15</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>emailGroups</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>JENKINCONFIGPATH</name>
+          <description></description>
+          <defaultValue>\\chn2nas01\omd\SCM\Jenkins_Config</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_VERSION</name>
+          <description></description>
+          <defaultValue>${JENKINCONFIGPATH}\Jenkins_Build_Version\16.15version.txt</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>BuildHostMachine</name>
+          <description></description>
+          <allowedSlaves>
+            <string>ALL (no restriction)</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>SCM-CHN-02</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>StartFromSolution</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>BuildMatlabDiagnostics</string>
+              <string>BuildCommonTypes</string>
+              <string>BuildProxy</string>
+              <string>BuildCommon</string>
+              <string>BuildInfrastructure</string>
+              <string>BuildNGPlatformContracts</string>
+              <string>BuildCodeGeneration</string>
+              <string>BuildNGPlatformUtilities</string>
+              <string>BuildNGPlatformComponents</string>
+              <string>BuildNGPlatformRecipe</string>
+              <string>BuildNGPlatformScripting</string>
+              <string>BuildUIServers</string>
+              <string>BuildKernel</string>
+              <string>BuildENV10</string>
+              <string>BuildToolSystemInfoPackage</string>
+              <string>BuildRTInfrastructure</string>
+              <string>BuildRTPlatform</string>
+              <string>BuildNGiMetrologyContracts</string>
+              <string>BuildLinnikCommonTypes</string>
+              <string>BuildLinnikCommon</string>
+              <string>BuildNGLinnikContracts</string>
+              <string>BuildNGLinnikUtilities</string>
+              <string>BuildNGLinnikComponents</string>
+              <string>BuildNGLinnikScripting</string>
+              <string>BuildNGLinnikRecipe</string>
+              <string>BuildMBSCommonTypes</string>
+              <string>BuildNGMBSContracts</string>
+              <string>BuildNGMBSHelpers</string>
+              <string>BuildMBSCommon</string>
+              <string>BuildNGMBSMCommon</string>
+              <string>BuildNGMBSUtilities</string>
+              <string>BuildNGMBSComponents</string>
+              <string>BuildNGMBSScripting</string>
+              <string>BuildNGMBSRecipe</string>
+              <string>BuildCommonOVL_Common</string>
+              <string>BuildNGCommonOVLContracts</string>
+              <string>BuildNGCommonOVLComponents</string>
+              <string>BuildNGCommonOVLRecipe</string>
+              <string>BuildOVLCommon</string>
+              <string>BuildNexGOCommon</string>
+              <string>BuildMOLCommon</string>
+              <string>BuildBLOCommon</string>
+              <string>BuildBFCDCommon</string>
+              <string>BuildArcherCommon</string>
+              <string>BuildJIGCommon</string>
+              <string>BuildJ1Common</string>
+              <string>BuildJ2Common</string>
+              <string>BuildAIMidMLCommon</string>
+              <string>BuildAROLCommon</string>
+              <string>BuildLinnikUIServers</string>
+              <string>BuildOVLUIServers</string>
+              <string>BuildMOLUIServers</string>
+              <string>BuildBLOUIServers</string>
+              <string>BuildMBSUIServers</string>
+              <string>BuildNGAROLContracts</string>
+              <string>BuildNGAROLUtilities</string>
+              <string>BuildNGAROLComponents</string>
+              <string>BuildNGAROLScripting</string>
+              <string>BuildNGAROLRecipe</string>
+              <string>BuildAROLUIServers</string>
+              <string>BuildAIMidMLUIServers</string>
+              <string>BuildArcherKernel</string>
+              <string>BuildLinnikKernel</string>
+              <string>BuildiMetrologyCommon</string>
+              <string>BuildNGiMetrologyComponents</string>
+              <string>BuildiMetrologyKernel</string>
+              <string>BuildIMAdapter</string>
+              <string>BuildMBSKernel</string>
+              <string>BuildCommonOVLKernel</string>
+              <string>BuildOVLKernel</string>
+              <string>BuildAROLKernel</string>
+              <string>BuildLinnikApps</string>
+              <string>BuildMBSApps</string>
+              <string>BuildCommonOVLApps</string>
+              <string>BuildAROLApps</string>
+              <string>BuildArcherApps</string>
+              <string>BuildOVLApps</string>
+              <string>BuildNGOVLContracts</string>
+              <string>BuildNGOVLRecipe</string>
+              <string>BuildNGOVLComponents</string>
+              <string>BuildNGOVLScripting</string>
+              <string>BuildNexGOUIServers</string>
+              <string>BuildBFCDUIServers</string>
+              <string>BuildNexGOKernel</string>
+              <string>BuildMOLKernel</string>
+              <string>BuildBLOKernel</string>
+              <string>BuildBFCDKernel</string>
+              <string>BuildNexGOENV10</string>
+              <string>BuildNGNexGOContracts</string>
+              <string>BuildNGNexGOComponents</string>
+              <string>BuildNGAIMScripting</string>
+              <string>BuildMOLApps</string>
+              <string>BuildBLOApps</string>
+              <string>BuildNGMOLContracts</string>
+              <string>BuildNGMOLComponents</string>
+              <string>BuildNGMOLScripting</string>
+              <string>BuildNGBLOContracts</string>
+              <string>BuildNGBLOComponents</string>
+              <string>BuildNGBLOScripting</string>
+              <string>BuildAIMidMLKernel</string>
+              <string>BuildAIMidMLApps</string>
+              <string>BuildNGMOLMLContracts</string>
+              <string>BuildNGMOLMLComponents</string>
+              <string>BuildNGAIMidMLScripting</string>
+              <string>BuildBFCDApps</string>
+              <string>BuildJ1Kernel</string>
+              <string>BuildJ2Kernel</string>
+              <string>BuildJ1Apps</string>
+              <string>BuildJ2Apps</string>
+              <string>BuildJIGApps</string>
+              <string>BuildiMetrologyApps</string>
+              <string>BuildRTLinnik</string>
+              <string>BuildRTMBS</string>
+              <string>CommonUtilities</string>
+              <string>CopyBuild</string>
+              <string>CLRNSY</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
