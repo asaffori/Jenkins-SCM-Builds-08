@@ -220,6 +220,57 @@
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>SkipSandboxLoad</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RunAutoMerge</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>GenerateAndShareBuildNotes</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>Auto_Deploy_Sanity</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>TestsArray</name>
+          <description>What tests needs to run and in which confgurations? &lt;BR&gt;
+Test details are shared in arrays, seperated by comma. Test arrays are seperated by semicomma and can be entered in diffrent lines&lt;BR&gt;
+&lt;BR&gt;
+Details:&lt;BR&gt;
+SuiteName:File name of the test suite (excluding suffix)&lt;BR&gt;
+SuitePath:suite file location&lt;BR&gt;
+ToolType: As TL/A700/A600&lt;BR&gt;
+ATEControllerMachineLabel:Jenkins label name for ATE controllers machines to let the mechanism select one&lt;BR&gt;
+SimulatorEngineMachineLabel: Jenkins label name for simulator machines to let the mechanism select one&lt;BR&gt;
+BaseImagePath:Template image file location&lt;BR&gt;
+BaseImageName:Acronis template image to recover simulator machine from prior installation&lt;BR&gt;
+ATEScriptsPath:ATE execution scripts folder&lt;BR&gt;
+&lt;BR&gt;
+&lt;BR&gt;
+Example:&lt;BR&gt;
+[&lt;BR&gt;
+[Autorun_XYS_Suite_ATE,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE];
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];
+[Autorun_XYS_Suite_ATE_A600,X:\ATE\TestCases\SQC\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Mil_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]
+]&lt;BR&gt;</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ReleaseEmailGroups</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -229,9 +280,48 @@
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <EnvInjectJobProperty plugin="envinject@1.90">
+      <info>
+        <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
+        <propertiesContent>BUILDTYPE=Formal
+WSName=omdbuild_Archer_16.15_Integ_Workspace
+SnapshotName=UOMD_BLD_${BUILD_VERSION}
+ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>true</overrideBuildParameters>
+      <contributors/>
+    </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
-  <scm class="hudson.scm.NullSCM"/>
+  <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
+    <overrideGlobal>false</overrideGlobal>
+    <timeout>0</timeout>
+    <buildType>
+      <value>buildDefinition</value>
+      <buildDefinition>OMD-Archer-V16.15-CM</buildDefinition>
+      <clearLoadDirectory>false</clearLoadDirectory>
+      <createFoldersForComponents>false</createFoldersForComponents>
+      <acceptBeforeLoad>true</acceptBeforeLoad>
+      <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+      <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
+      <customizedSnapshotName>${SnapshotName}</customizedSnapshotName>
+      <useDynamicLoadRules>false</useDynamicLoadRules>
+    </buildType>
+    <buildTypeStr>buildDefinition</buildTypeStr>
+    <buildDefinition>OMD-Archer-V16.15-CM</buildDefinition>
+    <clearLoadDirectory>false</clearLoadDirectory>
+    <createFoldersForComponents>false</createFoldersForComponents>
+    <acceptBeforeLoad>true</acceptBeforeLoad>
+    <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
+    <avoidUsingToolkit>false</avoidUsingToolkit>
+    <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
+    <customizedSnapshotName>${SnapshotName}</customizedSnapshotName>
+    <useDynamicLoadRules>false</useDynamicLoadRules>
+  </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -240,5 +330,26 @@
   <concurrentBuild>false</concurrentBuild>
   <builders/>
   <publishers/>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <groovyScriptContent>def action = currentBuild.getAction(com.ibm.team.build.internal.hjplugin.RTCBuildResultAction.class)
+def buildProps = action.getBuildProperties()
+def bldResultUUID=buildProps[&apos;RTCBuildResultUUID&apos;]
+def teamscmfetchDestination=buildProps[&apos;team_scm_fetchDestination&apos;]
+def teamscmworkspaceUUID=buildProps[&apos;team_scm_workspaceUUID&apos;]
+print (&quot;buildResultUUID=&quot;+ bldResultUUID)
+def map = [buildResultUUID: bldResultUUID,team_scm_workspaceUUID:teamscmworkspaceUUID,team_scm_fetchDestination:teamscmfetchDestination] 
+
+return map </groovyScriptContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+  </buildWrappers>
 </project>
