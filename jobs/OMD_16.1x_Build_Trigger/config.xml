@@ -330,15 +330,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders>
-    <hudson.tasks.BatchFile>
-      <command>C:\Progra~2\Jenkins\tools\hudson.tasks.Ant_AntInstallation\RenameBuildLabel\bin\ant.bat -file %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\VersionUpdater\Build.xml -DbuildResultUUID=%buildResultUUID% -Dlabel=&quot;%BUILDTYPE%_UOMD_BLD_%BUILD_VERSION%&quot; &quot;-Dpassword=%BuildPass%&quot; -DuserId=%BuildUser% -DtoolkitPath=C:\Build\TeamConcertBuild\buildsystem\buildtoolkit -DsnapshotUUID=%team_scm_workspaceUUID% &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\Build\TeamConcertBuild\buildsystem\buildtoolkit&#xd;
-IF NOT %ERRORLEVEL% == 0 (&#xd;
-       ECHO &quot;Unable build label name failed&quot;&#xd;
-	Exit /b 1&#xd;
-)</command>
-    </hudson.tasks.BatchFile>
-  </builders>
+  <builders/>
   <publishers>
     <hudson.tasks.Mailer plugin="mailer@1.21">
       <recipients></recipients>
