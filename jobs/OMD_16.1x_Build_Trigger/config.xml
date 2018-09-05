@@ -66,7 +66,7 @@
         <hudson.model.StringParameterDefinition>
           <name>emailGroups</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>Cathy.Wang@kla-tencor.com</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -268,7 +268,7 @@ Example:&lt;BR&gt;
         <hudson.model.StringParameterDefinition>
           <name>ReleaseEmailGroups</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>Cathy.Wang@kla-tencor.com</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
