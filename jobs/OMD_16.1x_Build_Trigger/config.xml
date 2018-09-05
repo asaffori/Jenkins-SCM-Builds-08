@@ -480,7 +480,8 @@ tStream=Archer_${MajorMinor_Ver}_Integ
 sStream=Archer_${MajorMinor_Ver}_Dev
 BUILD_VERSION=${BUILD_VERSION}
 recipientList=Cathy.Wang@KLA-Tencor.com
-CopyToShare=true</properties>
+CopyToShare=true
+Format=html</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 </configs>
