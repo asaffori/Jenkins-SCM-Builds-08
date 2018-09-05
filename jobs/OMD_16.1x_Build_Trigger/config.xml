@@ -286,7 +286,7 @@ Example:&lt;BR&gt;
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <propertiesContent>BUILDTYPE=Formal
-WSName=omdbuild_Archer_16.15_Integ_Workspace
+WSName=omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace
 SnapshotName=UOMD_BLD_${BUILD_VERSION}
 ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
@@ -437,8 +437,8 @@ build.getLog(100).each{
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-fromStream=Archer_${}_Dev
-toStream=Archer_16.15_Integ</properties>
+fromStream=Archer_${MajorMinor_Ver}_Dev
+toStream=Archer_${MajorMinor_Ver}_Integ</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 </configs>
