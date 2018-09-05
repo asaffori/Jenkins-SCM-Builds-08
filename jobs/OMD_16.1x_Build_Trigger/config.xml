@@ -437,8 +437,8 @@ build.getLog(100).each{
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-fromStream=Archer_${MajorMinor_Ver}_Dev
-toStream=Archer_${MajorMinor_Ver}_Integ</properties>
+fromStream=Archer_${}_Dev
+toStream=Archer_16.15_Integ</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 </configs>
@@ -522,10 +522,10 @@ JenkinsJobName=OMD-Archer_Build</properties>
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-tStream=Archer_16.15_Integ
+tStream=Archer_${MajorMinor_Ver}_Integ
 sStream=
 BUILD_VERSION=${BUILD_VERSION}
-recipientList=DL-OMD-ENG-SCM@KLA-Tencor.com
+recipientList=Cathy.Wang@KLA-Tencor.com
 CopyToShare=true</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
@@ -566,7 +566,7 @@ CopyToShare=true</properties>
               <configs>
                 <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                   <properties>BUILD_VERSION=${BUILD_VERSION}
-MajorMinor_Ver=16.15</properties>
+MajorMinor_Ver=${MajorMinor_Ver}</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
