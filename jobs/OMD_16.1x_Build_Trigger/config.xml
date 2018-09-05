@@ -82,7 +82,7 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>BuildHostMachine</name>
+          <name>BuildMachine</name>
           <description></description>
           <allowedSlaves>
             <string>ALL (no restriction)</string>
@@ -274,6 +274,8 @@ Example:&lt;BR&gt;
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
@@ -435,8 +437,8 @@ build.getLog(100).each{
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-fromStream=Archer_16.15_Dev
-toStream=Archer_16.15_Integ</properties>
+fromStream=Archer_${MajorMinor_Ver}_Dev
+toStream=Archer_${MajorMinor_Ver}_Integ</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 </configs>
