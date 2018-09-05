@@ -432,8 +432,8 @@ build.getLog(100).each{
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-fromStream=Archer_${MajorMinor_Ver}_Dev
-toStream=Archer_${MajorMinor_Ver}_Integ</properties>
+fromStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Changed
+toStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Base</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 </configs>
@@ -479,8 +479,8 @@ toStream=Archer_${MajorMinor_Ver}_Integ</properties>
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-tStream=Archer_${MajorMinor_Ver}_Integ
-sStream=Archer_${MajorMinor_Ver}_Dev
+tStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Base
+sStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Changed
 BUILD_VERSION=${BUILD_VERSION}
 recipientList=Cathy.Wang@KLA-Tencor.com
 CopyToShare=true
