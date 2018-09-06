@@ -520,7 +520,7 @@ Format=html</properties>
                 <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                   <properties>BUILD_VERSION=${BUILD_VERSION}
 MajorMinor_Ver=${MajorMinor_Ver}
-BuildNotesFullPath=\\isr1fp04\OMD_InternalBuildNotes\V${MajorMinor_Ver}\Build_Notes_${BUILD_VERSION}.html</properties>
+BuildNotesFullPath=\\\\isr1fp04\\OMD_InternalBuildNotes\\V${MajorMinor_Ver}\\Build_Notes_${BUILD_VERSION}.html</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
