@@ -98,6 +98,8 @@
         <string>CA1-CTX-KT-Employees</string>
         <string>WIN-DYSD-Assignment-CH</string>
         <string>PLANTOPS_OPERATOR</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-P-CH</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-TS-CH</string>
         <string>WIN-EEP-Reports_Customers-CH</string>
         <string>WIN-DYSD-ADCAlgorithm-CH</string>
         <string>WIN-EEP-Logs_Input_Customers-CH</string>
@@ -106,6 +108,7 @@
         <string>WIN-DYSD-ace-xp-recipe-CH</string>
         <string>DL-ALL-REGULAR-EMPLOYEES-SPA</string>
         <string>JazzUsers</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-S-CH</string>
         <string>ISR1NAS01-UserDoc-RO</string>
         <string>DL-Israel-OMD-ENG-SW</string>
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
@@ -118,7 +121,9 @@
         <string>DPM_Users_Old</string>
         <string>Isr1nas03-External_Files_for_Sharing-RO</string>
         <string>PasswordManager</string>
+        <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
         <string>DL-OMD-SW-Imaging</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-C-CH</string>
         <string>CA1NAS01-WINField-CH</string>
         <string>ca1fs01-KlearPoint-CH</string>
         <string>WIN-DYSD-STADB-CH</string>
@@ -139,6 +144,7 @@
         <string>Citrix XenApp 7.6 - eQuality - Prod-Chinese</string>
         <string>DL-HR-KTINSIGHT-ISR-11.19.14</string>
         <string>ISR1NAS01-SW-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
         <string>Travel &amp; Expense</string>
         <string>WIN-DYSD-Picnic-RO</string>
         <string>MI Production KLA O365 Mail</string>
@@ -146,31 +152,25 @@
         <string>KTI Insight 2015</string>
         <string>ISR1NAS03-OpsIsrael</string>
         <string>NewHireGroup-10-19</string>
+        <string>chn2vmfs01-Shanghai-I-GF-S-CH</string>
         <string>Ca1nas11-KT-Insight-Program-RO</string>
         <string>WIN-DYSD-IMPACT_Min-CH</string>
         <string>cc-israel</string>
         <string>Domain Users</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1529568649030</timestamp>
+      <timestamp>1536236722343</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
     <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.2">
       <data class="concurrent-hash-map">
-        <entry>
-          <string>OMD-Archer-Build-PatchBuild</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>TriggerAutoRebaseInteg</string>
-          <boolean>true</boolean>
-        </entry>
         <entry>
           <string>SanityTest</string>
           <boolean>true</boolean>
@@ -193,6 +193,14 @@
         </entry>
         <entry>
           <string>RunNunitUnitTestsDebug</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>OMD-Archer-Build-PatchBuild</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>TriggerAutoRebaseInteg</string>
           <boolean>true</boolean>
         </entry>
         <entry>
