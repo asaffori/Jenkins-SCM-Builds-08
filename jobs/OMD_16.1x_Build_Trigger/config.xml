@@ -479,7 +479,7 @@ sStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Changed
 BUILD_VERSION=${BUILD_VERSION}
 recipientList=Cathy.Wang@KLA-Tencor.com
 CopyToShare=true
-Format=html</properties>
+Format=csv</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 </configs>
@@ -520,7 +520,7 @@ Format=html</properties>
                 <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                   <properties>BUILD_VERSION=${BUILD_VERSION}
 MajorMinor_Ver=${MajorMinor_Ver}
-BuildNotesFullPath=\\\\isr1fp04\\OMD_InternalBuildNotes\\V${MajorMinor_Ver}\\Build_Notes_${BUILD_VERSION}.html</properties>
+BuildNotesFullPath=\\\\isr1fp04\\OMD_InternalBuildNotes\\V${MajorMinor_Ver}\\Build_Notes_${BUILD_VERSION}.csv</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
