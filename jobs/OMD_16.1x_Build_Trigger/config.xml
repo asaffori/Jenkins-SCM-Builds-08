@@ -67,9 +67,10 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>emailGroups</name>
-          <description></description>
-          <defaultValue>Cathy.Wang@kla-tencor.com</defaultValue>
+          <name>emailGroups_BN</name>
+          <description>The recipient list of build notes. 
+Comma seperated list of emails to get the generated build notes. As Adham.Saffori@kla-tencor.com Or groups of mails seperated by comma.</description>
+          <defaultValue>Cathy.Wang@kla-tencor.com,Agnes.Zhang@kla-tencor.com</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -269,7 +270,7 @@ Example:&lt;BR&gt;
           <trim>false</trim>
         </hudson.model.TextParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>ReleaseEmailGroups</name>
+          <name>emailGroups_release</name>
           <description></description>
           <defaultValue>Cathy.Wang@kla-tencor.com</defaultValue>
           <trim>false</trim>
@@ -477,7 +478,7 @@ toStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Base</properties>
 tStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Base
 sStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Changed
 BUILD_VERSION=${BUILD_VERSION}
-recipientList=Cathy.Wang@KLA-Tencor.com
+recipientList=${emailGroups_BN}
 CopyToShare=true
 Format=csv</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
