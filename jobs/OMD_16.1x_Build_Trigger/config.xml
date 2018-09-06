@@ -70,7 +70,7 @@
           <name>emailGroups_BN</name>
           <description>The recipient list of build notes. 
 Comma seperated list of emails to get the generated build notes. As Adham.Saffori@kla-tencor.com Or groups of mails seperated by comma.</description>
-          <defaultValue>Cathy.Wang@kla-tencor.com,Agnes.Zhang@kla-tencor.com</defaultValue>
+          <defaultValue>Cathy.Wang@kla-tencor.com</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
