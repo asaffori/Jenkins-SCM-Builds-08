@@ -52,7 +52,7 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
         <hudson.model.StringParameterDefinition>
           <name>buildDefinitionId</name>
           <description></description>
-          <defaultValue>OMD-Archer-V16.15-DEV</defaultValue>
+          <defaultValue>OMD-Archer-V16.15-CM-nightly</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
