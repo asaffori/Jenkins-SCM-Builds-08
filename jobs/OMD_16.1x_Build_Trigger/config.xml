@@ -592,7 +592,19 @@ JENKINCONFIGPATH=${JENKINCONFIGPATH}</propertiesContent>
           <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
             <configs>
               <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-                <configs class="empty-list"/>
+                <configs>
+                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                    <properties>emailGroups=Tst
+BUILD_VERSION=${BUILD_VERSION}
+buildRequesterUserId=omdbuild
+team.scm.fetchDestination=D:\sandboxes\${buildRequesterUserId}_${MajorMinor_Ver}
+MajorMinor_Ver=${MajorMinor_Ver}
+BUILD_TYPE=Scheduled
+buildEngineHostName=${BuildMachine}
+JENKINCONFIGPATH=${JENKINCONFIGPATH}</properties>
+                    <textParamValueOnNewLine>false</textParamValueOnNewLine>
+                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                </configs>
                 <projects>OMD-Archer-Build</projects>
                 <condition>ALWAYS</condition>
                 <triggerWithNoParameters>false</triggerWithNoParameters>
