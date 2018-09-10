@@ -567,7 +567,13 @@ BuildNotesFullPath=\\\\isr1fp04\\OMD_InternalBuildNotes\\V${MajorMinor_Ver}\\Bui
           <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
             <configs>
               <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-                <configs class="empty-list"/>
+                <configs>
+                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                    <properties>emailGroups=Tst
+</properties>
+                    <textParamValueOnNewLine>false</textParamValueOnNewLine>
+                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                </configs>
                 <projects>OMD-Archer-Build</projects>
                 <condition>ALWAYS</condition>
                 <triggerWithNoParameters>false</triggerWithNoParameters>
