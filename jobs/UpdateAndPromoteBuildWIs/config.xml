@@ -96,7 +96,7 @@ Actions should be specificed per thier above order&lt;BR&gt;</description>
         <hudson.model.StringParameterDefinition>
           <name>Owner</name>
           <description></description>
-          <defaultValue>Shachor,Omer</defaultValue>
+          <defaultValue>Shachor, Omer</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
