@@ -538,7 +538,7 @@ Format=csv</properties>
                     <properties>BUILD_VERSION=${BUILD_VERSION}
 MajorMinor_Ver=${MajorMinor_Ver}
 BuildNotesFullPath=\\\\isr1fp04\\OMD_InternalBuildNotes\\V${MajorMinor_Ver}\\Build_Notes_${BUILD_VERSION}.csv
-Owner=Zhai, Xiahui</properties>
+Owner=&quot;Zhai, Xiahui&quot;</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 </configs>
