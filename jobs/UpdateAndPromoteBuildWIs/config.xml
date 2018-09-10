@@ -93,6 +93,12 @@ Actions should be specificed per thier above order&lt;BR&gt;</description>
           <defaultValue>UpdateFixedBuild,UpdateOwner,PromoteToPB</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Owner</name>
+          <description></description>
+          <defaultValue>Shachor,Omer</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -118,7 +124,7 @@ Actions should be specificed per thier above order&lt;BR&gt;</description>
   <builders>
     <hudson.tasks.BatchFile>
       <command>&#xd;
-py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutomations\UpdateAndPromoteBNWIs.py -a %Actions%  -f %BuildNotesFullPath% -b %BUILD_VERSION% -q &quot;Resolved WIs&quot;&#xd;
+py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutomations\UpdateAndPromoteBNWIs.py -a %Actions%  -f %BuildNotesFullPath% -b %BUILD_VERSION% -q &quot;Resolved WIs&quot; -o %Owner%&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
