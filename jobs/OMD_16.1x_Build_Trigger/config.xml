@@ -275,6 +275,11 @@ Example:&lt;BR&gt;
           <defaultValue>Cathy.Wang@kla-tencor.com</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>TriggerArcherBuild</name>
+          <description>If checked, will trigger v16.15 formal build by calling OMD-Archer-Build job </description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -553,6 +558,46 @@ BuildNotesFullPath=\\\\isr1fp04\\OMD_InternalBuildNotes\\V${MajorMinor_Ver}\\Bui
             </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           </configs>
         </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+        <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
+          <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
+            <arg1>${TriggerArcherBuild}</arg1>
+            <arg2>true</arg2>
+            <ignoreCase>true</ignoreCase>
+          </condition>
+          <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
+            <configs>
+              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+                <configs class="empty-list"/>
+                <projects>OMD-Archer-Build</projects>
+                <condition>ALWAYS</condition>
+                <triggerWithNoParameters>false</triggerWithNoParameters>
+                <triggerFromChildProjects>false</triggerFromChildProjects>
+                <block>
+                  <buildStepFailureThreshold>
+                    <name>FAILURE</name>
+                    <ordinal>2</ordinal>
+                    <color>RED</color>
+                    <completeBuild>true</completeBuild>
+                  </buildStepFailureThreshold>
+                  <unstableThreshold>
+                    <name>UNSTABLE</name>
+                    <ordinal>1</ordinal>
+                    <color>YELLOW</color>
+                    <completeBuild>true</completeBuild>
+                  </unstableThreshold>
+                  <failureThreshold>
+                    <name>FAILURE</name>
+                    <ordinal>2</ordinal>
+                    <color>RED</color>
+                    <completeBuild>true</completeBuild>
+                  </failureThreshold>
+                </block>
+                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            </configs>
+          </buildStep>
+          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+        </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
