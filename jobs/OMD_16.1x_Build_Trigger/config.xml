@@ -524,66 +524,61 @@ Format=csv</properties>
           </buildStep>
           <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
         </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
-        <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
-          <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
+        <org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder plugin="conditional-buildstep@1.3.6">
+          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+          <runCondition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
             <arg1>${toPromoteWI}</arg1>
             <arg2>true</arg2>
             <ignoreCase>true</ignoreCase>
-          </condition>
-          <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
-            <configs>
-              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-                <configs>
-                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                    <properties>BUILD_VERSION=${BUILD_VERSION}
+          </runCondition>
+          <conditionalbuilders>
+            <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
+              <configs>
+                <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+                  <configs>
+                    <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                      <properties>BUILD_VERSION=${BUILD_VERSION}
 MajorMinor_Ver=${MajorMinor_Ver}
 BuildNotesFullPath=\\\\isr1fp04\\OMD_InternalBuildNotes\\V${MajorMinor_Ver}\\Build_Notes_${BUILD_VERSION}.csv
 Owner=&quot;Zhai, Xiahui&quot;</properties>
-                    <textParamValueOnNewLine>false</textParamValueOnNewLine>
-                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                </configs>
-                <projects>UpdateAndPromoteBuildWIs</projects>
-                <condition>ALWAYS</condition>
-                <triggerWithNoParameters>false</triggerWithNoParameters>
-                <triggerFromChildProjects>false</triggerFromChildProjects>
-                <block>
-                  <buildStepFailureThreshold>
-                    <name>FAILURE</name>
-                    <ordinal>2</ordinal>
-                    <color>RED</color>
-                    <completeBuild>true</completeBuild>
-                  </buildStepFailureThreshold>
-                  <unstableThreshold>
-                    <name>UNSTABLE</name>
-                    <ordinal>1</ordinal>
-                    <color>YELLOW</color>
-                    <completeBuild>true</completeBuild>
-                  </unstableThreshold>
-                  <failureThreshold>
-                    <name>FAILURE</name>
-                    <ordinal>2</ordinal>
-                    <color>RED</color>
-                    <completeBuild>true</completeBuild>
-                  </failureThreshold>
-                </block>
-                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
-              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-            </configs>
-          </buildStep>
-          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
-        </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
-        <EnvInjectBuilder plugin="envinject@1.90">
-          <info>
-            <propertiesContent>emailGroups=Tst
-BUILD_VERSION=$?
-buildRequesterUserId=omdbuild
-team.scm.fetchDestination=D:\sandboxes\${buildRequesterUserId}_${MajorMinor_Ver}
-MajorMinor_Ver=${MajorMinor_Ver}
-BUILD_TYPE=Scheduled
-buildEngineHostName=${BuildMachine}
-JENKINCONFIGPATH=${JENKINCONFIGPATH}</propertiesContent>
-          </info>
-        </EnvInjectBuilder>
+                      <textParamValueOnNewLine>false</textParamValueOnNewLine>
+                    </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                  </configs>
+                  <projects>UpdateAndPromoteBuildWIs</projects>
+                  <condition>ALWAYS</condition>
+                  <triggerWithNoParameters>false</triggerWithNoParameters>
+                  <triggerFromChildProjects>false</triggerFromChildProjects>
+                  <block>
+                    <buildStepFailureThreshold>
+                      <name>FAILURE</name>
+                      <ordinal>2</ordinal>
+                      <color>RED</color>
+                      <completeBuild>true</completeBuild>
+                    </buildStepFailureThreshold>
+                    <unstableThreshold>
+                      <name>UNSTABLE</name>
+                      <ordinal>1</ordinal>
+                      <color>YELLOW</color>
+                      <completeBuild>true</completeBuild>
+                    </unstableThreshold>
+                    <failureThreshold>
+                      <name>FAILURE</name>
+                      <ordinal>2</ordinal>
+                      <color>RED</color>
+                      <completeBuild>true</completeBuild>
+                    </failureThreshold>
+                  </block>
+                  <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+                </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+              </configs>
+            </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+            <EnvInjectBuilder plugin="envinject@1.90">
+              <info>
+                <propertiesContent>BUILD_VERSION=${JENKINCONFIGPATH}\Jenkins_Build_Version\16.15version.txt</propertiesContent>
+              </info>
+            </EnvInjectBuilder>
+          </conditionalbuilders>
+        </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
         <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
           <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
             <arg1>${toTriggerArcherBuild}</arg1>
