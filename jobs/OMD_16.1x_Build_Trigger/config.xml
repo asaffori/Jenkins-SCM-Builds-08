@@ -570,6 +570,7 @@ BuildNotesFullPath=\\\\isr1fp04\\OMD_InternalBuildNotes\\V${MajorMinor_Ver}\\Bui
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>emailGroups=Tst
+buildEngineHostName=scm-chn-02
 </properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
