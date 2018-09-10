@@ -536,7 +536,7 @@ Format=csv</properties>
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>emailGroups=Tst
-buildEngineHostName=SCM-CHN-02
+buildEngineHostName=${BuildMachine}
 </properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
