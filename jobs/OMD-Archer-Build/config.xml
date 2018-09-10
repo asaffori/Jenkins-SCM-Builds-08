@@ -178,7 +178,7 @@ if (propsFile.exists()) {
     <credentialsId>9f004df0-1ce5-4ba0-a0cc-93925b50de48</credentialsId>
     <buildType>
       <value>buildDefinition</value>
-      <buildDefinition>${buildDefinitionId}</buildDefinition>
+      <buildDefinition>OMD-Archer-V16.15-CM-nightly</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
       <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -188,7 +188,7 @@ if (propsFile.exists()) {
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>${buildDefinitionId}</buildDefinition>
+    <buildDefinition>OMD-Archer-V16.15-CM-nightly</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
