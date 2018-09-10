@@ -85,6 +85,12 @@ Comma seperated list of emails to get the generated build notes. As Adham.Saffor
           <defaultValue>${JENKINCONFIGPATH}\Jenkins_Build_Version\16.15version.txt</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildDefinitionId</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
           <name>BuildMachine</name>
           <description></description>
@@ -313,31 +319,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
     </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
-  <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
-    <overrideGlobal>false</overrideGlobal>
-    <timeout>0</timeout>
-    <buildType>
-      <value>buildDefinition</value>
-      <buildDefinition></buildDefinition>
-      <clearLoadDirectory>false</clearLoadDirectory>
-      <createFoldersForComponents>false</createFoldersForComponents>
-      <acceptBeforeLoad>true</acceptBeforeLoad>
-      <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
-      <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
-      <customizedSnapshotName>${SnapshotName}</customizedSnapshotName>
-      <useDynamicLoadRules>false</useDynamicLoadRules>
-    </buildType>
-    <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition></buildDefinition>
-    <clearLoadDirectory>false</clearLoadDirectory>
-    <createFoldersForComponents>false</createFoldersForComponents>
-    <acceptBeforeLoad>true</acceptBeforeLoad>
-    <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
-    <avoidUsingToolkit>false</avoidUsingToolkit>
-    <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
-    <customizedSnapshotName>${SnapshotName}</customizedSnapshotName>
-    <useDynamicLoadRules>false</useDynamicLoadRules>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
