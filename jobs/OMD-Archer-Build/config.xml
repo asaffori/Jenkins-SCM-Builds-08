@@ -52,7 +52,7 @@ Groups receipts are loaded from \\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\E
         <hudson.model.StringParameterDefinition>
           <name>buildDefinitionId</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>OMD-Archer-V16.15-DEV</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -178,7 +178,7 @@ if (propsFile.exists()) {
     <credentialsId>9f004df0-1ce5-4ba0-a0cc-93925b50de48</credentialsId>
     <buildType>
       <value>buildDefinition</value>
-      <buildDefinition>OMD-Archer-V16.15-CM-nightly</buildDefinition>
+      <buildDefinition>${buildDefinitionId}</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
       <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -188,7 +188,7 @@ if (propsFile.exists()) {
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>OMD-Archer-V16.15-CM-nightly</buildDefinition>
+    <buildDefinition>${buildDefinitionId}</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
