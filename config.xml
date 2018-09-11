@@ -395,6 +395,7 @@
         <string>AgnesChoiceTest</string>
         <string>cleanupTest</string>
         <string>CleanUpTestController</string>
+        <string>CreateNewVersion</string>
         <string>Matlab Test</string>
         <string>mutibranch</string>
         <string>NUnit Test Full Flow</string>
