@@ -188,11 +188,12 @@
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
         <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>DL-OMD-China-SQC</string>
+        <string>ISR1NAS01-SW-COMM-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1534147644835</timestamp>
+      <timestamp>1536659216315</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
