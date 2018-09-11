@@ -70,7 +70,7 @@
             <string>ALL (no restriction)</string>
           </allowedSlaves>
           <defaultSlaves>
-            <string>SCM-Builds-04</string>
+            <string>SCM-Builds-06</string>
           </defaultSlaves>
           <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
           <allowMultiNodeSelection>false</allowMultiNodeSelection>
@@ -85,7 +85,7 @@
             <string>ALL (no restriction)</string>
           </allowedSlaves>
           <defaultSlaves>
-            <string>SCM-Builds-05</string>
+            <string>SCM-Builds-03</string>
           </defaultSlaves>
           <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
           <allowMultiNodeSelection>false</allowMultiNodeSelection>
