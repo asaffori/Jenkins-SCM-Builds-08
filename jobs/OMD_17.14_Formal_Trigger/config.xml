@@ -60,7 +60,7 @@
         <hudson.model.StringParameterDefinition>
           <name>MajorMinor_Ver</name>
           <description></description>
-          <defaultValue>17.13</defaultValue>
+          <defaultValue>17.14</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -78,7 +78,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
-          <defaultValue>${JENKINCONFIGPATH}\Jenkins_Build_Version\17.13.03version.txt</defaultValue>
+          <defaultValue>${JENKINCONFIGPATH}\Jenkins_Build_Version\17.14version.txt</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
@@ -305,13 +305,12 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <propertiesContent>BUILDTYPE=Formal
-WSName=omdbuild_Archer_17.13.03_Integ_Workspace
+WSName=omdbuild_Archer_17.14_Integ_Workspace
 SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}
 ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
@@ -329,7 +328,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
     <timeout>0</timeout>
     <buildType>
       <value>buildDefinition</value>
-      <buildDefinition>OMD-Archer-V17.13.03-Formal-Jenkins</buildDefinition>
+      <buildDefinition>OMD-Archer-V17.14-Formal-Jenkins</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
       <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -339,7 +338,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>OMD-Archer-V17.13.03-Formal-Jenkins</buildDefinition>
+    <buildDefinition>OMD-Archer-V17.14-Formal-Jenkins</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -387,9 +386,9 @@ SnapshotName=${SnapshotName}
 buildResultUUID=${buildResultUUID}
 team_scm_workspaceUUID=${team_scm_workspaceUUID}
 RunAutoRebase=${RunAutoMerge}
-ScheduledBuildJenkinsJobName=OMD_17.13.03_Scheduled_Trigger
-Integ_Stream_Name=Archer_17.13.03_Integ
-Dev_Stream_Name=Archer_17.13.03_Dev</properties>
+ScheduledBuildJenkinsJobName=OMD_17.14_Scheduled_Trigger
+Integ_Stream_Name=Archer_17.14_Integ
+Dev_Stream_Name=Archer_17.14_Dev</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
@@ -534,8 +533,8 @@ build.getLog(100).each{
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-fromStream=Archer_17.13.03_Dev
-toStream=Archer_17.13.03_Integ</properties>
+fromStream=Archer_17.14_Dev
+toStream=Archer_17.14_Integ</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 </configs>
@@ -575,7 +574,7 @@ toStream=Archer_17.13.03_Integ</properties>
               <configs>
                 <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                   <properties>Action=Disable
-JenkinsJobName=OMD_17.13.03_Scheduled_Trigger</properties>
+JenkinsJobName=OMD_17.14_Scheduled_Trigger</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
@@ -619,7 +618,7 @@ JenkinsJobName=OMD_17.13.03_Scheduled_Trigger</properties>
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-tStream=Archer_17.13.03_Integ
+tStream=Archer_17.14_Integ
 sStream=
 BUILD_VERSION=${BUILD_VERSION}
 recipientList=DL-OMD-ENG-SCM@KLA-Tencor.com
@@ -663,7 +662,7 @@ CopyToShare=true</properties>
               <configs>
                 <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                   <properties>BUILD_VERSION=${BUILD_VERSION}
-MajorMinor_Ver=17.13</properties>
+MajorMinor_Ver=17.14</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
