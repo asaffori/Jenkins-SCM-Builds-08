@@ -88,7 +88,7 @@ Comma seperated list of emails to get the generated build notes. As Adham.Saffor
         <hudson.model.StringParameterDefinition>
           <name>buildDefinitionId</name>
           <description></description>
-          <defaultValue>OMD-Archer-V${MajorMinor_Ver}-CM-nightly</defaultValue>
+          <defaultValue>OMD-Archer-V${MajorMinor_Ver}-CM</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
@@ -680,11 +680,12 @@ Owner=&quot;Zhai, Xiahui&quot;</properties>
           <info>
             <propertiesContent>emailGroups=Tst
 JENKINCONFIGPATH=${JENKINCONFIGPATH}
+buildEngineHostName=SCM-CHN-02
 BUILD_VERSION=${JENKINCONFIGPATH}\\Jenkins_Build_Version\\16.15version.txt
 buildRequesterUserId=omdbuild
 team.scm.fetchDestination=D:\\sandboxes\\${buildRequesterUserId}_${MajorMinor_Ver}
 MajorMinor_Ver=${MajorMinor_Ver}
-BUILD_TYPE=Scheduled
+BUILD_TYPE=Formal
 buildEngineHostName=${BuildMachine}</propertiesContent>
           </info>
         </EnvInjectBuilder>
