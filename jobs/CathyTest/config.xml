@@ -51,6 +51,8 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
@@ -69,7 +71,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command></command>
+      <command>&quot;C:\Program Files (x86)\apache-ant-1.9.4\bin\ant.bat&quot; -file &quot;\\chn2nas01\omd\SCM\Jenkins_Config\build_2.xml&quot; -Dpassword=&quot;Scm07&amp;&quot; -Dname=requestTeamBuild -lib &quot;C:\build\TeamConcertBuild\buildsystem\buildtoolkit&quot;</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
@@ -77,7 +79,7 @@
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
         <groovyScriptContent>if(BUILD_TYPE==&quot;Formal&quot;)
- buildDefinitionId = OMD-Archer-V${MajorMinor_Ver}-CM
+  buildDefinitionId = OMD-Archer-V${MajorMinor_Ver}-CM
 else if(BUILD_TYPE==&quot;Nightly&quot;)
   buildDefinitionId = OMD-Archer-V${MajorMinor_Ver}-CM-nightly
 else if(BUILD_TYPE==&quot;tasks&quot;)
@@ -85,5 +87,6 @@ else if(BUILD_TYPE==&quot;tasks&quot;)
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
+    <hudson.tasks.AntWrapper plugin="ant@1.8"/>
   </buildWrappers>
 </project>
