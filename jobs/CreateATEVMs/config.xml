@@ -6,11 +6,14 @@
       <jobProperties/>
       <triggers/>
       <parameters>
+        <string>ATEBasePath</string>
         <string>BaseMachineName</string>
         <string>BUILD_VERSION</string>
         <string>MACAddress</string>
+        <string>TestSuite</string>
         <string>ToolType</string>
         <string>TargetMachineName</string>
+        <string>TestSuitePath</string>
         <string>SnapshotName</string>
         <string>BUILDTYPE</string>
         <string>CloneType</string>
