@@ -45,7 +45,7 @@
         <hudson.model.StringParameterDefinition>
           <name>buildDefinitionId</name>
           <description></description>
-          <defaultValue></defaultValue>
+          <defaultValue>OMD-Archer-V${MajorMinor_Ver}-CM-nightly</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
@@ -78,12 +78,6 @@
   <buildWrappers>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
-        <groovyScriptContent>if(BUILD_TYPE==&quot;Formal&quot;)
-  buildDefinitionId = OMD-Archer-V${MajorMinor_Ver}-CM
-else if(BUILD_TYPE==&quot;Nightly&quot;)
-  buildDefinitionId = OMD-Archer-V${MajorMinor_Ver}-CM-nightly
-else if(BUILD_TYPE==&quot;tasks&quot;)
-  buildDefinitionId = OMD-Archer-V${MajorMinor_Ver}-DEV</groovyScriptContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
