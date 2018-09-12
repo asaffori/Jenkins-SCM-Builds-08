@@ -71,16 +71,11 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>&quot;C:\Program Files (x86)\apache-ant-1.9.4\bin\ant.bat&quot; -file &quot;\\chn2nas01\omd\SCM\Jenkins_Config\build_2.xml&quot; -Dpassword=&quot;Scm07&amp;&quot; -Dname=requestTeamBuild -lib &quot;C:\build\TeamConcertBuild\buildsystem\buildtoolkit&quot;</command>
+      <command>&quot;C:\Program Files (x86)\apache-ant-1.9.4\bin\ant.bat&quot; -file &quot;\\chn2nas01\omd\SCM\Jenkins_Config\build_2.xml&quot; -Dpassword=&quot;Scm07&amp;&quot; -Dname=requestTeamBuild -DbuildDefinitionId ${buildDefinitionId} -lib &quot;C:\build\TeamConcertBuild\buildsystem\buildtoolkit&quot;</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
   <buildWrappers>
-    <EnvInjectBuildWrapper plugin="envinject@1.90">
-      <info>
-        <loadFilesFromMaster>false</loadFilesFromMaster>
-      </info>
-    </EnvInjectBuildWrapper>
     <hudson.tasks.AntWrapper plugin="ant@1.8"/>
   </buildWrappers>
 </project>
