@@ -62,7 +62,6 @@
         <string>ca1nas01-TWave-RO</string>
         <string>WIN-DYSD-Tools-CH</string>
         <string>DL-ALL-ISRAEL</string>
-        <string>DL-ESPP</string>
         <string>Austinnt1-Austrain-CH</string>
         <string>CA1NAS12-SSCMdata-CH</string>
         <string>WIN-DYSD-Migration-CH</string>
@@ -170,7 +169,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1533480644474</timestamp>
+      <timestamp>1536750612052</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
