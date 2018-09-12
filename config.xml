@@ -393,6 +393,7 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>AdhamsPipelineTest</string>
         <string>AgnesChoiceTest</string>
+        <string>Anttest</string>
         <string>CathyTest</string>
         <string>cleanupTest</string>
         <string>CleanUpTestController</string>
