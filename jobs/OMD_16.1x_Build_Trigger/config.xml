@@ -578,9 +578,11 @@ Owner=&quot;Zhai, Xiahui&quot;</properties>
                 </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
               </configs>
             </hudson.plugins.parameterizedtrigger.TriggerBuilder>
-            <EnvInjectBuilder plugin="envinject@1.90">
-              <info>
-                <propertiesContent>emailGroups=Tst
+          </conditionalbuilders>
+        </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
+        <EnvInjectBuilder plugin="envinject@1.90">
+          <info>
+            <propertiesContent>emailGroups=Tst
 JENKINCONFIGPATH=${JENKINCONFIGPATH}
 BUILD_VERSION=${JENKINCONFIGPATH}\\Jenkins_Build_Version\\16.15version.txt
 buildRequesterUserId=omdbuild
@@ -588,10 +590,8 @@ team.scm.fetchDestination=D:\\sandboxes\\${buildRequesterUserId}_${MajorMinor_Ve
 MajorMinor_Ver=${MajorMinor_Ver}
 BUILD_TYPE=Scheduled
 buildEngineHostName=${BuildMachine}</propertiesContent>
-              </info>
-            </EnvInjectBuilder>
-          </conditionalbuilders>
-        </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
+          </info>
+        </EnvInjectBuilder>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
