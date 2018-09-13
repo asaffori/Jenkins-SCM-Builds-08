@@ -286,11 +286,6 @@ Example:&lt;BR&gt;
           <description>If checked, will promote changeset associated WIs from Resolved to Pending Build</description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>toTriggerArcherBuild</name>
-          <description></description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
