@@ -306,7 +306,7 @@ Example:&lt;BR&gt;
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <propertiesContent>BUILDTYPE=Formal
-WSName=omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace
+WSName=omdbuild_Archer_${MajorMinor_Ver}_Dev_Workspace
 SnapshotName=UOMD_BLD_${BUILD_VERSION}
 ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
@@ -319,31 +319,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
     </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
-  <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
-    <overrideGlobal>false</overrideGlobal>
-    <timeout>0</timeout>
-    <buildType>
-      <value>buildDefinition</value>
-      <buildDefinition>${buildDefinitionId}</buildDefinition>
-      <clearLoadDirectory>false</clearLoadDirectory>
-      <createFoldersForComponents>false</createFoldersForComponents>
-      <acceptBeforeLoad>true</acceptBeforeLoad>
-      <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
-      <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
-      <customizedSnapshotName>${SnapshotName}</customizedSnapshotName>
-      <useDynamicLoadRules>false</useDynamicLoadRules>
-    </buildType>
-    <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>${buildDefinitionId}</buildDefinition>
-    <clearLoadDirectory>false</clearLoadDirectory>
-    <createFoldersForComponents>false</createFoldersForComponents>
-    <acceptBeforeLoad>true</acceptBeforeLoad>
-    <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
-    <avoidUsingToolkit>false</avoidUsingToolkit>
-    <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
-    <customizedSnapshotName>${SnapshotName}</customizedSnapshotName>
-    <useDynamicLoadRules>false</useDynamicLoadRules>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -610,19 +586,6 @@ Owner=&quot;Zhai, Xiahui&quot;</properties>
             </hudson.plugins.parameterizedtrigger.TriggerBuilder>
           </conditionalbuilders>
         </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
-        <EnvInjectBuilder plugin="envinject@1.90">
-          <info>
-            <propertiesContent>emailGroups=Tst
-JENKINCONFIGPATH=${JENKINCONFIGPATH}
-buildEngineHostName=SCM-CHN-02
-BUILD_VERSION=${JENKINCONFIGPATH}\\Jenkins_Build_Version\\16.15version.txt
-buildRequesterUserId=omdbuild
-team.scm.fetchDestination=D:\\sandboxes\\${buildRequesterUserId}_${MajorMinor_Ver}
-MajorMinor_Ver=${MajorMinor_Ver}
-BUILD_TYPE=Formal
-buildEngineHostName=${BuildMachine}</propertiesContent>
-          </info>
-        </EnvInjectBuilder>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
