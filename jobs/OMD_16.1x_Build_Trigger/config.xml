@@ -286,6 +286,17 @@ Example:&lt;BR&gt;
           <description>If checked, will promote changeset associated WIs from Resolved to Pending Build</description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILD_TYPE</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Formal</string>
+              <string>Scheduled</string>
+              <string>Tasks</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -300,7 +311,7 @@ Example:&lt;BR&gt;
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
-        <propertiesContent>BUILDTYPE=Formal
+        <propertiesContent>BUILDTYPE=${BUILD_TYPE}
 WSName=omdbuild_Archer_${MajorMinor_Ver}_Integ_Workspace
 SnapshotName=UOMD_BLD_${BUILD_VERSION}
 ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
@@ -389,7 +400,7 @@ team_scm_fetchDestination=${team_scm_fetchDestination}</propertiesContent>
           <conditionalbuilders>
             <hudson.tasks.BatchFile>
               <command>:: run command for incrementing the version&#xd;
-set BUILDTYPE=Formal&#xd;
+set BUILDTYPE=%BUILD_TYPE%&#xd;
 set VERSIONCONFIG=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version\VersionConfig.properties&#xd;
 set team_scm_fetchDestination=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version&#xd;
 set BUILDVERSION=%BUILD_VERSION%&#xd;
