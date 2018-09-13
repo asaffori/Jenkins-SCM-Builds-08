@@ -373,15 +373,6 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
-        <groovyScriptContent>def action = currentBuild.getAction(com.ibm.team.build.internal.hjplugin.RTCBuildResultAction.class)
-def buildProps = action.getBuildProperties()
-def bldResultUUID=buildProps[&apos;RTCBuildResultUUID&apos;]
-def teamscmfetchDestination=buildProps[&apos;team_scm_fetchDestination&apos;]
-def teamscmworkspaceUUID=buildProps[&apos;team_scm_workspaceUUID&apos;]
-print (&quot;buildResultUUID=&quot;+ bldResultUUID)
-def map = [buildResultUUID: bldResultUUID,team_scm_workspaceUUID:teamscmworkspaceUUID,team_scm_fetchDestination:teamscmfetchDestination] 
-
-return map </groovyScriptContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
