@@ -88,7 +88,7 @@ Comma seperated list of emails to get the generated build notes. As Adham.Saffor
         <hudson.model.StringParameterDefinition>
           <name>buildDefinitionId</name>
           <description></description>
-          <defaultValue>OMD-Archer-V${MajorMinor_Ver}-CM</defaultValue>
+          <defaultValue>OMD-Archer-V16.15-CM-CathyTest</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
