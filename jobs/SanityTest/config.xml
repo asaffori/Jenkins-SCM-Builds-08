@@ -52,6 +52,7 @@
           <name>SimulatorEngine</name>
           <description></description>
           <allowedSlaves>
+            <string>005056B27ED1</string>
             <string>SCM-SIM7050-01</string>
             <string>SCM-SIM7050-02</string>
           </allowedSlaves>
