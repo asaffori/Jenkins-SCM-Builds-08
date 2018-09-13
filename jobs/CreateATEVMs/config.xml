@@ -182,7 +182,6 @@ pipeline {
         BuildPass=&apos;Scm07&amp;&apos;
         LicensesFilePAth=&apos;\\\\isr1nas03\\SW-OMD\\ForAdham\\Licenses&apos;
         MajorMinor_Ver=params.BUILD_VERSION.substring(0,5)
-        params.TargetMachineName=params.TargetMachineName != &quot;&quot; ?: params.MACAddress.replace(&apos;-&apos;,&apos;&apos;)
     }
     stages {
         stage (&quot;Verify and shudown source VM&quot;){
@@ -190,6 +189,7 @@ pipeline {
             agent { node { label &apos;Validation-7050&apos; } } 
             steps{
                 script{
+                    params.TargetMachineName=params.TargetMachineName != &quot;&quot; ?: params.MACAddress.replace(&apos;-&apos;,&apos;&apos;)
                     shutdownMachine(params.BaseMachineName)
                 }
             }
