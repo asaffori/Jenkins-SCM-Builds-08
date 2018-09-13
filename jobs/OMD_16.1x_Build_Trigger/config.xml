@@ -92,7 +92,7 @@ Comma seperated list of emails to get the generated build notes. As Adham.Saffor
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
-          <name>BuildMachine</name>
+          <name>buildEngineHostName</name>
           <description></description>
           <allowedSlaves>
             <string>ALL (no restriction)</string>
@@ -330,6 +330,14 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
     <hudson.tasks.BatchFile>
       <command>&quot;C:\Program Files (x86)\apache-ant-1.9.4\bin\ant.bat&quot; -file &quot;\\chn2nas01\omd\SCM\Jenkins_Config\build_2.xml&quot; -Dpassword=&quot;Scm07&amp;&quot; -DbuildDefinitionId &quot;%buildDefinitionId%&quot; -Dname=requestTeamBuild -lib &quot;C:\build\TeamConcertBuild\buildsystem\buildtoolkit&quot;</command>
     </hudson.tasks.BatchFile>
+    <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+      <source class="hudson.plugins.groovy.StringSystemScriptSource">
+        <script plugin="script-security@1.44">
+          <script></script>
+          <sandbox>true</sandbox>
+        </script>
+      </source>
+    </hudson.plugins.groovy.SystemGroovy>
     <org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder plugin="conditional-buildstep@1.3.6">
       <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
       <runCondition class="org.jenkins_ci.plugins.run_condition.logic.And" plugin="run-condition@1.0">
@@ -643,8 +651,7 @@ BUILD_VERSION=${JENKINCONFIGPATH}\\Jenkins_Build_Version\\16.15version.txt
 buildRequesterUserId=omdbuild
 team.scm.fetchDestination=D:\\sandboxes\\${buildRequesterUserId}_${MajorMinor_Ver}
 MajorMinor_Ver=${MajorMinor_Ver}
-BUILD_TYPE=Formal
-buildEngineHostName=${BuildMachine}</propertiesContent>
+BUILD_TYPE=${BUILD_TYPE}</propertiesContent>
           </info>
         </EnvInjectBuilder>
       </buildSteps>
