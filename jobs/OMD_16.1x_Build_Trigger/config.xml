@@ -330,6 +330,63 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
     <hudson.tasks.BatchFile>
       <command>&quot;C:\Program Files (x86)\apache-ant-1.9.4\bin\ant.bat&quot; -file &quot;\\chn2nas01\omd\SCM\Jenkins_Config\build_2.xml&quot; -Dpassword=&quot;Scm07&amp;&quot; -DbuildDefinitionId &quot;%buildDefinitionId%&quot; -Dname=requestTeamBuild -lib &quot;C:\build\TeamConcertBuild\buildsystem\buildtoolkit&quot;</command>
     </hudson.tasks.BatchFile>
+    <org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder plugin="conditional-buildstep@1.3.6">
+      <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+      <runCondition class="org.jenkins_ci.plugins.run_condition.logic.And" plugin="run-condition@1.0">
+        <conditions>
+          <org.jenkins__ci.plugins.run__condition.logic.ConditionContainer>
+            <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition">
+              <arg1>${BuildAutoApproved}</arg1>
+              <arg2>TRUE</arg2>
+              <ignoreCase>false</ignoreCase>
+            </condition>
+          </org.jenkins__ci.plugins.run__condition.logic.ConditionContainer>
+          <org.jenkins__ci.plugins.run__condition.logic.ConditionContainer>
+            <condition class="org.jenkins_ci.plugins.run_condition.core.StatusCondition">
+              <worstResult>
+                <name>SUCCESS</name>
+                <ordinal>0</ordinal>
+                <color>BLUE</color>
+                <completeBuild>true</completeBuild>
+              </worstResult>
+              <bestResult>
+                <name>SUCCESS</name>
+                <ordinal>0</ordinal>
+                <color>BLUE</color>
+                <completeBuild>true</completeBuild>
+              </bestResult>
+            </condition>
+          </org.jenkins__ci.plugins.run__condition.logic.ConditionContainer>
+        </conditions>
+      </runCondition>
+      <conditionalbuilders>
+        <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
+          <configs>
+            <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+              <configs>
+                <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                  <properties>RunningMode=DAILY
+team_scm_fetchDestination=${team_scm_fetchDestination}
+BUILD_VERSION=${BUILD_VERSION}
+WSName=${team.scm.workspaceUUID}
+ClosureBuildEngine=${buildEngineHostName}
+ReleaseBuildEngine=${buildEngineHostName}
+DebugBuildEngine=${buildEngineHostName}
+BUILDTYPE=${BUILD_TYPE}
+VERSIONFILE=${VERSIONFILE}</properties>
+                  <textParamValueOnNewLine>false</textParamValueOnNewLine>
+                </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              </configs>
+              <projects>BuildClosure-Flow</projects>
+              <condition>ALWAYS</condition>
+              <triggerWithNoParameters>false</triggerWithNoParameters>
+              <triggerFromChildProjects>false</triggerFromChildProjects>
+              <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+            </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          </configs>
+        </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+      </conditionalbuilders>
+    </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
