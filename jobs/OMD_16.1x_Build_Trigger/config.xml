@@ -88,7 +88,7 @@ Comma seperated list of emails to get the generated build notes. As Adham.Saffor
         <hudson.model.StringParameterDefinition>
           <name>buildDefinitionId</name>
           <description></description>
-          <defaultValue>OMD-Archer-V${MajorMinor_Ver}-CM</defaultValue>
+          <defaultValue>OMD-Archer-V${MajorMinor_Ver}-CM-Nightly</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
@@ -350,7 +350,11 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>&quot;C:\Program Files (x86)\apache-ant-1.9.4\bin\ant.bat&quot; -file &quot;\\chn2nas01\omd\SCM\Jenkins_Config\build_2.xml&quot; -Dpassword=&quot;Scm07&amp;&quot; -DbuildDefinitionId &quot;%buildDefinitionId%&quot; -Dname=requestTeamBuild -lib &quot;C:\build\TeamConcertBuild\buildsystem\buildtoolkit&quot;</command>
+    </hudson.tasks.BatchFile>
+  </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>$DEFAULT_RECIPIENTS,cc:${BUILD_USER_EMAIL}</recipientList>
