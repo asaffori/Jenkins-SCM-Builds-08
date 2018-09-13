@@ -326,11 +326,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders>
-    <hudson.tasks.BatchFile>
-      <command>&quot;C:\Program Files (x86)\apache-ant-1.9.4\bin\ant.bat&quot; -file &quot;\\chn2nas01\omd\SCM\Jenkins_Config\build_2.xml&quot; -Dpassword=&quot;Scm07&amp;&quot; -DbuildDefinitionId &quot;%buildDefinitionId%&quot; -Dname=requestTeamBuild -lib &quot;C:\build\TeamConcertBuild\buildsystem\buildtoolkit&quot;</command>
-    </hudson.tasks.BatchFile>
-  </builders>
+  <builders/>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
       <recipientList>$DEFAULT_RECIPIENTS,cc:${BUILD_USER_EMAIL}</recipientList>
@@ -589,6 +585,5 @@ Owner=&quot;Zhai, Xiahui&quot;</properties>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
-    <hudson.tasks.AntWrapper plugin="ant@1.8"/>
   </buildWrappers>
 </project>
