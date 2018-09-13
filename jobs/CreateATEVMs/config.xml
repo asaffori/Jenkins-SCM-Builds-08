@@ -189,7 +189,7 @@ pipeline {
             agent { node { label &apos;Validation-7050&apos; } } 
             steps{
                 script{
-                    params.TargetMachineName=params.TargetMachineName != &quot;&quot; ? params.MACAddress.replace(&quot;-&quot;,&quot;&quot;) : params.MACAddress.replace(&quot;-&quot;,&quot;&quot;)
+                    params.TargetMachineName=(params.TargetMachineName != &quot;&quot;) ? params.MACAddress.replace(&quot;-&quot;,&quot;&quot;) : params.MACAddress.replace(&quot;-&quot;,&quot;&quot;)
                     shutdownMachine(params.BaseMachineName)
                 }
             }
