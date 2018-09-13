@@ -305,7 +305,7 @@ Example:&lt;BR&gt;
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
-        <propertiesContent>BUILDTYPE=Formal
+        <propertiesContent>BUILDTYPE=Scheduled
 WSName=omdbuild_Archer_${MajorMinor_Ver}_Dev_Workspace
 SnapshotName=UOMD_BLD_${BUILD_VERSION}
 ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
