@@ -386,12 +386,13 @@ pipeline {
                 agent { node { label &quot;SCM-ATE-01&quot; } } 
                 steps {
 				        build job:&quot;SanityTest&quot;,parameters: [
+				            [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;SCM-ATE-01&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
+				            [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${params.TargetMachineName}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
                             string(name:&apos;ToolType&apos;,value:params.ToolType),
                             string(name: &apos;TestSuite&apos;, value:params.TestSuite),
                             string(name: &apos;TestSuitePath&apos;, value:params.TestSuitePath),
                             string(name: &apos;ATEBasePath&apos;, value:params.ATEBasePath),
-                            string(name: &apos;BUILD_VERSION&apos;, value:params.BUILD_VERSION),
-                            [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${params.TargetMachineName}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
+                            string(name: &apos;BUILD_VERSION&apos;, value:params.BUILD_VERSION)]
                 }
          }
     }
