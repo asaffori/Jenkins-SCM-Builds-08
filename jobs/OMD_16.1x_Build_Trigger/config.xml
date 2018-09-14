@@ -583,9 +583,6 @@ Owner=&quot;Zhai, Xiahui&quot;</properties>
             </hudson.plugins.parameterizedtrigger.TriggerBuilder>
           </conditionalbuilders>
         </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
-        <EnvInjectBuilder plugin="envinject@1.90">
-          <info/>
-        </EnvInjectBuilder>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
