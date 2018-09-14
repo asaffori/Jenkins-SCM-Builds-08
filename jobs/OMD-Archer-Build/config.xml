@@ -492,7 +492,9 @@ DebugBuildEngine=${buildEngineHostName}
 ReleaseBuildEngine=${buildEngineHostName}
 BUILDTYPE=${BUILD_TYPE}
 VERSIONFILE=${VERSIONFILE}
-JENKINCONFIGPATH=${JENKINCONFIGPATH}</properties>
+JENKINCONFIGPATH=${JENKINCONFIGPATH}
+Dev_Stream_Name=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Changed
+Integ_Stream_Name=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Base</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
