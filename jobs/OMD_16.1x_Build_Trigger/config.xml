@@ -584,16 +584,7 @@ Owner=&quot;Zhai, Xiahui&quot;</properties>
           </conditionalbuilders>
         </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
         <EnvInjectBuilder plugin="envinject@1.90">
-          <info>
-            <propertiesContent>emailGroups=Tst
-JENKINCONFIGPATH=${JENKINCONFIGPATH}
-buildEngineHostName=SCM-CHN-02
-BUILD_VERSION=${JENKINCONFIGPATH}\\Jenkins_Build_Version\\16.15version.txt
-buildRequesterUserId=omdbuild
-team.scm.fetchDestination=D:\\sandboxes\\${buildRequesterUserId}_${MajorMinor_Ver}
-MajorMinor_Ver=${MajorMinor_Ver}
-BUILD_TYPE=${BUILD_TYPE}</propertiesContent>
-          </info>
+          <info/>
         </EnvInjectBuilder>
       </buildSteps>
       <failOnError>false</failOnError>
