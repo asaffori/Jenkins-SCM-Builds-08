@@ -443,7 +443,7 @@ JENKINCONFIGPATH=${JENKINCONFIGPATH}</properties>
             <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition">
               <arg1>${BuildAutoApproved}</arg1>
               <arg2>FALSE</arg2>
-              <ignoreCase>true</ignoreCase>
+              <ignoreCase>false</ignoreCase>
             </condition>
           </org.jenkins__ci.plugins.run__condition.logic.ConditionContainer>
           <org.jenkins__ci.plugins.run__condition.logic.ConditionContainer>
