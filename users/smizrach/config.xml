@@ -64,7 +64,6 @@
         <string>ISR1SQL01-SWGROUPSITE-CH</string>
         <string>ISR1NAS01-SW-SQC-CH</string>
         <string>DL-ALL-ISRAEL</string>
-        <string>DL-ESPP</string>
         <string>Austinnt1-Austrain-CH</string>
         <string>CA1NAS12-SSCMdata-CH</string>
         <string>WIN-DYSD-Migration-CH</string>
@@ -210,7 +209,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1533481667649</timestamp>
+      <timestamp>1537100422742</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
