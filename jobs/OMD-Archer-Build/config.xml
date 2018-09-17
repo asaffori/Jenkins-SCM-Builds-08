@@ -421,7 +421,8 @@ DebugBuildEngine=${buildEngineHostName}
 ReleaseBuildEngine=${buildEngineHostName}
 BUILDTYPE=${BUILD_TYPE}
 VERSIONFILE=${VERSIONFILE}
-JENKINCONFIGPATH=${JENKINCONFIGPATH}</properties>
+JENKINCONFIGPATH=${JENKINCONFIGPATH}
+RunAutoRebase=TRUE</properties>
                   <textParamValueOnNewLine>false</textParamValueOnNewLine>
                 </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
               </configs>
