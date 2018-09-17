@@ -82,7 +82,7 @@ Comma seperated list of emails to get the generated build notes. As Adham.Saffor
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
-          <defaultValue>${JENKINCONFIGPATH}\Jenkins_Build_Version\16.15version.txt</defaultValue>
+          <defaultValue>${JENKINCONFIGPATH}\Jenkins_Build_Version\${MajorMinor_Ver}version.txt</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
