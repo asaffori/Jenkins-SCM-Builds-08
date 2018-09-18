@@ -124,7 +124,7 @@ Actions should be specificed per thier above order&lt;BR&gt;</description>
   <builders>
     <hudson.tasks.BatchFile>
       <command>&#xd;
-py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutomations\UpdateAndPromoteBNWIs.py -a %Actions%  -f %BuildNotesFullPath% -b %BUILD_VERSION% -q &quot;Resolved WIs&quot; -o %Owner%&#xd;
+py \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutomations\UpdateAndPromoteBNWIs.py -a %Actions%  -f %BuildNotesFullPath% -b %BUILD_VERSION% -q &quot;Resolved WIs&quot; -o &quot;%Owner%&quot;&#xd;
 &#xd;
 </command>
     </hudson.tasks.BatchFile>
