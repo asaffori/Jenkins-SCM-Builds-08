@@ -578,10 +578,10 @@ Owner=&quot;Zhai, Xiahui&quot;</properties>
         </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
         <hudson.tasks.BatchFile>
           <command>IF NOT %BUILD_TYPE% == &quot;Formal&quot; (&#xd;
-  buildDefinitionId = OMD-Archer-V16.15-CM&#xd;
+  %buildDefinitionId% = OMD-Archer-V16.15-CM&#xd;
 )&#xd;
 IF NOT %BUILD_TYPE% == &quot;Scheduled&quot; (&#xd;
-  buildDefinitionId = OMD-Archer-V16.15-CM-nightly&#xd;
+  %buildDefinitionId% = OMD-Archer-V16.15-CM-nightly&#xd;
 )&#xd;
 </command>
         </hudson.tasks.BatchFile>
