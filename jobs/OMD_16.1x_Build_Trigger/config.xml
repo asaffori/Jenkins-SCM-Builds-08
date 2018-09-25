@@ -293,13 +293,13 @@ Example:&lt;BR&gt;
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
           <name>buildDefinitionId2</name>
           <description></description>
-          <randomName>choice-parameter-431500088246131</randomName>
+          <randomName>choice-parameter-431531233555382</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.44">
               <script>String buildDefinitionId2_formal = &quot;Archer-OMD-V16.15-CM&quot;;
 String buildDefinitionId2_nightly = &quot;Archer-OMD-V16.15-CM-nightly&quot;;
-if ${BUILD_TYPE}== &quot;Formal&quot;
+if (${BUILD_TYPE}== &quot;Formal&quot;)
   return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${buildDefinitionId2_formal}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;
 else
   return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${buildDefinitionId2_nightly}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
