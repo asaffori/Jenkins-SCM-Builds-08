@@ -480,6 +480,7 @@
           <properties class="hudson.model.View$PropertyList"/>
           <jobNames>
             <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+            <string>OMD_16.1x_Build_Trigger</string>
             <string>OMD_17.03_Formal_Trigger</string>
             <string>OMD_17.04_Formal_Trigger</string>
             <string>OMD_17.11_Formal_Trigger</string>
