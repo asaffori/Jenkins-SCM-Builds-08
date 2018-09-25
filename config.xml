@@ -278,6 +278,7 @@
         <string>OMD-Archer-Build</string>
         <string>OMD_16.1x_Build_Trigger</string>
         <string>RDM_NuArcher_CI_Flow</string>
+        <string>test123</string>
         <string>TriggerFormalBuild</string>
       </jobNames>
       <jobFilters/>
