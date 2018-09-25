@@ -440,8 +440,8 @@ import hudson.AbortException
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-fromStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Changed
-toStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Base</properties>
+fromStream=Archer_${MajorMinor_Ver}_Dev_Workspace
+toStream=Archer_${MajorMinor_Ver}_Integ_Workspace</properties>
                     <textParamValueOnNewLine>false</textParamValueOnNewLine>
                   </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                 </configs>
@@ -487,8 +487,8 @@ toStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Base</properties>
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-tStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Base
-sStream=Archer_${MajorMinor_Ver}_Task_Cathy_Auto_Rebase_Changed
+tStream=Archer_${MajorMinor_Ver}_Integ_Workspace
+sStream=Archer_${MajorMinor_Ver}_Dev_Workspace
 BUILD_VERSION=${BUILD_VERSION}
 recipientList=${emailGroups_BN}
 CopyToShare=true
