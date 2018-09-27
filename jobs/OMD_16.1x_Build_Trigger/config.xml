@@ -488,7 +488,7 @@ toStream=Archer_${MajorMinor_Ver}_Integ</properties>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
 tStream=Archer_${MajorMinor_Ver}_Integ
-sStream=Archer_${MajorMinor_Ver}_Dev
+sStream=
 BUILD_VERSION=${BUILD_VERSION}
 recipientList=${emailGroups_BN}
 CopyToShare=true
