@@ -685,10 +685,6 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>CodeViewLoadePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ClosureBuildEngine</string>
       <string></string>
     </entry>
@@ -709,15 +705,27 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
+      <string>Dev_Stream_Name</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>Integ_Stream_Name</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>VERSIONFILE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>CodeViewLoadePath</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
     <entry>
       <string>ReplaceSnaps</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>Dev_Stream_Name</string>
       <string></string>
     </entry>
     <entry>
@@ -729,15 +737,7 @@ build.save()</postsendScript>
       <string></string>
     </entry>
     <entry>
-      <string>Integ_Stream_Name</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>ScheduledBuildJenkinsJobName</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>VERSIONFILE</string>
       <string></string>
     </entry>
   </globalEnvVars>
