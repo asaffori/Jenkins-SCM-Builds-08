@@ -133,6 +133,7 @@ IF NOT Exist V:\NUL (&#xd;
   cd P:\Nunit\Bin&#xd;
   P:\Nunit\Bin\RunStandAloneTest.bat /d&#xd;
 )</command>
+      <unstableReturn>1</unstableReturn>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
