@@ -64,6 +64,7 @@ echo ******get workitem list failed******&#xd;
 exit /b 1&#xd;
 )&#xd;
 del C:\Temp\Resolved_WO_Code_WIs_list.html&#xd;
+echo *****Converting CSV to HTML*****&#xd;
 CALL %JENKINCONFIGPATH%\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\RTCAutomations\CSV2HTML.py C:\Temp\Resolved_WO_Code_WIs_list.csv C:\Temp\Resolved_WO_Code_WIs_list.html&#xd;
 if not %errorlevel%==0 (&#xd;
 echo ******generate html failed******&#xd;
@@ -95,9 +96,10 @@ exit /b 1&#xd;
       <defaultSubject>Resolved workitems without code Linked</defaultSubject>
       <defaultContent>Dear User&lt;BR&gt;
 Following are list of all the resolved workitem in RTC but without code linked.&lt;BR&gt;
-1, If not a bug, need to closed&lt;BR&gt;
-2. If need to be promoted to SQC, need to manually fill in the &quot;Fixed build Version&quot; for the next build.&lt;BR&gt;
-${FILE,path=&quot;Resolved_WO_Code_WIs_list.html&quot;}</defaultContent>
+${FILE,path=&quot;C:/temp/Resolved_WO_Code_WIs_list.html&quot;}
+
+1, If not a bug, need to be closed&lt;BR&gt;
+2. If SQC need to verify, you need to manually fill in the &quot;Fixed build Version&quot; for the next build.&lt;BR&gt;</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
