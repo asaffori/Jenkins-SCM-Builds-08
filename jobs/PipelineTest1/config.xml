@@ -42,7 +42,6 @@
     agent { docker { image &apos;python:3.5.1&apos; } }
     stages {
         stage(&apos;build&apos;) {
-        steps{
         def userInput = input(
          id: &apos;userInput&apos;, message: &apos;Let\&apos;s promote?&apos;, parameters: [
          [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat&apos;, description: &apos;Environment&apos;, name: &apos;env&apos;],
@@ -50,7 +49,6 @@
         ])
         echo (&quot;Env: &quot;+userInput[&apos;env&apos;])
         echo (&quot;Target: &quot;+userInput[&apos;target&apos;])
-}
         }
     }
 }</script>
