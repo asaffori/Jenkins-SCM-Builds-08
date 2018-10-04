@@ -75,7 +75,7 @@ exit /b 1&#xd;
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
-      <recipientList>Agnes.Zhang@kla-tencor.com;Adham.Saffori@kla-tencor.com</recipientList>
+      <recipientList>Agnes.Zhang@kla-tencor.com;Adham.Saffori@kla-tencor.com;Smadar.Cohen@kla-tencor.com;Alina.Kiselman@kla-tencor.com; Nisreen.Awad@kla-tencor.com; Arkadi.Simkin@kla-tencor.com; Aviram.Preshel@kla-tencor.com;Vladimir.Shusterman@kla-tencor.com;Dmitry.Vagapov@kla-tencor.com; Ilan.Tavor@kla-tencor.com; Dima.Broitman@kla-tencor.com;ZhiQing.Xu@kla-tencor.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
