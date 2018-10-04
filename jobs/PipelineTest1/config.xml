@@ -45,9 +45,12 @@
             steps {
                 script {
                    def userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Let\&apos;s promote?&apos;, parameters: [
-                     [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat&apos;, description: &apos;Environment&apos;, name: &apos;env&apos;],
-                    [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat1&apos;, description: &apos;Target&apos;, name: &apos;target&apos;]
+                    id: &apos;userInput&apos;, message: &apos;Hellow Adham\n How can I help you?&apos;, parameters: [
+                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;],
+                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Debug &amp; Release\nRelease\nDebug&apos;, description: &apos;In which modes ?&apos;, name: &apos;BUILDMODES&apos;],
+                    [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Build RDM?&apos;, name: &apos;RunRDM&apos;],
+                    [$class: &apos;TextParameterDefinition&apos;, defaultValue:&apos;&apos; description: &apos;What should be your build version?&apos;, name: &apos;Build_Version&apos;],
+                    [$class: &apos;TextParameterDefinition&apos;, defaultValue:&apos;&apos;, description: &apos;What is your build WorkSpace? Example: asaffori_Archer_17.12_Dev_Workspace&apos;, name: &apos;WorkSpaceName&apos;]
                     ])
                 }
             }
