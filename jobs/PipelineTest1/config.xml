@@ -42,7 +42,7 @@
     agent { docker { image &apos;python:3.5.1&apos; } }
     stages {
         stage(&apos;build&apos;) {
-        def userInput = input(
+        userInput = input(
          id: &apos;userInput&apos;, message: &apos;Let\&apos;s promote?&apos;, parameters: [
          [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat&apos;, description: &apos;Environment&apos;, name: &apos;env&apos;],
          [$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;uat1&apos;, description: &apos;Target&apos;, name: &apos;target&apos;]
