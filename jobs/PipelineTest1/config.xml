@@ -39,7 +39,7 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>pipeline {
-    agent { label: &apos;master&apos;}
+    agent { node { label &apos;master&apos; } }
     stages {
         stage(&apos;build&apos;) {
             steps {
