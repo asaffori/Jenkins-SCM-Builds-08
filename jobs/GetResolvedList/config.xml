@@ -95,11 +95,15 @@ exit /b 1&#xd;
       <contentType>text/html</contentType>
       <defaultSubject>Resolved workitems without code Linked</defaultSubject>
       <defaultContent>Dear User&lt;BR&gt;
-Following are list of all the resolved workitem in RTC but without code linked.&lt;BR&gt;
+Following are list of all the resolved workitems in RTC but without code linked.&lt;BR&gt;
 ${FILE,path=&quot;C:/temp/Resolved_WO_Code_WIs_list.html&quot;}
+&lt;BR&gt;
+1. If not a bug, need to be closed&lt;BR&gt;
+2. If SQC need to verify, you need to manually fill in the &quot;Fixed build Version&quot; for the next build.&lt;BR&gt;
+&lt;BR&gt;
 
-1, If not a bug, need to be closed&lt;BR&gt;
-2. If SQC need to verify, you need to manually fill in the &quot;Fixed build Version&quot; for the next build.&lt;BR&gt;</defaultContent>
+Regards&lt;BR&gt;
+OMD DevOps Team</defaultContent>
       <attachmentsPattern></attachmentsPattern>
       <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
