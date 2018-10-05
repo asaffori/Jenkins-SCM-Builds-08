@@ -31,6 +31,12 @@
           <defaultValue>\\isr1appcc02\SCM\OMD</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Recipients</name>
+          <description></description>
+          <defaultValue>Agnes.Zhang@kla-tencor.com;Adham.Saffori@kla-tencor.com;Smadar.Cohen@kla-tencor.com;Alina.Kiselman@kla-tencor.com; Nisreen.Awad@kla-tencor.com; Arkadi.Simkin@kla-tencor.com; Aviram.Preshel@kla-tencor.com;Vladimir.Shusterman@kla-tencor.com;Dmitry.Vagapov@kla-tencor.com; Ilan.Tavor@kla-tencor.com; Dima.Broitman@kla-tencor.com;ZhiQing.Xu@kla-tencor.com;Omer.Shachor@kla-tencor.com;Sharon.Mizrachi@kla-tencor.com</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -72,10 +78,21 @@ exit /b 1&#xd;
 )&#xd;
 </command>
     </hudson.tasks.BatchFile>
+    <hudson.plugins.groovy.Groovy plugin="groovy@2.0">
+      <scriptSource class="hudson.plugins.groovy.StringScriptSource">
+        <command></command>
+      </scriptSource>
+      <groovyName>(Default)</groovyName>
+      <parameters></parameters>
+      <scriptParameters></scriptParameters>
+      <properties></properties>
+      <javaOpts></javaOpts>
+      <classPath></classPath>
+    </hudson.plugins.groovy.Groovy>
   </builders>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
-      <recipientList>Agnes.Zhang@kla-tencor.com;Adham.Saffori@kla-tencor.com;Smadar.Cohen@kla-tencor.com;Alina.Kiselman@kla-tencor.com; Nisreen.Awad@kla-tencor.com; Arkadi.Simkin@kla-tencor.com; Aviram.Preshel@kla-tencor.com;Vladimir.Shusterman@kla-tencor.com;Dmitry.Vagapov@kla-tencor.com; Ilan.Tavor@kla-tencor.com; Dima.Broitman@kla-tencor.com;ZhiQing.Xu@kla-tencor.com;Omer.Shachor@kla-tencor.com;Sharon.Mizrachi@kla-tencor.com</recipientList>
+      <recipientList>${Recipients}</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
