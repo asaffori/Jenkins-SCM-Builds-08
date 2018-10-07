@@ -131,7 +131,6 @@
         <string>WIN-DYSD-Tools-CH</string>
         <string>zzz-DL-All-Employees</string>
         <string>DL-ALL-ISRAEL</string>
-        <string>DL-ESPP</string>
         <string>Austinnt1-Austrain-CH</string>
         <string>CA1NAS12-SSCMdata-CH</string>
         <string>WIN-DYSD-Migration-CH</string>
@@ -187,7 +186,9 @@
         <string>CA1-CTX-KT-Employees</string>
         <string>WIN-DYSD-Assignment-CH</string>
         <string>PLANTOPS_OPERATOR</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-P-CH</string>
         <string>DL-iNotion-Users</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-TS-CH</string>
         <string>WIN-EEP-Reports_Customers-CH</string>
         <string>ISRCCUSERS</string>
         <string>WIN-DYSD-ADCAlgorithm-CH</string>
@@ -197,6 +198,7 @@
         <string>WIN-DYSD-ace-xp-recipe-CH</string>
         <string>DL-ALL-REGULAR-EMPLOYEES-SPA</string>
         <string>JazzUsers</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-S-CH</string>
         <string>ISR1NAS01-UserDoc-RO</string>
         <string>DL-Israel-OMD-ENG-SW</string>
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
@@ -211,8 +213,10 @@
         <string>DPM_Users_Old</string>
         <string>Isr1nas03-External_Files_for_Sharing-RO</string>
         <string>PasswordManager</string>
+        <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
         <string>DL-OMD-ARCHER-17-13-beta</string>
         <string>OMD Nightly Build Recipients</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-C-CH</string>
         <string>DL-tokenexpiry</string>
         <string>CA1NAS01-WINField-CH</string>
         <string>JPN1FS01-031ENG-CH</string>
@@ -236,6 +240,7 @@
         <string>Citrix XenApp 7.6 - eQuality - Prod-Chinese</string>
         <string>allsubscribers2ea70d23</string>
         <string>ISR1NAS01-SW-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
         <string>DL-RSA-Notification</string>
         <string>DL-O365</string>
         <string>DL-All-Engineering</string>
@@ -248,6 +253,7 @@
         <string>ISRSWENG</string>
         <string>Survey-Engineering</string>
         <string>ISR1NAS03-OpsIsrael</string>
+        <string>chn2vmfs01-Shanghai-I-GF-S-CH</string>
         <string>Quota</string>
         <string>Ca1nas11-KT-Insight-Program-RO</string>
         <string>allsubscribers58123b4d</string>
@@ -256,11 +262,12 @@
         <string>Domain Users</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1532869709460</timestamp>
+      <timestamp>1538918730080</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
