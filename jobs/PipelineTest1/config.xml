@@ -51,7 +51,7 @@
                     [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Build RDM?&apos;, name: &apos;RunRDM&apos;],
                     [$class: &apos;StringParameterDefinition&apos;, defaultValue:&apos;&apos;, description: &apos;What should be your build version?&apos;, name: &apos;Build_Version&apos;],
                     [$class: &apos;StringParameterDefinition&apos;, defaultValue:&apos;&apos;, description: &apos;What is your build WorkSpace? Example: asaffori_Archer_17.12_Dev_Workspace&apos;, name: &apos;WorkSpaceName&apos;],
-                    [$class: &apos;StringParameterDefinition&apos;, defaultValue:&apos;&apos;, description: &apos;What is your build WorkSpace? \nBasic: Compilation only \nAdvanced: Compilation, Installers \nDiagnostic:Commpilation, Installers, SCA, Automatic Sanity, Nunit &apos;, name: &apos;BuildType&apos;]])
+                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Basic\nAdvanced\nnDiagnostic&apos;, description: &apos;Which build style would you like to run? \nBasic: Compilation only \nAdvanced: Compilation, Installers \nDiagnostic:Commpilation, Installers, SCA, Sanity, Nunit &apos;, name: &apos;BuildStyle&apos;]])
                     
                     
                    def params = [
