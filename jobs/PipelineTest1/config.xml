@@ -60,7 +60,7 @@
                     [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to generate installers for this build ?&apos;, name: &apos;BuidInstallers&apos;]]
                     
                     userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Hellow Adham\n&apos;, parameters: params)
+                    id: &apos;userInput&apos;, message: &apos;Hello Adham\n&apos;, parameters: params)
                     
                 }
             }
