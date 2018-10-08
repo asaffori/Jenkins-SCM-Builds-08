@@ -1,10 +1,9 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.16">
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.23">
   <actions>
-    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.3.5">
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.6.2">
       <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
         <mappedUrl>blue/organizations/jenkins/TestPipeline</mappedUrl>
-        <modelObject class="flow-definition" reference="../../../.."/>
       </blueOceanUrlObject>
     </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
   </actions>
@@ -17,10 +16,13 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -34,12 +36,45 @@
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.42">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>node(&apos;master&apos;) {
     def choice1
     def choice2
 
     stage (&apos;Select&apos;){
+        def multiSelect= new ExtendedChoiceParameterDefinition(&quot;name&quot;, 
+            &quot;PT_MULTI_SELECT&quot;, 
+            &quot;blue,green,yellow,blue&quot;, 
+            &quot;project name&quot;,
+            &quot;&quot;, 
+            &quot;&quot;,
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;blue,green,yellow,blue&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            &quot;&quot;, 
+            false,
+            false, 
+            3, 
+            &quot;multiselect&quot;, 
+            &quot;,&quot;) 
+
+   def userInput = input  id: &apos;customID&apos;, message: &apos;Let\&apos;s promote?&apos;, ok: &apos;Release!&apos;, parameters:  [multiSelect]
         choice1 = input( id: &apos;userInput&apos;, message: &apos;Select your choice&apos;, parameters: [ [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;aa\nbb&apos;, description: &apos;&apos;, name: &apos;&apos;] ])
         if(choice1.equals(&quot;aa&quot;)){
             choice2 = input( id: &apos;userInput&apos;, message: &apos;Select your choice&apos;, parameters: [ [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;yy\nww&apos;, description: &apos;&apos;, name: &apos;&apos;] ])
