@@ -176,14 +176,6 @@
     <permission>hudson.model.Run.Delete:omdbuildchn</permission>
     <permission>hudson.model.Run.Delete:oshachor</permission>
     <permission>hudson.model.Run.Delete:smizrach</permission>
-    <permission>hudson.model.Run.Replay:agzhan</permission>
-    <permission>hudson.model.Run.Replay:asaffori</permission>
-    <permission>hudson.model.Run.Replay:cawang</permission>
-    <permission>hudson.model.Run.Replay:lhou</permission>
-    <permission>hudson.model.Run.Replay:omdbuild</permission>
-    <permission>hudson.model.Run.Replay:omdbuildchn</permission>
-    <permission>hudson.model.Run.Replay:oshachor</permission>
-    <permission>hudson.model.Run.Replay:smizrach</permission>
     <permission>hudson.model.Run.Update:agzhan</permission>
     <permission>hudson.model.Run.Update:asaffori</permission>
     <permission>hudson.model.Run.Update:cawang</permission>
