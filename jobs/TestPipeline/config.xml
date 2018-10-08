@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.23">
+<flow-definition plugin="workflow-job@2.25">
   <actions>
     <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.6.2">
       <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
@@ -22,7 +22,7 @@
     <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
       <leastLoadDisabled>false</leastLoadDisabled>
     </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.29">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -36,14 +36,11 @@
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.57">
     <script>import com.cwctravel.hudson.plugins.extended_choice_parameter.ExtendedChoiceParameterDefinition
-node(&apos;master&apos;) {
-    def choice1
-    def choice2
 
-    stage (&apos;Select&apos;){
-        def multiSelect= new ExtendedChoiceParameterDefinition(&quot;name&quot;, 
+node {
+def multiSelect= new ExtendedChoiceParameterDefinition(&quot;name&quot;, 
             &quot;PT_MULTI_SELECT&quot;, 
             &quot;blue,green,yellow,blue&quot;, 
             &quot;project name&quot;,
@@ -76,14 +73,11 @@ node(&apos;master&apos;) {
             &quot;,&quot;) 
 
    def userInput = input  id: &apos;customID&apos;, message: &apos;Let\&apos;s promote?&apos;, ok: &apos;Release!&apos;, parameters:  [multiSelect]
-        choice1 = input( id: &apos;userInput&apos;, message: &apos;Select your choice&apos;, parameters: [ [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;aa\nbb&apos;, description: &apos;&apos;, name: &apos;&apos;] ])
-        if(choice1.equals(&quot;aa&quot;)){
-            choice2 = input( id: &apos;userInput&apos;, message: &apos;Select your choice&apos;, parameters: [ [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;yy\nww&apos;, description: &apos;&apos;, name: &apos;&apos;] ])
-        }else{
-            choice2 = input( id: &apos;userInput&apos;, message: &apos;Select your choice&apos;, parameters: [ [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;gg\nkk&apos;, description: &apos;&apos;, name: &apos;&apos;] ])
-        }
-    }
-}</script>
+
+
+echo &quot;Hello: &quot;+ userInput
+}
+</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
