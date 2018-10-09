@@ -56,7 +56,7 @@ pipeline {
                             print (&quot;Failed while retreaving groups for user &quot;+ BUILD_USER_ID)
                             throw (e)
                         }
-                    }
+                    
                     
               def userInput = input(
                     id: &apos;userInput&apos;, message: &apos;Hello&apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: [
@@ -75,7 +75,7 @@ pipeline {
                     
                     userInput = input(
                     id: &apos;userInput&apos;, message: &apos;Hello Adham\n&apos;, parameters: params)     
-                    
+                    }
                 }
                 
             }
