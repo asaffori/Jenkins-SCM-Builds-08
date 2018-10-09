@@ -89,7 +89,7 @@ pipeline {
                     [$class: &apos;DropdownAutocompleteParameterDefinition&apos;,
                         name: &apos;Workspace&apos;,
                         description:&apos;What is your build WorkSpace?&apos;,
-                        defaultValue:&apos;&apos;
+                        defaultValue:&apos;&apos;,
                         dataProvider: 
                         [
                             $class: &apos;SimpleTextProvider&apos;, 
