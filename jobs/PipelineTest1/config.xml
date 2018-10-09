@@ -100,7 +100,7 @@ pipeline {
         }catch(Exception e){
             throw e
         }
-        print (&quot;stdout=&quot; + stdoutput)
+       // print (&quot;stdout=&quot; + stdoutput)
         def workspaces = []
         stdoutput.readLines().each {
             print (&quot;HHH&quot; + it)
