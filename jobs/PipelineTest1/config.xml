@@ -100,7 +100,7 @@ pipeline {
         }catch(Exception e){
             throw e
         }
-        //print (&quot;stdout=&quot; + stdout)
+        print (&quot;stdout=&quot; + stdoutput)
         def workspaces = []
         stdoutput.readLines().each {
             if (it.contains(BUILD_USER)){
