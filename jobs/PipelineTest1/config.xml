@@ -53,7 +53,7 @@
         }
     }
 }</script>
-    <sandbox>false</sandbox>
+    <sandbox>true</sandbox>
   </definition>
   <triggers/>
   <disabled>false</disabled>
