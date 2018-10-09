@@ -70,8 +70,8 @@ pipeline {
 **/
               
                                         
-                   def Dev_Formal_Build_Params = [
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;17.13.02\n17.13.03\n17.13.04\n17.14\n17.15&apos; , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;]]
+        //           def Dev_Formal_Build_Params = [
+          //          [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;17.13.02\n17.13.03\n17.13.04\n17.14\n17.15&apos; , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;]]
                    
                    def DevOps_Formal_Build_Params = [
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;17.13.02\n17.13.03\n17.13.04\n17.14\n17.15&apos; , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;],
