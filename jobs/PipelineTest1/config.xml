@@ -67,7 +67,7 @@ pipeline {
                     /**[$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Debug &amp; Release\nRelease\nDebug&apos;, description: &apos;In which modes ?&apos;, name: &apos;BUILDMODES&apos;],
                     [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Build RDM?&apos;, name: &apos;RunRDM&apos;],
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Basic\nAdvanced\nDiagnostic\nCustom&apos;, description: &apos;Which build style would you like to run? \n\tBasic: Compilation only \n\tAdvanced: Compilation, Installers \n\tDiagnostic:Commpilation, Installers, SCA, Sanity, Nunit\n\tCustom: Run customized build steps &apos;, name: &apos;BuildStyle&apos;],
-*//
+**/
               
                                         
                    def Dev_Formal_Build_Params = [
