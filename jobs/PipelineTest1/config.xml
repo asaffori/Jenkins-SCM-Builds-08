@@ -59,7 +59,7 @@ pipeline {
                     
                     
               def userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Hello&apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: [
+                    id: &apos;userInput&apos;, message: &apos;Hello&apos;+BUILD_USER+&apos;\n Identified as &apos;+ &apos; user&apos;, parameters: [
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;],
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Debug &amp; Release\nRelease\nDebug&apos;, description: &apos;In which modes ?&apos;, name: &apos;BUILDMODES&apos;],
                     [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Build RDM?&apos;, name: &apos;RunRDM&apos;],
