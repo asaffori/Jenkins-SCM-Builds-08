@@ -60,7 +60,7 @@ pipeline {
                         try{
                             def user_workspaces = []
                             user_workspaces = getUserRTCWorkspaces()
-                            workspaces_choice_list=user_workspaces.join(&apos;\n&apos;)
+                            workspaces_choice_list=user_workspaces.join(&apos;\\n&apos;)
                             print (workspaces_choice_list)
                         }catch (Exception e){
                             throw (e)
