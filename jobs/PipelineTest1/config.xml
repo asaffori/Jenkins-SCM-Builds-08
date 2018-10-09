@@ -48,18 +48,18 @@ pipeline {
 
                 script {
                     wrap([$class: &apos;BuildUser&apos;]) {
-                    try{
-                    
-                        print (((String[])Jenkins.instance.securityRealm.loadUserByUsername(BUILD_USER_ID).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;))
-                    
-                    }catch (Exception e){
-                        print (&quot;Failed while retreaving groups for user &quot;+ BUILD_USER_ID)
-                        print (e)
+                        try{
+                        
+                           def user_team = ((String[])Jenkins.instance.securityRealm.loadUserByUsername(BUILD_USER_ID).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;) ? &quot;DevOps&quot;: &quot;Dev&quot;
+                        
+                        }catch (Exception e){
+                            print (&quot;Failed while retreaving groups for user &quot;+ BUILD_USER_ID)
+                            throw (e)
+                        }
                     }
-                    }
-                   def user_team =false//((String[])Jenkins.instance.securityRealm.loadUserByUsername(User.current().getId()).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;) ? &quot;DevOps&quot;: &quot;Dev&quot;
+                    
               def userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Hello&apos;+User.current().getFullName()+&quot;\nIdentified as &quot;+user_team+ &quot; user&quot;, parameters: [
+                    id: &apos;userInput&apos;, message: &apos;Hello&apos;+User.current().getFullName()+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: [
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;],
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Debug &amp; Release\nRelease\nDebug&apos;, description: &apos;In which modes ?&apos;, name: &apos;BUILDMODES&apos;],
                     [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Build RDM?&apos;, name: &apos;RunRDM&apos;],
