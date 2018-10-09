@@ -58,8 +58,8 @@ pipeline {
                             throw (e)
                         }
                         try{
-                            def user_workspaces = getUserRTCWorkspaces()
-                            print (userworkspaces)
+                            //def user_workspaces = getUserRTCWorkspaces()
+                            print (getUserRTCWorkspaces())
                         }catch (Exception e){
                          
                             throw (e)
