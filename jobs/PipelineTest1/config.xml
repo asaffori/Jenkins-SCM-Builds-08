@@ -58,6 +58,7 @@ pipeline {
                             throw (e)
                         }
                         def user_workspaces = getUserRTCWorkspaces()
+                        print (userworkspaces)
                         DevOpsBtypes = &apos;Scheduled\nFormal\nTasks&apos;
                         DevBtypes = &apos;Tasks\nFormal&apos;
 
