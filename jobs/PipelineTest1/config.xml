@@ -95,8 +95,8 @@ pipeline {
                             $class: &apos;SimpleTextProvider&apos;, 
                             autoCompleteData: workspaces_choice_list
                         ],
-                        displayExpression: &apos;id&apos;,
-                        valueExpression: &apos;id&apos;
+                        displayExpression: &apos;&apos;,
+                        valueExpression: &apos;&apos;
                     ]]
                     
                     //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to run automatic Archer sanity tests for this build ?&apos;, name: &apos;RunATE&apos;],
