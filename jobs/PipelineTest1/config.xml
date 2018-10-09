@@ -57,11 +57,15 @@ pipeline {
                             print (&quot;Failed while retreaving groups for user &quot;+ BUILD_USER_ID)
                             throw (e)
                         }
-                    
-                    
+                        
+                        DevOps_User_Permitted_Build_Types = &apos;Scheduled\nFormal\nTasks&apos;
+                        Dev_User_Permitted_Build_Types = &apos;Tasks\nFormal&apos;
+                        
+
+                        
               def userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Hello&apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: [
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;],
+                    id: &apos;userInput&apos;, message: &apos;Hello &apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: [
+                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: user_team == &apos;DevOps&apos;? DevOps_User_Permitted_Build_Types:Dev_User_Permitted_Build_Types , description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;],
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Debug &amp; Release\nRelease\nDebug&apos;, description: &apos;In which modes ?&apos;, name: &apos;BUILDMODES&apos;],
                     [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Build RDM?&apos;, name: &apos;RunRDM&apos;],
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Basic\nAdvanced\nDiagnostic\nCustom&apos;, description: &apos;Which build style would you like to run? \n\tBasic: Compilation only \n\tAdvanced: Compilation, Installers \n\tDiagnostic:Commpilation, Installers, SCA, Sanity, Nunit\n\tCustom: Run customized build steps &apos;, name: &apos;BuildStyle&apos;],
