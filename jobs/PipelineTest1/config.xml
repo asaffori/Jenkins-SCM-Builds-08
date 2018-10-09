@@ -45,10 +45,12 @@ pipeline {
     stages {
         stage(&apos;build&apos;) {
             steps {
-                wrap([$class: &apos;BuildUser&apos;]) {
+
                 script {
                     try{
-                    print (((String[])Jenkins.instance.securityRealm.loadUserByUsername(&quot;${BUILD_USER_ID}&quot;).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;))
+                    wrap([$class: &apos;BuildUser&apos;]) {
+                        print (((String[])Jenkins.instance.securityRealm.loadUserByUsername(&quot;${BUILD_USER_ID}&quot;).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;))
+                    }
                     }catch (Exception e){
                         print (&quot;Failed while retreaving groups for user &apos;&quot;+User.current().getId()+&quot;&apos;&quot;)
                         print (e)
@@ -73,7 +75,7 @@ pipeline {
                     id: &apos;userInput&apos;, message: &apos;Hello Adham\n&apos;, parameters: params)     
                     
                 }
-                }
+                
             }
         }
     }
