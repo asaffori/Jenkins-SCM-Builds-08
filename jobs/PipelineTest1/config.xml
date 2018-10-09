@@ -95,7 +95,11 @@ pipeline {
  def getUserRTCWorkspaces(){
     wrap([$class: &apos;BuildUser&apos;]) {
         cmd=&quot;scm  list workspaces -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -c ${BUILD_USER_ID} -m 100&quot;
-        stdoutput = bat(returnStdout:true , script:cmd).trim()
+        try{
+            stdoutput = bat(returnStdout:true , script:cmd).trim()
+        }catch(Exception e){
+            throw e
+        }
         //print (&quot;stdout=&quot; + stdout)
         def workspaces = []
         stdoutput.readLines().each {
