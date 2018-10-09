@@ -47,13 +47,15 @@ pipeline {
             steps {
 
                 script {
-                    try{
                     wrap([$class: &apos;BuildUser&apos;]) {
+                    try{
+                    
                         print (((String[])Jenkins.instance.securityRealm.loadUserByUsername(&quot;${BUILD_USER_ID}&quot;).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;))
-                    }
+                    
                     }catch (Exception e){
                         print (&quot;Failed while retreaving groups for user&quot;+ BUILD_USER_ID)
                         print (e)
+                    }
                     }
                    def user_team =false//((String[])Jenkins.instance.securityRealm.loadUserByUsername(User.current().getId()).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;) ? &quot;DevOps&quot;: &quot;Dev&quot;
               def userInput = input(
