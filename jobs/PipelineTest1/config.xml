@@ -46,7 +46,11 @@ pipeline {
         stage(&apos;build&apos;) {
             steps {
                 script {
+                    try{
                     print (((String[])hudson.security.SecurityRealm.loadUserByUsername(User.current().getId()).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;))
+                    }catch (Exception e){
+                        print (e)
+                    }
                    def user_team =false//((String[])Jenkins.instance.securityRealm.loadUserByUsername(User.current().getId()).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;) ? &quot;DevOps&quot;: &quot;Dev&quot;
               def userInput = input(
                     id: &apos;userInput&apos;, message: &apos;Hello&apos;+User.current().getFullName()+&quot;\nIdentified as &quot;+user_team+ &quot; user&quot;, parameters: [
