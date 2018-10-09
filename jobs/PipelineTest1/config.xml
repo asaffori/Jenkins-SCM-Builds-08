@@ -46,23 +46,7 @@
             steps {
                 script {
                    def user_team =((String[])Jenkins.instance.securityRealm.loadUserByUsername(User.current().getId()).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;) ? &quot;DevOps&quot;: &quot;Dev&quot;
-                   def userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Hello&apos;+User.current().getFullName()+&quot;\nIdentified as &quot;+user_team+ &quot; user&quot;, parameters: [
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;],
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Debug &amp; Release\nRelease\nDebug&apos;, description: &apos;In which modes ?&apos;, name: &apos;BUILDMODES&apos;],
-                    [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Build RDM?&apos;, name: &apos;RunRDM&apos;],
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Basic\nAdvanced\nDiagnostic\nCustom&apos;, description: &apos;Which build style would you like to run? \n\tBasic: Compilation only \n\tAdvanced: Compilation, Installers \n\tDiagnostic:Commpilation, Installers, SCA, Sanity, Nunit\n\tCustom: Run customized build steps &apos;, name: &apos;BuildStyle&apos;],
-                    [$class: &apos;StringParameterDefinition&apos;, defaultValue:&apos;&apos;, description: &apos;What should be your build version?&apos;, name: &apos;Build_Version&apos;],
-                    [$class: &apos;StringParameterDefinition&apos;, defaultValue:&apos;&apos;, description: &apos;What is your build WorkSpace? \nExample: asaffori_Archer_17.12_Dev_Workspace&apos;, name: &apos;WorkSpaceName&apos;]])
-                    
-                    
-                   def params = [
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Tasks\nFormal\nScheduled&apos;, description: &apos;Would you like to generate installers for this build ?&apos;, name: &apos;BUILDTYPE&apos;],
-                    [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to run automatic Archer sanity tests for this build ?&apos;, name: &apos;RunATE&apos;],
-                    [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to generate installers for this build ?&apos;, name: &apos;BuidInstallers&apos;]]
-                    
-                    userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Hello Adham\n&apos;, parameters: params)
+                  
                     
                 }
             }
