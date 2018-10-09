@@ -61,7 +61,7 @@ pipeline {
                             def user_workspaces = []
                             //workspaces_choice_list = getUserRTCWorkspaces()
                             //workspaces_choice_list=user_workspaces.join(&apos;\\n&apos;)
-                            workspaces_choice_list=&apos;Archer_17.00_Integ Workspace\nArcher_17.13.02_Dev Workspace&apos;
+                            workspaces_choice_list=&apos;Archer_17.00_IntegWorkspace\nArcher_17.13.02_DevWorkspace&apos;
                             print (workspaces_choice_list)
                         }catch (Exception e){
                             throw (e)
@@ -85,7 +85,7 @@ pipeline {
                    def DevOps_Formal_Build_Params = [
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;17.13.02\n17.13.03\n17.13.04\n17.14\n17.15&apos; , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;],
                     [$class: &apos;StringParameterDefinition&apos;, defaultValue:&apos;Version will be automatically calulated&apos;, description: &apos;What should be your build version?&apos;, name: &apos;Build_Version&apos;],
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: workspaces_choice_list, description: &apos;What is your build WorkSpace? \nExample: asaffori_Archer_17.12_Dev_Workspace&apos;, name: &apos;WorkSpaceName&apos;]]
+                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: workspaces_choice_list , description: &apos;What is your build WorkSpace? \nExample: asaffori_Archer_17.12_Dev_Workspace&apos;, name: &apos;WorkSpaceName&apos;]]
                     //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to run automatic Archer sanity tests for this build ?&apos;, name: &apos;RunATE&apos;],
                     //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to generate installers for this build ?&apos;, name: &apos;BuidInstallers&apos;]]
                     
