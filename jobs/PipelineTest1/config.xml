@@ -86,7 +86,7 @@ pipeline {
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;17.13.02\n17.13.03\n17.13.04\n17.14\n17.15&apos; , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;],
                     [$class: &apos;StringParameterDefinition&apos;, defaultValue:&apos;Version will be automatically calulated&apos;, description: &apos;What should be your build version?&apos;, name: &apos;Build_Version&apos;],
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: workspaces_choice_list, description: &apos;What is your build WorkSpace? \nExample: asaffori_Archer_17.12_Dev_Workspace&apos;, name: &apos;WorkSpaceName&apos;],
-                    [$class: &apos;AutoCompleteStringParameterDefinition&apos;,dataProvider:&apos;SimpleTextProvider&apos;,autoCompleteData:workspaces_choice_list,defaultValue:&apos;Enter your build workspace&apos;, description: &apos;What is your build WorkSpace?&apos;, name: &apos;WorkSpaceName&apos;]]
+                    [$class: &apos;AutoCompleteStringParameterDefinition&apos;,dataProvider:SimpleTextProvider,autoCompleteData:workspaces_choice_list,defaultValue:&apos;Enter your build workspace&apos;, description: &apos;What is your build WorkSpace?&apos;, name: &apos;WorkSpaceName&apos;]]
                     
                     //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to run automatic Archer sanity tests for this build ?&apos;, name: &apos;RunATE&apos;],
                     //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to generate installers for this build ?&apos;, name: &apos;BuidInstallers&apos;]]
