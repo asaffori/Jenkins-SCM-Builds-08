@@ -50,7 +50,7 @@ pipeline {
                     wrap([$class: &apos;BuildUser&apos;]) {
                     try{
                     
-                        print (((String[])Jenkins.instance.securityRealm.loadUserByUsername(&quot;${BUILD_USER_ID}&quot;).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;))
+                        print (((String[])Jenkins.instance.securityRealm.loadUserByUsername(BUILD_USER_ID).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;))
                     
                     }catch (Exception e){
                         print (&quot;Failed while retreaving groups for user&quot;+ BUILD_USER_ID)
