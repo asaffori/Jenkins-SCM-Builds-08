@@ -57,8 +57,13 @@ pipeline {
                             print (&quot;Failed while retreaving groups for user &quot;+ BUILD_USER_ID)
                             throw (e)
                         }
-                        def user_workspaces = getUserRTCWorkspaces()
-                        print (userworkspaces)
+                        try{
+                            def user_workspaces = getUserRTCWorkspaces()
+                            print (userworkspaces)
+                        }catch (Exception e){
+                         
+                            throw (e)
+                        }
                         DevOpsBtypes = &apos;Scheduled\nFormal\nTasks&apos;
                         DevBtypes = &apos;Tasks\nFormal&apos;
 
