@@ -102,8 +102,8 @@ pipeline {
         }
         print (&quot;stdout=&quot; + stdoutput)
         def workspaces = []
-        stdoutput.eachLine {
-            print (it)
+        stdoutput.readLines().each {
+            print (&quot;HHH&quot; + it)
             if (it.contains(BUILD_USER)){
                 print (it.substring(it.indexOf(&apos;\&quot;&apos;),it.lastIndexOf(&apos;\&quot;&apos;)))
                 workspaces &lt;&lt; it.substring(it.indexOf(&apos;\&quot;&apos;),it.lastIndexOf(&apos;\&quot;&apos;))
