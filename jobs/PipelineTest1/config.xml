@@ -57,7 +57,7 @@ pipeline {
                             print (&quot;Failed while retreaving groups for user &quot;+ BUILD_USER_ID)
                             throw (e)
                         }
-                        
+                        def user_workspaces = getUserRTCWorkspaces()
                         DevOpsBtypes = &apos;Scheduled\nFormal\nTasks&apos;
                         DevBtypes = &apos;Tasks\nFormal&apos;
 
@@ -96,7 +96,7 @@ pipeline {
         cmd=&quot;scm  list workspaces -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -c ${BUILD_USER_ID} -m 100&quot;
         stdoutput = bat(returnStdout:true , script:cmd).trim()
         //print (&quot;stdout=&quot; + stdout)
-        def workspaces[]
+        def workspaces = []
         stdoutput.readLines().each {
             if (it.contains(BUILD_USER)){
                 workspaces &lt;&lt; it.substring(it.indexOf(&apos;\&quot;&apos;),it.lastIndexOf(&apos;\&quot;&apos;))
