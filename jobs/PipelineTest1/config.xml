@@ -63,15 +63,15 @@ pipeline {
 
               def userInput = input(
                     id: &apos;userInput&apos;, message: &apos;Hello &apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: [
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: user_team == &apos;DevOps&apos;? DevOpsBtypes:DevBtypes , description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;]]
+                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: user_team == &apos;DevOps&apos;? DevOpsBtypes:DevBtypes , description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;]])
                     /**[$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Debug &amp; Release\nRelease\nDebug&apos;, description: &apos;In which modes ?&apos;, name: &apos;BUILDMODES&apos;],
                     [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Build RDM?&apos;, name: &apos;RunRDM&apos;],
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Basic\nAdvanced\nDiagnostic\nCustom&apos;, description: &apos;Which build style would you like to run? \n\tBasic: Compilation only \n\tAdvanced: Compilation, Installers \n\tDiagnostic:Commpilation, Installers, SCA, Sanity, Nunit\n\tCustom: Run customized build steps &apos;, name: &apos;BuildStyle&apos;],
 **/
               
                                         
-        //           def Dev_Formal_Build_Params = [
-          //          [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;17.13.02\n17.13.03\n17.13.04\n17.14\n17.15&apos; , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;]]
+                   def Dev_Formal_Build_Params = [
+                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;17.13.02\n17.13.03\n17.13.04\n17.14\n17.15&apos; , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;]]
                    
                    def DevOps_Formal_Build_Params = [
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;17.13.02\n17.13.03\n17.13.04\n17.14\n17.15&apos; , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;],
