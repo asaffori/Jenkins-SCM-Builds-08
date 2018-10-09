@@ -39,7 +39,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.57">
-    <script>//import hudson.security.SecurityRealm;
+    <script>import hudson.security.SecurityRealm;
 pipeline {
     agent { node { label &apos;master&apos; } }
     stages {
@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     try{
-                    print (((String[])hudson.security.SecurityRealm.loadUserByUsername(User.current().getId()).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;))
+                    print (((String[])Jenkins.instance.securityRealm.loadUserByUsername(User.current().getId()).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;))
                     }catch (Exception e){
                         print (e)
                     }
