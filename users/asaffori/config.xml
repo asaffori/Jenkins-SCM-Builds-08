@@ -4,6 +4,18 @@
   <properties>
     <jenkins.security.ApiTokenProperty>
       <apiToken>{AQAAABAAAAAwFCryEjBdbuQw/N4sElpLiQ2wNZ4MZuj2P36BJ+5eHb8Wa+0NNiOEIJ6ZBZroqgIBdjpvQY5AwPyTE5AujEtIew==}</apiToken>
+      <tokenStore>
+        <tokenList>
+          <jenkins.security.apitoken.ApiTokenStore_-HashedToken>
+            <uuid>8cbb0cf6-f560-4748-a84c-79abf4bc4c8f</uuid>
+            <name>Legacy Token</name>
+            <value>
+              <version>10</version>
+              <hash>8b1d39aabe1e8ff46dc4cd6215c1eec55d0a4ba5750a3562298d2b4875f2ad62</hash>
+            </value>
+          </jenkins.security.apitoken.ApiTokenStore_-HashedToken>
+        </tokenList>
+      </tokenStore>
     </jenkins.security.ApiTokenProperty>
     <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.16">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash">
@@ -85,6 +97,7 @@
         <string>KLAIsraelAcc</string>
         <string>CA1NAS07-CPG-UNT-RO</string>
         <string>Ca1nas01-WINdownload-RO</string>
+        <string>DL-ALL-ISRAEL-OMD</string>
         <string>DL-OMD-ARCHER-17-04</string>
         <string>Ca1ucsfs01-EMIE-RO</string>
         <string>DL-OMD-ARCHER-17-03</string>
@@ -103,6 +116,7 @@
         <string>WIN-DYSD-Image-CH</string>
         <string>Twn1fp01-PCIDData-RO</string>
         <string>DL-eQuality Users</string>
+        <string>DL-ISRAEL-OMD-ENG-MT</string>
         <string>CA1-CTX-Portal-Users</string>
         <string>WIN-DYSD-WSODocs-CH</string>
         <string>Citrix XenApp 7.6 - eQuality - Prod-English</string>
@@ -183,7 +197,9 @@
         <string>WIN-DYSD-adc-plc-CH</string>
         <string>ca1nas05-WIN-OpenShares-CH</string>
         <string>Citrix XenApp 7.6 - eQuality - Prod-Chinese</string>
+        <string>DL-Z-Group-All</string>
         <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
+        <string>DL-IT-RTC-Users</string>
         <string>WIN-DYSD-Picnic-RO</string>
         <string>MI Production KLA O365 Mail</string>
         <string>UC-User-Production</string>
@@ -203,7 +219,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1539006751710</timestamp>
+      <timestamp>1539342399472</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.35"/>
     <org.jenkinsci.plugins.readonly.UserConfiguration plugin="read-only-configurations@1.10">
