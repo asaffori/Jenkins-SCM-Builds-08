@@ -213,7 +213,7 @@
     <permission>jenkins.metrics.api.Metrics.View:agzhan</permission>
     <permission>jenkins.metrics.api.Metrics.View:anonymous</permission>
   </authorizationStrategy>
-  <securityRealm class="hudson.plugins.active_directory.ActiveDirectorySecurityRealm" plugin="active-directory@2.6">
+  <securityRealm class="hudson.plugins.active_directory.ActiveDirectorySecurityRealm" plugin="active-directory@2.8">
     <domains>
       <hudson.plugins.active__directory.ActiveDirectoryDomain>
         <name>kla-tencor.com</name>
