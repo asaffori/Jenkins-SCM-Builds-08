@@ -9,7 +9,6 @@
     <string>hudsonHomeIsFull</string>
   </disabledAdministrativeMonitors>
   <version>2.138.2</version>
-  <installStateName>RESTART</installStateName>
   <numExecutors>20</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
@@ -28,12 +27,6 @@
     <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:anonymous</permission>
     <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:asaffori</permission>
     <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:cawang</permission>
-    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.RemoveCause:agzhan</permission>
-    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.RemoveCause:asaffori</permission>
-    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.UpdateCauses:agzhan</permission>
-    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.UpdateCauses:asaffori</permission>
-    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.ViewCauses:agzhan</permission>
-    <permission>com.sonyericsson.jenkins.plugins.bfa.PluginImpl.ViewCauses:asaffori</permission>
     <permission>hudson.model.Computer.Build:agzhan</permission>
     <permission>hudson.model.Computer.Build:asaffori</permission>
     <permission>hudson.model.Computer.Build:cawang</permission>
@@ -145,8 +138,6 @@
     <permission>hudson.model.Item.ExtendedRead:omdbuildchn</permission>
     <permission>hudson.model.Item.ExtendedRead:oshachor</permission>
     <permission>hudson.model.Item.ExtendedRead:smizrach</permission>
-    <permission>hudson.model.Item.Move:agzhan</permission>
-    <permission>hudson.model.Item.Move:asaffori</permission>
     <permission>hudson.model.Item.Read:agzhan</permission>
     <permission>hudson.model.Item.Read:anonymous</permission>
     <permission>hudson.model.Item.Read:asaffori</permission>
@@ -277,7 +268,6 @@
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
       </columns>
       <recurse>false</recurse>
     </listView>
@@ -309,7 +299,6 @@
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
       </columns>
       <recurse>false</recurse>
     </listView>
@@ -338,7 +327,6 @@
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
       </columns>
       <recurse>false</recurse>
     </listView>
@@ -368,7 +356,6 @@
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
       </columns>
       <recurse>false</recurse>
     </listView>
@@ -413,7 +400,6 @@
       </jobNames>
       <jobFilters/>
       <columns>
-        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
         <hudson.views.StatusColumn/>
         <hudson.views.WeatherColumn/>
         <hudson.views.JobColumn/>
@@ -451,7 +437,6 @@
           <jobFilters/>
           <columns>
             <hudson.views.StatusColumn/>
-            <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
             <hudson.views.WeatherColumn/>
             <hudson.views.JobColumn/>
             <hudson.views.BuildButtonColumn/>
@@ -484,7 +469,6 @@
           <jobFilters/>
           <columns>
             <hudson.views.StatusColumn/>
-            <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
             <hudson.views.WeatherColumn/>
             <hudson.views.JobColumn/>
             <hudson.views.BuildButtonColumn/>
@@ -514,7 +498,6 @@
             <hudson.views.LastFailureColumn/>
             <hudson.views.LastDurationColumn/>
             <hudson.views.BuildButtonColumn/>
-            <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
           </columns>
           <recurse>false</recurse>
         </listView>
@@ -536,8 +519,6 @@
             <hudson.views.LastFailureColumn/>
             <hudson.views.LastDurationColumn/>
             <hudson.views.BuildButtonColumn/>
-            <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
-            <hudson.plugins.favorite.column.FavoriteColumn plugin="favorite@2.3.2"/>
           </columns>
           <recurse>false</recurse>
         </listView>
@@ -585,7 +566,6 @@
       </jobNames>
       <jobFilters/>
       <columns>
-        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
         <hudson.views.StatusColumn/>
         <hudson.views.WeatherColumn/>
         <hudson.views.JobColumn/>
@@ -615,7 +595,6 @@
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
       </columns>
       <recurse>false</recurse>
     </listView>
@@ -645,8 +624,6 @@
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
-        <hudson.plugins.favorite.column.FavoriteColumn plugin="favorite@2.3.2"/>
       </columns>
       <recurse>false</recurse>
     </listView>
@@ -668,8 +645,6 @@
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
-        <jenkins.plugins.jobicon.CustomIconColumn plugin="custom-job-icon@0.2"/>
-        <hudson.plugins.favorite.column.FavoriteColumn plugin="favorite@2.3.2"/>
       </columns>
       <recurse>false</recurse>
     </listView>
