@@ -9,9 +9,9 @@
     <string>hudsonHomeIsFull</string>
   </disabledAdministrativeMonitors>
   <version>2.107.2</version>
-  <installState class="jenkins.install.InstallState$6">
+  <installState class="jenkins.install.InstallState$5">
     <isSetupComplete>true</isSetupComplete>
-    <name>DOWNGRADE</name>
+    <name>RESTART</name>
   </installState>
   <numExecutors>20</numExecutors>
   <mode>NORMAL</mode>
@@ -208,7 +208,7 @@
     <permission>jenkins.metrics.api.Metrics.View:agzhan</permission>
     <permission>jenkins.metrics.api.Metrics.View:anonymous</permission>
   </authorizationStrategy>
-  <securityRealm class="hudson.plugins.active_directory.ActiveDirectorySecurityRealm" plugin="active-directory@2.8">
+  <securityRealm class="hudson.plugins.active_directory.ActiveDirectorySecurityRealm" plugin="active-directory@2.6">
     <domains>
       <hudson.plugins.active__directory.ActiveDirectoryDomain>
         <name>kla-tencor.com</name>
