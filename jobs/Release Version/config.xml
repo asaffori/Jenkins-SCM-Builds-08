@@ -134,7 +134,6 @@
         booleanParam(name: &apos;ATL&apos;, defaultValue: false)
     }
 
-    stage(&apos;Details parameter&apos;){
         input {
             message &quot;Provide detailed information for each tool type you are going to release:&quot;
             ok &quot;Continue.&quot;
@@ -145,7 +144,6 @@
 		steps {
 			echo &quot;Hello ${params.PERSON}&quot;
 		}
-    }
 }</script>
     <sandbox>true</sandbox>
   </definition>
