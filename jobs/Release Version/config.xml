@@ -87,14 +87,13 @@
     }
 	stages {
 	        stage (&apos;Process Parameter&apos;){
-			    steps {
-				    step (&apos;MasterImage&apos;){
+				    steps (&apos;MasterImage&apos;){
 				        echo &quot;master Image are saved at:&quot;
 				    }
-				    step (&apos;ThirdParty&apos;){
+				    steps (&apos;ThirdParty&apos;){
 				        echo &quot;ThirdParty Version:&quot;
 				    }
-			    }
+			    
 	        }
 	}
 }</script>
