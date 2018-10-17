@@ -142,14 +142,9 @@
                 string(name: &apos;PERSON&apos;, defaultValue: &apos;Mr Jenkins&apos;, description: &apos;Who should I say hello to?&apos;)
                 }
         }
-        stage(&apos;Example&apos;) {
-            steps {
-                echo &quot;Hello ${params.PERSON}&quot;
-
-
-            }
-        }
-    }
+		steps {
+			echo &quot;Hello ${params.PERSON}&quot;
+		}
 }</script>
     <sandbox>true</sandbox>
   </definition>
