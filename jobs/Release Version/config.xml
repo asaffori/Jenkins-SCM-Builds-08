@@ -90,9 +90,6 @@
 				    steps (&apos;MasterImage&apos;){
 				        echo &quot;master Image are saved at:&quot;
 				    }
-				    steps (&apos;ThirdParty&apos;){
-				        echo &quot;ThirdParty Version:&quot;
-				    }
 			    
 	        }
 	}
