@@ -6,38 +6,16 @@
       <jobProperties/>
       <triggers/>
       <parameters>
-        <string>BIOGRAPHY</string>
-        <string>PERSON</string>
-        <string>TOGGLE</string>
+        <string>Version</string>
+        <string>7600</string>
+        <string>ATL</string>
+        <string>A600</string>
       </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Who Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600</name>
-          <description>Released For Tool Type</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>7600</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL</name>
-          <description>Released For Tool Type</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -54,6 +32,31 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Who Version you want to release?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600</name>
+          <description>Released For Tool Type</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>7600</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATL</name>
+          <description>Released For Tool Type</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -70,9 +73,17 @@
     parameters {
         string(name: &apos;Version&apos;, description: &apos;Who Version you want to release?&apos;)
         booleanParam(name: &apos;A600&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
-        booleanParam(name: &apos;7600&apos;, defaultValue: false)
-        booleanParam(name: &apos;ATL&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
-
+        booleanParam(name: &apos;A700&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATL&apos;, defaultValue: false)
+        booleanParam(name: &apos;A600-SRN&apos;, defaultValue: false, description: &apos;Which Version has SRN?&apos;)
+        booleanParam(name: &apos;A700-SRN&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATL-SRN&apos;, defaultValue: false)
+        booleanParam(name: &apos;A600-Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
+        booleanParam(name: &apos;A700-Web&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATL-Web&apos;, defaultValue: false)
+        string(name: &apos;A600-Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+        string(name: &apos;A700-Customer&apos;,defaultValue:&apos;All&apos;)
+        string(name: &apos;ATL-Customer&apos;,defaultValue: &apos;All&apos;)
     }
     stages {
         stage(&apos;Example&apos;) {
