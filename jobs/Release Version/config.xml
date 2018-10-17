@@ -6,10 +6,19 @@
       <jobProperties/>
       <triggers/>
       <parameters>
-        <string>Version</string>
-        <string>7600</string>
-        <string>ATL</string>
+        <string>A600-Web</string>
+        <string>ATL-Customer</string>
+        <string>A700</string>
+        <string>A600-SRN</string>
         <string>A600</string>
+        <string>ATL-SRN</string>
+        <string>A700-Customer</string>
+        <string>ATL-Web</string>
+        <string>A600-Customer</string>
+        <string>Version</string>
+        <string>A700-Web</string>
+        <string>ATL</string>
+        <string>A700-SRN</string>
       </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
