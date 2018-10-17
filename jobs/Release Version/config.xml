@@ -133,13 +133,13 @@
         booleanParam(name: &apos;A700&apos;, defaultValue: false)
         booleanParam(name: &apos;ATL&apos;, defaultValue: false)
     }
-    stages {
-        stage(&apos;Details parameter&apos;){
-             input {
-                message &quot;Provide detailed information for each tool type you are going to release:&quot;
-                ok &quot;Continue.&quot;
-                parameters {
-                    string(name: &apos;PERSON&apos;, defaultValue: &apos;Mr Jenkins&apos;, description: &apos;Who should I say hello to?&apos;)
+
+    stage(&apos;Details parameter&apos;){
+        input {
+            message &quot;Provide detailed information for each tool type you are going to release:&quot;
+            ok &quot;Continue.&quot;
+            parameters {
+                string(name: &apos;PERSON&apos;, defaultValue: &apos;Mr Jenkins&apos;, description: &apos;Who should I say hello to?&apos;)
                 }
         }
         stage(&apos;Example&apos;) {
