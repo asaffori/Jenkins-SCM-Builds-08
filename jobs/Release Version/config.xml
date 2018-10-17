@@ -75,32 +75,27 @@
         booleanParam(name: &apos;A600&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
         booleanParam(name: &apos;A700&apos;, defaultValue: false)
         booleanParam(name: &apos;ATL&apos;, defaultValue: false)
+        booleanParam(name: &apos;A600-SRN&apos;, defaultValue: false, description: &apos;Which Version has SRN?&apos;)
+        booleanParam(name: &apos;A700-SRN&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATL-SRN&apos;, defaultValue: false)
+        booleanParam(name: &apos;A600-Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
+        booleanParam(name: &apos;A700-Web&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATL-Web&apos;, defaultValue: false)
+        string(name: &apos;A600-Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+        string(name: &apos;A700-Customer&apos;,defaultValue:&apos;All&apos;)
+        string(name: &apos;ATL-Customer&apos;,defaultValue: &apos;All&apos;) 
     }
 	stages {
-		stage(&apos;Details parameter&apos;){
-			input {
-				message &quot;Provide detailed information for each tool type you are going to release:&quot;
-				ok &quot;Continue.&quot;
-				if (${params.A600}==true ){
-				    parameters {
-					    string(name: &apos;A600-Customer&apos;, defaultValue: &apos;Mr Jenkins&apos;, description: &apos;Who should I say hello to?&apos;)
-					}
-				}
-				if (${params.A600}==true ){
-				    parameters {
-					    string(name: &apos;A700-Customer&apos;, defaultValue: &apos;Mr Jenkins&apos;, description: &apos;Who should I say hello to?&apos;)
-					}
-				}
-				if (${params.A600}==true ){
-				    parameters {
-					    string(name: &apos;ATL-Customer&apos;, defaultValue: &apos;Mr Jenkins&apos;, description: &apos;Who should I say hello to?&apos;)
-					}
-				}
-			}
-			steps {
-				echo &quot;Hello ${params.PERSON}&quot;
-			}
-		}
+	        stage (&apos;Process Parameter&apos;){
+			    steps {
+				    step (&apos;MasterImage&apos;){
+				        echo &quot;master Image are saved at:&quot;
+				    }
+				    step (&apos;ThirdParty&apos;){
+				        echo &quot;ThirdParty Version:&quot;
+				    }
+			    }
+	        }
 	}
 }</script>
     <sandbox>true</sandbox>
