@@ -67,18 +67,15 @@
     agent any
     parameters {
         string(name: &apos;Version&apos;, description: &apos;Who Version you want to release?&apos;)
-        booleanParam(name: &apos;&apos;, defaultValue: true, description: &apos;Toggle this value&apos;)
-
+        booleanParam(name: &apos;A600&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
+        booleanParam(name: &apos;7600&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATL&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
 
     }
     stages {
         stage(&apos;Example&apos;) {
             steps {
-                echo &quot;Hello ${params.PERSON}&quot;
-
-                echo &quot;Biography: ${params.BIOGRAPHY}&quot;
-
-                echo &quot;Toggle: ${params.TOGGLE}&quot;
+                echo &quot;Hello ${params.Version}&quot;
 
 
             }
