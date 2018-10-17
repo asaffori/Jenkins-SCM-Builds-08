@@ -6,47 +6,16 @@
       <jobProperties/>
       <triggers/>
       <parameters>
-        <string>A600-Web</string>
-        <string>ATL-Customer</string>
-        <string>A700</string>
-        <string>A600-SRN</string>
-        <string>A600</string>
-        <string>ATL-SRN</string>
-        <string>A700-Customer</string>
-        <string>ATL-Web</string>
-        <string>A600-Customer</string>
         <string>Version</string>
-        <string>A700-Web</string>
+        <string>A700</string>
         <string>ATL</string>
-        <string>A700-SRN</string>
+        <string>A600</string>
       </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Who Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600</name>
-          <description>Released For Tool Type</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -63,6 +32,31 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Who Version you want to release?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600</name>
+          <description>Released For Tool Type</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATL</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -87,9 +81,21 @@
 			input {
 				message &quot;Provide detailed information for each tool type you are going to release:&quot;
 				ok &quot;Continue.&quot;
-				parameters {
-					string(name: &apos;PERSON&apos;, defaultValue: &apos;Mr Jenkins&apos;, description: &apos;Who should I say hello to?&apos;)
+				if (${params.A600}==true ){
+				    parameters {
+					    string(name: &apos;A600-Customer&apos;, defaultValue: &apos;Mr Jenkins&apos;, description: &apos;Who should I say hello to?&apos;)
 					}
+				}
+				if (${params.A600}==true ){
+				    parameters {
+					    string(name: &apos;A700-Customer&apos;, defaultValue: &apos;Mr Jenkins&apos;, description: &apos;Who should I say hello to?&apos;)
+					}
+				}
+				if (${params.A600}==true ){
+				    parameters {
+					    string(name: &apos;ATL-Customer&apos;, defaultValue: &apos;Mr Jenkins&apos;, description: &apos;Who should I say hello to?&apos;)
+					}
+				}
 			}
 			steps {
 				echo &quot;Hello ${params.PERSON}&quot;
