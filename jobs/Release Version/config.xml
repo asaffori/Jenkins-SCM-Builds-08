@@ -203,7 +203,7 @@
             steps (&apos;SendMail&apos;) {
 		        emailext (to: &quot;Agnes.Zhang@KLA-tencor.com&quot;,
                 subject: &quot;Archer SWV ${shortversion} (${params.Version}) is released for ${tooltype}&quot;,
-                body: ${mailcontent});
+                body: &quot;${mailcontent}&quot;);
 		    }
         }
 	}
