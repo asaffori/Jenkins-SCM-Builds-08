@@ -2,6 +2,7 @@
 <hudson.plugins.emailext.ExtendedEmailPublisherDescriptor plugin="email-ext@2.62">
   <defaultSuffix>@kla-tencor.com</defaultSuffix>
   <mailAccount>
+    <smtpHost>mailhost.kla-tencor.com</smtpHost>
     <useSsl>false</useSsl>
   </mailAccount>
   <addAccounts/>
