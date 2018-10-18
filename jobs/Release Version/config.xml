@@ -147,12 +147,13 @@
 				    steps (&apos;MasterImage&apos;){
 				        echo &quot;master Image are saved at:&quot;
 				    }
-				    steps (&apos;SendMail&apos;) {
+	        }
+	        stage (&apos;Send Mail&apos;) {
+	                steps (&apos;SendMail&apos;) {
 				        emailext (to: &quot;Agnes.Zhang@KLA-tencor.com&quot;,
                         subject: &quot;${params.Version} is released for A600&quot;,
                         body: &quot;Build is Released!&quot;);
 				    }
-			    
 	        }
 	}
 }</script>
