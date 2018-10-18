@@ -156,7 +156,8 @@
 				        script {
 				            tooltype=params.A600?&quot; A600&quot;:&quot;&quot;+params.A700?&quot; A700&quot;:&quot;&quot;+params.ATL?&quot; ATL&quot;:&quot;&quot; 
 				            toolSRN=params.A600-SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;+params.A700-SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;+params.ATL-SRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot; 
-				            publishweb=params.A600-Web&amp;&amp;params.A600?&quot; A600: Will be published on Web. /n&quot;:&quot;A600: No Web publish&quot;+params.A700-Web&amp;&amp;params.A700?&quot;A700: Will be published on Web. /n&quot;:&quot;A700: No Web publish&quot;+params.ATL-Web&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. /n&quot;:&quot;ATL: No Web publish&quot;				            echo &quot;build is released for&quot;+ tooltype
+				            publishweb=params.A600-Web&amp;&amp;params.A600?&quot; A600: Will be published on Web. /n&quot;:&quot;A600: No Web publish&quot;+params.A700-Web&amp;&amp;params.A700?&quot;A700: Will be published on Web. /n&quot;:&quot;A700: No Web publish&quot;+params.ATL-Web&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. /n&quot;:&quot;ATL: No Web publish&quot;
+				            
 				        }
 				    }
 	        }
