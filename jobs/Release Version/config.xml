@@ -143,11 +143,11 @@
         string(name: &apos;ATL-Customer&apos;,defaultValue: &apos;All&apos;) 
     }
 	stages {
-	        stage (&apos;Process Parameter&apos;){
+	        stage (&apos;Process Parameter&apos;) {
 				    steps (&apos;MasterImage&apos;){
 				        echo &quot;master Image are saved at:&quot;
 				    }
-				    steps (SendMail){
+				    steps (&apos;SendMail&apos;) {
 				        emailext (to: &quot;Agnes.Zhang@KLA-tencor.com&quot;,
                         subject: &quot;${params.Version} is released for A600&quot;,
                         body: &quot;Build is Released!&quot;);
