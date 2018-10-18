@@ -26,75 +26,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Who Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>Comments</name>
-          <description>Who Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600</name>
-          <description>Released For Tool Type</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600-SRN</name>
-          <description>Which Version has SRN?</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700-SRN</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL-SRN</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600-Web</name>
-          <description>Which Version will be publish on Web?</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700-Web</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL-Web</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>A600-Customer</name>
-          <description>Which Customer will be released to?</description>
-          <defaultValue>All</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>A700-Customer</name>
-          <defaultValue>All</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>ATL-Customer</name>
-          <defaultValue>All</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -111,6 +42,85 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Who Version you want to release?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Comments</name>
+          <description>Who Version you want to release?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600</name>
+          <description>Released For Tool Type</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATL</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600-SRN</name>
+          <description>Which Version has SRN?</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700-SRN</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATL-SRN</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600-Web</name>
+          <description>Which Version will be publish on Web?</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700-Web</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATL-Web</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>A600-Customer</name>
+          <description>Which Customer will be released to?</description>
+          <defaultValue>All</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>A700-Customer</name>
+          <description></description>
+          <defaultValue>All</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ATL-Customer</name>
+          <description></description>
+          <defaultValue>All</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -130,23 +140,23 @@
         booleanParam(name: &apos;A600&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
         booleanParam(name: &apos;A700&apos;, defaultValue: false)
         booleanParam(name: &apos;ATL&apos;, defaultValue: false)
-        booleanParam(name: &apos;A600-SRN&apos;, defaultValue: false, description: &apos;Which Version has SRN?&apos;)
-        booleanParam(name: &apos;A700-SRN&apos;, defaultValue: false)
-        booleanParam(name: &apos;ATL-SRN&apos;, defaultValue: false)
-        booleanParam(name: &apos;A600-Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
-        booleanParam(name: &apos;A700-Web&apos;, defaultValue: false)
-        booleanParam(name: &apos;ATL-Web&apos;, defaultValue: false)
-        string(name: &apos;A600-Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
-        string(name: &apos;A700-Customer&apos;,defaultValue:&apos;All&apos;)
-        string(name: &apos;ATL-Customer&apos;,defaultValue: &apos;All&apos;) 
+        booleanParam(name: &apos;A600SRN&apos;, defaultValue: false, description: &apos;Which Version has SRN?&apos;)
+        booleanParam(name: &apos;A700SRN&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATLSRN&apos;, defaultValue: false)
+        booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
+        booleanParam(name: &apos;A700Web&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false)
+        string(name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+        string(name: &apos;A700Customer&apos;,defaultValue:&apos;All&apos;)
+        string(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;) 
     }
 	stages {
 	        stage (&apos;Process Parameter&apos;) {
 				    steps (&apos;Parameter&apos;){
 				        script {
 				            tooltype=params.A600?&quot; A600&quot;:&quot;&quot;+params.A700?&quot; A700&quot;:&quot;&quot;+params.ATL?&quot; ATL&quot;:&quot;&quot; 
-				            toolSRN=params.A600-SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;+params.A700-SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;+params.ATL-SRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot; 
-				            publishweb=params.A600-Web&amp;&amp;params.A600?&quot; A600: Will be published on Web. /n&quot;:&quot;A600: No Web publish&quot;+params.A700-Web&amp;&amp;params.A700?&quot;A700: Will be published on Web. /n&quot;:&quot;A700: No Web publish&quot;+params.ATL-Web&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. /n&quot;:&quot;ATL: No Web publish&quot;
+				            toolSRN=params.A600SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;+params.A700SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;+params.ATLSRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot; 
+				            publishweb=params.A600Web&amp;&amp;params.A600?&quot; A600: Will be published on Web. /n&quot;:&quot;A600: No Web publish&quot;+params.A700Web&amp;&amp;params.A700?&quot;A700: Will be published on Web. /n&quot;:&quot;A700: No Web publish&quot;+params.ATLWeb&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. /n&quot;:&quot;ATL: No Web publish&quot;
 				            
 				        }
 				    }
