@@ -146,8 +146,10 @@
 	stages {
 	        stage (&apos;Process Parameter&apos;) {
 				    steps (&apos;Parameter&apos;){
-				        def tooltype
-				        tooltype=${params.A600}?&quot;A600 &quot;:&quot; &quot;+${params.A700}?&quot;A700 &quot;:&quot; &quot;+${params.ATL}?&quot;ATL &quot;:&quot; &quot; 
+				        script {
+				            def tooltype
+				            tooltype=${params.A600}?&quot;A600 &quot;:&quot; &quot;+${params.A700}?&quot;A700 &quot;:&quot; &quot;+${params.ATL}?&quot;ATL &quot;:&quot; &quot; 
+				        }
 				        echo &quot;build is released for ${tooltype}&quot;
 				    }
 	        }
