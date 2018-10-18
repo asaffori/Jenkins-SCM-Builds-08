@@ -160,7 +160,7 @@
         				    input(message:msg ,ok:&apos;Abort&apos;)
         					throw new Exception(msg)
     	                }
-    	                if(params.A600==false$$params.A700==false&amp;&amp;params.ATL=false){
+    	                if(params.A600==false$$params.A700==false&amp;&amp;params.ATL==false){
     	                    msg=&quot;Released tool type is empty, at least you are releasing for one tool type&quot;
         				    input(message:msg ,ok:&apos;Abort&apos;)
         					throw new Exception(msg)
