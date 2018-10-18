@@ -153,59 +153,59 @@
     }
 	stages {
 	    
-    	    stage (&apos;validation&apos;) {
-	            steps (&apos;vaiidate&apos;) {
-    	                script{
-    	                if(params.Version==&quot;&quot;){
-    	                    msg=&quot;Version is not defined&quot;
-        				    input(message:msg ,ok:&apos;Abort&apos;)
-        					throw new Exception(msg)
-    	                }
-    	                if(params.A600==false&amp;&amp;params.A700==false&amp;&amp;params.ATL==false){
-    	                    msg=&quot;Released tool type is empty, at least you are releasing for one tool type&quot;
-        				    input(message:msg ,ok:&apos;Abort&apos;)
-        					throw new Exception(msg)
-	                    }
+	    stage (&apos;validation&apos;) {
+            steps (&apos;vaiidate&apos;) {
+	                script{
+	                if(params.Version==&quot;&quot;){
+	                    msg=&quot;Version is not defined&quot;
+    				    input(message:msg ,ok:&apos;Abort&apos;)
+    					throw new Exception(msg)
 	                }
-	            }
-    	    }
-	        stage (&apos;Process Parameter&apos;) {
-			    steps (&apos;Parameter&apos;){
-			        script {
-			            shortversion=params.Version.substring(0,7)
-						RDMVersion=params.CompitableRDMVersion==&quot;&quot;?params.Version:params.CompitableRDMVersion
-			            tooltype=params.A600?&quot; A600&quot;:&quot;&quot;+params.A700?&quot; A700&quot;:&quot;&quot;+params.ATL?&quot; ATL&quot;:&quot;&quot; 
-			            toolSRN=params.A600SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;+params.A700SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;+params.ATLSRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot; 
-			            publishweb=params.A600Web&amp;&amp;params.A600?&quot; A600: Will be published on Web. /n&quot;:&quot;A600: No Web publish&quot;+params.A700Web&amp;&amp;params.A700?&quot;A700: Will be published on Web. /n&quot;:&quot;A700: No Web publish&quot;+params.ATLWeb&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. /n&quot;:&quot;ATL: No Web publish&quot;
-			            mailcontent=&quot;Archer SWV  ${shortversion} ${params.Version} is released for ${tooltype}&lt;/br&gt;&quot;+
-                        &quot;${params.Comments}&lt;/br&gt;&quot;+
-                        &quot;&lt;strong&gt;&lt;u&gt;Tool SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
-                        &quot;SWV ${params.Version} Installation kit is available in \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}&lt;/br&gt;&quot;+
-						&quot;Installation instructions are residing in Documentation folder&lt;/br&gt;&quot;+
-                        &quot;${toolSRN} SRN is residing in Documentation folder.&lt;/br&gt;&quot;+
-						&quot;&lt;/br&gt;&quot;+
-						&quot;&lt;strong&gt;&lt;u&gt;Compatible RDM SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&lt;/br&gt;&quot;+
-						&quot;RDM ${shortversion} is available at \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\RDM\\RDM_${RDMVersion}&lt;/br&gt;&quot;+
-						&quot;Installation instructions available in residing in Documentation folder.&lt;/br&gt;&quot;+
-						&quot;&lt;/br&gt;&quot;+
-						&quot;&lt;strong&gt;&lt;u&gt;Tool Config Utility&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
-						&quot;Tool configuration utility can be found at  \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}\\ToolConfiguration &lt;/br&gt;&quot;+
-						&quot;&lt;/br&gt;&quot;+
-						&quot;&lt;strong&gt;&lt;u&gt;Phoenix&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
-						&quot;&lt;/br&gt;&quot;+
-						&quot;&lt;strong&gt;&lt;u&gt;Latest master images are:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
-						&quot;&lt;/br&gt;&quot;+
-			        }
-			    }
-	        }
+	                if(params.A600==false&amp;&amp;params.A700==false&amp;&amp;params.ATL==false){
+	                    msg=&quot;Released tool type is empty, at least you are releasing for one tool type&quot;
+    				    input(message:msg ,ok:&apos;Abort&apos;)
+    					throw new Exception(msg)
+                    }
+                }
+            }
+	    }
+        stage (&apos;Process Parameter&apos;) {
+		    steps (&apos;Parameter&apos;){
+		        script {
+		            shortversion=params.Version.substring(0,7)
+					RDMVersion=params.CompitableRDMVersion==&quot;&quot;?params.Version:params.CompitableRDMVersion
+		            tooltype=params.A600?&quot; A600&quot;:&quot;&quot;+params.A700?&quot; A700&quot;:&quot;&quot;+params.ATL?&quot; ATL&quot;:&quot;&quot; 
+		            toolSRN=params.A600SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;+params.A700SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;+params.ATLSRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot; 
+		            publishweb=params.A600Web&amp;&amp;params.A600?&quot; A600: Will be published on Web. /n&quot;:&quot;A600: No Web publish&quot;+params.A700Web&amp;&amp;params.A700?&quot;A700: Will be published on Web. /n&quot;:&quot;A700: No Web publish&quot;+params.ATLWeb&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. /n&quot;:&quot;ATL: No Web publish&quot;
+		            mailcontent=&quot;Archer SWV  ${shortversion} ${params.Version} is released for ${tooltype}&lt;/br&gt;&quot;+
+                    &quot;${params.Comments}&lt;/br&gt;&quot;+
+                    &quot;&lt;strong&gt;&lt;u&gt;Tool SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+                    &quot;SWV ${params.Version} Installation kit is available in \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}&lt;/br&gt;&quot;+
+					&quot;Installation instructions are residing in Documentation folder&lt;/br&gt;&quot;+
+                    &quot;${toolSRN} SRN is residing in Documentation folder.&lt;/br&gt;&quot;+
+					&quot;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Compatible RDM SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&lt;/br&gt;&quot;+
+					&quot;RDM ${shortversion} is available at \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\RDM\\RDM_${RDMVersion}&lt;/br&gt;&quot;+
+					&quot;Installation instructions available in residing in Documentation folder.&lt;/br&gt;&quot;+
+					&quot;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Tool Config Utility&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+					&quot;Tool configuration utility can be found at  \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}\\ToolConfiguration &lt;/br&gt;&quot;+
+					&quot;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Phoenix&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+					&quot;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Latest master images are:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+					&quot;&lt;/br&gt;&quot;
+		        }
+		    }
+        }
 	        
-	        stage (&apos;Send Mail&apos;) {
-	                steps (&apos;SendMail&apos;) {
-				        emailext (to: &quot;Agnes.Zhang@KLA-tencor.com&quot;,
-                        subject: &quot;Archer SWV ${shortversion} (${params.Version}) is released for ${tooltype}&quot;,
-                        body: ${mailcontent});
-				    }
-	        }
+        stage (&apos;Send Mail&apos;) {
+            steps (&apos;SendMail&apos;) {
+		        emailext (to: &quot;Agnes.Zhang@KLA-tencor.com&quot;,
+                subject: &quot;Archer SWV ${shortversion} (${params.Version}) is released for ${tooltype}&quot;,
+                body: ${mailcontent});
+		    }
+        }
 	}
 }</script>
     <sandbox>true</sandbox>
