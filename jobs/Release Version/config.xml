@@ -161,17 +161,19 @@
 				        }
 				    }
 	        }
-	        stage (&apos;validation&apos;){
-	            steps (&apos;vaiidate&apos;){
-	                if(params.Version==&quot;&quot;){
-	                    msg=&quot;Version is not defined&quot;
-    				    input(message:msg ,ok:&apos;Abort&apos;)
-    					throw new Exception(msg)
-	                }
-	                if(tooltype==&quot;&quot;){
-	                    msg=&quot;Released tool type is empty, at least you are releasing for one tool type&quot;
-    				    input(message:msg ,ok:&apos;Abort&apos;)
-    					throw new Exception(msg)
+	        stage (&apos;validation&apos;) {
+	            steps (&apos;vaiidate&apos;) {
+    	                script{
+    	                if(params.Version==&quot;&quot;){
+    	                    msg=&quot;Version is not defined&quot;
+        				    input(message:msg ,ok:&apos;Abort&apos;)
+        					throw new Exception(msg)
+    	                }
+    	                if(tooltype==&quot;&quot;){
+    	                    msg=&quot;Released tool type is empty, at least you are releasing for one tool type&quot;
+        				    input(message:msg ,ok:&apos;Abort&apos;)
+        					throw new Exception(msg)
+	                    }
 	                }
 	            }
 	        }
