@@ -178,6 +178,28 @@
 		            tooltype=params.A600?&quot; A600&quot;:&quot;&quot;+params.A700?&quot; A700&quot;:&quot;&quot;+params.ATL?&quot; ATL&quot;:&quot;&quot; 
 		            toolSRN=params.A600SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;+params.A700SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;+params.ATLSRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot; 
 		            publishweb=params.A600Web&amp;&amp;params.A600?&quot; A600: Will be published on Web. /n&quot;:&quot;A600: No Web publish&quot;+params.A700Web&amp;&amp;params.A700?&quot;A700: Will be published on Web. /n&quot;:&quot;A700: No Web publish&quot;+params.ATLWeb&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. /n&quot;:&quot;ATL: No Web publish&quot;
+		            
+		            def thirdpartyism= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_17.14\\UOMD_BLD_17.14.00.20100_code&quot;+ &quot;/Installation/Archer_Family/Installshield/Archer_SW_Installation/uArcherThirdPartyInstallation/ThirdPartySetup.ism&quot;;
+	                def thirdparty
+	                thirdparty= new File(thirdpartyism)
+	
+                	if(thirdparty.exists()){
+                		string thirdpartyversion=&quot;&lt;table&gt;&quot;
+                		echo &quot;found the third party ism file&quot;				
+                		thirdpartycontent=thirdparty.readLines()
+                		for(String line : thirdpartycontent){
+                			if(line.contains(&quot;PATH_TO_ARCHER_INSTALLATION&amp;gt;\\SupportFiles&quot;)||line.contains(&quot;PATH_TO_ARCHER_INSTALLATION&amp;gt;\\&amp;lt;ARCHER_VER2&amp;gt;\\SupportFiles&quot;)){
+                			if(line.contains(&quot;Disk&quot;))continue
+                			 string subline=line.substring(line.indexOf(&quot;SupportFiles\\&quot;)+13,line.length()-16).replaceAll(&quot;\\\\&quot;,&quot;&lt;//TD&gt;&lt;TD&gt;&quot;)
+                			 thirdpartyversion+=&quot;&lt;TR&gt;&lt;TD&gt;&quot;+subline+&quot;&lt;/TD&gt;&lt;/TR&gt;&quot;
+                
+                			continue
+                			}
+                		  }
+                		 string thirdpartyversion+=&quot;&lt;//table&gt;&quot;
+                	}
+		            
+		            
 		            mailcontent=&quot;Archer SWV  ${shortversion} ${params.Version} is released for ${tooltype}&lt;/br&gt;&quot;+
                     &quot;${params.Comments}&lt;/br&gt;&quot;+
                     &quot;&lt;strong&gt;&lt;u&gt;Tool SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
@@ -195,7 +217,8 @@
 					&quot;&lt;strong&gt;&lt;u&gt;Phoenix&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Latest master images are:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
-					&quot;&lt;/br&gt;&quot;
+					&quot;&lt;/br&gt;&quot;+
+					&quot;${thirdpartyversion}&quot;
 		        }
 		    }
         }
