@@ -229,15 +229,13 @@
 					&quot;${thirdpartyversion}&quot;
 					
 		        }
-		    }
-        }
-	     
-	    stage (&apos;Send review&apos;) {
-            steps (&apos;SendReview&apos;) {
 		        emailext (to: &quot;Agnes.Zhang@KLA-tencor.com&quot;,
                 subject: &quot;Archer SWV ${shortversion} (${params.Version}) is released for ${tooltype} --- for your reivew only&quot;,
                 body: &quot;${mailcontent}&quot;);
 		    }
+        }
+	     
+	    stage (&apos;Send review&apos;) {
 		    input {
                 message &quot;Is the mail content fine?&quot;
                 ok &quot;Yes, we can release it&quot;
