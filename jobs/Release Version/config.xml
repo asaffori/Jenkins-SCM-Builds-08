@@ -129,17 +129,18 @@
                              ok:&apos;Continue.&apos;,
                              parameters: 
                             [[booleanParam(name: &apos;A700SRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;)],
-                                [booleanParam(name: &apos;A700Web&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;)],
-                                [string(name: &apos;A700Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)]]
+                            [booleanParam(name: &apos;A700Web&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;)],
+                            [string(name: &apos;A700Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)]]
 	                    )
 	                }
 	                if(params.ATL) {
 	                    input (
                              message:&apos;About ATL?&apos;,
                              ok:&apos;Continue.&apos;,
-                             parameters: [[booleanParam(name: &apos;ATLSRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;)],
-                                [booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;)],
-                                [string(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)]]
+                             parameters: 
+                             [[booleanParam(name: &apos;ATLSRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;)],
+                             [booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;)],
+                            [string(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)]]
 	                    )
 	                }
 	                
