@@ -86,11 +86,12 @@
     agent any
     parameters {
         string(name: &apos;Version&apos;, description: &apos;Who Version you want to release?&apos;)
-        string(name: &apos;Comments&apos;, description: &apos;What is your comments?&apos;)
-		string(name: &apos;CompitableRDMVersion&apos;, description: &apos;Leave it with empty if no special RDM version&apos;)
         booleanParam(name: &apos;A600&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
         booleanParam(name: &apos;A700&apos;, defaultValue: false)
         booleanParam(name: &apos;ATL&apos;, defaultValue: false)
+        string(name: &apos;Comments&apos;, description: &apos;What is your comments?&apos;)
+		string(name: &apos;CompitableRDMVersion&apos;, description: &apos;Leave it with empty if no special RDM version&apos;)
+
     }
 	stages {
 	    
