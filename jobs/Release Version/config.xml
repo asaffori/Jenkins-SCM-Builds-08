@@ -187,9 +187,9 @@
 		            publishweb=params.A600Web&amp;&amp;params.A600?&quot; A600: Will be published on Web. /n&quot;:&quot;A600: No Web publish&quot;+params.A700Web&amp;&amp;params.A700?&quot;A700: Will be published on Web. /n&quot;:&quot;A700: No Web publish&quot;+params.ATLWeb&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. /n&quot;:&quot;ATL: No Web publish&quot;
 					
 					string masterimage=&quot;&lt;/br&gt;&quot;
-					if(params.A600)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A600.txt&quot;)).text
-					if(params.A700)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A700.txt&quot;)).text
-					if(params.ATL)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\ATL.txt&quot;)).text
+					if(params.A600)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A600.txt&quot;).text
+					if(params.A700)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A700.txt&quot;).text
+					if(params.ATL)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\ATL.txt&quot;).text
 					
 					def buildnotice= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/InstallationInstruction.html&quot;;
 	                def buildnoticefile = new File(buildnotice)
