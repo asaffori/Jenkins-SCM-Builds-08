@@ -115,8 +115,8 @@
 	            script {
 	                if(params.A600) {
 	                    input (
-                             message:&quot;About A600?&quot;
-                             ok:&quot;Continue.&quot;
+                             message:&quot;About A600?&quot;,
+                             ok:&quot;Continue.&quot;,
                              parameters {
                                 booleanParam(name: &apos;A600SRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;)
                                 booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;)
@@ -127,8 +127,8 @@
 	                }
 	                if(params.A700) {
 	                    input (
-                             message:&quot;About A700?&quot;
-                             ok:&quot;Continue.&quot;
+                             message:&quot;About A700?&quot;,
+                             ok:&quot;Continue.&quot;,
                              parameters {
                                 booleanParam(name: &apos;A700SRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;)
                                 booleanParam(name: &apos;A700Web&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;)
@@ -139,8 +139,8 @@
 	                }
 	                if(params.ATL) {
 	                    input (
-                             message:&quot;About ATL?&quot;
-                             ok:&quot;Continue.&quot;
+                             message:&quot;About ATL?&quot;,
+                             ok:&quot;Continue.&quot;,
                              parameters {
                                 booleanParam(name: &apos;ATLSRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;)
                                 booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;)
