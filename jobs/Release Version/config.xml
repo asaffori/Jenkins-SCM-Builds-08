@@ -148,13 +148,12 @@
         booleanParam(name: &apos;A600&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
         booleanParam(name: &apos;A700&apos;, defaultValue: false)
         booleanParam(name: &apos;ATL&apos;, defaultValue: false)
-        booleanParam(name: &apos;A600SRN&apos;, defaultValue: true, description: &apos;Which Version has SRN?&apos;)
         booleanParam(name: &apos;A700SRN&apos;, defaultValue: true)
         booleanParam(name: &apos;ATLSRN&apos;, defaultValue: true)
-        booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
+
         booleanParam(name: &apos;A700Web&apos;, defaultValue: false)
         booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false)
-        string(name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+        
         string(name: &apos;A700Customer&apos;,defaultValue:&apos;All&apos;)
         string(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;) 
     }
@@ -175,6 +174,50 @@
                     }
                 }
             }
+	    }
+	    stage (&apos;tooltype Process&apos;) {
+	        steps (&apos;tooltypes Process&apos;) {
+	            script {
+	                if(params.A600) {
+	                    input {
+                             message &quot;About A600?&quot;
+                             ok &quot;Continue.&quot;
+                             parameters {
+                                booleanParam(name: &apos;A600SRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;)
+                                booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;)
+                                string(name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+                             }
+	                    
+	                    }
+	                }
+	                if(params.A700) {
+	                    input {
+                             message &quot;About A700?&quot;
+                             ok &quot;Continue.&quot;
+                             parameters {
+                                booleanParam(name: &apos;A700SRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;)
+                                booleanParam(name: &apos;A700Web&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;)
+                                string(name: &apos;A700Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+                             }
+	                    
+	                    }
+	                }
+	                if(params.ATL) {
+	                    input {
+                             message &quot;About ATL?&quot;
+                             ok &quot;Continue.&quot;
+                             parameters {
+                                booleanParam(name: &apos;ATLSRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;)
+                                booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;)
+                                string(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+                             }
+	                    
+	                    }
+	                }
+	                
+	            }
+	        }
+	        
 	    }
         stage (&apos;Process Parameter&apos;) {
 		    steps (&apos;Parameter&apos;){
