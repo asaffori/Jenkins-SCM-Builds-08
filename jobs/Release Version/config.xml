@@ -215,7 +215,7 @@
                 			if(line.contains(&quot;Disk&quot;))continue
                 			 string subline=line.substring(line.indexOf(&quot;SupportFiles\\&quot;)+13,line.length()-16).replaceAll(&quot;\\\\&quot;,&quot;&lt;//TD&gt;&lt;TD&gt;&quot;)
                 			 thirdpartyversion+=&quot;&lt;TR&gt;&lt;TD&gt;&quot;+subline+&quot;&lt;/TD&gt;&lt;/TR&gt;&quot;
-                
+                            echo subline
                 			continue
                 			}
                 		  }
