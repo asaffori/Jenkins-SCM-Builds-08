@@ -236,10 +236,14 @@
         }
 	     
 	    stage (&apos;Send review&apos;) {
+	        steps {
+                echo &quot;Draft has been sent out for review&quot;
+            }
 		    input {
                 message &quot;Is the mail content fine?&quot;
                 ok &quot;Yes, we can release it&quot;
             }
+            
         }
         stage (&apos;Send Mail&apos;) {
             steps (&apos;SendMail&apos;) {
