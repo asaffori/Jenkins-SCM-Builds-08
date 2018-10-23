@@ -169,7 +169,7 @@
 					RDMVersion=params.CompitableRDMVersion==&quot;&quot;?params.Version:params.CompitableRDMVersion
 		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
 		            toolSRN=(env.A600SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;)+(env.A700SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;)+(env.ATLSRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot;) 
-		            publishweb=(params.A600?(env.A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;):)+(params.A700?(env.A600Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;):)+(env.ATLWeb&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. &lt;/br&gt;&quot;:&quot;ATL: No Web publish&lt;/br&gt;&quot;)
+		            publishweb=(params.A600?(env.A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;):&quot;&quot;)+(params.A700?(env.A600Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;):&quot;&quot;)+(env.ATLWeb&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. &lt;/br&gt;&quot;:&quot;ATL: No Web publish&lt;/br&gt;&quot;)
 					
 					string masterimage=&quot;&lt;/br&gt;&quot;
 					if(params.A600)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A600.txt&quot;).text+&quot;&lt;/br&gt;&quot;
