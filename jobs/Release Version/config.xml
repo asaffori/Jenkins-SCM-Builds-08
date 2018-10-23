@@ -18,38 +18,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600</name>
-          <description>Released For Tool Type</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>Comments</name>
-          <description>What is your comments?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>CompitableRDMVersion</name>
-          <description>Leave it with empty if no special RDM version</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -66,6 +34,43 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to release?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600</name>
+          <description>Released For Tool Type</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATL</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Comments</name>
+          <description>What is your comments?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>CompitableRDMVersion</name>
+          <description>Leave it with empty if no special RDM version</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -109,9 +114,6 @@
 	    stage (&apos;tooltype Process&apos;) {
 	        steps (&apos;tooltypes Process&apos;) {
 	            script {
-	                def A600input
-	                def A700input
-	                def ATLinput
 	                if(params.A600) {
 	                   A600input=input (
 	                        id:&apos;A600input&apos;,
@@ -122,6 +124,9 @@
                              [$class:&apos;BooleanParameterDefinition&apos;,name: &apos;A600Web&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;],
                              [$class: &apos;TextParameterDefinition&apos;,name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;]]
 	                    )
+	                    env.A600SRN = A600input.A600SRN
+	                    env.A600Web = A600input.A600Web
+	                    env.A600Customer = A600input.A600Customer
 	                }
 	                if(params.A700) {
 	                   A700input=input (
@@ -133,6 +138,9 @@
                              [$class:&apos;BooleanParameterDefinition&apos;,name: &apos;A700Web&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;],
                              [$class: &apos;TextParameterDefinition&apos;,name: &apos;A700Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;]]
 	                    )
+	                    env.A700SRN = A700input.A700SRN
+	                    env.A700Web = A700input.A700Web
+	                    env.A700Customer = A700input.A700Customer
 	                }
 	                if(params.ATL) {
 	                    ATLinput=input (
@@ -144,6 +152,9 @@
                              [$class:&apos;BooleanParameterDefinition&apos;,name: &apos;ATLWeb&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;],
                              [$class: &apos;TextParameterDefinition&apos;,name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;]]
 	                    )
+	                    env.ATLSRN = ATLinput.ATLSRN
+	                    env.ATLWeb = ATLinput.ATLWeb
+	                    env.ATLCustomer = ATLinput.ATLCustomer
 	                }
 	                
 	            }
@@ -157,7 +168,7 @@
 					majorminor=params.Version.substring(0,5)
 					RDMVersion=params.CompitableRDMVersion==&quot;&quot;?params.Version:params.CompitableRDMVersion
 		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
-		            toolSRN=(A600input[&apos;A600SRN&apos;]&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;)+(A700input[&apos;A700SRN&apos;]&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;)+(ATLinput[&apos;ATLSRN&apos;]&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot;) 
+		            toolSRN=(env.A600SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;)+(env.A700SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;)+(env.ATLSRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot;) 
 		            publishweb=(A600Web&amp;&amp;params.A600?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)+(A700Web&amp;&amp;params.A700?&quot;A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)+(ATLWeb&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. &lt;/br&gt;&quot;:&quot;ATL: No Web publish&lt;/br&gt;&quot;)
 					
 					string masterimage=&quot;&lt;/br&gt;&quot;
