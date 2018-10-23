@@ -18,38 +18,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600</name>
-          <description>Released For Tool Type</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>Comments</name>
-          <description>What is your comments?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>CompitableRDMVersion</name>
-          <description>Leave it with empty if no special RDM version</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -66,6 +34,43 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to release?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600</name>
+          <description>Released For Tool Type</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATL</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Comments</name>
+          <description>What is your comments?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>CompitableRDMVersion</name>
+          <description>Leave it with empty if no special RDM version</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -151,13 +156,13 @@
 					majorminor=params.Version.substring(0,5)
 					RDMVersion=params.CompitableRDMVersion==&quot;&quot;?params.Version:params.CompitableRDMVersion
 		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
-		            toolSRN=(params.A600SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATLSRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot;) 
-		            publishweb=(params.A600Web&amp;&amp;params.A600?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)+(params.A700Web&amp;&amp;params.A700?&quot;A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)+(params.ATLWeb&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. &lt;/br&gt;&quot;:&quot;ATL: No Web publish&lt;/br&gt;&quot;)
+		            toolSRN=(A600SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;)+(A700SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;)+(ATLSRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot;) 
+		            publishweb=(A600Web&amp;&amp;params.A600?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)+(A700Web&amp;&amp;params.A700?&quot;A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)+(ATLWeb&amp;&amp;params.ATL?&quot;ATL: Will be published on Web. &lt;/br&gt;&quot;:&quot;ATL: No Web publish&lt;/br&gt;&quot;)
 					
 					string masterimage=&quot;&lt;/br&gt;&quot;
-					if(params.A600)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A600.txt&quot;).text
-					if(params.A700)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A700.txt&quot;).text
-					if(params.ATL)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\ATL.txt&quot;).text
+					if(params.A600)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A600.txt&quot;).text+&quot;&lt;/br&gt;&quot;
+					if(params.A700)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A700.txt&quot;).text+&quot;&lt;/br&gt;&quot;
+					if(params.ATL)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\ATL.txt&quot;).text+&quot;&lt;/br&gt;&quot;
 					
 					def buildnotice= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/InstallationInstruction.html&quot;;
 	                def buildnoticefile = new File(buildnotice)
