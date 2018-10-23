@@ -239,7 +239,7 @@
 					&quot;${publishweb}&quot;+
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Customer:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
-					&quot;${publishweb}&quot;+
+					&quot;${customer}&quot;+
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Third Party Version:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
 					&quot;${thirdpartyversion}&quot;
