@@ -53,6 +53,7 @@
         <string>CA1NAS07-CPG-UNT-RO</string>
         <string>DL-CPG-NeXus-Users</string>
         <string>Ca1nas01-WINdownload-RO</string>
+        <string>DL-ALL-ISRAEL-OMD</string>
         <string>DL-OMD-ARCHER-17-04</string>
         <string>Ca1ucsfs01-EMIE-RO</string>
         <string>DL-OMD-ARCHER-17-03</string>
@@ -71,11 +72,12 @@
         <string>ISR1FP05-MICHALSA-RO</string>
         <string>WIN-DYSD-sepg-RO</string>
         <string>MSN-Users</string>
-        <string>DL-PLC-Engineering-iConnect</string>
         <string>DL-Israel-CC Users</string>
+        <string>DL-PLC-Engineering-iConnect</string>
         <string>WIN-DYSD-IMPACT_met-RO</string>
         <string>WIN-DYSD-Image-CH</string>
         <string>Twn1fp01-PCIDData-RO</string>
+        <string>DL-ISRAEL-OMD-ENG-MT</string>
         <string>CA1-CTX-Portal-Users</string>
         <string>WIN-DYSD-WSODocs-CH</string>
         <string>Citrix XenApp 7.6 - eQuality - Prod-English</string>
@@ -110,8 +112,8 @@
         <string>DL-PowerApps-ChinaWorkflow</string>
         <string>DL-OMD-ARCHER-17-13</string>
         <string>DL-OMD-ARCHER-17-12</string>
-        <string>DL-IT-Survey</string>
         <string>DL-OMD-ARCHER-17-11</string>
+        <string>DL-IT-Survey</string>
         <string>ISR1FP05-MI-RO</string>
         <string>UC-User-Milp-Production</string>
         <string>JPN1FS01-043-RO</string>
@@ -179,13 +181,15 @@
         <string>WIN-DYSD-adc-plc-CH</string>
         <string>ca1nas05-WIN-OpenShares-CH</string>
         <string>Citrix XenApp 7.6 - eQuality - Prod-Chinese</string>
+        <string>DL-Z-Group-All</string>
         <string>allsubscribers2ea70d23</string>
         <string>ISR1NAS01-SW-RO</string>
         <string>DL-Qtr-Survey</string>
         <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
         <string>DL-RSA-Notification</string>
-        <string>DL-O365</string>
+        <string>DL-IT-RTC-Users</string>
         <string>DL-All-Engineering</string>
+        <string>DL-O365</string>
         <string>ISR1FP04-SWDATA-CH</string>
         <string>Travel &amp; Expense</string>
         <string>DL-All-Global_temp</string>
@@ -209,7 +213,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1537100422742</timestamp>
+      <timestamp>1540300429404</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
@@ -219,14 +223,6 @@
     </io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty>
     <hudson.plugins.favorite.user.FavoriteUserProperty plugin="favorite@2.3.2">
       <data class="concurrent-hash-map">
-        <entry>
-          <string>OMD-Archer-Build-PatchBuild</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
-          <string>TriggerAutoRebaseInteg</string>
-          <boolean>true</boolean>
-        </entry>
         <entry>
           <string>SanityTest</string>
           <boolean>true</boolean>
@@ -249,6 +245,14 @@
         </entry>
         <entry>
           <string>RunNunitUnitTestsDebug</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>OMD-Archer-Build-PatchBuild</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>TriggerAutoRebaseInteg</string>
           <boolean>true</boolean>
         </entry>
         <entry>
