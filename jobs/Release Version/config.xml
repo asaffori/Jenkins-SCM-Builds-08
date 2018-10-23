@@ -170,10 +170,11 @@
 		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
 		            toolSRN=(env.A600SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;)+(env.A700SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;)+(env.ATLSRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot;) 
 		            publishweb=&quot;&quot;
+		            echo env.A600Web
 		            if(params.A600) publishweb+=(env.A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)
 		            if(params.A700) publishweb+=(env.A700Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)
 		            if(params.ATL) publishweb+=(env.ATLWeb?&quot; ATL: Will be published on Web.&lt;/br&gt;&quot;:&quot;ATL: No Web publish.&lt;/br&gt;&quot;)
-		            
+		             echo publishweb
 					customer=(params.A600?&quot;A600:&quot;+env.A600Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.A700?&quot;A700:&quot;+env.A700Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.ATL?&quot;ATL:&quot;+env.ATLCustomer+&quot;&lt;/br&gt;&quot;:&quot;&quot;) 
 					mailgroup=(params.A600?&quot;Agnes.Zhang@kla-tencor.com;&quot;:&quot;&quot;)+(params.A700?&quot;Adham.Saffori@kla-tencor.com;&quot;:&quot;&quot;)
 					
