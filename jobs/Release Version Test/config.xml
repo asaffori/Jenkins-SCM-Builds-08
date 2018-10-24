@@ -47,6 +47,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <authToken>AgnesTest</authToken>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders/>
