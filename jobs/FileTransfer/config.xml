@@ -161,7 +161,7 @@
   <builders/>
   <publishers>
     <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.62">
-      <recipientList></recipientList>
+      <recipientList>Cathy.Wang@kla-tencor.com,Shanshan.Xu@kla-tencor.com</recipientList>
       <configuredTriggers>
         <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
           <email>
@@ -194,7 +194,7 @@ OMD CM Team</defaultContent>
       <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
       <attachBuildLog>false</attachBuildLog>
       <compressBuildLog>false</compressBuildLog>
-      <replyTo>$DEFAULT_REPLYTO,Shanshan.Xu@kla-tencor.com</replyTo>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
       <from></from>
       <saveOutput>false</saveOutput>
       <disabled>false</disabled>
