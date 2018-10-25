@@ -2,6 +2,7 @@
 <project>
   <actions/>
   <description></description>
+  <displayName>C:\temp</displayName>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
@@ -39,7 +40,7 @@
           <visibleItemCount>5</visibleItemCount>
           <type>PT_MULTI_LEVEL_MULTI_SELECT</type>
           <value></value>
-          <propertyFile>C:\Temp\Tooltype.properties</propertyFile>
+          <propertyFile>Tooltype.properties</propertyFile>
           <multiSelectDelimiter>,</multiSelectDelimiter>
           <projectName>ReleaseVersionTest</projectName>
         </com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
