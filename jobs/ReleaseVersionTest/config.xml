@@ -37,7 +37,9 @@
           <quoteValue>false</quoteValue>
           <saveJSONParameterToFile>false</saveJSONParameterToFile>
           <visibleItemCount>5</visibleItemCount>
-          <type>PT_JSON</type>
+          <type>PT_MULTI_LEVEL_MULTI_SELECT</type>
+          <value>Country,City</value>
+          <propertyFile></propertyFile>
           <multiSelectDelimiter>,</multiSelectDelimiter>
           <projectName>ReleaseVersionTest</projectName>
         </com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
