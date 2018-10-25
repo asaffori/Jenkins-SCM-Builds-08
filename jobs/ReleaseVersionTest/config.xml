@@ -38,6 +38,30 @@
           <saveJSONParameterToFile>false</saveJSONParameterToFile>
           <visibleItemCount>5</visibleItemCount>
           <type>PT_JSON</type>
+          <groovyScript>import org.boon.Boon;
+  def jsonEditorOptions = Boon.fromJson(/{
+	disable_edit_json: true,    
+        disable_properties: true,       
+        no_additional_properties: true,       
+         disable_collapse: true,      
+        disable_array_add: true,     
+        disable_array_delete: true,     
+        disable_array_reorder: true, 
+        theme: &quot;bootstrap2&quot;,       
+        iconlib:&quot;fontawesome4&quot;,
+   	schema: {
+   		  &quot;title&quot;: &quot;Color Picker&quot;, 	
+         	  &quot;type&quot;: &quot;object&quot;, 		                 
+    &quot;properties&quot;: { 		
+ 	&quot;color&quot;: { 			
+   &quot;type&quot;: &quot;string&quot;, 			
+     &quot;format&quot;: &quot;color&quot; 		
+	} 
+     }
+    	},
+   startval: { 			color :&quot;red&quot; 		}       }/);</groovyScript>
+          <bindings></bindings>
+          <groovyClasspath></groovyClasspath>
           <multiSelectDelimiter>,</multiSelectDelimiter>
           <projectName>ReleaseVersionTest</projectName>
         </com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
