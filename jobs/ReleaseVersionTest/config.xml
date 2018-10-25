@@ -2,7 +2,6 @@
 <project>
   <actions/>
   <description></description>
-  <displayName>C:\temp</displayName>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
@@ -39,7 +38,7 @@
           <saveJSONParameterToFile>false</saveJSONParameterToFile>
           <visibleItemCount>5</visibleItemCount>
           <type>PT_MULTI_LEVEL_MULTI_SELECT</type>
-          <value></value>
+          <value>Tooltype, Details</value>
           <propertyFile>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Tooltype.properties</propertyFile>
           <multiSelectDelimiter>,</multiSelectDelimiter>
           <projectName>ReleaseVersionTest</projectName>
