@@ -37,7 +37,7 @@
           <quoteValue>false</quoteValue>
           <saveJSONParameterToFile>false</saveJSONParameterToFile>
           <visibleItemCount>5</visibleItemCount>
-          <type>PT_MULTI_LEVEL_SINGLE_SELECT</type>
+          <type>PT_MULTI_LEVEL_MULTI_SELECT</type>
           <value>Country,City</value>
           <propertyFile>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Tooltype.properties</propertyFile>
           <multiSelectDelimiter>,</multiSelectDelimiter>
