@@ -39,7 +39,7 @@
           <visibleItemCount>5</visibleItemCount>
           <type>PT_MULTI_LEVEL_MULTI_SELECT</type>
           <value>Country,City</value>
-          <propertyFile>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Tooltype.properties.txt</propertyFile>
+          <propertyFile>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\Tooltype.properties</propertyFile>
           <multiSelectDelimiter>,</multiSelectDelimiter>
           <projectName>ReleaseVersionTest</projectName>
         </com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
