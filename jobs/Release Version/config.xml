@@ -169,7 +169,7 @@ pipeline {
 		            toolSRN=&quot;&lt;/br&gt;&quot;
 
 
-                    def dir = &quot;\\klasj\ktfiles\Regions\Israel\Eng\Download\uArcher_V&quot;+shortversion+&quot;\Tool\ArcherSWInsKIT_&quot;+params.Version+&quot;\Documentation&quot;
+                    def dir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\Tool\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation&quot;
                     stdout = bat(returnStdout:true , script: &quot;dir /b /a-d &quot; + dir).trim()
                     result = stdout.readLines().drop(1).join(&quot; &quot;)       
                     echo result
