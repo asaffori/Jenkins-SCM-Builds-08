@@ -237,7 +237,7 @@ pipeline {
 					&quot;Installation instructions are residing in Documentation folder&lt;/br&gt;&quot;+
                     &quot;${SRN} is residing in Documentation folder.&lt;/br&gt;&quot;+
 					&quot;&lt;/br&gt;&quot;+
-					&quot;&lt;strong&gt;&lt;u&gt;Compatible RDM SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Compatible RDM SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
 					&quot;RDM ${shortversion} is available at \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\RDM\\RDM_${RDMVersion}&lt;/br&gt;&quot;+
 					&quot;Installation instructions available in residing in Documentation folder.&lt;/br&gt;&quot;+
 					&quot;&lt;/br&gt;&quot;+
