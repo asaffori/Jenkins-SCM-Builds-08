@@ -6,12 +6,18 @@
       <jobProperties/>
       <triggers/>
       <parameters>
+        <string>ATLCustomer</string>
         <string>Version</string>
         <string>CompitableRDMVersion</string>
+        <string>A700Web</string>
+        <string>ATLWeb</string>
         <string>Comments</string>
+        <string>A700Customer</string>
         <string>A700</string>
         <string>ATL</string>
+        <string>A600Web</string>
         <string>A600</string>
+        <string>A600Customer</string>
       </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
