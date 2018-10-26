@@ -167,6 +167,8 @@ pipeline {
                     stdout = bat(returnStdout:true , script: &quot;dir /b /a d &quot; + rdmdir).trim()
                     result = stdout.readLines().drop(1).findAll{ it.contains(&apos;RDM&apos;)}
                     RDMVersion=result.join(&apos; &apos;).substring(4,12)
+                    echo RDMversion
+                    
 		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
 		            toolSRN=&quot;&lt;/br&gt;&quot;
 
