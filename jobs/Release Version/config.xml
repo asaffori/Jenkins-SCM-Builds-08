@@ -173,9 +173,9 @@ pipeline {
  
                     echo SRN
 
-		            A600webtext=(A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)}
-		            A700webtext=(A700Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)}
-		            ATLwebtext=(ATLWeb?&quot; ATL: Will be published on Web.&lt;/br&gt;&quot;:&quot;ATL: No Web publish.&lt;/br&gt;&quot;)}
+		            A600webtext=(A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)
+		            A700webtext=(A700Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)
+		            ATLwebtext=(ATLWeb?&quot; ATL: Will be published on Web.&lt;/br&gt;&quot;:&quot;ATL: No Web publish.&lt;/br&gt;&quot;)
 		            publishweb=(params.A600?A600webtext:&quot;&quot;)+(params.A700?A700webtext:&quot;&quot;)+(params.ATL?ATLwebtext:&quot;&quot;) 
 		             echo publishweb
 					customer=(params.A600?&quot;A600:&quot;+A600Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.A700?&quot;A700:&quot;+A700Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.ATL?&quot;ATL:&quot;+ATLCustomer+&quot;&lt;/br&gt;&quot;:&quot;&quot;) 
