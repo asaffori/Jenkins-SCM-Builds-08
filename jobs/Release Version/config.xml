@@ -131,7 +131,6 @@ pipeline {
         booleanParam(name: &apos;A700&apos;, defaultValue: false)
         booleanParam(name: &apos;ATL&apos;, defaultValue: false)
         string(name: &apos;Comments&apos;, description: &apos;What is your comments?&apos;)
-		string(name: &apos;CompitableRDMVersion&apos;, description: &apos;Leave it with empty if no special RDM version&apos;)
 		booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
         booleanParam(name: &apos;A700Web&apos;, defaultValue: false)
         booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false)
@@ -164,7 +163,10 @@ pipeline {
 		        script {
 		            shortversion=params.Version.substring(6,8)==&apos;00&apos;?Version.substring(0,6):params.Version.substring(0,8)
 					majorminor=params.Version.substring(0,5)
-					RDMVersion=params.CompitableRDMVersion==&quot;&quot;?params.Version:params.CompitableRDMVersion
+					
+					 def rdmdir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\RDM&quot;
+                    stdout = bat(returnStdout:true , script: &quot;dir /b /a d &quot; + dir).trim()
+                    RDMVersion=result.join(&apos; &apos;).substring(4,12)
 		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
 		            toolSRN=&quot;&lt;/br&gt;&quot;
 
