@@ -170,16 +170,14 @@ pipeline {
 
 
                     def dir = new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\Tool\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation&quot;)
-                    def list = []
-                    dir.eachFileRecurse (FileType.FILES) { file -&gt;
-                         list &lt;&lt; file
-                         echo file.path
+                    def files = []
+                    dir.eachFile(FileType.FILES) {
+                    files &lt;&lt; it.name
                     }
                      
-                    list.each {
+                    files.each {
                          echo it.path
                     }
-                    
 		            publishweb=&quot;&lt;/br&gt;&quot;
 
 		            if(params.A600) publishweb+=(A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)
