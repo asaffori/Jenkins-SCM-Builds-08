@@ -18,38 +18,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600</name>
-          <description>Released For Tool Type</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>Comments</name>
-          <description>What is your comments?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>CompitableRDMVersion</name>
-          <description>Leave it with empty if no special RDM version</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -66,6 +34,43 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to release?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600</name>
+          <description>Released For Tool Type</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATL</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Comments</name>
+          <description>What is your comments?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>CompitableRDMVersion</name>
+          <description>Leave it with empty if no special RDM version</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -74,7 +79,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
@@ -87,6 +91,12 @@
         booleanParam(name: &apos;ATL&apos;, defaultValue: false)
         string(name: &apos;Comments&apos;, description: &apos;What is your comments?&apos;)
 		string(name: &apos;CompitableRDMVersion&apos;, description: &apos;Leave it with empty if no special RDM version&apos;)
+		booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
+        booleanParam(name: &apos;A700Web&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false)
+        string(name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+        string(name: &apos;A700Customer&apos;,defaultValue:&apos;All&apos;)
+        string(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;) 
 
     }
 	stages {
@@ -107,56 +117,7 @@
                 }
             }
 	    }
-	    stage (&apos;tooltype Process&apos;) {
-	        steps (&apos;tooltypes Process&apos;) {
-	            script {
-	                if(params.A600) {
-	                   A600input=input (
-	                        id:&apos;A600input&apos;,
-                             message:&apos;About A600?&apos;,
-                             ok:&apos;Continue.&apos;,
-                             parameters: 
-                             [[$class:&apos;BooleanParameterDefinition&apos;,name: &apos;A600SRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;],
-                             [$class:&apos;BooleanParameterDefinition&apos;,name: &apos;A600Web&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;],
-                             [$class: &apos;TextParameterDefinition&apos;,name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;]]
-	                    )
-	                    env.A600SRN = A600input.A600SRN
-	                    env.A600Web = A600input.A600Web
-	                    env.A600Customer = A600input.A600Customer
-	                }
-	                if(params.A700) {
-	                   A700input=input (
-	                       id:&apos;A700input&apos;,
-                             message:&apos;About A700?&apos;,
-                             ok:&apos;Continue.&apos;,
-                             parameters: 
-                              [[$class:&apos;BooleanParameterDefinition&apos;,name: &apos;A700SRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;],
-                             [$class:&apos;BooleanParameterDefinition&apos;,name: &apos;A700Web&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;],
-                             [$class: &apos;TextParameterDefinition&apos;,name: &apos;A700Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;]]
-	                    )
-	                    env.A700SRN = A700input.A700SRN
-	                    env.A700Web = A700input.A700Web
-	                    env.A700Customer = A700input.A700Customer
-	                }
-	                if(params.ATL) {
-	                    ATLinput=input (
-	                        id:&apos;ATLinput&apos;,
-                             message:&apos;About ATL?&apos;,
-                             ok:&apos;Continue.&apos;,
-                             parameters: 
-                               [[$class:&apos;BooleanParameterDefinition&apos;,name: &apos;ATLSRN&apos;, defaultValue: true, description: &apos;Does it have SRN?&apos;],
-                             [$class:&apos;BooleanParameterDefinition&apos;,name: &apos;ATLWeb&apos;, defaultValue: false, description: &apos;will it be publish on Web?&apos;],
-                             [$class: &apos;TextParameterDefinition&apos;,name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;]]
-	                    )
-	                    env.ATLSRN = ATLinput.ATLSRN
-	                    env.ATLWeb = ATLinput.ATLWeb
-	                    env.ATLCustomer = ATLinput.ATLCustomer
-	                }
-	                
-	            }
-	        }
-	        
-	    }
+	  
         stage (&apos;Process Parameter&apos;) {
 		    steps (&apos;Parameter&apos;){
 		        script {
@@ -164,14 +125,22 @@
 					majorminor=params.Version.substring(0,5)
 					RDMVersion=params.CompitableRDMVersion==&quot;&quot;?params.Version:params.CompitableRDMVersion
 		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
-		            toolSRN=(env.A600SRN&amp;&amp;params.A600?&quot; A600&quot;:&quot;&quot;)+(env.A700SRN&amp;&amp;params.A700?&quot; A700&quot;:&quot;&quot;)+(env.ATLSRN&amp;&amp;params.ATL?&quot; ATL&quot;:&quot;&quot;) 
+		            toolSRN=&quot;&lt;/br&gt;&quot;
+
+                    def list = []
+
+                    def dir = new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\Tool\\ArcherSWInsKIT_&quot;+params.Version)
+                    dir.eachFileRecurse (FileType.FILES) { file -&gt;
+                         list &lt;&lt; file
+                    }
+                    echo list
 		            publishweb=&quot;&lt;/br&gt;&quot;
-		            echo env.A600Web
-		            if(params.A600) publishweb+=(env.A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)
-		            if(params.A700) publishweb+=(env.A700Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)
-		            if(params.ATL) publishweb+=(env.ATLWeb?&quot; ATL: Will be published on Web.&lt;/br&gt;&quot;:&quot;ATL: No Web publish.&lt;/br&gt;&quot;)
+
+		            if(params.A600) publishweb+=(A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)
+		            if(params.A700) publishweb+=(A700Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)
+		            if(params.ATL) publishweb+=(ATLWeb?&quot; ATL: Will be published on Web.&lt;/br&gt;&quot;:&quot;ATL: No Web publish.&lt;/br&gt;&quot;)
 		             echo publishweb
-					customer=(params.A600?&quot;A600:&quot;+env.A600Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.A700?&quot;A700:&quot;+env.A700Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.ATL?&quot;ATL:&quot;+env.ATLCustomer+&quot;&lt;/br&gt;&quot;:&quot;&quot;) 
+					customer=(params.A600?&quot;A600:&quot;+A600Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.A700?&quot;A700:&quot;+A700Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.ATL?&quot;ATL:&quot;+ATLCustomer+&quot;&lt;/br&gt;&quot;:&quot;&quot;) 
 					mailgroup=(params.A600?&quot;Agnes.Zhang@kla-tencor.com;&quot;:&quot;&quot;)+(params.A700?&quot;Adham.Saffori@kla-tencor.com;&quot;:&quot;&quot;)
 					
 					string masterimage=&quot;&lt;/br&gt;&quot;
