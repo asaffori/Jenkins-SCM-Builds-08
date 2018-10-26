@@ -68,12 +68,6 @@
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>CompitableRDMVersion</name>
-          <description>Leave it with empty if no special RDM version</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>A600Web</name>
           <description>Which Version will be publish on Web?</description>
