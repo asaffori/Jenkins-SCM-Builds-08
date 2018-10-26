@@ -173,8 +173,7 @@ pipeline {
                     stdout = bat(returnStdout:true , script: &quot;dir /b /a-d &quot; + dir).trim()
                     result = stdout.readLines().drop(1).findAll{ it.contains(&apos;SRN&apos;)}
                     SRN=result.join(&apos; &apos;)
-                    
-                    echo result
+ 
                     echo SRN
 		            publishweb=&quot;&lt;/br&gt;&quot;
 
