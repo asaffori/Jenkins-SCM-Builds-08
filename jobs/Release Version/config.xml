@@ -162,7 +162,7 @@ pipeline {
         stage (&apos;Process Parameter&apos;) {
 		    steps (&apos;Parameter&apos;){
 		        script {
-		            shortversion=params.Version.substring(0,8)
+		            shortversion=params.Version.substring(6,8)==&apos;00&apos;?Version.substring(0,6):params.Version.substring(0,8)
 					majorminor=params.Version.substring(0,5)
 					RDMVersion=params.CompitableRDMVersion==&quot;&quot;?params.Version:params.CompitableRDMVersion
 		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
