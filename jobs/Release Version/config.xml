@@ -172,7 +172,7 @@ pipeline {
                     def dir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\Tool\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation&quot;
                     stdout = bat(returnStdout:true , script: &quot;dir /b /a-d &quot; + dir).trim()
                     result = stdout.readLines().drop(1)
-                    SRN=result.findAll{ it.contains(&apos;SRN&apos;)
+                    SRN=result.findAll{ it.contains(&apos;SRN&apos;)}
                     echo result
                     echo SRN
 		            publishweb=&quot;&lt;/br&gt;&quot;
