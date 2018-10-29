@@ -39,10 +39,13 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>import groovy.io.FileType
 def versionsList = []
-    def dir = new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version&quot;)
-    dir.each { file -&gt;
-        print (file)
-    }</script>
+    File[] files = new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version&quot;).listFiles();
+    for (File file : files) {
+    if (file.isFile()) {
+        println (file.getName());
+    }
+}
+</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
