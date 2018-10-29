@@ -130,7 +130,7 @@ pipeline {
         def workspaces = []
         stdoutput.readLines().each {
             if (it.contains(BUILD_USER)){
-                workspaces &lt;&lt; (it.substring(it.indexOf(&apos;\&quot;&apos;)+1,it.lastIndexOf(&apos;\&quot;&apos;)))
+                workspaces &lt;&lt; it.substring(it.indexOf(&apos;\&quot;&apos;)+1,it.lastIndexOf(&apos;\&quot;&apos;))
             }
         }
 
@@ -145,7 +145,7 @@ def getFormalVersionsList(){
     def dir = new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version&quot;)
     dir.eachFileMatch(~/.*version.txt/) { file -&gt;
         version= file.getName().substring(0,file.getName().indexOf(&apos;version&apos;))
-        versionsList &lt;&lt; version.lastIndexOf(&apos;_&apos;) == (version.length()-1) ? version[0..(version.length()-2)]:version
+        versionsList &lt;&lt; (version.lastIndexOf(&apos;_&apos;) == (version.length()-1) ? version[0..(version.length()-2)]:version)
     }
     return versionsList
 }
