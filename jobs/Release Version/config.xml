@@ -111,131 +111,188 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
-    <script>import hudson.security.SecurityRealm;
-import com.cwctravel.hudson.plugins.extended_choice_parameter.ExtendedChoiceParameterDefinition
-import groovy.io.FileType
+    <script>import groovy.io.FileType
+
 pipeline {
-    agent { node { label &apos;master&apos; } }
-    stages {
-        stage(&apos;build&apos;) {
-            steps {
+    agent any
+    parameters {
+        string(name: &apos;Version&apos;, description: &apos;Which Version you want to release?&apos;)
+        booleanParam(name: &apos;A600&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
+        booleanParam(name: &apos;A700&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATL&apos;, defaultValue: false)
+        text(name: &apos;Comments&apos;, description: &apos;What is your comments?&apos;)
+		booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
+        booleanParam(name: &apos;A700Web&apos;, defaultValue: false)
+        booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false)
+        string(name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+        string(name: &apos;A700Customer&apos;,defaultValue:&apos;All&apos;)
+        string(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;) 
 
-                script {
-                    def user_team
-                    wrap([$class: &apos;BuildUser&apos;]) {
-
-                    try{
-                    
-                       user_team = ((String[])Jenkins.instance.securityRealm.loadUserByUsername(BUILD_USER_ID).getAuthorities()).contains(&quot;DL-OMD-ENG-SCM&quot;) ? &quot;DevOps&quot;: &quot;Dev&quot;
-                    
-                    }catch (Exception e){
-                        print (&quot;Failed while retreaving groups for user &quot;+ BUILD_USER_ID)
-                        throw (e)
-                    }
-
-                    try{
-                        def user_workspaces = []
-                        user_workspaces = getUserRTCWorkspaces()
-                        workspaces_choice_list=user_workspaces.join(&apos;\n&apos;)
-                        //workspaces_choice_list=&apos;Archer_17.00_Integ Workspace\nArcher_17.13.02_Dev Workspace\nasaffori_Archer_16.07_Integ\nasaffori_Archer_16.12_Dev_Workspace\nasaffori_Archer_17.00_Dev\nasaffori_Archer_17.00_Integ\nasaffori_Archer_17.01_Dev\nasaffori_Archer_17.01_Integ\nasaffori_Archer_17.01_Support_17.01.00.21100_new\nasaffori_Archer_17.02_Dev_Tasks\nasaffori_Archer_17.02_Integ\nasaffori_Archer_17.02_Test\nasaffori_Archer_17.03_Dev_New2\nasaffori_Archer_17.03_Integ\nasaffori_Archer_17.03_Task_Static_Code_Analysis_384128\nasaffori_Archer_17.04_Dev\nasaffori_Archer_17.10_Dev\nasaffori_Archer_17.11_Dev\nasaffori_Archer_17.11_Integ\nasaffori_Archer_17.12_Dev_Workspace\nasaffori_Archer_17.12_Dev_Workspace_New\nasaffori_Archer_17.12_Task_Build_improve_417558\nasaffori_Archer_17.12_Task_Pre_17.12.01_Workspace\nasaffori_Archer_17.13.01_Dev_Workspace\nasaffori_Archer_17.13.02_Dev_Workspace\nasaffori_Archer_17.13.03_Dev_Workspace\nasaffori_Archer_17.13_Dev_Workspace\nasaffori_Archer_17.14_Dev_Workspace\nasaffori_RDM-MainOS_1.0_Integ&apos;
-                        print (workspaces_choice_list)
-                    }catch (Exception e){
-                        throw (e)
-                    }
-
-                        DevOpsBuildTypes = &apos;Scheduled\nFormal\nTasks&apos;
-                        DevBuildTypes = &apos;Tasks\nFormal&apos;
-                        FormalVersion_choice_list = getFormalVersionsList().join(&apos;\n&apos;)
-                        print (FormalVersion_choice_list)
-                        print (&quot;**\n&quot;+getFormalVersionsList()+&quot;**\n&quot;)
-                    
-             
-
-                    /**[$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Debug &amp; Release\nRelease\nDebug&apos;, description: &apos;In which modes ?&apos;, name: &apos;BUILDMODES&apos;],
-                    [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Build RDM?&apos;, name: &apos;RunRDM&apos;],
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Basic\nAdvanced\nDiagnostic\nCustom&apos;, description: &apos;Which build style would you like to run? \n\tBasic: Compilation only \n\tAdvanced: Compilation, Installers \n\tDiagnostic:Commpilation, Installers, SCA, Sanity, Nunit\n\tCustom: Run customized build steps &apos;, name: &apos;BuildStyle&apos;],
-**/
-              
-                                        
-                   def Dev_Formal_Build_Params =[[$class: &apos;ChoiceParameterDefinition&apos;, choices: user_team == &apos;DevOps&apos;? DevOpsBuildTypes:DevBuildTypes , description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;]]
-                   
-                   def DevOps_Formal_Build_Params =[
-                       [$class: &apos;ChoiceParameterDefinition&apos;, choices: user_team == &apos;DevOps&apos;? DevOpsBuildTypes:DevBuildTypes , description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;],
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: FormalVersion_choice_list , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;],
-                    //[$class: &apos;StringParameterDefinition&apos;, defaultValue:&apos;Version will be automatically calulated&apos;, description: &apos;What should be your build version?&apos;, name: &apos;Build_Version&apos;],
-                    //[$class: &apos;ChoiceParameterDefinition&apos;, choices: workspaces_choice_list, description: &apos;What is your build WorkSpace? \nExample: asaffori_Archer_17.12_Dev_Workspace&apos;, name: &apos;WorkSpaceName&apos;]
-                    [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, name: &apos;RunAsOmdbuild&apos;]]
-                    /**,
-                    [$class: &apos;DropdownAutocompleteParameterDefinition&apos;,
-                        name: &apos;Workspace&apos;,
-                        description:&apos;What is your build WorkSpace?&apos;,
-                        defaultValue:&apos;&apos;,
-                        dataProvider: 
-                        [
-                            $class: &apos;SimpleTextProvider&apos;, 
-                            autoCompleteData: workspaces_choice_list
-                        ],
-                        displayExpression: &apos;&apos;,
-                        valueExpression: &apos;&apos;
-                    ]**/
-                    
-                    //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to run automatic Archer sanity tests for this build ?&apos;, name: &apos;RunATE&apos;],
-                    //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to generate installers for this build ?&apos;, name: &apos;BuidInstallers&apos;]]
-                    
-                def userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Hello &apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: user_team == &apos;DevOps&apos;? DevOps_Formal_Build_Params:Dev_Formal_Build_Params,ok:&apos;Lets continue&apos;
-                    )
-
-                   def userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Build options&apos;, parameters: [
-                        [$class: &apos;ChoiceParameterDefinition&apos;, choices:&apos;Combined (all below sets)\n\tCompilation (Build/Nunit)\n\tMedia\n\tSanity\nCustom&apos; , description: &apos;Which build level would you like to run ?&apos;, name: &apos;MajorMinor&apos;],
-                    ]
-                    )
-
+    }
+	stages {
+	    
+	    stage (&apos;validation&apos;) {
+            steps (&apos;vaiidate&apos;) {
+	                script{
+	                if(params.Version==&quot;&quot;){
+	                    msg=&quot;Version is not defined&quot;
+    				    input(message:msg ,ok:&apos;Abort&apos;)
+    					throw new Exception(msg)
+	                }
+	                if(params.A600==false&amp;&amp;params.A700==false&amp;&amp;params.ATL==false){
+	                    msg=&quot;Released tool type is empty, at least you are releasing for one tool type&quot;
+    				    input(message:msg ,ok:&apos;Abort&apos;)
+    					throw new Exception(msg)
                     }
                 }
-                
             }
-        }
-    }
-    
-}  
+	    }
+	  
+        stage (&apos;Process Parameter&apos;) {
+		    steps (&apos;Parameter&apos;){
+		        script {
+		            shortversion=params.Version.substring(6,8)==&apos;00&apos;?Version.substring(0,6):params.Version.substring(0,8)
+					majorminor=params.Version.substring(0,5)
+					
+					def rdmdir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\RDM&quot;
+                    stdout = bat(returnStdout:true , script: &quot;dir /b /a d &quot; + rdmdir).trim()
+                    result = stdout.readLines().drop(1).findAll{ it.contains(&apos;RDM&apos;)}
+                    RDMVersion=result.join(&apos; &apos;).substring(4,18)
+                    echo RDMVersion
+                    
+		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
+		            toolSRN=&quot;&lt;/br&gt;&quot;
+
+                    def dir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\Tool\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation&quot;
+                    stdout = bat(returnStdout:true , script: &quot;dir /b /a-d &quot; + dir).trim()
+                    result = stdout.readLines().drop(1).findAll{ it.contains(&apos;SRN&apos;)}
+                    SRN=result.join(&apos; &apos;)
  
- def getUserRTCWorkspaces(){
-    wrap([$class: &apos;BuildUser&apos;]) {
-        cmd=&quot;scm  list workspaces -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -c ${BUILD_USER_ID} -m 100&quot;
-        try{
-            stdoutput = bat(returnStdout:true , script:cmd).trim()
-        }catch(Exception e){
-            throw e
+                    echo SRN
+		            A600webtext=(params.A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)
+		            A700webtext=(params.A700Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)
+		            ATLwebtext=(params.ATLWeb?&quot; ATL: Will be published on Web.&lt;/br&gt;&quot;:&quot;ATL: No Web publish.&lt;/br&gt;&quot;)
+		            
+		            publishweb=(params.A600?A600webtext:&quot;&quot;)+(params.A700?A700webtext:&quot;&quot;)+(params.ATL?ATLwebtext:&quot;&quot;) 
+		             echo publishweb
+		             
+					customer=(params.A600?&quot;A600:&quot;+A600Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.A700?&quot;A700:&quot;+A700Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.ATL?&quot;ATL:&quot;+ATLCustomer+&quot;&lt;/br&gt;&quot;:&quot;&quot;) 
+					mailgroup=(params.A600?&quot;Agnes.Zhang@kla-tencor.com;&quot;:&quot;&quot;)+(params.A700?&quot;Adham.Saffori@kla-tencor.com;&quot;:&quot;&quot;)
+					
+					string masterimage=&quot;&lt;/br&gt;&quot;
+					if(params.A600)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A600.txt&quot;).text+&quot;&lt;/br&gt;&quot;
+					if(params.A700)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A700.txt&quot;).text+&quot;&lt;/br&gt;&quot;
+					if(params.ATL)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\ATL.txt&quot;).text+&quot;&lt;/br&gt;&quot;
+					
+					def buildnotice= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/InstallationInstruction.html&quot;;
+	                def buildnoticefile = new File(buildnotice)
+					if(buildnoticefile.exists()){
+                		string phoenixversion=&quot;SW &quot;+shortversion+&quot; requires upgrade of the Handler SW to Phoenix SWV V&quot;
+                		echo &quot;found the buildnotice file&quot;				
+                		builtnoticecontent=buildnoticefile.readLines()
+                		for(String line : builtnoticecontent){
+                			if(line.contains(&quot;&gt;Phoenix&lt;&quot;)){
+                			 string subline=line.substring(line.indexOf(&quot;&lt;TD&gt;&quot;)+4,line.length()-5)
+                			 phoenixversion+=subline
+                
+                			continue
+                			}
+                		  }
+                	}
+					
+		            def thirdpartyism= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/Installation/Archer_Family/Installshield/Archer_SW_Installation/uArcherThirdPartyInstallation/ThirdPartySetup.ism&quot;;
+	                def thirdparty
+	                thirdparty= new File(thirdpartyism)
+					
+                	if(thirdparty.exists()){
+                		string thirdpartyversion=&quot;&lt;table&gt;&quot;
+                		echo &quot;found the third party ism file&quot;				
+                		thirdpartycontent=thirdparty.readLines()
+                		for(String line : thirdpartycontent){
+                			if(line.contains(&quot;PATH_TO_ARCHER_INSTALLATION&amp;gt;\\SupportFiles&quot;)||line.contains(&quot;PATH_TO_ARCHER_INSTALLATION&amp;gt;\\&amp;lt;ARCHER_VER2&amp;gt;\\SupportFiles&quot;)){
+                			if(line.contains(&quot;Disk&quot;))continue
+                			 string subline=line.substring(line.indexOf(&quot;SupportFiles\\&quot;)+13,line.length()-16).replaceAll(&quot;\\\\&quot;,&quot;&lt;//TD&gt;&lt;TD&gt;&quot;)
+                			 thirdpartyversion+=&quot;&lt;TR&gt;&lt;TD&gt;&quot;+subline+&quot;&lt;/TD&gt;&lt;/TR&gt;&quot;
+                            echo subline
+                			continue
+                			}
+                		  }
+                		 string thirdpartyversion+=&quot;&lt;//table&gt;&quot;
+                	}
+		            
+		            echo thirdpartyversion
+		            mailcontent=&quot;Archer SWV  ${shortversion}(${params.Version}) is released for ${tooltype}&lt;/br&gt;&quot;+
+                    &quot;${params.Comments}&lt;/br&gt;&quot;+
+                    &quot;&lt;strong&gt;&lt;u&gt;Tool SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+                    &quot;SWV ${params.Version} Installation kit is available in \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}&lt;/br&gt;&quot;+
+					&quot;Installation instructions are residing in Documentation folder&lt;/br&gt;&quot;+
+                    &quot;${SRN} is residing in Documentation folder.&lt;/br&gt;&quot;+
+					&quot;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Compatible RDM SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+					&quot;RDM ${shortversion} is available at \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\RDM\\RDM_${RDMVersion}&lt;/br&gt;&quot;+
+					&quot;Installation instructions available in residing in Documentation folder.&lt;/br&gt;&quot;+
+					&quot;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Tool Config Utility&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+					&quot;Tool configuration utility can be found at  \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}\\ToolConfiguration &lt;/br&gt;&quot;+
+					&quot;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Phoenix&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+					&quot;${phoenixversion}&lt;/br&gt;&quot;+
+					&quot;Phoenix installation can be found in \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}\\Phoenix&lt;/br&gt;&quot;+
+					&quot;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Latest master images are:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+					&quot;${masterimage}&quot;+
+					&quot;&lt;/br&gt;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Publish on Web:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+					&quot;${publishweb}&quot;+
+					&quot;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Customer:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+					&quot;${customer}&quot;+
+					&quot;&lt;/br&gt;&quot;+
+					&quot;&lt;strong&gt;&lt;u&gt;Third Party Version:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
+					&quot;${thirdpartyversion}&quot;
+					
+		        }
+		        emailext (to: &quot;Agnes.Zhang@KLA-tencor.com&quot;,
+                subject: &quot;Archer SWV ${shortversion} (${params.Version}) is released for ${tooltype} --- for your reivew only&quot;,
+                body: &quot;${mailcontent}&quot;);
+		    }
         }
-       // print (&quot;stdout=&quot; + stdoutput)
-        def workspaces = []
-        stdoutput.readLines().each {
-            if (it.contains(BUILD_USER)){
-                workspaces &lt;&lt; it.substring(it.indexOf(&apos;\&quot;&apos;)+1,it.lastIndexOf(&apos;\&quot;&apos;))
+	     
+	    stage (&apos;Send review&apos;) {
+	        steps {
+                echo &quot;Draft has been sent out for review&quot;
+                echo &quot;${mailcontent}&quot;
+            }
+		    input {
+                message &quot;Is the mail content fine?&quot;
+                ok &quot;Yes, we can release it&quot;
+            }
+            
+        }
+        
+        stage (&apos;Exculde files&apos;){
+             steps {
+				script{
+					excludetext=&quot;\n#Added by Auto-Release script\n&quot;+&quot;UOMD_&quot;+Version+&quot;.*\n&quot;+&quot;Archer_Installation_&quot;+Version+&quot;.*\n&quot;+&quot;RDM_&quot;+Version+&quot;.*\n&quot;+&quot;TDD_&quot;+Version+&quot;.*\n&quot;
+					new File(&quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_CleanupConfigurations\\AgnesTest.txt&quot;).append(excludetext)
+				}
+                
+				
             }
         }
-
-        return workspaces
-    }
-}
-
-def getFormalVersionsList(){
-    def versionsList = []
-    File[] files = new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version&quot;).listFiles();
-    for (File file : files) {
-      if (!file.getName().endsWith(&quot;version.txt&quot;)) continue
-      version= file.getName().substring(0,file.getName().indexOf(&apos;version&apos;))
-      versionsList &lt;&lt; (version.lastIndexOf(&apos;_&apos;) == (version.length()-1) ? version[0..(version.length()-2)]:version)
-    }
-    return versionsList
-}
-
-    </script>
+        stage (&apos;Send Mail&apos;) {
+            steps (&apos;SendMail&apos;) {
+		        emailext (to: &quot;${mailgroup}&quot;,
+                subject: &quot;Archer SWV ${shortversion} (${params.Version}) is released for ${tooltype}&quot;,
+                body: &quot;${mailcontent}&quot;);
+		    }
+        }
+	}
+}</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
