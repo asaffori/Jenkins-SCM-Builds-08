@@ -117,7 +117,8 @@ pipeline {
                    print defaultScheduledBuildVersion
                    String[] tmpNumArray=((String)defaultScheduledBuildVersion).tokenize(&quot;.&quot;)
                    print tmpNumArray.length
-                   tmpNumArray[3] = (((int)tmpNumArray[3])/100) +1 *100
+                   int num = tmpNumArray[3] as Integer
+                   int tmpNumArray[3] = (num/100) +1 *100
                    defaultFormalBuildVersion= tmpNumArray.join(&apos;.&apos;)
                    
                    def advancedUserInput = input(
