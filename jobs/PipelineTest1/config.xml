@@ -111,7 +111,14 @@ pipeline {
                     
                 def userInput = input(
                     id: &apos;userInput&apos;, message: &apos;Hello &apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: user_team == &apos;DevOps&apos;? DevOps_Formal_Build_Params:Dev_Formal_Build_Params,ok:&apos;Lets continue&apos;
-                    )  
+                    )
+
+                   def userInput = input(
+                    id: &apos;userInput&apos;, message: &apos;Build options&apos;, parameters: [
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices:&apos;Combined (all below sets)\n\tCompilation (Build/Nunit)\n\tMedia\n\tSanity\nCustom&apos; , description: &apos;Which build level would you like to run ?&apos;, name: &apos;MajorMinor&apos;],
+                    ]
+                    )
+
                     }
                 }
                 
