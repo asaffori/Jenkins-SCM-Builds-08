@@ -37,7 +37,8 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
-    <script>def versionsList = []
+    <script>import groovy.io.FileType
+def versionsList = []
     def dir = new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version&quot;)
     dir.eachFileRecurse(FileType.FILES) { file -&gt;
         print (file)
