@@ -116,6 +116,12 @@ pipeline {
                    def advancedUserInput = input(
                     id: &apos;userInput&apos;, message: &apos;Build options&apos;, parameters: [
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices:&apos;Full build (combination of all below steps)\n\tCompilation (Build/Nunit)\n\tMedia\n\tSanity\nI want to custom my build steps&apos; , description: &apos;Which build level would you like to run? &apos;, name: &apos;MajorMinor&apos;],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Archer&apos;, defaultValue: true, description: &apos;Which product would you like to build?&apos;],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;RDM&apos;, defaultValue: true],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Debug&apos;, defaultValue: true, description: &apos;Which build modes would you like to run?&apos;],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Release&apos;, defaultValue: userInput.BUILDTYPE == &apos;Task&apos;? false:true],
+                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Build_Version&apos;, defaultValue: &apos;&apos;, description: &apos;Which version would you like to tag your build with?&apos;],
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: workspaces_choice_list, description: &apos;Which RTC workspace you would like to run your build with?&apos;, name: &apos;WorkSpaceName&apos;]
                     ]
                     )
 
