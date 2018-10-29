@@ -40,7 +40,7 @@
     <script>import groovy.io.FileType
 def versionsList = []
     def dir = new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version&quot;)
-    dir.eachFileRecurse(FileType.FILES) { file -&gt;
+    dir.each { file -&gt;
         print (file)
     }</script>
     <sandbox>false</sandbox>
