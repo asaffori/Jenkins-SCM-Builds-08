@@ -1,5 +1,5 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.25">
+<flow-definition plugin="workflow-job@2.23">
   <actions>
     <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.6.2">
       <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
@@ -22,7 +22,7 @@
     <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
       <leastLoadDisabled>false</leastLoadDisabled>
     </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.29">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -36,48 +36,12 @@
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.57">
-    <script>import com.cwctravel.hudson.plugins.extended_choice_parameter.ExtendedChoiceParameterDefinition
-
-node {
-def multiSelect= new ExtendedChoiceParameterDefinition(&quot;name&quot;, 
-            &quot;PT_MULTI_SELECT&quot;, 
-            &quot;blue,green,yellow,blue&quot;, 
-            &quot;project name&quot;,
-            &quot;&quot;, 
-            &quot;&quot;,
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;blue,green,yellow,blue&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            &quot;&quot;, 
-            false,
-            false, 
-            3, 
-            &quot;multiselect&quot;, 
-            &quot;,&quot;) 
-
-   def userInput = input  id: &apos;customID&apos;, message: &apos;Let\&apos;s promote?&apos;, ok: &apos;Release!&apos;, parameters:  [multiSelect]
-
-
-echo &quot;Hello: &quot;+ userInput
-}
-</script>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
+    <script>def versionsList = []
+    def dir = new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version&quot;)
+    dir.eachFileRecurse(FileType.FILES) { file -&gt;
+        print (file)
+    }</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
