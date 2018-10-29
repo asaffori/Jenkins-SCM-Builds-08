@@ -143,7 +143,7 @@ pipeline {
 
 def getFormalVersionsList(){
     def versionsList = []
-    Files[] files = new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version&quot;).listFiles();
+    File[] files = new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version&quot;).listFiles();
     for (File file : files) {
       print (file)
       if (!file.getName().endsWith(&quot;version.txt&quot;)) continue
