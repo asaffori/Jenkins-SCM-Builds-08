@@ -146,6 +146,7 @@ def getFormalVersionsList(){
     def versionsList = []
     def dir = new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version&quot;)
     dir.eachFileRecurse(FileType.FILES) { file -&gt;
+        print (file)
       if (!file.getName().endsWith(&quot;version.txt&quot;)) continue
       version= file.getName().substring(0,file.getName().indexOf(&apos;version&apos;))
       versionsList &lt;&lt; (version.lastIndexOf(&apos;_&apos;) == (version.length()-1) ? version[0..(version.length()-2)]:version)
