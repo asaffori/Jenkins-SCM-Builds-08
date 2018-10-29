@@ -72,6 +72,7 @@ pipeline {
                         DevOpsBuildTypes = &apos;Scheduled\nFormal\nTasks&apos;
                         DevBuildTypes = &apos;Tasks\nFormal&apos;
                         FormalVersion_choice_list = getFormalVersionsList().join(&apos;\n&apos;)
+                        print (FormalVersion_choice_list)
                     
              
 
