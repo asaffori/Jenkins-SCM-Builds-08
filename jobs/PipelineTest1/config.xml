@@ -125,7 +125,7 @@ pipeline {
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;RDM&apos;, defaultValue: true],
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Debug&apos;, defaultValue: true, description: &apos;Which build modes would you like to run?&apos;],
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Release&apos;, defaultValue: userInput.BUILDTYPE == &apos;Task&apos;? false:true],
-                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Build_Version&apos;, defaultValue: &apos;&apos;, description: &apos;Which version would you like to tag your build with?&apos;],
+                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Build_Version&apos;, defaultValue: ${&apos;default&apos;BuildType&apos;BuildVersion&apos;}, description: &apos;Which version would you like to tag your build with?&apos;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: workspaces_choice_list, description: &apos;Which RTC workspace you would like to run your build with?&apos;, name: &apos;WorkSpaceName&apos;]
                     ]
                     )
