@@ -110,7 +110,7 @@ pipeline {
                     //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to generate installers for this build ?&apos;, name: &apos;BuidInstallers&apos;]]
                     
                 def userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Hello &apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: user_team == &apos;DevOps&apos;? DevOps_Formal_Build_Params:Dev_Formal_Build_Params
+                    id: &apos;userInput&apos;, message: &apos;Hello &apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: user_team == &apos;DevOps&apos;? DevOps_Formal_Build_Params:Dev_Formal_Build_Params,ok:&apos;Lets continue&apos;
                     )  
                     }
                 }
