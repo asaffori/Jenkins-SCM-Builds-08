@@ -119,7 +119,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: &apos;Version&apos;, description: &apos;Which Version you want to release?&apos;)
+        stringParam(name: &apos;Version&apos;, description: &apos;Which Version you want to release?&apos;)
         booleanParam(name: &apos;A600&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
         booleanParam(name: &apos;A700&apos;, defaultValue: false)
         booleanParam(name: &apos;ATL&apos;, defaultValue: false)
@@ -127,9 +127,9 @@ pipeline {
 		booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
         booleanParam(name: &apos;A700Web&apos;, defaultValue: false)
         booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false)
-        string(name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
-        string(name: &apos;A700Customer&apos;,defaultValue:&apos;All&apos;)
-        string(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;) 
+        stringParam(name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+        stringParam(name: &apos;A700Customer&apos;,defaultValue:&apos;All&apos;)
+        stringParam(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;) 
 
     }
 	stages {
