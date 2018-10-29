@@ -115,7 +115,7 @@ pipeline {
 
                    String defaultScheduledBuildVersion= new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version\\&quot;+userInput.MajorMinor+&quot;version.txt&quot;).readLines().get(1).split(&apos;=&apos;)[1]
                    print defaultScheduledBuildVersion
-                   String[] tmpNumArray=defaultScheduledBuildVersion.split(&apos;.&apos;)
+                   String[] tmpNumArray=((String)defaultScheduledBuildVersion).split(&quot;.&quot;)
                    print tmpNumArray.length
                    tmpNumArray[3] = (((int)tmpNumArray[3])/100) +1 *100
                    defaultFormalBuildVersion= tmpNumArray.join(&apos;.&apos;)
