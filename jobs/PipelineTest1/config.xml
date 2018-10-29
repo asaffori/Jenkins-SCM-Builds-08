@@ -115,7 +115,7 @@ pipeline {
 
                    def advancedUserInput = input(
                     id: &apos;userInput&apos;, message: &apos;Build options&apos;, parameters: [
-                        [$class: &apos;ChoiceParameterDefinition&apos;, choices:&apos;Full build (all below sets)\n\tCompilation (Build/Nunit)\n\tMedia\n\tSanity\n\nCustom build steps&apos; , description: &apos;Which build level would you like to run ?&apos;, name: &apos;MajorMinor&apos;],
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices:&apos;Full build (combination of all below steps)\n\tCompilation (Build/Nunit)\n\tMedia\n\tSanity\nWant to custom my build steps&apos; , description: &apos;Which build level would you like to run? &apos;, name: &apos;MajorMinor&apos;],
                     ]
                     )
 
