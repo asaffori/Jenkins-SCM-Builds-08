@@ -164,7 +164,7 @@ pipeline {
 					//get compitable RDM version
 					File RDMFolder =new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\RDM&quot;)
 					if(!RDMFolder.exist())exitwitherror(&quot;RDM kit folder doesn&apos;t exist&quot;)
-					Files[] RDMFolderContent=folder.listFiles()
+					File[] RDMFolderContent=folder.listFiles()
 					RDMFolderContent.each{
 					    echo it.name
 					}
