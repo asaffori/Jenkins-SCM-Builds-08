@@ -310,7 +310,7 @@ pipeline {
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Latest master images are:&lt;/u&gt;&lt;/strong&gt;&quot;+
 					&quot;${masterimage}&quot;+
-					&quot;&lt;/br&gt;&lt;/br&gt;&quot;+
+					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Publish on Web:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
 					&quot;${publishweb}&quot;+
 					&quot;&lt;/br&gt;&quot;+
