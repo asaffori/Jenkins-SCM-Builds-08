@@ -274,7 +274,7 @@ pipeline {
                 		 string thirdpartyversion=&quot;&lt;table&gt;&quot;+
                 		 &quot;&lt;TR&gt;&lt;TD&gt;KTCS&lt;//TD&gt;&lt;TD&gt;&quot;+KTCS+&quot; &quot;+KTCSHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&quot;+
                 		 &quot;&lt;TR&gt;&lt;TD&gt;Nexus&lt;//TD&gt;&lt;TD&gt;&quot;+Nexus+&quot; &quot;+NexusHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&quot;+
-                		 &quot;&lt;TR&gt;&lt;TD&gt;Nexus-KTGem&lt;//TD&gt;&lt;TD&gt;&quot;+KTGem+&quot; &quot;+KTGemHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&quot;+
+                		 &quot;&lt;TR&gt;&lt;TD&gt;KTGem&lt;//TD&gt;&lt;TD&gt;&quot;+KTGem+&quot; &quot;+KTGemHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&quot;+
                 		 &quot;&lt;TR&gt;&lt;TD&gt;PSG-FA&lt;//TD&gt;&lt;TD&gt;&quot;+PSGFA+&quot; &quot;+PSGFAHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&lt;//table&gt;&quot;
                 	}
                 	else{
