@@ -209,7 +209,7 @@ pipeline {
 	                if(!masterimagefile.exists())exitwitherror(&quot;Master image html doesn&apos;t exist under code view&quot;)
 	                string masterimagecontent=masterimagefile.readLines().join(&apos;&apos;)
 	                echo masterimagecontent
-					if(params.A600)	masterimage+=masterimagecontent.substring(masterimagecontent.indexOf(&quot;&gt;A600&quot;)+10,100)
+					if(params.A600)	masterimage+=masterimagecontent.substring(masterimagecontent.indexOf(&quot;&gt;A600&lt;&quot;)+10,100)
 					echo masterimage
 					//if(params.A700)	masterimage+=masterimagecontent.substring(masterimagecontent.indexOf(&quot;A700&quot;)+9,masterimagecontent.indexOf(&quot;td&gt;&quot;,masterimagecontent.indexOf(&quot;A700&quot;)))
 					//echo masterimage
