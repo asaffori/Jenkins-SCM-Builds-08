@@ -111,7 +111,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
@@ -128,9 +127,10 @@ pipeline {
 		booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
         booleanParam(name: &apos;A700Web&apos;, defaultValue: false)
         booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false)
-        string(name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;, description: &apos;Which Customer will be released to?&apos;)
+        string(name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;)
         string(name: &apos;A700Customer&apos;,defaultValue:&apos;All&apos;)
         string(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;) 
+        text(name: &apos;Comments on Phoenix installation&apos;)
 
     }
 	stages {
