@@ -24,63 +24,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600</name>
-          <description>Released For Tool Type</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>Comments</name>
-          <description>What is your comments?</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600Web</name>
-          <description>Which Version will be publish on Web?</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700Web</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATLWeb</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>A600Customer</name>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>A700Customer</name>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>ATLCustomer</name>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>Comments on Phoenix installation:</name>
-          <description>Input your comments regarding the Phoenix installation:</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -97,6 +40,76 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to release?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600</name>
+          <description>Released For Tool Type</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATL</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>Comments</name>
+          <description>What is your comments?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600Web</name>
+          <description>Which Version will be publish on Web?</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700Web</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATLWeb</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>A600Customer</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>A700Customer</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ATLCustomer</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>Comments on Phoenix installation:</name>
+          <description>Input your comments regarding the Phoenix installation:</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.TextParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -229,14 +242,14 @@ pipeline {
                     			if(line.contains(&quot;NeXus&quot;)){
                     			    if(line.contains(&quot;ktgem&quot;)){
                     			        if(line.contains(&quot;HF&quot;)){
-                        			        KTGemHF+=line.substring(line.indexOf(&quot;SupportFiles\\NeXus\\ktgem\\&quot;)+25,line.length()-26)
+                        			        KTGemHF+=line.substring(line.indexOf(&quot;SupportFiles\\NeXus\\ktgem\\&quot;)+25,line.length()-26)+&quot; &quot;
                         			        continue
                     			        }
                     			        continue
                     			    }
                     			    else{
                     			        if(line.contains(&quot;HF&quot;)){
-                    			            NexusHF+=line.substring(line.indexOf(&quot;SupportFiles\\NeXus\\&quot;)+19,line.length()-26)
+                    			            NexusHF+=line.substring(line.indexOf(&quot;SupportFiles\\NeXus\\&quot;)+19,line.length()-26)+&quot; &quot;
                     			            continue
                     			        }
                     			        Nexus=line.substring(line.indexOf(&quot;SupportFiles\\NeXus\\&quot;)+19,line.length()-26)   
@@ -244,14 +257,14 @@ pipeline {
                     			}
                     			if(line.contains(&quot;KTCS&quot;)){
                     			    if(line.contains(&quot;HF&quot;)){
-                    			        KTCSHF+=line.substring(line.indexOf(&quot;SupportFiles\\KTCS\\&quot;)+18,line.length()-26)
+                    			        KTCSHF+=line.substring(line.indexOf(&quot;SupportFiles\\KTCS\\&quot;)+18,line.length()-26)+&quot; &quot;
                     			        continue
                     			    }
                     			    KTCS=line.substring(line.indexOf(&quot;SupportFiles\\KTCS\\&quot;)+18,line.length()-26)
                     			}
                     			if(line.contains(&quot;PSG-FA&quot;)){
                     			    if(line.contains(&quot;HF&quot;)){
-                    			        PSGFAHF+=line.substring(line.indexOf(&quot;SupportFiles\\PSG-FA\\&quot;)+20,line.length()-26)
+                    			        PSGFAHF+=line.substring(line.indexOf(&quot;SupportFiles\\PSG-FA\\&quot;)+20,line.length()-26)+&quot; &quot;
                     			        continue
                     			    }
                     			    PSGFA=line.substring(line.indexOf(&quot;SupportFiles\\PSG-FA\\&quot;)+20,line.length()-26)
