@@ -253,7 +253,7 @@ pipeline {
                     &quot;&lt;strong&gt;&lt;u&gt;Tool SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
                     &quot;SWV ${params.Version} Installation kit is available in \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}&lt;/br&gt;&quot;+
 					&quot;Installation instructions are residing in Documentation folder&lt;/br&gt;&quot;+
-                    &quot;${SRN}&quot;+
+                    &quot;${toolSRN}&quot;+
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Compatible RDM SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
 					&quot;RDM ${shortversion} is available at \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\RDM\\RDM_${RDMVersion}&lt;/br&gt;&quot;+
