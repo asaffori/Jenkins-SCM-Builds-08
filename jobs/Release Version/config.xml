@@ -204,10 +204,12 @@ pipeline {
 					mailgroup=(params.A600?&quot;Agnes.Zhang@kla-tencor.com;&quot;:&quot;&quot;)+(params.A700?&quot;Adham.Saffori@kla-tencor.com;&quot;:&quot;&quot;)
 					echo mailgroup
 					
-					string masterimage=&quot;&lt;/br&gt;&quot;
-					if(params.A600)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A600.txt&quot;).text+&quot;&lt;/br&gt;&quot;
-					if(params.A700)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A700.txt&quot;).text+&quot;&lt;/br&gt;&quot;
-					if(params.ATL)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\ATL.txt&quot;).text+&quot;&lt;/br&gt;&quot;
+					string masterimage=&quot;&quot;
+					File masterimagefile=new File(&quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/MasterImage.html&quot;)
+	                masterimagecontent=masterimagefile.text
+					if(params.A600)	masterimage+=masterimagecontent.substring(masterimagecontent.indexOf(&quot;A600&quot;)+9,masterimagecontent.indexOf(&quot;&lt;/td&gt;&quot;,masterimagecontent.indexOf(&quot;A600&quot;)))
+					if(params.A700)	masterimage+=masterimagecontent.substring(masterimagecontent.indexOf(&quot;A600&quot;)+9,masterimagecontent.indexOf(&quot;&lt;/td&gt;&quot;,masterimagecontent.indexOf(&quot;A600&quot;)))
+					if(params.ATL)	masterimage+=masterimagecontent.substring(masterimagecontent.indexOf(&quot;A600&quot;)+9,masterimagecontent.indexOf(&quot;&lt;/td&gt;&quot;,masterimagecontent.indexOf(&quot;A600&quot;)))
 					
 					def buildnotice= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/InstallationInstruction.html&quot;;
 	                def buildnoticefile = new File(buildnotice)
