@@ -24,63 +24,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600</name>
-          <description>Released For Tool Type</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>Comments</name>
-          <description>What is your comments?</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600Web</name>
-          <description>Which Version will be publish on Web?</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700Web</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATLWeb</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>A600Customer</name>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>A700Customer</name>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>ATLCustomer</name>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>Comments on Phoenix installation:</name>
-          <description>Input your comments regarding the Phoenix installation:</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -97,6 +40,76 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to release?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600</name>
+          <description>Released For Tool Type</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATL</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>Comments</name>
+          <description>What is your comments?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A600Web</name>
+          <description>Which Version will be publish on Web?</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>A700Web</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>ATLWeb</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>A600Customer</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>A700Customer</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>ATLCustomer</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>Comments on Phoenix installation:</name>
+          <description>Input your comments regarding the Phoenix installation:</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.TextParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -166,10 +179,7 @@ pipeline {
 					if(!DocFolder.exists())exitwitherror(&quot;Archer kit document folder doesn&apos;t exist&quot;)
 					File[] DocContent=DocFolder.listFiles()
 					DocContent.each{
-					    echo it.getName()
 					    if(it.getName().contains(&apos;SRN&apos;))toolSRN=toolSRN+it.getName()+&quot; &quot;
-					    echo toolSRN
-					    
 					}
 					if(toolSRN==&quot;&quot;){
 					    toolSRN==&quot;&lt;/br&gt;&quot;
@@ -189,7 +199,10 @@ pipeline {
 		            echo publishweb
 		            
 					customer=(params.A600?&quot;A600:&quot;+params.A600Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.A700?&quot;A700:&quot;+params.A700Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.ATL?&quot;ATL:&quot;+params.ATLCustomer+&quot;&lt;/br&gt;&quot;:&quot;&quot;) 
+					echo customer
+					
 					mailgroup=(params.A600?&quot;Agnes.Zhang@kla-tencor.com;&quot;:&quot;&quot;)+(params.A700?&quot;Adham.Saffori@kla-tencor.com;&quot;:&quot;&quot;)
+					echo mailgroup
 					
 					string masterimage=&quot;&lt;/br&gt;&quot;
 					if(params.A600)	masterimage+=new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\OMDSWImages3\\A600.txt&quot;).text+&quot;&lt;/br&gt;&quot;
@@ -211,25 +224,32 @@ pipeline {
                 			}
                 		  }
                 	}
+                	else{
+                	    exitwitherror(&quot;Build notice file under code view folder doesn&apos;t exist&quot;)
+                	}
 					
 		            def thirdpartyism= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/Installation/Archer_Family/Installshield/Archer_SW_Installation/uArcherThirdPartyInstallation/ThirdPartySetup.ism&quot;;
-	                def thirdparty
-	                thirdparty= new File(thirdpartyism)
+	                def thirdparty=new File(thirdpartyism)
+					def KTCS,KTCSHF,Nexus,NexusHF,KTGem,KTGemHF,PSGFA,
 					
                 	if(thirdparty.exists()){
                 		string thirdpartyversion=&quot;&lt;table&gt;&quot;
                 		echo &quot;found the third party ism file&quot;				
                 		thirdpartycontent=thirdparty.readLines()
+                		
                 		for(String line : thirdpartycontent){
                 			if(line.contains(&quot;PATH_TO_ARCHER_INSTALLATION&amp;gt;\\SupportFiles&quot;)||line.contains(&quot;PATH_TO_ARCHER_INSTALLATION&amp;gt;\\&amp;lt;ARCHER_VER2&amp;gt;\\SupportFiles&quot;)){
-                			if(line.contains(&quot;Disk&quot;))continue
-                			 string subline=line.substring(line.indexOf(&quot;SupportFiles\\&quot;)+13,line.length()-16).replaceAll(&quot;\\\\&quot;,&quot;&lt;//TD&gt;&lt;TD&gt;&quot;)
-                			 thirdpartyversion+=&quot;&lt;TR&gt;&lt;TD&gt;&quot;+subline+&quot;&lt;/TD&gt;&lt;/TR&gt;&quot;
-                            echo subline
-                			continue
+                    			if(line.contains(&quot;Disk&quot;))continue
+                    			 string subline=line.substring(line.indexOf(&quot;SupportFiles\\&quot;)+13,line.length()-16).replaceAll(&quot;\\\\&quot;,&quot;&lt;//TD&gt;&lt;TD&gt;&quot;)
+                    			 thirdpartyversion+=&quot;&lt;TR&gt;&lt;TD&gt;&quot;+subline+&quot;&lt;/TD&gt;&lt;/TR&gt;&quot;
+                                echo subline
+                    			continue
                 			}
                 		  }
                 		 string thirdpartyversion+=&quot;&lt;//table&gt;&quot;
+                	}
+                	else{
+                	    exitwitherror(&quot;Thirdparty installshield file under code view folder doesn&apos;t exist&quot;)
                 	}
 		            
 		            echo thirdpartyversion
