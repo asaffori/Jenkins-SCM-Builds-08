@@ -180,7 +180,7 @@ pipeline {
 					File[] DocContent=DocFolder.listFiles()
 					DocContent.each{
 					    if(it.getName().contains(&apos;SRN&apos;)){
-					        toolSRN.plus(it.getName()+&quot; &quot;)+=
+					        toolSRN.plus(it.getName()+&quot; &quot;)
 					    }
 					}
 					if(toolSRN==&quot;&quot;){
