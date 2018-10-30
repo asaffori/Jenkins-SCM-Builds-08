@@ -127,10 +127,10 @@ pipeline {
 		booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
         booleanParam(name: &apos;A700Web&apos;, defaultValue: false)
         booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false)
-        string(name: &apos;A600Customer&apos;,defaultValue: &apos;All&apos;)
-        string(name: &apos;A700Customer&apos;,defaultValue:&apos;All&apos;)
-        string(name: &apos;ATLCustomer&apos;,defaultValue: &apos;All&apos;) 
-        text(name: &apos;Comments on Phoenix installation&apos;)
+        string(name: &apos;A600Customer&apos;)
+        string(name: &apos;A700Customer&apos;)
+        string(name: &apos;ATLCustomer&apos;) 
+        text(name: &apos;Comments on Phoenix installation:&apos;)
 
     }
 	stages {
@@ -139,14 +139,10 @@ pipeline {
             steps (&apos;vaiidate&apos;) {
 	                script{
 	                if(params.Version==&quot;&quot;){
-	                    msg=&quot;Version is not defined&quot;
-    				    input(message:msg ,ok:&apos;Abort&apos;)
-    					throw new Exception(msg)
+    				    exitwitherror(&quot;Version is not defined&quot;)
 	                }
 	                if(params.A600==false&amp;&amp;params.A700==false&amp;&amp;params.ATL==false){
-	                    msg=&quot;Released tool type is empty, at least you are releasing for one tool type&quot;
-    				    input(message:msg ,ok:&apos;Abort&apos;)
-    					throw new Exception(msg)
+    				    exitwitherror(&quot;Released tool type is empty, at least you are releasing for one tool type&quot;)
                     }
                 }
             }
@@ -158,28 +154,35 @@ pipeline {
 		            shortversion=params.Version.substring(6,8)==&apos;00&apos;?Version.substring(0,6):params.Version.substring(0,8)
 					majorminor=params.Version.substring(0,5)
 					
+					//get compitable RDM version
 					def rdmdir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\RDM&quot;
+					if(!rdmdir.exist())exitwitherror(&quot;RDM kit folder doesn&apos;t exist&quot;)
                     stdout = bat(returnStdout:true , script: &quot;dir /b /a d &quot; + rdmdir).trim()
                     result = stdout.readLines().drop(1).findAll{ it.contains(&apos;RDM&apos;)}
                     RDMVersion=result.join(&apos; &apos;).substring(4,18)
-                    echo RDMVersion
+					if(RDMVersion==&quot;&quot;)exitwitherror(&quot;RDM Version is not defined&quot;)
+                    echo &quot;RDMVersion:&quot;+RDMVersion
                     
 		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
-		            toolSRN=&quot;&lt;/br&gt;&quot;
-
+		            
+					toolSRN=&quot;&lt;/br&gt;&quot;
                     def dir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\Tool\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation&quot;
+					if(!dir.exist())exitwitherror(&quot;Archer kit document folder doesn&apos;t exist&quot;)
                     stdout = bat(returnStdout:true , script: &quot;dir /b /a-d &quot; + dir).trim()
                     result = stdout.readLines().drop(1).findAll{ it.contains(&apos;SRN&apos;)}
                     SRN=result.join(&apos; &apos;)
- 
                     echo SRN
+					
 		            A600webtext=(params.A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)
 		            A700webtext=(params.A700Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)
 		            ATLwebtext=(params.ATLWeb?&quot; ATL: Will be published on Web.&lt;/br&gt;&quot;:&quot;ATL: No Web publish.&lt;/br&gt;&quot;)
 		            
 		            publishweb=(params.A600?A600webtext:&quot;&quot;)+(params.A700?A700webtext:&quot;&quot;)+(params.ATL?ATLwebtext:&quot;&quot;) 
-		             echo publishweb
-		             
+		            echo publishweb
+		            
+					if(params.A600Customer==&quot;&quot;)A600Customer==&quot;N/A&quot;
+					if(params.A700Customer==&quot;&quot;)A700Customer==&quot;N/A&quot;
+					if(params.ATLCustomer==&quot;&quot;)ATLCustomer==&quot;N/A&quot;
 					customer=(params.A600?&quot;A600:&quot;+A600Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.A700?&quot;A700:&quot;+A700Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.ATL?&quot;ATL:&quot;+ATLCustomer+&quot;&lt;/br&gt;&quot;:&quot;&quot;) 
 					mailgroup=(params.A600?&quot;Agnes.Zhang@kla-tencor.com;&quot;:&quot;&quot;)+(params.A700?&quot;Adham.Saffori@kla-tencor.com;&quot;:&quot;&quot;)
 					
@@ -292,6 +295,11 @@ pipeline {
 		    }
         }
 	}
+}
+
+def exitwitherror(msg){
+    input(message:msg ,ok:&apos;Abort&apos;)
+    throw new Exception(msg)
 }</script>
     <sandbox>false</sandbox>
   </definition>
