@@ -185,6 +185,8 @@ pipeline {
 					}
                     echo SRN
 					
+					if(params.Comments==null)params.Comments=&quot;&lt;/br&gt;&quot;
+					
 		            A600webtext=(params.A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)
 		            A700webtext=(params.A700Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)
 		            ATLwebtext=(params.ATLWeb?&quot; ATL: Will be published on Web.&lt;/br&gt;&quot;:&quot;ATL: No Web publish.&lt;/br&gt;&quot;)
