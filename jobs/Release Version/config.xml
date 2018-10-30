@@ -230,23 +230,52 @@ pipeline {
 					
 		            def thirdpartyism= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/Installation/Archer_Family/Installshield/Archer_SW_Installation/uArcherThirdPartyInstallation/ThirdPartySetup.ism&quot;;
 	                def thirdparty=new File(thirdpartyism)
-					def KTCS,KTCSHF,Nexus,NexusHF,KTGem,KTGemHF,PSGFA,
+					def KTCS=&quot;&quot;,KTCSHF=&quot;&quot;,Nexus=&quot;&quot;,NexusHF=&quot;&quot;,KTGem=&quot;&quot;,KTGemHF=&quot;&quot;,PSGFA=&quot;&quot;,PSGFAHF=&quot;&quot;
 					
                 	if(thirdparty.exists()){
-                		string thirdpartyversion=&quot;&lt;table&gt;&quot;
                 		echo &quot;found the third party ism file&quot;				
                 		thirdpartycontent=thirdparty.readLines()
                 		
                 		for(String line : thirdpartycontent){
                 			if(line.contains(&quot;PATH_TO_ARCHER_INSTALLATION&amp;gt;\\SupportFiles&quot;)||line.contains(&quot;PATH_TO_ARCHER_INSTALLATION&amp;gt;\\&amp;lt;ARCHER_VER2&amp;gt;\\SupportFiles&quot;)){
-                    			if(line.contains(&quot;Disk&quot;))continue
-                    			 string subline=line.substring(line.indexOf(&quot;SupportFiles\\&quot;)+13,line.length()-16).replaceAll(&quot;\\\\&quot;,&quot;&lt;//TD&gt;&lt;TD&gt;&quot;)
-                    			 thirdpartyversion+=&quot;&lt;TR&gt;&lt;TD&gt;&quot;+subline+&quot;&lt;/TD&gt;&lt;/TR&gt;&quot;
-                                echo subline
-                    			continue
+                    			if(line.contains(&quot;IMFA&quot;)||line.contains(&quot;FDC_FA_KTGEM&quot;))continue
+                    			if(line.contains(&quot;Nexus&quot;)){
+                    			    if(line.contains(&quot;ktgem&quot;)){
+                    			        if(line.contains(&quot;HF&quot;)){
+                        			        KTGemHF+=line.substring(line.indexOf(&quot;SupportFiles\\NeXus\\ktgem\\&quot;)+25,line.length()-16)
+                        			        continue
+                    			        }
+                    			        continue
+                    			    }
+                    			    else{
+                    			        if(line.contains(&quot;HF&quot;)){
+                    			            NexusHF+=line.substring(line.indexOf(&quot;SupportFiles\\Nexus\\&quot;)+19,line.length()-16)
+                    			            continue
+                    			        }
+                    			        Nexus=line.substring(line.indexOf(&quot;SupportFiles\\Nexus\\&quot;)+19,line.length()-16)   
+                    			    }
+                    			}
+                    			if(line.contains(&quot;KTCS&quot;)){
+                    			    if(line.contains(&quot;HF&quot;)){
+                    			        KTCSHF+=line.substring(line.indexOf(&quot;SupportFiles\\KTCS\\&quot;)+18,line.length()-16)
+                    			        continue
+                    			    }
+                    			    KTCS=line.substring(line.indexOf(&quot;SupportFiles\\KTCS\\&quot;)+18,line.length()-16)
+                    			}
+                    			if(line.contains(&quot;PSG-FA&quot;)){
+                    			    if(line.contains(&quot;HF&quot;)){
+                    			        PSGFAHF+=line.substring(line.indexOf(&quot;SupportFiles\\PSG-FA\\&quot;)+20,line.length()-16)
+                    			        continue
+                    			    }
+                    			    PSGFA=line.substring(line.indexOf(&quot;SupportFiles\\PSG-FA\\&quot;)+20,line.length()-16)
+                    			}
                 			}
                 		  }
-                		 string thirdpartyversion+=&quot;&lt;//table&gt;&quot;
+                		 string thirdpartyversion=&quot;&lt;table&gt;&quot;+
+                		 &quot;&lt;TR&gt;&lt;TD&gt;KTCS&lt;//TD&gt;&lt;TD&gt;&quot;+KTCS+&quot; &quot;+KTCSHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&quot;+
+                		 &quot;&lt;TR&gt;&lt;TD&gt;Nexus&lt;//TD&gt;&lt;TD&gt;&quot;+Nexus+&quot; &quot;+NexusHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&quot;+
+                		 &quot;&lt;TR&gt;&lt;TD&gt;Nexus-KTGem&lt;//TD&gt;&lt;TD&gt;&quot;+KTGem+&quot; &quot;+KTGemHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&quot;+
+                		 &quot;&lt;TR&gt;&lt;TD&gt;PSG-FA&lt;//TD&gt;&lt;TD&gt;&quot;+PSGFA+&quot; &quot;+PSGFAHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&lt;//table&gt;&quot;
                 	}
                 	else{
                 	    exitwitherror(&quot;Thirdparty installshield file under code view folder doesn&apos;t exist&quot;)
