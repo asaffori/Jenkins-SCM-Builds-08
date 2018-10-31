@@ -116,9 +116,9 @@ pipeline {
                    String defaultScheduledBuildVersion= new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version\\&quot;+userInput.MajorMinor+&quot;version.txt&quot;).readLines().get(1).split(&apos;=&apos;)[1]
                    print defaultScheduledBuildVersion
                    String[] tmpNumArray=((String)defaultScheduledBuildVersion).tokenize(&quot;.&quot;)
-                   print tmpNumArray.length
+                   print (&quot;**** &quot; + tmpNumArray[3] &quot; *****&quot;)
                    int num = tmpNumArray[3] as Integer
-                   tmpNumArray[3] = (num/100) +1 *100 as String 
+                   tmpNumArray[3] = ((int)num/100) +1 *100 as String 
                    defaultFormalBuildVersion= tmpNumArray.join(&apos;.&apos;)
                    
                    def advancedUserInput = input(
@@ -128,7 +128,7 @@ pipeline {
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;RDM&apos;, defaultValue: true],
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Debug&apos;, defaultValue: true, description: &apos;Which build modes would you like to run?&apos;],
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Release&apos;, defaultValue: userInput.BUILDTYPE == &apos;Task&apos;? false:true],
-                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Build_Version&apos;, defaultValue: userInput.BUILDTYPE  != &apos;Formal&apos; ? defaultFormalBuildVersion:defaultScheduledBuildVersion, description: &apos;Which version would you like to tag your build with?&apos;],
+                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Build_Version&apos;, defaultValue: userInput.BUILDTYPE  == &apos;Formal&apos; ? defaultFormalBuildVersion:defaultScheduledBuildVersion, description: &apos;Which version would you like to tag your build with?&apos;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: workspaces_choice_list, description: &apos;Which RTC workspace you would like to run your build with?&apos;, name: &apos;WorkSpaceName&apos;]
                     ]
                     )
