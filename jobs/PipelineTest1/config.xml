@@ -96,8 +96,8 @@ pipeline {
                     //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to run automatic Archer sanity tests for this build ?&apos;, name: &apos;RunATE&apos;],
                     //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to generate installers for this build ?&apos;, name: &apos;BuidInstallers&apos;]]
                     
-                def userInput = input(
-                    id: &apos;userInput&apos;, message: &apos;Hello &apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: user_team == &apos;DevOps&apos;? DevOps_Formal_Build_Params:Dev_Formal_Build_Params,ok:&apos;Lets continue&apos;
+                    def userInput = input(
+                        id: &apos;userInput&apos;, message: &apos;Hello &apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: user_team == &apos;DevOps&apos;? DevOps_Formal_Build_Params:Dev_Formal_Build_Params,ok:&apos;Lets continue&apos;
                     )
                    RunAsOmdbuild = (userInput.BUILDTYPE == &apos;Task&apos; ? false:true)
                    String defaultScheduledBuildVersion= new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version\\&quot;+userInput.MajorMinor+&quot;version.txt&quot;).readLines().get(1).split(&apos;=&apos;)[1]
@@ -106,7 +106,7 @@ pipeline {
                    //print (&quot;**** &quot; + tmpNumArray[3] +&quot; *****&quot;)
                    int num = tmpNumArray[3] as Integer
                    tmpFormal= (num.intdiv(100) +1) *100 as String 
-                   //print (&quot;** &quot; + tmpFormal + userInput.RunAsOmdbuild +&quot; *****&quot;)
+                   //print (&quot;** &quot; + tmpFormal + RunAsOmdbuild +&quot; *****&quot;)
                    tmpScheduled= num +1  as String 
                    tmpNumArray[3] = userInput.BUILDTYPE  == &apos;Formal&apos; ? tmpFormal: tmpScheduled
                    nextBN= tmpNumArray.join(&apos;.&apos;)
@@ -114,8 +114,8 @@ pipeline {
                    try{
                         def user_workspaces = []
                         wrap([$class: &apos;BuildUser&apos;]) {
-                                print (&apos;Are you sure?&apos; + userInput.BUILDTYPE + userInput.RunAsOmdbuild  + (userInput.RunAsOmdbuild == true))
-                                 user_workspaces = getUserRTCWorkspaces(userInput.RunAsOmdbuild == true ? &apos;omdbuild&apos;:BUILD_USER_ID)
+                                print (&apos;Are you sure?&apos; + userInput.BUILDTYPE + RunAsOmdbuild  + (RunAsOmdbuild == true))
+                                 user_workspaces = getUserRTCWorkspaces(RunAsOmdbuild ? &apos;omdbuild&apos;:BUILD_USER_ID)
                         }
 
                         def req_workspace = user_workspaces.find { item -&gt;
