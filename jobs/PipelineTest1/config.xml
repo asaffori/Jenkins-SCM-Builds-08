@@ -122,8 +122,13 @@ pipeline {
                             user_workspaces = getUserRTCWorkspaces(userInput.RunAsOmdbuild ? &apos;omdbuild&apos;:BUILD_USER_ID)
                         }
                         workspaces_choice_list=user_workspaces.join(&apos;\n&apos;)
-                        //workspaces_choice_list=&apos;Archer_17.00_Integ Workspace\nArcher_17.13.02_Dev Workspace\nasaffori_Archer_16.07_Integ\nasaffori_Archer_16.12_Dev_Workspace\nasaffori_Archer_17.00_Dev\nasaffori_Archer_17.00_Integ\nasaffori_Archer_17.01_Dev\nasaffori_Archer_17.01_Integ\nasaffori_Archer_17.01_Support_17.01.00.21100_new\nasaffori_Archer_17.02_Dev_Tasks\nasaffori_Archer_17.02_Integ\nasaffori_Archer_17.02_Test\nasaffori_Archer_17.03_Dev_New2\nasaffori_Archer_17.03_Integ\nasaffori_Archer_17.03_Task_Static_Code_Analysis_384128\nasaffori_Archer_17.04_Dev\nasaffori_Archer_17.10_Dev\nasaffori_Archer_17.11_Dev\nasaffori_Archer_17.11_Integ\nasaffori_Archer_17.12_Dev_Workspace\nasaffori_Archer_17.12_Dev_Workspace_New\nasaffori_Archer_17.12_Task_Build_improve_417558\nasaffori_Archer_17.12_Task_Pre_17.12.01_Workspace\nasaffori_Archer_17.13.01_Dev_Workspace\nasaffori_Archer_17.13.02_Dev_Workspace\nasaffori_Archer_17.13.03_Dev_Workspace\nasaffori_Archer_17.13_Dev_Workspace\nasaffori_Archer_17.14_Dev_Workspace\nasaffori_RDM-MainOS_1.0_Integ&apos;
-                        print (workspaces_choice_list)
+                        
+                        def req_workspace = list.find { item -&gt;
+                           item.contains(tmpNumArray[0..2]) || item.contains(tmpNumArray[0..1])
+                        }
+                        print (&quot;Found workspace:&quot; + req_workspace)
+                        user_workspaces.remove(req_workspace);
+                        user_workspaces.addFirst(req_workspace);
                     }catch (Exception e){
                         throw (e)
                     }
