@@ -151,7 +151,7 @@ pipeline {
 }  
  
  def getUserRTCWorkspaces(user){
-        cmd=&quot;scm  list workspaces -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -c ${user} -m 100&quot;
+        cmd=&quot;scm  list workspaces -r http://clm.kla-tencor.com/ccm -u omdbuild -P \&quot;Scm07^&amp;\&quot; -c ${user} -m 100&quot;
         print (&quot; Running: ${cmd}&quot;)
         try{
             stdoutput = bat(returnStdout:true , script:cmd).trim()
