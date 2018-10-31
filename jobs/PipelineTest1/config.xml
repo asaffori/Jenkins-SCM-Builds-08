@@ -120,7 +120,7 @@ pipeline {
                    int num = tmpNumArray[3] as Integer
                    tmpFormal= ((int)num/100) +1 *100 as String 
                    tmpScheduled= num +1  as String 
-                   tmpNumArray[3] = serInput.BUILDTYPE  == &apos;Formal&apos; ? tmpFormal: tmpScheduled
+                   tmpNumArray[3] = userInput.BUILDTYPE  == &apos;Formal&apos; ? tmpFormal: tmpScheduled
                    defaultFormalBuildVersion= tmpNumArray.join(&apos;.&apos;)
                    
                    def advancedUserInput = input(
