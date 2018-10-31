@@ -160,6 +160,7 @@ pipeline {
         def workspaces = []
         stdoutput.readLines().each {
             if (it.contains(user) &amp;&amp; !it.contains(cmd)){
+                print it
                 workspaces &lt;&lt; it.substring(it.indexOf(&apos;\&quot;&apos;)+1,it.lastIndexOf(&apos;\&quot;&apos;))
             }
         }
