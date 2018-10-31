@@ -128,7 +128,7 @@ pipeline {
                         }
                         print (&quot;Found workspace:&quot; + req_workspace)
                         user_workspaces.remove(req_workspace);
-                        user_workspaces.add(req_workspace);
+                        user_workspaces.add(0,req_workspace);
                         workspaces_choice_list=user_workspaces.join(&apos;\n&apos;)
                     }catch (Exception e){
                         throw (e)
