@@ -76,7 +76,7 @@ pipeline {
                    
                    def DevOps_Formal_Build_Params =[
                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: user_team == &apos;DevOps&apos;? DevOpsBuildTypes:DevBuildTypes , description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;],
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: FormalVersion_choice_list , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;],
+                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: FormalVersion_choice_list , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;]]
                     //[$class: &apos;StringParameterDefinition&apos;, defaultValue:&apos;Version will be automatically calulated&apos;, description: &apos;What should be your build version?&apos;, name: &apos;Build_Version&apos;],
                     //[$class: &apos;ChoiceParameterDefinition&apos;, choices: workspaces_choice_list, description: &apos;What is your build WorkSpace? \nExample: asaffori_Archer_17.12_Dev_Workspace&apos;, name: &apos;WorkSpaceName&apos;]
                     /**,
