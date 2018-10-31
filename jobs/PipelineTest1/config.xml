@@ -122,7 +122,6 @@ pipeline {
                             user_workspaces = getUserRTCWorkspaces(userInput.RunAsOmdbuild ? &apos;omdbuild&apos;:BUILD_USER_ID)
                         }
 
-                        /**
                         def req_workspace = user_workspaces.find { item -&gt;
                             print (item + &quot;   &quot; +tmpNumArray[0..2].join(&apos;.&apos;))
                            item.contains(tmpNumArray[0..2].join(&apos;.&apos;)) || item.contains(tmpNumArray[0..1].join(&apos;.&apos;))
@@ -130,7 +129,6 @@ pipeline {
                         print (&quot;Found workspace:&quot; + req_workspace)
                         user_workspaces.remove(req_workspace);
                         user_workspaces.addFirst(req_workspace);
-**/
                         workspaces_choice_list=user_workspaces.join(&apos;\n&apos;)
                     }catch (Exception e){
                         throw (e)
