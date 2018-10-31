@@ -60,15 +60,7 @@ pipeline {
                         throw (e)
                     }
 
-                    try{
-                        def user_workspaces = []
-                        user_workspaces = getUserRTCWorkspaces()
-                        workspaces_choice_list=user_workspaces.join(&apos;\n&apos;)
-                        //workspaces_choice_list=&apos;Archer_17.00_Integ Workspace\nArcher_17.13.02_Dev Workspace\nasaffori_Archer_16.07_Integ\nasaffori_Archer_16.12_Dev_Workspace\nasaffori_Archer_17.00_Dev\nasaffori_Archer_17.00_Integ\nasaffori_Archer_17.01_Dev\nasaffori_Archer_17.01_Integ\nasaffori_Archer_17.01_Support_17.01.00.21100_new\nasaffori_Archer_17.02_Dev_Tasks\nasaffori_Archer_17.02_Integ\nasaffori_Archer_17.02_Test\nasaffori_Archer_17.03_Dev_New2\nasaffori_Archer_17.03_Integ\nasaffori_Archer_17.03_Task_Static_Code_Analysis_384128\nasaffori_Archer_17.04_Dev\nasaffori_Archer_17.10_Dev\nasaffori_Archer_17.11_Dev\nasaffori_Archer_17.11_Integ\nasaffori_Archer_17.12_Dev_Workspace\nasaffori_Archer_17.12_Dev_Workspace_New\nasaffori_Archer_17.12_Task_Build_improve_417558\nasaffori_Archer_17.12_Task_Pre_17.12.01_Workspace\nasaffori_Archer_17.13.01_Dev_Workspace\nasaffori_Archer_17.13.02_Dev_Workspace\nasaffori_Archer_17.13.03_Dev_Workspace\nasaffori_Archer_17.13_Dev_Workspace\nasaffori_Archer_17.14_Dev_Workspace\nasaffori_RDM-MainOS_1.0_Integ&apos;
-                        print (workspaces_choice_list)
-                    }catch (Exception e){
-                        throw (e)
-                    }
+                    
 
                         DevOpsBuildTypes = &apos;Scheduled\nFormal\nTasks&apos;
                         DevBuildTypes = &apos;Tasks\nFormal&apos;
@@ -124,6 +116,18 @@ pipeline {
                    tmpNumArray[3] = userInput.BUILDTYPE  == &apos;Formal&apos; ? tmpFormal: tmpScheduled
                    nextBN= tmpNumArray.join(&apos;.&apos;)
                    
+                   try{
+                        def user_workspaces = []
+                        wrap([$class: &apos;BuildUser&apos;]) {
+                            user_workspaces = getUserRTCWorkspaces(RunAsOmdbuild? &apos;omdbuild&apos;:BuildUser)
+                        }
+                        workspaces_choice_list=user_workspaces.join(&apos;\n&apos;)
+                        //workspaces_choice_list=&apos;Archer_17.00_Integ Workspace\nArcher_17.13.02_Dev Workspace\nasaffori_Archer_16.07_Integ\nasaffori_Archer_16.12_Dev_Workspace\nasaffori_Archer_17.00_Dev\nasaffori_Archer_17.00_Integ\nasaffori_Archer_17.01_Dev\nasaffori_Archer_17.01_Integ\nasaffori_Archer_17.01_Support_17.01.00.21100_new\nasaffori_Archer_17.02_Dev_Tasks\nasaffori_Archer_17.02_Integ\nasaffori_Archer_17.02_Test\nasaffori_Archer_17.03_Dev_New2\nasaffori_Archer_17.03_Integ\nasaffori_Archer_17.03_Task_Static_Code_Analysis_384128\nasaffori_Archer_17.04_Dev\nasaffori_Archer_17.10_Dev\nasaffori_Archer_17.11_Dev\nasaffori_Archer_17.11_Integ\nasaffori_Archer_17.12_Dev_Workspace\nasaffori_Archer_17.12_Dev_Workspace_New\nasaffori_Archer_17.12_Task_Build_improve_417558\nasaffori_Archer_17.12_Task_Pre_17.12.01_Workspace\nasaffori_Archer_17.13.01_Dev_Workspace\nasaffori_Archer_17.13.02_Dev_Workspace\nasaffori_Archer_17.13.03_Dev_Workspace\nasaffori_Archer_17.13_Dev_Workspace\nasaffori_Archer_17.14_Dev_Workspace\nasaffori_RDM-MainOS_1.0_Integ&apos;
+                        print (workspaces_choice_list)
+                    }catch (Exception e){
+                        throw (e)
+                    }
+
                    def advancedUserInput = input(
                     id: &apos;userInput&apos;, message: &apos;Build options&apos;, parameters: [
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices:&apos;Full build (combination of all below steps)\n\tCompilation (Build/Nunit)\n\tMedia\n\tSanity\nI want to custom my build steps&apos; , description: &apos;Which build level would you like to run? &apos;, name: &apos;MajorMinor&apos;],
@@ -145,9 +149,8 @@ pipeline {
     
 }  
  
- def getUserRTCWorkspaces(){
-    wrap([$class: &apos;BuildUser&apos;]) {
-        cmd=&quot;scm  list workspaces -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -c ${BUILD_USER_ID} -m 100&quot;
+ def getUserRTCWorkspaces(user){
+        cmd=&quot;scm  list workspaces -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -c user -m 100&quot;
         try{
             stdoutput = bat(returnStdout:true , script:cmd).trim()
         }catch(Exception e){
@@ -162,7 +165,6 @@ pipeline {
         }
 
         return workspaces
-    }
 }
 
 def getFormalVersionsList(){
