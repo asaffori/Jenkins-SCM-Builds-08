@@ -118,7 +118,8 @@ pipeline {
                    String[] tmpNumArray=((String)defaultScheduledBuildVersion).tokenize(&quot;.&quot;)
                    print (&quot;**** &quot; + tmpNumArray[3] +&quot; *****&quot;)
                    int num = tmpNumArray[3] as Integer
-                   tmpFormal= ((int)num/100) +1 *100 as String 
+                   tmpFormal= (((int)num/100) +1 *100) as String 
+                   print (&quot;** &quot; + tmpFormal +&quot; *****&quot;)
                    tmpScheduled= num +1  as String 
                    tmpNumArray[3] = userInput.BUILDTYPE  == &apos;Formal&apos; ? tmpFormal: tmpScheduled
                    nextBN= tmpNumArray.join(&apos;.&apos;)
