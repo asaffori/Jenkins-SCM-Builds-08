@@ -150,7 +150,9 @@ pipeline {
 }  
  
  def getUserRTCWorkspaces(user){
-        cmd=&quot;scm  list workspaces -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -c ${user} -m 100&quot;
+
+        rtcurl= &quot;http://clm.kla-tencor.com/ccm&quot;
+        cmd=&quot;scm  list workspaces -r ${rtcurl} -u omdbuild -P Scm07^&amp; -c ${user} -m 100&quot;
         try{
             stdoutput = bat(returnStdout:true , script:cmd).trim()
         }catch(Exception e){
@@ -159,7 +161,7 @@ pipeline {
         print (&quot;stdout=&quot; + stdoutput)
         def workspaces = []
         stdoutput.readLines().each {
-            if (it.contains(user) &amp;&amp; !it.contains(cmd)){
+            if (it.contains(user) &amp;&amp; !it.contains(rtcurl)){
                 print it
                 workspaces &lt;&lt; it.substring(it.indexOf(&apos;\&quot;&apos;)+1,it.lastIndexOf(&apos;\&quot;&apos;))
             }
