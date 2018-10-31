@@ -62,8 +62,8 @@ pipeline {
                         DevOpsBuildTypes = &apos;Scheduled\nFormal\nTasks&apos;
                         DevBuildTypes = &apos;Tasks\nFormal&apos;
                         FormalVersion_choice_list = getFormalVersionsList().join(&apos;\n&apos;)
-                        print (FormalVersion_choice_list)
-                        print (&quot;**\n&quot;+getFormalVersionsList()+&quot;**\n&quot;)
+                        //print (FormalVersion_choice_list)
+                        //print (&quot;**\n&quot;+getFormalVersionsList()+&quot;**\n&quot;)
 
 
                     /**[$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Debug &amp; Release\nRelease\nDebug&apos;, description: &apos;In which modes ?&apos;, name: &apos;BUILDMODES&apos;],
@@ -101,12 +101,12 @@ pipeline {
                     )
                    RunAsOmdbuild = (userInput.BUILDTYPE == &apos;Task&apos; ? false:true)
                    String defaultScheduledBuildVersion= new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version\\&quot;+userInput.MajorMinor+&quot;version.txt&quot;).readLines().get(1).split(&apos;=&apos;)[1]
-                   print defaultScheduledBuildVersion
+                   //print defaultScheduledBuildVersion
                    String[] tmpNumArray=((String)defaultScheduledBuildVersion).tokenize(&quot;.&quot;)
-                   print (&quot;**** &quot; + tmpNumArray[3] +&quot; *****&quot;)
+                   //print (&quot;**** &quot; + tmpNumArray[3] +&quot; *****&quot;)
                    int num = tmpNumArray[3] as Integer
                    tmpFormal= (num.intdiv(100) +1) *100 as String 
-                   print (&quot;** &quot; + tmpFormal + userInput.RunAsOmdbuild +&quot; *****&quot;)
+                   //print (&quot;** &quot; + tmpFormal + userInput.RunAsOmdbuild +&quot; *****&quot;)
                    tmpScheduled= num +1  as String 
                    tmpNumArray[3] = userInput.BUILDTYPE  == &apos;Formal&apos; ? tmpFormal: tmpScheduled
                    nextBN= tmpNumArray.join(&apos;.&apos;)
@@ -118,10 +118,10 @@ pipeline {
                         }
 
                         def req_workspace = user_workspaces.find { item -&gt;
-                            print (item + &quot;   &quot; +tmpNumArray[0..2].join(&apos;.&apos;))
+                            //print (item + &quot;   &quot; +tmpNumArray[0..2].join(&apos;.&apos;))
                            item.contains(tmpNumArray[0..2].join(&apos;.&apos;)) || item.contains(tmpNumArray[0..1].join(&apos;.&apos;))
                         }
-                        print (&quot;Found workspace:&quot; + req_workspace)
+                        //print (&quot;Found workspace:&quot; + req_workspace)
                         user_workspaces.remove(req_workspace);
                         user_workspaces.add(0,req_workspace);
                         workspaces_choice_list=user_workspaces.join(&apos;\n&apos;)
