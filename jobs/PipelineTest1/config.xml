@@ -124,6 +124,7 @@ pipeline {
 
                         
                         def req_workspace = user_workspaces.find { item -&gt;
+                            print (item + &quot;   &quot; +tmpNumArray[0..2].join())
                            item.contains(tmpNumArray[0..2].join()) || item.contains(tmpNumArray[0..1].join())
                         }
                         print (&quot;Found workspace:&quot; + req_workspace)
