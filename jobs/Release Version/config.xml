@@ -137,7 +137,7 @@ pipeline {
         string(name: &apos;A600Customer&apos;)
         string(name: &apos;A700Customer&apos;)
         string(name: &apos;ATLCustomer&apos;) 
-        text(name: &apos;Comments on Phoenix installation:&apos;, description: &apos;Input your comments regarding the Phoenix installation:&apos;)
+        text(name: &apos;PhoenixCondition&apos;, description: &apos;Input your comments regarding the Phoenix installation:&apos;)
 
     }
 	stages {
@@ -290,6 +290,8 @@ pipeline {
                 	}
 		            
 		            echo thirdpartyversion
+		            
+		            if(params.PhoenixCondition==null)params.PhoenixCondition=&quot;&quot;
 		            mailcontent=&quot;Archer SWV  ${shortversion}(${params.Version}) is released for ${tooltype}&lt;/br&gt;&quot;+
                     &quot;${params.Comments}&lt;/br&gt;&quot;+
                     &quot;&lt;strong&gt;&lt;u&gt;Tool SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
@@ -307,6 +309,7 @@ pipeline {
 					&quot;&lt;strong&gt;&lt;u&gt;Phoenix&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
 					&quot;${phoenixversion}&lt;/br&gt;&quot;+
 					&quot;Phoenix installation can be found in \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}\\Phoenix&lt;/br&gt;&quot;+
+					&quot;${params.PhoenixCondition}&quot;+&quot;
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Latest master images are:&lt;/u&gt;&lt;/strong&gt;&quot;+
 					&quot;${masterimage}&quot;+
