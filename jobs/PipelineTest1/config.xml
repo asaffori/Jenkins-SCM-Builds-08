@@ -156,10 +156,10 @@ pipeline {
         }catch(Exception e){
             throw e
         }
-       // print (&quot;stdout=&quot; + stdoutput)
+        print (&quot;stdout=&quot; + stdoutput)
         def workspaces = []
         stdoutput.readLines().each {
-            if (it.contains(user) &amp;&amp; it != cmd){
+            if (it.contains(user) and !it.contains(cmd)){
                 workspaces &lt;&lt; it.substring(it.indexOf(&apos;\&quot;&apos;)+1,it.lastIndexOf(&apos;\&quot;&apos;))
             }
         }
