@@ -123,8 +123,8 @@ pipeline {
                         }
 
                         
-                        def req_workspace = user_workspaces[0].find { item -&gt;
-                           item.contains(tmpNumArray[0..2]) || item.contains(tmpNumArray[0..1])
+                        def req_workspace = user_workspaces.find { item -&gt;
+                           item.contains(tmpNumArray[0..2].join()) || item.contains(tmpNumArray[0..1].join())
                         }
                         print (&quot;Found workspace:&quot; + req_workspace)
                         user_workspaces[0].remove(req_workspace);
