@@ -285,7 +285,7 @@ pipeline {
                         result = stdout.readLines().findAll{ it.contains(&quot;KTGEM\\KTGEMInstaller\\ktgem_setup_&quot;)}
                         ktgeminstaller=result.join(&apos; &apos;)
                         echo ktgeminstaller
-                        KTGem=ktgeminstaller.substring(ktgeminstaller.indexOf(ktgeminstaller,&quot;setup&quot;)+6,-4)
+                        KTGem=ktgeminstaller.substring(ktgeminstaller.indexOf(ktgeminstaller,&quot;setup&quot;)+6,ktgeminstaller.indexOf(ktgeminstaller,&quot;setup&quot;)+17)
                         echo &quot;KTGemVersion:&quot;+KTGem
                         
                 		 string thirdpartyversion=&quot;&lt;table&gt;&quot;+
