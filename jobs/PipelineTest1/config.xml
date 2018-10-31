@@ -114,6 +114,7 @@ pipeline {
                    try{
                         def user_workspaces = []
                         wrap([$class: &apos;BuildUser&apos;]) {
+                            print userInput.RunAsOmdbuild
                             user_workspaces = getUserRTCWorkspaces(userInput.RunAsOmdbuild ? &apos;omdbuild&apos;:BUILD_USER_ID)
                         }
 
