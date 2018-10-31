@@ -149,8 +149,8 @@ pipeline {
     
 }  
  
- def getUserRTCWorkspaces(String user){
-        cmd=&quot;scm  list workspaces -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -c user -m 100&quot;
+ def getUserRTCWorkspaces(user){
+        cmd=&quot;scm  list workspaces -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -c ${user} -m 100&quot;
         try{
             stdoutput = bat(returnStdout:true , script:cmd).trim()
         }catch(Exception e){
