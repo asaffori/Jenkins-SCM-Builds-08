@@ -158,11 +158,9 @@ pipeline {
         }catch(Exception e){
             throw e
         }
-        print (&quot;stdout=&quot; + stdoutput)
         def workspaces = []
         stdoutput.readLines().each {
             if (it.contains(user) &amp;&amp; !it.contains(rtcurl)){
-                print it
                 workspaces &lt;&lt; it.substring(it.indexOf(&apos;\&quot;&apos;)+1,it.lastIndexOf(&apos;\&quot;&apos;))
             }
         }
