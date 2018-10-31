@@ -279,6 +279,14 @@ pipeline {
                     			}
                 			}
                 		  }
+                		  
+                		nexusinstaller=&quot;\\\\isr1nas03\\SW-OMD\\Archer_Installations\\SupportFiles\\NeXus\\&quot;+Nexus+&quot;\\Server\\nexus_server_setup64_&quot;+Nexus+&quot;.exe&quot;
+                		stdout = bat(returnStdout:true , script: &quot;7z l &quot; + nexusinstaller).trim()
+                        result = stdout.readLines().findAll{ it.contains(&quot;KTGEM\\KTGEMInstaller\\ktgem_setup_&quot;)}
+                        ktgeminstaller=result.join(&apos; &apos;)
+                        KTGem=ktgeminstaller.substring(indexof(ktgeminstaller,&quot;setup&quot;)+6,-4)
+                        echo &quot;KTGemVersion:&quot;+KTGem
+                        
                 		 string thirdpartyversion=&quot;&lt;table&gt;&quot;+
                 		 &quot;&lt;TR&gt;&lt;TD&gt;KTCS&lt;//TD&gt;&lt;TD&gt;&quot;+KTCS+&quot; &quot;+KTCSHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&quot;+
                 		 &quot;&lt;TR&gt;&lt;TD&gt;Nexus&lt;//TD&gt;&lt;TD&gt;&quot;+Nexus+&quot; &quot;+NexusHF+&quot;&lt;//TD&gt;&lt;//TR&gt;&quot;+
