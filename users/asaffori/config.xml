@@ -4,20 +4,8 @@
   <properties>
     <jenkins.security.ApiTokenProperty>
       <apiToken>{AQAAABAAAAAwFCryEjBdbuQw/N4sElpLiQ2wNZ4MZuj2P36BJ+5eHb8Wa+0NNiOEIJ6ZBZroqgIBdjpvQY5AwPyTE5AujEtIew==}</apiToken>
-      <tokenStore>
-        <tokenList>
-          <jenkins.security.apitoken.ApiTokenStore_-HashedToken>
-            <uuid>8cbb0cf6-f560-4748-a84c-79abf4bc4c8f</uuid>
-            <name>Legacy Token</name>
-            <value>
-              <version>10</version>
-              <hash>8b1d39aabe1e8ff46dc4cd6215c1eec55d0a4ba5750a3562298d2b4875f2ad62</hash>
-            </value>
-          </jenkins.security.apitoken.ApiTokenStore_-HashedToken>
-        </tokenList>
-      </tokenStore>
     </jenkins.security.ApiTokenProperty>
-    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.18">
+    <com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty plugin="credentials@2.1.16">
       <domainCredentialsMap class="hudson.util.CopyOnWriteMap$Hash">
         <entry>
           <com.cloudbees.plugins.credentials.domains.Domain>
@@ -48,19 +36,17 @@
             <specifications/>
           </com.cloudbees.plugins.credentials.domains.Domain>
           <list>
-            <com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey plugin="ssh-credentials@1.14">
+            <com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey plugin="ssh-credentials@1.13">
               <scope>USER</scope>
               <id>git-ssh-key-master</id>
               <description>Master SSH Key for Git Creation</description>
-              <privateKeySource class="com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey$DirectEntryPrivateKeySource">
-                <privateKey>{AQAAABAAAAAQkDr9wVLwQPALRd0oGBpNrSdlXqzlhTCPmLjeimNwHMc=}</privateKey>
-              </privateKeySource>
+              <privateKeySource class="com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey$UsersPrivateKeySource"/>
             </com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey>
           </list>
         </entry>
       </domainCredentialsMap>
     </com.cloudbees.plugins.credentials.UserCredentialsProvider_-UserCredentialsProperty>
-    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.63">
+    <hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty plugin="email-ext@2.62">
       <triggers/>
     </hudson.plugins.emailext.watching.EmailExtWatchAction_-UserProperty>
     <hudson.model.MyViewsProperty>
@@ -211,13 +197,14 @@
         <string>Domain Users</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>DL-OMD-A600-Release</string>
         <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>ISR1NAS01-SW-COMM-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1539343925270</timestamp>
+      <timestamp>1540973444242</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.35"/>
     <org.jenkinsci.plugins.readonly.UserConfiguration plugin="read-only-configurations@1.10">
