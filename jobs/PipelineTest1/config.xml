@@ -35,7 +35,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
@@ -129,7 +128,7 @@ pipeline {
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;RDM&apos;, defaultValue: true],
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Debug&apos;, defaultValue: true, description: &apos;Which build modes would you like to run?&apos;],
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Release&apos;, defaultValue: userInput.BUILDTYPE == &apos;Task&apos;? false:true],
-                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Build_Version&apos;, defaultValue: BuildType != &apos;Formal&apos; ? defaultFormalBuildVersion:defaultScheduledBuildVersion, description: &apos;Which version would you like to tag your build with?&apos;],
+                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Build_Version&apos;, defaultValue: userInput.BUILDTYPE  != &apos;Formal&apos; ? defaultFormalBuildVersion:defaultScheduledBuildVersion, description: &apos;Which version would you like to tag your build with?&apos;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: workspaces_choice_list, description: &apos;Which RTC workspace you would like to run your build with?&apos;, name: &apos;WorkSpaceName&apos;]
                     ]
                     )
