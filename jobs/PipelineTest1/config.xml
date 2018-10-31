@@ -118,7 +118,9 @@ pipeline {
                    String[] tmpNumArray=((String)defaultScheduledBuildVersion).tokenize(&quot;.&quot;)
                    print (&quot;**** &quot; + tmpNumArray[3] +&quot; *****&quot;)
                    int num = tmpNumArray[3] as Integer
-                   tmpNumArray[3] = ((int)num/100) +1 *100 as String 
+                   tmpFormal= ((int)num/100) +1 *100 as String 
+                   tmpScheduled= num +1  as String 
+                   tmpNumArray[3] = serInput.BUILDTYPE  == &apos;Formal&apos; ? tmpFormal: tmpScheduled
                    defaultFormalBuildVersion= tmpNumArray.join(&apos;.&apos;)
                    
                    def advancedUserInput = input(
