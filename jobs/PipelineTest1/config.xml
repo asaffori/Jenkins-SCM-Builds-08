@@ -152,7 +152,7 @@ pipeline {
 }  
  
  def getUserRTCWorkspaces(user){
-
+        print (&quot;Running with user:&quot; +user)
         rtcurl= &quot;http://clm.kla-tencor.com/ccm&quot;
         cmd=&quot;scm  list workspaces -r ${rtcurl} -u omdbuild -P Scm07^&amp; -c ${user} -m 100&quot;
         try{
