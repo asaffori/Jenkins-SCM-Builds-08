@@ -309,7 +309,7 @@ pipeline {
 					&quot;&lt;strong&gt;&lt;u&gt;Phoenix&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
 					&quot;${phoenixversion}&lt;/br&gt;&quot;+
 					&quot;Phoenix installation can be found in \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}\\Phoenix&lt;/br&gt;&quot;+
-					&quot;${params.PhoenixCondition}&quot;+&quot;
+					&quot;${params.PhoenixCondition}&quot;+
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Latest master images are:&lt;/u&gt;&lt;/strong&gt;&quot;+
 					&quot;${masterimage}&quot;+
