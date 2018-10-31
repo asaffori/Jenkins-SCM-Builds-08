@@ -117,9 +117,8 @@ pipeline {
                    nextBN= tmpNumArray.join(&apos;.&apos;)
                    
                    try{
-                        list user_workspaces = []
                         wrap([$class: &apos;BuildUser&apos;]) {
-                            user_workspaces = getUserRTCWorkspaces(userInput.RunAsOmdbuild ? &apos;omdbuild&apos;:BUILD_USER_ID)
+                           list user_workspaces = getUserRTCWorkspaces(userInput.RunAsOmdbuild ? &apos;omdbuild&apos;:BUILD_USER_ID)
                         }
                         workspaces_choice_list=user_workspaces.join(&apos;\n&apos;)
                         
