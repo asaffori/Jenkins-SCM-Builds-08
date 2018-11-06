@@ -124,6 +124,7 @@ pipeline {
                     ]
                     )
 
+
                     def advancedUserInput2 = input(
                     id: &apos;userInput2&apos;, message: &apos;Advanced build options&apos;, parameters: [
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Create Build Notes&apos;, defaultValue: true, description:&apos;Preperation&apos;],
@@ -132,7 +133,8 @@ pipeline {
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Enable Code Analysis&apos;, defaultValue: true],
                         [$class: &apos;StringParameterDefinition&apos;, name: &apos;Snapshot Name&apos;, defaultValue: &quot;UOMD_BLD_${userInput.BUILD_VERSION}&quot;],
                         [$class: &apos;NodeParameterDefinition&apos;, allowedSlaves: [&apos;ALL (no restriction)&apos;], defaultSlaves: [&apos;master&apos;], description: &apos;Build Environment&apos;, name:&apos;Debug Build machine&apos;, nodeEligibility:[$class: &apos;AllNodeEligibility&apos;], triggerIfResult:&apos;allowMultiSelectionForConcurrentBuilds&apos;],
-                        [$class: &apos;NodeParameterDefinition&apos;, allowedSlaves: [&apos;ALL (no restriction)&apos;], defaultSlaves: [&apos;master&apos;], description: &apos;Build Environment&apos;, name:&apos;Release Build machine&apos;, nodeEligibility:[$class: &apos;AllNodeEligibility&apos;], triggerIfResult:&apos;allowMultiSelectionForConcurrentBuilds&apos;],
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: getAvailableNodes(), description: &apos;Build Environment&apos;, name: &apos;Debug Build machine&apos;]
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: getAvailableNodes(), name: &apos;Release Build machine&apos;]
                         [$class: &apos;StringParameterDefinition&apos;, name: &apos;Sandbox Path&apos;, defaultValue: &quot;D:\\Sandboxes\\${user_id}_${userInput.BUILD_VERSION}&quot;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Auto\nTrue\nFalse&apos;, description: &apos;Controllers&apos;, name: &apos;FDC&apos;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Auto\nTrue\nFalse&apos;, name: &apos;FZC&apos;],
@@ -186,6 +188,18 @@ def getFormalVersionsList(){
       versionsList &lt;&lt; (version.lastIndexOf(&apos;_&apos;) == (version.length()-1) ? version[0..(version.length()-2)]:version)
     }
     return versionsList
+}
+
+def getAvailableNodes(){
+    import hudson.model.labels.LabelAtom
+    def jenkins = Jenkins.instance
+    def computers = jenkins.computers
+    def slaves=&apos;&apos;
+    computers.each{
+    if (it.isPartiallyIdle() &amp;&amp; it.getAssignedLabels().contains(new LabelAtom(&apos;BuildMachine&apos;)))
+        slaves+=&quot;${it.displayName}\n&quot;
+    }
+    return slaves.trim();
 }
 
     </script>
