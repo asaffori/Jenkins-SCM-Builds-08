@@ -189,6 +189,9 @@ public class QueryUserByName {
             <entry>
               <url>file:/C:/Progra~2/IBM/RTC-BuildSystem-Toolkit-Win-6.0.3/jazz/buildsystem/buildtoolkit/com.ibm.team.repository.client_1.3.3000.v20160701_1644.jar</url>
             </entry>
+            <entry>
+              <url>file:/C:/Progra~2/IBM/RTC-BuildSystem-Toolkit-Win-6.0.3/jazz/buildsystem/org.eclipse.core.runtime-3.1.0.jar%20</url>
+            </entry>
           </classpath>
         </script>
       </source>
