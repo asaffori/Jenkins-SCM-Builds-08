@@ -173,6 +173,7 @@
         <string>SW-OMD-RO</string>
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
         <string>Ca1fs01-TN-analyzes-RO</string>
+        <string>DL-OMD-A700-Release</string>
         <string>CA1NAS02-SSCM-CH</string>
         <string>Ca1fs01-SS10K-info-RO</string>
         <string>WIN-DYSD-SQATestData-CH</string>
@@ -182,6 +183,7 @@
         <string>DL-WiFi-Users</string>
         <string>DPM_Users_Old</string>
         <string>Isr1nas03-External_Files_for_Sharing-RO</string>
+        <string>DL-OMD-ATL-Release</string>
         <string>PasswordManager</string>
         <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
         <string>OMD Nightly Build Recipients</string>
@@ -228,12 +230,13 @@
         <string>Domain Users</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>DL-OMD-A600-Release</string>
         <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1537085762832</timestamp>
+      <timestamp>1541532248529</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
