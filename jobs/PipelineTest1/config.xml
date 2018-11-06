@@ -123,6 +123,16 @@ pipeline {
                     ]
                     )
 
+                    def advancedUserInput2 = input(
+                    id: &apos;userInput2&apos;, message: &apos;Advanced build options&apos;, parameters: [
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;&apos;, defaultValue: true, description:&apos;Preperation\n\tCreate Build Notes&apos;],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Create Build Notes&apos;, defaultValue: true],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Merge Dev code to Integ&apos;, defaultValue: true],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Rebase Dev code from Integ&apos;,defaultValue:false],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Deliver version updated files&apos;, defaultValue: true, description: &apos;Which product would you like to build?&apos;]
+                    ]
+                    ) 
+
                     }
                 }
                 
