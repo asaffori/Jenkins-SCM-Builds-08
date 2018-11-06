@@ -87,7 +87,8 @@ pipeline {
                         def user_workspaces = []
                         wrap([$class: &apos;BuildUser&apos;]) {
                                 print (&apos;Are you sure?&apos; + userInput.BUILDTYPE + RunAsOmdbuild  + (RunAsOmdbuild == true))
-                                 user_workspaces = getUserRTCWorkspaces(RunAsOmdbuild ? &apos;omdbuild&apos;:BUILD_USER_ID)
+                                user_id=RunAsOmdbuild ? &apos;omdbuild&apos;:BUILD_USER_ID
+                                user_workspaces = getUserRTCWorkspaces(user_id)
                         }
                         workspace_prefix=(RunAsOmdbuild ? &apos;omdbuild_Archer_&apos;:&apos;&apos;)
                         print workspace_prefix
@@ -126,9 +127,25 @@ pipeline {
                     def advancedUserInput2 = input(
                     id: &apos;userInput2&apos;, message: &apos;Advanced build options&apos;, parameters: [
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Create Build Notes&apos;, defaultValue: true, description:&apos;Preperation&apos;],
-                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Merge Dev code to Integ&apos;, defaultValue: true, description:&apos;Merge Dev code to Integ&apos;],
-                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Rebase Dev code from Integ&apos;,defaultValue:false, description:&apos;Rebase Dev code from Integ&apos;],
-                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Deliver version updated files&apos;, defaultValue: true, description: &apos;Which product would you like to build?&apos;]
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Merge Dev code to Integ&apos;, defaultValue: true],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Deliver updated version files back to RTC&apos;, defaultValue: true],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Enable Code Analysis&apos;, defaultValue: true],
+                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Snapshot Name&apos;, defaultValue: &quot;UOMD_BLD_${BUILD_VERSION}&quot;],
+                        [$class: &apos;LabelParameterValue&apos;, name: &apos;Debug Build machine&apos;, label: &apos;BuildMachine&apos;, description:&apos;Build Environment&apos;],
+                        [$class: &apos;LabelParameterValue&apos;, name: &apos;Release Build machine&apos;, label: &apos;BuildMachine&apos;],
+                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Sandbox Path&apos;, defaultValue: &quot;D:\Sandboxes\${user_id}_${BUILD_VERSION}&quot;],
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: Auto\nTrue\nFalse, description: &apos;Controllers&apos;, name: &apos;FDC&apos;],
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: Auto\nTrue\nFalse, name: &apos;FZC&apos;],
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: Auto\nTrue\nFalse, name: &apos;IMC&apos;],
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: Auto\nTrue\nFalse, name: &apos;STAGE&apos;],
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: Auto\nTrue\nFalse, name: &apos;UMC&apos;],
+                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Release email DL:&apos;, defaultValue: &quot;UOMD_BLD_${BUILD_VERSION}&quot;],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Create code view&apos;, defaultValue: true, description:&apos;Completion&apos;],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Rebase Dev code from Integ&apos;,defaultValue:false],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Deliver snapshot to stream&apos;, defaultValue: true],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Increment Build Number&apos;, defaultValue: true],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Deploy and run sanity&apos;, defaultValue: true, description:&apos;Sanity&apos;],
+                        [$class: &apos;TextParameterDefinition&apos;, name: &apos;TestArray&apos;]
                     ]
                     ) 
 
