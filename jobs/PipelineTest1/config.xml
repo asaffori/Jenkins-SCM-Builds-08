@@ -133,7 +133,7 @@ pipeline {
                         [$class: &apos;StringParameterDefinition&apos;, name: &apos;Snapshot Name&apos;, defaultValue: &quot;UOMD_BLD_${BUILD_VERSION}&quot;],
                         [$class: &apos;LabelParameterValue&apos;, name: &apos;Debug Build machine&apos;, label: &apos;BuildMachine&apos;, description:&apos;Build Environment&apos;],
                         [$class: &apos;LabelParameterValue&apos;, name: &apos;Release Build machine&apos;, label: &apos;BuildMachine&apos;],
-                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Sandbox Path&apos;, defaultValue: &quot;D:\Sandboxes\${user_id}_${BUILD_VERSION}&quot;],
+                        [$class: &apos;StringParameterDefinition&apos;, name: &apos;Sandbox Path&apos;, defaultValue: &quot;D:\\Sandboxes\\${user_id}_${BUILD_VERSION}&quot;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: Auto\nTrue\nFalse, description: &apos;Controllers&apos;, name: &apos;FDC&apos;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: Auto\nTrue\nFalse, name: &apos;FZC&apos;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: Auto\nTrue\nFalse, name: &apos;IMC&apos;],
