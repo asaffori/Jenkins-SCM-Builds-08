@@ -99,8 +99,10 @@ pipeline {
                            item.contains(workspace_prefix+tmpNumArray[0..2].join(&apos;.&apos;)+workspace_suffix) || item.contains(workspace_prefix+tmpNumArray[0..1].join(&apos;.&apos;)+workspace_suffix)
                         }
                         //print (&quot;Found workspace:&quot; + req_workspace)
-                        user_workspaces.remove(req_workspace);
-                        user_workspaces.add(0,req_workspace);
+                        if (req_workspace != null) {
+                            user_workspaces.remove(req_workspace);
+                            user_workspaces.add(0,req_workspace);
+                        }
                         workspaces_choice_list=user_workspaces.join(&apos;\n&apos;)
                     }catch (Exception e){
                         throw (e)
