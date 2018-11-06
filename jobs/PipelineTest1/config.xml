@@ -136,7 +136,7 @@ pipeline {
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: getAvailableNodes(), description: &apos;Debug Build machine&apos;, name: &apos;Debug_Node&apos;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: getAvailableNodes(), description: &apos;Release Build machine&apos;, name: &apos;Release_Node&apos;],
                         [$class: &apos;StringParameterDefinition&apos;, name: &apos;Sandbox Path&apos;, defaultValue: &quot;D:\\Sandboxes\\${user_id}_${userInput.Build_Version}&quot;],
-                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Auto\nTrue\nFalse&apos;, description: &apos;Controllers&apos;, name: &apos;FDC&apos;],
+                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Auto\nTrue\nFalse&apos;, name: &apos;FDC&apos;, description: &apos;Build FDC controllers&apos;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Auto\nTrue\nFalse&apos;, name: &apos;FZC&apos;, description:&apos;Build FZC controller?&apos;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Auto\nTrue\nFalse&apos;, name: &apos;IMC&apos;, description:&apos;Build IMC controller?&apos;],
                         [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Auto\nTrue\nFalse&apos;, name: &apos;STAGE&apos;, description:&apos;Build STAGE controller?&apos;],
