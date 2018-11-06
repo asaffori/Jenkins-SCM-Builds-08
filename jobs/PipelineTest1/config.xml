@@ -125,10 +125,9 @@ pipeline {
 
                     def advancedUserInput2 = input(
                     id: &apos;userInput2&apos;, message: &apos;Advanced build options&apos;, parameters: [
-                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;&apos;, defaultValue: true, description:&apos;Preperation\n\tCreate Build Notes&apos;],
-                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Create Build Notes&apos;, defaultValue: true],
-                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Merge Dev code to Integ&apos;, defaultValue: true],
-                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Rebase Dev code from Integ&apos;,defaultValue:false],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Create Build Notes&apos;, defaultValue: true, description:&apos;Preperation&apos;],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Merge Dev code to Integ&apos;, defaultValue: true, description:&apos;Merge Dev code to Integ&apos;],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Rebase Dev code from Integ&apos;,defaultValue:false, description:&apos;Rebase Dev code from Integ&apos;],
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Deliver version updated files&apos;, defaultValue: true, description: &apos;Which product would you like to build?&apos;]
                     ]
                     ) 
@@ -143,7 +142,7 @@ pipeline {
 }  
  
  def getUserRTCWorkspaces(user){
-        print (&quot;Running with user:&quot; +user)
+        print (&quot;Calculating workspaces for user:&quot; +user)
         rtcurl= &quot;http://clm.kla-tencor.com/ccm&quot;
         cmd=&quot;scm  list workspaces -r ${rtcurl} -u omdbuild -P Scm07^&amp; -c ${user} -m 100&quot;
         try{
