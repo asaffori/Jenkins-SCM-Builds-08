@@ -41,6 +41,7 @@
     <script>import hudson.security.SecurityRealm;
 import com.cwctravel.hudson.plugins.extended_choice_parameter.ExtendedChoiceParameterDefinition
 import groovy.io.FileType
+import hudson.model.labels.LabelAtom
 pipeline {
     agent { node { label &apos;master&apos; } }
     stages {
@@ -191,7 +192,6 @@ def getFormalVersionsList(){
 }
 
 def getAvailableNodes(){
-    import hudson.model.labels.LabelAtom
     def jenkins = Jenkins.instance
     def computers = jenkins.computers
     def slaves=&apos;&apos;
