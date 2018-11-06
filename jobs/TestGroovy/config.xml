@@ -1,7 +1,35 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
+  <actions/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -11,7 +39,153 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+      <source class="hudson.plugins.groovy.StringSystemScriptSource">
+        <script plugin="script-security@1.44">
+          <script>/*******************************************************************************
+ * Licensed Materials - Property of IBM
+ * (c) Copyright IBM Corporation 2017. All Rights Reserved. 
+ *
+ * Note to U.S. Government Users Restricted Rights:  Use, duplication or 
+ * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ *******************************************************************************/
+package com.ibm.team.workitem.ide.ui.example;
+
+import java.util.List;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+
+import com.ibm.team.repository.client.IItemManager;
+import com.ibm.team.repository.client.ITeamRepository;
+import com.ibm.team.repository.client.ITeamRepository.ILoginHandler;
+import com.ibm.team.repository.client.ITeamRepository.ILoginHandler.ILoginInfo;
+import com.ibm.team.repository.client.TeamPlatform;
+import com.ibm.team.repository.client.internal.TeamRepository;
+import com.ibm.team.repository.common.IContributor;
+import com.ibm.team.repository.common.IContributorHandle;
+import com.ibm.team.repository.common.TeamRepositoryException;
+import com.ibm.team.repository.common.model.query.BaseContributorQueryModel.ContributorQueryModel;
+import com.ibm.team.repository.common.query.IItemQuery;
+import com.ibm.team.repository.common.query.IItemQueryPage;
+import com.ibm.team.repository.common.query.ast.IPredicate;
+import com.ibm.team.repository.common.service.IQueryService;
+
+/**
+ * Uses the ContributorQueryModel to search for a user by the user name 
+ * and not the ID.
+ * 
+ * 
+ * Example code, see
+ * https://jazz.net/wiki/bin/view/Main/ProgrammaticWorkItemCreation.
+ */
+public class QueryUserByName {
+
+	private static class LoginHandler implements ILoginHandler, ILoginInfo {
+
+		private String fUserId;
+		private String fPassword;
+
+		private LoginHandler(String userId, String password) {
+			fUserId = userId;
+			fPassword = password;
+		}
+
+		public String getUserId() {
+			return fUserId;
+		}
+
+		public String getPassword() {
+			return fPassword;
+		}
+
+		public ILoginInfo challenge(ITeamRepository repository) {
+			return this;
+		}
+	}
+
+	public static void main(String[] args) {
+
+		boolean result;
+		TeamPlatform.startup();
+		try {
+			result = run(args);
+		} catch (TeamRepositoryException x) {
+			x.printStackTrace();
+			result = false;
+		} finally {
+			TeamPlatform.shutdown();
+		}
+
+		if (!result)
+			System.exit(1);
+	}
+
+	private static boolean run(String[] args) throws TeamRepositoryException {
+
+		if (args.length != 4) {
+			System.out.println(&quot;Usage: QueryContributorByName [repositoryURI] [userId] [password] [NameOfUserToSearch]&quot;);
+			return false;
+		}
+
+		IProgressMonitor monitor = new NullProgressMonitor();
+		final String repositoryURI = &quot;http://clm.kla-tencor.com/ccm&quot;;
+		final String userId = &quot;asaffori&quot;;
+		final String password = &quot;Scm07&amp;&quot;;
+		final String findUserByName = &quot;Adham Saffori&quot;;
+		ITeamRepository teamRepository = TeamPlatform
+				.getTeamRepositoryService().getTeamRepository(repositoryURI);
+		teamRepository.registerLoginHandler(new LoginHandler(userId, password));
+		teamRepository.login(monitor);
+
+		/***
+		 * There is a wide variety of query models available for several domains that allow to query 
+		 * the elements and filter the results.
+		 *
+		 * For some examples on the topic
+		 * @see https://jazz.net/wiki/bin/view/Main/QueryDevGuide#ExampleOne
+		 * @see https://jazz.net/library/article/1229
+		 */
+
+		// Create a query for the ContributorQueryModel
+		final IItemQuery query = IItemQuery.FACTORY.newInstance(ContributorQueryModel.ROOT);
+		// Create a predicate with a parameter to search for name property  
+		final IPredicate predicate = ContributorQueryModel.ROOT.name()._eq(query.newStringArg());
+		// Use the predicate as query filter 
+		final IItemQuery filtered = (IItemQuery) query.filter(predicate);
+		// Get the query service. This is a cast to an internal class. Note TeamRepository and not ITeamRepository is casted.
+		final IQueryService qs = ((TeamRepository) teamRepository).getQueryService();
+		// Run this ItemQuery. Note, there are also other types of queries qs.queryData(dataQuery, parameters, pageSize)
+		final IItemQueryPage page = qs.queryItems(filtered, [findUserByName] as Object[], 1 /* IQueryService.DATA_QUERY_MAX_PAGE_SIZE */);
+		// Get the item handles if any
+		final List&lt;?&gt; handles = page.getItemHandles();
+		System.out.println(&quot;Hits &quot;+ handles.size());
+		if (!handles.isEmpty()) {
+			System.out.println(&quot;Found.&quot;);
+			// Resolve and print the information to the contributor object.
+			final IContributorHandle handle = (IContributorHandle) handles.get(0);
+			IContributor foundContributor = (IContributor) teamRepository.itemManager().fetchCompleteItem(handle, IItemManager.DEFAULT, monitor);
+			System.out.println(&quot;UUID &quot;+ foundContributor.getItemId());
+			System.out.println(&quot;ID &quot;+foundContributor.getUserId());
+			System.out.println(&quot;Name &quot;+foundContributor.getName());
+			System.out.println(&quot;E-Mail &quot;+foundContributor.getEmailAddress());
+			System.out.println(&quot;Archived &quot;+foundContributor.isArchived());
+		}			
+		teamRepository.logout();
+		return true;
+	}
+}</script>
+          <sandbox>false</sandbox>
+          <classpath>
+            <entry>
+              <url>file:/C:/Progra~2/IBM/RTC-BuildSystem-Toolkit-Win-6.0.3/jazz/buildsystem/buildtoolkit/</url>
+            </entry>
+          </classpath>
+        </script>
+      </source>
+    </hudson.plugins.groovy.SystemGroovy>
+  </builders>
   <publishers/>
   <buildWrappers/>
 </project>
