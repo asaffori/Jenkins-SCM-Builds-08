@@ -35,7 +35,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
@@ -60,54 +59,26 @@ pipeline {
                         print (&quot;Failed while retreaving groups for user &quot;+ BUILD_USER_ID)
                         throw (e)
                     }
-                        DevOpsBuildTypes = &apos;Scheduled\nFormal\nTasks&apos;
+                        DevOpsBuildTypes = &apos;Scheduled\nFormal\nSupport\nTasks&apos;
                         DevBuildTypes = &apos;Tasks\nFormal&apos;
                         FormalVersion_choice_list = getFormalVersionsList().join(&apos;\n&apos;)
-                        //print (FormalVersion_choice_list)
-                        //print (&quot;**\n&quot;+getFormalVersionsList()+&quot;**\n&quot;)
 
-
-                    /**[$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Debug &amp; Release\nRelease\nDebug&apos;, description: &apos;In which modes ?&apos;, name: &apos;BUILDMODES&apos;],
-                    [$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Build RDM?&apos;, name: &apos;RunRDM&apos;],
-                    [$class: &apos;ChoiceParameterDefinition&apos;, choices: &apos;Basic\nAdvanced\nDiagnostic\nCustom&apos;, description: &apos;Which build style would you like to run? \n\tBasic: Compilation only \n\tAdvanced: Compilation, Installers \n\tDiagnostic:Commpilation, Installers, SCA, Sanity, Nunit\n\tCustom: Run customized build steps &apos;, name: &apos;BuildStyle&apos;],
-**/
-              
                     
                    def Dev_Formal_Build_Params =[[$class: &apos;ChoiceParameterDefinition&apos;, choices: user_team == &apos;DevOps&apos;? DevOpsBuildTypes:DevBuildTypes , description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;]]
                    
                    def DevOps_Formal_Build_Params =[
                        [$class: &apos;ChoiceParameterDefinition&apos;, choices: user_team == &apos;DevOps&apos;? DevOpsBuildTypes:DevBuildTypes , description: &apos;Which build type you would like to run ?&apos;, name: &apos;BUILDTYPE&apos;],
                     [$class: &apos;ChoiceParameterDefinition&apos;, choices: FormalVersion_choice_list , description: &apos;Which version you would like to run the build for ?&apos;, name: &apos;MajorMinor&apos;]]
-                    //[$class: &apos;StringParameterDefinition&apos;, defaultValue:&apos;Version will be automatically calulated&apos;, description: &apos;What should be your build version?&apos;, name: &apos;Build_Version&apos;],
-                    //[$class: &apos;ChoiceParameterDefinition&apos;, choices: workspaces_choice_list, description: &apos;What is your build WorkSpace? \nExample: asaffori_Archer_17.12_Dev_Workspace&apos;, name: &apos;WorkSpaceName&apos;]
-                    /**,
-                    [$class: &apos;DropdownAutocompleteParameterDefinition&apos;,
-                        name: &apos;Workspace&apos;,
-                        description:&apos;What is your build WorkSpace?&apos;,
-                        defaultValue:&apos;&apos;,
-                        dataProvider: 
-                        [
-                            $class: &apos;SimpleTextProvider&apos;, 
-                            autoCompleteData: workspaces_choice_list
-                        ],
-                        displayExpression: &apos;&apos;,
-                        valueExpression: &apos;&apos;
-                    ]**/
-                    
-                    //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to run automatic Archer sanity tests for this build ?&apos;, name: &apos;RunATE&apos;],
-                    //[$class: &apos;BooleanParameterDefinition&apos;, defaultValue: true, description: &apos;Would you like to generate installers for this build ?&apos;, name: &apos;BuidInstallers&apos;]]
+
                     
                     def userInput = input(
                         id: &apos;userInput&apos;, message: &apos;Hello &apos;+BUILD_USER+&apos;\n Identified as &apos;+user_team+ &apos; user&apos;, parameters: user_team == &apos;DevOps&apos;? DevOps_Formal_Build_Params:Dev_Formal_Build_Params,ok:&apos;Lets continue&apos;
                     )
                    RunAsOmdbuild = (userInput.BUILDTYPE == &apos;Task&apos; ? false:true)
                    String defaultScheduledBuildVersion= new File(&quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version\\&quot;+userInput.MajorMinor+&quot;version.txt&quot;).readLines().get(1).split(&apos;=&apos;)[1]
-                   //print defaultScheduledBuildVersion
                    String[] tmpNumArray=((String)defaultScheduledBuildVersion).tokenize(&quot;.&quot;)
-                   //print (&quot;**** &quot; + tmpNumArray[3] +&quot; *****&quot;)
                    int num = tmpNumArray[3] as Integer
                    tmpFormal= (num.intdiv(100) +1) *100 as String 
-                   //print (&quot;** &quot; + tmpFormal + RunAsOmdbuild +&quot; *****&quot;)
                    tmpScheduled= num +1  as String 
                    tmpNumArray[3] = userInput.BUILDTYPE  == &apos;Formal&apos; ? tmpFormal: tmpScheduled
                    nextBN= tmpNumArray.join(&apos;.&apos;)
