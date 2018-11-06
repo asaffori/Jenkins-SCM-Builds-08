@@ -104,7 +104,10 @@ pipeline {
 
                    def advancedUserInput = input(
                     id: &apos;userInput&apos;, message: &apos;Build options&apos;, parameters: [
-                        [$class: &apos;ChoiceParameterDefinition&apos;, choices:&apos;Full build (combination of all below steps)\n\tCompilation (Build/Nunit)\n\tMedia\n\tSanity\nI want to custom my build steps&apos; , description: &apos;Which build level would you like to run? &apos;, name: &apos;MajorMinor&apos;],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Compilation (Build/Nunit)&apos;, defaultValue: true, description:&apos;Full build (combination of all below steps)&apos;],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Media&apos;, defaultValue: true],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Sanity&apos;, defaultValue: true],
+                        [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;I want to custom my build steps&apos;,defaultValue:false],
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Archer&apos;, defaultValue: true, description: &apos;Which product would you like to build?&apos;],
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;RDM&apos;, defaultValue: true],
                         [$class: &apos;BooleanParameterDefinition&apos;, name: &apos;Debug&apos;, defaultValue: true, description: &apos;Which build modes would you like to run?&apos;],
