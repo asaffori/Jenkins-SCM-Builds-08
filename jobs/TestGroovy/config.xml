@@ -192,6 +192,9 @@ public class QueryUserByName {
             <entry>
               <url>file:/C:/Progra~2/IBM/RTC-BuildSystem-Toolkit-Win-6.0.3/jazz/buildsystem/org.eclipse.core.runtime-3.1.0.jar%20</url>
             </entry>
+            <entry>
+              <url>file:/C:/Progra~2/IBM/RTC-BuildSystem-Toolkit-Win-6.0.3/jazz/buildsystem/buildtoolkit/org.eclipse.emf.ecore_2.6.1.v20100914-1218.jar</url>
+            </entry>
           </classpath>
         </script>
       </source>
