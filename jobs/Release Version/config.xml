@@ -357,7 +357,7 @@ pipeline {
         stage (&apos;Exculde files&apos;){
              steps {
 				script{
-					excludetext=&quot;\n#Added by Auto-Release script\n&quot;+&quot;UOMD_&quot;+Version+&quot;.*\n&quot;+&quot;Archer_Installation_&quot;+Version+&quot;\n&quot;+&quot;RDM_&quot;+Version+&quot;.*\n&quot;+&quot;RDM_&quot;+Version+&quot;\n&quot;++&quot;TDD_&quot;+Version+&quot;\n&quot;
+					excludetext=&quot;\n#Added by Auto-Release script\n&quot;+&quot;UOMD_&quot;+Version+&quot;.*\n&quot;+&quot;Archer_Installation_&quot;+Version+&quot;\n&quot;+&quot;RDM_&quot;+Version+&quot;.*\n&quot;+&quot;RDM_&quot;+Version+&quot;\n&quot;+&quot;TDD_&quot;+Version+&quot;\n&quot;
 					new File(&quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_CleanupConfigurations\\AgnesTest.txt&quot;).append(excludetext)
 				}
                 
