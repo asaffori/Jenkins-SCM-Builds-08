@@ -24,6 +24,8 @@
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
@@ -179,7 +181,7 @@ public class QueryUserByName {
           <sandbox>false</sandbox>
           <classpath>
             <entry>
-              <url>file:/C:/Progra~2/IBM/RTC-BuildSystem-Toolkit-Win-6.0.3/jazz/buildsystem/buildtoolkit/*.jar</url>
+              <url>file:/C:/Progra~2/IBM/RTC-BuildSystem-Toolkit-Win-6.0.3/jazz/buildsystem/buildtoolkit/com.ibm.team.calm.foundation.client_3.1.600.v20160817_0616.jar</url>
             </entry>
           </classpath>
         </script>
