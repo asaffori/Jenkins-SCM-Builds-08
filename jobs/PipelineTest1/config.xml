@@ -93,7 +93,7 @@ pipeline {
                         print workspace_prefix
                         build_type=(userInput.BUILDTYPE == &apos;Formal&apos; ? &apos;Integ&apos;:(userInput.BUILDTYPE == &apos;Scheduled&apos; ?&apos;Dev&apos;:&apos;&apos;))
                         print build_type
-                        workspace_suffix=RunAsOmdbuild ? build_type + &apos;_Workspace&apos;:&apos;&apos;
+                        workspace_suffix=RunAsOmdbuild ? &apos;_&apos;+build_type + &apos;_Workspace&apos;:&apos;&apos;
                         print workspace_suffix
                         def req_workspace = user_workspaces.find { item -&gt;
                            item.contains(workspace_prefix+tmpNumArray[0..2].join(&apos;.&apos;)+workspace_suffix) || item.contains(workspace_prefix+tmpNumArray[0..1].join(&apos;.&apos;)+workspace_suffix)
