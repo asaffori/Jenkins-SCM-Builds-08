@@ -179,7 +179,7 @@ public class QueryUserByName {
           <sandbox>false</sandbox>
           <classpath>
             <entry>
-              <url>file:/C:/Progra~2/IBM/RTC-BuildSystem-Toolkit-Win-6.0.3/jazz/buildsystem/buildtoolkit/com.ibm.team.calm.foundation.client_3.1.600.v20160817_0616.jar</url>
+              <url>file:/C:/Progra~2/IBM/RTC-BuildSystem-Toolkit-Win-6.0.3/jazz/buildsystem/buildtoolkit/*.jar</url>
             </entry>
           </classpath>
         </script>
