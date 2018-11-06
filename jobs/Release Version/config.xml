@@ -201,7 +201,10 @@ pipeline {
 					customer=(params.A600?&quot;A600:&quot;+params.A600Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.A700?&quot;A700:&quot;+params.A700Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.ATL?&quot;ATL:&quot;+params.ATLCustomer+&quot;&lt;/br&gt;&quot;:&quot;&quot;) 
 					echo customer
 					
-					mailgroup=(params.A600?&quot;Agnes.Zhang@kla-tencor.com;&quot;:&quot;&quot;)+(params.A700?&quot;Adham.Saffori@kla-tencor.com;&quot;:&quot;&quot;)
+					load &quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\Tooltype_DL.properties&quot;                    Jenkins Job&apos;s workspace
+                    echo env.A600
+                    echo env.A700
+					mailgroup=(params.A600?env.A600:&quot;&quot;)+(params.A700?env.A700:&quot;&quot;)
 					echo mailgroup
 					
 					string masterimage=&quot;&quot;
