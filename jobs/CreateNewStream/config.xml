@@ -276,7 +276,6 @@
             failure {
               
                 wrap([$class: &apos;BuildUser&apos;]) { 
-                print &quot;aaaaa&quot;
                     // notify users when the Pipeline fails
                     emailext (to: &quot;${BUILD_USER_EMAIL},DL-OMD-ENG-SCM@KLA-tencor.com&quot;,
                     subject: &quot;Stream ${env.userInput} creation - FAILED&quot;,
