@@ -293,10 +293,10 @@ def searchStrInCommandOutput(cmd,str){
     }catch (err) { // input false
         print (&quot;Error: Command execution finished with error.&quot;)
     }
-        //print (&quot;stdout=&quot; + stdout)
-        result = stdoutput.readLines().drop(1).join(&quot; &quot;)
-        print (&quot;count=&quot; +result.count(str))
-        return result.count(str)
+    print (&quot;stdout=&quot; + stdout)
+    result = stdoutput.readLines().drop(1).join(&quot; &quot;)
+    print (&quot;count=&quot; +result.count(str))
+    return result.count(str)
 
 }</script>
     <sandbox>false</sandbox>
