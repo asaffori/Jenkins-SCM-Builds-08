@@ -267,12 +267,14 @@
         }
     	post {
             failure {
+                /**
                 wrap([$class: &apos;BuildUser&apos;]) {
                     // notify users when the Pipeline fails
                     emailext (to: &quot;${BUILD_USER_EMAIL},DL-OMD-ENG-SCM@KLA-tencor.com&quot;,
                     subject: &quot;Stream ${env.userInput} creation - FAILED&quot;,
                     body: &quot;&quot;&quot;Something is wrong during stream creation, please check creation log via ${env.BUILD_URL}&quot;&quot;&quot;);
                 }
+                **/
             }
             
             success {
