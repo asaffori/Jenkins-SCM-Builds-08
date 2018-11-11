@@ -119,6 +119,7 @@
                                 wrap([$class: &apos;BuildUser&apos;]) {
             				        currentBuild.description = &quot;Request for new stream creation &apos;${suggested_stream_name}&apos; by &apos;${env.BUILD_USER}&apos;&quot;
                                 }
+                                if (!params.WorkItem.isNumber()) Error &quot;Invalid WI number ${params.WorkItem}&quot;
                                 print (&quot;Index of space:&quot; +suggested_stream_name +&quot; . . . . &quot; + suggested_stream_name.indexOf(&quot; &quot;))
                                 switch(suggested_stream_name.indexOf(&quot; &quot;)){
                                     case -1 :
