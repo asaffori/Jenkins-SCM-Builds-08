@@ -360,7 +360,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>rem C:\Progra~2\Jenkins\tools\hudson.tasks.Ant_AntInstallation\RenameBuildLabel\bin\ant.bat -file %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\VersionUpdater\Build.xml -DbuildResultUUID=%buildResultUUID% -Dlabel=&quot;%BUILDTYPE%_UOMD_BLD_%BUILD_VERSION%&quot; &quot;-Dpassword=Scm07&amp;&quot; -DuserId=omdbuild -DtoolkitPath=C:\Build\TeamConcertBuild\buildsystem\buildtoolkit -DsnapshotUUID=%team_scm_workspaceUUID% &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\Build\TeamConcertBuild\buildsystem\buildtoolkit</command>
+      <command>C:\Progra~2\Jenkins\tools\hudson.tasks.Ant_AntInstallation\RenameBuildLabel\bin\ant.bat -file %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\VersionUpdater\Build.xml -DbuildResultUUID=%buildResultUUID% -Dlabel=&quot;%BUILDTYPE%_UOMD_BLD_%BUILD_VERSION%&quot; &quot;-Dpassword=Scm07&amp;&quot; -DuserId=omdbuild -DtoolkitPath=C:\Build\TeamConcertBuild\buildsystem\buildtoolkit -DsnapshotUUID=%team_scm_workspaceUUID% &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\Build\TeamConcertBuild\buildsystem\buildtoolkit</command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
       <configs>
