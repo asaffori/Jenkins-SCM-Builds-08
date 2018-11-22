@@ -388,13 +388,12 @@
         <string>OMD-Build-Pipeline</string>
         <string>OMD_Adham_Trigger</string>
         <string>Release Version</string>
-        <string>rttreerter</string>
         <string>SCA Parameter Test</string>
         <string>SCA RELEASE</string>
         <string>SCA Testing</string>
+        <string>SharePointTest</string>
         <string>SilentInstallation-Adham</string>
         <string>Sync_Jenkin_Build</string>
-        <string>test</string>
         <string>test trigger</string>
         <string>test1</string>
         <string>TestGroovy</string>
@@ -435,6 +434,7 @@
             <string>OMD_17.13.03_Scheduled_Trigger</string>
             <string>OMD_17.13.03_Support_SM_Scheduled_Trigger</string>
             <string>OMD_17.13_Scheduled_Trigger</string>
+            <string>OMD_17.14.01_Scheduled_Trigger</string>
             <string>OMD_17.14_Scheduled_Trigger</string>
             <string>OMD_18.00_Scheduled_Trigger</string>
           </jobNames>
@@ -468,6 +468,7 @@
             <string>OMD_17.13.03_Formal_Trigger</string>
             <string>OMD_17.13.03_Support_SM_Formal_Trigger</string>
             <string>OMD_17.13_Formal_Trigger</string>
+            <string>OMD_17.14.01_Formal_Trigger</string>
             <string>OMD_17.14_Formal_Trigger</string>
             <string>OMD_18.00_Formal_Trigger</string>
           </jobNames>
