@@ -174,6 +174,7 @@
         <string>DL-All-China</string>
         <string>ISR1NAS01-SW-RO</string>
         <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
+        <string>DL-IT-RTC-Users</string>
         <string>ZZZ-SRV-CHN2EX01</string>
         <string>Shanghai Users</string>
         <string>Travel &amp; Expense</string>
@@ -194,7 +195,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1540975601256</timestamp>
+      <timestamp>1542877820445</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
