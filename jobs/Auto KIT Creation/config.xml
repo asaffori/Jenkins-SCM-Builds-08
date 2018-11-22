@@ -1,6 +1,15 @@
 <?xml version='1.1' encoding='UTF-8'?>
-<project>
-  <actions/>
+<flow-definition plugin="workflow-job@2.23">
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.3.1"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.3.1">
+      <jobProperties/>
+      <triggers/>
+      <parameters>
+        <string>Version</string>
+      </parameters>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -10,28 +19,6 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
-      <leastLoadDisabled>false</leastLoadDisabled>
-    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
-    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
-      <optOut>false</optOut>
-    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
-    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
-      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <throttleEnabled>false</throttleEnabled>
-      <throttleOption>project</throttleOption>
-      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
-      <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
-    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <jenkins.model.BuildDiscarderProperty>
       <strategy class="hudson.tasks.LogRotator">
         <daysToKeep>30</daysToKeep>
@@ -40,15 +27,157 @@
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to Create KIT?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
-  <scm class="hudson.scm.NullSCM"/>
-  <canRoam>true</canRoam>
-  <disabled>false</disabled>
-  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
-  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
+    <script>import groovy.io.FileType
+
+pipeline {
+    agent any
+    parameters {
+        string(name: &apos;Version&apos;, description: &apos;Which Version you want to Create KIT?&apos;)
+    }
+	stages {
+	    
+	    stage (&apos;validation&apos;) {
+            steps (&apos;vaiidate&apos;) {
+	                script{
+	                if(params.Version==&quot;&quot;){
+    				    exitwitherror(&quot;Version is not defined&quot;)
+	                }
+	                shortversion=params.Version.substring(6,8)==&apos;00&apos;?Version.substring(0,6):params.Version.substring(0,8)
+	                zipversion=shortversion.replaceAll(&quot;\\.&quot;,&quot;_&quot;)
+					majorminor=params.Version.substring(0,5)
+					def installerdir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\Archer_Installation_&quot;+params.Version
+					def installationfile=new File(installerdir)
+					if(!installationfile.exists())exitwitherror(&quot;Archer installation folder doesn&apos;t exist&quot;)
+	            }
+            }
+	    }
+	    stage (&apos;ZipInstallation&apos;)
+	    {
+	        steps (&apos;ZipInstaller&apos;) {
+	               script{
+	                   installerdir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\Archer_Installation_&quot;+params.Version
+				
+	                    def tempdirpath=&quot;C:\\temp\\installer_&quot;+params.Version
+						def tempdir=new File(tempdirpath)
+						if(tempdir.exists()) tempdir.deleteDir()
+						tempdir.mkdir()
+						def zipname=&quot;Archer_&quot;+params.Version+&quot;_Installer.exe&quot;
+						def exename=&quot;Archer_&quot;+zipversion+&quot;_Installer.exe&quot;
+					//	bat &quot;7z a &quot;+tempdirpath+&quot;\\&quot;+zipname+&quot; &quot;+installerdir+&quot;\\*&quot;
+					
+						def src7z = new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\SCM\\General\\self-extractingWith-7zip\\7zS.sfx&quot;)
+						def dst7z = new File(tempdirpath+&quot;\\7zS.sfx&quot;)
+						dst7z &lt;&lt; src7z.bytes
+						
+						File configfile = new File(tempdirpath+&quot;\\config.txt&quot;)
+						configfile.write &quot;;!@Install@!UTF-8!\n;Title=\&quot;Archer SOFTWARE v&quot;+params.Version+&quot;\&quot;\n;BeginPrompt=\&quot;Do you want to install Archer SOFTWARE v&quot;+params.Version+&quot;?\&quot;\nRunProgram=\&quot;setup.exe\\n;!@InstallEnd@!\n&quot;
+					
+					//	bat &quot;copy /b &quot;+tempdirpath+&quot;\\7zS.sfx + &quot;+tempdirpath+&quot;\\config.txt + &quot;+tempdirpath+&quot;\\&quot;+zipname+&quot; &quot;+tempdirpath+&quot;\\&quot;+exename
+						
+					//	bat &quot;xcopy &quot;+tempdirpath+&quot;\\&quot;+exename+&quot; \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ /f&quot;
+						
+						//if(tempdir.exists()) tempdir.deleteDir()
+	               }
+	       
+	            }
+	        
+	    }
+		stage (&apos;Ziptoolconfig&apos;){
+			steps (&apos;ziptoolconfig&apos;){
+				script{
+					tempdirpath=&quot;C:\\temp\\installer_&quot;+params.Version
+					tempdir=new File(tempdirpath)
+					TCdir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\Archer_Installation_&quot;+params.Version+&quot;\\supportfiles\\ToolConfig&quot;
+					File TCzipconfig = new File(tempdirpath+&quot;\\config.txt&quot;)
+					if(TCzipconfig.exists()) TCzipconfig.delete()
+					TCzipconfig.write &quot;;!@Install@!UTF-8!\n;InstallPath=\&quot;C:\\Temp\\ToolConfigApp\\\&quot;\n;!@InstallEnd@!\n&quot;
+					bat &quot;7z a &quot;+tempdirpath+&quot;\\Tool_Configuration.7z&quot;+&quot; &quot;+TCdir+&quot;\\MCDBXML.exe &quot;+TCdir+&quot;\\NG.McdbXml.dll &quot;+TCdir+&quot;\\ToolConfig.exe &quot;+TCdir+&quot;\\ToolConfig.exe.config&quot;
+					bat &quot;copy /b &quot;+tempdirpath+&quot;\\7zS.sfx + &quot;+tempdirpath+&quot;\\config.txt + &quot;+tempdirpath+&quot;\\Tool_Configuration.7z&quot;+&quot; &quot;+tempdirpath+&quot;\\Tool_Configuration.exe&quot;
+					bat &quot;xcopy &quot;+tempdirpath+&quot;\\Tool_Configuration.exe&quot; + &quot; \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ /f&quot;
+					
+					if(tempdir.exists()) tempdir.deleteDir()
+					
+				}
+			}
+		}
+		stage (&apos;document&apos;){
+			steps (&apos;CopyDoc&apos;){
+				script{
+					bat &quot;xcopy &quot;+&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\SupportFiles\\DocumentForKit\\*.*&quot; + &quot; \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation\\ /f&quot;
+					
+				}
+			}
+		}
+		stage (&apos;Phoenix&apos;){
+			steps (&apos;CopyPhoenix&apos;){
+				script{
+					def buildnotice= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/InstallationInstruction.html&quot;;
+	                def buildnoticefile = new File(buildnotice)
+					def phoenixversion
+					if(buildnoticefile.exists()){
+                		echo &quot;found the buildnotice file&quot;				
+                		builtnoticecontent=buildnoticefile.readLines()
+                		for(String line : builtnoticecontent){
+                			if(line.contains(&quot;&gt;Phoenix&lt;&quot;)){
+                			 string subline=line.substring(line.indexOf(&quot;&lt;TD&gt;&quot;)+4,line.length()-5)
+                			 phoenixversion=subline
+                			continue
+                			}
+                		  }
+                	}
+                	else{
+                	    exitwitherror(&quot;Build notice file under code view folder doesn&apos;t exist&quot;)
+                	}
+					phoenixversion=phoenixversion.trim()
+					String[] str;
+					str = phoenixversion.split(&apos;\\+&apos;);
+					for( String values : str ){
+						echo values
+					}
+	
+				}
+			}
+		}
+	}
+}
+
+def exitwitherror(msg){
+    input(message:msg ,ok:&apos;Abort&apos;)
+    throw new Exception(msg)
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
   <triggers/>
-  <concurrentBuild>false</concurrentBuild>
-  <builders/>
-  <publishers/>
-  <buildWrappers/>
-</project>
+  <disabled>false</disabled>
+</flow-definition>
