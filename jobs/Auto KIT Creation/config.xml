@@ -13,15 +13,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to Create KIT?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -46,6 +37,16 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to Create KIT?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -120,7 +121,7 @@ pipeline {
 					TCdir = &quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\Archer_Installation_&quot;+params.Version+&quot;\\supportfiles\\ToolConfig&quot;
 					File TCzipconfig = new File(tempdirpath+&quot;\\config.txt&quot;)
 					if(TCzipconfig.exists()) TCzipconfig.delete()
-					TCzipconfig.write &quot;;!@Install@!UTF-8!\n;InstallPath=\&quot;C:\\Temp\\ToolConfigApp\\\&quot;\n;!@InstallEnd@!\n&quot;
+					TCzipconfig.write &quot;;!@Install@!UTF-8!\nInstallPath=\&quot;C:\\Temp\\ToolConfigApp\\\&quot;\n;!@InstallEnd@!\n&quot;
 					bat &quot;7z a &quot;+tempdirpath+&quot;\\Tool_Configuration.7z&quot;+&quot; &quot;+TCdir+&quot;\\MCDBXML.exe &quot;+TCdir+&quot;\\NG.McdbXml.dll &quot;+TCdir+&quot;\\ToolConfig.exe &quot;+TCdir+&quot;\\ToolConfig.exe.config&quot;
 					bat &quot;copy /b &quot;+tempdirpath+&quot;\\7zS.sfx + &quot;+tempdirpath+&quot;\\config.txt + &quot;+tempdirpath+&quot;\\Tool_Configuration.7z&quot;+&quot; &quot;+tempdirpath+&quot;\\Tool_Configuration.exe&quot;
 					bat &quot;xcopy &quot;+tempdirpath+&quot;\\Tool_Configuration.exe&quot; + &quot; \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ /f&quot;
