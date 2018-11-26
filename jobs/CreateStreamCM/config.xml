@@ -116,10 +116,10 @@
     							       suggested_stream_name=params.SourceStreamName.contains(&quot;_&quot;)?&quot;${params.SourceStreamName}&quot;.substring(0,&quot;${params.SourceStreamName}&quot;.lastIndexOf(&quot;_&quot;))+&quot;_${params.streamTitle}_${params.WorkItem}&quot;:&quot;${params.SourceStreamName}_${params.streamTitle}_${params.WorkItem}&quot;
     							       break;
 									case &quot;Dev&quot; :
-    							       suggested_stream_name=${params.streamTitle}+&quot;_Dev&quot;:
+    							       suggested_stream_name=${params.streamTitle}+&quot;_Dev&quot;;
     							       break;
                                     case &quot;Integ&quot; :
-    							       suggested_stream_name=${params.streamTitle}+&quot;_Integ&quot;:
+    							       suggested_stream_name=${params.streamTitle}+&quot;_Integ&quot;;
     							       break;
 									default:
 										break;
