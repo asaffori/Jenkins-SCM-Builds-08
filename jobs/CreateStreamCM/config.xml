@@ -1,0 +1,318 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.23">
+  <actions>
+    <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin="blueocean-rest-impl@1.6.2">
+      <blueOceanUrlObject class="io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl">
+        <mappedUrl>blue/organizations/jenkins/CreateNewStream</mappedUrl>
+      </blueOceanUrlObject>
+    </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.3.1"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.3.1">
+      <jobProperties/>
+      <triggers/>
+      <parameters>
+        <string>SourceStreamSnapshotName</string>
+        <string>streamTitle</string>
+        <string>WorkItem</string>
+        <string>SourceStreamName</string>
+      </parameters>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>WorkItem</name>
+          <description>What is the Work Item number of the new project?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>streamTitle</name>
+          <description>What is the short project title (use _ as delimter for multiple words, max 40 characters)?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SourceStreamName</name>
+          <description>What is your base stream name?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>SourceStreamSnapshotName</name>
+          <description>What is the stream snapshot name you would use as a base for the new stream? Examples:UOMD_BLD_17.12.00.30100 UOMD_BLD_17.12.00.20600</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.TextParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.security.AuthorizationMatrixProperty>
+      <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
+      <permission>hudson.model.Item.Build:DL-Israel-OMD-ENG-SW</permission>
+      <permission>hudson.model.Item.Cancel:DL-Israel-OMD-ENG-SW</permission>
+      <permission>hudson.model.Item.Discover:DL-Israel-OMD-ENG-SW</permission>
+      <permission>hudson.model.Item.ExtendedRead:DL-Israel-OMD-ENG-SW</permission>
+      <permission>hudson.model.Item.Read:DL-Israel-OMD-ENG-SW</permission>
+      <permission>hudson.model.Run.Replay:DL-Israel-OMD-ENG-SW</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <hudson.security.AuthorizationMatrixProperty reference="../hudson.security.AuthorizationMatrixProperty"/>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
+    <script>pipeline {
+    agent { node { label &apos;master&apos; } }
+     parameters {
+         string (name: &apos;WorkItem&apos;, defaultValue:&apos;&apos;, description: &apos;What is the Work Item number of the new project?&apos;)
+         text (name: &apos;streamTitle&apos;, defaultValue:&apos;&apos;, description:&apos;What is the short project title (use _ as delimter for multiple words, max 40 characters)?&apos;)
+        //string(name: &apos;SuggestedStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What should the new stream be named with? Prefered syntax:Archer_17.12_TaskName_WorkItemNum&apos;)
+        string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is your base stream name?&apos;)
+        text(name: &apos;SourceStreamSnapshotName&apos;, defaultValue: &apos;&apos;, description: &quot;What is the stream snapshot name you would use as a base for the new stream? Examples:UOMD_BLD_17.12.00.30100 UOMD_BLD_17.12.00.20600&quot;)
+    }
+    environment {
+        snapshot_name_prefix=&quot;UOMD_BLD_&quot;
+        search_snaposhots_cmd=&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; ${params.SourceStreamName}| findstr /R /c:\&quot;${params.SourceStreamSnapshotName}\&quot;&quot;
+        search_snaposhots_by_stream_cmd=&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -m 1 ${params.SourceStreamName}&quot;
+        search_source_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}&quot;
+        search_target_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${suggested_stream_name}&quot;
+        get_snaposhot_UUID_cmd=&quot;scm -u y list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; ${params.SourceStreamName}| findstr /R /c:\&quot;${params.SourceStreamSnapshotName}\&quot;| cut -d) -f1 | cut -d: -f2&quot;
+        
+    }
+        stages {
+    			stage (&apos;verification&apos;) {
+    				steps {
+        				    script {
+        				        suggested_stream_name=params.SourceStreamName.contains(&quot;_&quot;)?&quot;${params.SourceStreamName}&quot;.substring(0,&quot;${params.SourceStreamName}&quot;.lastIndexOf(&quot;_&quot;))+&quot;_${params.streamTitle}_${params.WorkItem}&quot;:&quot;${params.SourceStreamName}_${params.streamTitle}_${params.WorkItem}&quot;
+                                wrap([$class: &apos;BuildUser&apos;]) {
+            				        currentBuild.description = &quot;Request for new stream creation &apos;${suggested_stream_name}&apos; by &apos;${env.BUILD_USER}&apos;&quot;
+                                }
+                                
+                                if (params.WorkItem.length() &lt; 2 || !params.WorkItem.matches(&quot;[0-9]+&quot;)) {
+                                    msg=&quot;Invalid WI number \&apos;${params.WorkItem}\&apos;. WI value must be an integer&quot;
+                                    print (msg)
+                                    throw new Exception(msg)
+                                }
+                                
+                                print (&quot;Index of space:&quot; +suggested_stream_name +&quot; . . . . &quot; + suggested_stream_name.indexOf(&quot; &quot;))
+                                switch(suggested_stream_name.indexOf(&quot; &quot;)){
+                                    case -1 :
+    							       print &apos;New stream doesnt conatin spaces&apos;
+    							       break;
+                                    default:
+                                        msg=&quot;Error: stream name: &apos;${suggested_stream_name}&apos; is invalid. Stream name can&apos;t contain white characters [spaces]&quot;
+                                        input(message:msg)
+                                        throw new Exception(msg)
+                                        
+                                }
+                                switch(suggested_stream_name.length()){
+    						        case 71..Integer.MAX_VALUE :
+    						           msg=&quot;Error: suggested stream name: &apos;${suggested_stream_name}&apos; is longer than 70 characters&quot;
+    						           input(message:msg ,ok:&apos;Abort&apos;)
+    							       throw new Exception(msg)
+                                    default:
+                                        print &apos;new stream legth was verified&apos;
+						        }
+        				        
+    	    					print &apos;verify suggested stream name is not occupied&apos;
+    						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name) &gt;= 1){
+    						        case 1..Integer.MAX_VALUE :
+    						           msg=&quot;Stream name &quot; + suggested_stream_name + &quot; is already occupied&quot;
+    						           input(message:msg ,ok:&apos;Abort&apos;)
+    							       throw new Exception(msg)
+                                    default:
+                                        print &apos;suggested stream name is free&apos;
+    						    }
+    						    
+    	    					print &apos;verify source stream name&apos;
+    	    					switch(searchStrInCommandOutput(search_source_stream_cmd,params.SourceStreamName)){
+    	    					    case 2..Integer.MAX_VALUE :
+    	    					            msg=&apos;Multi stream with prefix &apos; + params.SourceStreamName
+    						                input(message:msg ,ok:&apos;Abort&apos;)
+    							            throw new Exception(msg)
+    	    					    case Integer.MIN_VALUE+2..0 :
+    	    					            msg=&apos;Invalid source stream name &apos;  + params.SourceStreamName
+    	    					            input(message:msg ,ok:&apos;Abort&apos;)
+    							            throw new Exception(msg)
+    	                            default:
+    	                                print &apos;source stream name is verified&apos;
+    	    					}
+    	    					
+    	    					print &apos;verify source stream snapshot&apos;
+    	        				switch(searchStrInCommandOutput(search_snaposhots_cmd,params.SourceStreamSnapshotName)){
+    	        				    case 2..Integer.MAX_VALUE :
+    	        				            msg=&quot;Multi snapshots with prefix &quot;+params.SourceStreamSnapshotName
+    						                input(message:msg ,ok:&apos;Abort&apos;)
+    							            throw new Exception(msg)
+    	                            case Integer.MIN_VALUE+2..0 :
+    	                                    msg=&apos;Invalid snapshot name: &apos;+params.SourceStreamSnapshotName+&apos; for stream: &apos; +params.SourceStreamName
+    						                input(message:msg ,ok:&apos;Abort&apos;)
+    							            throw new Exception(msg)
+                                    default:    
+    					                    print &apos;snapshot name is verified&apos;
+                                }   
+        				    }
+    				}
+    			}
+    			stage (&apos;waiting_CM_approval&apos;) {
+    			 steps {
+    			     script {
+    			         //def userInput
+    			         try{
+    			             wrap([$class: &apos;BuildUser&apos;]) {
+        			             emailext (to: &quot;DL-OMD-ENG-SCM@KLA-tencor.com&quot;,
+                                     subject: &quot;New stream request is pending for your approval&quot;,
+                                     body: &quot;&quot;&quot;&lt;p&gt;Dear CM team &lt;/p&gt;&lt;p&gt;New stream request requested by ${env.BUILD_USER} with name  &apos;${suggested_stream_name}&apos; is pending for your approval&lt;p&gt;
+                                     &lt;p&gt;To approve the request, please visit ${env.BUILD_URL}input/ &lt;p&gt;&quot;&quot;&quot;);
+    			             }
+            			     env.userInput = input(
+            				 id: &apos;userInput&apos;, message: &apos;CM team\nPlease approve the below stream name?&apos;, parameters: [
+            				 [$class: &apos;TextParameterDefinition&apos;, defaultValue: suggested_stream_name, description: &apos;Suggested new stream name&apos;, name: &apos;userInput&apos;]
+            				],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Approved, lets create it&apos;)
+            			//	print (userInput)
+    			         } catch (err) { // input false
+    			            print(&quot;ERROR:&quot; + err)
+                            env.userInput = input(
+            				 id: &apos;userInput&apos;, message: &apos;Please update abortion reason?&apos;, parameters: [
+            				[$class: &apos;TextParameterDefinition&apos;, defaultValue: &apos;&apos;, description: &apos;Decline reason&apos;, name: &apos;declineReason&apos;]]
+            				,submitter: &apos;DL-OMD-ENG-SCM&apos;,ok: &apos;Email user, close request&apos;)
+                            def user = err.getCauses()[0].getUser()
+                            echo &quot;Aborted by: [${user}]&quot;
+                            echo &quot;Abort reason: &quot;+ env.userInput
+                            //throw new Exception( &quot;Abort reason: &quot;+ userInput)
+                            wrap([$class: &apos;BuildUser&apos;]) {
+                                emailext (
+                                    subject: &quot;Declined: Stream creation request ${suggested_stream_name}&apos;&quot;,
+                                    body: &quot;&quot;&quot;&lt;p&gt;Dear ${env.BUILD_USER} &lt;/p&gt;
+                                    &lt;p&gt;Your request for new sream with the name &lt;b&gt;${suggested_stream_name}&lt;/b&gt; was &lt;strong&gt;declined&lt;strong&gt; by &lt;b&gt;${user}&lt;/b&gt;&lt;/p&gt;
+                                    &lt;p&gt;Reason: ${env.userInput}&lt;/p&gt;
+                                    &lt;p&gt;For execution details, please check console output at &quot;&lt;a href=&quot;${env.BUILD_URL}console&quot;&gt;${env.JOB_NAME} [R${env.BUILD_NUMBER}]&lt;/a&gt;&quot;&lt;/p&gt;&quot;&quot;&quot;,
+                                     to: &quot;${BUILD_USER_EMAIL},DL-OMD-ENG-SCM@KLA-tencor.com&quot;
+                                )
+                            }
+                        }
+                        print (env.userInput)
+    				if (!suggested_stream_name.equals(env.userInput)){ 
+    				        print &apos;verify new suggested stream name is not occupied &apos;+ env.userInput
+						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name) &gt;= 1){
+						        case 1..Integer.MAX_VALUE :
+                                    msg=&quot;Stream name &quot; + env.userInput + &quot; is already occupied&quot;
+    						        input(message:msg ,ok:&apos;Abort&apos;)
+    							    throw new Exception(msg)
+                                default:
+                                    print &apos;new suggested stream name is free&apos;
+						    }
+    			     }
+    			 }
+    			}
+    			}
+    			stage (&apos;creation&apos;) {
+                    steps {
+                        script {
+                             wrap([$class: &apos;BuildUser&apos;]) {
+                                def snaposhot_UUID;
+                                def snapsList = bat returnStdout: true , script: &apos;&apos;&apos;
+                                        scm -u y list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; %SourceStreamName%
+                                &apos;&apos;&apos;
+
+                                snapsList.readLines().each { line -&gt;
+                                    if(line.contains(&quot;\&quot;${params.SourceStreamSnapshotName}\&quot;&quot;)){
+                                        if (line.contains(&apos;)&apos;)){
+                                            snapshot_UUID=line.split(&quot;\\)&quot;)[0].split(&quot;\\:&quot;)[1]
+                                        }
+                                    }
+                                }
+
+                                create_stream_cmd=&quot;scm create stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  --description \&quot;Created by ${BUILD_USER}, based on stream ${params.SourceStreamName}, snapshot ${params.SourceStreamSnapshotName} and work item ${params.WorkItem}\&quot; --snapshot ${snapshot_UUID}  --projectarea \&quot;OMD NuArcher\&quot;&quot;
+                                switch(searchStrInCommandOutput(create_stream_cmd,&quot; successfully created.&quot;)){
+    						        case 0:
+    						            msg=&quot;Stream creation faild&quot;
+    						            input(message:msg ,ok:&apos;Abort&apos;)
+    							        throw new Exception(msg)
+                                    default:
+                                        print &apos;New stream was successfully created&apos;
+    						    }
+
+        						create_stream_snapshot_cmd=&quot;scm create snapshot -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp;  ${env.userInput}  -d \&quot;Init snapshot create automatically by ${BUILD_USER}, based on stream ${params.SourceStreamName}, snapshot ${params.SourceStreamSnapshotName} and work item $params.WorkItem}\&quot; -n ${params.SourceStreamSnapshotName}&quot;
+								searchStrInCommandOutput(create_stream_snapshot_cmd,&quot; successfully created.&quot;)
+                             }
+                        }
+                    }
+    			}
+        }
+    	post {
+            failure {
+              
+                wrap([$class: &apos;BuildUser&apos;]) { 
+                    // notify users when the Pipeline fails
+                    emailext (to: &quot;${BUILD_USER_EMAIL},DL-OMD-ENG-SCM@KLA-tencor.com&quot;,
+                    subject: &quot;Stream ${env.userInput} creation - FAILED&quot;,
+                    body: &quot;&quot;&quot;Something is wrong during stream creation, please check creation log via ${env.BUILD_URL}&quot;&quot;&quot;);
+                }
+                
+            }
+            
+            success {
+                wrap([$class: &apos;BuildUser&apos;]) {
+                    // notify users when the Pipeline success
+                    emailext (to: &quot;${BUILD_USER_EMAIL},DL-OMD-ENG-SCM@KLA-tencor.com&quot;,
+                    subject: &quot;Stream ${env.userInput} creation - SUCCESS&quot;,
+                    body: &quot;&quot;&quot;Dear ${env.BUILD_USER} &lt;BR&gt; Your request for new sream with the name ${env.userInput} was approved. &lt;BR&gt; New stream was created based on ${params.SourceStreamName} and snapshot ${params.SourceStreamSnapshotName}.&lt;BR&gt; Regards &lt;BR&gt; OMD DevOps team&quot;&quot;&quot;);
+                }
+            }
+        }
+
+}
+
+def searchStrInCommandOutput(cmd,str){
+    try{
+        stdoutput = bat(returnStdout:true , script:cmd).trim()
+    }catch (err) { // input false
+        print (&quot;Error: Command execution finished with error.&quot;)
+        return 0
+    }
+    //print (&quot;stdout=&quot; + stdoutput)
+    result = stdoutput.readLines().drop(1).join(&quot; &quot;)
+    //print (&quot;count=&quot; +result.count(str))
+    return result.count(str)
+
+}</script>
+    <sandbox>false</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>

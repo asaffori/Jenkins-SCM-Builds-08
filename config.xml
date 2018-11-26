@@ -379,6 +379,7 @@
         <string>cleanupTest</string>
         <string>CleanUpTestController</string>
         <string>CreateNewVersion</string>
+        <string>CreateStreamCM</string>
         <string>loadpropTest</string>
         <string>MatlabTest</string>
         <string>mutibranch</string>
