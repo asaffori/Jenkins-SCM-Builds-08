@@ -291,9 +291,9 @@
     			}
         }
     	post {
-    	     node (&apos;master&apos;){
             
             success {
+                 node (&apos;master&apos;){
                 wrap([$class: &apos;BuildUser&apos;]) {
                     // notify users when the Pipeline success
                     emailext (to: &quot;${BUILD_USER_EMAIL}&quot;,
