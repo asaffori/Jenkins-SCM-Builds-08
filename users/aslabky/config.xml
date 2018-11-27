@@ -133,6 +133,7 @@
         <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
         <string>DL-OMD-SW-Imaging</string>
         <string>chn2vmfs01-Shanghai-I-Intel-C-CH</string>
+        <string>cc-israel-ro</string>
         <string>CA1NAS01-WINField-CH</string>
         <string>ca1fs01-KlearPoint-CH</string>
         <string>WIN-DYSD-STADB-CH</string>
@@ -166,7 +167,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1534402473107</timestamp>
+      <timestamp>1543315369024</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
