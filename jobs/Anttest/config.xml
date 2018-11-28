@@ -34,7 +34,7 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>Version</name>
+          <name>MajorMinor_Ver</name>
           <description>Major.minor version eg: 17.14 or the Major.minor.SP Version, eg: 17.14.01.</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -60,10 +60,18 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
+    <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+      <source class="hudson.plugins.groovy.StringSystemScriptSource">
+        <script plugin="script-security@1.44">
+          <script></script>
+          <sandbox>false</sandbox>
+        </script>
+      </source>
+    </hudson.plugins.groovy.SystemGroovy>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.70">
       <scriptText>job(Version) {
-    logRotator(-1, 10)
-    jdk(&apos;Java 6&apos;)
+    logRotator(30, -1)
+  	
 }</scriptText>
       <usingScriptText>true</usingScriptText>
       <sandbox>false</sandbox>
