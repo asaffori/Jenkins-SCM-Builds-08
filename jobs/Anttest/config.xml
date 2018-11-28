@@ -64,18 +64,6 @@
       <scriptText>job(&apos;${Version}&apos;) {
     logRotator(-1, 10)
     jdk(&apos;Java 6&apos;)
-    scm {
-        github(&apos;jenkinsci/job-dsl-plugin&apos;, &apos;master&apos;)
-    }
-    triggers {
-        githubPush()
-    }
-    steps {
-        gradle(&apos;clean build&apos;)
-    }
-    publishers {
-        archiveArtifacts(&apos;job-dsl-plugin/build/libs/job-dsl.hpi&apos;)
-    }
 }</scriptText>
       <usingScriptText>true</usingScriptText>
       <sandbox>false</sandbox>
