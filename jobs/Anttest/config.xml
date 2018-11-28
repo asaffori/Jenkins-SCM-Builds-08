@@ -34,7 +34,7 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>MajorMinor_Ver</name>
+          <name>Version</name>
           <description>Major.minor version eg: 17.14 or the Major.minor.SP Version, eg: 17.14.01.</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -60,14 +60,6 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
-      <source class="hudson.plugins.groovy.StringSystemScriptSource">
-        <script plugin="script-security@1.44">
-          <script></script>
-          <sandbox>false</sandbox>
-        </script>
-      </source>
-    </hudson.plugins.groovy.SystemGroovy>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.70">
       <scriptText>job(Version) {
     logRotator(30, -1)
@@ -86,5 +78,24 @@
     </javaposse.jobdsl.plugin.ExecuteDslScripts>
   </builders>
   <publishers/>
-  <buildWrappers/>
+  <buildWrappers>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <groovyScriptContent>if (CASE==null){
+return null; 
+} 
+def stringValue=&quot;StRinG&quot;; 
+if (&quot;upper&quot;.equals(CASE)){ 
+def map = [COMPUTE_VAR: stringValue.toUpperCase()]
+return map 
+} 
+
+if (&quot;lower&quot;.equals(CASE)){ 
+def map = [COMPUTE_VAR: stringValue.toLowerCase()] 
+return map 
+} </groovyScriptContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+  </buildWrappers>
 </project>
