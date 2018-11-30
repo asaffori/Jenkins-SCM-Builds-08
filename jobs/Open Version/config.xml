@@ -1,7 +1,66 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.23">
+  <actions/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
+    <script>pipeline {
+    agent master
+	environment { 
+        repositoryAddress = &apos;http://clm.kla-tencor.com/ccm&apos;
+    }
+    parameters {
+        string(name: &apos;Version&apos;, description: &apos;Which Version you want to Create? eg:17.14 or 17.14.01&apos;)
+		string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is your Source stream name?&apos;)
+		string(name: &apos;SourceStreamSnapshotName&apos;, defaultValue: &apos;&apos;, description: &apos;What is your Source stream name snapshot name?&apos;)
+    }
+	stages {    
+	    stage (&apos;Validation&apos;) {
+            steps (&apos;vaiidate&apos;) {
+	                script{
+	                if(params.Version==&quot;&quot;){
+    				    exitwitherror(&quot;Version is not defined&quot;)
+	                }  
+					if(params.BaseVersion==&quot;&quot;){
+    				    exitwitherror(&quot;Version is not defined&quot;)
+	                } 					
+					input(
+            			id: &apos;userInput&apos;, message: &apos;Please verify the below parameters:&apos;, parameters: [
+            				 string(defaultValue: &apos;Archer_${Version}_Dev&apos;,description: &apos;Dev stream name&apos;,name: &apos;DevStream&apos;)
+            				],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Corret, lets create it&apos;)
+					
+	            }
+            }
+	    }
+	}
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
   <triggers/>
   <disabled>false</disabled>
 </flow-definition>
