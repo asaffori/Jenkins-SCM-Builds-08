@@ -74,7 +74,7 @@
 	    stage (&apos;test&apos;) {
             steps (&apos;vaiidate&apos;) {
 	            script{
-	               echo env.DevStream
+	               echo env.InputDevStream
 					
 	            }
             }
