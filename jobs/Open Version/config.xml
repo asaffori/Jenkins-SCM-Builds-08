@@ -75,7 +75,7 @@
             steps (&apos;vaiidate&apos;) {
 	                script{
 	               					
-				// echo env.DevStream
+				 echo env.DevStream
 					
 	            }
             }
