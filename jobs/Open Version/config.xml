@@ -30,7 +30,7 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>pipeline {
-     agent {master}
+     agent {node { master }}
 	environment { 
         repositoryAddress = &apos;http://clm.kla-tencor.com/ccm&apos;
     }
@@ -57,7 +57,7 @@
 	            }
             }
 	    }
-	    stage (&apos;Validation&apos;) {
+	    stage (&apos;test&apos;) {
             steps (&apos;vaiidate&apos;) {
 	                script{
 	               					
