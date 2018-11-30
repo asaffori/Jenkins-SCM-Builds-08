@@ -61,12 +61,13 @@
     				    exitwitherror(&quot;Version is not defined&quot;)
 	                } 	
 					def userInput=input(
-            			id: &apos;userInput&apos;, message: &apos;Please verify the below parameters:&apos;, parameters: [
-            			string(defaultValue: &quot;Archer_${params.Version}_Dev&quot;,description: &apos;Dev stream name&apos;,name: &apos;DevStream&apos;),
-            			],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Corret, lets create it&apos;)
-            		
-            		echo userInput
-				    env.InputDevStream = userInput
+					id: &apos;userInput&apos;, message: &apos;Please verify the below parameters:&apos;, parameters: [
+					string(defaultValue: &quot;Archer_${params.Version}_Dev&quot;,description: &apos;Dev stream name&apos;,name: &apos;DevStream&apos;),
+					string(defaultValue: &quot;Archer_${params.Version}Integ&quot;,description: &apos;Integ stream name&apos;,name: &apos;IntegStream&apos;),
+					],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Corret, lets create it&apos;)
+					
+					env.InputDevStream = userInput.DevStream
+					env.InputIntegStream = userInput.IntegStream
 	             }
 	             
             }
@@ -75,6 +76,7 @@
             steps (&apos;vaiidate&apos;) {
 	            script{
 	               echo env.InputDevStream
+	               echo env.InputIntegStream
 					
 	            }
             }
