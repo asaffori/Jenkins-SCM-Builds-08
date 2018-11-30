@@ -57,6 +57,15 @@
 	            }
             }
 	    }
+	    stage (&apos;Validation&apos;) {
+            steps (&apos;vaiidate&apos;) {
+	                script{
+	               					
+				 echo env.DevStream
+					
+	            }
+            }
+	    }
 	}
 }</script>
     <sandbox>true</sandbox>
