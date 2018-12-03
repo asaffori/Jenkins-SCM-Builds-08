@@ -678,7 +678,7 @@
           </default>
           <int>1</int>
           <string>ReportingSystemURL</string>
-          <string>10.158.40.203:8082</string>
+          <string>scm-ate-02:8081</string>
         </tree-map>
       </envVars>
     </hudson.slaves.EnvironmentVariablesNodeProperty>
