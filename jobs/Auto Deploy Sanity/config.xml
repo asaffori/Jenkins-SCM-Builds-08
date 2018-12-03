@@ -10,6 +10,14 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -31,17 +39,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -142,7 +140,7 @@
           <name>MajorMinor_Ver</name>
           <description></description>
           <randomName>choice-parameter-313186242246989</randomName>
-          <visibleItemCount>0</visibleItemCount>
+          <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.44">
               <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
@@ -156,12 +154,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
             </secureFallbackScript>
           </script>
           <projectName>Auto Deploy Sanity</projectName>
-          <parameters class="linked-hash-map">
-            <entry>
-              <string>BUILD_VERSION</string>
-              <string></string>
-            </entry>
-          </parameters>
+          <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
@@ -252,6 +245,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -419,15 +413,11 @@ historyJobs.getFlowSteps().each { step -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>MajorMinor_Ver</string>
       <string></string>
     </entry>
     <entry>
-      <string>TestSuite</string>
+      <string>product</string>
       <string></string>
     </entry>
     <entry>
@@ -439,6 +429,10 @@ historyJobs.getFlowSteps().each { step -&gt;
       <string></string>
     </entry>
     <entry>
+      <string>TEST_ID</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>TestSuitePath</string>
       <string></string>
     </entry>
@@ -447,11 +441,23 @@ historyJobs.getFlowSteps().each { step -&gt;
       <string></string>
     </entry>
     <entry>
-      <string>BaseImage</string>
+      <string>ATEControllerEngine</string>
       <string></string>
     </entry>
     <entry>
-      <string>ATEControllerEngine</string>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>SCRIPT_NUMBER</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>BaseImage</string>
       <string></string>
     </entry>
   </globalEnvVars>
@@ -567,7 +573,7 @@ historyJobs.getFlowSteps().each { step -&gt;
       <step>INSTALLATION</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>SilentInstallation</dependencyJobName>
+          <dependencyJobName>PrepareSUT</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
@@ -594,6 +600,28 @@ historyJobs.getFlowSteps().each { step -&gt;
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
       <platform>Windows</platform>
+      <triggersFlag>false</triggersFlag>
+      <triggers>
+        <dailyTriggerFlag>false</dailyTriggerFlag>
+        <weeklyTriggerFlag>false</weeklyTriggerFlag>
+        <monthlyTriggerFlag>false</monthlyTriggerFlag>
+      </triggers>
+    </com.amdocs.hudson.plugins.flow.JobParameter>
+    <com.amdocs.hudson.plugins.flow.JobParameter>
+      <jobName>PrepareSUT</jobName>
+      <continueJobIfUnstable>false</continueJobIfUnstable>
+      <continueJobIfAborted>false</continueJobIfAborted>
+      <continueJobAnyway>false</continueJobAnyway>
+      <overrideJobNode>false</overrideJobNode>
+      <specifyModule>false</specifyModule>
+      <step>INSTALLATION</step>
+      <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
+        <com.amdocs.hudson.plugins.flow.DependencyJob>
+          <dependencyJobName>SilentInstallation</dependencyJobName>
+        </com.amdocs.hudson.plugins.flow.DependencyJob>
+      </dependencyJobList>
+      <appServerType>Same as parent</appServerType>
+      <platform>Same as parent</platform>
       <triggersFlag>false</triggersFlag>
       <triggers>
         <dailyTriggerFlag>false</dailyTriggerFlag>
