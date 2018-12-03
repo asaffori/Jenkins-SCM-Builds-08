@@ -1,0 +1,124 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>SimulatorEngine</name>
+          <description></description>
+          <allowedSlaves>
+            <string>ALL (no restriction)</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>master</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>ToolType</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Archer700</string>
+              <string>Archer600</string>
+              <string>Archer TL</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>@ECHO off&#xd;
+xcopy &quot;%ATEConfigPath%\SDP for %ToolType%\*.*&quot; C:\5300\SDP\ /f /r /s /y&#xd;
+if not %errorlevel%==0 (&#xd;
+echo Update SDP folder on %SimulatorEngine% failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+xcopy \\isr1vmappcm01\Automated_Testing\ATE_LatestApps\*.* C:\Automation\ /f /r /s /y&#xd;
+if not %errorlevel%==0 (&#xd;
+echo Update C:\Automation folder failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+if not exist C:\DataForEggplant md C:\DataForEggplant&#xd;
+if not %errorlevel%==0 (&#xd;
+echo Create C:\DataForEggplant folder failed.&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+if &quot;%ToolType%&quot;==&quot;Archer600&quot; (&#xd;
+  C:\Automation\Apply600.bat&#xd;
+  C:\Automation\MapToA600.bat&#xd;
+)&#xd;
+&#xd;
+if &quot;%ToolType%&quot;==&quot;Archer700&quot; (&#xd;
+  C:\Automation\Apply700.bat&#xd;
+  C:\Automation\MapToA700.bat&#xd;
+)&#xd;
+&#xd;
+if &quot;%ToolType%&quot;==&quot;Archer TL&quot; (&#xd;
+  C:\Automation\ApplyTL.bat&#xd;
+  C:\Automation\MapToATL.bat&#xd;
+)&#xd;
+&#xd;
+goto end&#xd;
+:error&#xd;
+echo Run Sanity test on %SimulatorEngine% failed.&#xd;
+exit /b 1&#xd;
+:end</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesContent>ATEConfigPath=\\isr1vmappcm01\Automated_Testing\Install files</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+  </buildWrappers>
+</project>
