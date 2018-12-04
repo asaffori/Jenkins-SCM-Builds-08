@@ -13,20 +13,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>Version</name>
-          <description>Which version to run Support build for? 
- example: 17.13</description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>17.14_Support_Intel</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.security.AuthorizationMatrixProperty>
       <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
       <permission>hudson.model.Item.Build:DL-Israel-OMD-Eng-SW</permission>
@@ -52,6 +38,20 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>MajorVersion</name>
+          <description>Which version to run Support build for? 
+ example: 17.13</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>17.14_Support_Intel</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -66,7 +66,8 @@
     <script>pipeline {
 agent { node { label &apos;master&apos; } }
 parameters {
-        choice(choices: &apos;17.14_Support_Intel&apos;, description: &apos;Which version to run Support build for? \n example: 17.13&apos;, name: &apos;Version&apos;)
+        choice(choices: &apos;17.14_Support_Intel&apos;, description: &apos;Which version to run Support build for? \n example: 17.14_Support_Intel&apos;, name: &apos;MajorVersion&apos;)
+        String(description: &apos;Please enter version to run the build with&apos;, name: &apos;BUILD_VERSION&apos;)
     }
 
     stages {
@@ -75,9 +76,9 @@ parameters {
             steps{
                 script{
                     wrap([$class: &apos;BuildUser&apos;]) {
-            				        currentBuild.description = &quot;Bulding OMD_${params.Version}_Formal_Trigger by &apos;${env.BUILD_USER}&apos;&quot;
+            				        currentBuild.description = &quot;Bulding OMD_${params.MajorVersion}_Formal_Trigger by &apos;${env.BUILD_USER}&apos;&quot;
                                 }
-                     build job:&quot;OMD_${params.Version}_Formal_Trigger&quot;
+                     build job:&quot;OMD_${params.MajorVersion}_Formal_Trigger&quot;,parameters: [String(name: &apos;BUILD_VERSION&apos;, value:params.BUILD_VERSION)]
                 }
             }
         }
