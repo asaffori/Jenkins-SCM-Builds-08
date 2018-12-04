@@ -474,6 +474,7 @@
             <string>OMD_17.13_Formal_Trigger</string>
             <string>OMD_17.14.01_Formal_Trigger</string>
             <string>OMD_17.14_Formal_Trigger</string>
+            <string>OMD_17.14_Support_Intel_Formal_Trigger</string>
             <string>OMD_18.00_Formal_Trigger</string>
           </jobNames>
           <jobFilters/>
