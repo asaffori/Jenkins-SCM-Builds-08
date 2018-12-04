@@ -94,7 +94,7 @@
   &lt;/xt:createbuilddefinition&gt;
  
 &lt;/target&gt;</targets>
-      <antName>(Default)</antName>
+      <antName>RenameBuildLabel</antName>
       <buildFile>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\BuildDefinition.xml</buildFile>
     </hudson.tasks.Ant>
     <hudson.tasks.BatchFile>
