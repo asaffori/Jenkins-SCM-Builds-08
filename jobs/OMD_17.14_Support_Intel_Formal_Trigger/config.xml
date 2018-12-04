@@ -252,7 +252,7 @@
         <hudson.model.BooleanParameterDefinition>
           <name>RunAutoMerge</name>
           <description></description>
-          <defaultValue>true</defaultValue>
+          <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>GenerateAndShareBuildNotes</name>
