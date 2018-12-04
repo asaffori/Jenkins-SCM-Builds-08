@@ -667,6 +667,7 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>ATARS_Auto Deploy Sanity</string>
         <string>ATARS_SanityTest</string>
       </jobNames>
       <jobFilters/>
