@@ -116,6 +116,12 @@
 	            script{
 	               echo env.InputDevStream
 	               echo env.InputIntegStream
+	               echo env.InputDevWorkspace
+				    echo env.InputIntegWorkspace
+					echo env.InputScheduledBD
+					echo env.InputFormalBD
+					echo env.InputVersionfile
+					echo env.InputStartingVersion
 					
 	            }
             }
