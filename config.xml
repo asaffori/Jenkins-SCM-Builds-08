@@ -377,6 +377,7 @@
         <string>CathyTest</string>
         <string>cleanupTest</string>
         <string>CleanUpTestController</string>
+        <string>CreateBuildDefinition</string>
         <string>CreateNewVersion</string>
         <string>CreateScheduledTrigger</string>
         <string>CreateStreamCM</string>
