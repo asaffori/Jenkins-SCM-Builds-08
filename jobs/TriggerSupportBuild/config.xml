@@ -53,7 +53,7 @@
 agent { node { label &apos;master&apos; } }
 parameters {
         choice(choices: &apos;17.14_Support_Intel&apos;, description: &apos;Which version to run Support build for? \n example: 17.14_Support_Intel&apos;, name: &apos;MajorVersion&apos;)
-        String(description: &apos;Please enter version to run the build with&apos;, name: &apos;BUILD_VERSION&apos;)
+        string(description: &apos;Please enter version to run the build with&apos;, name: &apos;BUILD_VERSION&apos;)
     }
 
     stages {
