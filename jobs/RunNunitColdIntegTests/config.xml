@@ -137,7 +137,7 @@ if (RunNunitTests== &quot;false&quot;) {
   	build.getExecutor().interrupt(Result.SUCCESS)
 }
 </script>
-              <sandbox>true</sandbox>
+              <sandbox>false</sandbox>
             </script>
           </source>
         </hudson.plugins.groovy.SystemGroovy>
