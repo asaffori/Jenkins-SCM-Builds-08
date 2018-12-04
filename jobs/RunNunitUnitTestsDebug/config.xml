@@ -110,6 +110,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -142,7 +143,6 @@ IF NOT Exist V:\NUL (&#xd;
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
-      <healthScaleFactor>1.0</healthScaleFactor>
       <failIfNoResults>false</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
   </publishers>
@@ -172,9 +172,6 @@ if (RunNunitTests== &quot;false&quot;) {
             </script>
           </source>
         </hudson.plugins.groovy.SystemGroovy>
-        <hudson.tasks.BatchFile>
-          <command>echo 11</command>
-        </hudson.tasks.BatchFile>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
