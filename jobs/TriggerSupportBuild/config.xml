@@ -13,26 +13,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>Version</name>
-          <description>Which version to run Formal build for? 
- example: 17.13</description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>17.11</string>
-              <string>17.12</string>
-              <string>17.13</string>
-              <string>17.13.02</string>
-              <string>17.13_Beta</string>
-              <string>17.13.03</string>
-              <string>17.14</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.security.AuthorizationMatrixProperty>
       <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
       <permission>hudson.model.Item.Build:DL-Israel-OMD-Eng-SW</permission>
@@ -66,15 +46,13 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <hudson.security.AuthorizationMatrixProperty reference="../hudson.security.AuthorizationMatrixProperty"/>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>pipeline {
 agent { node { label &apos;master&apos; } }
 parameters {
-        choice(choices: &apos;17.11\n17.12\n17.13\n17.13.02\n17.13_Beta\n17.13.03\n17.14&apos;, description: &apos;Which version to run Formal build for? \n example: 17.13&apos;, name: &apos;Version&apos;)
+        choice(choices: &apos;17.14_Support_Intel&apos;, description: &apos;Which version to run Support build for? \n example: 17.13&apos;, name: &apos;Version&apos;)
     }
 
     stages {
