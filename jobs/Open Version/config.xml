@@ -101,6 +101,12 @@
 					
 					env.InputDevStream = userInput.DevStream
 					env.InputIntegStream = userInput.IntegStream
+					env.InputDevWorkspace = userInput.DevWorkspace
+					env.InputIntegWorkspace = userInput.IntegWorkspace
+					env.InputScheduledBD = userInput.ScheduledBD
+					env.InputFormalBD = userInput.FormalBD
+					env.InputVersionfile = userInput.Versionfile
+					env.InputStartingVersion = userInput.StartingVersion
 	             }
 	             
             }
