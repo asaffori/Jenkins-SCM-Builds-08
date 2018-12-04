@@ -39,6 +39,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
@@ -226,24 +227,6 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <defaultValue>\\isr1vmappcm01\Automated_Testing\17.0x_ATE</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>TEST_ID</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SCRIPT_NUMBER</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>product</name>
-          <description></description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RunNunitTests</name>
           <description></description>
@@ -418,11 +401,23 @@ historyJobs.getFlowSteps().each { step -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>SCRIPT_NUMBER</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>MajorMinor_Ver</string>
       <string></string>
     </entry>
     <entry>
       <string>product</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
@@ -446,23 +441,11 @@ historyJobs.getFlowSteps().each { step -&gt;
       <string></string>
     </entry>
     <entry>
-      <string>ATEControllerEngine</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>SCRIPT_NUMBER</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>TestSuite</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>BaseImage</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ATEControllerEngine</string>
       <string></string>
     </entry>
   </globalEnvVars>
