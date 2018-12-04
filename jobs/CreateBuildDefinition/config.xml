@@ -63,40 +63,6 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.Ant plugin="ant@1.8">
-      <targets>&lt;target name=&quot;CreateBD&quot; description=&quot;Create Build Definition&quot;&gt;
-  
-  &lt;xt:createbuilddefinition
-    repositoryAddress=&quot;${repositoryAddress}&quot;
-    userId=&quot;${userId}&quot;
-    password=&quot;${password}&quot;
-    buildId=&quot;OMD-Archer-V17.99-Scheduled-Jenkins&quot;
-    buildDescription=&quot;Created by Automatic Version Opening&quot;
-    buildFolder=&quot;Builds/Jenkins Build Triggers/Testing BUilds&quot;
-    buildWorkspace=&quot;omdbuild_Archer_17.99.99_Dev_Workspace&quot;
-    ignoreWarnings=&quot;true&quot;
-    processAreaName=&quot;OMD NuArcher&quot;
-    pruning=&quot;false&quot;
-    scheduleEnabled=&quot;false&quot;
-    templateId=&quot;com.ibm.team.build.ant&quot;&gt;
-    
-    &lt;!-- Build Engines --&gt;
-    &lt;xt:buildEngineDefine id=&quot;SCM-BUILDS-01&quot;/&gt;
-    
-    &lt;!-- Jazz Source Control Properties --&gt;
-    &lt;xt:teamBuildProperty name=&quot;team.scm.acceptBeforeFetch&quot; value=&quot;true&quot;/&gt;
-    &lt;xt:teamBuildProperty name=&quot;team.scm.buildOnlyIfChanges&quot; value=&quot;false&quot;/&gt;
-    &lt;xt:teamBuildProperty name=&quot;team.scm.createFoldersForComponents&quot; value=&quot;true&quot;/&gt;
-    &lt;xt:teamBuildProperty name=&quot;team.scm.deleteDestinationBeforeFetch&quot; value=&quot;true&quot;/&gt;
-    &lt;xt:teamBuildProperty name=&quot;team.scm.fetchDestination&quot; value=&quot;.\RTCCodeLoad&quot;/&gt;
-    &lt;xt:teamBuildProperty name=&quot;team.scm.workspaceUUID&quot; value=&quot;omdbuild_Archer_17.14_Dev_Workspace&quot;/&gt;
-
-  &lt;/xt:createbuilddefinition&gt;
- 
-&lt;/target&gt;</targets>
-      <antName>RenameBuildLabel</antName>
-      <buildFile>\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\BuildDefinition.xml</buildFile>
-    </hudson.tasks.Ant>
     <hudson.tasks.BatchFile>
       <command>CALL &quot;C:\Program Files (x86)\apache-ant-1.9.4\bin\ant.bat&quot; -file &quot;\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\BuildDefinition.xml&quot; &quot;-Dpassword=%BuildPass%&quot; -DuserId=%BuildUser% -DtoolkitPath=C:\Build\TeamConcertBuild\buildsystem\buildtoolkit &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\Build\TeamConcertBuild\buildsystem\buildtoolkit</command>
     </hudson.tasks.BatchFile>
