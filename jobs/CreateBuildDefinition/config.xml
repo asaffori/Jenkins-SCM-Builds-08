@@ -1,7 +1,56 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
+  <actions/>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDTYPE</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Formal</string>
+              <string>Scheduled</string>
+              <string>Tasks</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -11,7 +60,41 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.tasks.Ant plugin="ant@1.8">
+      <targets>&lt;target name=&quot;CreateBD&quot; description=&quot;Create Build Definition&quot;&gt;
+  
+  &lt;xt:createbuilddefinition
+    repositoryAddress=&quot;http://clm.kla-tencor.com/ccm&quot;
+    userId=&quot;omdbuild&quot;
+    password=&quot;Scm07&amp;&quot;
+    buildId=&quot;OMD-Archer-V17.99-Scheduled-Jenkins&quot;
+    buildDescription=&quot;Created by Automatic Version Opening&quot;
+    buildFolder=&quot;Builds/Jenkins Build Triggers/Testing BUilds&quot;
+    buildWorkspace=&quot;omdbuild_Archer_17.99.99_Dev_Workspace&quot;
+    ignoreWarnings=&quot;true&quot;
+    processAreaName=&quot;OMD NuArcher&quot;
+    pruning=&quot;false&quot;
+    scheduleEnabled=&quot;false&quot;
+    templateId=&quot;com.ibm.team.build.ant&quot;&gt;
+    
+    &lt;!-- Build Engines --&gt;
+    &lt;xt:buildEngineDefine id=&quot;SCM-BUILDS-01&quot;/&gt;
+    
+    &lt;!-- Jazz Source Control Properties --&gt;
+    &lt;xt:teamBuildProperty name=&quot;team.scm.acceptBeforeFetch&quot; value=&quot;true&quot;/&gt;
+    &lt;xt:teamBuildProperty name=&quot;team.scm.buildOnlyIfChanges&quot; value=&quot;false&quot;/&gt;
+    &lt;xt:teamBuildProperty name=&quot;team.scm.createFoldersForComponents&quot; value=&quot;true&quot;/&gt;
+    &lt;xt:teamBuildProperty name=&quot;team.scm.deleteDestinationBeforeFetch&quot; value=&quot;true&quot;/&gt;
+    &lt;xt:teamBuildProperty name=&quot;team.scm.fetchDestination&quot; value=&quot;.\RTCCodeLoad&quot;/&gt;
+    &lt;xt:teamBuildProperty name=&quot;team.scm.workspaceUUID&quot; value=&quot;omdbuild_Archer_17.14_Dev_Workspace&quot;/&gt;
+
+  &lt;/xt:createbuilddefinition&gt;
+ 
+&lt;/target&gt;</targets>
+      <antName>(Default)</antName>
+    </hudson.tasks.Ant>
+  </builders>
   <publishers/>
   <buildWrappers/>
 </project>
