@@ -172,6 +172,9 @@ if (RunNunitTests== &quot;false&quot;) {
             </script>
           </source>
         </hudson.plugins.groovy.SystemGroovy>
+        <hudson.tasks.BatchFile>
+          <command>echo 11</command>
+        </hudson.tasks.BatchFile>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
