@@ -78,7 +78,7 @@
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
-          <defaultValue>${JENKINCONFIGPATH}\Jenkins_Build_Version\17.14version.txt</defaultValue>
+          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
@@ -305,13 +305,12 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesFilePath>${JENKINCONFIGPATH}\Jenkins_Build_conf_files\Global_Env.properties</propertiesFilePath>
         <propertiesContent>BUILDTYPE=Formal
-WSName=omdbuild_Archer_17.14_Integ_Workspace
+WSName=omdbuild_Archer_17.14_Support_Intel_17.14.00.21100_Workspace
 SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}
 ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
         <loadFilesFromMaster>false</loadFilesFromMaster>
@@ -329,7 +328,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
     <timeout>0</timeout>
     <buildType>
       <value>buildDefinition</value>
-      <buildDefinition>OMD-Archer-V17.14-Formal-Jenkins</buildDefinition>
+      <buildDefinition>OMD-Archer-V17.14-SupportIntel-Jenkins</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
       <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -339,7 +338,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>OMD-Archer-V17.14-Formal-Jenkins</buildDefinition>
+    <buildDefinition>OMD-Archer-V17.14-SupportIntel-Jenkins</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -503,9 +502,6 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}
             </EnvInjectBuilder>
           </conditionalbuilders>
         </org.jenkinsci.plugins.conditionalbuildstep.ConditionalBuilder>
-        <hudson.tasks.BatchFile>
-          <command>::C:\PROGRA~1\Unlocker\Unlocker.exe %team_scm_fetchDestination% /S</command>
-        </hudson.tasks.BatchFile>
         <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
             <script plugin="script-security@1.44">
@@ -524,91 +520,6 @@ build.getLog(100).each{
         </hudson.plugins.groovy.SystemGroovy>
         <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
           <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
-            <arg1>${RunAutoMerge}</arg1>
-            <arg2>true</arg2>
-            <ignoreCase>true</ignoreCase>
-          </condition>
-          <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
-            <configs>
-              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-                <configs>
-                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                    <properties>MajorMinor_Ver=${MajorMinor_Ver}
-fromStream=Archer_17.14_Dev
-toStream=Archer_17.14_Integ</properties>
-                    <textParamValueOnNewLine>false</textParamValueOnNewLine>
-                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                </configs>
-                <projects>AutoRebaseStream</projects>
-                <condition>ALWAYS</condition>
-                <triggerWithNoParameters>false</triggerWithNoParameters>
-                <triggerFromChildProjects>false</triggerFromChildProjects>
-                <block>
-                  <buildStepFailureThreshold>
-                    <name>FAILURE</name>
-                    <ordinal>2</ordinal>
-                    <color>RED</color>
-                    <completeBuild>true</completeBuild>
-                  </buildStepFailureThreshold>
-                  <unstableThreshold>
-                    <name>UNSTABLE</name>
-                    <ordinal>1</ordinal>
-                    <color>YELLOW</color>
-                    <completeBuild>true</completeBuild>
-                  </unstableThreshold>
-                  <failureThreshold>
-                    <name>FAILURE</name>
-                    <ordinal>2</ordinal>
-                    <color>RED</color>
-                    <completeBuild>true</completeBuild>
-                  </failureThreshold>
-                </block>
-                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
-              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-            </configs>
-          </buildStep>
-          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
-        </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
-        <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
-          <configs>
-            <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-              <configs>
-                <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                  <properties>Action=Disable
-JenkinsJobName=OMD_17.14_Scheduled_Trigger</properties>
-                  <textParamValueOnNewLine>false</textParamValueOnNewLine>
-                </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              </configs>
-              <projects>EnableDisableJenkinsJob</projects>
-              <condition>ALWAYS</condition>
-              <triggerWithNoParameters>false</triggerWithNoParameters>
-              <triggerFromChildProjects>false</triggerFromChildProjects>
-              <block>
-                <buildStepFailureThreshold>
-                  <name>FAILURE</name>
-                  <ordinal>2</ordinal>
-                  <color>RED</color>
-                  <completeBuild>true</completeBuild>
-                </buildStepFailureThreshold>
-                <unstableThreshold>
-                  <name>UNSTABLE</name>
-                  <ordinal>1</ordinal>
-                  <color>YELLOW</color>
-                  <completeBuild>true</completeBuild>
-                </unstableThreshold>
-                <failureThreshold>
-                  <name>FAILURE</name>
-                  <ordinal>2</ordinal>
-                  <color>RED</color>
-                  <completeBuild>true</completeBuild>
-                </failureThreshold>
-              </block>
-              <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
-            </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-          </configs>
-        </hudson.plugins.parameterizedtrigger.TriggerBuilder>
-        <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
-          <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
             <arg1>${GenerateAndShareBuildNotes}</arg1>
             <arg2>true</arg2>
             <ignoreCase>true</ignoreCase>
@@ -619,7 +530,7 @@ JenkinsJobName=OMD_17.14_Scheduled_Trigger</properties>
                 <configs>
                   <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
                     <properties>MajorMinor_Ver=${MajorMinor_Ver}
-tStream=Archer_17.14_Integ
+tStream=Archer_17.14_Support_Intel_17.14.00.21100
 sStream=
 BUILD_VERSION=${BUILD_VERSION}
 recipientList=DL-OMD-ENG-SCM@KLA-Tencor.com
