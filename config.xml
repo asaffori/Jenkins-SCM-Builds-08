@@ -670,6 +670,7 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>ATARS_Auto Deploy Sanity</string>
         <string>ATARS_SanityTest</string>
+        <string>RunTestSuite</string>
       </jobNames>
       <jobFilters/>
       <columns>
