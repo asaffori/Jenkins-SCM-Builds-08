@@ -241,6 +241,11 @@ break
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>false</omitValueField>
         </org.biouno.unochoice.DynamicReferenceParameter>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RunNunitTests</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -353,7 +358,7 @@ def runAutoDeploySanity(testId, path, scriptNumber,sut, controller,version){
                                  [$class: &apos;BooleanParameterValue&apos;, name: &apos;Auto_Deploy_Sanity&apos;, value: params.Auto_Deploy_Sanity ],//we have it   
                                  [$class: &apos;StringParameterValue&apos;, name: &apos;ATEBasePath&apos;, value: ateBasePath ],
                                 [$class: &apos;StringParameterValue&apos;, name: &apos;product&apos;, value: ToolTypeShortName[params.ToolType] ],
-
+                                [$class: &apos;BooleanParameterValue&apos;, name: &apos;RunNunitTests&apos;, value: params.RunNunitTests ]
                                  ]
             
             currentBuild.result = result.result
