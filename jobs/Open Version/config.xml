@@ -127,18 +127,20 @@
             }
 	    }
 	    stage (&apos;CreateStream&apos;){
-			build job: &apos;CreateStreamCM&apos;, parameters: 
-			[
-			[text, name: &apos;streamTitle&apos;, value:env.InputDevStream],
-			[string, name: &apos;SourceStreamName&apos;, value: params.SourceStreamName],
-			[text, name: &apos;SourceStreamSnapshotName&apos;, value: params.SourceStreamSnapshotName]
-			], wait: true
-			build job: &apos;CreateStreamCM&apos;, parameters: 
-			[
-			[text, name: &apos;streamTitle&apos;, value:env.InputIntegStream],
-			[string, name: &apos;SourceStreamName&apos;, value: params.SourceStreamName],
-			[text, name: &apos;SourceStreamSnapshotName&apos;, value: params.SourceStreamSnapshotName]
-			], wait: true
+			steps (&apos;CreateStream&apos;){
+				build job: &apos;CreateStreamCM&apos;, parameters: 
+				[
+				[text, name: &apos;streamTitle&apos;, value:env.InputDevStream],
+				[string, name: &apos;SourceStreamName&apos;, value: params.SourceStreamName],
+				[text, name: &apos;SourceStreamSnapshotName&apos;, value: params.SourceStreamSnapshotName]
+				], wait: true
+				build job: &apos;CreateStreamCM&apos;, parameters: 
+				[
+				[text, name: &apos;streamTitle&apos;, value:env.InputIntegStream],
+				[string, name: &apos;SourceStreamName&apos;, value: params.SourceStreamName],
+				[text, name: &apos;SourceStreamSnapshotName&apos;, value: params.SourceStreamSnapshotName]
+				], wait: true
+			}
 
 		}
 	}
