@@ -137,13 +137,10 @@ if (RunNunitTests== &quot;false&quot;) {
   	build.getExecutor().interrupt(Result.SUCCESS)
 }
 </script>
-              <sandbox>false</sandbox>
+              <sandbox>true</sandbox>
             </script>
           </source>
         </hudson.plugins.groovy.SystemGroovy>
-        <hudson.tasks.BatchFile>
-          <command>echo </command>
-        </hudson.tasks.BatchFile>
       </buildSteps>
       <failOnError>false</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
