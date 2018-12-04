@@ -1,0 +1,98 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.23">
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.3.1"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.3.1">
+      <jobProperties/>
+      <triggers/>
+      <parameters>
+        <string>Version</string>
+      </parameters>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>Version</name>
+          <description>Which version to run Formal build for? 
+ example: 17.13</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>17.11</string>
+              <string>17.12</string>
+              <string>17.13</string>
+              <string>17.13.02</string>
+              <string>17.13_Beta</string>
+              <string>17.13.03</string>
+              <string>17.14</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.security.AuthorizationMatrixProperty>
+      <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
+      <permission>hudson.model.Item.Build:DL-Israel-OMD-Eng-SW</permission>
+      <permission>hudson.model.Item.Cancel:DL-Israel-OMD-Eng-SW</permission>
+      <permission>hudson.model.Item.Discover:DL-Israel-OMD-Eng-SW</permission>
+      <permission>hudson.model.Item.ExtendedRead:DL-Israel-OMD-Eng-SW</permission>
+      <permission>hudson.model.Item.Read:DL-Israel-OMD-Eng-SW</permission>
+      <permission>hudson.model.Run.Replay:DL-Israel-OMD-Eng-SW</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <hudson.security.AuthorizationMatrixProperty reference="../hudson.security.AuthorizationMatrixProperty"/>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
+    <script>pipeline {
+agent { node { label &apos;master&apos; } }
+parameters {
+        choice(choices: &apos;17.11\n17.12\n17.13\n17.13.02\n17.13_Beta\n17.13.03\n17.14&apos;, description: &apos;Which version to run Formal build for? \n example: 17.13&apos;, name: &apos;Version&apos;)
+    }
+
+    stages {
+        stage (&quot;RunBuild&quot;){
+            
+            steps{
+                script{
+                    wrap([$class: &apos;BuildUser&apos;]) {
+            				        currentBuild.description = &quot;Bulding OMD_${params.Version}_Formal_Trigger by &apos;${env.BUILD_USER}&apos;&quot;
+                                }
+                     build job:&quot;OMD_${params.Version}_Formal_Trigger&quot;
+                }
+            }
+        }
+    }
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
