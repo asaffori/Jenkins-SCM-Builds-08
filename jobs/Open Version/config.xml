@@ -15,27 +15,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to Create? eg:17.14 or 17.14.01</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SourceStreamName</name>
-          <description>What is your Source stream name?</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SourceStreamSnapshotName</name>
-          <description>What is your Source stream name snapshot name?</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -52,6 +31,28 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to Create? eg:17.14 or 17.14.01</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SourceStreamName</name>
+          <description>What is your Source stream name?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SourceStreamSnapshotName</name>
+          <description>What is your Source stream name snapshot name?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -95,7 +96,7 @@
 					string(defaultValue: &quot;OMD-Archer-V${params.Version}-Scheduled-Jenkins&quot;,description: &apos;Scheduled build definition name&apos;,name: &apos;ScheduledBD&apos;),
 					string(defaultValue: &quot;OMD-Archer-V${params.Version}-Formal-Jenkins&quot;,description: &apos;Formal build definition name&apos;,name: &apos;FormalBD&apos;),
 					string(defaultValue: &quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version\\${params.Version}version.txt&quot;,description: &apos;Version file full path&apos;,name: &apos;Versionfile&apos;),
-					string(defaultValue: &quot;{MajorMinorSP}.20000&quot;,description: &apos;The starting build numbering&apos;,name: &apos;StartingVersion&apos;),
+					string(defaultValue: &quot;${MajorMinorSP}.20000&quot;,description: &apos;The starting build numbering&apos;,name: &apos;StartingVersion&apos;),
 					],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Corret, lets create it&apos;)
 					
 					env.InputDevStream = userInput.DevStream
