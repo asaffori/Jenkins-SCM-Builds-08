@@ -110,13 +110,31 @@
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TEST_ID</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SCRIPT_NUMBER</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>product</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>10</maxConcurrentPerNode>
       <maxConcurrentTotal>10</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <throttleEnabled>true</throttleEnabled>
+      <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>SimulatorEngine</paramsToUseForLimit>
@@ -137,7 +155,7 @@
       <description>Run ${TestSuite} on ${SimulatorEngine} with ${ToolType} configuration.</description>
     </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
     <hudson.tasks.BatchFile>
-      <command>&#xd;
+      <command>@ECHO off&#xd;
 set pinglooptimeout=0&#xd;
 :pingloopstart&#xd;
 if %pinglooptimeout%==%CheckSimTimeout% (&#xd;
@@ -155,82 +173,13 @@ goto pingloopstart&#xd;
 echo cleaning old log under C:\EggPlant report older than 7 days&#xd;
 forfiles -p &quot;C:\ATELogs&quot; -d -7 -c &quot;cmd /c IF @isdir == TRUE rd /S /Q @path&quot;&#xd;
 &#xd;
-net use * /d /y&#xd;
-&#xd;
-net use X: %ATEBasePath%&#xd;
-if not %errorlevel%==0 (&#xd;
-echo map %ATEBasePath% to X failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-net use Y: \\%SimulatorEngine%\c$&#xd;
-if not %errorlevel%==0 (&#xd;
-echo map \\%SimulatorEngine%\c$ to Y failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-net use W: \\%SimulatorEngine%\D$&#xd;
-if not %errorlevel%==0 (&#xd;
-echo map \\%SimulatorEngine%\D$ to W failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-xcopy &quot;%ATEConfigPath%\SDP for %ToolType%\*.*&quot; Y:\5300\SDP\ /f /r /s /y&#xd;
-if not %errorlevel%==0 (&#xd;
-echo Update SDP folder on %SimulatorEngine% failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-xcopy &quot;%ATEConfigPath%\Golden_reg_for_%ToolType%\*.*&quot; Y:\Automation\ /f /r /s /y&#xd;
-if not %errorlevel%==0 (&#xd;
-echo Copy Golden reg files to %SimulatorEngine% failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-if exist Y:\Automation\RecipesCounters.csv (&#xd;
-del  /Q /F Y:\Automation\RecipesCounters_backup.csv&#xd;
-ren Y:\Automation\RecipesCounters.csv RecipesCounters_backup.csv&#xd;
-)&#xd;
-if not %errorlevel%==0 (&#xd;
-echo backup RecipesCounters.csv failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-xcopy \\isr1vmappcm01\Automated_Testing\ATE_LatestApps\*.* Y:\Automation\ /f /r /s /y&#xd;
-if not %errorlevel%==0 (&#xd;
-echo Update Automation folder on %SimulatorEngine% failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-if exist Y:\Automation\RecipesCounters_backup.csv (&#xd;
-del /Q /F Y:\Automation\RecipesCounters.csv&#xd;
-ren Y:\Automation\RecipesCounters_backup.csv RecipesCounters.csv&#xd;
-)&#xd;
-if not %errorlevel%==0 (&#xd;
-echo Update RecipesCounters.csv failed&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
-if not exist Y:\DataForEggplant md Y:\DataForEggplant&#xd;
-if not %errorlevel%==0 (&#xd;
-echo Create DataForEggplant folder on %SimulatorEngine% failed.&#xd;
-goto error&#xd;
-)&#xd;
-&#xd;
 cd C:\RunScript&#xd;
-RunScriptsFromFolder.exe &quot;%TestSuitePath%&quot; &quot;%TestSuite%.csv&quot; &quot;%SimulatorEngine%&quot;&#xd;
+RunScriptsFromFolder.exe &quot;%TestSuitePath%&quot; &quot;%TestSuite%.csv&quot; &quot;%SimulatorEngine%&quot; &quot;%product%&quot; &quot;%TEST_ID%&quot; &quot;%SCRIPT_NUMBER%&quot;&#xd;
 if not %errorlevel%==0 (&#xd;
 echo Run RunScriptsFromFolder failed&#xd;
 goto error&#xd;
 )&#xd;
 &#xd;
-xcopy &quot;C:\Eggplant Reports\*.*&quot; &quot;C:\ATElogs\%BUILD_VERSION%_%ToolType%\&quot; /f /r /s /y&#xd;
-rd /q /s &quot;C:\Eggplant Reports&quot;&#xd;
-&#xd;
-if exist C:\temp\NightRunFailFlag.txt (&#xd;
-echo There are failures during Testing, please check the logs under %ATEControllerEngine%\C$\Eggplant Reports for more information.&#xd;
-goto error&#xd;
-)&#xd;
 goto end&#xd;
 :error&#xd;
 echo Run Sanity test on %SimulatorEngine% failed.&#xd;
@@ -242,17 +191,46 @@ exit /b 1&#xd;
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
-    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4.1">
-      <script plugin="script-security@1.44">
-        <script>if(manager.logContains(&quot;.*Unable to contact Team License Server.*&quot;)) {
-    manager.listener.logger.println(&quot;ERROR: problem connecting to license server&quot;);
+    <org.jenkins__ci.plugins.flexible__publish.FlexiblePublisher plugin="flexible-publish@0.15.2">
+      <publishers>
+        <org.jenkins__ci.plugins.flexible__publish.ConditionalPublisher>
+          <condition class="org.jenkins_ci.plugins.run_condition.core.StatusCondition" plugin="run-condition@1.0">
+            <worstResult>
+              <name>SUCCESS</name>
+              <ordinal>0</ordinal>
+              <color>BLUE</color>
+              <completeBuild>true</completeBuild>
+            </worstResult>
+            <bestResult>
+              <name>SUCCESS</name>
+              <ordinal>0</ordinal>
+              <color>BLUE</color>
+              <completeBuild>true</completeBuild>
+            </bestResult>
+          </condition>
+          <publisherList>
+            <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@2.4.1">
+              <script plugin="script-security@1.44">
+                <script>if (manager.logContains(&quot;.*Unable to contact Team License Server.*&quot;)){
+    manager.listener.logger.println(&quot;Error: License not avilable&quot;);
     manager.buildFailure()
+}else {
+   if (manager.logContains((&quot;.*Errors:\&quot;[1-9][0-9]*\&quot;.*&quot;))){
+       manager.listener.logger.println(&quot;Error: execution contains sanity tests errors. Build will be marked as UNSTABLE&quot;);
+       manager.buildUnstable()
+   }
 }</script>
-        <sandbox>false</sandbox>
-      </script>
-      <behavior>2</behavior>
-      <runForMatrixParent>false</runForMatrixParent>
-    </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
+                <sandbox>false</sandbox>
+              </script>
+              <behavior>0</behavior>
+              <runForMatrixParent>false</runForMatrixParent>
+            </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
+          </publisherList>
+          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+          <executionStrategy class="org.jenkins_ci.plugins.flexible_publish.strategy.FailAtEndExecutionStrategy"/>
+        </org.jenkins__ci.plugins.flexible__publish.ConditionalPublisher>
+      </publishers>
+    </org.jenkins__ci.plugins.flexible__publish.FlexiblePublisher>
   </publishers>
   <buildWrappers>
     <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
@@ -262,25 +240,5 @@ exit /b 1&#xd;
         <loadFilesFromMaster>false</loadFilesFromMaster>
       </info>
     </EnvInjectBuildWrapper>
-    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
-      <buildSteps>
-        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
-          <source class="hudson.plugins.groovy.StringSystemScriptSource">
-            <script plugin="script-security@1.44">
-              <script>import hudson.model.Result;
-
-def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
-
-if (Auto_Deploy_Sanity== &quot;false&quot;) {
-	println (&quot;Auto_Deploy_Sanity was disabled. Archer_Sanity will not run&quot;);
-  	build.getExecutor().interrupt(Result.SUCCESS)
-}</script>
-              <sandbox>false</sandbox>
-            </script>
-          </source>
-        </hudson.plugins.groovy.SystemGroovy>
-      </buildSteps>
-      <failOnError>false</failOnError>
-    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
   </buildWrappers>
 </project>
