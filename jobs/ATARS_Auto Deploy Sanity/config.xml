@@ -40,7 +40,6 @@
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
@@ -154,7 +153,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
               <sandbox>false</sandbox>
             </secureFallbackScript>
           </script>
-          <projectName>ATARS_Auto Deploy Sanity</projectName>
+          <projectName>SilentInstallation</projectName>
           <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
@@ -221,6 +220,24 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <defaultValue>\\isr1vmappcm01\Automated_Testing\17.0x_ATE</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>TEST_ID</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SCRIPT_NUMBER</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>product</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>RunNunitTests</name>
           <description></description>
@@ -228,6 +245,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
         </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -399,11 +417,19 @@ historyJobs.getFlowSteps().each { step -&gt;
       <string></string>
     </entry>
     <entry>
+      <string>product</string>
+      <string></string>
+    </entry>
+    <entry>
       <string>AcronisEngine</string>
       <string></string>
     </entry>
     <entry>
       <string>BaseImagePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TEST_ID</string>
       <string></string>
     </entry>
     <entry>
@@ -420,6 +446,10 @@ historyJobs.getFlowSteps().each { step -&gt;
     </entry>
     <entry>
       <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>SCRIPT_NUMBER</string>
       <string></string>
     </entry>
     <entry>
