@@ -15,28 +15,11 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
-      <useBuildBlocker>false</useBuildBlocker>
-      <blockLevel>GLOBAL</blockLevel>
-      <scanQueueFor>DISABLED</scanQueueFor>
-      <blockingJobs></blockingJobs>
-    </hudson.plugins.buildblocker.BuildBlockerProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
-      <doNotScan>false</doNotScan>
-    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
-    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
-      <leastLoadDisabled>false</leastLoadDisabled>
-    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
-      <autoRebuild>false</autoRebuild>
-      <rebuildDisabled>false</rebuildDisabled>
-    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>Version</name>
           <description>Which Version you want to Create? eg:17.14 or 17.14.01</description>
-          <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
@@ -53,14 +36,29 @@
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
-      <maxConcurrentPerNode>0</maxConcurrentPerNode>
-      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
@@ -84,30 +82,14 @@
 					if(params.BaseVersion==&quot;&quot;){
     				    exitwitherror(&quot;Version is not defined&quot;)
 	                } 	
-					MajorMinorSP=params.Version
-					if(params.Version.length()&lt;6) MajorMinorSP=params.Version+&quot;.00&quot;
-					
 					def userInput=input(
 					id: &apos;userInput&apos;, message: &apos;Please verify the below parameters:&apos;, parameters: [
 					string(defaultValue: &quot;Archer_${params.Version}_Dev&quot;,description: &apos;Dev stream name&apos;,name: &apos;DevStream&apos;),
 					string(defaultValue: &quot;Archer_${params.Version}_Integ&quot;,description: &apos;Integ stream name&apos;,name: &apos;IntegStream&apos;),
-					string(defaultValue: &quot;omdbuild_Archer_${params.Version}_Dev_Workspace&quot;,description: &apos;Dev workspace name&apos;,name: &apos;DevWorkspace&apos;),
-					string(defaultValue: &quot;omdbuild_Archer_${params.Version}_Integ_Workspace&quot;,description: &apos;Integ workspace name&apos;,name: &apos;IntegWorkspace&apos;),
-					string(defaultValue: &quot;OMD-Archer-V${params.Version}-Scheduled-Jenkins&quot;,description: &apos;Scheduled build definition name&apos;,name: &apos;ScheduledBD&apos;),
-					string(defaultValue: &quot;OMD-Archer-V${params.Version}-Formal-Jenkins&quot;,description: &apos;Formal build definition name&apos;,name: &apos;FormalBD&apos;),
-					string(defaultValue: &quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version\\${params.Version}version.txt&quot;,description: &apos;Version file full path&apos;,name: &apos;Versionfile&apos;),
-					string(defaultValue: &quot;{MajorMinorSP}.20000&quot;,description: &apos;The starting build numbering&apos;,name: &apos;StartingVersion&apos;),
-					],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Corret, lets create it&apos;),
-					
+					],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Corret, lets create it&apos;)
 					
 					env.InputDevStream = userInput.DevStream
 					env.InputIntegStream = userInput.IntegStream
-					env.InputDevWorkspace = userInput.DevWorkspace
-					env.InputIntegWorkspace = userInput.IntegWorkspace
-					env.InputScheduledBD = userInput.ScheduledBD
-					env.InputFormalBD = userInput.FormalBD
-					env.InputVersionfile = userInput.Versionfile
-					env.InputStartingVersion = userInput.StartingVersion
 	             }
 	             
             }
