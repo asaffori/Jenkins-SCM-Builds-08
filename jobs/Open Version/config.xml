@@ -130,15 +130,15 @@
 			steps (&apos;CreateStream&apos;){
 				build job: &apos;CreateStreamCM&apos;, parameters: 
 				[
-				[text, name: &apos;streamTitle&apos;, value:env.InputDevStream],
-				[string, name: &apos;SourceStreamName&apos;, value: params.SourceStreamName],
-				[text, name: &apos;SourceStreamSnapshotName&apos;, value: params.SourceStreamSnapshotName]
+				[$class: &apos;TextParameterValue&apos;, name: &apos;streamTitle&apos;, value:env.InputDevStream],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;SourceStreamName&apos;, value: params.SourceStreamName],
+				[$class: &apos;TextParameterValue&apos;, name: &apos;SourceStreamSnapshotName&apos;, value: params.SourceStreamSnapshotName]
 				], wait: true
 				build job: &apos;CreateStreamCM&apos;, parameters: 
 				[
-				[text, name: &apos;streamTitle&apos;, value:env.InputIntegStream],
-				[string, name: &apos;SourceStreamName&apos;, value: params.SourceStreamName],
-				[text, name: &apos;SourceStreamSnapshotName&apos;, value: params.SourceStreamSnapshotName]
+				[$class: &apos;TextParameterValue&apos;, name: &apos;streamTitle&apos;, value:env.InputIntegStream],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;SourceStreamName&apos;, value: params.SourceStreamName],
+				[$class: &apos;TextParameterValue&apos;, name: &apos;SourceStreamSnapshotName&apos;, value: params.SourceStreamSnapshotName]
 				], wait: true
 			}
 
