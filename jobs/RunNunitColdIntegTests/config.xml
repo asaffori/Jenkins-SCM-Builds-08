@@ -125,21 +125,12 @@ FOR %%G IN (%Technologies%) DO (&#xd;
               <script>import hudson.model.Result;
 
 def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+def RunNunitTests= build.buildVariableResolver.resolve(&quot;RunNunitTests&quot;)
 
 if (Auto_Deploy_Sanity== &quot;false&quot;) {
 	println (&quot;Auto_Deploy_Sanity was disabled. Nunit Cold Integration tests will not run&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
-}</script>
-              <sandbox>false</sandbox>
-            </script>
-          </source>
-        </hudson.plugins.groovy.SystemGroovy>
-        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
-          <source class="hudson.plugins.groovy.StringSystemScriptSource">
-            <script plugin="script-security@1.44">
-              <script>import hudson.model.Result;
-
-def RunNunitTests= build.buildVariableResolver.resolve(&quot;RunNunitTests&quot;)
+}
 
 if (RunNunitTests== &quot;false&quot;) {
 	println (&quot;RunNunitTests was disabled. Nunit tests execution will not run&quot;);
