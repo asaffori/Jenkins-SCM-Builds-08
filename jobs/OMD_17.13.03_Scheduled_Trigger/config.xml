@@ -285,14 +285,14 @@ ATEScriptsPath:ATE execution scripts folder&lt;BR&gt;
 &lt;BR&gt;
 Example:&lt;BR&gt;
 [&lt;BR&gt;
-[Autorun_XYS_Suite_ATE.csv,*,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Nunit_Image,*];
-[AROL_Autorun_ATE_Suite.csv,*,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,*];
-[Autorun_XYS_Suite_ATE_A600.csv,*,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Mil_Nunit_Image,*]
+[Autorun_XYS_Suite_ATE,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE];
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];
+[Autorun_XYS_Suite_ATE_A600,X:\ATE\TestCases\SQC\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Nunit_Mil_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]
 ]&lt;BR&gt;</description>
           <defaultValue>[
-[Autorun_XYS_Suite_ATE.csv,*,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Nunit_Image,*];
-[AROL_Autorun_ATE_Suite.csv,*,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,*];
-[Autorun_XYS_Suite_ATE_A600.csv,*,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Mil_Nunit_Image,*]
+[Autorun_XYS_Suite_ATE,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE];
+[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];
+[Autorun_XYS_Suite_ATE_A600,X:\ATE\TestCases\SQC\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Mil_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]
 ]</defaultValue>
           <trim>false</trim>
         </hudson.model.TextParameterDefinition>
@@ -306,6 +306,7 @@ Example:&lt;BR&gt;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
