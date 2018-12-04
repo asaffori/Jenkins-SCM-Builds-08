@@ -100,7 +100,7 @@
 					],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Corret, lets create it&apos;),
 					
 					
-					env.InputDevStream = userInputDevStream
+					env.InputDevStream = userInput.DevStream
 					env.InputIntegStream = userInput.IntegStream
 					env.InputDevWorkspace = userInput.DevWorkspace
 					env.InputIntegWorkspace = userInput.IntegWorkspace
