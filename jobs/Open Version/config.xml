@@ -85,7 +85,7 @@
     				    exitwitherror(&quot;Version is not defined&quot;)
 	                } 	
 					MajorMinorSP=params.Version
-					if(params.Version.length()&lt;6) MajorMinorSP=params.Version+&quot;\.00&quot;
+					if(params.Version.length()&lt;6) MajorMinorSP=params.Version+&quot;.00&quot;
 					
 					def userInput=input(
 					id: &apos;userInput&apos;, message: &apos;Please verify the below parameters:&apos;, parameters: [
