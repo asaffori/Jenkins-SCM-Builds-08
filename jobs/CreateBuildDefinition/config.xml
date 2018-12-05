@@ -26,7 +26,13 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>Version</name>
+          <name>Workspace</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BuildDefinationName</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
@@ -36,9 +42,9 @@
           <description></description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
+              <string>Tasks</string>
               <string>Formal</string>
               <string>Scheduled</string>
-              <string>Tasks</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
@@ -65,7 +71,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>CALL &quot;C:\Program Files (x86)\apache-ant-1.9.4\bin\ant.bat&quot; -file &quot;\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\BuildDefinition.xml&quot; &quot;-Dpassword=%BuildPass%&quot; -DuserId=%BuildUser% -DtoolkitPath=C:\Build\TeamConcertBuild\buildsystem\buildtoolkit &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\Build\TeamConcertBuild\buildsystem\buildtoolkit</command>
+      <command>CALL &quot;C:\Program Files (x86)\apache-ant-1.9.4\bin\ant.bat&quot; -file &quot;\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\BuildDefinition.xml&quot; &quot;-Dpassword=%BuildPass%&quot; -DuserId=%BuildUser% -DbuildId=%BuildDefinationName% DbuildFolder=%BUILDTYPE% DbuildWorkspace=%Workspace% &quot;-DrepositoryAddress=%repositoryAddress%</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
