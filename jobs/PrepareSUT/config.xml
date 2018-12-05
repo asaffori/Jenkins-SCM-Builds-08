@@ -51,15 +51,27 @@
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>ATEControllerEngine</name>
+          <description></description>
+          <allowedSlaves/>
+          <defaultSlaves/>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
       <throttleEnabled>false</throttleEnabled>
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -93,17 +105,17 @@ goto error&#xd;
 &#xd;
 if &quot;%ToolType%&quot;==&quot;Archer600&quot; (&#xd;
   C:\Automation\Apply600.bat&#xd;
-  C:\Automation\MapToA600.bat&#xd;
+  C:\Automation\MapToA600.bat %ATEControllerEngine%&#xd;
 )&#xd;
 &#xd;
 if &quot;%ToolType%&quot;==&quot;Archer700&quot; (&#xd;
   C:\Automation\Apply700.bat&#xd;
-  C:\Automation\MapToA700.bat&#xd;
+  C:\Automation\MapToA700.bat %ATEControllerEngine%&#xd;
 )&#xd;
 &#xd;
 if &quot;%ToolType%&quot;==&quot;Archer TL&quot; (&#xd;
   C:\Automation\ApplyTL.bat&#xd;
-  C:\Automation\MapToATL.bat&#xd;
+  C:\Automation\MapToATL.bat %ATEControllerEngine%&#xd;
 )&#xd;
 &#xd;
 goto end&#xd;
