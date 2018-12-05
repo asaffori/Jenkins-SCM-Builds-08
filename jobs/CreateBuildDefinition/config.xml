@@ -26,7 +26,7 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>Workspace</name>
+          <name>RTCWorkspace</name>
           <description></description>
           <defaultValue></defaultValue>
           <trim>false</trim>
