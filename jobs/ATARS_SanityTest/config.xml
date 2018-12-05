@@ -155,7 +155,7 @@
       <description>Run ${TestSuite} on ${SimulatorEngine} with ${ToolType} configuration.</description>
     </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
     <hudson.tasks.BatchFile>
-      <command>@ECHO off&#xd;
+      <command>::@ECHO off&#xd;
 set pinglooptimeout=0&#xd;
 :pingloopstart&#xd;
 if %pinglooptimeout%==%CheckSimTimeout% (&#xd;
