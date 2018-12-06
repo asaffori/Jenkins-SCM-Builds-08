@@ -383,7 +383,15 @@
         <string>SharePointTest</string>
       </jobNames>
       <jobFilters/>
-      <columns/>
+      <columns>
+        <hudson.views.JobColumn/>
+        <hudson.views.StatusColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastStableColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
       <recurse>false</recurse>
     </listView>
     <hudson.plugins.nested__view.NestedView plugin="nested-view@1.14">
