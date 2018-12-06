@@ -248,7 +248,7 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <buildDefinition>OMD-Archer-V17.99.99-Scheduled-Jenkins</buildDefinition>
         <avoidUsingToolkit>false</avoidUsingToolkit>
     </scm>
-    <AGnes>
-        <switch>on</switch>
-    </AGnes>
+    <Agnes>
+        <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
+    </Agnes>
 </project>
