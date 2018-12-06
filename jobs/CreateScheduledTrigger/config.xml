@@ -184,7 +184,7 @@
 }
 listView(&apos;Testing&apos; {
     jobs {
-        name(&quot;OMD_${Version}_Scheduled_Trigger&quot;)
+        name(&apos;OMD_${Version}_Scheduled_Trigger&apos;)
     }
 }</scriptText>
       <usingScriptText>true</usingScriptText>
