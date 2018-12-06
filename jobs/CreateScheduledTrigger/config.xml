@@ -99,7 +99,7 @@
     }
   	scm {
         rtc {
-          buildDefinition(&apos;OMD-Archer-V${Version}-Scheduled-Jenkins&apos;)
+          buildDefinition(&quot;OMD-Archer-V${Version}-Scheduled-Jenkins&quot;)
         }
     }
   	triggers {
@@ -109,15 +109,14 @@
         timestamps()
       	preBuildCleanup()
         environmentVariables {
-        groovy(&apos;&apos;&apos;
-            def action = currentBuild.getAction(com.ibm.team.build.internal.hjplugin.RTCBuildResultAction.class)
-			def buildProps = action.getBuildProperties()
-			def bldResultUUID=buildProps[&apos;RTCBuildResultUUID&apos;]
-			def teamscmfetchDestination=buildProps[&apos;team_scm_fetchDestination&apos;]
-			def teamscmworkspaceUUID=buildProps[&apos;team_scm_workspaceUUID&apos;]
-			print (&quot;buildResultUUID=&quot;+ bldResultUUID)
-			def map = [buildResultUUID: bldResultUUID,team_scm_workspaceUUID:teamscmworkspaceUUID,team_scm_fetchDestination:teamscmfetchDestination] 
-			return map 
+        groovy(&apos;&apos;&apos;def action = currentBuild.getAction(com.ibm.team.build.internal.hjplugin.RTCBuildResultAction.class)
+def buildProps = action.getBuildProperties()
+def bldResultUUID=buildProps[&apos;RTCBuildResultUUID&apos;]
+def teamscmfetchDestination=buildProps[&apos;team_scm_fetchDestination&apos;]
+def teamscmworkspaceUUID=buildProps[&apos;team_scm_workspaceUUID&apos;]
+print (&quot;buildResultUUID=&quot;+ bldResultUUID)
+def map = [buildResultUUID: bldResultUUID,team_scm_workspaceUUID:teamscmworkspaceUUID,team_scm_fetchDestination:teamscmfetchDestination] 
+return map 
         &apos;&apos;&apos;)
         }
          preScmSteps {
