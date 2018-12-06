@@ -179,7 +179,11 @@
   	publishers {
         mailer(&apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;, true, false)
     }
-  	
+}
+listView(&apos;Testing&apos; {
+    jobs {
+        name(&quot;OMD_${Version}_Scheduled_Trigger&quot;)
+    }
 }</scriptText>
       <usingScriptText>true</usingScriptText>
       <sandbox>false</sandbox>
