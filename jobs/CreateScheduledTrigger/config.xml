@@ -88,6 +88,67 @@
                   &apos;[[Autorun_XYS_Suite_ATE_A700,X:\ATE\TestCases\SQC\Imaging\XYS\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.11.00.21200_A700_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.10_ATE];[AROL_Autorun_ATE_Suite,X:\ATE\TestCases\SQC\MBS\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE];[Autorun_XYS_Suite_ATE_A600,X:\ATE\TestCases\SQC\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\BaseImage,17.02.01.30100_A600_Mil_Nunit_Image,\\isr1vmappcm01\Automated_Testing\17.0x_ATE]]&apos;, 
                   &apos;What tests needs to run and in which confgurations?&apos;)
     }
+  	environmentVariables {
+        keepSystemVariables(true)
+    	keepBuildVariables(true)
+    	overrideBuildParameters()
+    	envs(BUILDTYPE: &apos;Scheduled&apos;, WSName: &apos;omdbuild_Archer_${Verseion}_Dev_Workspace&apos;,SnapshotName:&apos;INIT_UOMD_BLD_${BUILD_VERSION}&apos;)
+    	
+    }
+  	scm {
+        rtc {
+          buildDefinition(&apos;OMD-Archer-V${Version}-Scheduled-Jenkins&apos;)
+        }
+    }
+  	triggers {
+        scm(&apos;30 00 * * 0-5&apos;)
+    }
+  	wrappers {
+        timestamps()
+      	preBuildCleanup()
+        environmentVariables {
+        groovy(&apos;&apos;&apos;
+            def action = currentBuild.getAction(com.ibm.team.build.internal.hjplugin.RTCBuildResultAction.class)
+			def buildProps = action.getBuildProperties()
+			def bldResultUUID=buildProps[&apos;RTCBuildResultUUID&apos;]
+			def teamscmfetchDestination=buildProps[&apos;team_scm_fetchDestination&apos;]
+			def teamscmworkspaceUUID=buildProps[&apos;team_scm_workspaceUUID&apos;]
+			print (&quot;buildResultUUID=&quot;+ bldResultUUID)
+			def map = [buildResultUUID: bldResultUUID,team_scm_workspaceUUID:teamscmworkspaceUUID,team_scm_fetchDestination:teamscmfetchDestination] 
+			return map 
+        &apos;&apos;&apos;)
+        }
+         preScmSteps {
+            steps {
+                 environmentVariables {
+                    envs(VERSIONFILE: &apos;${BUILD_VERSION}&apos;, AUTOVERSION: &apos;false&apos;)
+                 }
+                 conditionalSteps {
+            		condition {
+                		fileExists(&apos;${BUILD_VERSION}&apos;, BaseDir.WORKSPACE)
+            		}
+            		runner(&apos;Fail&apos;)
+            		steps {
+                		batchFile(&apos;&apos;&apos;:: run command for incrementing the version
+						set VERSIONCONFIG=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version\VersionConfig.properties
+                        set team_scm_fetchDestination=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version
+                        set BUILDVERSION=%BUILD_VERSION%
+                        CALL \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat
+                        IF %ERRORLEVEL% NEQ 0 (
+                               ECHO &quot;Unable to calculate BUILDVERSION&quot;
+                            Exit /b 1
+						)&apos;&apos;&apos;)
+                      	environmentVariables {
+                            envs(VERSIONFILE: &apos;${BUILD_VERSION}&apos;, AUTOVERSION: &apos;true&apos;,BUILD_VERSION:&apos;${CurrentRunnningVersion}&apos;,SnapshotName:&apos;INIT_UOMD_BLD_${CurrentRunnningVersion}&apos;)
+                            propertiesFile(&apos;${BUILD_VERSION}&apos;)
+       					}
+            		}
+        		}
+              	batchFile(&apos;C:\PROGRA~1\Unlocker\Unlocker.exe %WORKSPACE% /S&apos;)
+        	}
+             	
+        }
+    }
   	
 }</scriptText>
       <usingScriptText>true</usingScriptText>
