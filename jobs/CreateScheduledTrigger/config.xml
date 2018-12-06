@@ -184,7 +184,7 @@ IF %ERRORLEVEL% NEQ 0 (
     }
     configure { project -&gt;
         project / &apos;scm&apos; {
-            &apos;switch&apos;(&apos;on&apos;)
+            &apos;overrideDefaultSnapshotName&apos;(&apos;true&apos;)
         }
     }
 
