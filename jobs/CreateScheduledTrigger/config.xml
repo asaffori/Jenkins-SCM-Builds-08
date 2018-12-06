@@ -132,10 +132,10 @@
             		runner(&apos;Fail&apos;)
             		steps {
                 		batchFile(&apos;&apos;&apos;:: run command for incrementing the version
-						set VERSIONCONFIG=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version\VersionConfig.properties
-                        set team_scm_fetchDestination=\\isr1appcc02\SCM\OMD\Jenkins_Build_Version
+						set VERSIONCONFIG=\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version\\VersionConfig.properties
+                        set team_scm_fetchDestination=\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version
                         set BUILDVERSION=%BUILD_VERSION%
-                        CALL \\isr1appcc02\SCM\OMD\Jenkins_Build_Version\OMD_Builds\JenkinsBuild\VersionAutoIncremental\AutoVersion.bat
+                        CALL \\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version\\OMD_Builds\\JenkinsBuild\\VersionAutoIncremental\\AutoVersion.bat
                         IF %ERRORLEVEL% NEQ 0 (
                                ECHO &quot;Unable to calculate BUILDVERSION&quot;
                             Exit /b 1
@@ -146,13 +146,13 @@
        					}
             		}
         		}
-              	batchFile(&apos;C:\PROGRA~1\Unlocker\Unlocker.exe %WORKSPACE% /S&apos;)
+              	batchFile(&apos;C:\\PROGRA~1\\Unlocker\\Unlocker.exe %WORKSPACE% /S&apos;)
         	}
              	
         }
     }
   	steps {
-        batchFile(&apos;C:\Progra~2\Jenkins\tools\hudson.tasks.Ant_AntInstallation\RenameBuildLabel\bin\ant.bat -file %team_scm_fetchDestination%\OMD_Builds\JenkinsBuild\VersionUpdater\Build.xml -DbuildResultUUID=%buildResultUUID% -Dlabel=&quot;%BUILDTYPE%_UOMD_BLD_%BUILD_VERSION%&quot; &quot;-Dpassword=Scm07&amp;&quot; -DuserId=omdbuild -DtoolkitPath=C:\Build\TeamConcertBuild\buildsystem\buildtoolkit -DsnapshotUUID=%team_scm_workspaceUUID% &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\Build\TeamConcertBuild\buildsystem\buildtoolkit&apos;)
+        batchFile(&apos;C:\\Progra~2\\Jenkins\\tools\\hudson.tasks.Ant_AntInstallation\\RenameBuildLabel\\bin\\ant.bat -file %team_scm_fetchDestination%\\OMD_Builds\\JenkinsBuild\\VersionUpdater\\Build.xml -DbuildResultUUID=%buildResultUUID% -Dlabel=&quot;%BUILDTYPE%_UOMD_BLD_%BUILD_VERSION%&quot; &quot;-Dpassword=Scm07&amp;&quot; -DuserId=omdbuild -DtoolkitPath=C:\\Build\\TeamConcertBuild\\buildsystem\\buildtoolkit -DsnapshotUUID=%team_scm_workspaceUUID% &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\\Build\\TeamConcertBuild\\buildsystem\\buildtoolkit&apos;)
         trigger(&apos;RDM_NuArcher_CI_Flow&apos;) {
               parameters {
                     currentBuild()
