@@ -372,49 +372,10 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>AdhamsPipelineTest</string>
-        <string>AgnesChoiceTest</string>
-        <string>Auto KIT Creation</string>
-        <string>CathyTest</string>
-        <string>cleanupTest</string>
-        <string>CleanUpTestController</string>
-        <string>CreateBuildDefinition</string>
-        <string>CreateNewVersion</string>
-        <string>CreateScheduledTrigger</string>
-        <string>CreateStreamCM</string>
-        <string>loadpropTest</string>
-        <string>MatlabTest</string>
-        <string>mutibranch</string>
-        <string>NUnit Test Full Flow</string>
-        <string>OMD-Archer-Buid-CreateCodeViewN</string>
-        <string>OMD-Archer-Build-Create_Snapshot_Baseline_Copy</string>
-        <string>OMD-Build-Pipeline</string>
-        <string>OMD_Adham_Trigger</string>
-        <string>Open Version</string>
-        <string>Release Version</string>
-        <string>SCA Parameter Test</string>
-        <string>SCA RELEASE</string>
-        <string>SCA Testing</string>
-        <string>SharePointTest</string>
-        <string>SilentInstallation-Adham</string>
-        <string>Sync_Jenkin_Build</string>
-        <string>Test</string>
-        <string>test trigger</string>
-        <string>test1</string>
-        <string>TestGroovy</string>
-        <string>TestPipeline</string>
-        <string>TestPipeline01</string>
+        <string>OMD_${Version}_Scheduled_Trigger</string>
       </jobNames>
       <jobFilters/>
-      <columns>
-        <hudson.views.StatusColumn/>
-        <hudson.views.WeatherColumn/>
-        <hudson.views.JobColumn/>
-        <hudson.views.LastSuccessColumn/>
-        <hudson.views.LastFailureColumn/>
-        <hudson.views.LastDurationColumn/>
-        <hudson.views.BuildButtonColumn/>
-      </columns>
+      <columns/>
       <recurse>false</recurse>
     </listView>
     <hudson.plugins.nested__view.NestedView plugin="nested-view@1.14">
