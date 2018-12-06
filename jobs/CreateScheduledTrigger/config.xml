@@ -183,7 +183,7 @@ IF %ERRORLEVEL% NEQ 0 (
         mailer(&apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;, false, false)
     }
     configure { project -&gt;
-        project / &apos;Agnes&apos; {
+        project / scm(class: &apos;com.ibm.team.build.internal.hjplugin.RTCScm&apos;) {
             &apos;overrideDefaultSnapshotName&apos;(&apos;true&apos;)
         }
     }
