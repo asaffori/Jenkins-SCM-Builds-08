@@ -183,7 +183,7 @@ IF %ERRORLEVEL% NEQ 0 (
         mailer(&apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;, false, false)
     }
     configure { project -&gt;
-        project / &apos;properties&apos; / &apos;com.example.Test&apos; {
+        project / &apos;scm class=&quot;com.ibm.team.build.internal.hjplugin.RTCScm&quot;&apos; {
             &apos;switch&apos;(&apos;on&apos;)
         }
     }
