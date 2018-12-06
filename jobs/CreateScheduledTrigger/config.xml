@@ -131,14 +131,14 @@ return map
             		runner(&apos;Fail&apos;)
             		steps {
                 		batchFile(&apos;&apos;&apos;:: run command for incrementing the version
-						set VERSIONCONFIG=\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version\\VersionConfig.properties
-                        set team_scm_fetchDestination=\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version
-                        set BUILDVERSION=%BUILD_VERSION%
-                        CALL \\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version\\OMD_Builds\\JenkinsBuild\\VersionAutoIncremental\\AutoVersion.bat
-                        IF %ERRORLEVEL% NEQ 0 (
-                               ECHO &quot;Unable to calculate BUILDVERSION&quot;
-                            Exit /b 1
-						)&apos;&apos;&apos;)
+set VERSIONCONFIG=\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version\\VersionConfig.properties
+set team_scm_fetchDestination=\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version
+set BUILDVERSION=%BUILD_VERSION%
+CALL \\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version\\OMD_Builds\\JenkinsBuild\\VersionAutoIncremental\\AutoVersion.bat
+IF %ERRORLEVEL% NEQ 0 (
+	ECHO &quot;Unable to calculate BUILDVERSION&quot;
+    Exit /b 1
+	)&apos;&apos;&apos;)
                       	environmentVariables {
                             envs(VERSIONFILE: &apos;${BUILD_VERSION}&apos;, AUTOVERSION: &apos;true&apos;,BUILD_VERSION:&apos;${CurrentRunnningVersion}&apos;,SnapshotName:&apos;INIT_UOMD_BLD_${CurrentRunnningVersion}&apos;)
                             propertiesFile(&apos;${BUILD_VERSION}&apos;)
