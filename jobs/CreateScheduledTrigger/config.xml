@@ -106,6 +106,8 @@
 			buildDefinition(&quot;OMD-Archer-V${Version}-Scheduled-Jenkins&quot;)
 			avoidUsingToolkit(&apos;false&apos;)
 			overrideDefaultSnapshotName(&apos;true&apos;)
+          	customizedSnapshotName(&apos;${SnapshotName}&apos;)
+          
           
         }
     }
