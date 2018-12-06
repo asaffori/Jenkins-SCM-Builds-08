@@ -112,6 +112,9 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
             <overrideBuildParameters>true</overrideBuildParameters>
             <contributors/>
         </EnvInjectJobProperty>
+        <com.example.Test>
+            <switch>on</switch>
+        </com.example.Test>
     </properties>
     <canRoam>true</canRoam>
     <disabled>false</disabled>
