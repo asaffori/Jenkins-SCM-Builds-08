@@ -180,7 +180,7 @@ IF %ERRORLEVEL% NEQ 0 (
 		}
     }
   	publishers {
-        mailer(&apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;, true, false)
+        mailer(&apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;, false, false)
     }
 }</scriptText>
       <usingScriptText>true</usingScriptText>
