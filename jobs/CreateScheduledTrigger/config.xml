@@ -183,7 +183,7 @@ IF %ERRORLEVEL% NEQ 0 (
         mailer(&apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;, false, false)
     }
     configure { project -&gt;
-        project / &apos;scm&apos; {
+        project / &apos;Agnes&apos; {
             &apos;overrideDefaultSnapshotName&apos;(&apos;true&apos;)
         }
     }
