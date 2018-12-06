@@ -242,6 +242,6 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <artifactNumToKeep>-1</artifactNumToKeep>
     </logRotator>
     <scm class="com.ibm.team.build.internal.hjplugin.RTCScm">
-        <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
+        <overrideDefaultSnapshotName/>
     </scm>
 </project>
