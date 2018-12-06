@@ -375,7 +375,6 @@
         <string>Auto KIT Creation</string>
         <string>CreateBuildDefinition</string>
         <string>CreateFormalTrigger</string>
-        <string>CreateNewVersion</string>
         <string>CreateScheduledTrigger</string>
         <string>CreateStreamCM</string>
         <string>MatlabTest</string>
