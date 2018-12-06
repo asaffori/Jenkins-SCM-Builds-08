@@ -94,7 +94,7 @@
         keepSystemVariables(true)
     	keepBuildVariables(true)
     	overrideBuildParameters()
-    	envs(BUILDTYPE: &apos;Scheduled&apos;, WSName: &apos;omdbuild_Archer_${Verseion}_Dev_Workspace&apos;,SnapshotName:&apos;INIT_UOMD_BLD_${BUILD_VERSION}&apos;)
+    	envs(BUILDTYPE: &apos;Scheduled&apos;, WSName: &apos;omdbuild_Archer_${Version}_Dev_Workspace&apos;,SnapshotName:&apos;INIT_UOMD_BLD_${BUILD_VERSION}&apos;)
     	
     }
   	scm {
