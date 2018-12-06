@@ -2,14 +2,35 @@
 <project>
   <actions/>
   <description></description>
-  <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>30</daysToKeep>
-    <numToKeep>-1</numToKeep>
-    <artifactDaysToKeep>-1</artifactDaysToKeep>
-    <artifactNumToKeep>-1</artifactNumToKeep>
-  </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
@@ -110,6 +131,13 @@
         </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
         <propertiesContent>BUILDTYPE=Scheduled
@@ -129,18 +157,25 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
     <overrideGlobal>false</overrideGlobal>
     <timeout>0</timeout>
     <buildType>
+      <value>buildDefinition</value>
+      <buildDefinition>OMD-Archer-V17.99.99-Scheduled-Jenkins</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
+      <acceptBeforeLoad>true</acceptBeforeLoad>
       <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
-      <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
+      <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
+      <customizedSnapshotName>${SnapshotName}</customizedSnapshotName>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
+    <buildTypeStr>buildDefinition</buildTypeStr>
     <buildDefinition>OMD-Archer-V17.99.99-Scheduled-Jenkins</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
+    <acceptBeforeLoad>true</acceptBeforeLoad>
     <generateChangelogWithGoodBuild>false</generateChangelogWithGoodBuild>
     <avoidUsingToolkit>false</avoidUsingToolkit>
     <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
+    <customizedSnapshotName>${SnapshotName}</customizedSnapshotName>
     <useDynamicLoadRules>false</useDynamicLoadRules>
   </scm>
   <canRoam>true</canRoam>
@@ -203,13 +238,12 @@ RunNunitTests=true</properties>
     </hudson.tasks.Mailer>
   </publishers>
   <buildWrappers>
-    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
     <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.34">
-      <patterns/>
       <deleteDirs>false</deleteDirs>
       <cleanupParameter></cleanupParameter>
       <externalDelete></externalDelete>
     </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
     <EnvInjectBuildWrapper plugin="envinject@1.90">
       <info>
         <groovyScriptContent>def action = currentBuild.getAction(com.ibm.team.build.internal.hjplugin.RTCBuildResultAction.class)
