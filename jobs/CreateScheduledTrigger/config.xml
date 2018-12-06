@@ -182,11 +182,12 @@ IF %ERRORLEVEL% NEQ 0 (
   	publishers {
         mailer(&apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;, false, false)
     }
-  	configure { project -&gt;
-        project &lt;&lt;&apos;scm&apos; {
-            overrideDefaultSnapshotName(&apos;true&apos;)
+    configure { project -&gt;
+        project / &apos;properties&apos; / &apos;com.example.Test&apos; {
+            &apos;switch&apos;(&apos;on&apos;)
         }
     }
+
 
 }</scriptText>
       <usingScriptText>true</usingScriptText>
