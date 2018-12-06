@@ -97,11 +97,19 @@
     	envs(BUILDTYPE: &apos;Scheduled&apos;, WSName: &apos;omdbuild_Archer_${Version}_Dev_Workspace&apos;,SnapshotName:&apos;INIT_UOMD_BLD_${BUILD_VERSION}&apos;)
     	
     }
-  	scm {
-        rtc {
-          buildDefinition(&quot;OMD-Archer-V${Version}-Scheduled-Jenkins&quot;)
+    configure { project -&gt;
+        project &lt;&lt; scm(class: &apos;com.ibm.team.build.internal.hjplugin.RTCScm&apos;) {
+            
+          	overrideGlobal(&apos;false&apos;)
+			timeout(&apos;0&apos;)
+			buildType(&apos;buildDefinition&apos;)
+			buildDefinition(&quot;OMD-Archer-V${Version}-Scheduled-Jenkins&quot;)
+			avoidUsingToolkit(&apos;false&apos;)
+			overrideDefaultSnapshotName(&apos;true&apos;)
+          
         }
     }
+
   	triggers {
         scm(&apos;30 00 * * 0-5&apos;)
     }
@@ -182,12 +190,6 @@ IF %ERRORLEVEL% NEQ 0 (
   	publishers {
         mailer(&apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;, false, false)
     }
-    configure { project -&gt;
-        project &lt;&lt; scm(class: &apos;com.ibm.team.build.internal.hjplugin.RTCScm&apos;) {
-            overrideDefaultSnapshotName(&apos;true&apos;)
-        }
-    }
-
 }</scriptText>
       <usingScriptText>true</usingScriptText>
       <sandbox>false</sandbox>
