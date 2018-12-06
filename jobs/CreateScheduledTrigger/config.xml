@@ -182,7 +182,11 @@ IF %ERRORLEVEL% NEQ 0 (
   	publishers {
         mailer(&apos;DL-OMD-ENG-SCM@kla-tencor.com&apos;, false, false)
     }
-
+    configure { project -&gt;
+        project / &apos;AGnes&apos; {
+            &apos;switch&apos;(&apos;on&apos;)
+        }
+    }
 
 }</scriptText>
       <usingScriptText>true</usingScriptText>
