@@ -242,13 +242,6 @@ SnapshotName=INIT_UOMD_BLD_${CurrentRunnningVersion}</propertiesContent>
         <artifactNumToKeep>-1</artifactNumToKeep>
     </logRotator>
     <scm class="com.ibm.team.build.internal.hjplugin.RTCScm">
-        <overrideGlobal>false</overrideGlobal>
-        <timeout>0</timeout>
-        <buildType>buildDefinition</buildType>
-        <buildDefinition>OMD-Archer-V17.99.99-Scheduled-Jenkins</buildDefinition>
-        <avoidUsingToolkit>false</avoidUsingToolkit>
-    </scm>
-    <Agnes>
         <overrideDefaultSnapshotName>true</overrideDefaultSnapshotName>
-    </Agnes>
+    </scm>
 </project>
