@@ -86,7 +86,7 @@
     	booleanParam(&apos;Auto_Deploy_Sanity&apos;, true, &apos;will the auto deploy and sanity run for this build?&apos;)
     	textParam(&apos;TestsArray&apos;, 
                   &apos;&apos;&apos;[[Autorun_XYS_Suite_ATE_A700,X:\\ATE\\TestCases\\SQC\\Imaging\\XYS\\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\\BaseImage,17.11.00.21200_A700_Nunit_Image,\\\\isr1vmappcm01\\Automated_Testing\\17.10_ATE];
-					[AROL_Autorun_ATE_Suite,X:\\ATE\\TestCases\\SQC\MBS\\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,\\\\isr1vmappcm01\\Automated_Testing\\17.0x_ATE];
+					[AROL_Autorun_ATE_Suite,X:\\ATE\\TestCases\\SQC\\MBS\\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,\\\\isr1vmappcm01\\Automated_Testing\\17.0x_ATE];
 					[Autorun_XYS_Suite_ATE_A600,X:\\ATE\\TestCases\\SQC\\Imaging,Archer600,SCM-ATE-01,SimulatorEngine,D:\\BaseImage,17.02.01.30100_A600_Mil_Nunit_Image,\\\\isr1vmappcm01\\Automated_Testing\\17.0x_ATE]]&apos;&apos;&apos;, 
                   &apos;What tests needs to run and in which confgurations?&apos;)
     }
