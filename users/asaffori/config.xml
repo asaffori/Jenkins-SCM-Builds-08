@@ -103,6 +103,7 @@
         <string>WIN-DYSD-Image-CH</string>
         <string>Twn1fp01-PCIDData-RO</string>
         <string>DL-eQuality Users</string>
+        <string>KT-InfraESXi_Morpheus_Admin_access</string>
         <string>CA1-CTX-Portal-Users</string>
         <string>WIN-DYSD-WSODocs-CH</string>
         <string>Citrix XenApp 7.6 - eQuality - Prod-English</string>
@@ -205,7 +206,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1543946657128</timestamp>
+      <timestamp>1544353369289</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <hudson.plugins.perforce.PerforceUserProperty plugin="perforce@1.3.35"/>
     <org.jenkinsci.plugins.readonly.UserConfiguration plugin="read-only-configurations@1.10">
