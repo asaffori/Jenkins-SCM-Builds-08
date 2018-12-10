@@ -99,7 +99,7 @@
         keepSystemVariables(true)
     	keepBuildVariables(true)
     	overrideBuildParameters()
-    	envs(BUILDTYPE: &apos;Formal&apos;, WSName: &apos;omdbuild_Archer_${Version}_Integ_Workspace&apos;,SnapshotName:&apos;INIT_UOMD_BLD_${BUILD_VERSION}&apos;,ValidOptions:&apos;Formal,Scheduled,Tasks&apos;)
+    	envs(BUILDTYPE: &apos;Formal&apos;, WSName: &quot;omdbuild_Archer_${Version}_Integ_Workspace&quot;,SnapshotName:&apos;INIT_UOMD_BLD_${BUILD_VERSION}&apos;,ValidOptions:&apos;Formal,Scheduled,Tasks&apos;)
     	
     }
     configure { project -&gt;
@@ -159,14 +159,14 @@ IF %ERRORLEVEL% NEQ 0 (
         		}
               	batchFile(&apos;C:\\PROGRA~1\\Unlocker\\Unlocker.exe %WORKSPACE% /S&apos;)
 				systemGroovyCommand(&apos;&apos;&apos;
-					import hudson.model.*
-					import hudson.AbortException
-					build.getLog(100).each{
-					   if (it.contains(&quot;Build version calculation failed&quot;)){
-						   build.result = Result.UNSTABLE
-						   throw new AbortException(&quot;Build failed in new version calculation.&quot;)
-					   }
-					}
+import hudson.model.*
+import hudson.AbortException
+build.getLog(100).each{
+   if (it.contains(&quot;Build version calculation failed&quot;)){
+	   build.result = Result.UNSTABLE
+	   throw new AbortException(&quot;Build failed in new version calculation.&quot;)
+   }
+}
 				&apos;&apos;&apos;) {}
 				conditionalSteps {
 					condition {
@@ -182,7 +182,7 @@ IF %ERRORLEVEL% NEQ 0 (
 									unstable(&apos;UNSTABLE&apos;)
 								}
 								parameters {
-									predefinedProps([MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;, fromStream: &apos;Archer_${Version}_Dev&apos;,toStream:&apos;Archer_${Version}_Integ&apos;])
+									predefinedProps([MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;, fromStream: &quot;Archer_${Version}_Dev&quot;,toStream:&quot;Archer_${Version}_Integ&quot;])
 								}
 							}
 						}
@@ -196,7 +196,7 @@ IF %ERRORLEVEL% NEQ 0 (
 							unstable(&apos;UNSTABLE&apos;)
 						}
 						parameters {
-							predefinedProps([Action: &apos;Disable&apos;, JenkinsJobName: &apos;OMD_${Version}_Scheduled_Trigger&apos;])
+							predefinedProps([Action: &apos;Disable&apos;, JenkinsJobName: &quot;OMD_${Version}_Scheduled_Trigger&quot;])
 						}
 					}
 				}
@@ -214,7 +214,7 @@ IF %ERRORLEVEL% NEQ 0 (
 									unstable(&apos;UNSTABLE&apos;)
 								}
 								parameters {
-									predefinedProps([MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;, sStream: &apos;&apos;,tStream:&apos;Archer_${Version}_Integ&apos;,BUILD_VERSION:&apos;${BUILD_VERSION}&apos;,recipientList:&apos;DL-OMD-ENG-SCM@KLA-Tencor.com&apos;,CopyToShare:&apos;true&apos;])
+									predefinedProps([MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;, sStream: &apos;&apos;,tStream:&quot;Archer_${Version}_Integ&quot;,BUILD_VERSION:&apos;${BUILD_VERSION}&apos;,recipientList:&apos;DL-OMD-ENG-SCM@KLA-Tencor.com&apos;,CopyToShare:&apos;true&apos;])
 								}
 							}
 						}
@@ -265,9 +265,9 @@ IF %ERRORLEVEL% NEQ 0 (
 						predefinedProp(&apos;buildResultUUID&apos;,&apos;${buildResultUUID}&apos;)
 						predefinedProp(&apos;team_scm_workspaceUUID&apos;,&apos;${team_scm_workspaceUUID}&apos;)
 						predefinedProp(&apos;RunAutoRebase&apos;,&apos;${RunAutoMerge}&apos;)
-						predefinedProp(&apos;ScheduledBuildJenkinsJobName&apos;,&apos;OMD_${Version}_Scheduled_Trigger&apos;)
-						predefinedProp(&apos;Integ_Stream_Name&apos;,&apos;Archer_${Version}_Integ&apos;)
-						predefinedProp(&apos;Dev_Stream_Name&apos;,&apos;Archer_${Version}_Dev&apos;)
+						predefinedProp(&apos;ScheduledBuildJenkinsJobName&apos;,&quot;OMD_${Version}_Scheduled_Trigger&quot;)
+						predefinedProp(&apos;Integ_Stream_Name&apos;,&quot;Archer_${Version}_Integ&quot;)
+						predefinedProp(&apos;Dev_Stream_Name&apos;,&quot;Archer_${Version}_Dev&quot;)
 				  }
 			 }
 		}
