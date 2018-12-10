@@ -177,7 +177,7 @@
 			steps{
 				script{
 				    echo &quot;$params.SourceStreamName&quot;
-					basever=&quot;$params.SourceStreamName&quot;.substring(0,&quot;$params.SourceStreamName&quot;.lastIndexOf(&quot;_&quot;))
+					basever=&quot;$params.SourceStreamName&quot;.substring(5,10)
 					echo basever
 				}
 			}
