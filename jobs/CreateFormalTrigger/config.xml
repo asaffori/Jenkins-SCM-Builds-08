@@ -73,7 +73,7 @@
       	stringParam(&apos;emailGroups&apos;, &apos;DL-OMD-SW-SQC@kla-tencor.com,DL-OMD-SW-SCOL@KLA-Tencor.com,DL-OMD-SW-Imaging@KLA-Tencor.com,DL-OMD-ENG-SCM@KLA-Tencor.com,DL-OMD-SW-ARCH@KLA-Tencor.com&apos;, &apos;Recipients of the Scheduled build and failed formal build&apos;)
 		stringParam(&apos;ReleaseEmailGroups&apos;, &apos;DL-OMD-SWFormalRelease@kla-tencor.com&apos;, &apos;Recipients of the Formal build&apos;)
 		stringParam(&apos;JENKINCONFIGPATH&apos;, &apos;\\\\isr1appcc02\\SCM\\OMD&apos;,&apos;&apos;)
-      stringParam(&apos;BUILD_VERSION&apos;, &quot;\\isr1appcc02\scm\OMD\Jenkins_Build_Version\${Version}version.txt&quot;,&apos;&apos;)
+      stringParam(&apos;BUILD_VERSION&apos;, &quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version\\${Version}version.txt&quot;,&apos;&apos;)
       	nodeParam(&apos;ReleaseBuildEngine&apos;) {
             description(&apos;select the release build machine&apos;)
             defaultNodes([&apos;SCM-Builds-V03&apos;])
