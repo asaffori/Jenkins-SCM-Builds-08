@@ -176,6 +176,7 @@
 		stage (&apos;CreateHelpFolder&apos;){
 			steps{
 				script{
+				    echo &quot;$params.SourceStreamName&quot;
 					basemajorminorver=&quot;$params.SourceStreamName&quot;.substring(&quot;$params.SourceStreamName&quot;.IndexOf(&quot;_&quot;),&quot;$params.SourceStreamName&quot;.lastIndexOf(&quot;_&quot;))
 					echo basemajorminorver
 				}
