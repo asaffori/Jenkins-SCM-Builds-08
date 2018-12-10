@@ -10,6 +10,14 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -41,17 +49,8 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -71,23 +70,25 @@
             allowedNodes([&apos;master&apos;])
         }
         stringParam(&apos;MajorMinor_Ver&apos;, &apos;17.14&apos;,&apos;The majorMinor Version of the build&apos;)
-      	stringParam(&apos;emailGroups&apos;, &apos;DL-OMD-SW-SQC@kla-tencor.com,DL-OMD-SW-SCOL@KLA-Tencor.com,DL-OMD-SW-Imaging@KLA-Tencor.com,DL-OMD-ENG-SCM@KLA-Tencor.com,DL-OMD-SW-ARCH@KLA-Tencor.com&apos;, &apos;Recipients of the Scheduled build&apos;)
+      	stringParam(&apos;emailGroups&apos;, &apos;DL-OMD-SW-SQC@kla-tencor.com,DL-OMD-SW-SCOL@KLA-Tencor.com,DL-OMD-SW-Imaging@KLA-Tencor.com,DL-OMD-ENG-SCM@KLA-Tencor.com,DL-OMD-SW-ARCH@KLA-Tencor.com&apos;, &apos;Recipients of the Scheduled build and failed formal build&apos;)
+		stringParam(&apos;ReleaseEmailGroups&apos;, &apos;DL-OMD-SWFormalRelease@kla-tencor.com&apos;, &apos;Recipients of the Formal build&apos;)
+		stringParam(&apos;JENKINCONFIGPATH&apos;, &apos;\\\\isr1appcc02\\SCM\\OMD&apos;,&apos;&apos;)
       stringParam(&apos;BUILD_VERSION&apos;, &quot;\\isr1appcc02\scm\OMD\Jenkins_Build_Version\${Version}version.txt&quot;,&apos;&apos;)
       	nodeParam(&apos;ReleaseBuildEngine&apos;) {
             description(&apos;select the release build machine&apos;)
-            defaultNodes([&apos;SCM-Builds-V01&apos;])
+            defaultNodes([&apos;SCM-Builds-V03&apos;])
             allowedNodes([&apos;SCM-Builds-V01&apos;, &apos;SCM-Builds-V02&apos;, &apos;SCM-Builds-V03&apos;,&apos;SCM-Builds-V04&apos;])
         }
       	nodeParam(&apos;DebugBuildEngine&apos;) {
             description(&apos;select the debug build machine&apos;)
-            defaultNodes([&apos;SCM-Builds-V02&apos;])
+            defaultNodes([&apos;SCM-Builds-V04&apos;])
             allowedNodes([&apos;SCM-Builds-V01&apos;, &apos;SCM-Builds-V02&apos;, &apos;SCM-Builds-V03&apos;,&apos;SCM-Builds-V04&apos;])
         }
       	booleanParam(&apos;SkipSandboxLoad&apos;, false, &apos;&apos;)
+		booleanParam(&apos;RunAutoMerge&apos;, true, &apos;&apos;)
+		booleanParam(&apos;GenerateAndShareBuildNotes&apos;, true, &apos;&apos;)
       	stringParam(&apos;buildResultUUID&apos;, &apos;&apos;, &apos;The UUID of the build result in RTC. It is supplied by builds initiated through RTC. For builds initiated through Hudson/Jenkins, no value should be supplied.&apos;)
-    	choiceParam(&apos;StaticCodeAnalysisModeDebug&apos;, [&apos;ErrorOnBuildEnd&apos;, &apos;Disabled&apos;, &apos;Warning&apos;,&apos;Error&apos;], &apos;SCA mode for debug build&apos;)
-      	choiceParam(&apos;StaticCodeAnalysisModeRelease&apos;, [&apos;ErrorOnBuildEnd&apos;, &apos;Disabled&apos;, &apos;Warning&apos;,&apos;Error&apos;], &apos;SCA mode for release build&apos;)
-    	booleanParam(&apos;Auto_Deploy_Sanity&apos;, true, &apos;will the auto deploy and sanity run for this build?&apos;)
+    	booleanParam(&apos;Auto_Deploy_Sanity&apos;, false, &apos;will the auto deploy and sanity run for this build?&apos;)
     	textParam(&apos;TestsArray&apos;, 
                   &apos;&apos;&apos;[[Autorun_XYS_Suite_ATE_A700,X:\\ATE\\TestCases\\SQC\\Imaging\\XYS\\Autorun,Archer700,SCM-ATE-01,SimulatorEngine,D:\\BaseImage,17.11.00.21200_A700_Nunit_Image,\\\\isr1vmappcm01\\Automated_Testing\\17.10_ATE];
 [AROL_Autorun_ATE_Suite,X:\\ATE\\TestCases\\SQC\\MBS\\AROL,Archer TL,SCM-ATE-01,SimulatorEngine,D:\\BaseImage,17.03.00.30400_TL_Mil_Nunit_Image,\\\\isr1vmappcm01\\Automated_Testing\\17.0x_ATE];
@@ -98,7 +99,7 @@
         keepSystemVariables(true)
     	keepBuildVariables(true)
     	overrideBuildParameters()
-    	envs(BUILDTYPE: &apos;Scheduled&apos;, WSName: &apos;omdbuild_Archer_${Version}_Dev_Workspace&apos;,SnapshotName:&apos;INIT_UOMD_BLD_${BUILD_VERSION}&apos;)
+    	envs(BUILDTYPE: &apos;Formal&apos;, WSName: &apos;omdbuild_Archer_${Version}_Integ_Workspace&apos;,SnapshotName:&apos;INIT_UOMD_BLD_${BUILD_VERSION}&apos;,ValidOptions:&apos;Formal,Scheduled,Tasks&apos;)
     	
     }
     configure { project -&gt;
@@ -107,7 +108,7 @@
           	overrideGlobal(&apos;false&apos;)
 			timeout(&apos;0&apos;)
 			buildType(&apos;buildDefinition&apos;)
-			buildDefinition(&quot;OMD-Archer-V${Version}-Scheduled-Jenkins&quot;)
+			buildDefinition(&quot;OMD-Archer-V${Version}-Formal-Jenkins&quot;)
 			avoidUsingToolkit(&apos;false&apos;)
 			overrideDefaultSnapshotName(&apos;true&apos;)
           	customizedSnapshotName(&apos;${SnapshotName}&apos;)
@@ -115,10 +116,7 @@
           
         }
     }
-
-  	triggers {
-        scm(&apos;30 00 * * 0-5&apos;)
-    }
+	
   	wrappers {
         timestamps()
       	preBuildCleanup()
@@ -136,7 +134,7 @@ return map
          preScmSteps {
             steps {
                  environmentVariables {
-                    envs(VERSIONFILE: &apos;${BUILD_VERSION}&apos;, AUTOVERSION: &apos;false&apos;)
+                    envs(VERSIONFILE: &apos;${BUILD_VERSION}&apos;, AUTOVERSION: &apos;false&apos;,team_scm_fetchDestination:&apos;${team_scm_fetchDestination}&apos;)
                  }
                  conditionalSteps {
             		condition {
@@ -160,35 +158,116 @@ IF %ERRORLEVEL% NEQ 0 (
             		}
         		}
               	batchFile(&apos;C:\\PROGRA~1\\Unlocker\\Unlocker.exe %WORKSPACE% /S&apos;)
+				systemGroovyCommand(&apos;&apos;&apos;
+					import hudson.model.*
+					import hudson.AbortException
+					build.getLog(100).each{
+					   if (it.contains(&quot;Build version calculation failed&quot;)){
+						   build.result = Result.UNSTABLE
+						   throw new AbortException(&quot;Build failed in new version calculation.&quot;)
+					   }
+					}
+				&apos;&apos;&apos;) {}
+				conditionalSteps {
+					condition {
+						stringsMatch(&apos;${RunAutoMerge}&apos;, &apos;true&apos;, true)
+					}
+					runner(&apos;Fail&apos;)
+					steps {
+						downstreamParameterized {
+							trigger(&apos;AutoRebaseStream&apos;) {
+								block {
+									buildStepFailure(&apos;FAILURE&apos;)
+									failure(&apos;FAILURE&apos;)
+									unstable(&apos;UNSTABLE&apos;)
+								}
+								parameters {
+									predefinedProps([MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;, fromStream: &apos;Archer_${Version}_Dev&apos;,toStream:&apos;Archer_${Version}_Integ&apos;])
+								}
+							}
+						}
+					}
+				}
+				downstreamParameterized {
+					trigger(&apos;EnableDisableJenkinsJob&apos;) {
+						block {
+							buildStepFailure(&apos;FAILURE&apos;)
+							failure(&apos;FAILURE&apos;)
+							unstable(&apos;UNSTABLE&apos;)
+						}
+						parameters {
+							predefinedProps([Action: &apos;Disable&apos;, JenkinsJobName: &apos;OMD_${Version}_Scheduled_Trigger&apos;])
+						}
+					}
+				}
+				conditionalSteps {
+					condition {
+						stringsMatch(&apos;${GenerateAndShareBuildNotes}&apos;, &apos;true&apos;, true)
+					}
+					runner(&apos;Fail&apos;)
+					steps {
+						downstreamParameterized {
+							trigger(&apos;CreateBuildNotes&apos;) {
+								block {
+									buildStepFailure(&apos;FAILURE&apos;)
+									failure(&apos;FAILURE&apos;)
+									unstable(&apos;UNSTABLE&apos;)
+								}
+								parameters {
+									predefinedProps([MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;, sStream: &apos;&apos;,tStream:&apos;Archer_${Version}_Integ&apos;,BUILD_VERSION:&apos;${BUILD_VERSION}&apos;,recipientList:&apos;DL-OMD-ENG-SCM@KLA-Tencor.com&apos;,CopyToShare:&apos;true&apos;])
+								}
+							}
+						}
+					}
+				}
+				downstreamParameterized {
+					trigger(&apos;UpdateAndPromoteBuildWIs&apos;) {
+						block {
+							buildStepFailure(&apos;FAILURE&apos;)
+							failure(&apos;FAILURE&apos;)
+							unstable(&apos;UNSTABLE&apos;)
+						}
+						parameters {
+							predefinedProps([BUILD_VERSION:&apos;${BUILD_VERSION}&apos;, MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;])
+						}
+					}
+				}
         	}
-             	
+            failOnError()	
         }
     }
   	steps {
         batchFile(&apos;C:\\Progra~2\\Jenkins\\tools\\hudson.tasks.Ant_AntInstallation\\RenameBuildLabel\\bin\\ant.bat -file %team_scm_fetchDestination%\\OMD_Builds\\JenkinsBuild\\VersionUpdater\\Build.xml -DbuildResultUUID=%buildResultUUID% -Dlabel=&quot;%BUILDTYPE%_UOMD_BLD_%BUILD_VERSION%&quot; &quot;-Dpassword=Scm07&amp;&quot; -DuserId=omdbuild -DtoolkitPath=C:\\Build\\TeamConcertBuild\\buildsystem\\buildtoolkit -DsnapshotUUID=%team_scm_workspaceUUID% &quot;-DrepositoryAddress=%repositoryAddress%&quot; -lib C:\\Build\\TeamConcertBuild\\buildsystem\\buildtoolkit&apos;)
         downstreamParameterized {
 			trigger(&apos;RDM_NuArcher_CI_Flow&apos;) {
+				block {
+						buildStepFailure(&apos;FAILURE&apos;)
+						failure(&apos;FAILURE&apos;)
+						unstable(&apos;UNSTABLE&apos;)
+					}
 				  parameters {
 						currentBuild()
-						predefinedProp(&apos;buildRequesterUserId&apos;,&apos;omdbuild&apos;)
-						predefinedProp(&apos;BUILD_VERSION&apos;,&apos;${BUILD_VERSION}&apos;)
-						predefinedProp(&apos;ReleaseBuildEngine&apos;,&apos;${ReleaseBuildEngine}&apos;)
-						predefinedProp(&apos;DebugBuildEngine&apos;,&apos;${DebugBuildEngine}&apos;)
-						predefinedProp(&apos;MajorMinor_Ver&apos;,&apos;${MajorMinor_Ver}&apos;)
-						predefinedProp(&apos;WSName&apos;,&apos;${WSName}&apos;)
-						predefinedProp(&apos;team_scm_fetchDestination&apos;,&apos;D:\\Sandboxes\\omdbuild_${BUILD_VERSION}&apos;)
-						predefinedProp(&apos;buildRequesterUserId&apos;,&apos;${buildRequesterUserId}&apos;)
-						predefinedProp(&apos;ClosureBuildEngine&apos;,&apos;master&apos;)
-						predefinedProp(&apos;BUILDTYPE&apos;,&apos;${BUILDTYPE}&apos;)
-						predefinedProp(&apos;VERSIONFILE&apos;,&apos;${VERSIONFILE}&apos;)
-						predefinedProp(&apos;AUTOVERSION&apos;,&apos;${AUTOVERSION}&apos;)
-						predefinedProp(&apos;RunningMode&apos;,&apos;DAILY&apos;)
-						predefinedProp(&apos;BuildAutoApproved&apos;,&apos;true&apos;)
-						predefinedProp(&apos;SnapshotName&apos;,&apos;${SnapshotName}&apos;)
-						predefinedProp(&apos;buildResultUUID&apos;,&apos;${buildResultUUID}&apos;)
-						predefinedProp(&apos;team_scm_workspaceUUID&apos;,&apos;${team_scm_workspaceUUID}&apos;)
-						predefinedProp(&apos;CheckSimTimeout&apos;,&apos;180&apos;)
-						predefinedProp(&apos;RunNunitTests&apos;,&apos;true&apos;)
+						predefinedProp(&apos;buildRequesterUserId&apos;:&apos;omdbuild&apos;)
+						predefinedProp(&apos;BUILD_VERSION&apos;:&apos;${BUILD_VERSION}&apos;)
+						predefinedProp(&apos;ReleaseBuildEngine&apos;:&apos;${ReleaseBuildEngine}&apos;)
+						predefinedProp(&apos;DebugBuildEngine&apos;:&apos;${DebugBuildEngine}&apos;)
+						predefinedProp(&apos;MajorMinor_Ver&apos;:&apos;${MajorMinor_Ver}&apos;)
+						predefinedProp(&apos;WSName&apos;:&apos;${WSName}&apos;)
+						predefinedProp(&apos;team_scm_fetchDestination&apos;:&apos;D:\\\\Sandboxes\\\\omdbuild_${BUILD_VERSION}&apos;)
+						predefinedProp(&apos;buildRequesterUserId&apos;:&apos;${buildRequesterUserId}&apos;)
+						predefinedProp(&apos;ClosureBuildEngine&apos;:&apos;master&apos;)
+						predefinedProp(&apos;BUILDTYPE&apos;:&apos;${BUILDTYPE}&apos;)
+						predefinedProp(&apos;VERSIONFILE&apos;:&apos;${VERSIONFILE}&apos;)
+						predefinedProp(&apos;AUTOVERSION&apos;:&apos;${AUTOVERSION}&apos;)
+						predefinedProp(&apos;RunningMode&apos;:&apos;WEEKLY&apos;)
+						predefinedProp(&apos;BuildAutoApproved&apos;:&apos;true&apos;)
+						predefinedProp(&apos;SnapshotName&apos;:&apos;${SnapshotName}&apos;)
+						predefinedProp(&apos;buildResultUUID&apos;:&apos;${buildResultUUID}&apos;)
+						predefinedProp(&apos;team_scm_workspaceUUID&apos;:&apos;${team_scm_workspaceUUID}&apos;)
+						predefinedProp(&apos;RunAutoRebase&apos;:&apos;${RunAutoMerge}&apos;)
+						predefinedProp(&apos;ScheduledBuildJenkinsJobName&apos;:&apos;OMD_${Version}_Scheduled_Trigger&apos;)
+						predefinedProp(&apos;Integ_Stream_Name&apos;:&apos;Archer_${Version}_Integ&apos;)
+						predefinedProp(&apos;Dev_Stream_Name&apos;:&apos;Archer_${Version}_Dev&apos;)
 				  }
 			 }
 		}
