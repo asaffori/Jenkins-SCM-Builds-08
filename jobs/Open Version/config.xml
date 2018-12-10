@@ -83,7 +83,7 @@
 	                }  
 					if(params.BaseVersion==&quot;&quot;){
     				    exitwitherror(&quot;Version is not defined&quot;)
-	                } 	
+	                } 		
 					MajorMinorSP=params.Version
 					if(params.Version.length()&lt;6) MajorMinorSP=params.Version+&quot;.00&quot;
 					
@@ -99,6 +99,7 @@
 					string(defaultValue: &quot;${MajorMinorSP}.20000&quot;,description: &apos;The starting build numbering&apos;,name: &apos;StartingVersion&apos;),
 					],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Corret, lets create it&apos;)
 					
+					
 					env.InputDevStream = userInput.DevStream
 					env.InputIntegStream = userInput.IntegStream
 					env.InputDevWorkspace = userInput.DevWorkspace
@@ -107,26 +108,10 @@
 					env.InputFormalBD = userInput.FormalBD
 					env.InputVersionfile = userInput.Versionfile
 					env.InputStartingVersion = userInput.StartingVersion
-	             }
-	             
-            }
-	    }
-	    stage (&apos;test&apos;) {
-            steps (&apos;vaiidate&apos;) {
-	            script{
-	               echo env.InputDevStream
-	               echo env.InputIntegStream
-	               echo env.InputDevWorkspace
-				    echo env.InputIntegWorkspace
-					echo env.InputScheduledBD
-					echo env.InputFormalBD
-					echo env.InputVersionfile
-					echo env.InputStartingVersion
-					
 	            }
             }
 	    }
-	 /*   stage (&apos;CreateStream&apos;){
+		stage (&apos;CreateStream&apos;){
 			steps (&apos;CreateStream&apos;){
 				build job: &apos;CreateStreamCM&apos;, parameters: 
 				[
@@ -143,17 +128,64 @@
 			}
 
 		}
-	
-	    stage (&apos;CreateWorkspace&apos;){
+		stage (&apos;CreateWorkspace&apos;){
 			steps (&apos;CreateWorkspace&apos;) {
 	                script{
 						bat &quot;scm create workspace -r ${repositoryAddress} -u omdbuild -P Scm07^&amp; -s ${env.InputDevStream} ${env.InputDevWorkspace}&quot;
 						bat &quot;scm create workspace -r ${repositoryAddress} -u omdbuild -P Scm07^&amp; -s ${env.InputIntegStream}  ${env.InputIntegWorkspace}&quot;
 					}
 			}
-		}	
-			*/
+		}
+		stage (&apos;CreateBuildDefinition&apos;){
+			steps (&apos;CreateBD&apos;){
+				build job: &apos;CreateBuildDefinition&apos;, parameters: 
+				[
+				[$class: &apos;StringParameterValue&apos;, name: &apos;RTCWorkspace&apos;, value:env.InputDevWorkspace],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;BuildDefinationName&apos;, value: env.InputScheduledBD],
+				[$class: &apos;ChoiceParameterValue&apos;, name: &apos;BUILDTYPE&apos;, value: &quot;Scheduled&quot;]
+				], wait: true
+				build job: &apos;CreateBuildDefinition&apos;, parameters: 
+				[
+				[$class: &apos;StringParameterValue&apos;, name: &apos;RTCWorkspace&apos;, value:env.InputIntegWorkspace],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;BuildDefinationName&apos;, value: env.InputFormalBD],
+				[$class: &apos;ChoiceParameterValue&apos;, name: &apos;BUILDTYPE&apos;, value: &quot;Formal&quot;]
+				], wait: true
+			}
+		}
+		stage (&apos;CreateJenkinstrigger&apos;){
+			steps (&apos;CreateTriggerJob&apos;){
+				build job: &apos;CreateScheduledTrigger&apos;, parameters: 
+				[
+				[$class: &apos;StringParameterValue&apos;, name: &apos;Version&apos;, value:parmas.Version]
+				], wait: true
+				build job: &apos;CreateFormalTrigger&apos;, parameters: 
+				[
+				[$class: &apos;StringParameterValue&apos;, name: &apos;Version&apos;, value:env.parmas.Version],
+				], wait: true
+			}
+		}
+		stage (&apos;CreateVersionFile&apos;){
+			steps{
+				script{
+					File VersionFile = new File(env.InputVersionfile)
+					if(VersionFile.exists()) VersionFile.delete()
+					VersionFile.write &quot;CurrentVersion=&quot;+env.InputStartingVersion+&quot;\nCurrentRunnningVersion=&quot;+env.InputStartingVersion
+				}
+			}
+		}
+		stage (&apos;CreateHelpFolder&apos;)
+			steps{
+				script{
+					basemajorminorver=params.SourceStreamName.substring(params.SourceStreamName.firstIndexOf(&quot;_&quot;),params.SourceStreamName.lastIndexOf(&quot;_&quot;))
+					echo basemajorminorver
+				}
+			}
 	}
+}
+
+def exitwitherror(msg){
+    input(message:msg ,ok:&apos;Abort&apos;)
+    throw new Exception(msg)
 }</script>
     <sandbox>true</sandbox>
   </definition>
