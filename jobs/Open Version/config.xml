@@ -136,7 +136,7 @@
 					}
 			}
 		}*/
-		stage (&apos;CreateBuildDefinition&apos;){
+	/*	stage (&apos;CreateBuildDefinition&apos;){
 			steps (&apos;CreateBD&apos;){
 				build job: &apos;CreateBuildDefinition&apos;, parameters: 
 				[
@@ -151,8 +151,8 @@
 				[$class: &apos;StringParameterValue&apos;, name: &apos;BUILDTYPE&apos;, value: &quot;Formal&quot;]
 				], wait: true
 			}
-		}
-		stage (&apos;CreateJenkinstrigger&apos;){
+		}*/
+	/*	stage (&apos;CreateJenkinstrigger&apos;){
 			steps (&apos;CreateTriggerJob&apos;){
 				build job: &apos;CreateScheduledTrigger&apos;, parameters: 
 				[
@@ -163,7 +163,7 @@
 				[$class: &apos;StringParameterValue&apos;, name: &apos;Version&apos;, value:params.Version],
 				], wait: true
 			}
-		}
+		}*/
 		stage (&apos;CreateVersionFile&apos;){
 			steps{
 				script{
