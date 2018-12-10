@@ -173,13 +173,14 @@
 				}
 			}
 		}
-		stage (&apos;CreateHelpFolder&apos;)
+		stage (&apos;CreateHelpFolder&apos;){
 			steps{
 				script{
 					basemajorminorver=params.SourceStreamName.substring(params.SourceStreamName.firstIndexOf(&quot;_&quot;),params.SourceStreamName.lastIndexOf(&quot;_&quot;))
 					echo basemajorminorver
 				}
 			}
+		}
 	}
 }
 
