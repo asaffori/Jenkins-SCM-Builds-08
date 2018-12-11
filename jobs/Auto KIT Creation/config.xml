@@ -64,6 +64,7 @@ pipeline {
     agent any
     environment { 
         networkpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD&apos;
+        codeviewpath=&apos;\\\\isr1appcc02\\Views\\OMD&apos;
     }
     parameters {
         string(name: &apos;Version&apos;, description: &apos;Which Version you want to Create KIT?&apos;)
@@ -108,7 +109,7 @@ pipeline {
 					
 						bat &quot;copy /b &quot;+tempdirpath+&quot;\\7zS.sfx + &quot;+tempdirpath+&quot;\\config.txt + &quot;+tempdirpath+&quot;\\&quot;+zipname+&quot; &quot;+tempdirpath+&quot;\\&quot;+exename
 						
-						bat &quot;xcopy &quot;+tempdirpath+&quot;\\&quot;+exename+&quot; \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ /f&quot;
+						bat &quot;xcopy &quot;+tempdirpath+&quot;\\&quot;+exename+&quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ /f&quot;
 						
 						if(tempdir.exists()) tempdir.deleteDir()
 	               }
@@ -142,7 +143,7 @@ pipeline {
 		stage (&apos;Phoenix&apos;){
 			steps (&apos;CopyPhoenix&apos;){
 				script{
-					def buildnotice= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/InstallationInstruction.html&quot;;
+					def buildnotice= &quot;${codeviewpath}\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/InstallationInstruction.html&quot;;
 	                def buildnoticefile = new File(buildnotice)
 					def phoenixversion
 					if(buildnoticefile.exists()){
