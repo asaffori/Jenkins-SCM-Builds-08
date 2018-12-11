@@ -22,7 +22,7 @@
                 </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
                 <hudson.model.StringParameterDefinition>
                     <name>MajorMinor_Ver</name>
-                    <defaultValue>17.14</defaultValue>
+                    <defaultValue>17.99</defaultValue>
                     <description>The majorMinor Version of the build</description>
                 </hudson.model.StringParameterDefinition>
                 <hudson.model.StringParameterDefinition>
