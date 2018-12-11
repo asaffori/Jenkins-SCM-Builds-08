@@ -253,7 +253,7 @@ build.getLog(100).each{
 						predefinedProp(&apos;DebugBuildEngine&apos;,&apos;${DebugBuildEngine}&apos;)
 						predefinedProp(&apos;MajorMinor_Ver&apos;,&apos;${MajorMinor_Ver}&apos;)
 						predefinedProp(&apos;WSName&apos;,&apos;${WSName}&apos;)
-						predefinedProp(&apos;team_scm_fetchDestination&apos;,&apos;D,\\\\Sandboxes\\\\omdbuild_${BUILD_VERSION}&apos;)
+						predefinedProp(&apos;team_scm_fetchDestination&apos;,&apos;D:\\\\Sandboxes\\\\omdbuild_${BUILD_VERSION}&apos;)
 						predefinedProp(&apos;buildRequesterUserId&apos;,&apos;${buildRequesterUserId}&apos;)
 						predefinedProp(&apos;ClosureBuildEngine&apos;,&apos;master&apos;)
 						predefinedProp(&apos;BUILDTYPE&apos;,&apos;${BUILDTYPE}&apos;)
