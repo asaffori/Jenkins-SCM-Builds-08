@@ -67,7 +67,7 @@
       <scriptText>job(&quot;OMD_${Version}_Scheduled_Trigger&quot;) {
     logRotator(30, -1)
   	parameters {
-        stringParam(&apos;MajorMinor_Ver&apos;, &apos;17.14&apos;,&apos;The majorMinor Version of the build&apos;)
+      stringParam(&apos;MajorMinor_Ver&apos;, &quot;${MajorMinorVer}&quot;,&apos;The majorMinor Version of the build&apos;)
       	stringParam(&apos;emailGroups&apos;, &apos;DL-OMD-SW-SQC@kla-tencor.com,DL-OMD-SW-SCOL@KLA-Tencor.com,DL-OMD-SW-Imaging@KLA-Tencor.com,DL-OMD-ENG-SCM@KLA-Tencor.com,DL-OMD-SW-ARCH@KLA-Tencor.com&apos;, &apos;Recipients of the Scheduled build&apos;)
       stringParam(&apos;BUILD_VERSION&apos;, &quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version\\${Version}version.txt&quot;,&apos;&apos;)
       	nodeParam(&apos;ReleaseBuildEngine&apos;) {
