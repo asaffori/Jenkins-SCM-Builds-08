@@ -305,7 +305,7 @@ def updateStatus(testId, value){
 def getSuiteFullPath(productPath){
     println (&quot;Working with productPath:&quot;+productPath)
     println (&quot;Working with params.TestSuite:&quot;+params.TestSuite)
-    def suitScriptPath =  sendHttpRequest(&apos;get suite full path&apos;,&apos;getpath&apos;,[&apos;//scm-ate-01/c$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI/&apos;+params.TestSuite,productPath])
+    def suitScriptPath =  sendHttpRequest(&apos;get suite full path&apos;,&apos;getpath&apos;,[&apos;%5C%5Cscm-ate-01%5Cc$%5CATE_Automation%5CA700%5CATE%5CTestCases%5CSQC%5CImaging_New_TCUI%5C&apos;+params.TestSuite,productPath])
     def suitScriptPath_fixed = suitScriptPath.replace(&apos;.csv&apos;, &apos;&apos;).replace(&apos;\\\\&apos;+env.ATEControllerEngine+&apos;\\c$\\&apos;,&apos;C:\\&apos;);
     return suitScriptPath_fixed
 }
