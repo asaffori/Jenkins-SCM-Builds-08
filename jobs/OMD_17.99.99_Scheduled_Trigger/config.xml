@@ -132,6 +132,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
     <overrideGlobal>false</overrideGlobal>
@@ -143,6 +144,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
       <overrideDefaultSnapshotName>false</overrideDefaultSnapshotName>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
+    <buildTypeStr>buildDefinition</buildTypeStr>
     <buildDefinition>OMD-Archer-V17.99.99-Scheduled-Jenkins</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
@@ -153,7 +155,7 @@ SnapshotName=INIT_UOMD_BLD_${BUILD_VERSION}</propertiesContent>
     <useDynamicLoadRules>false</useDynamicLoadRules>
   </scm>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
