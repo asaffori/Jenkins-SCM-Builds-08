@@ -386,7 +386,7 @@ SnapshotName=${SnapshotName}
 buildResultUUID=${buildResultUUID}
 team_scm_workspaceUUID=${team_scm_workspaceUUID}
 RunAutoRebase=${RunAutoMerge}
-ScheduledBuildJenkinsJobName=OMD_17.13.03+Support_SM_Scheduled_Trigger</properties>
+ScheduledBuildJenkinsJobName=OMD_17.13.03_Support_SM_Scheduled_Trigger</properties>
               <textParamValueOnNewLine>false</textParamValueOnNewLine>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
@@ -519,53 +519,6 @@ build.getLog(100).each{
             </script>
           </source>
         </hudson.plugins.groovy.SystemGroovy>
-        <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.6">
-          <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
-            <arg1>${RunAutoMerge}</arg1>
-            <arg2>true</arg2>
-            <ignoreCase>true</ignoreCase>
-          </condition>
-          <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.35.2">
-            <configs>
-              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-                <configs>
-                  <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                    <properties>MajorMinor_Ver=${MajorMinor_Ver}
-fromStream=Archer_17.13.03_Support_Samsung_Matching
-toStream=Archer_17.13.03_Support_Samsung_Matching</properties>
-                    <textParamValueOnNewLine>false</textParamValueOnNewLine>
-                  </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-                </configs>
-                <projects>AutoRebaseStream</projects>
-                <condition>ALWAYS</condition>
-                <triggerWithNoParameters>false</triggerWithNoParameters>
-                <triggerFromChildProjects>false</triggerFromChildProjects>
-                <block>
-                  <buildStepFailureThreshold>
-                    <name>FAILURE</name>
-                    <ordinal>2</ordinal>
-                    <color>RED</color>
-                    <completeBuild>true</completeBuild>
-                  </buildStepFailureThreshold>
-                  <unstableThreshold>
-                    <name>UNSTABLE</name>
-                    <ordinal>1</ordinal>
-                    <color>YELLOW</color>
-                    <completeBuild>true</completeBuild>
-                  </unstableThreshold>
-                  <failureThreshold>
-                    <name>FAILURE</name>
-                    <ordinal>2</ordinal>
-                    <color>RED</color>
-                    <completeBuild>true</completeBuild>
-                  </failureThreshold>
-                </block>
-                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
-              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
-            </configs>
-          </buildStep>
-          <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
-        </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
         <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.35.2">
           <configs>
             <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
