@@ -62,6 +62,7 @@
         <string>CA1NAS12-SSCMdata-CH</string>
         <string>WIN-DYSD-Migration-CH</string>
         <string>ISR1NAS03-FI_OMD-RO</string>
+        <string>DL-OMD-A500-Release</string>
         <string>WIN-DYSD-sepg-RO</string>
         <string>WIN-DYSD-IMPACT_met-RO</string>
         <string>WIN-DYSD-Image-CH</string>
@@ -151,6 +152,7 @@
         <string>chn2vmfs01-Shanghai-I-GF-S-CH</string>
         <string>Ca1nas11-KT-Insight-Program-RO</string>
         <string>WIN-DYSD-IMPACT_Min-CH</string>
+        <string>cc-israel</string>
         <string>Domain Users</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
@@ -160,7 +162,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1534382799857</timestamp>
+      <timestamp>1544533279128</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <io.jenkins.blueocean.autofavorite.user.FavoritingUserProperty plugin="blueocean-autofavorite@1.2.2">
       <autofavoriteEnabled>true</autofavoriteEnabled>
