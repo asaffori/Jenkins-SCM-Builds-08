@@ -65,6 +65,7 @@ pipeline {
     environment { 
         networkpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD&apos;
         codeviewpath=&apos;\\\\isr1appcc02\\Views\\OMD&apos;
+        phoenixpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-Common\\Phoenix&apos;
     }
     parameters {
         string(name: &apos;Version&apos;, description: &apos;Which Version you want to Create KIT?&apos;)
