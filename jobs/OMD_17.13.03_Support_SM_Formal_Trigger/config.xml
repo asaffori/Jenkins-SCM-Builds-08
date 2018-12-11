@@ -328,7 +328,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
     <timeout>0</timeout>
     <buildType>
       <value>buildDefinition</value>
-      <buildDefinition>OMD-Archer-V17.13.03-Formal-Jenkins</buildDefinition>
+      <buildDefinition>OMD-Archer-V17.13.03-SupportSM-Jenkins</buildDefinition>
       <clearLoadDirectory>false</clearLoadDirectory>
       <createFoldersForComponents>false</createFoldersForComponents>
       <acceptBeforeLoad>true</acceptBeforeLoad>
@@ -338,7 +338,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
       <useDynamicLoadRules>false</useDynamicLoadRules>
     </buildType>
     <buildTypeStr>buildDefinition</buildTypeStr>
-    <buildDefinition>OMD-Archer-V17.13.03-Formal-Jenkins</buildDefinition>
+    <buildDefinition>OMD-Archer-V17.13.03-SupportSM-Jenkins</buildDefinition>
     <clearLoadDirectory>false</clearLoadDirectory>
     <createFoldersForComponents>false</createFoldersForComponents>
     <acceptBeforeLoad>true</acceptBeforeLoad>
