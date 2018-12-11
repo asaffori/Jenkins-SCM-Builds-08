@@ -81,9 +81,6 @@
 	                if(params.Version==&quot;&quot;){
     				    exitwitherror(&quot;Version is not defined&quot;)
 	                }  
-					if(params.BaseVersion==&quot;&quot;){
-    				    exitwitherror(&quot;Version is not defined&quot;)
-	                } 		
 					MajorMinorSP=params.Version
 					if(params.Version.length()&lt;6) MajorMinorSP=params.Version+&quot;.00&quot;
 					
@@ -179,6 +176,7 @@
 				    echo &quot;$params.SourceStreamName&quot;
 					basever=&quot;$params.SourceStreamName&quot;.substring(7,12)
 					echo basever
+					bat &quot;xcopy \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V${basever}\\HelpFiles\\*.* &quot;
 				}
 			}
 		}
