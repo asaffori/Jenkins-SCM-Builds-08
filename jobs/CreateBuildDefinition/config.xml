@@ -79,7 +79,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
-      <command>CALL &quot;%ANT_HOME%\bin\ant.bat&quot; -file &quot;\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\BuildDefinition.xml&quot; -DbuildId=%BuildDefinationName% -lib &quot;%BuildToolkitPath%&quot;</command>
+      <command>CALL &quot;%ANT_HOME%\bin\ant.bat&quot; -file &quot;\\isr1appcc02\SCM\OMD\Jenkins_Build_conf_files\BuildDefinition.xml&quot; -lib &quot;%BuildToolkitPath%&quot;</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
