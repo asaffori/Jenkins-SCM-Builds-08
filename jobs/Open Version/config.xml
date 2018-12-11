@@ -68,7 +68,7 @@
      agent {label &apos;master&apos;}
 	environment { 
         repositoryAddress = &apos;http://clm.kla-tencor.com/ccm&apos;
-        networkpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\&apos;
+        networkpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD&apos;
     }
     parameters {
         string(name: &apos;Version&apos;, description: &apos;Which Version you want to Create? eg:17.14 or 17.14.01&apos;)
@@ -178,7 +178,7 @@
 					basever=&quot;$params.SourceStreamName&quot;.substring(7,12)
 					echo basever
 					if(params.Version.length()&gt;6) MajorMinor=params.Version.substring(0,5) else MajorMinor=params.Version
-					bat &quot;xcopy ${networkpath}Archer_Installations\\NuArcher_V${basever}\\HelpFiles\\*.* \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V${MajorMinor}\\HelpFiles\\ /f /s&quot;
+					bat &quot;xcopy ${networkpath}\\Archer_Installations\\NuArcher_V${basever}\\HelpFiles\\*.* ${networkpath}\\Archer_Installations\\NuArcher_V${MajorMinor}\\HelpFiles\\ /f /s&quot;
 				}
 			}
 		}
