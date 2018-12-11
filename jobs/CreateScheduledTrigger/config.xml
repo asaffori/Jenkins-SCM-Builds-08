@@ -158,6 +158,7 @@ IF %ERRORLEVEL% NEQ 0 (
         		}
               	batchFile(&apos;C:\\PROGRA~1\\Unlocker\\Unlocker.exe %WORKSPACE% /S&apos;)
         	}
+           failOnError()
              	
         }
     }
