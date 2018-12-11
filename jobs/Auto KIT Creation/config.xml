@@ -134,7 +134,7 @@ pipeline {
 		stage (&apos;document&apos;){
 			steps (&apos;CopyDoc&apos;){
 				script{
-					bat &quot;xcopy &quot;+&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\SupportFiles\\DocumentForKit\\*.*&quot; + &quot; \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation\\ /f&quot;
+					bat &quot;xcopy &quot;+&quot;${networkpath}\\Archer_Installations\\SupportFiles\\DocumentForKit\\*.*&quot; + &quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation\\ /f&quot;
 					
 				}
 			}
