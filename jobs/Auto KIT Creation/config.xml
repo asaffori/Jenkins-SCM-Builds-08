@@ -13,15 +13,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to Create KIT?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -46,6 +37,16 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to Create KIT?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -96,9 +97,8 @@ pipeline {
 						def tempdir=new File(tempdirpath)
 						if(tempdir.exists()) tempdir.deleteDir()
 						tempdir.mkdir()
-						bat &apos;&apos;&apos;robocopy /MT:128 /r:2 ${installerdir} ${tempdirpath}\\Archer_Installation_${params.Version} /s
-						if %errorlevel% LEQ 7 exit /b 0
-						&apos;&apos;&apos;
+						bat &quot;xcopy ${installerdir}\\*.* ${tempdirpath}\\Archer_Installation_${params.Version}\\ /f /s&quot;
+						
 						def zipname=&quot;Archer_&quot;+params.Version+&quot;_Installer.exe&quot;
 						def exename=&quot;Archer_&quot;+zipversion+&quot;_Installer.exe&quot;
 						bat &quot;7z a &quot;+tempdirpath+&quot;\\&quot;+zipname+&quot; Archer_Installation_&quot;+params.Version+&quot;\\*&quot;
