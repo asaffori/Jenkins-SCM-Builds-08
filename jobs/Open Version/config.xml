@@ -169,7 +169,7 @@
 				script{
 					File VersionFile = new File(env.InputVersionfile)
 					if(VersionFile.exists()) VersionFile.delete()
-					VersionFile.write &quot;CurrentVersion=&quot;+env.InputStartingVersion+&quot;\n\nCurrentRunnningVersion=&quot;+env.InputStartingVersion
+					VersionFile.write &quot;CurrentVersion=&quot;+env.InputStartingVersion+&quot;\nCurrentRunnningVersion=&quot;+env.InputStartingVersion
 				}
 			}
 		}
