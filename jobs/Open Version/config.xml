@@ -176,7 +176,8 @@
 				    echo &quot;$params.SourceStreamName&quot;
 					basever=&quot;$params.SourceStreamName&quot;.substring(7,12)
 					echo basever
-					bat &quot;xcopy \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V${basever}\\HelpFiles\\*.* &quot;
+					if(params.Version.length()&gt;6) MajorMinor=params.Version.substring(0,5) else MajorMinor=params.Version
+					bat &quot;xcopy \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V${basever}\\HelpFiles\\*.* \\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD\\Archer_Installations\\NuArcher_V${MajorMinor}\\HelpFiles&quot;
 				}
 			}
 		}
