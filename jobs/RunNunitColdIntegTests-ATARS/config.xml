@@ -37,7 +37,7 @@
           <name>SimulatorEngine</name>
           <description></description>
           <allowedSlaves>
-            <string>master</string>
+            <string>ALL (no restriction)</string>
           </allowedSlaves>
           <defaultSlaves>
             <string>master</string>
