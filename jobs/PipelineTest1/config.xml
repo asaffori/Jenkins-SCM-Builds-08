@@ -47,13 +47,13 @@ def TestSuite=&apos;a.csv&apos;
 def productPath=&apos;A700&apos;
 def s=suitesRootFolderPerToolType[productPath]
 System.out.println(new File(s).toPath().toUri());
-
+/*
 new File().eachFileRecurse(FILES) {
         if(it.name =~ &apos;/&apos;+TestSuite+&apos;$/&apos;) {
             println f
         }
     }
-}</script>
+}*/</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
