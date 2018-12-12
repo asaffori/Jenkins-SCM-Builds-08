@@ -79,7 +79,6 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <customWorkspace>C:\5300\Nunit\Bin\NunitResults</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
       <command>@ECHO Off&#xd;
