@@ -46,7 +46,7 @@ def TestSuite=&apos;a.csv&apos;
 def productPath=&apos;A700&apos;
 def controller=&apos;scm-ate-02&apos;
 def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&apos;file://&apos;+controller)
-print(&quot;new path: &quot;+new File(suitesRootFolderPerToolType[productPath]).toPath().toUri());
+print(&quot;new path: &quot;+updatePath);
 
 new File().eachFileRecurse(FILES) {
         if(it.name =~ &apos;/&apos;+TestSuite+&apos;$/&apos;) {
