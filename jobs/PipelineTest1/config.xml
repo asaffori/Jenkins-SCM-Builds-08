@@ -52,7 +52,7 @@ File f = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Im
 print getPath(TestSuite,f)
 }
 
-private static String getPath(String drl, String whereIAm) {
+private String getPath(String drl, String whereIAm) {
     File dir = new File(whereIAm); //StaticMethods.currentPath() + &quot;\\src\\main\\resources\\&quot; + 
     for(File e : dir.listFiles()) {
         if(e.isFile() &amp;&amp; e.getName().equals(drl)) {return e.getPath();}
