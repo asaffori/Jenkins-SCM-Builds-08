@@ -48,7 +48,7 @@ def controller=&apos;scm-ate-02&apos;
 def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&apos;file://&apos;+controller+&apos;/C$&apos;)
 print(&quot;new path: &quot;+updatePath);
 
-new File(&apos;\\scm-ate-02\C$\ATE_Automation\A700\ATE\TestCases\SQC\Imaging_New_TCUI&apos;).eachFileRecurse(FILES) {
+new File(&apos;\\\\scm-ate-02\\C$\\ATE_Automation\\A700\\ATE\\TestCases\\SQC\\Imaging_New_TCUI&apos;).eachFileRecurse(FILES) {
         if(it.name =~ &apos;/&apos;+TestSuite+&apos;$/&apos;) {
             println f
         }
