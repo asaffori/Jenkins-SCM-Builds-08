@@ -87,7 +87,6 @@
                 		globalconfig=globalconfigfile.readLines().replaceAll(&quot;\\&quot;,&quot;\\\\&quot;)
                 		for(String line : globalconfig){
                 		    echo line
-                		    echo line
                 			String[] str;
 					        str = line.split(&apos;=&apos;);
 					        env.str[0]=str[1]
