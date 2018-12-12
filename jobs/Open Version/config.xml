@@ -88,9 +88,10 @@
                 		for(String line : globalconfig){
                 		    echo line
                 		    line.replaceAll(&quot;\\&quot;,&quot;\\\\&quot;)
+                		    echo line
                 			String[] str;
 					        str = line.split(&apos;=&apos;);
-					        env.str[0]=&quot;str[1]&quot;
+					        env.str[0]=str[1]
                 		  }
                 	}
                 	echo env.BuildUser
