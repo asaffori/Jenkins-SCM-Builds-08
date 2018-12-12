@@ -137,7 +137,6 @@ if (RunNunitTests== &quot;false&quot;) {
 	println (&quot;RunNunitTests was disabled. Nunit tests execution will not run&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }
-
 </script>
               <sandbox>false</sandbox>
             </script>
