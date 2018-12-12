@@ -181,7 +181,7 @@ pipeline {
 						echo phoenixver
 						String[] phoenixdigit
 						phoenixdigit=phoenixver.split(&apos;\\.&apos;);
-						phoenixshortver=phoenixdigit[0]+&apos;\.&apos;+phoenixdigit[1]
+						phoenixshortver=phoenixdigit[0]+&apos;.&apos;+phoenixdigit[1]
 						echo phoenixshortver
 					//	bat &quot;xcopy &quot;+&quot;${phoenixpath}\\Archer_Installations\\SupportFiles\\DocumentForKit\\*.*&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation\\ /f&quot;
 					
