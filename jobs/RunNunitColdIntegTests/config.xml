@@ -60,7 +60,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -106,8 +105,8 @@ FOR %%G IN (%Technologies%) DO (&#xd;
       <script plugin="script-security@1.44">
         <script>import hudson.model.Result;
 
-def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
-def RunNunitTests= build.buildVariableResolver.resolve(&quot;RunNunitTests&quot;)
+def Auto_Deploy_Sanity= manager.build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+def RunNunitTests= manager.build.buildVariableResolver.resolve(&quot;RunNunitTests&quot;)
 
 if (manager.build.buildVariables.get(&quot;Auto_Deploy_Sanity&quot;)== &quot;false&quot; || manager.build.buildVariables.get(&quot;RunNunitTests&quot;)== &quot;false&quot;) {
 	manager.listener.logger.println (&quot;Auto_Deploy_Sanity or RunNunitTests flag was disabled. Nunit Cold Integration tests will not run&quot;);
@@ -124,6 +123,7 @@ if (manager.build.buildVariables.get(&quot;Auto_Deploy_Sanity&quot;)== &quot;fal
       <debug>false</debug>
       <keepJUnitReports>false</keepJUnitReports>
       <skipJUnitArchiver>false</skipJUnitArchiver>
+      <healthScaleFactor>1.0</healthScaleFactor>
       <failIfNoResults>false</failIfNoResults>
     </hudson.plugins.nunit.NUnitPublisher>
   </publishers>
