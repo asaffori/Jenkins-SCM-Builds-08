@@ -413,13 +413,12 @@ def getFreeHostPerLabel(label) {
 
 def copyCsvFileName(path){
     node(env.ATEControllerEngine){
-        bat (script:&quot;&quot;&quot; copy ${updated_path}\\${params.TestSuite} ${updated_path}\\${params.TestSuite.replace(&apos;.csv&apos;, env.BUILD_NUMBER+&apos;.csv&apos;)} || exit /b &quot;&quot;&quot;)
+        bat (script:&quot;&quot;&quot; copy ${path}\\${params.TestSuite} ${path}\\${params.TestSuite.replace(&apos;.csv&apos;, env.BUILD_NUMBER+&apos;.csv&apos;)} || exit /b &quot;&quot;&quot;)
     }
 }
 def deleteCsvFileName(path){
-    def updated_path = path.replace(&apos;.csv&apos;, &apos;&apos;);
     node(env.ATEControllerEngine){
-        bat ( script:&quot;&quot;&quot; del /s /q ${updated_path}\\*${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
+        bat ( script:&quot;&quot;&quot; del /s /q ${path}\\*${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
     }
 }
 
