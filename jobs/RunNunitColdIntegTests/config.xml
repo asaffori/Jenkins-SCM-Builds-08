@@ -125,6 +125,9 @@ FOR %%G IN (%Technologies%) DO (&#xd;
             <script plugin="script-security@1.44">
               <script>import hudson.model.Result;
 
+def Auto_Deploy_Sanity= manager.build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+def RunNunitTests= manager.build.buildVariableResolver.resolve(&quot;RunNunitTests&quot;)
+
 if (Auto_Deploy_Sanity== &quot;false&quot; || RunNunitTests== &quot;false&quot;) {
 	manager.listener.logger.println (&quot;Auto_Deploy_Sanity or RunNunitTests flag was disabled. Nunit Cold Integration tests will not run&quot;);
   	  manager.buildSuccess()
