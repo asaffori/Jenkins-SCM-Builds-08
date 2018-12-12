@@ -266,7 +266,9 @@ import hudson.model.*
  
 List&lt;String&gt; artifacts = new ArrayList&lt;String&gt;()
 ToolTypeShortName= [&apos;Archer700&apos;:&apos;A700&apos;,&apos;Archer600&apos;:&apos;A600&apos;,&apos;Archer500&apos;:&apos;A500&apos;,&apos;Archer TL&apos;:&apos;ATL&apos;]
-def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
+node (&apos;master&apos;){
+    def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
+}
 def getRegistrykey(host){
     stage(&apos;get Registry key&apos;){
         node(host){
@@ -304,21 +306,19 @@ def updateStatus(testId, value){
 }
 
 def getSuiteFullPath(productPath){
-    node (&apos;master&apos;){
-        println (&quot;Working with productPath:&quot;+productPath)
-        println (&quot;Working with params.TestSuite:&quot;+params.TestSuite)
-        
-        def updatedSearchPath= convertLocalPathToShare(suitesRootFolderPerToolType[productPath],env.ATEControllerEngine)
-        print(&apos;Looking for suite: &apos;+params.TestSuite+ &apos;in path: &apos;+updatedSearchPath);
-        def suitScriptPath=getPath(params.TestSuite,updatedSearchPath)
-        if (suitScriptPath==null){
-            error (&apos;Unable to find suite at\&apos;&apos;+updatedSearchPath+&apos;\&apos;&apos;)
-        }else {
-            print (&apos;Suite found:&apos;+suitScriptPath)
-        }
-        def suitScriptPath_fixed = convertSharePathToLocal(suitScriptPath).replace(&apos;.csv&apos;, &apos;&apos;);
-        return suitScriptPath_fixed
+    println (&quot;Working with productPath:&quot;+productPath)
+    println (&quot;Working with params.TestSuite:&quot;+params.TestSuite)
+    
+    def updatedSearchPath= convertLocalPathToShare(suitesRootFolderPerToolType[productPath],env.ATEControllerEngine)
+    print(&apos;Looking for suite: &apos;+params.TestSuite+ &apos;in path: &apos;+updatedSearchPath);
+    def suitScriptPath=getPath(params.TestSuite,updatedSearchPath)
+    if (suitScriptPath==null){
+        error (&apos;Unable to find suite at\&apos;&apos;+updatedSearchPath+&apos;\&apos;&apos;)
+    }else {
+        print (&apos;Suite found:&apos;+suitScriptPath)
     }
+    def suitScriptPath_fixed = convertSharePathToLocal(suitScriptPath).replace(&apos;.csv&apos;, &apos;&apos;);
+    return suitScriptPath_fixed
 }
 
 
