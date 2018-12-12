@@ -267,7 +267,7 @@ import hudson.model.*
 List&lt;String&gt; artifacts = new ArrayList&lt;String&gt;()
 ToolTypeShortName= [&apos;Archer700&apos;:&apos;A700&apos;,&apos;Archer600&apos;:&apos;A600&apos;,&apos;Archer500&apos;:&apos;A500&apos;,&apos;Archer TL&apos;:&apos;ATL&apos;]
 node (&apos;master&apos;){
-    def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
+    suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
 }
 def getRegistrykey(host){
     stage(&apos;get Registry key&apos;){
