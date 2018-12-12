@@ -419,7 +419,7 @@ def copyCsvFileName(path){
 def deleteCsvFileName(path){
     def updated_path = path.replace(&apos;.csv&apos;, &apos;&apos;);
     node(env.ATEControllerEngine){
-        bat ( script:&quot;&quot;&quot; del /s /q ${updated_path}\*${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
+        bat ( script:&quot;&quot;&quot; del /s /q ${updated_path}\\*${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
     }
 }
 
