@@ -74,6 +74,9 @@
      environment { 
         repositoryAddress = &apos;http://clm.kla-tencor.com/ccm&apos;
         networkpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD&apos;
+        builduser=&apos;omdbuild&apos;
+        scmbuildpass=&quot;Scm07^&amp;&quot;
+        
     }
     parameters {
         string(name: &apos;Version&apos;, description: &apos;Which Version you want to Create? eg:17.14 or 17.14.01&apos;)
