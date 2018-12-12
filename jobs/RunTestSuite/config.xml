@@ -317,8 +317,8 @@ def getSuiteFullPath(productPath){
     }else {
         print (&apos;Suite found:&apos;+suitScriptPath)
     }
-    //def suitScriptPath_fixed = convertSharePathToLocal(suitScriptPath).replace(&apos;.csv&apos;, &apos;&apos;);
-    return suitScriptPath
+    def suitScriptPath_fixed = convertSharePathToLocal(suitScriptPath);
+    return suitScriptPath_fixed
 }
 
 
