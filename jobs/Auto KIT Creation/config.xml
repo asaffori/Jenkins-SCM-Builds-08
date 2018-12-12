@@ -184,6 +184,10 @@ pipeline {
 						phoenixshortver=phoenixdigit[0]+&apos;.&apos;+phoenixdigit[1]
 						echo phoenixshortver
 						bat &quot;xcopy &quot;+&quot;${phoenixpath}\\V${phoenixshortver}\\V${phoenixver}\\*.*&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}\\ /f&quot;
+					    bat &quot;7z a ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}.exe&quot;+&quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}\\*&quot;
+				        tempdirpath=&quot;C:\\temp\\installer_&quot;+params.Version
+					tempdir=new File(&quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}&quot;)
+					   if(tempdir.exists()) tempdir.deleteDir() 
 					}
 					bat &quot;xcopy &quot;+&quot;${networkpath}\\Archer_Installations\\SupportFiles\\${milversion}_Installation.exe&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ /f&quot;
 	
