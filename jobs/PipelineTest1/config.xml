@@ -38,8 +38,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
-    <script>import static groovy.io.FileType.FILES
-import hudson.model.*
+    <script>node(&apos;master&apos;) {
 def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
 print suitesRootFolderPerToolType
 def TestSuite=&apos;a.csv&apos;
@@ -48,7 +47,8 @@ new File(suitesRootFolderPerToolType[productPath]).eachFileRecurse(FILES) {
         if(it.name =~ &apos;/&apos;+TestSuite+&apos;$/&apos;) {
             println f
         }
-    }</script>
+    }
+}</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
