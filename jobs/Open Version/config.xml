@@ -86,7 +86,7 @@
                 		echo &quot;found the global environment properties file&quot;				
                 		globalconfig=globalconfigfile.readLines()
                 		for(String line : globalconfig){
-                		    line.replaceAll(&quot;\\&quot;,&quot;\\\\&quot;))
+                		    line.replaceAll(&quot;\\&quot;,&quot;\\\\&quot;)
                 			String[] str;
 					        str = line.split(&apos;=&apos;);
 					        env.str[0]=str[1]
