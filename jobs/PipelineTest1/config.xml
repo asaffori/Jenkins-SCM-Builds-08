@@ -44,6 +44,8 @@ node(&apos;master&apos;) {
 def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
 def TestSuite=&apos;a.csv&apos;
 def productPath=&apos;A700&apos;
+def controller=&apos;scm-ate-02&apos;
+def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&apos;file://&apos;+controller)
 print(&quot;new path: &quot;+new File(suitesRootFolderPerToolType[productPath]).toPath().toUri());
 /*
 new File().eachFileRecurse(FILES) {
