@@ -85,6 +85,7 @@
                     env.networkpath=props[&apos;NETWORKPATHROOT&apos;]+&quot;\\sw-omd&quot;
                     env.builduser=props[&apos;BuildUser&apos;]
                     env.scmbuildpass=props[&apos;SCMBuildPass&apos;]
+                    env.VersionFilelPath=props[&apos;VersionFilelPath&apos;]
                 }
             }
         }
