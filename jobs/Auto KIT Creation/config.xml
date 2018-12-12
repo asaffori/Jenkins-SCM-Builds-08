@@ -13,15 +13,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to Create KIT?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -46,6 +37,16 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to Create KIT?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -182,7 +183,7 @@ pipeline {
 						phoenixdigit=phoenixver.split(&apos;\\.&apos;);
 						phoenixshortver=phoenixdigit[0]+&apos;.&apos;+phoenixdigit[1]
 						echo phoenixshortver
-					//	bat &quot;xcopy &quot;+&quot;${phoenixpath}\\Archer_Installations\\SupportFiles\\DocumentForKit\\*.*&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation\\ /f&quot;
+						bat &quot;xcopy &quot;+&quot;${phoenixpath}\\V${phoenixshortver}\\V${phoenixver}\\*.*&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\ /f&quot;
 					
 					}
 	
