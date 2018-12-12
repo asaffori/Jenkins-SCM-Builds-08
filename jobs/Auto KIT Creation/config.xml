@@ -129,7 +129,7 @@ pipeline {
 					TCdir = &quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\Archer_Installation_&quot;+params.Version+&quot;\\supportfiles\\ToolConfig&quot;
 					
 					bat &quot;7z a &quot;+tempdirpath+&quot;\\Tool_Configuration.7z&quot;+&quot; &quot;+TCdir+&quot;\\MCDBXML.exe &quot;+TCdir+&quot;\\NG.McdbXml.dll &quot;+TCdir+&quot;\\ToolConfig.exe &quot;+TCdir+&quot;\\ToolConfig.exe.config&quot;
-					bat &quot;xcopy &quot;+tempdirpath+&quot;\\Tool_Configuration.7z&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ /f&quot;
+					bat &quot;xcopy &quot;+tempdirpath+&quot;\\Tool_Configuration.7z&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ToolCOnfiguration\\ /f&quot;
 					
 					if(tempdir.exists()) tempdir.deleteDir()
 					
