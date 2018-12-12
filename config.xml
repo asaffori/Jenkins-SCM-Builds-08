@@ -647,6 +647,7 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>ATARS_Auto Deploy Sanity</string>
         <string>ATARS_SanityTest</string>
+        <string>RunNunitColdIntegTests-ATARS</string>
         <string>RunTestSuite</string>
       </jobNames>
       <jobFilters/>
