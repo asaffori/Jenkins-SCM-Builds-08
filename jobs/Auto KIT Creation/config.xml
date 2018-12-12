@@ -87,7 +87,7 @@ pipeline {
 	            }
             }
 	    }
-	    /*stage (&apos;ZipInstallation&apos;)
+	    stage (&apos;ZipInstallation&apos;)
 	    {
 	        steps (&apos;ZipInstaller&apos;) {
 	               script{
@@ -120,7 +120,7 @@ pipeline {
 	            }
 	        
 	    }
-	    */
+	    
 		stage (&apos;Ziptoolconfig&apos;){
 			steps (&apos;ziptoolconfig&apos;){
 				script{
