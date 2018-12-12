@@ -454,9 +454,10 @@ def getPath(String drl, String whereIAm) {
 }
 def convertLocalPathToShare(String path,String machine){
     print (&apos;before:&apos;+path)
-    path.replace(&apos;:&apos;,&apos;$&apos;)
+    path.replace(&quot;:&quot;,&quot;$&quot;)
     print (&apos;after:&apos;+path)
     path= &apos;\\\\&apos;+env.ATEControllerEngine+&apos;\\&apos;+path
+    print (&apos;after2:&apos;+path)
     return path
 }
 
