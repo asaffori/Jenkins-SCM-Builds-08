@@ -83,8 +83,10 @@
                 script{
                     def globalconfigfile = new File(&quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\Global_Env.properties&quot;)
 					if(globalconfigfile.exists()){
-                		echo &quot;found the global environment properties file&quot;				
-                		globalconfig=globalconfigfile.readLines().replaceAll(&quot;\\&quot;,&quot;\\\\&quot;)
+                		echo &quot;found the global environment properties file&quot;	
+                		content=globalconfigfile.text.replaceAll(&quot;\\&quot;,&quot;\\\\&quot;)
+                		echo content
+                		globalconfig=content.split(&apos;\n&apos;)
                 		for(String line : globalconfig){
                 		    line.replaceAll(&quot;\\&quot;,&quot;\\\\&quot;)
                 		    echo line
