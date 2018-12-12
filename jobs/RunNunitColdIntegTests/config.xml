@@ -124,6 +124,7 @@ FOR %%G IN (%Technologies%) DO (&#xd;
           <source class="hudson.plugins.groovy.StringSystemScriptSource">
             <script plugin="script-security@1.44">
               <script>import hudson.model.Result;
+import JenkinsPostBuild
 
 def Auto_Deploy_Sanity= manager.build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
 def RunNunitTests= manager.build.buildVariableResolver.resolve(&quot;RunNunitTests&quot;)
