@@ -20,27 +20,6 @@
 5. Copy Help folder from the base veresion&lt;/br&gt;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to Create? eg:17.14 or 17.14.01</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SourceStreamName</name>
-          <description>What is your Source stream name?</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>SourceStreamSnapshotName</name>
-          <description>What is your Source stream name snapshot name?</description>
-          <defaultValue></defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -57,6 +36,28 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to Create? eg:17.14 or 17.14.01</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SourceStreamName</name>
+          <description>What is your Source stream name? eg: Archer_17.14.01_Integ</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>SourceStreamSnapshotName</name>
+          <description>What is your Source stream name snapshot name? eg: UOMD_BLD_17.14.01.20100</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -70,6 +71,10 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>pipeline {
      agent {label &apos;master&apos;}
+     environment { 
+        repositoryAddress = &apos;http://clm.kla-tencor.com/ccm&apos;
+        networkpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD&apos;
+    }
     parameters {
         string(name: &apos;Version&apos;, description: &apos;Which Version you want to Create? eg:17.14 or 17.14.01&apos;)
 		string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is your Source stream name?&apos;)
@@ -77,27 +82,6 @@
     }
     
 	stages {    
-	    stage (&apos;SetEnvironment&apos;){
-            steps (&apos;Environment&apos;){
-                script{
-                    def globalconfigfile = new File(&quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\Global_Env.properties&quot;)
-					if(globalconfigfile.exists()){
-                		echo &quot;found the global environment properties file&quot;	
-                		content=globalconfigfile.text.replaceAll(&quot;\\&quot;,&quot;\\\\&quot;)
-                		echo content
-                		globalconfig=content.split(&apos;\n&apos;)
-                		for(String line : globalconfig){
-                		    line.replaceAll(&quot;\\&quot;,&quot;\\\\&quot;)
-                		    echo line
-                			String[] str;
-					        str = line.split(&apos;=&apos;);
-					        env.str[0]=str[1]
-                		  }
-                	}
-                	echo env.BuildUser
-                }
-            }
-        }
 	    stage (&apos;Validation&apos;) {
             steps (&apos;vaiidate&apos;) {
 	                script{
