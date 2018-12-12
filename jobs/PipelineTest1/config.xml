@@ -50,11 +50,10 @@ def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&
 print(&quot;new path: &quot;+updatePath);
 File f = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;)
 
-File[] matchingFiles = f.listFiles(new FilenameFilter() {
-    public boolean accept(File dir, String name) {
-        return name.startsWith(&quot;AIMTrainSuite&quot;) &amp;&amp; name.endsWith(&quot;csv&quot;);
-    }
-});
+File file = FileUtils.listFiles(f, 
+                new NameFileFilter(TestSuite), 
+                FileFilterUtils.trueFileFilter()
+            ).iterator().next();
 
 }</script>
     <sandbox>false</sandbox>
