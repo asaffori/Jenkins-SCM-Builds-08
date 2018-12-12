@@ -55,7 +55,7 @@ print(&quot;new path: &quot;+updatePath);
 //    File directory = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;);
 
 
-new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).eachFileRecurse(FILES) {
+new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).traverse(type: groovy.io.FileType.FILES)  {
     if(it.name.endsWith(&apos;.csv&apos;)) {
         println it
     }
