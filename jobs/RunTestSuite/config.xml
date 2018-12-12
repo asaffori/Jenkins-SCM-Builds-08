@@ -308,7 +308,7 @@ def updateStatus(testId, value){
 def getSuiteFullPath(productPath){
     println (&quot;Working with productPath:&quot;+productPath)
     println (&quot;Working with params.TestSuite:&quot;+params.TestSuite)
-    
+    File file;
     def updatedSearchPath= convertLocalPathToShare(suitesRootFolderPerToolType[productPath],env.ATEControllerEngine)
     print(&apos;Looking for suite: &apos;+params.TestSuite+ &apos;in path: &apos;+updatedSearchPath);
     def suitScriptPath=getPath(params.TestSuite,updatedSearchPath)
@@ -316,8 +316,12 @@ def getSuiteFullPath(productPath){
         error (&apos;Unable to find suite at\&apos;&apos;+updatedSearchPath+&apos;\&apos;&apos;)
     }else {
         print (&apos;Suite found:&apos;+suitScriptPath)
+        file=new File (suitScriptPath)
+        print (&apos;file name:&apos;+file.name)
+        print (&apos;file path:&apos;+file.absolutePath)
+
     }
-    def suitScriptPath_fixed = convertSharePathToLocal(suitScriptPath);
+    def suitScriptPath_fixed = convertSharePathToLocal(file.absolutePath);
     return suitScriptPath_fixed
 }
 
@@ -408,15 +412,14 @@ def getFreeHostPerLabel(label) {
 }
 
 def copyCsvFileName(path){
-    def updated_path = path.replace(&apos;.csv&apos;, &apos;&apos;);
     node(env.ATEControllerEngine){
-        bat (script:&quot;&quot;&quot; copy ${updated_path}.csv ${updated_path}${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
+        bat (script:&quot;&quot;&quot; copy ${updated_path}\\${params.TestSuite} ${updated_path}\\${params.TestSuite.replace(&apos;.csv&apos;, env.BUILD_NUMBER+&apos;.csv&apos;)} || exit /b &quot;&quot;&quot;)
     }
 }
 def deleteCsvFileName(path){
     def updated_path = path.replace(&apos;.csv&apos;, &apos;&apos;);
     node(env.ATEControllerEngine){
-        bat ( script:&quot;&quot;&quot; del /s /q ${updated_path}${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
+        bat ( script:&quot;&quot;&quot; del /s /q ${updated_path}\*${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
     }
 }
 
@@ -530,7 +533,8 @@ node(&apos;master&apos;){
                     copyCsvFileName(path)
                     //3:save data to database
                     def suiteRemoteLocation = convertLocalPathToShare(path,env.ATEControllerEngine)
-                    pathForJS=convertPathToURI(suiteRemoteLocation)
+                    def suiteFullPath=suiteRemoteLocation + &apos;\\&apos; + params.TestSuite
+                    pathForJS=convertPathToURI(suiteFullPath)
                     saveCsvDataToDatabase(pathForJS,testId,productPath);
                     scriptNumber = &apos;&apos;;
                     //4:save the script number that the eggplanet should execute
@@ -541,10 +545,10 @@ node(&apos;master&apos;){
                     currentBuild.description = &quot;Executing suite &apos;&quot;+params.TestSuite+&quot;&apos; with &quot;+params.ToolType + &quot; on &quot; + host
                     if(params.Auto_Deploy_Sanity){
                         println &apos;full suite&apos; 
-                        runAutoDeploySanity(testId,path, scriptNumber, host, controller, version);
+                        runAutoDeploySanity(testId,suiteRemoteLocation, scriptNumber, host, controller, version);
                     }else{
                         println &apos;regualr suite&apos; 
-                        runAutoDeploySanity(testId,path, scriptNumber, host, controller,version);
+                        runAutoDeploySanity(testId,suiteRemoteLocation, scriptNumber, host, controller,version);
                     }
                 }
             }
