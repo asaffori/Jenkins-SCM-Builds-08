@@ -52,8 +52,8 @@ new File().eachFileRecurse(FILES) {
         if(it.name =~ &apos;/&apos;+TestSuite+&apos;$/&apos;) {
             println f
         }
-    }
-}*/</script>
+    }*/
+}</script>
     <sandbox>false</sandbox>
   </definition>
   <triggers/>
