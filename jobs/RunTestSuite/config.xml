@@ -318,12 +318,12 @@ def getSuiteFullPath(productPath){
         print (&apos;Suite found:&apos;+suitScriptPath)
         file=new File (suitScriptPath)
         print (&apos;file name:&apos;+file.name)
-        print (&apos;file path:&apos;+file.absolutePath)
+        print (&apos;file path:&apos;+file.getAbsoluteFile().getParent())
         print (&apos;file path:&apos;+file.getPath())
         print (&apos;file path:&apos;+file.getCanonicalPath())
 
     }
-    def suitScriptPath_fixed = convertSharePathToLocal(file.absolutePath);
+    def suitScriptPath_fixed = convertSharePathToLocal(file.getAbsoluteFile().getParent());
     return suitScriptPath_fixed
 }
 
