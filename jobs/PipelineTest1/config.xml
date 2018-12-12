@@ -58,7 +58,7 @@ println new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Ima
     
      for ( File f : list ) {
             if ( f.isDirectory() ) {
-                walk( f.getAbsolutePath() );
+                //walk( f.getAbsolutePath();
                 println( &quot;Dir:&quot; + f.getAbsoluteFile() );
             }
             else {
