@@ -529,7 +529,7 @@ node(&apos;master&apos;){
                     println &apos;path: &apos; + path;
                     copyCsvFileName(path)
                     //3:save data to database
-                    def suiteRemoteLocation = convertLocalPathToShare(pathForJS,env.ATEControllerEngine)
+                    def suiteRemoteLocation = convertLocalPathToShare(path,env.ATEControllerEngine)
                     pathForJS=convertPathToURI(suiteRemoteLocation)
                     saveCsvDataToDatabase(testId,pathForJS,productPath);
                     scriptNumber = &apos;&apos;;
