@@ -453,15 +453,13 @@ def getPath(String drl, String whereIAm) {
     }
 }
 def convertLocalPathToShare(String path,String machine){
-    print (&apos;before:&apos;+path)
-    path.replace(&apos;/:&apos;,&apos;/$&apos;)
-    print (&apos;after:&apos;+path)
+    path = path.replace(&apos;:&apos;,&apos;$&apos;)
     path= &apos;\\\\&apos;+env.ATEControllerEngine+&apos;\\&apos;+path
     return path
 }
 
 def convertSharePathToLocal(String path){
-    path.replace(&apos;$&apos;,&apos;:&apos;)
+    path = path.replace(&apos;$&apos;,&apos;:&apos;)
     path = path.substring(path.indexOf(&apos;:&apos;)-1)
     return path
 }
