@@ -47,7 +47,7 @@ def productPath=&apos;A700&apos;
 def controller=&apos;scm-ate-02&apos;
 def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&apos;file://&apos;+controller+&apos;/C$&apos;)
 print(&quot;new path: &quot;+updatePath);
-println new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).list().find{it=~/.*$/}
+println new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).list().find{it=~/*.*$/}
 /*
     new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).any {file-&gt;
         print (&apos;it:&apos;+file.getAbsolutePath())
