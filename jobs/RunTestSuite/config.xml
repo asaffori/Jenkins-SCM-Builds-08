@@ -304,19 +304,21 @@ def updateStatus(testId, value){
 }
 
 def getSuiteFullPath(productPath){
-    println (&quot;Working with productPath:&quot;+productPath)
-    println (&quot;Working with params.TestSuite:&quot;+params.TestSuite)
-    
-    def updatedSearchPath= convertLocalPathToShare(suitesRootFolderPerToolType[productPath],env.ATEControllerEngine)
-    print(&apos;Looking for suite: &apos;+params.TestSuite+ &apos;in path: &apos;+updatedSearchPath);
-    def suitScriptPath=getPath(params.TestSuite,updatedSearchPath)
-    if (suitScriptPath==null){
-        error (&apos;Unable to find suite at\&apos;&apos;+updatedSearchPath+&apos;\&apos;&apos;)
-    }else {
-        print (&apos;Suite found:&apos;+suitScriptPath)
+    node (&apos;master&apos;){
+        println (&quot;Working with productPath:&quot;+productPath)
+        println (&quot;Working with params.TestSuite:&quot;+params.TestSuite)
+        
+        def updatedSearchPath= convertLocalPathToShare(suitesRootFolderPerToolType[productPath],env.ATEControllerEngine)
+        print(&apos;Looking for suite: &apos;+params.TestSuite+ &apos;in path: &apos;+updatedSearchPath);
+        def suitScriptPath=getPath(params.TestSuite,updatedSearchPath)
+        if (suitScriptPath==null){
+            error (&apos;Unable to find suite at\&apos;&apos;+updatedSearchPath+&apos;\&apos;&apos;)
+        }else {
+            print (&apos;Suite found:&apos;+suitScriptPath)
+        }
+        def suitScriptPath_fixed = convertSharePathToLocal(suitScriptPath).replace(&apos;.csv&apos;, &apos;&apos;);
+        return suitScriptPath_fixed
     }
-    def suitScriptPath_fixed = convertSharePathToLocal(suitScriptPath).replace(&apos;.csv&apos;, &apos;&apos;);
-    return suitScriptPath_fixed
 }
 
 
@@ -438,18 +440,16 @@ def getBuildAbortionUser(){
 }
 
 def getPath(String drl, String whereIAm) {
-    stage(&apos;GetPath&apos;){
-        node (&apos;master&apos;) {
-            File dir = new File(whereIAm); //StaticMethods.currentPath() + &quot;\\src\\main\\resources\\&quot; + 
-            for(File e : dir.listFiles()) {
-                if(e.isFile() &amp;&amp; e.getName().equals(drl)) {return e.getPath();}
-                if(e.isDirectory()) {
-                    String idiot = getPath(drl, e.getPath());
-                    if(idiot != null) {return idiot;}
-                }
+    node (&apos;master&apos;) {
+        File dir = new File(whereIAm); //StaticMethods.currentPath() + &quot;\\src\\main\\resources\\&quot; + 
+        for(File e : dir.listFiles()) {
+            if(e.isFile() &amp;&amp; e.getName().equals(drl)) {return e.getPath();}
+            if(e.isDirectory()) {
+                String idiot = getPath(drl, e.getPath());
+                if(idiot != null) {return idiot;}
             }
-            return null;
         }
+        return null;
     }
 }
 def convertLocalPathToShare(String path,String machine){
