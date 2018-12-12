@@ -51,15 +51,14 @@ println new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Ima
 
 
 
-def list = []
-
-def dir = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;)
-dir.anyFileRecurse (FileType.FILES) { file -&gt;
-  list &lt;&lt; file
-}
-list.each {
-  println it.path
-}
+ File directory = new File(//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI);
+        //get all the files from a directory
+        File[] fList = directory.listFiles();
+        for (File file : fList){
+            if (file.isFile()){
+               print(file.getName());
+            }
+        }
 /*
     new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).any {file-&gt;
         print (&apos;it:&apos;+file.getAbsolutePath())
