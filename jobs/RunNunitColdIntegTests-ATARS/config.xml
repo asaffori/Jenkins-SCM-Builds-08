@@ -138,7 +138,7 @@ if (SkipCodeReload == &quot;false&quot;) {
 	println (&quot;Auto_Deploy_Sanity was disabled. Nunit step will be skipped&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }
-build.setWorkspace(new File(&quot;C:\5300\Nunit\Bin\NunitResults&quot;))
+build.setWorkspace(new File(&quot;C:\\5300\\Nunit\\Bin\\NunitResults&quot;))
 </script>
               <sandbox>false</sandbox>
             </script>
