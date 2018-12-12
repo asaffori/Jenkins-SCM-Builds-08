@@ -71,10 +71,6 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>pipeline {
      agent {label &apos;master&apos;}
-	environment { 
-        repositoryAddress = &apos;http://clm.kla-tencor.com/ccm&apos;
-        networkpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD&apos;
-    }
     parameters {
         string(name: &apos;Version&apos;, description: &apos;Which Version you want to Create? eg:17.14 or 17.14.01&apos;)
 		string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is your Source stream name?&apos;)
@@ -87,6 +83,8 @@
                     def props = readProperties file:&quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\Global_Env.properties&quot;
                     env.repositoryAddress=props[&apos;repositoryAddress&apos;]
                     env.networkpath=props[&apos;NETWORKPATHROOT&apos;]+&quot;\\sw-omd&quot;
+                    env.builduser=props[&apos;BuildUser&apos;]
+                    env.scmbuildpass=props[&apos;SCMBuildPass&apos;]
                 }
             }
         }
