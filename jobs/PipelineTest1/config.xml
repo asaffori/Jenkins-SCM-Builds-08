@@ -39,6 +39,7 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>import groovy.io.FileType
+import static groovy.io.FileType.FILES
 import hudson.model.*
 node(&apos;master&apos;) {
 def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
@@ -52,20 +53,13 @@ println new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Ima
 
 
     File directory = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;);
-        //get all the files from a directory
-    File[] list = directory.listFiles();
-    if (list == null) return;
-    
-     for ( File f : list ) {
-            if ( f.isDirectory() ) {
-                //walk( f.getAbsolutePath();
-                println( &quot;Dir:&quot; + f.getAbsoluteFile() );
-            }
-            else {
-                println( &quot;File:&quot; + f.getAbsoluteFile() );
-            }
-        }
-        
+
+
+new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).eachFileRecurse(FILES) {
+    if(it.name.endsWith(&apos;.csv&apos;)) {
+        println it
+    }
+}
 
 /*
     new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).any {file-&gt;
