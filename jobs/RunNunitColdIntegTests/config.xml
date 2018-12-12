@@ -128,13 +128,8 @@ FOR %%G IN (%Technologies%) DO (&#xd;
 def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
 def RunNunitTests= build.buildVariableResolver.resolve(&quot;RunNunitTests&quot;)
 
-if (Auto_Deploy_Sanity== &quot;false&quot;) {
-	println (&quot;Auto_Deploy_Sanity was disabled. Nunit Cold Integration tests will not run&quot;);
-  	build.getExecutor().interrupt(Result.SUCCESS)
-}
-
-if (RunNunitTests== &quot;false&quot;) {
-	println (&quot;RunNunitTests was disabled. Nunit tests execution will not run&quot;);
+if (Auto_Deploy_Sanity== &quot;false&quot; || RunNunitTests== &quot;false&quot;) {
+	println (&quot;Auto_Deploy_Sanity or RunNunitTests flag was disabled. Nunit Cold Integration tests will not run&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }
 </script>
