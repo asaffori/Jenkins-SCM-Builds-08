@@ -53,12 +53,20 @@ println new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Ima
 
     File directory = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;);
         //get all the files from a directory
-    File[] fList = directory.listFiles();
-        for (File file : fList){
-            if (file.isFile()){
-               print(file.getName());
+    File[] list = directory.listFiles();
+    if (list == null) return;
+    
+     for ( File f : list ) {
+            if ( f.isDirectory() ) {
+                walk( f.getAbsolutePath() );
+                println( &quot;Dir:&quot; + f.getAbsoluteFile() );
+            }
+            else {
+                println( &quot;File:&quot; + f.getAbsoluteFile() );
             }
         }
+        
+
 /*
     new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).any {file-&gt;
         print (&apos;it:&apos;+file.getAbsolutePath())
