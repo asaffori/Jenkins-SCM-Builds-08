@@ -12,7 +12,12 @@
       </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
-  <description></description>
+  <description>This Job is created to open new Version for development, inlcuindg following steps:&#xd;
+1. create new Dev/Integ stream&#xd;
+2. create new Dev/Integ build workspace&#xd;
+3. Create Scheduled/Formal build trigger&#xd;
+4. Create new Version file with specfic build start number&#xd;
+5. Copy Help folder from the base veresion</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
