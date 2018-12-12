@@ -13,7 +13,7 @@
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
   <description>This Job is created to open new Version for development, inlcuindg following steps:&#xd;
-1. create new Dev/Integ stream&#xd;
+1. create new Dev/Integ stream, eg: Archer_17.14.01_Dev\Archer_17.14.01_Integ&#xd;
 2. create new Dev/Integ build workspace&#xd;
 3. Create Scheduled/Formal build trigger&#xd;
 4. Create new Version file with specfic build start number&#xd;
@@ -46,13 +46,13 @@
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SourceStreamName</name>
-          <description>What is your Source stream name?</description>
+          <description>What is your Source stream name? eg: Archer_17.14.01_Integ</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>SourceStreamSnapshotName</name>
-          <description>What is your Source stream name snapshot name?</description>
+          <description>What is your Source stream name snapshot name? eg: UOMD_BLD_17.14.01.20100</description>
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
