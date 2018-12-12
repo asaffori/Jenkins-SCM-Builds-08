@@ -108,7 +108,7 @@
 					string(defaultValue: &quot;omdbuild_Archer_${params.Version}_Integ_Workspace&quot;,description: &apos;Integ workspace name&apos;,name: &apos;IntegWorkspace&apos;),
 					string(defaultValue: &quot;OMD-Archer-V${params.Version}-Scheduled-Jenkins&quot;,description: &apos;Scheduled build definition name&apos;,name: &apos;ScheduledBD&apos;),
 					string(defaultValue: &quot;OMD-Archer-V${params.Version}-Formal-Jenkins&quot;,description: &apos;Formal build definition name&apos;,name: &apos;FormalBD&apos;),
-					string(defaultValue: &quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version\\${params.Version}version.txt&quot;,description: &apos;Version file full path&apos;,name: &apos;Versionfile&apos;),
+					string(defaultValue: &quot;${params.Version}version.txt&quot;,description: &apos;Version file name&apos;,name: &apos;Versionfile&apos;),
 					string(defaultValue: &quot;${MajorMinorSP}.20000&quot;,description: &apos;The starting build numbering&apos;,name: &apos;StartingVersion&apos;),
 					],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Corret, lets create it&apos;)
 					
