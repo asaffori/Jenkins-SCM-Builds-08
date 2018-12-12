@@ -49,7 +49,7 @@ def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&
 print(&quot;new path: &quot;+updatePath);
 
 new File(&apos;\\\\scm-ate-02\\C$\\ATE_Automation\\A700\\ATE\\TestCases\\SQC\\Imaging_New_TCUI&apos;).eachFile()  {
-    print (&apos;it:&apos;+it.name)
+    print (&apos;it:&apos;+it.getAbsolutePath())
         if(it.name =~ &apos;/&apos;+TestSuite+&apos;$/&apos;) {
             println f
         }
