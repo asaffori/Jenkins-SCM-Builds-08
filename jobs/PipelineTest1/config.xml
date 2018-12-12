@@ -53,7 +53,7 @@ println new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Ima
 
 def list = []
 
-def dir = new File(&quot;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&quot;)
+def dir = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;)
 dir.eachFileRecurse (FileType.FILES) { file -&gt;
   list &lt;&lt; file
 }
