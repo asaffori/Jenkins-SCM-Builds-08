@@ -157,6 +157,7 @@ pipeline {
                 			if(line.contains(&quot;&gt;Phoenix&lt;&quot;)){
                 			 string subline=line.substring(line.indexOf(&quot;&lt;TD&gt;&quot;)+4,line.length()-5)
                 			 phoenixversion=subline
+                			 echo phoenixversion
                 			continue
                 			}
                 		  }
@@ -164,6 +165,7 @@ pipeline {
                 			if(line.contains(&quot;&gt;Mil&lt;&quot;)){
                 			 string subline=line.substring(line.indexOf(&quot;&lt;TD&gt;&quot;)+4,line.length()-5)
                 			 milversion=subline
+                			 echo milversion
                 			continue
                 			}
                 		  }
