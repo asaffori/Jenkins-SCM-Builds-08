@@ -40,7 +40,7 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>import java.io.File;
     import java.io.FilenameFilter;
-import hudson.model.*
+import org.apache.commons.io.FileUtils
 node(&apos;master&apos;) {
 def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
 def TestSuite=&apos;AIMTrainSuite.csv&apos;
