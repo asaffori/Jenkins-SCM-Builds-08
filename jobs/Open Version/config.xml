@@ -80,6 +80,18 @@
 		string(name: &apos;SourceStreamName&apos;, defaultValue: &apos;&apos;, description: &apos;What is your Source stream name?&apos;)
 		string(name: &apos;SourceStreamSnapshotName&apos;, defaultValue: &apos;&apos;, description: &apos;What is your Source stream name snapshot name?&apos;)
     }
+    stages {
+        stage (&apos;SetEnvironment&apos;){
+            steps (&apos;Environment&apos;){
+                script{
+                    def props = readProperties file:&quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\Global_Env.properties&quot;
+                    env.repositoryAddress=props[&apos;repositoryAddress&apos;]
+                    env.networkpath=props[&apos;NETWORKPATHROOT&apos;]+&quot;\\sw-omd&quot;
+                }
+            }
+        }
+    }
+    
 	stages {    
 	    stage (&apos;Validation&apos;) {
             steps (&apos;vaiidate&apos;) {
