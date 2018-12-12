@@ -149,8 +149,8 @@
 		stage (&apos;CreateWorkspace&apos;){
 			steps (&apos;CreateWorkspace&apos;) {
 	                script{
-						bat &quot;scm create workspace -r ${repositoryAddress} -u omdbuild -P Scm07^&amp; -s ${env.InputDevStream} ${env.InputDevWorkspace}&quot;
-						bat &quot;scm create workspace -r ${repositoryAddress} -u omdbuild -P Scm07^&amp; -s ${env.InputIntegStream}  ${env.InputIntegWorkspace}&quot;
+						bat &quot;scm create workspace -r ${env.repositoryAddress} -u ${env.builduser} -P ${env.scmbuildpass} -s ${env.InputDevStream} ${env.InputDevWorkspace}&quot;
+						bat &quot;scm create workspace -r ${env.repositoryAddress} -u ${env.builduser} -P ${env.scmbuildpass} -s ${env.InputIntegStream}  ${env.InputIntegWorkspace}&quot;
 					}
 			}
 		}
