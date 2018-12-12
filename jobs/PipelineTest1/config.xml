@@ -45,7 +45,7 @@ def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SC
 def TestSuite=&apos;a.csv&apos;
 def productPath=&apos;A700&apos;
 def controller=&apos;scm-ate-02&apos;
-def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&apos;file://&apos;+controller)
+def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&apos;file://&apos;+controller+&apos;/C$&apos;)
 print(&quot;new path: &quot;+updatePath);
 
 new File(updatePath).eachFileRecurse(FILES) {
