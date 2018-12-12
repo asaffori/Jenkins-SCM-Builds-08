@@ -419,23 +419,11 @@ historyJobs.getFlowSteps().each { step -&gt;
   <flowDefinitionId>-1</flowDefinitionId>
   <globalEnvVars>
     <entry>
-      <string>ATEBasePath</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>SCRIPT_NUMBER</string>
-      <string></string>
-    </entry>
-    <entry>
       <string>MajorMinor_Ver</string>
       <string></string>
     </entry>
     <entry>
       <string>product</string>
-      <string></string>
-    </entry>
-    <entry>
-      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
@@ -456,6 +444,18 @@ historyJobs.getFlowSteps().each { step -&gt;
     </entry>
     <entry>
       <string>BUILDTYPE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>ATEBasePath</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>SCRIPT_NUMBER</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>TestSuite</string>
       <string></string>
     </entry>
     <entry>
