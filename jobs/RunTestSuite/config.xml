@@ -308,8 +308,10 @@ def getSuiteFullPath(productPath){
     println (&quot;Working with params.TestSuite:&quot;+params.TestSuite)
     
     def updatedSearchPath= convertLocalPathToShare(suitesRootFolderPerToolType[productPath],env.ATEControllerEngine)
-    print(&apos;Looking for suite: &apos;+params.TestSuite+ &apos;in path: &apos;+updatedSearchPath);
-    def suitScriptPath=getPath(params.TestSuite,updatedSearchPath)
+    node (&apos;master&apos;) {
+        print(&apos;Looking for suite: &apos;+params.TestSuite+ &apos;in path: &apos;+updatedSearchPath);
+        def suitScriptPath=getPath(params.TestSuite,updatedSearchPath)
+    }
     if (suitScriptPath==null){
         error (&apos;Unable to find suite at\&apos;&apos;+updatedSearchPath+&apos;\&apos;&apos;)
     }else {
