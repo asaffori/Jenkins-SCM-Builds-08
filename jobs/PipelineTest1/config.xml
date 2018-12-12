@@ -42,7 +42,7 @@
 import hudson.model.*
 node(&apos;master&apos;) {
 def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
-def TestSuite=&apos;a.csv&apos;
+def TestSuite=&apos;AIMTrainSuite.csv&apos;
 def productPath=&apos;A700&apos;
 def controller=&apos;scm-ate-02&apos;
 def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&apos;file://&apos;+controller+&apos;/C$&apos;)
