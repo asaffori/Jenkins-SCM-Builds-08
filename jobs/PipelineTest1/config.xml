@@ -49,12 +49,19 @@ def controller=&apos;scm-ate-02&apos;
 def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&apos;file://&apos;+controller+&apos;/C$&apos;)
 print(&quot;new path: &quot;+updatePath);
 File f = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;)
+print getPath(TestSuite,f)
+}
 
-File file = FileUtils.listFiles(f, 
-                new NameFileFilter(TestSuite), 
-                FileFilterUtils.trueFileFilter()
-            ).iterator().next();
-
+private static String getPath(String drl, String whereIAm) {
+    File dir = new File(whereIAm); //StaticMethods.currentPath() + &quot;\\src\\main\\resources\\&quot; + 
+    for(File e : dir.listFiles()) {
+        if(e.isFile() &amp;&amp; e.getName().equals(drl)) {return e.getPath();}
+        if(e.isDirectory()) {
+            String idiot = getPath(drl, e.getPath());
+            if(idiot != null) {return idiot;}
+        }
+    }
+    return null;
 }</script>
     <sandbox>false</sandbox>
   </definition>
