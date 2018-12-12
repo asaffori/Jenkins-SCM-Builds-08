@@ -437,8 +437,7 @@ def getBuildAbortionUser(){
     actions = null
 }
 
-private String getPath(String drl, String whereIAm) {
-    /*
+def getPath(String drl, String whereIAm) {
      node (&apos;master&apos;) {
         File dir = new File(whereIAm); //StaticMethods.currentPath() + &quot;\\src\\main\\resources\\&quot; + 
         for(File e : dir.listFiles()) {
@@ -449,16 +448,15 @@ private String getPath(String drl, String whereIAm) {
             }
         }
         return null;
-     }*/
-     return
+     }
 }
-private String convertLocalPathToShare(String path,String machine){
+def convertLocalPathToShare(String path,String machine){
     path.replace(&apos;:&apos;,&apos;$&apos;)
     path= &apos;\\\\&apos;+env.ATEControllerEngine+&apos;\\&apos;+path
     return path
 }
 
-private String convertSharePathToLocal(String path){
+def convertSharePathToLocal(String path){
     path.replace(&apos;$&apos;,&apos;:&apos;)
     path = path.substring(path.indexOf(&apos;:&apos;)-1)
     return path
