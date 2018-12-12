@@ -45,7 +45,10 @@ def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SC
 print suitesRootFolderPerToolType
 def TestSuite=&apos;a.csv&apos;
 def productPath=&apos;A700&apos;
-new File(suitesRootFolderPerToolType[productPath]).eachFileRecurse(FILES) {
+def s=suitesRootFolderPerToolType[productPath]
+System.out.println(new File(s).toPath().toUri());
+
+new File().eachFileRecurse(FILES) {
         if(it.name =~ &apos;/&apos;+TestSuite+&apos;$/&apos;) {
             println f
         }
