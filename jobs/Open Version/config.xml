@@ -92,12 +92,7 @@
 					        env.str[0]=str[1]
                 		  }
                 	}
-                    def props = readProperties file:&quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\Global_Env.properties&quot;
-                    env.repositoryAddress=props[&apos;repositoryAddress&apos;]
-                    env.networkpath=props[&apos;NETWORKPATHROOT&apos;]+&quot;\\sw-omd&quot;
-                    env.builduser=props[&apos;BuildUser&apos;]
-                    env.scmbuildpass=props[&apos;SCMBuildPass&apos;]
-                    env.VersionFilelPath=props[&apos;VersionFilelPath&apos;]
+                	echo env.BuildUser
                 }
             }
         }
