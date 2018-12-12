@@ -465,6 +465,13 @@ def convertSharePathToLocal(String path){
     return path
 }
 
+def convertPathToURI(String path){
+    path = path.replace(&apos;\\&apos;,&apos;%5C&apos;)
+    return path
+}
+
+
+
 
 def testId = &apos;&apos;;
 
@@ -521,8 +528,9 @@ node(&apos;master&apos;){
                     path = getSuiteFullPath(productPath);
                     println &apos;path: &apos; + path;
                     copyCsvFileName(path)
+                    pathForJS=convertPathToURI(path)
                     //3:save data to database
-                    def suiteRemoteLocation = convertLocalPathToShare(path,env.ATEControllerEngine)
+                    def suiteRemoteLocation = convertLocalPathToShare(pathForJS,env.ATEControllerEngine)
                     saveCsvDataToDatabase(testId,suiteRemoteLocation,productPath);
                     scriptNumber = &apos;&apos;;
                     //4:save the script number that the eggplanet should execute
