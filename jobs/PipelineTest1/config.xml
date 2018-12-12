@@ -38,18 +38,182 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
-    <script>import java.io.File;
-    import java.io.FilenameFilter;
-import org.apache.commons.io.FileUtils
-node(&apos;master&apos;) {
+    <script>import hudson.model.Computer.ListPossibleNames
+import static groovy.io.FileType.FILES
+import hudson.model.*
+ import groovy.transform.Field
+ 
+List&lt;String&gt; artifacts = new ArrayList&lt;String&gt;()
+ToolTypeShortName= [&apos;Archer700&apos;:&apos;A700&apos;,&apos;Archer600&apos;:&apos;A600&apos;,&apos;Archer500&apos;:&apos;A500&apos;,&apos;Archer TL&apos;:&apos;ATL&apos;]
 def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
-String TestSuite=&apos;AIMTrainSuite1.csv&apos;
-def productPath=&apos;A700&apos;
-def controller=&apos;scm-ate-02&apos;
-def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&apos;file://&apos;+controller+&apos;/C$&apos;)
-print(&quot;new path: &quot;+updatePath);
-File f = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;)
-print getPath(TestSuite,&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;)
+def getRegistrykey(host){
+    stage(&apos;get Registry key&apos;){
+        node(host){
+            def commit = bat (returnStdout: true, script: &apos;&apos;&apos;reg query &quot;HKEY_LOCAL_MACHINE\\SOFTWARE\\KLA-Tencor\\OM\\5300\\Machine\\Software Version\\Platform Software Version&quot; /ve&apos;&apos;&apos;).split()
+            return commit.reverse()[0] //Getting the last element of the stdout
+        }
+    }
+   }
+
+def sendTestPlan(controller, sut, version){
+    testsuite = params.TestSuite.replace(&apos;.csv&apos;, env.BUILD_NUMBER+&apos;.csv&apos;);
+    try{
+        return sendHttpRequest(&apos;send test plan&apos;,&apos;savecsv&apos;,[controller,params.ToolType.replaceAll(&quot;\\s&quot;,&quot;&quot;),sut,version,env.SimulatorEngine,testsuite,currentBuild.getNumber()])
+    }catch(Exception e){
+        print (&quot;Exception error:&quot;+e.getMessage())
+        error (&quot;message:&quot;+e.getMessage())
+    }
+}
+
+def saveCsvDataToDatabase(testId,csvFilePath,productPath){
+    try{
+        return sendHttpRequest(&apos;save csv data to database&apos;,&apos;savecsvdata&apos;,[testId,csvFilePath,productPath])
+    }catch(Exception e){
+        print (&quot;Exception error:&quot;+e.getMessage())
+        error (&quot;message:&quot;+e.getMessage())
+    }
+}
+
+def saveReportByPlanId(testId){
+    return sendHttpRequest(&apos;save Report By Plan Id&apos;,&apos;savereportbypath&apos;,[testId])
+}
+
+def updateStatus(testId, value){
+    return sendHttpRequest(&apos;update value&apos;,&apos;updatevalue&apos;,[testId,value])
+}
+
+def getSuiteFullPath(productPath){
+    println (&quot;Working with productPath:&quot;+productPath)
+    println (&quot;Working with params.TestSuite:&quot;+params.TestSuite)
+    
+    def updatedSearchPath= convertLocalPathToShare(suitesRootFolderPerToolType[productPath],env.ATEControllerEngine)
+    print(&apos;Looking for suite: &apos;+params.TestSuite+ &apos;in path: &apos;+updatedSearchPath);
+    def suitScriptPath=getPath(params.TestSuite,updatedSearchPath)
+    if (suitScriptPath==null){
+        error (&apos;Unable to find suite at\&apos;&apos;+updatedSearchPath+&apos;\&apos;&apos;)
+    }else {
+        print (&apos;Suite found:&apos;+suitScriptPath)
+    }
+    def suitScriptPath_fixed = convertSharePathToLocal(suitScriptPath).replace(&apos;.csv&apos;, &apos;&apos;);
+    return suitScriptPath_fixed
+}
+
+
+def updateScriptsNumber(testId){
+    return sendHttpRequest(&apos;update plan script number&apos;,&apos;savecounttoplanid&apos;,[testId])
+}
+
+def sendHttpRequest(stepDesc,action,params){
+    stage(stepDesc){
+        node(&apos;master&apos;){
+            try{
+                params.add(0, action);
+                def response = httpRequest &apos;http://&apos;+ReportingSystemURL + &apos;/report/&apos; + params.join(&apos;/&apos;);
+                println(&apos;response: &apos;+ response.content);
+                return response.content;
+            }catch(Exception e){
+                error (message:e.getMessage())
+            }
+        }
+    }
+}
+def runAutoDeploySanity(testId, path, scriptNumber,sut, controller,version){
+    def testsuite = params.TestSuite.replace(&apos;.csv&apos;, &apos;&apos;);
+    def ateBasePath = &apos;\\\\&apos;+env.ATEControllerEngine+&apos;\\c$\\ATE_Automation\\&apos;+ ToolTypeShortName[params.ToolType];
+    def MajorMinor_Ver2 = params.MajorMinor_Ver.replace(&apos;,&apos;, &apos;&apos;);
+    println(MajorMinor_Ver2)
+    def BaseImage2 = params.BaseImage.replace(&apos;,&apos;, &apos;&apos;);
+    println(&apos;BaseImage2: &apos;+BaseImage2)
+    
+    
+        node(&apos;master&apos;){
+            stage(&apos;run Auto Deploy Sanity&apos;){
+              def result
+              result = build job: &apos;ATARS_Auto Deploy Sanity&apos;,propagate:false,
+                    parameters: [
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, value: controller], //we have it
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;ToolType&apos;, value: params.ToolType ], //we have it
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;TestSuite&apos;, value: testsuite+env.BUILD_NUMBER ],
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;BUILD_VERSION&apos;, value: version ], 
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;SimulatorEngine&apos;, value: sut  ],
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;TEST_ID&apos;, value: testId ],
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;SCRIPT_NUMBER&apos;, value: scriptNumber ],
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;TestSuitePath&apos;, value: path ],
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;MajorMinor_Ver&apos;, value: MajorMinor_Ver2 ],//we have it
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;BaseImage&apos;, value: BaseImage2 ],//we have it
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;BaseImagePath&apos;, value: params.BaseImagePath ],//we have it
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;BUILDTYPE&apos;, value: params.BUILDTYPE ],//we have it
+                                 [$class: &apos;BooleanParameterValue&apos;, name: &apos;Auto_Deploy_Sanity&apos;, value: params.Auto_Deploy_Sanity ],//we have it   
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;ATEBasePath&apos;, value: ateBasePath ],
+                                [$class: &apos;StringParameterValue&apos;, name: &apos;product&apos;, value: ToolTypeShortName[params.ToolType] ],
+                                [$class: &apos;BooleanParameterValue&apos;, name: &apos;RunNunitTests&apos;, value: params.RunNunitTests ]
+                                 ]
+            
+            currentBuild.result = result.result
+        }
+    }
+}
+def getEmailData(testId){
+    return sendHttpRequest(&apos;get email data&apos;,&apos;getemaildata&apos;,[testId])
+}
+def sendEmail(testId,emailInfo){
+        stage(&apos;send email&apos;){
+        node(&apos;master&apos;){
+      emailext subject: &quot;${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.result}&quot;,
+        body: ReportingSystemURL + &apos;/reportsDetails/planId/&apos; + testId +   &apos;${SCRIPT, template=&quot;klaemail.groovy&quot;}&apos; + emailInfo,
+        recipientProviders: [
+            [$class: &apos;RequesterRecipientProvider&apos;]
+        ], 
+        replyTo: &apos;$DEFAULT_REPLYTO&apos;,
+        to: &apos;$DEFAULT_RECIPIENTS&apos;
+        }
+    }
+}
+
+
+
+def getFreeHostPerLabel(label) {
+    selectedNode=&apos;-1&apos;
+    Jenkins.getInstance().getLabel(&apos;sut&apos;).getNodes().any { node -&gt;
+            if (!node.getComputer().isOffline() &amp;&amp; node.getComputer().countBusy()==0){
+                println &quot;Selected Node: &quot; +  node.getNodeName()
+                selectedNode = node.getNodeName()
+                return selectedNode
+            }
+    }
+    return selectedNode
+}
+
+def copyCsvFileName(path){
+    def testsuite_trimSuffix = params.TestSuite.replace(&apos;.csv&apos;, &apos;&apos;);
+    node(env.ATEControllerEngine){
+        bat (script:&quot;&quot;&quot; copy ${path}\\${testsuite_trimSuffix}.csv ${path}\\${testsuite_trimSuffix}${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
+    }
+}
+def deleteCsvFileName(path){
+    node(env.ATEControllerEngine){
+        bat ( script:&quot;&quot;&quot; del /s /q ${path}\\*${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
+    }
+}
+
+def getBuildAbortionUser(){
+    def causee = &apos;&apos;
+    def actions = currentBuild.getRawBuild().getActions(jenkins.model.InterruptedBuildAction)
+    println actions;
+    for (action in actions) {
+        def causes = action.getCauses()
+        // on cancellation, report who cancelled the build
+        for (cause in causes) {
+            causee = cause.getUser().getDisplayName()
+            println &apos;here&apos;;
+            println causee;
+            isAborted = true;
+            cause = null
+        }
+        causes = null
+        action = null
+    }
+    actions = null
 }
 
 private String getPath(String drl, String whereIAm) {
@@ -62,6 +226,116 @@ private String getPath(String drl, String whereIAm) {
         }
     }
     return null;
+}
+private String convertLocalPathToShare(String path,String machine){
+    path.replace(&apos;:&apos;,&apos;$&apos;)
+    path= &apos;\\\\&apos;+env.ATEControllerEngine+&apos;\\&apos;+path
+    return path
+}
+
+private String convertSharePathToLocal(String path){
+    path.replace(&apos;$&apos;,&apos;:&apos;)
+    path = path.substring(path.indexOf(&apos;:&apos;)-1)
+    return path
+}
+
+
+def testId = &apos;&apos;;
+
+def tempHost = &apos;&apos;;
+def sutIp = &apos;&apos;;
+def host = &apos;&apos;;
+def waitA = false;
+def repeatee = 0;
+def path = &apos;&apos;;
+def scriptNumber = &apos;&apos;;
+def version = &apos;&apos;;
+def isAborted = false;
+def isUNSTABLE = false;
+node(&apos;master&apos;){
+ wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {   
+    try{
+        controller = env.ATEControllerEngine
+        println &apos;env.SimulatorEngine: &apos; + env.SimulatorEngine
+        currentBuild.description = &quot;Executing suite &apos;&quot;+params.TestSuite+&quot;&apos; with &quot;+params.ToolType
+        lock(&apos;looking for free simulator&apos;){
+            if (env.SimulatorEngine == &apos;sut&apos;){
+                sleep 3 //sleep for 3 seconds to get the previous selected node be alocatted
+                println &apos;choose sut parameter will choose from list of avaliable simulators&apos;
+                waitUntil {
+                    println &apos;looking for avialable sut&apos;
+                    host = getFreeHostPerLabel(&apos;sut&apos;);
+                    waitA = host != &apos;-1&apos; ? true : false;
+                    repeatee++;
+                    if(!waitA){
+                        println &apos;sleep 60 sec&apos;
+                        sleep 60
+                    }
+                    return waitA;
+                }
+                println &apos;host &apos;+host
+                env.SimulatorEngine = host;
+            }else{
+                println &apos;choose simulator by name&apos;
+                host = env.SimulatorEngine;
+            }
+            version = params.Auto_Deploy_Sanity ? env.BUILD_VERSION:getRegistrykey(host).substring(1).trim();
+        }
+        
+        lock(resource: host/**, inversePrecedence: true**/){
+            stage(&apos;lock slave&apos;){
+                node(host){
+                    def productPath =&apos;&apos;;
+                    productPath = ToolTypeShortName[params.ToolType];
+                    println &apos;productPath &apos; + productPath;
+                    //1: save details
+                    testId = sendTestPlan(env.ATEControllerEngine, host, version);
+                    println &apos;testid:&apos;+testId;
+                    //2:get the master suite real path 
+                    path = getSuiteFullPath(productPath);
+                    println &apos;path: &apos; + path;
+                    copyCsvFileName(path)
+                    //3:save data to database
+                    def suiteRemoteLocation = convertLocalPathToShare(path,env.ATEControllerEngine)
+                    saveCsvDataToDatabase(testId,suiteRemoteLocation,productPath);
+                    scriptNumber = &apos;&apos;;
+                    //4:save the script number that the eggplanet should execute
+                    scriptNumber = updateScriptsNumber(testId);
+                    println &apos;scriptNumber: &apos; + scriptNumber;
+                    updateStatus(testId, &apos;In_Progress&apos;)
+                    //6:execute the KLA logic 
+                    currentBuild.description = &quot;Executing suite &apos;&quot;+params.TestSuite+&quot;&apos; with &quot;+params.ToolType + &quot; on &quot; + host
+                    if(params.Auto_Deploy_Sanity){
+                        println &apos;full suite&apos; 
+                        runAutoDeploySanity(testId,path, scriptNumber, host, controller, version);
+                    }else{
+                        println &apos;regualr suite&apos; 
+                        runAutoDeploySanity(testId,path, scriptNumber, host, controller,version);
+                    }
+                }
+            }
+        }
+        print (&quot;currentBuild.result=&quot;+currentBuild.result)
+        }catch(Exception e){
+            println &apos;Execution end with exception: &apos; + e;
+            currentBuild.result=&apos;ABORTED&apos;
+        }finally  {
+            deleteCsvFileName(path)
+            if(currentBuild.result == &apos;SUCCESS&apos;){
+                updateStatus(testId, &apos;Finish&apos;);
+                saveReportByPlanId(testId);
+            } else if(currentBuild.result == &apos;UNSTABLE&apos;){
+                updateStatus(testId, &apos;Finish&apos;);
+                saveReportByPlanId(testId);
+            }else if(currentBuild.result == &apos;FAILURE&apos;){
+                updateStatus(testId, &apos;Crash&apos;);
+            }else if(currentBuild.result == &apos;ABORTED&apos;){
+                updateStatus(testId, &apos;Aborted&apos;);
+            }
+            def emailInfo = getEmailData(testId);
+            sendEmail(testId, emailInfo);
+        }
+ }
 }</script>
     <sandbox>false</sandbox>
   </definition>
