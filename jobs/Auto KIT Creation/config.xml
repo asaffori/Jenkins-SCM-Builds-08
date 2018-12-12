@@ -186,6 +186,7 @@ pipeline {
 						bat &quot;xcopy &quot;+&quot;${phoenixpath}\\V${phoenixshortver}\\V${phoenixver}\\*.*&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\ /f&quot;
 					
 					}
+					bat &quot;xcopy &quot;+&quot;${networkpath}\\Archer_Installations\\SupportFiles\\${milversion}_Installation.exe&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ /f&quot;
 	
 				}
 			}
