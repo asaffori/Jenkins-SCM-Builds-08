@@ -48,26 +48,14 @@ def productPath=&apos;A700&apos;
 def controller=&apos;scm-ate-02&apos;
 def updatePath=suitesRootFolderPerToolType[productPath].replace(&apos;C:&apos;,&apos;file://&apos;+controller+&apos;/C$&apos;)
 print(&quot;new path: &quot;+updatePath);
-//println new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).list().find{it=~/.*$/}
+File f = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;)
 
+File[] matchingFiles = f.listFiles(new FilenameFilter() {
+    public boolean accept(File dir, String name) {
+        return name.startsWith(&quot;AIMTrainSuite&quot;) &amp;&amp; name.endsWith(&quot;csv&quot;);
+    }
+});
 
-
-//    File directory = new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;);
-
-
-new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).traverse(type: FILES, maxDepth: 10) {
-    //if(it.name.endsWith(&apos;.csv&apos;)) {
-        println it
-    //}
-}
-
-/*
-    new File(&apos;//scm-ate-02/C$/ATE_Automation/A700/ATE/TestCases/SQC/Imaging_New_TCUI&apos;).any {file-&gt;
-        print (&apos;it:&apos;+file.getAbsolutePath())
-        if(file.name =~ &apos;/&apos;+TestSuite+&apos;$/&apos;) {
-            println f
-        }
-    }*/
 }</script>
     <sandbox>false</sandbox>
   </definition>
