@@ -42,7 +42,6 @@
 import hudson.model.*
 node(&apos;master&apos;) {
 def suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
-print suitesRootFolderPerToolType
 def TestSuite=&apos;a.csv&apos;
 def productPath=&apos;A700&apos;
 System.out.println(&quot;new path: &quot;+new File(suitesRootFolderPerToolType[productPath]).toPath().toUri());
