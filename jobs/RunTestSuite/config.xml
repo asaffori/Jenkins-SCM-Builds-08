@@ -317,8 +317,8 @@ def getSuiteFullPath(productPath){
     }else {
         print (&apos;Suite found:&apos;+suitScriptPath)
     }
-    def suitScriptPath_fixed = convertSharePathToLocal(suitScriptPath).replace(&apos;.csv&apos;, &apos;&apos;);
-    return suitScriptPath_fixed
+    //def suitScriptPath_fixed = convertSharePathToLocal(suitScriptPath).replace(&apos;.csv&apos;, &apos;&apos;);
+    return suitScriptPath
 }
 
 
@@ -408,14 +408,15 @@ def getFreeHostPerLabel(label) {
 }
 
 def copyCsvFileName(path){
-    def testsuite_trimSuffix = params.TestSuite.replace(&apos;.csv&apos;, &apos;&apos;);
+    def updated_path = path.replace(&apos;.csv&apos;, &apos;&apos;);
     node(env.ATEControllerEngine){
-        bat (script:&quot;&quot;&quot; copy ${path}\\${testsuite_trimSuffix}.csv ${path}\\${testsuite_trimSuffix}${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
+        bat (script:&quot;&quot;&quot; copy ${updated_path}.csv ${updated_path}${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
     }
 }
 def deleteCsvFileName(path){
+    def updated_path = path.replace(&apos;.csv&apos;, &apos;&apos;);
     node(env.ATEControllerEngine){
-        bat ( script:&quot;&quot;&quot; del /s /q ${path}\\*${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
+        bat ( script:&quot;&quot;&quot; del /s /q ${updated_path}${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
     }
 }
 
