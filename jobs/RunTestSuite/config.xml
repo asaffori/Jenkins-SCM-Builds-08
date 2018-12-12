@@ -531,7 +531,7 @@ node(&apos;master&apos;){
                     //3:save data to database
                     def suiteRemoteLocation = convertLocalPathToShare(path,env.ATEControllerEngine)
                     pathForJS=convertPathToURI(suiteRemoteLocation)
-                    saveCsvDataToDatabase(testId,pathForJS,productPath);
+                    saveCsvDataToDatabase(pathForJS,testId,productPath);
                     scriptNumber = &apos;&apos;;
                     //4:save the script number that the eggplanet should execute
                     scriptNumber = updateScriptsNumber(testId);
