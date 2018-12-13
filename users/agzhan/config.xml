@@ -85,6 +85,7 @@
         <string>CA1NAS12-SSCMdata-CH</string>
         <string>WIN-DYSD-Migration-CH</string>
         <string>ISR1NAS03-FI_OMD-RO</string>
+        <string>DL-OMD-A500-Release</string>
         <string>WIN-DYSD-sepg-RO</string>
         <string>WIN-DYSD-IMPACT_met-RO</string>
         <string>WIN-DYSD-Image-CH</string>
@@ -142,6 +143,7 @@
         <string>ISR1NAS01-UserDoc-RO</string>
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
         <string>Ca1fs01-TN-analyzes-RO</string>
+        <string>DL-OMD-A700-Release</string>
         <string>CA1NAS02-SSCM-CH</string>
         <string>DL-All-Asia</string>
         <string>DL-OMD-ENG-SCM</string>
@@ -151,6 +153,7 @@
         <string>Ca1nas11-Autodesk-RO</string>
         <string>ISR1FP04-CC6-CH</string>
         <string>DPM_Users_Old</string>
+        <string>DL-OMD-ATL-Release</string>
         <string>PasswordManager</string>
         <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
         <string>OMD Nightly Build Recipients</string>
@@ -194,7 +197,7 @@
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1542877889651</timestamp>
+      <timestamp>1544667244886</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
