@@ -103,7 +103,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.70">
-      <scriptText>job(FormalTrigger) {
+      <scriptText>job(&quot;${FormalTrigger}&quot;) {
     logRotator(30, -1)
   	parameters {
       	nodeParam(&apos;FlowController&apos;) {
