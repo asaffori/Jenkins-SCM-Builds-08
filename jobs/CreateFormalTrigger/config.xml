@@ -69,6 +69,18 @@
           <defaultValue>OMD_${Version}_Formal_Trigger</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>DevStream</name>
+          <description></description>
+          <defaultValue>Archer_${Version}_Dev</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>IntegStream</name>
+          <description></description>
+          <defaultValue>Archer_${Version}_Integ</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -212,7 +224,7 @@ build.getLog(100).each{
 									unstable(&apos;UNSTABLE&apos;)
 								}
 								parameters {
-									predefinedProps([MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;, fromStream: &quot;Archer_${Version}_Dev&quot;,toStream:&quot;Archer_${Version}_Integ&quot;])
+                                  predefinedProps([MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;, fromStream: &quot;${DevStream}&quot;,toStream:&quot;${IntegStream}&quot;])
 								}
 							}
 						}
@@ -244,7 +256,7 @@ build.getLog(100).each{
 									unstable(&apos;UNSTABLE&apos;)
 								}
 								parameters {
-									predefinedProps([MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;, sStream: &apos;&apos;,tStream:&quot;Archer_${Version}_Integ&quot;,BUILD_VERSION:&apos;${BUILD_VERSION}&apos;,recipientList:&apos;DL-OMD-ENG-SCM@KLA-Tencor.com&apos;,CopyToShare:&apos;true&apos;])
+                                  predefinedProps([MajorMinor_Ver: &apos;${MajorMinor_Ver}&apos;, sStream: &apos;&apos;,tStream:&quot;${IntegStream}&quot;,BUILD_VERSION:&apos;${BUILD_VERSION}&apos;,recipientList:&apos;DL-OMD-ENG-SCM@KLA-Tencor.com&apos;,CopyToShare:&apos;true&apos;])
 								}
 							}
 						}
@@ -296,8 +308,8 @@ build.getLog(100).each{
 						predefinedProp(&apos;team_scm_workspaceUUID&apos;,&apos;${team_scm_workspaceUUID}&apos;)
 						predefinedProp(&apos;RunAutoRebase&apos;,&apos;${RunAutoMerge}&apos;)
                     predefinedProp(&apos;ScheduledBuildJenkinsJobName&apos;,&quot;${ScheduledTrigger}&quot;)
-						predefinedProp(&apos;Integ_Stream_Name&apos;,&quot;Archer_${Version}_Integ&quot;)
-						predefinedProp(&apos;Dev_Stream_Name&apos;,&quot;Archer_${Version}_Dev&quot;)
+                    predefinedProp(&apos;Integ_Stream_Name&apos;,&quot;${IntegStream}&quot;)
+                    predefinedProp(&apos;Dev_Stream_Name&apos;,&quot;${DevStream}&quot;)
 				  }
 			 }
 		}
