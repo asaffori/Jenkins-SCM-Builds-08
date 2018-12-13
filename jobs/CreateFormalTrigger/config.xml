@@ -84,11 +84,11 @@
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
           <name>IntegStream</name>
           <description></description>
-          <randomName>choice-parameter-400607839488817</randomName>
+          <randomName>choice-parameter-400698216644852</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.44">
-              <script>return &quot;Archer_${BUILD_VERSION}_Integ&quot;</script>
+              <script>return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;Archer_${BUILD_VERSION}_Integ\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
               <sandbox>false</sandbox>
             </secureScript>
             <secureFallbackScript plugin="script-security@1.44">
