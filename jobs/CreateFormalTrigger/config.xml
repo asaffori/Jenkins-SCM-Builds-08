@@ -78,7 +78,7 @@
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
           <name>IntegStream</name>
           <description></description>
-          <randomName>choice-parameter-400918776897343</randomName>
+          <randomName>choice-parameter-400985241130925</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.44">
@@ -99,11 +99,11 @@
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
           <name>DevStream</name>
           <description></description>
-          <randomName>choice-parameter-400918811986998</randomName>
+          <randomName>choice-parameter-400985248177910</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.44">
-              <script>return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;Archer_${Version}_Dev&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <script>return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;Archer_${Version}_Integ\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
               <sandbox>false</sandbox>
             </secureScript>
             <secureFallbackScript plugin="script-security@1.44">
