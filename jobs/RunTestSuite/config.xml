@@ -471,6 +471,7 @@ def convertSharePathToLocal(String path){
 
 def convertPathToURI(String path){
     path = path.replace(&apos;\\&apos;,&apos;%5C&apos;)
+    path = path.replace(&apos;/&apos;,&apos;%5C&apos;)
     return path
 }
 
