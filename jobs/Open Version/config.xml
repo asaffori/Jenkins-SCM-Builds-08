@@ -176,15 +176,7 @@
 				], wait: true
 			}
 		}
-		stage (&apos;CreateVersionFile&apos;){
-			steps{
-				script{
-					File VersionFile = new File(versionfilepath+&quot;\\&quot;+env.InputVersionfile)
-					if(VersionFile.exists()) VersionFile.delete()
-					VersionFile.write &quot;CurrentVersion=&quot;+env.InputStartingVersion+&quot;\nCurrentRunnningVersion=&quot;+env.InputStartingVersion
-				}
-			}
-		}
+		
 		stage (&apos;CreateHelpFolder&apos;){
 			steps{
 				script{
@@ -193,6 +185,15 @@
 					echo basever
 					if(params.Version.length()&gt;6) MajorMinor=params.Version.substring(0,5) else MajorMinor=params.Version
 					bat &quot;xcopy ${networkpath}\\Archer_Installations\\NuArcher_V${basever}\\HelpFiles\\*.* ${networkpath}\\Archer_Installations\\NuArcher_V${MajorMinor}\\HelpFiles\\ /f /s&quot;
+				}
+			}
+		}
+		stage (&apos;CreateVersionFile&apos;){
+			steps{
+				script{
+					File VersionFile = new File(versionfilepath+&quot;\\&quot;+env.InputVersionfile)
+					if(VersionFile.exists()) currentBuild.result = &apos;UNSTABLE&apos;
+					VersionFile.write &quot;CurrentVersion=&quot;+env.InputStartingVersion+&quot;\nCurrentRunnningVersion=&quot;+env.InputStartingVersion
 				}
 			}
 		}
