@@ -91,7 +91,12 @@
             </secureFallbackScript>
           </script>
           <projectName>CreateFormalTrigger</projectName>
-          <parameters class="linked-hash-map"/>
+          <parameters class="linked-hash-map">
+            <entry>
+              <string>Version</string>
+              <string></string>
+            </entry>
+          </parameters>
           <referencedParameters>Version</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>false</omitValueField>
@@ -112,7 +117,12 @@
             </secureFallbackScript>
           </script>
           <projectName>CreateFormalTrigger</projectName>
-          <parameters class="linked-hash-map"/>
+          <parameters class="linked-hash-map">
+            <entry>
+              <string>Version</string>
+              <string></string>
+            </entry>
+          </parameters>
           <referencedParameters>Version</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>false</omitValueField>
@@ -132,7 +142,7 @@
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
-  <disabled>false</disabled>
+  <disabled>true</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
