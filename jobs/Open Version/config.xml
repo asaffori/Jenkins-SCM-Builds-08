@@ -168,11 +168,21 @@
 			steps (&apos;CreateTriggerJob&apos;){
 				build job: &apos;CreateScheduledTrigger&apos;, parameters: 
 				[
-				[$class: &apos;StringParameterValue&apos;, name: &apos;Version&apos;, value:params.Version]
+				[$class: &apos;StringParameterValue&apos;, name: &apos;Version&apos;, value:params.Version],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;RTCWorkSpace&apos;, value:env.InputDevWorkspace],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;VersionFileName&apos;, value:env.InputVersionfile],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;RTCBuildDefinition&apos;, value:env.InputScheduledBD],
 				], wait: true
 				build job: &apos;CreateFormalTrigger&apos;, parameters: 
 				[
 				[$class: &apos;StringParameterValue&apos;, name: &apos;Version&apos;, value:params.Version],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;FormalTrigger&apos;, value:env.InputFormalTrigger],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;ScheduledTrigger&apos;, value:env.InputScheduledTrigger],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;RTCWorkSpace&apos;, value:env.InputIntegWorkspace],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;VersionFileName&apos;, value:env.InputVersionfile],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;IntegStream&apos;, value:env.InputIntegStream],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;DevStream&apos;, value:env.InputDevStream],
+				[$class: &apos;StringParameterValue&apos;, name: &apos;RTCBuildDefinition&apos;, value:env.InputFormalBD],
 				], wait: true
 			}
 		}
