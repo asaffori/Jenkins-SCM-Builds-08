@@ -81,6 +81,27 @@
           <defaultValue>Archer_${Version}_Integ</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>IntegStream</name>
+          <description></description>
+          <randomName>choice-parameter-400607839488817</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>return &quot;Archer_${BUILD_VERSION}_Integ&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script></script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>CreateFormalTrigger</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>Version</referencedParameters>
+          <choiceType>ET_TEXT_BOX</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
