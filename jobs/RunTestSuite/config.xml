@@ -281,7 +281,7 @@ def getRegistrykey(host){
 def sendTestPlan(controller, sut, version){
     testsuite = params.TestSuite.replace(&apos;.csv&apos;, env.BUILD_NUMBER+&apos;.csv&apos;);
     try{
-        return sendHttpRequest(&apos;send test plan&apos;,&apos;savecsv&apos;,[controller,params.ToolType.replaceAll(&quot;\\s&quot;,&quot;&quot;),sut,version,env.SimulatorEngine,testsuite,currentBuild.getNumber()])
+        return sendHttpRequest(&apos;send test plan&apos;,&apos;savecsv&apos;,[controller,params.ToolType.replaceAll(&quot;\\s&quot;,&quot;&quot;),sut,version,env.SimulatorEngine,testsuite,currentBuild.getAbsoluteUrl()])
     }catch(Exception e){
         print (&quot;Exception error:&quot;+e.getMessage())
         error (&quot;message:&quot;+e.getMessage())
