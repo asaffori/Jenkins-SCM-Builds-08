@@ -39,6 +39,69 @@
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>RTCWorkSpace</name>
+          <description></description>
+          <randomName>choice-parameter-403369149743333</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;omdbuild_Archer_${Version}_Dev_Workspace\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script></script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>CreateScheduledTrigger</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>Version</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>VersionFileName</name>
+          <description></description>
+          <randomName>choice-parameter-403369157463308</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${Version}version.txt\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script></script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>CreateScheduledTrigger</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>Version</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>RTCBuildDefinition</name>
+          <description></description>
+          <randomName>choice-parameter-403369184277890</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;OMD-Archer-V${Version}-Scheduled-Jenkins\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script></script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>CreateScheduledTrigger</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>Version</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -60,16 +123,13 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.tasks.BatchFile>
-      <command></command>
-    </hudson.tasks.BatchFile>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.70">
-      <scriptText>job(&quot;OMD_${Version}_Scheduled_Trigger&quot;) {
+      <scriptText>job(&quot;${ScheduledTrigger}&quot;) {
     logRotator(30, -1)
   	parameters {
       stringParam(&apos;MajorMinor_Ver&apos;, &quot;${MajorMinorVer}&quot;,&apos;The majorMinor Version of the build&apos;)
       	stringParam(&apos;emailGroups&apos;, &apos;DL-OMD-SW-SQC@kla-tencor.com,DL-OMD-SW-SCOL@KLA-Tencor.com,DL-OMD-SW-Imaging@KLA-Tencor.com,DL-OMD-ENG-SCM@KLA-Tencor.com,DL-OMD-SW-ARCH@KLA-Tencor.com&apos;, &apos;Recipients of the Scheduled build&apos;)
-      stringParam(&apos;BUILD_VERSION&apos;, &quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version\\${Version}version.txt&quot;,&apos;&apos;)
+      stringParam(&apos;BUILD_VERSION&apos;, &quot;\\\\isr1appcc02\\scm\\OMD\\Jenkins_Build_Version\\${VersionFileName}&quot;,&apos;&apos;)
       	nodeParam(&apos;ReleaseBuildEngine&apos;) {
             description(&apos;select the release build machine&apos;)
             defaultNodes([&apos;SCM-Builds-V01&apos;])
@@ -95,7 +155,7 @@
         keepSystemVariables(true)
     	keepBuildVariables(true)
     	overrideBuildParameters()
-    	envs(BUILDTYPE: &apos;Scheduled&apos;, WSName: &quot;omdbuild_Archer_${Version}_Dev_Workspace&quot;,SnapshotName:&apos;INIT_UOMD_BLD_${BUILD_VERSION}&apos;)
+      envs(BUILDTYPE: &apos;Scheduled&apos;, WSName: &quot;${RTCWorkSpace}&quot;,SnapshotName:&apos;INIT_UOMD_BLD_${BUILD_VERSION}&apos;)
     	
     }
     configure { project -&gt;
@@ -104,7 +164,7 @@
           	overrideGlobal(&apos;false&apos;)
 			timeout(&apos;0&apos;)
 			buildType(&apos;buildDefinition&apos;)
-			buildDefinition(&quot;OMD-Archer-V${Version}-Scheduled-Jenkins&quot;)
+          buildDefinition(&quot;${RTCBuildDefinition}&quot;)
 			avoidUsingToolkit(&apos;false&apos;)
 			overrideDefaultSnapshotName(&apos;true&apos;)
           	customizedSnapshotName(&apos;${SnapshotName}&apos;)
