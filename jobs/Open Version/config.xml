@@ -76,6 +76,7 @@
         networkpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD&apos;
         builduser=&apos;omdbuild&apos;
         scmbuildpass=&quot;Scm07^&amp;&quot;
+        versionfilepath=&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_Version&apos;      
         
     }
     parameters {
@@ -142,8 +143,8 @@
 		stage (&apos;CreateWorkspace&apos;){
 			steps (&apos;CreateWorkspace&apos;) {
 	                script{
-						bat &quot;scm create workspace -r ${env.repositoryAddress} -u ${env.builduser} -P ${env.scmbuildpass} -s ${env.InputDevStream} ${env.InputDevWorkspace}&quot;
-						bat &quot;scm create workspace -r ${env.repositoryAddress} -u ${env.builduser} -P ${env.scmbuildpass} -s ${env.InputIntegStream}  ${env.InputIntegWorkspace}&quot;
+						bat &quot;scm create workspace -r ${repositoryAddress} -u ${builduser} -P ${scmbuildpass} -s ${env.InputDevStream} ${env.InputDevWorkspace}&quot;
+						bat &quot;scm create workspace -r ${repositoryAddress} -u ${builduser} -P ${scmbuildpass} -s ${env.InputIntegStream}  ${env.InputIntegWorkspace}&quot;
 					}
 			}
 		}
@@ -178,7 +179,7 @@
 		stage (&apos;CreateVersionFile&apos;){
 			steps{
 				script{
-					File VersionFile = new File(env.InputVersionfile)
+					File VersionFile = new File(versionfilepath+&quot;\\&quot;+env.InputVersionfile)
 					if(VersionFile.exists()) VersionFile.delete()
 					VersionFile.write &quot;CurrentVersion=&quot;+env.InputStartingVersion+&quot;\nCurrentRunnningVersion=&quot;+env.InputStartingVersion
 				}
