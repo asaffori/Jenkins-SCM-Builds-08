@@ -14,25 +14,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>MajorVersion</name>
-          <description>Which version to run Support build for? 
- example: 17.14_Support_Intel</description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>17.14_Support_Intel</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>BUILD_VERSION</name>
-          <description>Please enter version to run the build with</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.security.AuthorizationMatrixProperty>
       <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
       <permission>hudson.model.Item.Build:DL-Israel-OMD-Eng-SW</permission>
@@ -58,6 +39,26 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>MajorVersion</name>
+          <description>Which version to run Support build for? 
+ example: 17.14_Support_Intel</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>17.14_Support_Intel</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_VERSION</name>
+          <description>Please enter version to run the build with</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -84,7 +85,9 @@ parameters {
                     wrap([$class: &apos;BuildUser&apos;]) {
             				        currentBuild.description = &quot;Bulding OMD_${params.MajorVersion}_Formal_Trigger by &apos;${env.BUILD_USER}&apos;&quot;
                                 }
-                     build job:&quot;OMD_${params.MajorVersion}_Formal_Trigger&quot;
+                     build job:&quot;OMD_${params.MajorVersion}_Formal_Trigger&quot;,parameters: [
+                     [$class: &apos;NodeParameterValue&apos;, name: &apos;FlowController&apos;, labels: [&quot;${masternode}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
+                                                                                            string(name: &apos;BUILD_VERSION&apos;, value:params.BUILD_VERSION)]
                 }
             }
         }
