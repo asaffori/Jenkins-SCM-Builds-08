@@ -75,20 +75,35 @@
           <defaultValue>Archer_${Version}_Dev</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>IntegStream</name>
-          <description></description>
-          <defaultValue>Archer_${Version}_Integ</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
           <name>IntegStream</name>
           <description></description>
-          <randomName>choice-parameter-400760053575803</randomName>
+          <randomName>choice-parameter-400918776897343</randomName>
           <visibleItemCount>1</visibleItemCount>
           <script class="org.biouno.unochoice.model.GroovyScript">
             <secureScript plugin="script-security@1.44">
               <script>return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;Archer_${Version}_Integ\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script></script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>CreateFormalTrigger</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>Version</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>DevStream</name>
+          <description></description>
+          <randomName>choice-parameter-400918811986998</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;Archer_${Version}_Dev&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
               <sandbox>false</sandbox>
             </secureScript>
             <secureFallbackScript plugin="script-security@1.44">
