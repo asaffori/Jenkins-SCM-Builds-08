@@ -517,7 +517,7 @@ def executeSuite(TestSuite){
                             println &apos;looking for avialable controller&apos;
                             controller = getFreeHostPerLabel(&apos;Controller&apos;);
                             waitA = controller != &apos;-1&apos; ? true : false;
-                            repeatee++;
+                            //repeatee++;
                             if(!waitA){
                                 println &apos;sleep 60 sec&apos;
                                 sleep 60
@@ -540,7 +540,7 @@ def executeSuite(TestSuite){
                                 println &apos;looking for avialable sut&apos;
                                 host = getFreeHostPerLabel(&apos;sut&apos;);
                                 waitA = host != &apos;-1&apos; ? true : false;
-                                repeatee++;
+                                //repeatee++;
                                 if(!waitA){
                                     println &apos;sleep 60 sec&apos;
                                     sleep 60
