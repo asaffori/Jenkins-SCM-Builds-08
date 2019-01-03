@@ -380,6 +380,7 @@
         <string>MatlabTest</string>
         <string>OMD_Adham_Trigger</string>
         <string>Open Version</string>
+        <string>Release Version</string>
         <string>SharePointTest</string>
       </jobNames>
       <jobFilters/>
@@ -601,6 +602,7 @@
         <string>FileTransfer</string>
         <string>FileTransfer_Test</string>
         <string>GetResolvedList</string>
+        <string>Open Version</string>
         <string>UpdateAndPromoteBuildWIs</string>
         <string>UpLoadFile</string>
       </jobNames>
@@ -647,7 +649,10 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>ATARS_Auto Deploy Sanity</string>
         <string>ATARS_SanityTest</string>
+        <string>MonitorSanityJobExecutions</string>
+        <string>RunMultiTestSuites</string>
         <string>RunNunitColdIntegTests-ATARS</string>
+        <string>RunNunitHotIntegTests-ATARS</string>
         <string>RunTestSuite</string>
       </jobNames>
       <jobFilters/>
@@ -686,7 +691,7 @@
           </default>
           <int>1</int>
           <string>ReportingSystemURL</string>
-          <string>10.158.40.203:8082</string>
+          <string>10.158.9.129:8082</string>
         </tree-map>
       </envVars>
     </hudson.slaves.EnvironmentVariablesNodeProperty>
