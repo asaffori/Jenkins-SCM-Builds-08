@@ -492,7 +492,7 @@ def scriptNumber = &apos;&apos;;
 def version = &apos;&apos;;
 def isAborted = false;
 def isUNSTABLE = false;
-stage(&apos;run suite test&apos;){
+
     def suites_array = [:]
     def testSuitesArr =  params.TestSuite.split(&apos;,&apos;)
 
