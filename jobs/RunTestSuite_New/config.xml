@@ -501,7 +501,7 @@ stage(&apos;run suite test&apos;){
     }
     parallel suites_array
 
-def executeSuite(TestSuite)
+def executeSuite(TestSuite){
     this.TestSuite=TestSuite
     node(&apos;master&apos;){
         wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {   
