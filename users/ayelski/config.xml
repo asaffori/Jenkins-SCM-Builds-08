@@ -48,7 +48,127 @@
       <emailAddress>Alexander.Yelski@kla-tencor.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
     <jenkins.security.LastGrantedAuthoritiesProperty>
-      <timestamp>0</timestamp>
+      <roles>
+        <string>Bel1nas01-legacy_swx-RO</string>
+        <string>authenticated</string>
+        <string>CA1NAS02-WIN-BFDATA-CH</string>
+        <string>Sng2nas04-KTS_Mfg_Eng_HCL_Support-RO</string>
+        <string>Ca1nas12-BObjclts-RO</string>
+        <string>CA1NAS12-SSCMdata-RO</string>
+        <string>KLAIsraelAcc</string>
+        <string>CA1NAS07-CPG-UNT-RO</string>
+        <string>Isr1nas03-HR-RO</string>
+        <string>Ca1nas01-WINdownload-RO</string>
+        <string>Ca1ucsfs01-EMIE-RO</string>
+        <string>WIN-DYSD-DRCEng-CH</string>
+        <string>ISR1NAS01-DAILY-RO</string>
+        <string>ca1nas01-TWave-RO</string>
+        <string>WIN-DYSD-Tools-CH</string>
+        <string>DL-ALL-ISRAEL</string>
+        <string>Austinnt1-Austrain-CH</string>
+        <string>CA1NAS12-SSCMdata-CH</string>
+        <string>WIN-DYSD-Migration-CH</string>
+        <string>ISR1NAS03-FI_OMD-RO</string>
+        <string>WIN-DYSD-sepg-RO</string>
+        <string>WIN-DYSD-IMPACT_met-RO</string>
+        <string>WIN-DYSD-Image-CH</string>
+        <string>Twn1fp01-PCIDData-RO</string>
+        <string>DL-eQuality Users</string>
+        <string>CA1-CTX-Portal-Users</string>
+        <string>WIN-DYSD-WSODocs-CH</string>
+        <string>Citrix XenApp 7.6 - eQuality - Prod-English</string>
+        <string>Austinnt1-Cleanroom-CH</string>
+        <string>ca1fs01-Eric-R-Jong-CH</string>
+        <string>Isr1nas03-Viking-RO</string>
+        <string>Ca1nas01-GlobalOpsJMP-CH</string>
+        <string>DL-OMD-SW-Formal-Release</string>
+        <string>New HIRE Group</string>
+        <string>Ca1nas05-WIN-Projects--M37Public-RO</string>
+        <string>Delta-ws_MatchingMasterFiles-RO</string>
+        <string>UC-User-SING-Production</string>
+        <string>CA1NAS05-WIN-SCM-Archive2-RO</string>
+        <string>CA1-CTX-ALL-TEST</string>
+        <string>WIN-DYSD-Demo_solutions-CH</string>
+        <string>CA1NAS02-WIN-APPS-VideoTraining-RO</string>
+        <string>WIN-DYSD-ILM-CH</string>
+        <string>WIN-DYSD-Klarity-CH</string>
+        <string>Ca1nas05-WIN-Software-Blazer-RO</string>
+        <string>CA1NAS05-DYSD-RDS-Images-RO</string>
+        <string>CMS_USERS</string>
+        <string>KLA-ISRAEL</string>
+        <string>DL-PowerApps-ChinaWorkflow</string>
+        <string>DL-OMD-ARCHER-17-13</string>
+        <string>DL-OMD-ARCHER-17-12</string>
+        <string>DL-OMD-ARCHER-17-11</string>
+        <string>UC-User-Milp-Production</string>
+        <string>JPN1FS01-043-RO</string>
+        <string>DL-Hasaot-users</string>
+        <string>WIN-DYSD-IMPACT_meti-CH</string>
+        <string>WIN-DYSD-ftp-CH</string>
+        <string>DL-All-Israel-PasswordChange</string>
+        <string>CA1-CTX-KT-Employees</string>
+        <string>WIN-DYSD-Assignment-CH</string>
+        <string>PLANTOPS_OPERATOR</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-P-CH</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-TS-CH</string>
+        <string>WIN-EEP-Reports_Customers-CH</string>
+        <string>WIN-DYSD-ADCAlgorithm-CH</string>
+        <string>WIN-EEP-Logs_Input_Customers-CH</string>
+        <string>WIN-DYSD-Field-Apps-CH</string>
+        <string>sfsade-vm6-Fab-Test-CH</string>
+        <string>WIN-DYSD-ace-xp-recipe-CH</string>
+        <string>DL-ALL-REGULAR-EMPLOYEES-SPA</string>
+        <string>JazzUsers</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-S-CH</string>
+        <string>ISR1NAS01-UserDoc-RO</string>
+        <string>Ca1nas05-WIN-Software-Carrera-RO</string>
+        <string>Ca1fs01-TN-analyzes-RO</string>
+        <string>CA1NAS02-SSCM-CH</string>
+        <string>Ca1fs01-SS10K-info-RO</string>
+        <string>WIN-DYSD-SQATestData-CH</string>
+        <string>DPM_Users</string>
+        <string>Ca1nas11-Autodesk-RO</string>
+        <string>DPM_Users_Old</string>
+        <string>Isr1nas03-External_Files_for_Sharing-RO</string>
+        <string>PasswordManager</string>
+        <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
+        <string>DL-OMD-SW-Imaging</string>
+        <string>chn2vmfs01-Shanghai-I-Intel-C-CH</string>
+        <string>CA1NAS01-WINField-CH</string>
+        <string>ca1fs01-KlearPoint-CH</string>
+        <string>WIN-DYSD-STADB-CH</string>
+        <string>MI Production KLA Mobile</string>
+        <string>Citrix XenApp 7.6 - KT STD Desktops - Prod</string>
+        <string>CA1SFSFP01-Integration-RO</string>
+        <string>ca1nas11-AMSRCRD-RO</string>
+        <string>DL-ALL-Employees-SPA</string>
+        <string>ISR1NAS01-ToolsDataCollections-RO</string>
+        <string>WIN-DYSD-Recipe-CH</string>
+        <string>CA1NAS04-WIN-Software-RO</string>
+        <string>ZZZ-SRV-ISREXCHANGE</string>
+        <string>WIN-DYSD-adc-plc-CH</string>
+        <string>ca1nas05-WIN-OpenShares-CH</string>
+        <string>Citrix XenApp 7.6 - eQuality - Prod-Chinese</string>
+        <string>ISR1NAS01-SW-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-P-CH</string>
+        <string>DL-All-Global_temp</string>
+        <string>WIN-DYSD-Picnic-RO</string>
+        <string>MI Production KLA O365 Mail</string>
+        <string>DL-All-eQuality Users</string>
+        <string>NewHireGroup-10-19</string>
+        <string>chn2vmfs01-Shanghai-I-GF-S-CH</string>
+        <string>Quota</string>
+        <string>Ca1nas11-KT-Insight-Program-RO</string>
+        <string>WIN-DYSD-IMPACT_Min-CH</string>
+        <string>Domain Users</string>
+        <string>PCS-Open-CH</string>
+        <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
+        <string>MI Production KLA AppConnect</string>
+        <string>Ca1fs01-MFG-RO</string>
+        <string>WIN-DYSD-Satellite_release-RO</string>
+      </roles>
+      <timestamp>1546508254216</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
