@@ -654,6 +654,7 @@
         <string>RunNunitColdIntegTests-ATARS</string>
         <string>RunNunitHotIntegTests-ATARS</string>
         <string>RunTestSuite</string>
+        <string>RunTestSuite_New</string>
       </jobNames>
       <jobFilters/>
       <columns>

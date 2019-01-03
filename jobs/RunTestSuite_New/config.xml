@@ -1,0 +1,610 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.23">
+  <actions/>
+  <description>1. save confige to database and return test id&lt;br&gt;&#xd;
+2. save to database the suite csv content&lt;br&gt;&#xd;
+3. update script number to database&lt;br&gt;&#xd;
+4. get suite full path &lt;br&gt;&#xd;
+5. run Auto deploy sanity&lt;br&gt;&#xd;
+</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.1">
+          <name>ATEControllerEngine</name>
+          <description>return list by label name</description>
+          <randomName>choice-parameter-499900997776700</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>def hostNames(label) {
+  def nodes = []
+//nodes.add(&quot;Controller&quot;);
+  jenkins.model.Jenkins.instance.computers.each { c -&gt;
+    if (c.node.labelString.contains(label)) {
+     //    if(c.node.getComputer().countBusy()==0){
+             nodes.add(c.node.selfLabel.name)
+      // }
+    }
+  }
+  return nodes
+}
+return hostNames(&apos;Controller&apos;)</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script></script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>RunTestSuite</projectName>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.ChoiceParameter>
+        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.1">
+          <name>SimulatorEngine</name>
+          <description>return list by label name</description>
+          <randomName>choice-parameter-501043087009200</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>def hostNames(label) {
+  def nodes = []
+nodes.add(&quot;sut&quot;);
+  jenkins.model.Jenkins.instance.computers.each { c -&gt;
+    if (c.node.labelString.contains(label)) {
+    //           if(c.node.getComputer().countBusy()==0){
+             nodes.add(c.node.selfLabel.name)
+      // }
+    }
+  }
+  
+  return nodes
+}
+return hostNames(&apos;sut&apos;)</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script></script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>RunTestSuite</projectName>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.ChoiceParameter>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>ToolType</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Archer700</string>
+              <string>Archer600</string>
+              <string>Archer TL</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <org.biouno.unochoice.CascadeChoiceParameter plugin="uno-choice@2.1">
+          <name>TestSuite</name>
+          <description>full installation suite choose&lt;br&gt;
+A700 Autorun_XYS_Suite_ATE&lt;br&gt;
+A600 Autorun_XYS_Suite_ATE_A600&lt;br&gt;
+TL AROL_Autorun_ATE_Suite
+</description>
+          <randomName>choice-parameter-606888549324100</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>import static groovy.io.FileType.FILES
+
+def getProductPath(toolType){
+    List&lt;String&gt; artifacts = new ArrayList&lt;String&gt;()
+if (ATEControllerEngine == &apos;Controller&apos;)
+    return artifacts
+	def props = new Properties()
+	File ToolTypeShortNames = new File(&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\ToolTypeShortNames.properties&apos;)
+	File propsFile = new File(&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;)
+	props.load(propsFile.newDataInputStream())
+	props.load(ToolTypeShortNames.newDataInputStream())
+	def suites_location=&apos;//&apos;+ATEControllerEngine+&apos;//&apos;+ props.getProperty(props.getProperty(toolType)).replace(&apos;:&apos;,&apos;$&apos;)
+
+    new File(suites_location).eachFileRecurse(FILES) {
+        if(it.name.toLowerCase().contains(&apos;suite&apos;)) {
+            artifacts.add(it.name)
+        }
+    }         
+        return artifacts;
+}
+try{
+
+return  getProductPath(ToolType)
+
+}catch(e){ return [e.toString()] }
+</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script></script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>RunTestSuite</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>ToolType,ATEControllerEngine</referencedParameters>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>true</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.CascadeChoiceParameter>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_VERSION</name>
+          <description>A700 17.12.01.20800&lt;br&gt;
+A600 17.12.01.30100&lt;br&gt;
+TL 17.12.01.30200</description>
+          <defaultValue>17.12.01.20800</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <randomName>choice-parameter-675957436262400</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>RunTestSuite</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>BUILD_VERSION</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <hudson.model.StringParameterDefinition>
+          <name>BaseImagePath</name>
+          <description></description>
+          <defaultValue>D:\BaseImage</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDTYPE</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Formal</string>
+              <string>Tasks</string>
+              <string>Scheduled</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>Auto_Deploy_Sanity</name>
+          <description>when false will not run restore and silent installtion</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>BaseImage</name>
+          <description>17.11.00.21200_A700_Nunit_Image&lt;br&gt;
+17.02.01.30100_A600_Mil_Nunit_Image&lt;br&gt;
+17.03.00.30400_TL_Mil_Nunit_Image&lt;br&gt;</description>
+          <randomName>choice-parameter-4921588572660600</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>def props = new Properties()
+File propsFile = new File(&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\ATE_BaseImages_ByToolType.properties&apos;)
+props.load(propsFile.newDataInputStream())
+return props.getProperty(ToolType)</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script></script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>RunTestSuite</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>ToolType</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RunNunitTests</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>PublishToTestRail</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
+    <script>import hudson.model.Computer.ListPossibleNames
+import static groovy.io.FileType.FILES
+import hudson.model.*
+import groovy.transform.Field
+ 
+List&lt;String&gt; artifacts = new ArrayList&lt;String&gt;()
+//ToolTypeShortName= [&apos;Archer700&apos;:&apos;A700&apos;,&apos;Archer600&apos;:&apos;A600&apos;,&apos;Archer500&apos;:&apos;A500&apos;,&apos;Archer TL&apos;:&apos;ATL&apos;]
+node (&apos;master&apos;){
+    suitesRootFolderPerToolType = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\SuiteDefaultPathPerToolType.properties&apos;
+    ToolTypeShortName = readProperties  file:&apos;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\ToolTypeShortNames.properties&apos;
+}
+def getRegistrykey(host){
+    stage(&apos;get Registry key&apos;){
+        node(host){
+            def commit = bat (returnStdout: true, script: &apos;&apos;&apos;reg query &quot;HKEY_LOCAL_MACHINE\\SOFTWARE\\KLA-Tencor\\OM\\5300\\Machine\\Software Version\\Platform Software Version&quot; /ve&apos;&apos;&apos;).split()
+            return commit.reverse()[0] //Getting the last element of the stdout
+        }
+    }
+   }
+
+def sendTestPlan(controller, sut, version){
+    testsuite = params.TestSuite.replace(&apos;.csv&apos;, env.BUILD_NUMBER+&apos;.csv&apos;);
+    try{
+        return sendHttpRequest(&apos;send test plan&apos;,&apos;savecsv&apos;,[controller,params.ToolType.replaceAll(&quot;\\s&quot;,&quot;&quot;),sut,version,env.SimulatorEngine,testsuite,convertPathToURI(currentBuild.getAbsoluteUrl())])
+    }catch(Exception e){
+        print (&quot;Exception error:&quot;+e.getMessage())
+        error (&quot;message:&quot;+e.getMessage())
+    }
+}
+
+def saveCsvDataToDatabase(testId,csvFilePath,productPath){
+    try{
+        return sendHttpRequest(&apos;save csv data to database&apos;,&apos;savecsvdata&apos;,[testId,csvFilePath,productPath])
+    }catch(Exception e){
+        print (&quot;Exception error:&quot;+e.getMessage())
+        error (&quot;message:&quot;+e.getMessage())
+    }
+}
+
+def saveReportByPlanId(testId){
+    return sendHttpRequest(&apos;save Report By Plan Id&apos;,&apos;savereportbypath&apos;,[testId])
+}
+
+def updateStatus(testId, value){
+    return sendHttpRequest(&apos;update value&apos;,&apos;updatevalue&apos;,[testId,value])
+}
+
+def getSuiteFullPath(productPath){
+    println (&quot;Working with productPath:&quot;+productPath)
+    println (&quot;Working with params.TestSuite:&quot;+params.TestSuite)
+    File file;
+    def updatedSearchPath= convertLocalPathToShare(suitesRootFolderPerToolType[productPath],env.ATEControllerEngine)
+    print(&apos;Looking for suite: &apos;+params.TestSuite+ &apos;in path: &apos;+updatedSearchPath);
+    def suitScriptPath=getPath(params.TestSuite,updatedSearchPath)
+    if (suitScriptPath==null){
+        error (&apos;Unable to find suite at\&apos;&apos;+updatedSearchPath+&apos;\&apos;&apos;)
+    }else {
+        print (&apos;Suite found:&apos;+suitScriptPath)
+        file=new File (suitScriptPath)
+        print (&apos;file name:&apos;+file.name)
+        print (&apos;file path:&apos;+file.getAbsoluteFile().getParent())
+        print (&apos;file path:&apos;+file.getPath())
+        print (&apos;file path:&apos;+file.getCanonicalPath())
+
+    }
+    def suitScriptPath_fixed = convertSharePathToLocal(file.getAbsoluteFile().getParent());
+    return suitScriptPath_fixed
+}
+
+
+def updateScriptsNumber(testId){
+    return sendHttpRequest(&apos;update plan script number&apos;,&apos;savecounttoplanid&apos;,[testId])
+}
+
+def sendHttpRequest(stepDesc,action,params){
+    stage(stepDesc){
+        node(&apos;master&apos;){
+            try{
+                params.add(0, action);
+                print (&apos;Running HTTP request for: httpRequest http://&apos;+ReportingSystemURL + &apos;/report/&apos; + params.join(&apos;/&apos;))
+                def response = httpRequest &apos;http://&apos;+ReportingSystemURL + &apos;/report/&apos; + params.join(&apos;/&apos;);
+                println(&apos;response: &apos;+ response.content);
+                return response.content;
+            }catch(Exception e){
+                error (message:e.getMessage())
+            }
+        }
+    }
+}
+def runAutoDeploySanity(testId, path, scriptNumber,sut, controller,version){
+    def testsuite = params.TestSuite.replace(&apos;.csv&apos;, &apos;&apos;);
+    def ateBasePath = &apos;\\\\&apos;+env.ATEControllerEngine+&apos;\\c$\\ATE_Automation\\&apos;+ ToolTypeShortName[params.ToolType];
+    def MajorMinor_Ver2 = params.MajorMinor_Ver.replace(&apos;,&apos;, &apos;&apos;);
+    println(MajorMinor_Ver2)
+    def BaseImage2 = params.BaseImage.replace(&apos;,&apos;, &apos;&apos;);
+    println(&apos;BaseImage2: &apos;+BaseImage2)
+    
+    
+        node(&apos;master&apos;){
+            stage(&apos;run Auto Deploy Sanity&apos;){
+              def result
+              result = build job: &apos;ATARS_Auto Deploy Sanity&apos;,propagate:false,
+                    parameters: [
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, value: controller], //we have it
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;ToolType&apos;, value: params.ToolType ], //we have it
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;TestSuite&apos;, value: testsuite+env.BUILD_NUMBER ],
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;BUILD_VERSION&apos;, value: version ], 
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;SimulatorEngine&apos;, value: sut  ],
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;TEST_ID&apos;, value: testId ],
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;SCRIPT_NUMBER&apos;, value: scriptNumber ],
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;TestSuitePath&apos;, value: path ],
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;MajorMinor_Ver&apos;, value: MajorMinor_Ver2 ],//we have it
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;BaseImage&apos;, value: BaseImage2 ],//we have it
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;BaseImagePath&apos;, value: params.BaseImagePath ],//we have it
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;BUILDTYPE&apos;, value: params.BUILDTYPE ],//we have it
+                                 [$class: &apos;BooleanParameterValue&apos;, name: &apos;Auto_Deploy_Sanity&apos;, value: params.Auto_Deploy_Sanity ],//we have it   
+                                 [$class: &apos;StringParameterValue&apos;, name: &apos;ATEBasePath&apos;, value: ateBasePath ],
+                                [$class: &apos;StringParameterValue&apos;, name: &apos;product&apos;, value: ToolTypeShortName[params.ToolType] ],
+                                [$class: &apos;BooleanParameterValue&apos;, name: &apos;RunNunitTests&apos;, value: params.RunNunitTests ]
+                                 ]
+            
+            currentBuild.result = result.result
+        }
+    }
+}
+def getEmailData(testId){
+    return sendHttpRequest(&apos;get email data&apos;,&apos;getemaildata&apos;,[testId])
+}
+def sendEmail(testId,emailInfo){
+        stage(&apos;send email&apos;){
+        node(&apos;master&apos;){
+            wrap([$class: &apos;BuildUser&apos;]) {
+                emailext subject: &quot;${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.result}&quot;,
+                    body: ReportingSystemURL + &apos;/reportsDetails/planId/&apos; + testId +   &apos;${SCRIPT, template=&quot;klaemail.groovy&quot;}&apos; + emailInfo,
+                    recipientProviders: [
+                        [$class: &apos;RequesterRecipientProvider&apos;]
+                    ], 
+                    replyTo: &apos;$DEFAULT_REPLYTO&apos;,
+                    to: &quot;${env.BUILD_USER}&quot;
+                }
+        }
+    }
+}
+
+
+
+def getFreeHostPerLabel(label) {
+    selectedNode=&apos;-1&apos;
+    Jenkins.getInstance().getLabel(label).getNodes().any { node -&gt;
+            if (!node.getComputer().isOffline() &amp;&amp; node.getComputer().countBusy()==0){
+                println &quot;Selected Node: &quot; +  node.getNodeName()
+                selectedNode = node.getNodeName()
+                return selectedNode
+            }
+    }
+    return selectedNode
+}
+
+def copyCsvFileName(path){
+    node(env.ATEControllerEngine){
+        bat (script:&quot;&quot;&quot; copy ${path}\\${params.TestSuite} ${path}\\${params.TestSuite.replace(&apos;.csv&apos;, env.BUILD_NUMBER+&apos;.csv&apos;)} || exit /b &quot;&quot;&quot;)
+    }
+}
+def deleteCsvFileName(path){
+    node(env.ATEControllerEngine){
+        bat ( script:&quot;&quot;&quot; del /s /q ${path}\\*${env.BUILD_NUMBER}.csv || exit /b &quot;&quot;&quot;)
+    }
+}
+
+def getBuildAbortionUser(){
+    def causee = &apos;&apos;
+    def actions = currentBuild.getRawBuild().getActions(jenkins.model.InterruptedBuildAction)
+    println actions;
+    for (action in actions) {
+        def causes = action.getCauses()
+        // on cancellation, report who cancelled the build
+        for (cause in causes) {
+            causee = cause.getUser().getDisplayName()
+            println &apos;here&apos;;
+            println causee;
+            isAborted = true;
+            cause = null
+        }
+        causes = null
+        action = null
+    }
+    actions = null
+}
+
+def getPath(String drl, String whereIAm) {
+    node (&apos;master&apos;) {
+        File dir = new File(whereIAm); //StaticMethods.currentPath() + &quot;\\src\\main\\resources\\&quot; + 
+        for(File e : dir.listFiles()) {
+            if(e.isFile() &amp;&amp; e.getName().equals(drl)) {return e.getPath();}
+            if(e.isDirectory()) {
+                String idiot = getPath(drl, e.getPath());
+                if(idiot != null) {return idiot;}
+            }
+        }
+        return null;
+    }
+}
+def convertLocalPathToShare(String path,String machine){
+    path = path.replace(&apos;:&apos;,&apos;$&apos;)
+    path= &apos;\\\\&apos;+env.ATEControllerEngine+&apos;\\&apos;+path
+    return path
+}
+
+def convertSharePathToLocal(String path){
+    path = path.replace(&apos;$&apos;,&apos;:&apos;)
+    path = path.substring(path.indexOf(&apos;:&apos;)-1)
+    return path
+}
+
+def convertPathToURI(String path){
+    path = path.replace(&apos;\\&apos;,&apos;%5C&apos;)
+    path = path.replace(&apos;/&apos;,&apos;%5C&apos;)
+    return path
+}
+
+
+
+
+def testId = &apos;&apos;;
+
+def tempHost = &apos;&apos;;
+def sutIp = &apos;&apos;;
+def host = &apos;&apos;;
+def waitA = false;
+def repeatee = 0;
+def path = &apos;&apos;;
+def scriptNumber = &apos;&apos;;
+def version = &apos;&apos;;
+def isAborted = false;
+def isUNSTABLE = false;
+node(&apos;master&apos;){
+ wrap([$class: &apos;TimestamperBuildWrapper&apos;]) {   
+    try{
+        controller = env.ATEControllerEngine
+        println &apos;env.SimulatorEngine: &apos; + env.SimulatorEngine
+        currentBuild.description = &quot;Executing suite &apos;&quot;+params.TestSuite+&quot;&apos; with &quot;+params.ToolType
+        lock(&apos;looking for free controller machine&apos;){
+            if (env.ATEControllerEngine == &apos;Controller&apos;){
+                sleep 3 //sleep for 3 seconds to get the previous selected node be alocatted
+                println &apos;choose Controller parameter value will choose from list of avaliable Controllers&apos;
+                waitUntil {
+                    println &apos;looking for avialable controller&apos;
+                    controller = getFreeHostPerLabel(&apos;Controller&apos;);
+                    waitA = controller != &apos;-1&apos; ? true : false;
+                    repeatee++;
+                    if(!waitA){
+                        println &apos;sleep 60 sec&apos;
+                        sleep 60
+                    }
+                    return waitA;
+                }
+                println &apos;controller &apos;+controller
+                env.ATEControllerEngine = controller;
+            }else{
+                println &apos;choose controller by name&apos;
+                controller = env.ATEControllerEngine;
+            }
+        }
+       // lock(resource: controller/**, inversePrecedence: true**/){
+            lock(&apos;looking for free simulator&apos;){
+                if (env.SimulatorEngine == &apos;sut&apos;){
+                    sleep 3 //sleep for 3 seconds to get the previous selected node be alocatted
+                    println &apos;choose sut parameter will choose from list of avaliable simulators&apos;
+                    waitUntil {
+                        println &apos;looking for avialable sut&apos;
+                        host = getFreeHostPerLabel(&apos;sut&apos;);
+                        waitA = host != &apos;-1&apos; ? true : false;
+                        repeatee++;
+                        if(!waitA){
+                            println &apos;sleep 60 sec&apos;
+                            sleep 60
+                        }
+                        return waitA;
+                    }
+                    println &apos;host &apos;+host
+                    env.SimulatorEngine = host;
+                }else{
+                    println &apos;choose simulator by name&apos;
+                    host = env.SimulatorEngine;
+                }
+                version = params.Auto_Deploy_Sanity ? env.BUILD_VERSION:getRegistrykey(host).substring(1).trim();
+            }
+            
+            lock(resource: host/**, inversePrecedence: true**/){
+                stage(&apos;lock slave&apos;){
+                    node(host){
+                        def productPath =&apos;&apos;;
+                        productPath = ToolTypeShortName[params.ToolType];
+                        println &apos;productPath &apos; + productPath;
+                        //1: save details
+                        testId = sendTestPlan(env.ATEControllerEngine, host, version);
+                        println &apos;testid:&apos;+testId;
+                        //2:get the master suite real path 
+                        path = getSuiteFullPath(productPath);
+                        println &apos;path: &apos; + path;
+                        copyCsvFileName(path)
+                        //3:save data to database
+                        def suiteRemoteLocation = convertLocalPathToShare(path,env.ATEControllerEngine)
+                        def suiteFullPath=suiteRemoteLocation + &apos;\\&apos; + params.TestSuite
+                        pathForJS=convertPathToURI(suiteFullPath)
+                        saveCsvDataToDatabase(pathForJS,testId,productPath);
+                        scriptNumber = &apos;&apos;;
+                        //4:save the script number that the eggplanet should execute
+                        scriptNumber = updateScriptsNumber(testId);
+                        println &apos;scriptNumber: &apos; + scriptNumber;
+                        updateStatus(testId, &apos;In_Progress&apos;)
+                        //6:execute the KLA logic 
+                        currentBuild.description = &quot;Executing suite &apos;&quot;+params.TestSuite+&quot;&apos; with &quot;+params.ToolType + &quot; on &quot; + host
+                        if(params.Auto_Deploy_Sanity){
+                            println &apos;full suite&apos; 
+                            runAutoDeploySanity(testId,suiteRemoteLocation, scriptNumber, host, controller, version);
+                        }else{
+                            println &apos;regualr suite&apos; 
+                            runAutoDeploySanity(testId,suiteRemoteLocation, scriptNumber, host, controller,version);
+                        }
+                    }
+                }
+            }
+        //}   
+        print (&quot;currentBuild.result=&quot;+currentBuild.result)
+        }catch(Exception e){
+            println &apos;Execution end with exception: &apos; + e;
+            currentBuild.result=&apos;ABORTED&apos;
+        }finally  {
+            deleteCsvFileName(path)
+            if(currentBuild.result == &apos;SUCCESS&apos;){
+                updateStatus(testId, &apos;Finish&apos;);
+                saveReportByPlanId(testId);
+            } else if(currentBuild.result == &apos;UNSTABLE&apos;){
+                updateStatus(testId, &apos;Finish&apos;);
+                saveReportByPlanId(testId);
+            }else if(currentBuild.result == &apos;FAILURE&apos;){
+                updateStatus(testId, &apos;Crash&apos;);
+            }else if(currentBuild.result == &apos;ABORTED&apos;){
+                updateStatus(testId, &apos;Aborted&apos;);
+            }
+            def emailInfo = getEmailData(testId);
+            sendEmail(testId, emailInfo);
+        }
+ }
+}</script>
+    <sandbox>false</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
