@@ -59,6 +59,14 @@
       <scanQueueFor>DISABLED</scanQueueFor>
       <blockingJobs></blockingJobs>
     </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
     <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
@@ -79,14 +87,6 @@
       <paramsToUseForLimit></paramsToUseForLimit>
       <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>30</daysToKeep>
-        <numToKeep>-1</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>pipeline {
@@ -102,9 +102,7 @@
         search_snaposhots_cmd=&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; ${params.SourceStreamName}| findstr /R /c:\&quot;${params.SourceStreamSnapshotName}\&quot;&quot;
         search_snaposhots_by_stream_cmd=&quot;scm list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -m 1 ${params.SourceStreamName}&quot;
         search_source_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${params.SourceStreamName}&quot;
-        search_target_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${suggested_stream_name}&quot;
         get_snaposhot_UUID_cmd=&quot;scm -u y list snapshots -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; ${params.SourceStreamName}| findstr /R /c:\&quot;${params.SourceStreamSnapshotName}\&quot;| cut -d) -f1 | cut -d: -f2&quot;
-        
     }
         stages {
     			stage (&apos;verification&apos;) {
@@ -113,11 +111,22 @@
 								StreamType=&quot;NonTasks&quot;
         				        if(params.streamTitle.matches(&quot;^Archer_[0-9.]+_Dev*&quot;)||params.streamTitle.matches(&quot;^Archer_[0-9.]+_Integ*&quot;)){
 									suggested_stream_name=params.streamTitle
+									print (&quot;creating Dev or Integ stream&quot;)
+									wrap([$class: &apos;BuildUser&apos;]) {
+                                         if (&quot;DL-OMD-ENG-SCM&quot; in User.get(env.BUILD_USER).getAuthorities()){
+                                         print (&quot;Haliloya I have permissions: &quot;+User.get(env.BUILD_USER).getAuthorities()) 
+                                         } else {
+                                            msg=&quot;Error: Dev/Integ stream can only be created by CM&quot;
+        								    print (msg)
+                                            senderrornotice(msg)
+                                            throw new Exception(msg)
+                                         }
+                                    }
 								}else{
 									suggested_stream_name=params.SourceStreamName.contains(&quot;_&quot;)?&quot;${params.SourceStreamName}&quot;.substring(0,&quot;${params.SourceStreamName}&quot;.lastIndexOf(&quot;_&quot;))+&quot;_${params.streamTitle}_${params.WorkItem}&quot;:&quot;${params.SourceStreamName}_${params.streamTitle}_${params.WorkItem}&quot;
 									StreamType=&quot;Tasks&quot;
 								}
-							
+								
                                 wrap([$class: &apos;BuildUser&apos;]) {
             				        currentBuild.description = &quot;Request for new stream creation &apos;${suggested_stream_name}&apos; by &apos;${env.BUILD_USER}&apos;&quot;
                                 }
@@ -153,7 +162,8 @@
 						        }
         				        
     	    					print &apos;verify suggested stream name is not occupied&apos;
-    						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name) &gt;= 1){
+								search_target_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${suggested_stream_name}&quot;
+    						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name)){
     						        case 1..Integer.MAX_VALUE :
     						           msg=&quot;Stream name &quot; + suggested_stream_name + &quot; is already occupied&quot;
     						           senderrornotice(msg)
@@ -240,7 +250,8 @@
                         print (env.userInput)
     				if (!suggested_stream_name.equals(env.userInput)){ 
     				        print &apos;verify new suggested stream name is not occupied &apos;+ env.userInput
-						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name) &gt;= 1){
+							search_target_stream_cmd=&quot;scm list stream -r http://clm.kla-tencor.com/ccm -u omdbuild -P Scm07^&amp; -n ${suggested_stream_name}&quot;
+						    switch(searchStrInCommandOutput(search_target_stream_cmd,suggested_stream_name)){
 						        case 1..Integer.MAX_VALUE :
                                     msg=&quot;Stream name &quot; + env.userInput + &quot; is already occupied&quot;
     						        senderrornotice(msg)
@@ -307,11 +318,12 @@ def searchStrInCommandOutput(cmd,str){
         stdoutput = bat(returnStdout:true , script:cmd).trim()
     }catch (err) { // input false
         print (&quot;Error: Command execution finished with error.&quot;)
-        return 0
+		return Integer.MAX_VALUE
     }
-    //print (&quot;stdout=&quot; + stdoutput)
+    print (&quot;stdout=&quot; + stdoutput)
     result = stdoutput.readLines().drop(1).join(&quot; &quot;)
-    //print (&quot;count=&quot; +result.count(str))
+    print (&quot;count=&quot; +result.count(str))
+    print (str)
     return result.count(str)
 
 }
