@@ -150,7 +150,7 @@ return  getProductPath(ToolType)
           <projectName>RunTestSuite_New</projectName>
           <parameters class="linked-hash-map"/>
           <referencedParameters>ToolType,ATEControllerEngine</referencedParameters>
-          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <choiceType>PT_MULTI_SELECT</choiceType>
           <filterable>true</filterable>
           <filterLength>1</filterLength>
         </org.biouno.unochoice.CascadeChoiceParameter>
