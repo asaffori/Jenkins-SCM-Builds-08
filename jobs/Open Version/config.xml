@@ -65,6 +65,7 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
@@ -102,8 +103,8 @@
 					string(defaultValue: &quot;omdbuild_Archer_${params.Version}_Integ_Workspace&quot;,description: &apos;Integ workspace name&apos;,name: &apos;IntegWorkspace&apos;),
 					string(defaultValue: &quot;OMD-Archer-V${params.Version}-Scheduled-Jenkins&quot;,description: &apos;Scheduled build definition name&apos;,name: &apos;ScheduledBD&apos;),
 					string(defaultValue: &quot;OMD-Archer-V${params.Version}-Formal-Jenkins&quot;,description: &apos;Formal build definition name&apos;,name: &apos;FormalBD&apos;),
-					string(defaultValue: &quot;OMD_{params.Version}_Scheduled_Trigger&quot;,description: &apos;Scheduled build job trigger&apos;,name: &apos;ScheduledTrigger&apos;),
-					string(defaultValue: &quot;OMD_{params.Version}_Formal_Trigger&quot;,description: &apos;Formal build job trigger&apos;,name: &apos;FormalTrigger&apos;),
+					string(defaultValue: &quot;OMD_${params.Version}_Scheduled_Trigger&quot;,description: &apos;Scheduled build job trigger&apos;,name: &apos;ScheduledTrigger&apos;),
+					string(defaultValue: &quot;OMD_${params.Version}_Formal_Trigger&quot;,description: &apos;Formal build job trigger&apos;,name: &apos;FormalTrigger&apos;),
 					string(defaultValue: &quot;${params.Version}version.txt&quot;,description: &apos;Version file name&apos;,name: &apos;Versionfile&apos;),
 					string(defaultValue: &quot;${MajorMinorSP}.20000&quot;,description: &apos;The starting build numbering&apos;,name: &apos;StartingVersion&apos;),
 					],submitter: &apos;DL-OMD-ENG-SCM&apos;,ok:&apos;Corret, lets create it&apos;)
@@ -122,8 +123,8 @@
 	            }
             }
 	    }
-		stage (&apos;CreateStream&apos;){
-			steps (&apos;CreateStream&apos;){
+		stage (&apos;CreateNewStreams&apos;){
+			steps (&apos;CreateNewStreams&apos;){
 				build job: &apos;CreateStreamCM&apos;, parameters: 
 				[
 				[$class: &apos;TextParameterValue&apos;, name: &apos;streamTitle&apos;, value:env.InputDevStream],
@@ -139,16 +140,16 @@
 			}
 
 		}
-		stage (&apos;CreateWorkspace&apos;){
-			steps (&apos;CreateWorkspace&apos;) {
+		stage (&apos;CreateNewWorkspaces&apos;){
+			steps (&apos;CreateNewWorkspaces&apos;) {
 	                script{
 						bat &quot;scm create workspace -r ${repositoryAddress} -u ${builduser} -P ${scmbuildpass} -s ${env.InputDevStream} ${env.InputDevWorkspace}&quot;
 						bat &quot;scm create workspace -r ${repositoryAddress} -u ${builduser} -P ${scmbuildpass} -s ${env.InputIntegStream}  ${env.InputIntegWorkspace}&quot;
 					}
 			}
 		}
-		stage (&apos;CreateBuildDefinition&apos;){
-			steps (&apos;CreateBD&apos;){
+		stage (&apos;CreateBuildDefinitions&apos;){
+			steps (&apos;CreateBDs&apos;){
 				build job: &apos;CreateBuildDefinition&apos;, parameters: 
 				[
 				[$class: &apos;StringParameterValue&apos;, name: &apos;RTCWorkspace&apos;, value:env.InputDevWorkspace],
@@ -163,8 +164,8 @@
 				], wait: true
 			}
 		}
-		stage (&apos;CreateJenkinstrigger&apos;){
-			steps (&apos;CreateTriggerJob&apos;){
+		stage (&apos;CreateJenkinsTriggers&apos;){
+			steps (&apos;CreateTriggerJobs&apos;){
 				build job: &apos;CreateScheduledTrigger&apos;, parameters: 
 				[
 				[$class: &apos;StringParameterValue&apos;, name: &apos;Version&apos;, value:params.Version],
@@ -193,7 +194,7 @@
 				    echo &quot;$params.SourceStreamName&quot;
 					basever=&quot;$params.SourceStreamName&quot;.substring(7,12)
 					echo basever
-					if(params.Version.length()&gt;6) MajorMinor=params.Version.substring(0,5) else MajorMinor=params.Version
+					MajorMinor=params.Version.substring(0,5)
 					bat &quot;xcopy ${networkpath}\\Archer_Installations\\NuArcher_V${basever}\\HelpFiles\\*.* ${networkpath}\\Archer_Installations\\NuArcher_V${MajorMinor}\\HelpFiles\\ /f /s&quot;
 				}
 			}
@@ -208,6 +209,57 @@
 			}
 		}
 	}
+	post { 
+        success { 
+            wrap([$class: &apos;BuildUser&apos;]) {
+                    // notify users when the Pipeline success
+                    emailext (to: &quot;${BUILD_USER_EMAIL}&quot;,
+                    subject: &quot;Version ${params.Version} creation - SUCCESS&quot;,
+                    body: &quot;&quot;&quot;
+                    Dear User:&lt;br&gt;
+                    Version ${params.Version} is created successfully!&lt;br&gt;
+					Details: &lt;br&gt;
+					Dev stream name: ${env.InputDevStream}&lt;br&gt;
+					Scheduled build workspace name: ${env.InputDevWorkspace}&lt;br&gt;
+					Scheduled RTC build definition name:${env.InputScheduledBD}&lt;br&gt;
+					Scheduled Jenkins build trigger:${env.InputScheduledTrigger}&lt;br&gt;
+					&lt;br&gt;
+					Integ stream name: ${env.InputIntegStream}&lt;br&gt;
+					Formal build workspace name: ${env.InputIntegWorkspace}&lt;br&gt;
+					Formal RTC build definition name:${env.InputFormalBD}&lt;br&gt;
+					Formal Jenkins build trigger:${env.InputFormalTrigger}&lt;br&gt;
+					&lt;br&gt;
+					Build number will start from ${env.InputStartingVersion}&lt;br&gt;
+
+                    &quot;&quot;&quot;);
+                }
+        }
+        failure { 
+            wrap([$class: &apos;BuildUser&apos;]) {
+                    // notify users when the Pipeline success
+                    emailext (to: &quot;${BUILD_USER_EMAIL}&quot;,
+                    subject: &quot;Version ${params.Version} creation - FAILURE&quot;,
+                    body: &quot;&quot;&quot;
+                    Dear User:&lt;br&gt;
+                    Version ${params.Version} failed to create, check the below log link for more details&lt;br&gt;
+                    ${env.BUILD_URL}&lt;br&gt;
+                    &quot;&quot;&quot;);
+                }
+        }
+        unstable { 
+            wrap([$class: &apos;BuildUser&apos;]) {
+                    // notify users when the Pipeline success
+                    emailext (to: &quot;${BUILD_USER_EMAIL}&quot;,
+                    subject: &quot;Version ${params.Version} creation - UNSTABLE&quot;,
+                    body: &quot;&quot;&quot;
+                    Dear User:&lt;br&gt;
+                    Version ${params.Version} already has a version file on sharefolder, please manually handle it later on.details&lt;br&gt;
+                    ${versionfilepath}\\$env.InputVersionfile}&lt;br&gt;
+                    &quot;&quot;&quot;);
+                }
+        }
+        
+    }
 }
 
 def exitwitherror(msg){
