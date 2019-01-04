@@ -13,15 +13,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to Create KIT?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -46,6 +37,16 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Version</name>
+          <description>Which Version you want to Create KIT?</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -74,6 +75,7 @@ pipeline {
 	    stage (&apos;validation&apos;) {
             steps (&apos;vaiidate&apos;) {
 	                script{
+	                    currentBuild.description = &quot;Creat KIT for ${params.Version}&quot;
 	                if(params.Version==&quot;&quot;){
     				    exitwitherror(&quot;Version is not defined&quot;)
 	                }
@@ -90,55 +92,40 @@ pipeline {
 	    {
 	        steps (&apos;ZipInstaller&apos;) {
 	               script{
-	                   installerdir = &quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\Archer_Installation_&quot;+params.Version
-				
-	                    def tempdirpath=&quot;C:\\temp\\installer_&quot;+params.Version
-						def tempdir=new File(tempdirpath)
-						if(tempdir.exists()) tempdir.deleteDir()
-						tempdir.mkdir()
-						bat &quot;xcopy ${installerdir}\\*.* ${tempdirpath}\\Archer_Installation_${params.Version}\\ /f /s&quot;
+						installerdir = &quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\Archer_Installation_&quot;+params.Version
+						def zipname=&quot;Archer_&quot;+params.Version+&quot;_Install.exe&quot;
+						def exename=&quot;Archer_&quot;+zipversion+&quot;_Install.exe&quot;
+						def kitpath=&quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version
+
+						bat &quot;7z a ${kitpath}\\${zipname} ${installerdir}\\*&quot;
 						
-						def zipname=&quot;Archer_&quot;+params.Version+&quot;_Installer.exe&quot;
-						def exename=&quot;Archer_&quot;+zipversion+&quot;_Installer.exe&quot;
-						bat &quot;7z a &quot;+tempdirpath+&quot;\\&quot;+zipname+&quot; ${tempdirpath}\\Archer_Installation_&quot;+params.Version+&quot;\\*&quot;
+						File configfile = new File(kitpath+&quot;\\config.txt&quot;)
+						configfile.write &quot;;!@Install@!UTF-8!\n;Title=\&quot;Archer SOFTWARE v&quot;+params.Version+&quot;\&quot;\n;BeginPrompt=\&quot;Do you want to install Archer SOFTWARE v&quot;+params.Version+&quot;?\&quot;\n\nRunProgram=\&quot;setup.exe\&quot;\n;!@InstallEnd@!\n&quot;
 					
-						def src7z = new File(&quot;${networkpath}\\Archer_Installations\\SCM\\General\\self-extractingWith-7zip\\7zS.sfx&quot;)
-						def dst7z = new File(tempdirpath+&quot;\\7zS.sfx&quot;)
-						dst7z &lt;&lt; src7z.bytes
+						bat &quot;copy /b ${networkpath}\\Archer_Installations\\SCM\\General\\self-extractingWith-7zip\\7zS.sfx + &quot;+kitpath+&quot;\\config.txt + &quot;+kitpath+&quot;\\&quot;+zipname+&quot; &quot;+kitpath+&quot;\\&quot;+exename
 						
-						File configfile = new File(tempdirpath+&quot;\\config.txt&quot;)
-						configfile.write &quot;;!@Install@!UTF-8!\n;Title=\&quot;Archer SOFTWARE v&quot;+params.Version+&quot;\&quot;\n;BeginPrompt=\&quot;Do you want to install Archer SOFTWARE v&quot;+params.Version+&quot;?\&quot;\nRunProgram=\&quot;setup.exe\\n;!@InstallEnd@!\n&quot;
-					
-						bat &quot;copy /b &quot;+tempdirpath+&quot;\\7zS.sfx + &quot;+tempdirpath+&quot;\\config.txt + &quot;+tempdirpath+&quot;\\&quot;+zipname+&quot; &quot;+tempdirpath+&quot;\\&quot;+exename
-						
-						bat &quot;xcopy &quot;+tempdirpath+&quot;\\&quot;+exename+&quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ /f&quot;
-						
-						if(tempdir.exists()) tempdir.deleteDir()
+						bat &quot;del /F /Q ${kitpath}\\${zipname}&quot;
+						bat &quot;del /F /Q ${kitpath}\\config.txt&quot;
 	               }
 	       
 	            }
 	        
 	    }
-	    
 		stage (&apos;Ziptoolconfig&apos;){
 			steps (&apos;ziptoolconfig&apos;){
 				script{
-					tempdirpath=&quot;C:\\temp\\installer_&quot;+params.Version
-					tempdir=new File(tempdirpath)
-					TCdir = &quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\Archer_Installation_&quot;+params.Version+&quot;\\supportfiles\\ToolConfig&quot;
-					
-					bat &quot;7z a &quot;+tempdirpath+&quot;\\Tool_Configuration.7z&quot;+&quot; &quot;+TCdir+&quot;\\MCDBXML.exe &quot;+TCdir+&quot;\\NG.McdbXml.dll &quot;+TCdir+&quot;\\ToolConfig.exe &quot;+TCdir+&quot;\\ToolConfig.exe.config&quot;
-					bat &quot;xcopy &quot;+tempdirpath+&quot;\\Tool_Configuration.7z&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ToolConfiguration\\ /f&quot;
-					
-					if(tempdir.exists()) tempdir.deleteDir()
-					
+					TCdir = &quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\Archer_Installation_&quot;+params.Version+&quot;\\supportfiles\\ToolConfig&quot;			
+					bat &quot;7z a -sfx7z.sfx &quot;+kitpath+&quot;\\ToolConfiguration\\Tool_Configuration.exe&quot;+&quot; &quot;+TCdir+&quot;\\MCDBXML.exe &quot;+TCdir+&quot;\\NG.McdbXml.dll &quot;+TCdir+&quot;\\ToolConfig.exe &quot;+TCdir+&quot;\\ToolConfig.exe.config&quot;
+
+					def TCdocfolder=&quot;${codeviewpath}\\OMD-UN_+${majorminor}\\UOMD_BLD_${params.Version}\\OMD_CommonUtilities\\ToolConfig\\Procedure&quot;
+					bat &quot;xcopy &quot;+&quot;${TCdocfolder}\\*.* ${kitpath}\\ToolConfiguration\\ /f&quot;
 				}
 			}
 		}
 		stage (&apos;document&apos;){
 			steps (&apos;CopyDoc&apos;){
 				script{
-					bat &quot;xcopy &quot;+&quot;${networkpath}\\Archer_Installations\\SupportFiles\\DocumentForKit\\*.*&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation\\ /f&quot;
+					bat &quot;xcopy &quot;+&quot;${networkpath}\\Archer_Installations\\SupportFiles\\Procedures\\DocumentForKit\\*.*&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation\\ /f&quot;
 					
 				}
 			}
@@ -183,20 +170,53 @@ pipeline {
 						phoenixshortver=phoenixdigit[0]+&apos;.&apos;+phoenixdigit[1]
 						echo phoenixshortver
 						bat &quot;xcopy &quot;+&quot;${phoenixpath}\\V${phoenixshortver}\\V${phoenixver}\\*.*&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}\\ /f&quot;
-					    bat &quot;7z a ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}.7z&quot;+&quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}\\*&quot;
+					    bat &quot;7z a -sfx7z.sfx ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}.exe&quot;+&quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}\\*&quot;
+						bat &quot;xcopy ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}\\*.pdf ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\ /f&quot;
 					    phoenixdir=new File(&quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Phoenix\\Phoenix_V${phoenixver}&quot;)
 					    if(phoenixdir.exists()) phoenixdir.deleteDir() 
+
 					}
 					bat &quot;xcopy &quot;+&quot;${networkpath}\\Archer_Installations\\SupportFiles\\${milversion}_Installation.exe&quot; + &quot; ${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\ /f&quot;
 	
 				}
 			}
 		}
+		
 	}
+	post { 
+			success { 
+				wrap([$class: &apos;BuildUser&apos;]) {
+						// notify users when the Pipeline success
+						emailext (to: &quot;${BUILD_USER_EMAIL}&quot;,
+						subject: &quot;Kit Creation for ${params.Version} - SUCCESS&quot;,
+						body: &quot;&quot;&quot;
+						Dear User:&lt;br&gt;
+						Kit for ${params.Version} is created successfully!&lt;br&gt;
+						Files are under:&lt;br&gt;
+						${networkpath}\\Archer_Installations\\NuArcher_V${majorminor}\\Formal\\ArcherSWInsKIT_${params.Version}\\&lt;br&gt;
+						
+						&quot;&quot;&quot;);
+				}
+			}
+			failure { 
+				wrap([$class: &apos;BuildUser&apos;]) {
+						// notify users when the Pipeline success
+						emailext (to: &quot;${BUILD_USER_EMAIL}&quot;,
+						subject: &quot;Kit Creation for ${params.Version} - FAILURE&quot;,
+						body: &quot;&quot;&quot;
+						Dear User:&lt;br&gt;
+						KIT Creation for ${params.Version} failed, check the below log link for more details&lt;br&gt;
+						${env.BUILD_URL}&lt;br&gt;
+						&quot;&quot;&quot;);
+				}
+				
+			}
+		}
+	
 }
 
 def exitwitherror(msg){
-    input(message:msg ,ok:&apos;Abort&apos;)
+    print (msg)
     throw new Exception(msg)
 }</script>
     <sandbox>true</sandbox>
