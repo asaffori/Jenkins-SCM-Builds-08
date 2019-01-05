@@ -69,6 +69,7 @@
         <string>CA1NAS12-SSCMdata-CH</string>
         <string>WIN-DYSD-Migration-CH</string>
         <string>ISR1NAS03-FI_OMD-RO</string>
+        <string>DL-OMD-A500-Release</string>
         <string>WIN-DYSD-sepg-RO</string>
         <string>KLAIsrael SW</string>
         <string>DL-PLC-Engineering-iConnect</string>
@@ -118,6 +119,7 @@
         <string>WIN-DYSD-ftp-CH</string>
         <string>DL-All-Israel-PasswordChange</string>
         <string>DL-MGR</string>
+        <string>DL-Enovia-Users</string>
         <string>DL-All-Managers</string>
         <string>CA1-CTX-KT-Employees</string>
         <string>WIN-DYSD-Assignment-CH</string>
@@ -143,6 +145,7 @@
         <string>SW-OMD-RO</string>
         <string>Ca1nas05-WIN-Software-Carrera-RO</string>
         <string>Ca1fs01-TN-analyzes-RO</string>
+        <string>DL-OMD-A700-Release</string>
         <string>CA1NAS02-SSCM-CH</string>
         <string>DL-OMD-ENG-SCM</string>
         <string>Ca1fs01-SS10K-info-RO</string>
@@ -152,6 +155,7 @@
         <string>ISr1nas03-OMD-SCM-GP</string>
         <string>DPM_Users_Old</string>
         <string>Isr1nas03-External_Files_for_Sharing-RO</string>
+        <string>DL-OMD-ATL-Release</string>
         <string>PasswordManager</string>
         <string>chn2vmfs01-Shanghai-I-GF-TS-CH</string>
         <string>OMD Nightly Build Recipients</string>
@@ -202,13 +206,14 @@
         <string>Ca1nas11-Fast-AlgoFTML-RO</string>
         <string>PCS-Open-CH</string>
         <string>Ca1nas11-Fast-AlgoOLSA-RO</string>
+        <string>DL-OMD-A600-Release</string>
         <string>chn2vmfs01-Shanghai-I-GF-C-CH</string>
         <string>MI Production KLA AppConnect</string>
         <string>DL-Israel-People-Managers</string>
         <string>Ca1fs01-MFG-RO</string>
         <string>WIN-DYSD-Satellite_release-RO</string>
       </roles>
-      <timestamp>1537714438200</timestamp>
+      <timestamp>1546703810393</timestamp>
     </jenkins.security.LastGrantedAuthoritiesProperty>
     <org.jenkinsci.plugins.displayurlapi.user.PreferredProviderUserProperty plugin="display-url-api@2.2.0">
       <providerId>default</providerId>
