@@ -328,6 +328,7 @@ ValidOptions=Formal,Scheduled,Tasks</propertiesContent>
       <overrideBuildParameters>true</overrideBuildParameters>
       <contributors/>
     </EnvInjectJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="com.ibm.team.build.internal.hjplugin.RTCScm" plugin="teamconcert@1.2.0.4">
     <overrideGlobal>false</overrideGlobal>
