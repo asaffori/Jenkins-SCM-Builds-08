@@ -34,7 +34,7 @@
         <hudson.model.StringParameterDefinition>
           <name>Recipients</name>
           <description></description>
-          <defaultValue>Xiahui.Zhai@kla-tencor.com;Marina.Amsalem@kla-tencor.com;Agnes.Zhang@kla-tencor.com;Adham.Saffori@kla-tencor.com;Smadar.Cohen@kla-tencor.com;Alina.Kiselman@kla-tencor.com; Nisreen.Awad@kla-tencor.com; Arkadi.Simkin@kla-tencor.com; Aviram.Preshel@kla-tencor.com;Vladimir.Shusterman@kla-tencor.com;Dmitry.Vagapov@kla-tencor.com; Ilan.Tavor@kla-tencor.com; Dima.Broitman@kla-tencor.com;ZhiQing.Xu@kla-tencor.com;Omer.Shachor@kla-tencor.com;Sharon.Mizrachi@kla-tencor.com</defaultValue>
+          <defaultValue>Leonid.Glykin@kla-tencor.com;Xiahui.Zhai@kla-tencor.com;Marina.Amsalem@kla-tencor.com;Agnes.Zhang@kla-tencor.com;Adham.Saffori@kla-tencor.com;Smadar.Cohen@kla-tencor.com;Alina.Kiselman@kla-tencor.com; Nisreen.Awad@kla-tencor.com; Arkadi.Simkin@kla-tencor.com; Aviram.Preshel@kla-tencor.com;Vladimir.Shusterman@kla-tencor.com;Dmitry.Vagapov@kla-tencor.com; Ilan.Tavor@kla-tencor.com; Dima.Broitman@kla-tencor.com;ZhiQing.Xu@kla-tencor.com;Omer.Shachor@kla-tencor.com;Sharon.Mizrachi@kla-tencor.com</defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
