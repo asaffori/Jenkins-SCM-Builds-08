@@ -120,13 +120,18 @@
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>PublishToTestRail</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>10</maxConcurrentPerNode>
-      <maxConcurrentTotal>10</maxConcurrentTotal>
+      <maxConcurrentTotal>2</maxConcurrentTotal>
       <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
-      <throttleEnabled>false</throttleEnabled>
+      <throttleEnabled>true</throttleEnabled>
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>SimulatorEngine</paramsToUseForLimit>
@@ -175,7 +180,7 @@ echo cleaning old log under C:\EggPlant report older than 7 days&#xd;
 forfiles -p &quot;C:\ATELogs&quot; -d -7 -c &quot;cmd /c IF @isdir == TRUE rd /S /Q @path&quot;&#xd;
 &#xd;
 cd C:\RunScript&#xd;
-RunScriptsFromFolder.exe &quot;%TestSuitePath%&quot; &quot;%TestSuite%.csv&quot; &quot;%SimulatorEngine%&quot; &quot;%product%&quot; &quot;%TEST_ID%&quot; &quot;%SCRIPT_NUMBER%&quot;&#xd;
+RunScriptsFromFolder.exe &quot;%TestSuitePath%&quot; &quot;%TestSuite%.csv&quot; &quot;%SimulatorEngine%&quot; &quot;%product%&quot; &quot;%TEST_ID%&quot; &quot;%SCRIPT_NUMBER%&quot; &quot;%BUILD_VERSION%&quot; &quot;%PublishToTestRail%&quot;&#xd;
 if not %errorlevel%==0 (&#xd;
 echo Run RunScriptsFromFolder failed&#xd;
 goto error&#xd;
@@ -188,7 +193,6 @@ exit /b 1&#xd;
 :end&#xd;
 &#xd;
 </command>
-      <unstableReturn>1</unstableReturn>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers>
