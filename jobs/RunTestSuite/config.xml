@@ -585,7 +585,8 @@ node(&apos;master&apos;){
             println &apos;Execution end with exception: &apos; + e;
             currentBuild.result=&apos;ABORTED&apos;
         }finally  {
-            deleteCsvFileName(path)
+            if (path != &apos;&apos;)
+                deleteCsvFileName(path)
             if(currentBuild.result == &apos;SUCCESS&apos;){
                 updateStatus(testId, &apos;Finish&apos;);
                 saveReportByPlanId(testId);
