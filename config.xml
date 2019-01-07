@@ -372,14 +372,8 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
-        <string>Auto KIT Creation</string>
-        <string>CreateBuildDefinition</string>
-        <string>CreateFormalTrigger</string>
-        <string>CreateScheduledTrigger</string>
-        <string>CreateStreamCM</string>
         <string>MatlabTest</string>
         <string>OMD_Adham_Trigger</string>
-        <string>Open Version</string>
         <string>Release Version</string>
         <string>SharePointTest</string>
       </jobNames>
