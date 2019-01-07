@@ -332,7 +332,7 @@ def updateScriptsNumber(testId){
 
 def sendHttpRequest(stepDesc,action,params){
     stage(stepDesc){
-        node(&apos;master&apos;){
+        //node(&apos;master&apos;){
             try{
                 params.add(0, action);
                 print (&apos;Running HTTP request for: httpRequest http://&apos;+ReportingSystemURL + &apos;/report/&apos; + params.join(&apos;/&apos;))
@@ -342,7 +342,7 @@ def sendHttpRequest(stepDesc,action,params){
             }catch(Exception e){
                 error (message:e.getMessage())
             }
-        }
+        //}
     }
 }
 def runAutoDeploySanity(testId, path, scriptNumber,sut, controller,version){
@@ -354,7 +354,7 @@ def runAutoDeploySanity(testId, path, scriptNumber,sut, controller,version){
     println(&apos;BaseImage2: &apos;+BaseImage2)
     
     
-        node(&apos;master&apos;){
+        //node(&apos;master&apos;){
             stage(&apos;run Auto Deploy Sanity&apos;){
               def result
               result = build job: &apos;ATARS_Auto Deploy Sanity&apos;,propagate:false,
@@ -378,7 +378,7 @@ def runAutoDeploySanity(testId, path, scriptNumber,sut, controller,version){
                                  ]
             
             currentBuild.result = result.result
-        }
+        //}
     }
 }
 def getEmailData(testId){
@@ -386,7 +386,7 @@ def getEmailData(testId){
 }
 def sendEmail(testId,emailInfo){
         stage(&apos;send email&apos;){
-        node(&apos;master&apos;){
+        //node(&apos;master&apos;){
             wrap([$class: &apos;BuildUser&apos;]) {
                 emailext subject: &quot;${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.result}&quot;,
                     body: ReportingSystemURL + &apos;/reportsDetails/planId/&apos; + testId +   &apos;${SCRIPT, template=&quot;klaemail.groovy&quot;}&apos; + emailInfo,
@@ -396,7 +396,7 @@ def sendEmail(testId,emailInfo){
                     replyTo: &apos;$DEFAULT_REPLYTO&apos;,
                     to: &quot;${env.BUILD_USER}&quot;
                 }
-        }
+        //}
     }
 }
 
