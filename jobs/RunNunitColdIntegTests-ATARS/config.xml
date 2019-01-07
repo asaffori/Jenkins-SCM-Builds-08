@@ -69,6 +69,25 @@
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>SimulatorEngine</paramsToUseForLimit>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <EnvInjectJobProperty plugin="envinject@1.90">
+      <info>
+        <groovyScriptContent>def  workspace = &apos;C:\\5300\\Nunit\\Bin\\NunitResults&apos;
+
+if (currentBuild.getEnvVars().get(&quot;RunNunitTests&quot;) ){
+  workspace = &apos;&apos;
+} 
+
+def map = [workspace: workspace]
+return map 
+</groovyScriptContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>false</overrideBuildParameters>
+      <contributors/>
+    </EnvInjectJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
   <scm class="hudson.scm.NullSCM"/>
@@ -79,6 +98,7 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>${workspace}</customWorkspace>
   <builders>
     <hudson.tasks.BatchFile>
       <command>@ECHO Off&#xd;
@@ -132,20 +152,20 @@ FOR %%G IN (%Technologies%) DO (&#xd;
             <script plugin="script-security@1.44">
               <script>import hudson.model.Result;
 
-def SkipCodeReload = build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+def RunAutoDeploy = build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+def RunNunit = build.buildVariableResolver.resolve(&quot;RunNunitTests&quot;)
 
-if (SkipCodeReload == &quot;false&quot;) {
-	println (&quot;Auto_Deploy_Sanity was disabled. Nunit step will be skipped&quot;);
+if (RunNunit == &quot;false&quot; || RunAutoDeploy == &quot;false&quot;) {
+	println (&quot;Nunit or AutoDeploy flag was disabled. Nunit step will be skipped&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }
-build.setWorkspace(new File(&quot;C:\\5300\\Nunit\\Bin\\NunitResults&quot;))
 </script>
               <sandbox>false</sandbox>
             </script>
           </source>
         </hudson.plugins.groovy.SystemGroovy>
       </buildSteps>
-      <failOnError>false</failOnError>
+      <failOnError>true</failOnError>
     </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
   </buildWrappers>
 </project>
