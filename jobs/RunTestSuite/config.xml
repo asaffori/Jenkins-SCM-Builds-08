@@ -446,7 +446,7 @@ def getBuildAbortionUser(){
 }
 
 def getPath(String drl, String whereIAm) {
-    node (&apos;master&apos;) {
+    //node (&apos;master&apos;) {
         File dir = new File(whereIAm); //StaticMethods.currentPath() + &quot;\\src\\main\\resources\\&quot; + 
         for(File e : dir.listFiles()) {
             if(e.isFile() &amp;&amp; e.getName().equals(drl)) {return e.getPath();}
@@ -456,7 +456,7 @@ def getPath(String drl, String whereIAm) {
             }
         }
         return null;
-    }
+    //}
 }
 def convertLocalPathToShare(String path,String machine){
     path = path.replace(&apos;:&apos;,&apos;$&apos;)
