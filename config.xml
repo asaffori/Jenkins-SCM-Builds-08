@@ -596,6 +596,7 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>Auto KIT Creation</string>
         <string>CreateBuildNotes</string>
         <string>CreateNewStream</string>
         <string>DownLoadFile</string>
