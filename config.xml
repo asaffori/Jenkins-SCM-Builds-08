@@ -600,7 +600,6 @@
         <string>CreateNewStream</string>
         <string>DownLoadFile</string>
         <string>FileTransfer</string>
-        <string>FileTransfer_Test</string>
         <string>GetResolvedList</string>
         <string>Open Version</string>
         <string>UpdateAndPromoteBuildWIs</string>
