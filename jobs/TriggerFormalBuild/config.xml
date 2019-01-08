@@ -13,6 +13,28 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>Version</name>
+          <description>Which version to run Formal build for? 
+ example: 17.13</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>17.11</string>
+              <string>17.12</string>
+              <string>17.13</string>
+              <string>17.13.02</string>
+              <string>17.13_Beta</string>
+              <string>17.13.03</string>
+              <string>17.13.03_Support_SM</string>
+              <string>17.14</string>
+              <string>17.14.01</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.security.AuthorizationMatrixProperty>
       <inheritanceStrategy class="org.jenkinsci.plugins.matrixauth.inheritance.InheritParentStrategy"/>
       <permission>hudson.model.Item.Build:DL-Israel-OMD-Eng-SW</permission>
@@ -38,27 +60,6 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>Version</name>
-          <description>Which version to run Formal build for? 
- example: 17.13</description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>17.11</string>
-              <string>17.12</string>
-              <string>17.13</string>
-              <string>17.13.02</string>
-              <string>17.13_Beta</string>
-              <string>17.13.03</string>
-              <string>17.13.03_Support_SM</string>
-              <string>17.14</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -67,13 +68,14 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
       <paramsToUseForLimit></paramsToUseForLimit>
+      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.54">
     <script>pipeline {
 agent { node { label &apos;master&apos; } }
 parameters {
-        choice(choices: &apos;17.11\n17.12\n17.13\n17.13.02\n17.13_Beta\n17.13.03\n17.13.03_Support_SM\n17.14&apos;, description: &apos;Which version to run Formal build for? \n example: 17.13&apos;, name: &apos;Version&apos;)
+        choice(choices: &apos;17.11\n17.12\n17.13\n17.13.02\n17.13_Beta\n17.13.03\n17.13.03_Support_SM\n17.14\n17.14.01&apos;, description: &apos;Which version to run Formal build for? \n example: 17.13&apos;, name: &apos;Version&apos;)
     }
 
     stages {
