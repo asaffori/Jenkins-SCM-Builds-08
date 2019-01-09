@@ -76,7 +76,7 @@
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>Auto_Deploy_Sanity</name>
+          <name>RestoreAndReinstall</name>
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
@@ -96,7 +96,6 @@
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>true</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>SimulatorEngine</paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -150,10 +149,10 @@ echo *************recover image finished successfully****************&#xd;
             <script plugin="script-security@1.44">
               <script>import hudson.model.Result;
 
-def SkipCodeReload = build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+def RestoreAndReinstall= build.buildVariableResolver.resolve(&quot;RestoreAndReinstall&quot;)
 
-if (SkipCodeReload == &quot;false&quot;) {
-	println (&quot;Auto_Deploy_Sanity was disabled. Restore step will be skipped&quot;);
+if (RestoreAndReinstall== &quot;false&quot;) {
+	println (&quot;RestoreAndReinstall was disabled. Restore step will be skipped&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }
 </script>
