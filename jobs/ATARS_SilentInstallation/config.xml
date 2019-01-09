@@ -56,7 +56,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
               <sandbox>false</sandbox>
             </secureFallbackScript>
           </script>
-          <projectName>SilentInstallation</projectName>
+          <projectName>ATARS_SilentInstallation</projectName>
           <parameters class="linked-hash-map"/>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
@@ -78,7 +78,7 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
         </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>Auto_Deploy_Sanity</name>
+          <name>RestoreAndReinstall</name>
           <description></description>
           <defaultValue>true</defaultValue>
         </hudson.model.BooleanParameterDefinition>
@@ -114,7 +114,6 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
       <throttleOption>project</throttleOption>
       <limitOneJobWithMatchingParams>true</limitOneJobWithMatchingParams>
       <paramsToUseForLimit>SimulatorEngine</paramsToUseForLimit>
-      <configVersion>1</configVersion>
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
   </properties>
@@ -278,10 +277,10 @@ NETWORKPATH=\\isr1nas03</propertiesContent>
             <script plugin="script-security@1.44">
               <script>import hudson.model.Result;
 
-def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+def RestoreAndReinstall= build.buildVariableResolver.resolve(&quot;RestoreAndReinstall&quot;)
 
-if (Auto_Deploy_Sanity== &quot;false&quot;) {
-	println (&quot;Auto_Deploy_Sanitywas disabled. Archer installation will not run&quot;);
+if (RestoreAndReinstall== &quot;false&quot;) {
+	println (&quot;RestoreAndReinstall was disabled. Archer installation will not run&quot;);
   	build.getExecutor().interrupt(Result.SUCCESS)
 }</script>
               <sandbox>false</sandbox>
