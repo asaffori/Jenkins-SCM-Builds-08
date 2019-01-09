@@ -70,7 +70,7 @@
         <groovyScriptContent>def  workspace = &apos;C:\\5300\\Nunit\\Bin\\NunitResults&apos;
 
 if (currentBuild.getEnvVars().get(&quot;RunNunitTests&quot;)== true ){
-  workspace = &apos;ddd&apos;
+  workspace = &apos;&apos;
 } 
 
 def map = [workspace: workspace]
