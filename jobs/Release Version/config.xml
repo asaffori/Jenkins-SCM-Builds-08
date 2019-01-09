@@ -122,7 +122,7 @@ pipeline {
 					}else{
 						File RDMFolder =new File(&quot;${downloadpath}\\uArcher_V&quot;+shortversion+&quot;\\RDM&quot;)
 						if(!RDMFolder.exists())exitwitherror(&quot;RDM kit folder doesn&apos;t exist&quot;)
-						File[] RDMFolderContent=RDMFolder.listFiles().sort{a, b -&gt; a.lastModified() &lt;=&gt; b.lastModified()
+						File[] RDMFolderContent=RDMFolder.listFiles().sort{a, b -&gt; a.lastModified() &lt;=&gt; b.lastModified()}
 						RDMFolderContent.each{
 					    	RDMVersion=it.getName().substring(4,18)
 						}
