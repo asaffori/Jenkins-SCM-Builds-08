@@ -203,8 +203,9 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           </choices>
         </hudson.model.ChoiceParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>Auto_Deploy_Sanity</name>
-          <description>when false will not run restore and silent installtion</description>
+          <name>RestoreAndReinstall</name>
+          <description>&lt;b&gt;When checked&lt;/b&gt;, it will enable restoring the simulator with the image and reinstall Archer. &lt;br/&gt;
+&lt;b&gt;When unchecked&lt;/b&gt;, sanity will run on the simulator without reinstalling it. &lt;br/&gt;</description>
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
@@ -371,7 +372,7 @@ def runAutoDeploySanity(testId, path, scriptNumber,sut, controller,version){
                                  [$class: &apos;StringParameterValue&apos;, name: &apos;BaseImage&apos;, value: BaseImage2 ],//we have it
                                  [$class: &apos;StringParameterValue&apos;, name: &apos;BaseImagePath&apos;, value: params.BaseImagePath ],//we have it
                                  [$class: &apos;StringParameterValue&apos;, name: &apos;BUILDTYPE&apos;, value: params.BUILDTYPE ],//we have it
-                                 [$class: &apos;BooleanParameterValue&apos;, name: &apos;Auto_Deploy_Sanity&apos;, value: params.Auto_Deploy_Sanity ],//we have it   
+                                 [$class: &apos;BooleanParameterValue&apos;, name: &apos;RestoreAndReinstall&apos;, value: params.RestoreAndReinstall ],//we have it   
                                  [$class: &apos;StringParameterValue&apos;, name: &apos;ATEBasePath&apos;, value: ateBasePath ],
                                 [$class: &apos;StringParameterValue&apos;, name: &apos;product&apos;, value: ToolTypeShortName[params.ToolType] ],
                                 [$class: &apos;BooleanParameterValue&apos;, name: &apos;RunNunitTests&apos;, value: params.RunNunitTests ]
@@ -541,7 +542,7 @@ node(&apos;master&apos;){
                     println &apos;choose simulator by name&apos;
                     host = env.SimulatorEngine;
                 }
-                version = params.Auto_Deploy_Sanity ? env.BUILD_VERSION:getRegistrykey(host).substring(1).trim();
+                version = params.RestoreAndReinstall ? env.BUILD_VERSION:getRegistrykey(host).substring(1).trim();
             }
             
             lock(resource: host/**, inversePrecedence: true**/){
@@ -569,7 +570,7 @@ node(&apos;master&apos;){
                         updateStatus(testId, &apos;In_Progress&apos;)
                         //6:execute the KLA logic 
                         currentBuild.description = &quot;Executing suite &apos;&quot;+params.TestSuite+&quot;&apos; with &quot;+params.ToolType + &quot; on &quot; + host
-                        if(params.Auto_Deploy_Sanity){
+                        if(params.RestoreAndReinstall){
                             println &apos;full suite&apos; 
                             runAutoDeploySanity(testId,suiteRemoteLocation, scriptNumber, host, controller, version);
                         }else{
