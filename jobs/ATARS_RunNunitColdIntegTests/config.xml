@@ -69,7 +69,7 @@
         <propertiesContent>workspace=${workspace}</propertiesContent>
         <groovyScriptContent>def  workspace = &apos;C:\\5300\\Nunit\\Bin\\NunitResults&apos;
 
-if (currentBuild.getEnvVars().get(&quot;RunNunitTests&quot;) ){
+if (currentBuild.getEnvVars().get(&quot;RunNunitTests&quot;) == true){
   workspace = &apos;&apos;
 } 
 
@@ -98,6 +98,7 @@ return map
   <builders>
     <hudson.tasks.BatchFile>
       <command>@ECHO Off&#xd;
+echo working with workspace %workspace% &#xd;
 ECHO Shutting down machine - Running KillAll exe&#xd;
 CAll Killall -user&#xd;
 Echo #####################END of KillAll########################&#xd;
