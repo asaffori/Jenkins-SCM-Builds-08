@@ -1,0 +1,295 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_VERSION</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>MajorMinor_Ver</name>
+          <description></description>
+          <randomName>choice-parameter-313186242246989</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.44">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.44">
+              <script>String major_min=BUILD_VERSION.substring(0,BUILD_VERSION.indexOf(&quot;.&quot;,3))
+return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>SilentInstallation</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>BUILD_VERSION</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>true</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>SimulatorEngine</name>
+          <description></description>
+          <allowedSlaves>
+            <string>ALL (no restriction)</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>SCM-SIM7050-01</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>Auto_Deploy_Sanity</name>
+          <description></description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDTYPE</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Tasks</string>
+              <string>Formal</string>
+              <string>Scheduled</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>ToolType</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Archer700</string>
+              <string>Archer600</string>
+              <string>Archer TL</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>5</maxConcurrentPerNode>
+      <maxConcurrentTotal>10</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>true</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>true</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit>SimulatorEngine</paramsToUseForLimit>
+      <configVersion>1</configVersion>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>true</concurrentBuild>
+  <customWorkspace>C:\temp</customWorkspace>
+  <builders>
+    <hudson.plugins.descriptionsetter.DescriptionSetterBuilder plugin="description-setter@1.10">
+      <regexp></regexp>
+      <description>Running  installation ${BUILD_VERSION} on ${SimulatorEngine}</description>
+    </hudson.plugins.descriptionsetter.DescriptionSetterBuilder>
+    <hudson.tasks.BatchFile>
+      <command>::@echo off&#xd;
+echo %NETWORKPATH% &quot;%BuildPass%&quot; &quot;klasj\%BuildUser%&quot; &#xd;
+net use %NETWORKPATH%\ipc$ &quot;%BuildPass%&quot; /user:&quot;klasj\%BuildUser%&quot;  &#xd;
+if not exist %NETWORKPATH%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILDTYPE%\Archer_Installation_%BUILD_VERSION% (&#xd;
+echo isntallation package doesn&apos;t exist on network&#xd;
+goto error&#xd;
+)&#xd;
+echo ****clean KT logs start*****&#xd;
+forfiles /p &quot;D:\Logs&quot; /s /d -7 /c &quot;cmd /c del /q /f @file&quot;&#xd;
+&#xd;
+echo ****clean KT logs end*****&#xd;
+&#xd;
+echo begin copy Archer installation&#xd;
+robocopy /MT:128 /r:2 %NETWORKPATH%\SW-OMD\Archer_Installations\NuArcher_V%MajorMinor_Ver%\%BUILDTYPE%\Archer_Installation_%BUILD_VERSION% C:\temp\Archer_Installation_%BUILD_VERSION% /s&#xd;
+if NOT %errorlevel% LEQ 7 (&#xd;
+echo copy installer to local failed&#xd;
+goto error&#xd;
+)&#xd;
+echo copy end &#xd;
+&#xd;
+echo ****************Copy MPI manager from installation folder to C:\5300\Bin*****&#xd;
+xcopy &quot;C:\temp\Archer_Installation_%BUILD_VERSION%\MPIManager\MPIManager.exe&quot; C:\5300\Bin\ /f /r /s /y&#xd;
+if not %errorlevel% equ 0 (&#xd;
+    echo ***************Copy MIPmanager failed failed***************&#xd;
+    goto error&#xd;
+)&#xd;
+&#xd;
+echo ########################################## NUNIT preperation: Start ################################################################&#xd;
+echo ***************Copy Nunit scripts ******&#xd;
+If Exist C:\5300\Bin_Common\FileVer.bat call C:\5300\Bin_Common\FileVer.bat&#xd;
+If exist C:\Temp\VerInfo.txt find /i &quot;Release Configuration&quot; C:\Temp\VerInfo.txt&#xd;
+if %errorlevel% EQU 0 (set BuildMode=Release) else (set BuildMode=Debug)&#xd;
+&#xd;
+robocopy /MT:128 /r:2 %NETWORKPATH%\SW-OMD\Archer_Builds\uArcher_Builds\uArcher_%MajorMinor_Ver%\%BUILDTYPE%\UOMD_%BUILD_VERSION%_%BuildMode%\NUnit  C:\5300\NUnit /s&#xd;
+if NOT %ERRORLEVEL% LEQ 7 goto error&#xd;
+echo *********Creating NUnit links*************&#xd;
+if not exist  C:\5300\Nunit\Bin\Link2Bin mklink /d C:\5300\Nunit\Bin\Link2Bin  C:\5300\Bin&#xd;
+if not exist C:\5300\Nunit\Bin\Link2Bin goto error&#xd;
+echo ########################################### NUNIT preperation:End ####################################################################&#xd;
+&#xd;
+echo ****************Exporting software version from registry******&#xd;
+regedit.exe /e &quot;C:\temp\CurrentVersion.reg&quot; &quot;HKEY_LOCAL_MACHINE\SOFTWARE\KLA-Tencor\OM\5300\Machine\Software Version&quot;&#xd;
+if not %errorlevel% equ 0 goto error&#xd;
+&#xd;
+echo ****************Running ToolConfiguration for %ToolType%******&#xd;
+cd C:\temp\Archer_Installation_%BUILD_VERSION%\supportfiles\ToolConfig&#xd;
+C:\temp\Archer_Installation_%BUILD_VERSION%\supportfiles\ToolConfig\ToolConfig.exe -I &quot;%ToolType%&quot;&#xd;
+if not %errorlevel% equ 0 (&#xd;
+    echo ***************Run ToolConfiguration failed***************&#xd;
+    goto error&#xd;
+)&#xd;
+&#xd;
+REG ADD &quot;HKLM\SOFTWARE\KLA-Tencor\OM\5300\Machine\Serial Number&quot; /t REG_SZ /d L1357 /f&#xd;
+if not %errorlevel% equ 0 goto error&#xd;
+&#xd;
+regedit.exe /S &quot;C:\temp\CurrentVersion.reg&quot;&#xd;
+if not %errorlevel% equ 0 goto error&#xd;
+&#xd;
+echo ***************Inject Simulator license for %ToolType%******&#xd;
+del /q /f &quot;C:\Program Files\KLA-Tencor\Component Suite\Bin\*.ktlic&quot;&#xd;
+&#xd;
+xcopy &quot;D:\licenses\%ToolType%\*.*&quot; &quot;C:\Program Files\KLA-Tencor\Component Suite\Bin\&quot; /f /r /s /y&#xd;
+if not %errorlevel%==0 (&#xd;
+echo *********copy license file failed*************&#xd;
+goto error&#xd;
+)&#xd;
+C:\5300\Bin\McdbActivate.exe -licenses&#xd;
+if not %errorlevel%==0 (&#xd;
+echo ***************active license file failed***********&#xd;
+goto error&#xd;
+)&#xd;
+&#xd;
+echo ****************** begin Archer installation*****************&#xd;
+C:\temp\Archer_Installation_%BUILD_VERSION%\Setup.exe /CI_INSTALL&#xd;
+set InstallExitCode=%errorlevel%&#xd;
+if %InstallExitCode%==0 goto installsucceed&#xd;
+if %InstallExitCode%==3010 goto installsucceed&#xd;
+goto installerror&#xd;
+:installsucceed&#xd;
+echo **************** Archer installation finished successfully **********&#xd;
+&#xd;
+&#xd;
+echo Changing registry key for auto logon:HKLM\SOFTWARE\KLA-Tencor\OM\5300\Security\Automatic Logon&#xd;
+REG ADD &quot;HKLM\SOFTWARE\KLA-Tencor\OM\5300\Security\Automatic Logon&quot; /t REG_SZ /d O1 /f&#xd;
+if not %errorlevel% equ 0 goto error&#xd;
+REG ADD &quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon&quot; /v AutoAdminLogon /t REG_SZ /d 1 /f&#xd;
+if not %errorlevel% equ 0 goto error&#xd;
+&#xd;
+shutdown -r -t 50&#xd;
+set shutdownerror=%errorlevel%&#xd;
+if %shutdownerror%==1190 goto end&#xd;
+if not %shutdownerror% equ 0 goto error&#xd;
+goto end&#xd;
+:installerror&#xd;
+echo Archer installation failed to excute&#xd;
+For /f &quot;tokens=2-4 delims=/ &quot; %%a in (&apos;date /t&apos;) do (set mydate=%%c-%%a-%%b)&#xd;
+set mydate=%mydate: =_%&#xd;
+echo begin compress installation logs&#xd;
+7z a C:\temp\ArcherSetupLogs_%BUILD_VERSION%_%mydate%.zip C:\Temp\ArcherSetupLogs_%BUILD_VERSION%\&#xd;
+if not %errorlevel% equ 0 (&#xd;
+echo Compress installation logs failed, please go to %SimulatorEngine% for more information&#xd;
+goto error&#xd;
+)  &#xd;
+echo begin copy Archer installation logs to D:\Archer_Installations\Logs&#xd;
+echo clean logs older than 7 days&#xd;
+forfiles /p &quot;D:\Archer_Installations\Logs&quot; /s /d -7 /c &quot;cmd /c del /q /f @file&quot;&#xd;
+xcopy C:\temp\ArcherSetupLogs_%BUILD_VERSION%_%mydate%.zip D:\Archer_Installations\Logs\ /f /s&#xd;
+if not %errorlevel% equ 0 (&#xd;
+echo copy Archer installation logs failed&#xd;
+goto error&#xd;
+)&#xd;
+echo copy end &#xd;
+&#xd;
+:error&#xd;
+exit /b 1&#xd;
+:end&#xd;
+exit /b 0</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesContent>BuildUser=omdbuild
+NETWORKPATH=\\isr1nas03</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+    <EnvInjectPasswordWrapper plugin="envinject@1.90">
+      <injectGlobalPasswords>false</injectGlobalPasswords>
+      <maskPasswordParameters>true</maskPasswordParameters>
+      <passwordEntries>
+        <EnvInjectPasswordEntry>
+          <name>BuildPass</name>
+          <value>{AQAAABAAAAAQEp03leuzg0E25PuRLs0+e9Ssq3akE92RBrC+VdIWYyQ=}</value>
+        </EnvInjectPasswordEntry>
+      </passwordEntries>
+    </EnvInjectPasswordWrapper>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+          <source class="hudson.plugins.groovy.StringSystemScriptSource">
+            <script plugin="script-security@1.44">
+              <script>import hudson.model.Result;
+
+def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
+
+if (Auto_Deploy_Sanity== &quot;false&quot;) {
+	println (&quot;Auto_Deploy_Sanitywas disabled. Archer installation will not run&quot;);
+  	build.getExecutor().interrupt(Result.SUCCESS)
+}</script>
+              <sandbox>false</sandbox>
+            </script>
+          </source>
+        </hudson.plugins.groovy.SystemGroovy>
+      </buildSteps>
+      <failOnError>false</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
+</project>
