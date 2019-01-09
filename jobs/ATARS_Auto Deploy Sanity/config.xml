@@ -562,7 +562,7 @@ historyJobs.getFlowSteps().each { step -&gt;
       <step>SANITY</step>
       <dependencyJobList class="java.util.concurrent.CopyOnWriteArrayList">
         <com.amdocs.hudson.plugins.flow.DependencyJob>
-          <dependencyJobName>RunNunitColdIntegTests-ATARS</dependencyJobName>
+          <dependencyJobName>ATARS_RunNunitColdIntegTests</dependencyJobName>
         </com.amdocs.hudson.plugins.flow.DependencyJob>
       </dependencyJobList>
       <appServerType>Tomcat</appServerType>
@@ -575,7 +575,7 @@ historyJobs.getFlowSteps().each { step -&gt;
       </triggers>
     </com.amdocs.hudson.plugins.flow.JobParameter>
     <com.amdocs.hudson.plugins.flow.JobParameter>
-      <jobName>RunNunitColdIntegTests-ATARS</jobName>
+      <jobName>ATARS_RunNunitColdIntegTests</jobName>
       <continueJobIfUnstable>false</continueJobIfUnstable>
       <continueJobIfAborted>false</continueJobIfAborted>
       <continueJobAnyway>true</continueJobAnyway>
