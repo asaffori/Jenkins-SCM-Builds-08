@@ -19,46 +19,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>ToolType</name>
-          <description>Which Tool Type you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>Comments</name>
-          <description>What is your comments to the release mail?</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDM</name>
-          <description>Will RDM be released also?</description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>Web</name>
-          <description>Will this version be publish on Web?</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>Customer</name>
-          <description>Which Customer will be relesed to?</description>
-          <defaultValue>All</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>PhoenixCondition</name>
-          <description>Input your comments regarding the Phoenix installation:</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -101,14 +61,13 @@ pipeline {
         string(name: &apos;Version&apos;, description: &apos;Which Version you want to release?&apos;)
 		string(name: &apos;ToolType&apos;, description: &apos;Which Tool Type you want to release?&apos;)
         text(name: &apos;Comments&apos;, description: &apos;What is your comments to the release mail?&apos;)
-		booleanParam(name: &apos;RDM&apos;, defaultValue: true, description: &apos;Will RDM be released also?&apos;)
+		booleanParam(name: &apos;RDMRelease&apos;, defaultValue: true, description: &apos;Will RDM be released also?&apos;)
 		booleanParam(name: &apos;Web&apos;, defaultValue: false, description: &apos;Will this version be publish on Web?&apos;)
         string(name: &apos;Customer&apos;, defaultValue: &apos;All&apos;, description: &apos;Which Customer will be relesed to?&apos;)
         text(name: &apos;PhoenixCondition&apos;, description: &apos;Input your comments regarding the Phoenix installation:&apos;)
     }
 	stages {
         
-	    
 	    stage (&apos;validation&apos;) {
             steps (&apos;vaiidate&apos;) {
 	                script{
@@ -134,7 +93,7 @@ pipeline {
 					}else{
 						bat &quot;xcopy ${ArcherKitDir}\\*.* ${Archerdirpath}\\ /f&quot;
 					}
-					if(params.RDM==&apos;true&apos;){
+					if(params.RDMRelease==&apos;true&apos;){
 						RDMKitDir=&quot;${networkpathroot}\\SW-RDM\\RDM_Installations\\RDM_${majorminor}\\Formal\\RDM_${params.Version}&quot;
 						RDMdirpath=&quot;${downloadpath}\\uArcher_V${shortversion}\\RDM\\RDM_${params.Version}&quot;
 						RDMdir=new File(RDMdirpath)
@@ -152,7 +111,7 @@ pipeline {
 		    steps (&apos;Parameter&apos;){
 		        script {
 					//get compitable RDM version
-					if(params.RDM==&apos;true&apos;){
+					if(params.RDMRelease==&apos;true&apos;){
 						RDMVersion=params.Version
 					}else{
 						File RDMFolder =new File(&quot;${downloadpath}\\uArcher_V&quot;+shortversion+&quot;\\RDM&quot;)
