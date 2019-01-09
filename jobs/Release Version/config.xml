@@ -298,6 +298,7 @@ pipeline {
         }
 	}
 }
+}
 
 def exitwitherror(msg){
     input(message:msg ,ok:&apos;Abort&apos;)
