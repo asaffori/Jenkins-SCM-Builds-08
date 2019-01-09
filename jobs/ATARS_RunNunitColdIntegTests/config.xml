@@ -66,6 +66,7 @@
     </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
     <EnvInjectJobProperty plugin="envinject@1.90">
       <info>
+        <propertiesContent>workspace=${workspace}</propertiesContent>
         <groovyScriptContent>def  workspace = &apos;C:\\5300\\Nunit\\Bin\\NunitResults&apos;
 
 if (currentBuild.getEnvVars().get(&quot;RunNunitTests&quot;) ){
