@@ -258,6 +258,7 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>ATARS_RestorageImage</string>
         <string>DiskspaceAlertNew</string>
         <string>OMD-Archer-Build</string>
         <string>RDM_NuArcher_CI_Flow</string>
