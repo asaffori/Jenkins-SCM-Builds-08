@@ -100,7 +100,7 @@ pipeline {
 						bat &quot;xcopy ${ArcherKitDir}\\*.* ${Archerdirpath}\\ /f&quot;
 					}
 					if(params.RDM==&apos;true&apos;){
-						RDMKitDir=&quot;${networkpathroot}\\SW-RDM\RDM_Installations\\RDM_${majorminor}\\Formal\\RDM_${params.Version}&quot;
+						RDMKitDir=&quot;${networkpathroot}\\SW-RDM\\RDM_Installations\\RDM_${majorminor}\\Formal\\RDM_${params.Version}&quot;
 						RDMdirpath=&quot;${downloadpath}\\uArcher_V${shortversion}\\RDM\\RDM_${params.Version}&quot;
 						RDMdir=new File(RDMdirpath)
 						if(!RDMdir.exists()){
