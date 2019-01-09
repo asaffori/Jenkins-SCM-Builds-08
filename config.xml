@@ -644,14 +644,14 @@
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>ATARS_Auto Deploy Sanity</string>
         <string>ATARS_RestorageImage</string>
+        <string>ATARS_RunNunitColdIntegTests</string>
+        <string>ATARS_RunNunitHotIntegTests</string>
         <string>ATARS_SanityTest</string>
         <string>ATARS_SilentInstallation</string>
         <string>ATARS_SimLockCheck</string>
         <string>ATARS_UnlockSimulator</string>
         <string>MonitorSanityJobExecutions</string>
         <string>RunMultiTestSuites</string>
-        <string>RunNunitColdIntegTests-ATARS</string>
-        <string>RunNunitHotIntegTests-ATARS</string>
         <string>RunTestSuite</string>
         <string>RunTestSuite_New</string>
       </jobNames>
