@@ -69,7 +69,7 @@
         <propertiesContent>workspace=${workspace}</propertiesContent>
         <groovyScriptContent>def  workspace = &apos;C:\\5300\\Nunit\\Bin\\NunitResults&apos;
 
-if (currentBuild.getEnvVars().get(&quot;RunNunitTests&quot;) ){
+if (currentBuild.getEnvVars().get(&quot;RunNunitTests&quot;)== &apos;true&apos; ){
   workspace = &apos;&apos;
 } 
 
@@ -98,7 +98,7 @@ return map
   <builders>
     <hudson.tasks.BatchFile>
       <command>@echo off&#xd;
-echo working with workspace %workspace%&#xd;
+echo working with workspace %workspace% %RunNunitTests%&#xd;
 set Technologies=Platform&#xd;
 for /f &quot;tokens=3&quot; %%A in (&apos;reg query &quot;HKLM\SOFTWARE\KLA-TENCOR\OM\5300\Machine\Supported Features\Hardware\Heads\Linnik\Active&quot; /ve&apos;) do (&#xd;
    IF &quot;%%A&quot; == &quot;O1&quot; set Technologies=%Technologies% Imaging &#xd;
