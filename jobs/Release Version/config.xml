@@ -24,63 +24,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600</name>
-          <description>Released For Tool Type</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATL</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>Comments</name>
-          <description>What is your comments?</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A600Web</name>
-          <description>Which Version will be publish on Web?</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>A700Web</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>ATLWeb</name>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>A600Customer</name>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>A700Customer</name>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>ATLCustomer</name>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>PhoenixCondition</name>
-          <description>Input your comments regarding the Phoenix installation:</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -112,22 +55,24 @@
 
 pipeline {
     agent any
+	environment { 
+		networkpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-OMD&apos;
+		networkpathroot=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP&apos;
+        codeviewpath=&apos;\\\\isr1appcc02\\Views\\OMD&apos;
+        phoenixpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\SWGRP\\SW-Common\\Phoenix&apos;
+		downloadpath=&apos;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download&apos;
+	}
     parameters {
         string(name: &apos;Version&apos;, description: &apos;Which Version you want to release?&apos;)
-        booleanParam(name: &apos;A600&apos;, defaultValue: false, description: &apos;Released For Tool Type&apos;)
-        booleanParam(name: &apos;A700&apos;, defaultValue: false)
-        booleanParam(name: &apos;ATL&apos;, defaultValue: false)
-        text(name: &apos;Comments&apos;, description: &apos;What is your comments?&apos;)
-		booleanParam(name: &apos;A600Web&apos;, defaultValue: false, description: &apos;Which Version will be publish on Web?&apos;)
-        booleanParam(name: &apos;A700Web&apos;, defaultValue: false)
-        booleanParam(name: &apos;ATLWeb&apos;, defaultValue: false)
-        string(name: &apos;A600Customer&apos;)
-        string(name: &apos;A700Customer&apos;)
-        string(name: &apos;ATLCustomer&apos;) 
+		string(name: &apos;ToolType&apos;, description: &apos;Which Tool Type you want to release?&apos;)
+        text(name: &apos;Comments&apos;, description: &apos;What is your comments to the release mail?&apos;)
+		booleanParam(name: &apos;RDM&apos;, defaultValue: true, description: &apos;Will RDM be released also?&apos;)
+		booleanParam(name: &apos;Web&apos;, defaultValue: false, description: &apos;Will this version be publish on Web?&apos;)
+        string(name: &apos;Customer&apos;, defaultValue: &apos;All&apos;, description: &apos;Which Customer will be relesed to?&apos;)
         text(name: &apos;PhoenixCondition&apos;, description: &apos;Input your comments regarding the Phoenix installation:&apos;)
-
     }
 	stages {
+        
 	    
 	    stage (&apos;validation&apos;) {
             steps (&apos;vaiidate&apos;) {
@@ -135,81 +80,73 @@ pipeline {
 	                if(params.Version==&quot;&quot;){
     				    exitwitherror(&quot;Version is not defined&quot;)
 	                }
-	                if(params.A600==false&amp;&amp;params.A700==false&amp;&amp;params.ATL==false){
+	                if(params.ToolType==&quot;&quot;){
     				    exitwitherror(&quot;Released tool type is empty, at least you are releasing for one tool type&quot;)
                     }
+                    shortversion=params.Version.substring(6,8)==&apos;00&apos;?Version.substring(0,6):params.Version.substring(0,8)
+					majorminor=params.Version.substring(0,5)
                 }
             }
 	    }
-	  
+        stage (&apos;CopyKit&apos;){
+            steps(&apos;CopyKit&apos;){
+				script{
+					ArcherKitDir=&quot;${networkpath}\\Archer_Installations\\NuArcher_V&quot;+majorminor+&quot;\\Formal\\ArcherSWInsKIT_&quot;+params.Version
+					Archerdirpath = &quot;${downloadpath}\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}&quot;
+					Archerdir=new File(Archerdirpath)
+					if(!Archerdir.exists()){
+						echo &quot;Kit file for Version ${params.Version} already Copied to the download link&quot;
+					}else{
+						bat &quot;xcopy ${ArcherKitDir}\\*.* ${Archerdirpath}\\ /f&quot;
+					}
+					if(params.RDM==&apos;true&apos;){
+						RDMKitDir=&quot;${networkpathroot}\\SW-RDM\RDM_Installations\\RDM_${majorminor}\\Formal\\RDM_${params.Version}&quot;
+						RDMdirpath=&quot;${downloadpath}\\uArcher_V${shortversion}\\RDM\\RDM_${params.Version}&quot;
+						RDMdir=new File(RDMdirpath)
+						if(!RDMdir.exists()){
+							echo &quot;RDM file for Version ${params.Version} already Copied to the download link&quot;
+						}else{
+							bat &quot;xcopy ${RDMKitDir}\\*.* ${RDMdirpath}\\ /f&quot;
+						}
+					}
+				}
+                
+            }
+        }
         stage (&apos;Process Parameter&apos;) {
 		    steps (&apos;Parameter&apos;){
 		        script {
-		            shortversion=params.Version.substring(6,8)==&apos;00&apos;?Version.substring(0,6):params.Version.substring(0,8)
-					majorminor=params.Version.substring(0,5)
-					
 					//get compitable RDM version
-					def RDMVersion
-					File RDMFolder =new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\RDM&quot;)
-					if(!RDMFolder.exists())exitwitherror(&quot;RDM kit folder doesn&apos;t exist&quot;)
-					File[] RDMFolderContent=RDMFolder.listFiles()
-					RDMFolderContent.each{
-					    RDMVersion=it.getName().substring(4,18)
+					if(params.RDM==&apos;true&apos;){
+						RDMVersion=params.Version
+					}else{
+						File RDMFolder =new File(&quot;${downloadpath}\\uArcher_V&quot;+shortversion+&quot;\\RDM&quot;)
+						if(!RDMFolder.exists())exitwitherror(&quot;RDM kit folder doesn&apos;t exist&quot;)
+						File[] RDMFolderContent=RDMFolder.listFiles().sort{a, b -&gt; a.lastModified() &lt;=&gt; b.lastModified()
+						RDMFolderContent.each{
+					    	RDMVersion=it.getName().substring(4,18)
+						}
 					}
 					if(RDMVersion==&quot;&quot;)exitwitherror(&quot;RDM Version is not defined&quot;)
                     echo RDMVersion
-                    
-		            tooltype=(params.A600?&quot; A600&quot;:&quot;&quot;)+(params.A700?&quot; A700&quot;:&quot;&quot;)+(params.ATL?&quot; ATL&quot;:&quot;&quot;) 
 		            
-		            def toolSRN=&quot;&quot;
-                    File DocFolder =new File(&quot;\\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V&quot;+shortversion+&quot;\\Tool\\ArcherSWInsKIT_&quot;+params.Version+&quot;\\Documentation&quot;)
-					if(!DocFolder.exists())exitwitherror(&quot;Archer kit document folder doesn&apos;t exist&quot;)
-					File[] DocContent=DocFolder.listFiles()
-					DocContent.each{
-					    if(it.getName().contains(&apos;SRN&apos;))toolSRN=toolSRN+it.getName()+&quot; &quot;
-					}
-					if(toolSRN==&quot;&quot;){
-					    toolSRN==&quot;&lt;/br&gt;&quot;
-					}
-					else{
-					    toolSRN+=&quot; is residing in Documentation folder.&lt;/br&gt;&quot;
-					}
-                    echo toolSRN
+		            toolSRN=&quot;Archer SRNs are residing in Documentation folder&quot;
 					
-					if(params.Comments==null)params.Comments=&quot;&lt;/br&gt;&quot;
-					
-		            A600webtext=(params.A600Web?&quot; A600: Will be published on Web.&lt;/br&gt;&quot;:&quot;A600: No Web publish.&lt;/br&gt;&quot;)
-		            A700webtext=(params.A700Web?&quot; A700: Will be published on Web.&lt;/br&gt;&quot;:&quot;A700: No Web publish.&lt;/br&gt;&quot;)
-		            ATLwebtext=(params.ATLWeb?&quot; ATL: Will be published on Web.&lt;/br&gt;&quot;:&quot;ATL: No Web publish.&lt;/br&gt;&quot;)
-		            
-		            publishweb=(params.A600?A600webtext:&quot;&quot;)+(params.A700?A700webtext:&quot;&quot;)+(params.ATL?ATLwebtext:&quot;&quot;) 
-		            echo publishweb
-		            
-					customer=(params.A600?&quot;A600:&quot;+params.A600Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.A700?&quot;A700:&quot;+params.A700Customer+&quot;&lt;/br&gt;&quot;:&quot;&quot;)+(params.ATL?&quot;ATL:&quot;+params.ATLCustomer+&quot;&lt;/br&gt;&quot;:&quot;&quot;) 
-					echo customer
+		            webtext=(params.Web?&quot; ${params.Web}: Will be published on Web.&lt;/br&gt;&quot;:&quot;${params.Web}: No Web publish.&lt;/br&gt;&quot;)
 					
 					def props = readProperties file: &quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\Tooltype_DL.properties&quot;
                     
-
-                    echo props[&apos;A600DL&apos;]
-                    echo props[&apos;A700DL&apos;]
-					mailgroup=(params.A600?props[&apos;A600DL&apos;]:&quot;&quot;)+(params.A700?props[&apos;A700DL&apos;]:&quot;&quot;)
+                    echo props[&apos;${ToolType}DL&apos;]
+					mailgroup=props[&apos;${ToolType}DL&apos;]
 					echo mailgroup
 					
 					string masterimage=&quot;&quot;
-					File masterimagefile=new File(&quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/MasterImage.html&quot;)
+					File masterimagefile=new File(&quot;${codeviewpath}\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/MasterImage.html&quot;)
 	                if(!masterimagefile.exists())exitwitherror(&quot;Master image html doesn&apos;t exist under code view&quot;)
 	                string masterimagecontent=masterimagefile.text
-	                
-	                if(params.A600)	masterimage+=masterimagecontent.substring(masterimagecontent.indexOf(&quot;A600:&quot;),masterimagecontent.indexOf(&quot;&lt;!--A600End--&gt;&quot;))
-					echo masterimage
-					if(params.A700)	masterimage+=masterimagecontent.substring(masterimagecontent.indexOf(&quot;A700:&quot;),masterimagecontent.indexOf(&quot;&lt;!--A700End--&gt;&quot;))
-					echo masterimage
-					if(params.ATL)	masterimage+=masterimagecontent.substring(masterimagecontent.indexOf(&quot;ATL:&quot;),masterimagecontent.indexOf(&quot;&lt;!--ATLEnd--&gt;&quot;))
-			
-	                
-							
-					def buildnotice= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/InstallationInstruction.html&quot;;
+					masterimage=masterimagecontent.substring(masterimagecontent.indexOf(&quot;${params.Tooltype}:&quot;),masterimagecontent.indexOf(&quot;&lt;!--${params.Tooltype}End--&gt;&quot;))
+				
+					def buildnotice= &quot;${codeviewpath}\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/InstallationInstruction.html&quot;;
 	                def buildnoticefile = new File(buildnotice)
 					if(buildnoticefile.exists()){
                 		string phoenixversion=&quot;SW &quot;+shortversion+&quot; requires upgrade of the Handler SW to Phoenix SWV V&quot;
@@ -228,7 +165,7 @@ pipeline {
                 	    exitwitherror(&quot;Build notice file under code view folder doesn&apos;t exist&quot;)
                 	}
 					
-		            def thirdpartyism= &quot;\\\\isr1appcc02\\Views\\OMD\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/Installation/Archer_Family/Installshield/Archer_SW_Installation/uArcherThirdPartyInstallation/ThirdPartySetup.ism&quot;;
+		            def thirdpartyism= &quot;${codeviewpath}\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/Installation/Archer_Family/Installshield/Archer_SW_Installation/uArcherThirdPartyInstallation/ThirdPartySetup.ism&quot;;
 	                def thirdparty=new File(thirdpartyism)
 					def KTCS=&quot;&quot;,KTCSHF=&quot;&quot;,Nexus=&quot;&quot;,NexusHF=&quot;&quot;,KTGem=&quot;&quot;,KTGemHF=&quot;&quot;,PSGFA=&quot;&quot;,PSGFAHF=&quot;&quot;
 					
@@ -272,7 +209,7 @@ pipeline {
                 			}
                 		  }
                 		  
-                		nexusinstaller=&quot;\\\\isr1nas03\\SW-OMD\\Archer_Installations\\SupportFiles\\NeXus\\&quot;+Nexus+&quot;\\Server\\nexus_server_setup64_&quot;+Nexus+&quot;.exe&quot;
+                		nexusinstaller=&quot;${networkpath}\\Archer_Installations\\SupportFiles\\NeXus\\&quot;+Nexus+&quot;\\Server\\nexus_server_setup64_&quot;+Nexus+&quot;.exe&quot;
                 		stdout = bat(returnStdout:true , script: &quot;7z l &quot; + nexusinstaller).trim()
                         result = stdout.readLines().findAll{ it.contains(&quot;KTGEM\\KTGEMInstaller\\ktgem_setup_&quot;)}
                         ktgeminstaller=result.join(&apos; &apos;)
@@ -291,9 +228,8 @@ pipeline {
                 	}
 		            
 		            echo thirdpartyversion
-		            
-		            if(params.PhoenixCondition==null)params.PhoenixCondition=&quot;&quot;
-		            mailcontent=&quot;Archer SWV  ${shortversion}(${params.Version}) is released for ${tooltype}&lt;/br&gt;&quot;+
+
+		            mailcontent=&quot;Archer SWV  ${shortversion}(${params.Version}) is released for ${params.ToolType}&lt;/br&gt;&quot;+
                     &quot;&lt;strong&gt;${params.Comments}&lt;/strong&gt;&lt;/br&gt;&lt;/br&gt;&quot;+
                     &quot;&lt;strong&gt;&lt;u&gt;Tool SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
                     &quot;SWV ${params.Version} Installation kit is available in \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\Tool\\ArcherSWInsKIT_${params.Version}&lt;/br&gt;&quot;+
@@ -301,7 +237,7 @@ pipeline {
                     &quot;${toolSRN}&quot;+
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Compatible RDM SW&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
-					&quot;RDM ${shortversion} is available at \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\RDM\\RDM_${RDMVersion}&lt;/br&gt;&quot;+
+					&quot;RDM ${RDMVersion} is available at \\\\klasj\\ktfiles\\Regions\\Israel\\Eng\\Download\\uArcher_V${shortversion}\\RDM\\RDM_${RDMVersion}&lt;/br&gt;&quot;+
 					&quot;Installation instructions are available residing in Documentation folder.&lt;/br&gt;&quot;+
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Tool Config Utility&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
@@ -316,7 +252,7 @@ pipeline {
 					&quot;${masterimage}&quot;+
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Publish on Web:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
-					&quot;${publishweb}&quot;+
+					&quot;${webtext}&quot;+
 					&quot;&lt;/br&gt;&quot;+
 					&quot;&lt;strong&gt;&lt;u&gt;Customer:&lt;/u&gt;&lt;/strong&gt;&lt;/br&gt;&quot;+
 					&quot;${customer}&quot;+
