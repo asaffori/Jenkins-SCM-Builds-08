@@ -22,43 +22,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>BUILD_VERSION</name>
-          <description>What is the Archer build version you want to test? 
- example: 17.12.00.20600</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>BUILDTYPE</name>
-          <description>What is your build type?</description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>Tasks</string>
-              <string>Formal</string>
-              <string>Scheduled</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>TestsArray</name>
-          <description>What tests needs to run and in which confgurations? 
- example: [[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]]</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RunNunitTests</name>
-          <description>Should Nunit intergration tests be executed?</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>PublishToTestRail</name>
-          <description>Should sanity results be published to TestRail system?</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -83,6 +46,45 @@
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_VERSION</name>
+          <description>What is the Archer build version you want to test? 
+ example: 17.12.00.20600</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BUILDTYPE</name>
+          <description>What is your build type?</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>Tasks</string>
+              <string>Formal</string>
+              <string>Scheduled</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.TextParameterDefinition>
+          <name>TestsArray</name>
+          <description>What tests needs to run and in which confgurations? 
+ example: [[SuiteName,SuitePath,ToolType,ATEControllerMachineLabel,SimulatorEngineMachineLabel,BaseImagePath,BaseImageName,ATEScriptsPath]]</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.TextParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RunNunitTests</name>
+          <description>Should Nunit intergration tests be executed?</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>PublishToTestRail</name>
+          <description>Should sanity results be published to TestRail system?</description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
       <maxConcurrentPerNode>0</maxConcurrentPerNode>
       <maxConcurrentTotal>0</maxConcurrentTotal>
@@ -159,7 +161,7 @@ AUT_Tests.tokenize(&apos;;&apos;).each{
 	  string(name: &apos;TestSuite&apos;, value:test_suite_name),
 	  string(name: &apos;MajorMinor_Ver&apos;, value:ate_MajorMinor_Ver),
 	  [$class: &apos;NodeParameterValue&apos;, name: &apos;FlowController&apos;, labels: [&quot;${masternode}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
-	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${getNodePerLabel(&quot;ate_controller_engine_label&quot;)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
+	  [$class: &apos;NodeParameterValue&apos;, name: &apos;ATEControllerEngine&apos;, labels: [&quot;${getNodePerLabel(ate_controller_engine_label)}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]],
       [$class: &apos;NodeParameterValue&apos;, name: &apos;SimulatorEngine&apos;, labels: [&quot;${simulator_engine_label}&quot;], nodeEligibility: [$class: &apos;AllNodeEligibility&apos;]]]
 
   }
@@ -174,7 +176,7 @@ parallel ate_tests
  * This function will get label name and return a &apos;Free node&apos; labeled with this label. 
  * &apos;Free node&apos; is a node which wasn&apos;t selected for executing a test yet and has free executer
  * */
- /** Code blocked since of moving to use RunTestSuite job
+ /** Code blocked since of moving to use RunTestSuite job**/
 @NonCPS
 def getNodePerLabel(String label){
     //read all nodes labels with given label
@@ -198,7 +200,7 @@ def getNodePerLabel(String label){
     if (nodeName == null)
         nodeName=nodes[0].getNodeName();
     return nodeName
-}**/
+}
 
 </script>
     <sandbox>true</sandbox>
