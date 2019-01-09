@@ -125,7 +125,7 @@ Example:&lt;BR&gt;
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
-  <concurrentBuild>false</concurrentBuild>
+  <concurrentBuild>true</concurrentBuild>
   <builders>
     <hudson.tasks.BatchFile>
       <command>del /F /Q C:\Temp\*TestResult_%BUILD_VERSION%*.html</command>
