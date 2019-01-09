@@ -156,7 +156,12 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
             </secureFallbackScript>
           </script>
           <projectName>ATARS_Auto Deploy Sanity</projectName>
-          <parameters class="linked-hash-map"/>
+          <parameters class="linked-hash-map">
+            <entry>
+              <string>BUILD_VERSION</string>
+              <string></string>
+            </entry>
+          </parameters>
           <referencedParameters>BUILD_VERSION</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
           <omitValueField>true</omitValueField>
