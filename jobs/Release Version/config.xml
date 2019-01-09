@@ -6,18 +6,13 @@
       <jobProperties/>
       <triggers/>
       <parameters>
-        <string>ATLCustomer</string>
         <string>PhoenixCondition</string>
         <string>Version</string>
-        <string>A700Web</string>
-        <string>ATLWeb</string>
+        <string>Web</string>
+        <string>Customer</string>
         <string>Comments</string>
-        <string>A700Customer</string>
-        <string>A700</string>
-        <string>ATL</string>
-        <string>A600Web</string>
-        <string>A600</string>
-        <string>A600Customer</string>
+        <string>ToolType</string>
+        <string>RDM</string>
       </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
