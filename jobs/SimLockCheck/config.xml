@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description></description>
@@ -18,13 +18,16 @@
         <artifactNumToKeep>-1</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
-    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.0">
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
       <doNotScan>false</doNotScan>
     </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
     <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
       <optOut>false</optOut>
     </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
@@ -64,17 +67,14 @@
           <name>CheckSimTimeout</name>
           <description>(min)</description>
           <defaultValue>180</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
           <name>BUILD_VERSION</name>
           <description></description>
           <defaultValue></defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>Auto_Deploy_Sanity</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -138,27 +138,5 @@ exit /b 0</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
-  <buildWrappers>
-    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
-      <buildSteps>
-        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
-          <source class="hudson.plugins.groovy.StringSystemScriptSource">
-            <script plugin="script-security@1.39">
-              <script>import hudson.model.Result;
-
-def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
-
-
-if (Auto_Deploy_Sanity== &quot;false&quot;) {
-	println (&quot;Auto_Deploy_Sanity was disabled. lock simulator will not run&quot;);
-  	build.getExecutor().interrupt(Result.SUCCESS)
-}</script>
-              <sandbox>false</sandbox>
-            </script>
-          </source>
-        </hudson.plugins.groovy.SystemGroovy>
-      </buildSteps>
-      <failOnError>false</failOnError>
-    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
