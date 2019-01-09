@@ -75,11 +75,6 @@
           <defaultValue></defaultValue>
           <trim>false</trim>
         </hudson.model.StringParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>Auto_Deploy_Sanity</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
@@ -143,27 +138,5 @@ exit /b 0</command>
     </hudson.tasks.BatchFile>
   </builders>
   <publishers/>
-  <buildWrappers>
-    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
-      <buildSteps>
-        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
-          <source class="hudson.plugins.groovy.StringSystemScriptSource">
-            <script plugin="script-security@1.44">
-              <script>import hudson.model.Result;
-
-def Auto_Deploy_Sanity= build.buildVariableResolver.resolve(&quot;Auto_Deploy_Sanity&quot;)
-
-
-if (Auto_Deploy_Sanity== &quot;false&quot;) {
-	println (&quot;Auto_Deploy_Sanity was disabled. lock simulator will not run&quot;);
-  	build.getExecutor().interrupt(Result.SUCCESS)
-}</script>
-              <sandbox>false</sandbox>
-            </script>
-          </source>
-        </hudson.plugins.groovy.SystemGroovy>
-      </buildSteps>
-      <failOnError>false</failOnError>
-    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
