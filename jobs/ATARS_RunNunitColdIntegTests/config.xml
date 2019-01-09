@@ -1,0 +1,165 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>30</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.19.2">
+      <doNotScan>false</doNotScan>
+    </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@2.0.1">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.28">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.2">
+          <name>SimulatorEngine</name>
+          <description></description>
+          <allowedSlaves>
+            <string>ALL (no restriction)</string>
+          </allowedSlaves>
+          <defaultSlaves>
+            <string>master</string>
+          </defaultSlaves>
+          <triggerIfResult>multiSelectionDisallowed</triggerIfResult>
+          <allowMultiNodeSelection>false</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>false</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>RunNunitTests</name>
+          <description></description>
+          <defaultValue>false</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty plugin="throttle-concurrents@2.0.1">
+      <maxConcurrentPerNode>1</maxConcurrentPerNode>
+      <maxConcurrentTotal>10</maxConcurrentTotal>
+      <categories class="java.util.concurrent.CopyOnWriteArrayList"/>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+      <limitOneJobWithMatchingParams>false</limitOneJobWithMatchingParams>
+      <paramsToUseForLimit>SimulatorEngine</paramsToUseForLimit>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+    <EnvInjectJobProperty plugin="envinject@1.90">
+      <info>
+        <groovyScriptContent>def  workspace = &apos;C:\\5300\\Nunit\\Bin\\NunitResults&apos;
+
+if (currentBuild.getEnvVars().get(&quot;RunNunitTests&quot;) ){
+  workspace = &apos;&apos;
+} 
+
+def map = [workspace: workspace]
+return map 
+</groovyScriptContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>false</overrideBuildParameters>
+      <contributors/>
+    </EnvInjectJobProperty>
+    <org.jvnet.hudson.plugins.shelveproject.ShelveProjectProperty plugin="shelve-project-plugin@1.5"/>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <quietPeriod>60</quietPeriod>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <customWorkspace>${workspace}</customWorkspace>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>@ECHO Off&#xd;
+ECHO Shutting down machine - Running KillAll exe&#xd;
+CAll Killall -user&#xd;
+Echo #####################END of KillAll########################&#xd;
+&#xd;
+Echo ######################## Running Integ tests ###############&#xd;
+set Technologies=Platform&#xd;
+for /f &quot;tokens=3&quot; %%A in (&apos;reg query &quot;HKLM\SOFTWARE\KLA-TENCOR\OM\5300\Machine\Supported Features\Hardware\Heads\Linnik\Active&quot; /ve&apos;) do (&#xd;
+   IF &quot;%%A&quot; == &quot;O1&quot; set Technologies=%Technologies% Imaging &#xd;
+)&#xd;
+&#xd;
+for /f &quot;tokens=3&quot; %%A in (&apos;reg query &quot;HKLM\SOFTWARE\KLA-TENCOR\OM\5300\Machine\Supported Features\Hardware\Heads\MBS\Active&quot; /ve&apos;) do (&#xd;
+   IF &quot;%%A&quot; == &quot;O1&quot; set Technologies=%Technologies% Scol &#xd;
+)&#xd;
+&#xd;
+echo Working with Tehchnology types: %Technologies%&#xd;
+&#xd;
+&#xd;
+FOR %%G IN (%Technologies%) DO (&#xd;
+        echo Running command: %Root5300Bin%\Nunit\Bin\%%G.CIntegTest.bat /d&#xd;
+        %Root5300Bin%\Nunit\Bin\%%G.CIntegTest.bat /d&#xd;
+        if NOT %ERRORLEVEL% ==0 Exit /b 1&#xd;
+)&#xd;
+</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <hudson.plugins.nunit.NUnitPublisher plugin="nunit@0.22">
+      <testResultsPattern>*.CIntegTest.Results.xml</testResultsPattern>
+      <debug>false</debug>
+      <keepJUnitReports>false</keepJUnitReports>
+      <skipJUnitArchiver>false</skipJUnitArchiver>
+      <healthScaleFactor>1.0</healthScaleFactor>
+      <failIfNoResults>false</failIfNoResults>
+    </hudson.plugins.nunit.NUnitPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.8.10"/>
+    <EnvInjectBuildWrapper plugin="envinject@1.90">
+      <info>
+        <propertiesContent>NUNIT_HOME=C:\Program Files (x86)\NUnit.org\nunit-console</propertiesContent>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+    </EnvInjectBuildWrapper>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+          <source class="hudson.plugins.groovy.StringSystemScriptSource">
+            <script plugin="script-security@1.44">
+              <script>import hudson.model.Result;
+
+def RunNunit = build.buildVariableResolver.resolve(&quot;RunNunitTests&quot;)
+
+if (RunNunit == &quot;false&quot; ) {
+	println (&quot;Nunit flag was disabled. Nunit step will be skipped&quot;);
+  	build.getExecutor().interrupt(Result.SUCCESS)
+}
+</script>
+              <sandbox>false</sandbox>
+            </script>
+          </source>
+        </hudson.plugins.groovy.SystemGroovy>
+      </buildSteps>
+      <failOnError>true</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
+</project>

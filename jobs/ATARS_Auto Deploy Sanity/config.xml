@@ -250,11 +250,6 @@ return &quot;&lt;input name=\&quot;value\&quot; value=\&quot;${major_min}\&quot;
           <defaultValue>false</defaultValue>
         </hudson.model.BooleanParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
-          <name>Auto_Deploy_Sanity</name>
-          <description></description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
           <name>RunNunitTests</name>
           <description></description>
           <defaultValue>false</defaultValue>
@@ -457,6 +452,10 @@ historyJobs.getFlowSteps().each { step -&gt;
     </entry>
     <entry>
       <string>BUILDTYPE</string>
+      <string></string>
+    </entry>
+    <entry>
+      <string>Auto_Deploy_Sanity</string>
       <string></string>
     </entry>
     <entry>
