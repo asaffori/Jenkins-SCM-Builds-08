@@ -19,46 +19,6 @@
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
-    <hudson.model.ParametersDefinitionProperty>
-      <parameterDefinitions>
-        <hudson.model.StringParameterDefinition>
-          <name>Version</name>
-          <description>Which Version you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>ToolType</name>
-          <description>Which Tool Type you want to release?</description>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>Comments</name>
-          <description>What is your comments to the release mail?</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>RDMRelease</name>
-          <description>Will RDM be released also?</description>
-          <defaultValue>true</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.BooleanParameterDefinition>
-          <name>Web</name>
-          <description>Will this version be publish on Web?</description>
-          <defaultValue>false</defaultValue>
-        </hudson.model.BooleanParameterDefinition>
-        <hudson.model.StringParameterDefinition>
-          <name>Customer</name>
-          <description>Which Customer will be relesed to?</description>
-          <defaultValue>All</defaultValue>
-          <trim>false</trim>
-        </hudson.model.StringParameterDefinition>
-        <hudson.model.TextParameterDefinition>
-          <name>PhoenixCondition</name>
-          <description>Input your comments regarding the Phoenix installation:</description>
-          <trim>false</trim>
-        </hudson.model.TextParameterDefinition>
-      </parameterDefinitions>
-    </hudson.model.ParametersDefinitionProperty>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
       <useBuildBlocker>false</useBuildBlocker>
       <blockLevel>GLOBAL</blockLevel>
@@ -133,7 +93,7 @@ pipeline {
 					}else{
 						bat &quot;xcopy ${ArcherKitDir}\\*.* ${Archerdirpath}\\ /f&quot;
 					}
-					if(params.RDMRelease){
+					if(params.RDMRelease==&apos;true&apos;){
 						RDMKitDir=&quot;${networkpathroot}\\SW-RDM\\RDM_Installations\\RDM_${majorminor}\\Formal\\RDM_${params.Version}&quot;
 						RDMdirpath=&quot;${downloadpath}\\uArcher_V${shortversion}\\RDM\\RDM_${params.Version}&quot;
 						RDMdir=new File(RDMdirpath)
@@ -151,7 +111,7 @@ pipeline {
 		    steps (&apos;Parameter&apos;){
 		        script {
 					//get compitable RDM version
-					if(params.RDMRelease){
+					if(params.RDMRelease==&apos;true&apos;){
 						RDMVersion=params.Version
 					}else{
 						File RDMFolder =new File(&quot;${downloadpath}\\uArcher_V&quot;+shortversion+&quot;\\RDM&quot;)
@@ -170,15 +130,15 @@ pipeline {
 					
 					def props = readProperties file: &quot;\\\\isr1appcc02\\SCM\\OMD\\Jenkins_Build_conf_files\\Tooltype_DL.properties&quot;
                     
-                    echo props[&apos;${ToolType}DL&apos;]
-					mailgroup=props[&apos;${ToolType}DL&apos;]
+                    echo props[&quot;${params.ToolType}DL&quot;]
+					mailgroup=props[&quot;${params.ToolType}DL&quot;]
 					echo mailgroup
 					
 					string masterimage=&quot;&quot;
 					File masterimagefile=new File(&quot;${codeviewpath}\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/MasterImage.html&quot;)
 	                if(!masterimagefile.exists())exitwitherror(&quot;Master image html doesn&apos;t exist under code view&quot;)
 	                string masterimagecontent=masterimagefile.text
-					masterimage=masterimagecontent.substring(masterimagecontent.indexOf(&quot;${params.Tooltype}:&quot;),masterimagecontent.indexOf(&quot;&lt;!--${params.Tooltype}End--&gt;&quot;))
+					masterimage=masterimagecontent.substring(masterimagecontent.indexOf(&quot;${params.ToolType}:&quot;),masterimagecontent.indexOf(&quot;&lt;!--${params.ToolType}End--&gt;&quot;))
 				
 					def buildnotice= &quot;${codeviewpath}\\OMD-UN_&quot;+majorminor+&quot;\\UOMD_BLD_&quot;+params.Version+&quot;_code&quot;+ &quot;/OMD_Builds/JenkinsBuild/Instructions/InstallationInstruction.html&quot;;
 	                def buildnoticefile = new File(buildnotice)
