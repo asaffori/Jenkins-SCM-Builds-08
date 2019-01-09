@@ -69,7 +69,7 @@
         <propertiesContent>workspace=${workspace}</propertiesContent>
         <groovyScriptContent>def  workspace = &apos;C:\\5300\\Nunit\\Bin\\NunitResults&apos;
 
-if (currentBuild.getEnvVars().get(&quot;RunNunitTests&quot;) == false){
+if (currentBuild.getEnvVars().get(&quot;RunNunitTests&quot;) == &quot;false&quot;){
   workspace = &apos;&apos;
 } 
 
